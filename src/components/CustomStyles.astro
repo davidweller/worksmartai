@@ -1,63 +1,47 @@
 ---
-import '@fontsource-variable/inter';
-
-// 'DM Sans'
-// Nunito
-// Dosis
-// Outfit
-// Roboto
-// Literata
-// 'IBM Plex Sans'
-// Karla
-// Poppins
-// 'Fira Sans'
-// 'Libre Franklin'
-// Inconsolata
-// Raleway
-// Oswald
-// 'Space Grotesk'
-// Urbanist
 ---
 
 <style is:inline>
+  @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&family=Work+Sans:wght@400;700&display=swap');
+
   :root {
-    --aw-font-sans: 'Inter Variable';
-    --aw-font-serif: 'Inter Variable';
-    --aw-font-heading: 'Inter Variable';
+    --aw-font-sans: 'Ubuntu';
+    --aw-font-serif: 'Ubuntu';
+    --aw-font-heading: 'Work Sans';
 
-    --aw-color-primary: rgb(1 97 239);
-    --aw-color-secondary: rgb(1 84 207);
-    --aw-color-accent: rgb(109 40 217);
+    --aw-color-primary: rgb(1 88 135);
+    --aw-color-secondary: rgb(134 191 226);
+    --aw-color-accent: rgb(255 119 0);
 
-    --aw-color-text-heading: rgb(0 0 0);
-    --aw-color-text-default: rgb(16 16 16);
-    --aw-color-text-muted: rgb(16 16 16 / 66%);
-    --aw-color-bg-page: rgb(255 255 255);
+    --aw-color-text-heading: rgb(1 88 135);
+    --aw-color-text-default: rgb(27 1 1);
+    --aw-color-text-muted: rgb(27 1 1 / 66%);
+    --aw-color-bg-page: rgb(248 248 248);
 
-    --aw-color-bg-page-dark: rgb(3 6 32);
+    --aw-color-bg-page-dark: rgb(1 88 135);
 
     ::selection {
-      background-color: lavender;
+      background-color: rgb(134 191 226 / 60%);
     }
   }
 
   .dark {
-    --aw-font-sans: 'Inter Variable';
-    --aw-font-serif: 'Inter Variable';
-    --aw-font-heading: 'Inter Variable';
+    --aw-font-sans: 'Ubuntu';
+    --aw-font-serif: 'Ubuntu';
+    --aw-font-heading: 'Work Sans';
 
-    --aw-color-primary: rgb(1 97 239);
-    --aw-color-secondary: rgb(1 84 207);
-    --aw-color-accent: rgb(109 40 217);
+    --aw-color-primary: rgb(1 88 135);
+    --aw-color-secondary: rgb(134 191 226);
+    --aw-color-accent: rgb(255 119 0);
 
-    --aw-color-text-heading: rgb(247, 248, 248);
-    --aw-color-text-default: rgb(229 236 246);
-    --aw-color-text-muted: rgb(229 236 246 / 66%);
-    --aw-color-bg-page: rgb(3 6 32);
+    --aw-color-text-heading: rgb(248 248 248);
+    --aw-color-text-default: rgb(248 248 248);
+    --aw-color-text-muted: rgb(248 248 248 / 72%);
+    --aw-color-bg-page: rgb(1 88 135);
 
     ::selection {
-      background-color: black;
-      color: snow;
+      background-color: rgb(255 119 0 / 35%);
+      color: rgb(248 248 248);
     }
   }
 </style>
