@@ -1,0 +1,16 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import ROICalculator from '~/components/widgets/ROICalculator.astro';
+
+const metadata = {
+  title: 'ROI Calculator | WorkSmart-AI',
+  description:
+    'Estimate potential annual and 5-year savings from AI adoption with role-level staffing inputs and real-time ROI projections.',
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="bg-[#f8f8f8] px-6 py-14 sm:px-8 lg:px-12">
+    <ROICalculator rootId="roi-calculator-page" />
+  </section>
+</Layout>

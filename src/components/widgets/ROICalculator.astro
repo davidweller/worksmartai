@@ -1,0 +1,685 @@
+---
+interface Props {
+  rootId?: string;
+}
+
+const { rootId = 'wsai-roi-calculator' } = Astro.props;
+---
+
+<section class="wsai-sav-root">
+  <div class="wsai-sav" id={rootId}>
+    <div class="wsai-copy-top">
+      <h2>How much could you save with AI?</h2>
+      <p>
+        Our WorkSmart-AI Savings Calculator uses peer-reviewed and public research to estimate how much time, cost, and
+        capacity institutions could reclaim through staff training on AI.
+        <a href="/how-our-calculator-works">Read here</a> how we calculate.
+      </p>
+    </div>
+
+    <div class="wsai-banner">
+      <div class="wsai-banner-col">
+        <div class="wsai-eyebrow">Annual cost savings</div>
+        <div class="wsai-banner-value" id={`${rootId}-banner-annual`}>£0</div>
+        <div class="wsai-banner-sub" id={`${rootId}-banner-sub`}>Based on 0% efficiency at 0% adoption</div>
+      </div>
+      <div class="wsai-banner-col">
+        <div class="wsai-eyebrow">5-year projection</div>
+        <div class="wsai-banner-value" id={`${rootId}-banner-proj`}>£0</div>
+        <div class="wsai-adoption-pill" id={`${rootId}-banner-adoption`}>Scaling Up adoption</div>
+      </div>
+    </div>
+
+    <div class="wsai-grid">
+      <div class="wsai-panel">
+        <h2 class="wsai-panel-h">Your organisation</h2>
+
+        <div id={`${rootId}-simple-controls`}>
+          <div class="wsai-field">
+            <div class="wsai-label"><span>Number of employees</span><span id={`${rootId}-staff-val`}>40</span></div>
+            <input id={`${rootId}-staff`} class="wsai-range" type="range" min="5" max="250" step="1" value="40" />
+          </div>
+
+          <div class="wsai-field">
+            <div class="wsai-label"><span>Average annual salary</span><span id={`${rootId}-salary-val`}>£45,000</span></div>
+            <input id={`${rootId}-salary`} class="wsai-range" type="range" min="20000" max="120000" step="1000" value="45000" />
+          </div>
+        </div>
+
+        <div class="wsai-field">
+          <div class="wsai-label wsai-label-single"><span>Adoption level</span></div>
+          <div class="wsai-adopt" role="group" aria-label="Adoption level">
+            <button type="button" class="wsai-chip" data-adopt="beginner">
+              <span>Early Stage</span>
+              <small>Basic initial use</small>
+            </button>
+            <button type="button" class="wsai-chip" data-adopt="intermediate">
+              <span>Scaling Up</span>
+              <small>Growing team confidence</small>
+            </button>
+            <button type="button" class="wsai-chip" data-adopt="advanced">
+              <span>Mature Adoption</span>
+              <small>Embedded daily workflows</small>
+            </button>
+          </div>
+        </div>
+
+        <details class="wsai-advanced-details">
+          <summary class="wsai-advanced-summary">Advanced breakdown by role</summary>
+          <div class="wsai-advanced-grid">
+            <div class="wsai-advanced-col">
+              <h3 class="wsai-col-h">Academic staff</h3>
+              <div class="wsai-field wsai-field-adv"><label class="wsai-label-adv" for={`${rootId}-adv-edu`}>Educators</label><input type="number" data-role-key="edu" id={`${rootId}-adv-edu`} class="wsai-input-adv" placeholder="0" min="0" /></div>
+              <div class="wsai-field wsai-field-adv"><label class="wsai-label-adv" for={`${rootId}-adv-res`}>Researchers</label><input type="number" data-role-key="res" id={`${rootId}-adv-res`} class="wsai-input-adv" placeholder="0" min="0" /></div>
+              <div class="wsai-field wsai-field-adv"><label class="wsai-label-adv" for={`${rootId}-adv-eduRes`}>Educator-Researchers</label><input type="number" data-role-key="eduRes" id={`${rootId}-adv-eduRes`} class="wsai-input-adv" placeholder="0" min="0" /></div>
+            </div>
+            <div class="wsai-advanced-col">
+              <h3 class="wsai-col-h">Professional services</h3>
+              <div class="wsai-field wsai-field-adv"><label class="wsai-label-adv" for={`${rootId}-adv-stu`}>Student Services / HR / Registry</label><input type="number" data-role-key="stu" id={`${rootId}-adv-stu`} class="wsai-input-adv" placeholder="0" min="0" /></div>
+              <div class="wsai-field wsai-field-adv"><label class="wsai-label-adv" for={`${rootId}-adv-lib`}>Library & Learning Resources</label><input type="number" data-role-key="lib" id={`${rootId}-adv-lib`} class="wsai-input-adv" placeholder="0" min="0" /></div>
+              <div class="wsai-field wsai-field-adv"><label class="wsai-label-adv" for={`${rootId}-adv-fin`}>Finance</label><input type="number" data-role-key="fin" id={`${rootId}-adv-fin`} class="wsai-input-adv" placeholder="0" min="0" /></div>
+              <div class="wsai-field wsai-field-adv"><label class="wsai-label-adv" for={`${rootId}-adv-it`}>IT Services</label><input type="number" data-role-key="it" id={`${rootId}-adv-it`} class="wsai-input-adv" placeholder="0" min="0" /></div>
+              <div class="wsai-field wsai-field-adv"><label class="wsai-label-adv" for={`${rootId}-adv-mar`}>Marketing & Comms</label><input type="number" data-role-key="mar" id={`${rootId}-adv-mar`} class="wsai-input-adv" placeholder="0" min="0" /></div>
+              <div class="wsai-field wsai-field-adv"><label class="wsai-label-adv" for={`${rootId}-adv-est`}>Estates / Facilities</label><input type="number" data-role-key="est" id={`${rootId}-adv-est`} class="wsai-input-adv" placeholder="0" min="0" /></div>
+              <div class="wsai-field wsai-field-adv"><label class="wsai-label-adv" for={`${rootId}-adv-oth`}>Other Admin</label><input type="number" data-role-key="oth" id={`${rootId}-adv-oth`} class="wsai-input-adv" placeholder="0" min="0" /></div>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <div class="wsai-panel">
+        <h2 class="wsai-panel-h">Your potential savings</h2>
+        <div class="wsai-metrics">
+          <article class="wsai-metric-card">
+            <div class="wsai-metric-label">Annual<br />saving</div>
+            <div class="wsai-metric-value wsai-metric-green" id={`${rootId}-k-savings`}>£0</div>
+            <div class="wsai-metric-foot">Estimated yearly financial impact</div>
+          </article>
+          <article class="wsai-metric-card">
+            <div class="wsai-metric-label">Productivity<br />gain</div>
+            <div class="wsai-metric-value" id={`${rootId}-k-prod`}>0%</div>
+            <div class="wsai-metric-foot">Average increase across entered staff</div>
+          </article>
+          <article class="wsai-metric-card">
+            <div class="wsai-metric-label">Capacity<br />created</div>
+            <div class="wsai-metric-value" id={`${rootId}-k-fte`}>0.0 FTE</div>
+            <div class="wsai-metric-foot">Equivalent full-time roles of capacity</div>
+          </article>
+          <article class="wsai-metric-card">
+            <div class="wsai-metric-label">5-year<br />total</div>
+            <div class="wsai-metric-value" id={`${rootId}-k-proj`}>£0</div>
+            <div class="wsai-metric-foot">Projected cumulative savings</div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="wsai-copy-bottom">
+      <p>Want to know more? Get in contact to talk about how training your staff in AI can help you save time and money.</p>
+      <div class="wsai-copy-actions">
+        <a href="/contact" class="wsai-copy-btn wsai-copy-btn-primary">Book a Call</a>
+        <a href="/contact" class="wsai-copy-btn wsai-copy-btn-secondary">Email Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .wsai-sav-root {
+    background: #f8f8f8;
+    padding: 12px 0;
+  }
+
+  .wsai-sav {
+    --line: #e2e5ea;
+    --muted: #f2f4f7;
+    --ink: #0f172a;
+    --sub: #4b5563;
+    --navy: #015887;
+    --accent: #ff7700;
+    --slider-thumb-size: 22px;
+    --slider-track-height: 12px;
+    --fill-percent: 50%;
+    font-family: 'Ubuntu', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 16px;
+    color: var(--ink);
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+
+  .wsai-banner {
+    background: var(--navy);
+    border-radius: 16px;
+    padding: 20px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .wsai-copy-top {
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
+  .wsai-copy-top h2 {
+    margin: 0;
+    color: #015887;
+    font-family: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-size: clamp(38px, 4vw, 56px);
+    line-height: 1.15;
+    font-weight: 700;
+  }
+
+  .wsai-copy-top p {
+    margin: 14px auto 0;
+    max-width: 920px;
+    font-size: 1em;
+    color: #334155;
+    line-height: 1.6;
+  }
+
+  .wsai-copy-top a {
+    color: #015887;
+    font-weight: 700;
+    text-decoration: underline;
+  }
+
+  .wsai-eyebrow {
+    font-size: 1em;
+    line-height: 1.4;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #86bfe2;
+    font-family: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight: 700;
+  }
+
+  .wsai-banner-value {
+    margin-top: 4px;
+    font-size: 40px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #ffffff;
+    font-family: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  }
+
+  .wsai-banner-sub {
+    margin-top: 4px;
+    font-size: 1em;
+    color: #86bfe2;
+  }
+
+  .wsai-adoption-pill {
+    display: inline-flex;
+    margin-top: 8px;
+    font-size: 1em;
+    color: #ff9940;
+    background: rgba(255, 119, 0, 0.25);
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-weight: 700;
+  }
+
+  .wsai-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .wsai-panel {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px;
+  }
+
+  .wsai-panel-h {
+    margin: 0 0 14px;
+    color: var(--navy);
+    font-size: 1em;
+    line-height: 1.4;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-family: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight: 700;
+  }
+
+  .wsai-field {
+    margin-bottom: 16px;
+  }
+
+  .wsai-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 1em;
+    color: #334155;
+  }
+
+  .wsai-label-single {
+    justify-content: flex-start;
+  }
+
+  .wsai-adopt {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .wsai-chip {
+    background: #ffffff;
+    border: 1px solid #d3d8df;
+    padding: 10px 8px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    color: #0f172a;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .wsai-chip span {
+    font-size: 1em;
+  }
+
+  .wsai-chip small {
+    font-size: 1em;
+    color: #6b7280;
+    font-weight: 400;
+  }
+
+  .wsai-chip[aria-pressed='true'] {
+    border-color: #ff7700;
+    background: #fff5ec;
+  }
+
+  .wsai-chip[aria-pressed='true'] span {
+    color: #ff7700;
+  }
+
+  .wsai-range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: var(--slider-thumb-size);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .wsai-range::-webkit-slider-runnable-track {
+    height: var(--slider-track-height);
+    border-radius: var(--slider-track-height);
+    background: linear-gradient(to right, var(--accent) var(--fill-percent), #e5e7eb var(--fill-percent));
+  }
+
+  .wsai-range::-moz-range-track {
+    height: var(--slider-track-height);
+    border-radius: var(--slider-track-height);
+    background: linear-gradient(to right, var(--accent) var(--fill-percent), #e5e7eb var(--fill-percent));
+  }
+
+  .wsai-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    margin-top: calc((var(--slider-thumb-size) - var(--slider-track-height)) / -2);
+    height: var(--slider-thumb-size);
+    width: var(--slider-thumb-size);
+    background-color: var(--accent);
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .wsai-range::-moz-range-thumb {
+    height: var(--slider-thumb-size);
+    width: var(--slider-thumb-size);
+    background-color: var(--accent);
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .wsai-advanced-details {
+    margin-top: 6px;
+  }
+
+  .wsai-advanced-summary {
+    cursor: pointer;
+    font-size: 1em;
+    color: #334155;
+    font-weight: 700;
+  }
+
+  .wsai-advanced-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    background-color: var(--muted);
+    padding: 12px;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+
+  .wsai-col-h {
+    margin: 0 0 8px;
+    color: var(--navy);
+    font-size: 1em;
+    font-family: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight: 700;
+  }
+
+  .wsai-field-adv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 10px;
+  }
+
+  .wsai-label-adv {
+    font-size: 1em;
+    color: #374151;
+  }
+
+  .wsai-input-adv {
+    width: 76px;
+    min-width: 76px;
+    font-size: 1em;
+    padding: 6px 8px;
+    border: 1px solid #d3d8df;
+    border-radius: 8px;
+    text-align: right;
+  }
+
+  .wsai-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .wsai-metric-card {
+    background: #f3f5f7;
+    border-radius: 12px;
+    padding: 12px;
+  }
+
+  .wsai-metric-label {
+    font-size: 1em;
+    line-height: 1.4;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #475569;
+    font-family: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight: 700;
+  }
+
+  .wsai-metric-value {
+    margin-top: 6px;
+    font-size: 26px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #1d9e75;
+    font-family: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  }
+
+  .wsai-metric-green {
+    color: #1d9e75;
+  }
+
+  .wsai-metric-foot {
+    margin-top: 8px;
+    font-size: 1em;
+    color: #6b7280;
+  }
+
+  .wsai-copy-bottom {
+    margin-top: 18px;
+    border-top: 1px solid #dce1e8;
+    padding-top: 18px;
+    text-align: center;
+  }
+
+  .wsai-copy-bottom p {
+    margin: 0;
+    font-size: 1em;
+    color: #334155;
+  }
+
+  .wsai-copy-actions {
+    margin-top: 14px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .wsai-copy-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 700;
+    font-family: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  }
+
+  .wsai-copy-btn-primary {
+    border: 1px solid #015887;
+    background: #015887;
+    color: #ffffff;
+  }
+
+  .wsai-copy-btn-secondary {
+    border: 1px solid #015887;
+    background: #ffffff;
+    color: #015887;
+  }
+
+  @media (max-width: 980px) {
+    .wsai-banner,
+    .wsai-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .wsai-banner {
+      padding: 16px;
+    }
+
+    .wsai-banner-value {
+      font-size: 34px;
+    }
+
+    .wsai-copy-top h2 {
+      font-size: 34px;
+    }
+
+    .wsai-copy-top p {
+      font-size: 1em;
+    }
+
+    .wsai-advanced-grid,
+    .wsai-adopt,
+    .wsai-metrics {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script define:vars={{ rootId }}>
+  (() => {
+    const CONFIG = {
+      currency: 'GBP',
+      locale: 'en-GB',
+      sliders: {
+        staff: [5, 250, 40],
+        salary: [20000, 120000, 45000],
+      },
+      onCost: 1.32,
+      adoption: {
+        init: 'intermediate',
+        beginner: 0.25,
+        intermediate: 0.5,
+        advanced: 0.75,
+      },
+      uplift: {
+        beginner: 0.12,
+        intermediate: 0.2,
+        advanced: 0.3,
+      },
+      eligibleByIndustry: {
+        init: 'higherEdu',
+        higherEdu: 0.72,
+      },
+      eligibleByRole: {
+        edu: 0.62,
+        res: 0.68,
+        eduRes: 0.67,
+        stu: 0.74,
+        lib: 0.7,
+        fin: 0.78,
+        it: 0.76,
+        mar: 0.82,
+        est: 0.49,
+        oth: 0.7,
+      },
+      projection: {
+        show: true,
+        growthRate: 0.05,
+      },
+    };
+
+    const root = document.getElementById(rootId);
+    if (!root) return;
+
+    const nfMoney = (n) =>
+      Math.round(n || 0).toLocaleString('en-GB', { style: 'currency', currency: 'GBP', maximumFractionDigits: 0 });
+    const nf = (n) => Math.round(n || 0).toLocaleString('en-GB');
+    const pct = (x) => `${((x || 0) * 100).toFixed(0)}%`;
+    const $ = (sel) => root.querySelector(sel);
+    const adoptionLabelMap = {
+      beginner: 'Early Stage',
+      intermediate: 'Scaling Up',
+      advanced: 'Mature Adoption',
+    };
+
+    const staffEl = $(`#${rootId}-staff`);
+    const salaryEl = $(`#${rootId}-salary`);
+    const simpleControlsEl = $(`#${rootId}-simple-controls`);
+    const advancedInputs = root.querySelectorAll('[data-role-key]');
+
+    const updateSliderFill = (el) => {
+      const percent = ((el.value - el.min) / (el.max - el.min)) * 100;
+      el.style.setProperty('--fill-percent', `${percent}%`);
+    };
+
+    const updateLabels = () => {
+      $(`#${rootId}-staff-val`).textContent = nf(staffEl.value);
+      $(`#${rootId}-salary-val`).textContent = nfMoney(salaryEl.value);
+      updateSliderFill(staffEl);
+      updateSliderFill(salaryEl);
+    };
+
+    function compute() {
+      const salary = parseFloat(salaryEl.value);
+      const loadedAnnual = salary * CONFIG.onCost;
+      const adoptionKey = root.querySelector('[data-adopt][aria-pressed="true"]')?.dataset.adopt || CONFIG.adoption.init;
+      const adoptionRate = CONFIG.adoption[adoptionKey];
+      const uplift = CONFIG.uplift[adoptionKey];
+
+      let totalStaff = 0;
+      let annualSavings = 0;
+      let weightedProdSum = 0;
+
+      const advancedStaffTotal = Array.from(advancedInputs).reduce((sum, input) => sum + (parseInt(input.value, 10) || 0), 0);
+
+      if (advancedStaffTotal > 0) {
+        simpleControlsEl.setAttribute('disabled', 'true');
+        totalStaff = advancedStaffTotal;
+
+        advancedInputs.forEach((input) => {
+          const headcount = parseInt(input.value, 10) || 0;
+          if (headcount > 0) {
+            const roleKey = input.dataset.roleKey;
+            const eligibleShare = CONFIG.eligibleByRole[roleKey] || 0;
+            const prodFraction = eligibleShare * adoptionRate * uplift;
+
+            annualSavings += headcount * loadedAnnual * prodFraction;
+            weightedProdSum += headcount * prodFraction;
+          }
+        });
+      } else {
+        simpleControlsEl.removeAttribute('disabled');
+        totalStaff = parseInt(staffEl.value, 10);
+        const eligibleShare = CONFIG.eligibleByIndustry[CONFIG.eligibleByIndustry.init];
+        const prodFraction = eligibleShare * adoptionRate * uplift;
+
+        annualSavings = totalStaff * loadedAnnual * prodFraction;
+        weightedProdSum = totalStaff * prodFraction;
+      }
+
+      const overallProdFraction = totalStaff > 0 ? weightedProdSum / totalStaff : 0;
+      const ftes = weightedProdSum;
+
+      let proj = 0;
+      if (CONFIG.projection?.show) {
+        const g = CONFIG.projection.growthRate || 0;
+        let mult = 0;
+        let pow = 1;
+        for (let i = 0; i < 5; i++) {
+          mult += pow;
+          pow *= 1 + g;
+        }
+        proj = annualSavings * mult;
+      }
+
+      $(`#${rootId}-k-savings`).textContent = nfMoney(annualSavings);
+      $(`#${rootId}-k-prod`).textContent = pct(overallProdFraction);
+      $(`#${rootId}-k-fte`).textContent = `${ftes.toFixed(1)} FTE`;
+      $(`#${rootId}-k-proj`).textContent = nfMoney(proj);
+
+      $(`#${rootId}-banner-annual`).textContent = nfMoney(annualSavings);
+      $(`#${rootId}-banner-sub`).textContent = `Based on ${pct(uplift)} efficiency at ${pct(adoptionRate)} adoption`;
+      $(`#${rootId}-banner-proj`).textContent = nfMoney(proj);
+      $(`#${rootId}-banner-adoption`).textContent = `${adoptionLabelMap[adoptionKey] || 'Scaling Up'} adoption`;
+    }
+
+    root.querySelectorAll('[data-adopt]').forEach((b) => {
+      b.addEventListener('click', (e) => {
+        root.querySelectorAll('[data-adopt]').forEach((x) => x.setAttribute('aria-pressed', 'false'));
+        e.currentTarget.setAttribute('aria-pressed', 'true');
+        compute();
+      });
+    });
+
+    [staffEl, salaryEl].forEach((el) =>
+      el.addEventListener('input', () => {
+        updateLabels();
+        compute();
+      })
+    );
+
+    advancedInputs.forEach((input) => {
+      input.addEventListener('input', compute);
+    });
+
+    const initAdoptionBtn = root.querySelector(`[data-adopt="${CONFIG.adoption.init}"]`);
+    if (initAdoptionBtn) {
+      initAdoptionBtn.setAttribute('aria-pressed', 'true');
+    } else {
+      root.querySelector('[data-adopt="intermediate"]').setAttribute('aria-pressed', 'true');
+    }
+
+    updateLabels();
+    compute();
+  })();
+</script>
