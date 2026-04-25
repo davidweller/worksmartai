@@ -164,6 +164,25 @@ import { UI } from 'astrowind:config';
   });
 </script>
 
+<script>
+  import AOS from 'aos';
+
+  const initAOS = () => {
+    if (document.querySelector('[data-aos]')) {
+      AOS.init({
+        duration: 450,
+        easing: 'ease-out-sine',
+        once: true,
+        offset: 40,
+      });
+      AOS.refreshHard();
+    }
+  };
+
+  initAOS();
+  document.addEventListener('astro:after-swap', initAOS);
+</script>
+
 <script is:inline>
   /* Inspired by: https://github.com/heidkaemper/tailwindcss-intersect */
   const Observer = {

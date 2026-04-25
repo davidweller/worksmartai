@@ -12,7 +12,7 @@ const { rootId = 'wsai-roi-calculator' } = Astro.props;
       <h2>How much could you save with AI?</h2>
       <p>
         Our WorkSmart-AI Savings Calculator uses peer-reviewed and public research to estimate how much time, cost, and
-        capacity institutions could reclaim through staff training on AI.
+        capacity institutions could reclaim through staff training on AI.<br />
         <a href="/how-our-calculator-works">Read here</a> how we calculate.
       </p>
     </div>
@@ -469,6 +469,10 @@ const { rootId = 'wsai-roi-calculator' } = Astro.props;
     font-size: 1em;
     font-weight: 700;
     font-family: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      color 0.2s ease;
   }
 
   .wsai-copy-btn-primary {
@@ -477,10 +481,22 @@ const { rootId = 'wsai-roi-calculator' } = Astro.props;
     color: #ffffff;
   }
 
+  .wsai-copy-btn-primary:hover {
+    border-color: #01466d;
+    background: #01466d;
+    color: #ffffff;
+  }
+
   .wsai-copy-btn-secondary {
     border: 1px solid #015887;
     background: #ffffff;
     color: #015887;
+  }
+
+  .wsai-copy-btn-secondary:hover {
+    border-color: #ff7700;
+    background: #ff7700;
+    color: #ffffff;
   }
 
   @media (max-width: 980px) {

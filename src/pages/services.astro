@@ -14,24 +14,27 @@ const metadata = {
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
 
-  <Hero
-    tagline="Services"
-    title="Elevate your projects with our stunning templates"
-    subtitle="Explore our meticulously crafted templates tailored to various industries and purposes. From captivating presentations to functional website designs, we offer the tools you need to succeed."
-    actions={[{ variant: 'primary', target: '_blank', text: 'Start exploring', href: '/' }]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
-      alt: 'AstroWind Hero Image',
-    }}
-  />
+  <div data-aos="fade-up">
+    <Hero
+      tagline="Services"
+      title="Elevate your projects with our stunning templates"
+      subtitle="Explore our meticulously crafted templates tailored to various industries and purposes. From captivating presentations to functional website designs, we offer the tools you need to succeed."
+      actions={[{ variant: 'primary', target: '_blank', text: 'Start exploring', href: '/' }]}
+      image={{
+        src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
+        alt: 'AstroWind Hero Image',
+      }}
+    />
+  </div>
 
   <!-- Features2 Widget ************** -->
 
-  <Features2
-    title="Explore our diverse templates"
-    subtitle="Discover our selection below to streamline and elevate your projects."
-    columns={3}
-    items={[
+  <div data-aos="fade-up" data-aos-delay="70">
+    <Features2
+      title="Explore our diverse templates"
+      subtitle="Discover our selection below to streamline and elevate your projects."
+      columns={3}
+      items={[
       {
         title: 'Educational',
         description:
@@ -84,14 +87,16 @@ const metadata = {
           'With attention to detail, customization, and contemporary design, they empower designers to showcase ideas cohesively. Ideal for all levels of designers.',
         icon: 'tabler:tie',
       },
-    ]}
-  />
+      ]}
+    />
+  </div>
 
   <!-- Content Widget **************** -->
 
-  <Content
-    isReversed
-    items={[
+  <div data-aos="fade-up" data-aos-delay="100">
+    <Content
+      isReversed
+      items={[
       {
         title: 'High-Quality Designs',
         description:
@@ -117,21 +122,23 @@ const metadata = {
         icon: 'tabler:carousel-horizontal',
       },
     ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1525909002-1b05e0c869d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
-      alt: 'Features Image',
-    }}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Main Features</h3>
-    </Fragment>
-  </Content>
+      image={{
+        src: 'https://images.unsplash.com/photo-1525909002-1b05e0c869d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
+        alt: 'Features Image',
+      }}
+    >
+      <Fragment slot="content">
+        <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Main Features</h3>
+      </Fragment>
+    </Content>
+  </div>
 
   <!-- Content Widget **************** -->
 
-  <Content
-    isAfterContent
-    items={[
+  <div data-aos="fade-up" data-aos-delay="130">
+    <Content
+      isAfterContent
+      items={[
       {
         title: 'Time Savings',
         description:
@@ -157,21 +164,23 @@ const metadata = {
         icon: 'tabler:file-download',
       },
     ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1552664688-cf412ec27db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
-      alt: 'Benefits Image',
-    }}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Benefits</h3>
-    </Fragment>
-  </Content>
+      image={{
+        src: 'https://images.unsplash.com/photo-1552664688-cf412ec27db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
+        alt: 'Benefits Image',
+      }}
+    >
+      <Fragment slot="content">
+        <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Benefits</h3>
+      </Fragment>
+    </Content>
+  </div>
 
   <!-- Testimonials Widget *********** -->
 
-  <Testimonials
-    title="Words from real customers"
-    testimonials={[
+  <div data-aos="fade-up" data-aos-delay="160">
+    <Testimonials
+      title="Words from real customers"
+      testimonials={[
       {
         testimonial: `The designs are not only visually appealing but also highly professional. The templates have saved me a significant amount of time while helping me make a lasting impression on my clients.`,
         name: 'Emily Kennedy',
@@ -200,25 +209,28 @@ const metadata = {
         },
       },
     ]}
-    callToAction={{
-      target: '_blank',
-      text: 'More testimonials...',
-      href: 'https://github.com/arthelokyo/astrowind',
-      icon: 'tabler:chevron-right',
-    }}
-  />
+      callToAction={{
+        target: '_blank',
+        text: 'More testimonials...',
+        href: 'https://github.com/arthelokyo/astrowind',
+        icon: 'tabler:chevron-right',
+      }}
+    />
+  </div>
 
   <!-- CallToAction Widget *********** -->
 
-  <CallToAction
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Start exploring',
-        href: '/',
-      },
-    ]}
-    title="Dive into our template collection"
-    subtitle="Whether you're in business, design, or education, our templates are here to elevate your projects."
-  />
+  <div data-aos="fade-up" data-aos-delay="200">
+    <CallToAction
+      actions={[
+        {
+          variant: 'primary',
+          text: 'Start exploring',
+          href: '/',
+        },
+      ]}
+      title="Dive into our template collection"
+      subtitle="Whether you're in business, design, or education, our templates are here to elevate your projects."
+    />
+  </div>
 </Layout>
