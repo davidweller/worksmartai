@@ -1,0 +1,54 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import type { MetaData } from '~/types';
+
+interface Props {
+  metadata: MetaData;
+  title: string;
+  effectiveDate?: string;
+  content: string;
+  contactHref?: string;
+}
+
+const { metadata, title, effectiveDate, content, contactHref = '/contact-us/' } = Astro.props;
+---
+
+<Layout metadata={metadata}>
+  <HeroText tagline="Legal & Compliance" title={title} subtitle={effectiveDate ? `Effective date: ${effectiveDate}` : undefined} />
+  <section class="bg-[#f8f8f8] px-6 pb-16 sm:px-8 lg:px-12">
+    <article class="legal-content mx-auto max-w-4xl rounded-2xl bg-white p-6 shadow-sm ring-1 ring-[#015887]/10 sm:p-10">
+      <Fragment set:html={content} />
+    </article>
+  </section>
+  <CallToAction
+    title="Need this information in another format?"
+    subtitle="Contact us and we will respond as soon as possible."
+    actions={[{ variant: 'primary', text: 'Contact Us', href: contactHref }]}
+  />
+</Layout>
+
+<style is:global>
+  .legal-content .container,
+  .legal-content .row,
+  .legal-content .nv-single-page-wrap,
+  .legal-content .nv-content-wrap,
+  .legal-content .wp-block-group__inner-container { display: contents; }
+  .legal-content .nv-page-title-wrap,
+  .legal-content .wp-block-spacer,
+  .legal-content p:empty { display: none; }
+  .legal-content { color: #1b0101; font-family: Ubuntu, system-ui, sans-serif; line-height: 1.75; }
+  .legal-content h1 { display: none; }
+  .legal-content h2,
+  .legal-content h3 { color: #015887; font-family: 'Work Sans', system-ui, sans-serif; font-weight: 700; line-height: 1.2; }
+  .legal-content h2 { border-top: 1px solid rgb(1 88 135 / 12%); font-size: clamp(1.45rem, 3vw, 2rem); margin-top: 2rem; padding-top: 1.5rem; }
+  .legal-content h3 { font-size: clamp(1.15rem, 2vw, 1.35rem); margin-top: 1.5rem; }
+  .legal-content p { margin: 1rem 0; }
+  .legal-content ul,
+  .legal-content ol { margin: 1rem 0 1.5rem 1.5rem; padding-left: 1rem; }
+  .legal-content ul { list-style: disc; }
+  .legal-content ol { list-style: decimal; }
+  .legal-content li { margin: 0.45rem 0; }
+  .legal-content a { color: #015887; font-weight: 700; text-decoration: underline; text-decoration-color: #86bfe2; text-underline-offset: 0.18em; }
+</style>

@@ -1,0 +1,76 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'About Us - WorkSmart-AI',
+  description: 'WorkSmart-AI is focused on supporting universities to confidently upskill their staff in AI, ensuring that productivity is increased and ROI achieved.',
+  canonical: '/about-us/',
+};
+
+const founderCards = [
+  {
+    name: 'Katie Steen',
+    image: 'https://worksmart-ai.co.uk/wp-content/uploads/2025/10/Katie.png',
+    linkedin: 'https://www.linkedin.com/in/katiesteen/',
+    paragraphs: [
+      'I?m all about the people! I?ve spent much of the last twenty years focusing on education through the lens of a camera - filming educational online training videos to highlight best practise in all sectors of the educational system, within the UK and internationally. Meeting amazing people, promoting their work and helping affect change.',
+      'Since 2017 my focus has been within higher education, supporting professional service and academic staff to digitally upskill - most recently with AI.',
+      'It was during my last role at the University of Exeter that I met Dave when we co-created and led the institution?s Digital Skills Initiative - providing training and guidance to 7,500 staff.',
+      '?and from this work, our company WorkSmart-AI was born!',
+    ],
+  },
+  {
+    name: 'David Weller',
+    image: 'https://worksmart-ai.co.uk/wp-content/uploads/2025/10/Dave-Profile.jpg',
+    linkedin: 'https://www.linkedin.com/in/davidrweller/',
+    paragraphs: [
+      'I?ve spent over twenty years exploring how technology can make learning more human. From classrooms to boardrooms, I?ve always been fascinated by how the right tools can unlock confidence, creativity, and capability in people. Along the way I?ve gained a Master?s degree in Education, a postgraduate diploma in teaching.',
+      'My work has taken me from teaching and examining to leading large-scale digital upskilling programmes - most recently as Digital Skills Lead at the University of Exeter, where I helped 7,500 staff build their confidence with new technologies, including AI.',
+      'I?m passionate about turning innovation into something practical - helping organisations not just adopt technology, but use it to work smarter and create real results. That?s what brought Katie and me together to found WorkSmart AI, to help people thrive in the AI era, one confident learner at a time.',
+    ],
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <HeroText tagline="About Us" title="People are at the heart of everything we do" subtitle="WorkSmart-AI is focused on supporting universities to confidently upskill their staff in AI, ensuring that productivity is increased and ROI achieved." />
+
+  <section class="bg-[#f8f8f8] px-6 pb-16 sm:px-8 lg:px-12">
+    <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+      <div class="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-[#015887]/10">
+        <iframe title="WorkSmart AI company video" src="https://www.youtube.com/embed/2vSpg6NhX40?feature=oembed" class="aspect-video w-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <div class="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-[#015887]/10">
+        <h2 class="font-heading text-3xl font-bold text-[#015887]">Our approach</h2>
+        <p class="mt-4 leading-relaxed text-[#1b0101]/75">With over four decades-worth of specialist educational experience within the team, we understand the value in working closely with clients in order to personalise every training package that we deliver.</p>
+        <p class="mt-4 leading-relaxed text-[#1b0101]/75">People are at the heart of everything that we do, as only once people feel confident and engaged in an experience, does real learning and transformation take place!</p>
+        <p class="mt-4 leading-relaxed text-[#1b0101]/75">This is demonstrated by our hands-on, personalised approach towards training and our uncomplicated, transparent and proactive approach towards business.</p>
+        <p class="mt-4 font-semibold text-[#015887]">Ultimately if the learning is fun, then great things can be achieved!</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-6 py-16 sm:px-8 lg:px-12">
+    <div class="mx-auto max-w-6xl">
+      <div class="text-center"><h2 class="font-heading text-3xl font-bold text-[#015887] sm:text-4xl">Meet Our Founders</h2></div>
+      <div class="mt-10 grid gap-8 lg:grid-cols-2">
+        {founderCards.map((founder) => (
+          <article class="rounded-2xl bg-[#f8f8f8] p-6 shadow-sm ring-1 ring-[#015887]/10 sm:p-8">
+            <img src={founder.image} alt={founder.name} class="mx-auto h-52 w-52 rounded-2xl object-cover" />
+            <p class="mt-3 text-center text-sm font-semibold text-[#ff7700]">Founder of WorkSmart-AI</p>
+            <h3 class="mt-2 text-center font-heading text-2xl font-bold text-[#015887]">{founder.name}</h3>
+            <div class="mt-5 space-y-4 text-[#1b0101]/75">{founder.paragraphs.map((paragraph) => <p>{paragraph}</p>)}</div>
+            <a href={founder.linkedin} target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex font-semibold text-[#015887] underline decoration-[#86bfe2] underline-offset-4">LinkedIn</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Features2 title="What this means for clients" columns={3} items={[{ title: 'Personalised training', description: 'We work closely with clients in order to personalise every training package that we deliver.', icon: 'tabler:adjustments' }, { title: 'People-first learning', description: 'Only once people feel confident and engaged in an experience, does real learning and transformation take place.', icon: 'tabler:users' }, { title: 'Transparent delivery', description: 'We bring an uncomplicated, transparent and proactive approach towards business.', icon: 'tabler:message-circle' }]} />
+
+  <CallToAction title="Reach out!" subtitle="Interested in hearing how WorkSmart-AI could help your staff become more AI-capable, confident and compliant? Reach out to say hello, and we?ll be happy to talk you through what we can offer, and how it can help your department or institution save money and become more productive." actions={[{ variant: 'primary', text: 'Contact us', href: '/contact-us/' }]} />
+</Layout>

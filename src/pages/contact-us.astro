@@ -1,0 +1,21 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+
+const metadata = {
+  title: 'Contact Us - WorkSmart-AI',
+  description: 'Contact Us Have a question or want to discuss how we can support your organisation?s AI journey? Fill out the form below and our team will be in touch shortly.',
+  canonical: '/contact-us/',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText tagline="Contact" title="Contact Us" subtitle="Have a question or want to discuss how we can support your organisation?s AI journey? Fill out the form below and our team will be in touch shortly." />
+  <section class="bg-[#f8f8f8] px-6 pb-16 sm:px-8 lg:px-12">
+    <div class="mx-auto max-w-5xl rounded-2xl bg-white p-4 shadow-sm ring-1 ring-[#015887]/10 sm:p-6">
+      <iframe src="https://forms.office.com/e/QZi4iD4Sja?embed=true" width="100%" height="1200" class="w-full rounded-xl border-0" title="WorkSmart-AI contact form" loading="lazy"></iframe>
+    </div>
+  </section>
+  <Features2 title="We?ll be in touch shortly" columns={3} items={[{ title: 'Questions', description: 'Have a question about how we can support your organisation?s AI journey?', icon: 'tabler:help-circle' }, { title: 'AI training support', description: 'Use the form to discuss how WorkSmart-AI could help your staff become more AI-capable, confident and compliant.', icon: 'tabler:school' }, { title: 'Book a call', description: 'If you would rather choose a time directly, use our booking page to schedule a call.', icon: 'tabler:calendar' }]} />
+</Layout>
