@@ -225,10 +225,7 @@ export const astroAssetsOptimizer: ImagesOptimizer = async (
 
   return Promise.all(
     breakpoints.map(async (w: number) => {
-      const computedHeight =
-        _width && _height
-          ? computeHeight(w, Number(_width) / Number(_height))
-          : undefined;
+      const computedHeight = _width && _height ? computeHeight(w, Number(_width) / Number(_height)) : undefined;
       const result = await getImage({
         src: image,
         width: w,

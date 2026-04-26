@@ -8,6 +8,10 @@ on:
     branches:
       - main
 
+# Use Node.js 24 for @actions/* until default runner image switches (avoids Node 20 deprecation noise)
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
     runs-on: ubuntu-latest

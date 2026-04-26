@@ -18,29 +18,78 @@ const { metadata, title, date, author, content } = Astro.props;
     <header class="mx-auto max-w-3xl text-center">
       <a href="/news/" class="text-sm font-bold uppercase tracking-wide text-[#ff7700]">News</a>
       <h1 class="mt-4 font-heading text-4xl font-bold tracking-tight text-[#015887] md:text-5xl">{title}</h1>
-      {(date || author) && <p class="mt-4 text-sm font-medium text-[#1b0101]/65">{date}{date && author ? ' ? ' : ''}{author}</p>}
+      {
+        (date || author) && (
+          <p class="mt-4 text-sm font-medium text-[#1b0101]/65">
+            {date}
+            {date && author ? ' ? ' : ''}
+            {author}
+          </p>
+        )
+      }
     </header>
-    <div class="article-content mx-auto mt-10 max-w-3xl rounded-2xl bg-white p-6 shadow-sm ring-1 ring-[#015887]/10 sm:p-10">
+    <div
+      class="article-content mx-auto mt-10 max-w-3xl rounded-2xl bg-white p-6 shadow-sm ring-1 ring-[#015887]/10 sm:p-10"
+    >
       <Fragment set:html={content} />
     </div>
     <div class="mx-auto mt-8 max-w-3xl">
-      <a href="/news/" class="font-semibold text-[#015887] underline decoration-[#86bfe2] underline-offset-4">Back to News</a>
+      <a href="/news/" class="font-semibold text-[#015887] underline decoration-[#86bfe2] underline-offset-4"
+        >Back to News</a
+      >
     </div>
   </article>
 </Layout>
 
 <style is:global>
-  .article-content { color: #1b0101; font-family: Ubuntu, system-ui, sans-serif; font-size: var(--aw-text-body, 1rem); line-height: var(--aw-leading-body, 1.7); }
-  .article-content p { margin: 1.15rem 0; }
+  .article-content {
+    color: #1b0101;
+    font-family: Ubuntu, system-ui, sans-serif;
+    font-size: var(--aw-text-body, 1rem);
+    line-height: var(--aw-leading-body, 1.7);
+  }
+  .article-content p {
+    margin: 1.15rem 0;
+  }
   .article-content h2,
-  .article-content h3 { color: #015887; font-family: 'Work Sans', system-ui, sans-serif; font-weight: 700; line-height: 1.25; margin-top: 2rem; }
-  .article-content h2 { font-size: clamp(1.55rem, 3vw, 2.1rem); }
-  .article-content h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
-  .article-content img { border-radius: 1rem; height: auto; margin-inline: auto; max-width: 100%; }
-  .article-content figure { margin: 1.5rem 0; }
+  .article-content h3 {
+    color: #015887;
+    font-family: 'Work Sans', system-ui, sans-serif;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-top: 2rem;
+  }
+  .article-content h2 {
+    font-size: clamp(1.55rem, 3vw, 2.1rem);
+  }
+  .article-content h3 {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+  }
+  .article-content img {
+    border-radius: 1rem;
+    height: auto;
+    margin-inline: auto;
+    max-width: 100%;
+  }
+  .article-content figure {
+    margin: 1.5rem 0;
+  }
   .article-content ul,
-  .article-content ol { margin: 1rem 0 1.5rem 1.5rem; padding-left: 1rem; }
-  .article-content ul { list-style: disc; }
-  .article-content ol { list-style: decimal; }
-  .article-content a { color: #015887; font-weight: 700; text-decoration: underline; text-decoration-color: #86bfe2; text-underline-offset: 0.18em; }
+  .article-content ol {
+    margin: 1rem 0 1.5rem 1.5rem;
+    padding-left: 1rem;
+  }
+  .article-content ul {
+    list-style: disc;
+  }
+  .article-content ol {
+    list-style: decimal;
+  }
+  .article-content a {
+    color: #015887;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: #86bfe2;
+    text-underline-offset: 0.18em;
+  }
 </style>

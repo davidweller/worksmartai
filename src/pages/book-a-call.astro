@@ -5,17 +5,32 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
   title: 'Book a Call - WorkSmart-AI',
-  description: 'Book a call with us Schedule a call (up to an hour) with us to explore how your organisation can adopt AI confidently and productively.',
+  description:
+    'Book a call with us Schedule a call (up to an hour) with us to explore how your organisation can adopt AI confidently and productively.',
   canonical: '/book-a-call/',
 };
 ---
 
 <Layout metadata={metadata}>
-  <HeroText tagline="Book a Call" title="Book a call with us" subtitle="Schedule a call (up to an hour) with us to explore how your organisation can adopt AI confidently and productively." />
+  <HeroText
+    tagline="Book a Call"
+    title="Book a call with us"
+    subtitle="Schedule a call (up to an hour) with us to explore how your organisation can adopt AI confidently and productively."
+  />
   <section class="bg-[#f8f8f8] px-6 pb-16 sm:px-8 lg:px-12">
     <div class="mx-auto max-w-6xl rounded-2xl bg-white p-4 shadow-sm ring-1 ring-[#015887]/10 sm:p-6">
-      <iframe src="https://outlook.office.com/book/booking@worksmart-ai.co.uk/?ismsaljsauthenabled" width="100%" height="1400" class="w-full rounded-xl border-0" title="Book a call with WorkSmart-AI" loading="lazy"></iframe>
+      <iframe
+        src="https://outlook.office.com/book/booking@worksmart-ai.co.uk/?ismsaljsauthenabled"
+        width="100%"
+        height="1400"
+        class="w-full rounded-xl border-0"
+        title="Book a call with WorkSmart-AI"
+        loading="lazy"></iframe>
     </div>
   </section>
-  <CallToAction title="Prefer to email us?" subtitle="Book a call at a time that suits you, or email us and we?ll reach out." actions={[{ variant: 'primary', text: 'Email Us', href: '/contact-us/' }]} />
+  <CallToAction
+    title="Prefer to email us?"
+    subtitle="Book a call at a time that suits you, or email us and we?ll reach out."
+    actions={[{ variant: 'primary', text: 'Email Us', href: '/contact-us/' }]}
+  />
 </Layout>

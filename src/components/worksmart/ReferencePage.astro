@@ -19,14 +19,24 @@ const parts = calculatorRootId ? content.split(calculatorMarker) : [content];
 <Layout metadata={metadata}>
   <section class="bg-[#f8f8f8] px-6 py-14 sm:px-8 lg:px-12">
     <div class:list={['mx-auto', width === 'wide' ? 'max-w-6xl' : 'max-w-4xl']}>
-      {title && <h1 class="mb-8 text-center font-heading text-4xl font-bold tracking-tight text-[#015887] md:text-5xl">{title}</h1>}
-      <div class="worksmart-reference-content rounded-2xl bg-white p-6 shadow-sm ring-1 ring-[#015887]/10 sm:p-8 lg:p-10">
+      {
+        title && (
+          <h1 class="mb-8 text-center font-heading text-4xl font-bold tracking-tight text-[#015887] md:text-5xl">
+            {title}
+          </h1>
+        )
+      }
+      <div
+        class="worksmart-reference-content rounded-2xl bg-white p-6 shadow-sm ring-1 ring-[#015887]/10 sm:p-8 lg:p-10"
+      >
         <Fragment set:html={parts[0]} />
-        {calculatorRootId && parts.length > 1 && (
-          <div class="my-8 rounded-xl border border-[#015887]/15 bg-[#f8f8f8] p-4 sm:p-6">
-            <ROICalculator rootId={calculatorRootId} />
-          </div>
-        )}
+        {
+          calculatorRootId && parts.length > 1 && (
+            <div class="my-8 rounded-xl border border-[#015887]/15 bg-[#f8f8f8] p-4 sm:p-6">
+              <ROICalculator rootId={calculatorRootId} />
+            </div>
+          )
+        }
         {calculatorRootId && parts.length > 1 && <Fragment set:html={parts.slice(1).join(calculatorMarker)} />}
       </div>
     </div>
@@ -44,30 +54,63 @@ const parts = calculatorRootId ? content.split(calculatorMarker) : [content];
   .worksmart-reference-content td,
   .worksmart-reference-content th {
     color: #1b0101;
-    font-family: Ubuntu, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family:
+      Ubuntu,
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      sans-serif;
     line-height: var(--aw-leading-body, 1.7);
   }
 
   .worksmart-reference-content :where(h1, h2, h3, h4) {
     color: #015887;
-    font-family: 'Work Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family:
+      'Work Sans',
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      sans-serif;
     font-weight: 700;
     line-height: 1.2;
     margin-block: 1.5rem 0.75rem;
   }
 
-  .worksmart-reference-content h1 { font-size: clamp(2.25rem, 5vw, 3.5rem); }
-  .worksmart-reference-content h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
-  .worksmart-reference-content h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+  .worksmart-reference-content h1 {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+  }
+  .worksmart-reference-content h2 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+  }
+  .worksmart-reference-content h3 {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+  }
 
-  .worksmart-reference-content p { margin-block: 1rem; }
+  .worksmart-reference-content p {
+    margin-block: 1rem;
+  }
   .worksmart-reference-content ul,
-  .worksmart-reference-content ol { margin: 1rem 0 1.5rem 1.5rem; padding-left: 1rem; }
-  .worksmart-reference-content ul { list-style: disc; }
-  .worksmart-reference-content ol { list-style: decimal; }
-  .worksmart-reference-content li { margin-block: 0.4rem; }
-  .worksmart-reference-content strong { font-weight: 700; }
-  .worksmart-reference-content em { font-style: italic; }
+  .worksmart-reference-content ol {
+    margin: 1rem 0 1.5rem 1.5rem;
+    padding-left: 1rem;
+  }
+  .worksmart-reference-content ul {
+    list-style: disc;
+  }
+  .worksmart-reference-content ol {
+    list-style: decimal;
+  }
+  .worksmart-reference-content li {
+    margin-block: 0.4rem;
+  }
+  .worksmart-reference-content strong {
+    font-weight: 700;
+  }
+  .worksmart-reference-content em {
+    font-style: italic;
+  }
 
   .worksmart-reference-content a {
     color: #015887;
@@ -83,8 +126,13 @@ const parts = calculatorRootId ? content.split(calculatorMarker) : [content];
     max-width: 100%;
   }
 
-  .worksmart-reference-content figure { margin-block: 1.5rem; }
-  .worksmart-reference-content iframe { width: 100%; max-width: 100%; }
+  .worksmart-reference-content figure {
+    margin-block: 1.5rem;
+  }
+  .worksmart-reference-content iframe {
+    width: 100%;
+    max-width: 100%;
+  }
 
   .worksmart-reference-content table {
     border-collapse: collapse;
@@ -136,8 +184,12 @@ const parts = calculatorRootId ? content.split(calculatorMarker) : [content];
   }
 
   @media (min-width: 768px) {
-    .worksmart-reference-content .wp-block-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .worksmart-reference-content .wp-block-columns:has(.wp-block-column:nth-child(3)) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .worksmart-reference-content .wp-block-columns {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .worksmart-reference-content .wp-block-columns:has(.wp-block-column:nth-child(3)) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   }
 
   .worksmart-reference-content .wp-block-group[style*='border'],
@@ -149,6 +201,12 @@ const parts = calculatorRootId ? content.split(calculatorMarker) : [content];
     padding: 1rem;
   }
 
-  .worksmart-reference-content details + details { margin-top: 0.75rem; }
-  .worksmart-reference-content summary { cursor: pointer; color: #015887; font-family: 'Work Sans', system-ui, sans-serif; }
+  .worksmart-reference-content details + details {
+    margin-top: 0.75rem;
+  }
+  .worksmart-reference-content summary {
+    cursor: pointer;
+    color: #015887;
+    font-family: 'Work Sans', system-ui, sans-serif;
+  }
 </style>

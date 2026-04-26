@@ -1,6 +1,10 @@
 import { getAsset } from './utils/permalinks';
+import type { CallToAction } from './types';
 
-export const headerData = {
+export const headerData: {
+  links: Array<{ text: string; href: string }>;
+  actions: CallToAction[];
+} = {
   links: [
     { text: 'Home', href: '/' },
     { text: 'Training', href: '/training/' },

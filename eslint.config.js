@@ -54,6 +54,14 @@ export default [
     },
   },
   {
-    ignores: ['dist', 'node_modules', '.github', 'types.generated.d.ts', '.astro'],
+    ignores: [
+      'dist',
+      'node_modules',
+      '.github',
+      'types.generated.d.ts',
+      '.astro',
+      // Archived reference copies (e.g. legacy WP theme JS) — not project source
+      'reference/**',
+    ],
   },
 ];

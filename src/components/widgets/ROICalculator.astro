@@ -5,8 +5,7 @@ interface Props {
 
 const { rootId = 'wsai-roi-calculator' } = Astro.props;
 
-const bookingsUrl =
-  'https://outlook.office.com/book/BookaMSTeamscallwithus@worksmart-ai.co.uk/?ismsaljsauthenabled';
+const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@worksmart-ai.co.uk/?ismsaljsauthenabled';
 ---
 
 <section class="wsai-sav-root">
@@ -45,12 +44,7 @@ const bookingsUrl =
         </a>
       </div>
       <div class="wsai-banner-cta-wrap">
-        <a
-          class="wsai-banner-cta"
-          href={bookingsUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a class="wsai-banner-cta" href={bookingsUrl} target="_blank" rel="noopener noreferrer">
           Discuss your saving →
         </a>
       </div>
@@ -263,7 +257,8 @@ const bookingsUrl =
       <div class="wsai-callout-inner">
         <p id={`${rootId}-result-heading`} class="wsai-callout-kicker">Your result</p>
         <p class="wsai-callout-text">
-          Your institution could save <strong id={`${rootId}-callout-save`}>£0</strong> this year — equivalent to freeing up
+          Your institution could save <strong id={`${rootId}-callout-save`}>£0</strong> this year — equivalent to freeing
+          up
           <strong id={`${rootId}-callout-fte`}>0</strong> full-time staff members.
         </p>
       </div>
@@ -310,7 +305,14 @@ const bookingsUrl =
     --slider-thumb-size: 22px;
     --slider-track-height: 12px;
     --fill-percent: 50%;
-    font-family: 'Ubuntu', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-family:
+      'Ubuntu',
+      system-ui,
+      -apple-system,
+      Segoe UI,
+      Roboto,
+      Arial,
+      sans-serif;
     max-width: 1120px;
     margin: 0 auto;
     padding: 0 16px;
@@ -327,7 +329,14 @@ const bookingsUrl =
   .wsai-hero-title {
     margin: 0;
     color: var(--navy);
-    font-family: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-family:
+      'Work Sans',
+      system-ui,
+      -apple-system,
+      Segoe UI,
+      Roboto,
+      Arial,
+      sans-serif;
     font-size: clamp(32px, 4vw, 52px);
     line-height: 1.15;
     font-weight: 700;
@@ -1012,7 +1021,8 @@ const bookingsUrl =
     function compute() {
       const salary = parseFloat(salaryEl.value);
       const loadedAnnual = salary * CONFIG.onCost;
-      const adoptionKey = root.querySelector('[data-adopt][aria-pressed="true"]')?.dataset.adopt || CONFIG.adoption.init;
+      const adoptionKey =
+        root.querySelector('[data-adopt][aria-pressed="true"]')?.dataset.adopt || CONFIG.adoption.init;
       const adoptionRate = CONFIG.adoption[adoptionKey];
       const uplift = CONFIG.uplift[adoptionKey];
 
@@ -1020,7 +1030,10 @@ const bookingsUrl =
       let annualSavings = 0;
       let weightedProdSum = 0;
 
-      const advancedStaffTotal = Array.from(advancedInputs).reduce((sum, input) => sum + (parseInt(input.value, 10) || 0), 0);
+      const advancedStaffTotal = Array.from(advancedInputs).reduce(
+        (sum, input) => sum + (parseInt(input.value, 10) || 0),
+        0
+      );
 
       if (advancedStaffTotal > 0) {
         simpleControlsEl.setAttribute('disabled', 'true');
@@ -1063,8 +1076,7 @@ const bookingsUrl =
       }
 
       const hoursWeekTotal = Math.round(weightedProdSum * HOURS_PER_WEEK_FT);
-      const hrsPerStaff =
-        totalStaff > 0 ? (weightedProdSum * HOURS_PER_WEEK_FT) / totalStaff : 0;
+      const hrsPerStaff = totalStaff > 0 ? (weightedProdSum * HOURS_PER_WEEK_FT) / totalStaff : 0;
       const hrsPerStaffStr = hrsPerStaff >= 0.05 ? hrsPerStaff.toFixed(1) : '0';
 
       $(`#${rootId}-k-savings`).textContent = nfMoney(annualSavings);
