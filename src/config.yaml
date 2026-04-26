@@ -1,5 +1,5 @@
 site:
-  name: AstroWind
+  name: WorkSmart-AI
   site: 'https://astrowind.vercel.app'
   base: '/'
   trailingSlash: true

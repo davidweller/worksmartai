@@ -34,6 +34,10 @@ const parts = calculatorRootId ? content.split(calculatorMarker) : [content];
 </Layout>
 
 <style is:global>
+  .worksmart-reference-content {
+    font-size: var(--aw-text-body, 1rem);
+  }
+
   .worksmart-reference-content,
   .worksmart-reference-content p,
   .worksmart-reference-content li,
@@ -41,7 +45,7 @@ const parts = calculatorRootId ? content.split(calculatorMarker) : [content];
   .worksmart-reference-content th {
     color: #1b0101;
     font-family: Ubuntu, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    line-height: 1.7;
+    line-height: var(--aw-leading-body, 1.7);
   }
 
   .worksmart-reference-content :where(h1, h2, h3, h4) {

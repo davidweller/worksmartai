@@ -8,6 +8,9 @@
     --aw-font-sans: 'Ubuntu';
     --aw-font-serif: 'Ubuntu';
     --aw-font-heading: 'Work Sans';
+    /* Body: 1rem tracks html; 18px root is visibly larger than a typical 16px default */
+    --aw-text-body: 1rem;
+    --aw-leading-body: 1.7;
 
     --aw-color-primary: rgb(1 88 135);
     --aw-color-secondary: rgb(134 191 226);
@@ -17,6 +20,7 @@
     --aw-color-text-default: rgb(27 1 1);
     --aw-color-text-muted: rgb(27 1 1 / 66%);
     --aw-color-bg-page: rgb(248 248 248);
+    --aw-color-bg-footer: rgb(226 239 247);
 
     --aw-color-bg-page-dark: rgb(1 88 135);
 
@@ -38,10 +42,25 @@
     --aw-color-text-default: rgb(248 248 248);
     --aw-color-text-muted: rgb(248 248 248 / 72%);
     --aw-color-bg-page: rgb(1 88 135);
+    --aw-color-bg-footer: rgb(0 62 96);
 
     ::selection {
       background-color: rgb(255 119 0 / 35%);
       color: rgb(248 248 248);
     }
+  }
+
+  html {
+    font-size: 18px;
+  }
+
+  body {
+    font-size: var(--aw-text-body);
+    line-height: var(--aw-leading-body);
+  }
+
+  .prose {
+    font-size: var(--aw-text-body);
+    line-height: var(--aw-leading-body);
   }
 </style>

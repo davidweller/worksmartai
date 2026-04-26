@@ -30,7 +30,7 @@ const { metadata, title, date, author, content } = Astro.props;
 </Layout>
 
 <style is:global>
-  .article-content { color: #1b0101; font-family: Ubuntu, system-ui, sans-serif; font-size: 1.075rem; line-height: 1.8; }
+  .article-content { color: #1b0101; font-family: Ubuntu, system-ui, sans-serif; font-size: var(--aw-text-body, 1rem); line-height: var(--aw-leading-body, 1.7); }
   .article-content p { margin: 1.15rem 0; }
   .article-content h2,
   .article-content h3 { color: #015887; font-family: 'Work Sans', system-ui, sans-serif; font-weight: 700; line-height: 1.25; margin-top: 2rem; }

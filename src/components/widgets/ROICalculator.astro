@@ -4,121 +4,289 @@ interface Props {
 }
 
 const { rootId = 'wsai-roi-calculator' } = Astro.props;
+
+const bookingsUrl =
+  'https://outlook.office.com/book/BookaMSTeamscallwithus@worksmart-ai.co.uk/?ismsaljsauthenabled';
 ---
 
 <section class="wsai-sav-root">
   <div class="wsai-sav" id={rootId}>
-    <div class="wsai-copy-top">
-      <h2>How much could you save with AI?</h2>
-      <p>
-        Our WorkSmart-AI Savings Calculator uses peer-reviewed and public research to estimate how much time, cost, and
-        capacity institutions could reclaim through staff training on AI.<br />
-        <a href="/how-our-calculator-works">Read here</a> how we calculate.
-      </p>
-    </div>
+    <header class="wsai-hero">
+      <h2 class="wsai-hero-title">How much could you save with AI?</h2>
+      <ol class="wsai-steps" aria-label="Calculator steps">
+        <li class="wsai-step">
+          <span class="wsai-step-badge" aria-hidden="true">1</span>
+          <span class="wsai-step-label">Enter your staff count</span>
+        </li>
+        <li class="wsai-step-connector" aria-hidden="true"></li>
+        <li class="wsai-step">
+          <span class="wsai-step-badge" aria-hidden="true">2</span>
+          <span class="wsai-step-label">Set your average salary</span>
+        </li>
+        <li class="wsai-step-connector" aria-hidden="true"></li>
+        <li class="wsai-step">
+          <span class="wsai-step-badge" aria-hidden="true">3</span>
+          <span class="wsai-step-label">Choose your adoption level</span>
+        </li>
+      </ol>
+    </header>
 
     <div class="wsai-banner">
-      <div class="wsai-banner-col">
-        <div class="wsai-eyebrow">Annual cost savings</div>
+      <div class="wsai-banner-main">
+        <div class="wsai-banner-eyebrow">Annual saving</div>
         <div class="wsai-banner-value" id={`${rootId}-banner-annual`}>£0</div>
-        <div class="wsai-banner-sub" id={`${rootId}-banner-sub`}>Based on 0% efficiency at 0% adoption</div>
+        <p class="wsai-banner-sub" id={`${rootId}-banner-sub`}>If 0 staff each reclaim ~0 hrs/week</p>
+        <a class="wsai-banner-info" href="/how-our-calculator-works/">
+          <svg class="wsai-info-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"></circle>
+            <path d="M8 7v5M8 4.5v.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+          </svg>
+          How we calculate this
+        </a>
       </div>
-      <div class="wsai-banner-col">
-        <div class="wsai-eyebrow">5-year projection</div>
-        <div class="wsai-banner-value" id={`${rootId}-banner-proj`}>£0</div>
-        <div class="wsai-adoption-pill" id={`${rootId}-banner-adoption`}>Scaling Up adoption</div>
-      </div>
-    </div>
-
-    <div class="wsai-grid">
-      <div class="wsai-panel">
-        <h2 class="wsai-panel-h">Your organisation</h2>
-
-        <div id={`${rootId}-simple-controls`}>
-          <div class="wsai-field">
-            <div class="wsai-label"><span>Number of employees</span><span id={`${rootId}-staff-val`}>40</span></div>
-            <input id={`${rootId}-staff`} class="wsai-range" type="range" min="5" max="250" step="1" value="40" />
-          </div>
-
-          <div class="wsai-field">
-            <div class="wsai-label"><span>Average annual salary</span><span id={`${rootId}-salary-val`}>£45,000</span></div>
-            <input id={`${rootId}-salary`} class="wsai-range" type="range" min="20000" max="120000" step="1000" value="45000" />
-          </div>
-        </div>
-
-        <div class="wsai-field">
-          <div class="wsai-label wsai-label-single"><span>Adoption level</span></div>
-          <div class="wsai-adopt" role="group" aria-label="Adoption level">
-            <button type="button" class="wsai-chip" data-adopt="beginner">
-              <span>Early Stage</span>
-              <small>Basic initial use</small>
-            </button>
-            <button type="button" class="wsai-chip" data-adopt="intermediate">
-              <span>Scaling Up</span>
-              <small>Growing team confidence</small>
-            </button>
-            <button type="button" class="wsai-chip" data-adopt="advanced">
-              <span>Mature Adoption</span>
-              <small>Embedded daily workflows</small>
-            </button>
-          </div>
-        </div>
-
-        <details class="wsai-advanced-details">
-          <summary class="wsai-advanced-summary">Advanced breakdown by role</summary>
-          <div class="wsai-advanced-grid">
-            <div class="wsai-advanced-col">
-              <h3 class="wsai-col-h">Academic staff</h3>
-              <div class="wsai-field wsai-field-adv"><label class="wsai-label-adv" for={`${rootId}-adv-edu`}>Educators</label><input type="number" data-role-key="edu" id={`${rootId}-adv-edu`} class="wsai-input-adv" placeholder="0" min="0" /></div>
-              <div class="wsai-field wsai-field-adv"><label class="wsai-label-adv" for={`${rootId}-adv-res`}>Researchers</label><input type="number" data-role-key="res" id={`${rootId}-adv-res`} class="wsai-input-adv" placeholder="0" min="0" /></div>
-              <div class="wsai-field wsai-field-adv"><label class="wsai-label-adv" for={`${rootId}-adv-eduRes`}>Educator-Researchers</label><input type="number" data-role-key="eduRes" id={`${rootId}-adv-eduRes`} class="wsai-input-adv" placeholder="0" min="0" /></div>
-            </div>
-            <div class="wsai-advanced-col">
-              <h3 class="wsai-col-h">Professional services</h3>
-              <div class="wsai-field wsai-field-adv"><label class="wsai-label-adv" for={`${rootId}-adv-stu`}>Student Services / HR / Registry</label><input type="number" data-role-key="stu" id={`${rootId}-adv-stu`} class="wsai-input-adv" placeholder="0" min="0" /></div>
-              <div class="wsai-field wsai-field-adv"><label class="wsai-label-adv" for={`${rootId}-adv-lib`}>Library & Learning Resources</label><input type="number" data-role-key="lib" id={`${rootId}-adv-lib`} class="wsai-input-adv" placeholder="0" min="0" /></div>
-              <div class="wsai-field wsai-field-adv"><label class="wsai-label-adv" for={`${rootId}-adv-fin`}>Finance</label><input type="number" data-role-key="fin" id={`${rootId}-adv-fin`} class="wsai-input-adv" placeholder="0" min="0" /></div>
-              <div class="wsai-field wsai-field-adv"><label class="wsai-label-adv" for={`${rootId}-adv-it`}>IT Services</label><input type="number" data-role-key="it" id={`${rootId}-adv-it`} class="wsai-input-adv" placeholder="0" min="0" /></div>
-              <div class="wsai-field wsai-field-adv"><label class="wsai-label-adv" for={`${rootId}-adv-mar`}>Marketing & Comms</label><input type="number" data-role-key="mar" id={`${rootId}-adv-mar`} class="wsai-input-adv" placeholder="0" min="0" /></div>
-              <div class="wsai-field wsai-field-adv"><label class="wsai-label-adv" for={`${rootId}-adv-est`}>Estates / Facilities</label><input type="number" data-role-key="est" id={`${rootId}-adv-est`} class="wsai-input-adv" placeholder="0" min="0" /></div>
-              <div class="wsai-field wsai-field-adv"><label class="wsai-label-adv" for={`${rootId}-adv-oth`}>Other Admin</label><input type="number" data-role-key="oth" id={`${rootId}-adv-oth`} class="wsai-input-adv" placeholder="0" min="0" /></div>
-            </div>
-          </div>
-        </details>
-      </div>
-
-      <div class="wsai-panel">
-        <h2 class="wsai-panel-h">Your potential savings</h2>
-        <div class="wsai-metrics">
-          <article class="wsai-metric-card">
-            <div class="wsai-metric-label">Annual<br />saving</div>
-            <div class="wsai-metric-value wsai-metric-green" id={`${rootId}-k-savings`}>£0</div>
-            <div class="wsai-metric-foot">Estimated yearly financial impact</div>
-          </article>
-          <article class="wsai-metric-card">
-            <div class="wsai-metric-label">Productivity<br />gain</div>
-            <div class="wsai-metric-value" id={`${rootId}-k-prod`}>0%</div>
-            <div class="wsai-metric-foot">Average increase across entered staff</div>
-          </article>
-          <article class="wsai-metric-card">
-            <div class="wsai-metric-label">Capacity<br />created</div>
-            <div class="wsai-metric-value" id={`${rootId}-k-fte`}>0.0 FTE</div>
-            <div class="wsai-metric-foot">Equivalent full-time roles of capacity</div>
-          </article>
-          <article class="wsai-metric-card">
-            <div class="wsai-metric-label">5-year<br />total</div>
-            <div class="wsai-metric-value" id={`${rootId}-k-proj`}>£0</div>
-            <div class="wsai-metric-foot">Projected cumulative savings</div>
-          </article>
-        </div>
+      <div class="wsai-banner-cta-wrap">
+        <a
+          class="wsai-banner-cta"
+          href={bookingsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Discuss your saving →
+        </a>
       </div>
     </div>
 
-    <div class="wsai-copy-bottom">
-      <p>Want to know more? Get in contact to talk about how training your staff in AI can help you save time and money.</p>
+    <div class="wsai-card">
+      <div class="wsai-grid">
+        <div class="wsai-panel">
+          <h3 class="wsai-panel-kicker">Your organisation</h3>
+
+          <div id={`${rootId}-simple-controls`} class="wsai-simple-controls">
+            <div class="wsai-field">
+              <div class="wsai-label">
+                <span>Number of employees</span><span class="wsai-val-navy" id={`${rootId}-staff-val`}>20</span>
+              </div>
+              <input id={`${rootId}-staff`} class="wsai-range" type="range" min="5" max="250" step="1" value="20" />
+            </div>
+
+            <div class="wsai-field">
+              <div class="wsai-label">
+                <span>Average annual salary</span><span class="wsai-val-navy" id={`${rootId}-salary-val`}>£39,000</span>
+              </div>
+              <input
+                id={`${rootId}-salary`}
+                class="wsai-range"
+                type="range"
+                min="20000"
+                max="120000"
+                step="1000"
+                value="39000"
+              />
+            </div>
+          </div>
+
+          <div class="wsai-field">
+            <div class="wsai-label wsai-label-single"><span>Adoption level</span></div>
+            <div class="wsai-adopt" role="group" aria-label="Adoption level">
+              <button type="button" class="wsai-chip" data-adopt="beginner">
+                <span class="wsai-chip-title">Just starting out</span>
+                <span class="wsai-chip-sub">A few staff experimenting with AI tools</span>
+              </button>
+              <button type="button" class="wsai-chip" data-adopt="intermediate">
+                <span class="wsai-chip-title">Building momentum</span>
+                <span class="wsai-chip-sub">Teams regularly using AI in their work</span>
+              </button>
+              <button type="button" class="wsai-chip" data-adopt="advanced">
+                <span class="wsai-chip-title">Fully embedded</span>
+                <span class="wsai-chip-sub">AI woven into daily workflows</span>
+              </button>
+            </div>
+          </div>
+
+          <details class="wsai-advanced-details">
+            <summary class="wsai-advanced-summary">Advanced breakdown by role</summary>
+            <div class="wsai-advanced-grid">
+              <div class="wsai-advanced-col">
+                <h4 class="wsai-col-h">Academic staff</h4>
+                <div class="wsai-field wsai-field-adv">
+                  <label class="wsai-label-adv" for={`${rootId}-adv-edu`}>Educators</label><input
+                    type="number"
+                    data-role-key="edu"
+                    id={`${rootId}-adv-edu`}
+                    class="wsai-input-adv"
+                    placeholder="0"
+                    min="0"
+                  />
+                </div>
+                <div class="wsai-field wsai-field-adv">
+                  <label class="wsai-label-adv" for={`${rootId}-adv-res`}>Researchers</label><input
+                    type="number"
+                    data-role-key="res"
+                    id={`${rootId}-adv-res`}
+                    class="wsai-input-adv"
+                    placeholder="0"
+                    min="0"
+                  />
+                </div>
+                <div class="wsai-field wsai-field-adv">
+                  <label class="wsai-label-adv" for={`${rootId}-adv-eduRes`}>Educator-Researchers</label><input
+                    type="number"
+                    data-role-key="eduRes"
+                    id={`${rootId}-adv-eduRes`}
+                    class="wsai-input-adv"
+                    placeholder="0"
+                    min="0"
+                  />
+                </div>
+              </div>
+              <div class="wsai-advanced-col">
+                <h4 class="wsai-col-h">Professional services</h4>
+                <div class="wsai-field wsai-field-adv">
+                  <label class="wsai-label-adv" for={`${rootId}-adv-stu`}>Student Services / HR / Registry</label><input
+                    type="number"
+                    data-role-key="stu"
+                    id={`${rootId}-adv-stu`}
+                    class="wsai-input-adv"
+                    placeholder="0"
+                    min="0"
+                  />
+                </div>
+                <div class="wsai-field wsai-field-adv">
+                  <label class="wsai-label-adv" for={`${rootId}-adv-lib`}>Library & Learning Resources</label><input
+                    type="number"
+                    data-role-key="lib"
+                    id={`${rootId}-adv-lib`}
+                    class="wsai-input-adv"
+                    placeholder="0"
+                    min="0"
+                  />
+                </div>
+                <div class="wsai-field wsai-field-adv">
+                  <label class="wsai-label-adv" for={`${rootId}-adv-fin`}>Finance</label><input
+                    type="number"
+                    data-role-key="fin"
+                    id={`${rootId}-adv-fin`}
+                    class="wsai-input-adv"
+                    placeholder="0"
+                    min="0"
+                  />
+                </div>
+                <div class="wsai-field wsai-field-adv">
+                  <label class="wsai-label-adv" for={`${rootId}-adv-it`}>IT Services</label><input
+                    type="number"
+                    data-role-key="it"
+                    id={`${rootId}-adv-it`}
+                    class="wsai-input-adv"
+                    placeholder="0"
+                    min="0"
+                  />
+                </div>
+                <div class="wsai-field wsai-field-adv">
+                  <label class="wsai-label-adv" for={`${rootId}-adv-mar`}>Marketing & Comms</label><input
+                    type="number"
+                    data-role-key="mar"
+                    id={`${rootId}-adv-mar`}
+                    class="wsai-input-adv"
+                    placeholder="0"
+                    min="0"
+                  />
+                </div>
+                <div class="wsai-field wsai-field-adv">
+                  <label class="wsai-label-adv" for={`${rootId}-adv-est`}>Estates / Facilities</label><input
+                    type="number"
+                    data-role-key="est"
+                    id={`${rootId}-adv-est`}
+                    class="wsai-input-adv"
+                    placeholder="0"
+                    min="0"
+                  />
+                </div>
+                <div class="wsai-field wsai-field-adv">
+                  <label class="wsai-label-adv" for={`${rootId}-adv-oth`}>Other Admin</label><input
+                    type="number"
+                    data-role-key="oth"
+                    id={`${rootId}-adv-oth`}
+                    class="wsai-input-adv"
+                    placeholder="0"
+                    min="0"
+                  />
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <div class="wsai-panel wsai-panel-results">
+          <h3 class="wsai-panel-kicker">Your potential savings</h3>
+
+          <div class="wsai-result-block">
+            <h4 class="wsai-group-label">Financial impact</h4>
+            <div class="wsai-metrics wsai-metrics-fin">
+              <article class="wsai-metric-card">
+                <div class="wsai-metric-label">Annual saving</div>
+                <div class="wsai-metric-value wsai-metric-navy" id={`${rootId}-k-savings`}>£0</div>
+                <div class="wsai-metric-foot">Estimated financial impact this year</div>
+              </article>
+              <article class="wsai-metric-card">
+                <div class="wsai-metric-label">5-year total</div>
+                <div class="wsai-metric-value wsai-metric-navy" id={`${rootId}-k-proj`}>£0</div>
+                <div class="wsai-metric-foot">Projected cumulative savings</div>
+              </article>
+            </div>
+          </div>
+
+          <div class="wsai-result-block wsai-result-block-prod">
+            <h4 class="wsai-group-label">Productivity impact</h4>
+            <div class="wsai-metrics wsai-metrics-prod-top">
+              <article class="wsai-metric-card">
+                <div class="wsai-metric-label">Hours saved / week</div>
+                <div class="wsai-metric-value wsai-metric-navy" id={`${rootId}-k-hours`}>0 hrs</div>
+                <div class="wsai-metric-foot">Across your whole team</div>
+              </article>
+              <article class="wsai-metric-card">
+                <div class="wsai-metric-label">Capacity freed up</div>
+                <div class="wsai-metric-value wsai-metric-green" id={`${rootId}-k-fte`}>0.0 roles</div>
+                <div class="wsai-metric-foot">Equivalent full-time roles of capacity</div>
+              </article>
+            </div>
+            <article class="wsai-metric-card wsai-metric-card-wide">
+              <div class="wsai-metric-label">Productivity gain</div>
+              <div class="wsai-metric-value wsai-metric-green" id={`${rootId}-k-prod`}>0%</div>
+              <div class="wsai-metric-foot">Average increase per staff member</div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="wsai-callout" aria-labelledby={`${rootId}-result-heading`}>
+      <div class="wsai-callout-inner">
+        <p id={`${rootId}-result-heading`} class="wsai-callout-kicker">Your result</p>
+        <p class="wsai-callout-text">
+          Your institution could save <strong id={`${rootId}-callout-save`}>£0</strong> this year — equivalent to freeing up
+          <strong id={`${rootId}-callout-fte`}>0</strong> full-time staff members.
+        </p>
+      </div>
+    </aside>
+
+    <section class="wsai-methodology-callout" id="methodology" aria-labelledby={`${rootId}-methodology-heading`}>
+      <div class="wsai-methodology-callout-inner">
+        <h2 id={`${rootId}-methodology-heading`} class="wsai-methodology-h">How we calculate this</h2>
+        <p class="wsai-methodology-p">
+          Figures combine role-level eligibility, adoption level, and efficiency uplift assumptions drawn from research
+          into AI in higher education. For the full methodology, assumptions, and limitations, read our detailed
+          explainer.
+        </p>
+        <p class="wsai-methodology-cta">
+          <a class="wsai-methodology-link" href="/how-our-calculator-works/">How our calculator works →</a>
+        </p>
+      </div>
+    </section>
+
+    <div class="wsai-copy-actions-wrap">
       <div class="wsai-copy-actions">
-        <a href="/contact" class="wsai-copy-btn wsai-copy-btn-primary">Book a Call</a>
-        <a href="/contact" class="wsai-copy-btn wsai-copy-btn-secondary">Email Us</a>
+        <a class="wsai-pill-btn" href={bookingsUrl} target="_blank" rel="noopener noreferrer">Book a call</a>
+        <a class="wsai-pill-btn wsai-pill-btn-muted" href="mailto:hello@worksmart-ai.co.uk">Email us</a>
       </div>
     </div>
   </div>
@@ -127,16 +295,18 @@ const { rootId = 'wsai-roi-calculator' } = Astro.props;
 <style>
   .wsai-sav-root {
     background: #f8f8f8;
-    padding: 12px 0;
+    padding: 12px 0 32px;
   }
 
   .wsai-sav {
+    --color-background-secondary: #f3f5f7;
     --line: #e2e5ea;
     --muted: #f2f4f7;
-    --ink: #0f172a;
-    --sub: #4b5563;
+    --ink: #1b0101;
+    --sub: #64748b;
     --navy: #015887;
     --accent: #ff7700;
+    --green: #1a7a4a;
     --slider-thumb-size: 22px;
     --slider-track-height: 12px;
     --fill-percent: 50%;
@@ -145,110 +315,196 @@ const { rootId = 'wsai-roi-calculator' } = Astro.props;
     margin: 0 auto;
     padding: 0 16px;
     color: var(--ink);
-    font-size: 1.125rem;
-    line-height: 1.5;
+    font-size: var(--aw-text-body, 1rem);
+    line-height: var(--aw-leading-body, 1.7);
   }
 
-  .wsai-banner {
-    background: var(--navy);
-    border-radius: 16px;
-    padding: 20px 24px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 16px;
-  }
-
-  .wsai-copy-top {
+  .wsai-hero {
     text-align: center;
-    margin-bottom: 18px;
+    margin-bottom: 24px;
   }
 
-  .wsai-copy-top h2 {
+  .wsai-hero-title {
     margin: 0;
-    color: #015887;
+    color: var(--navy);
     font-family: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    font-size: clamp(38px, 4vw, 56px);
+    font-size: clamp(32px, 4vw, 52px);
     line-height: 1.15;
     font-weight: 700;
   }
 
-  .wsai-copy-top p {
-    margin: 14px auto 0;
+  .wsai-steps {
+    list-style: none;
+    margin: 20px 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
     max-width: 920px;
-    font-size: 1em;
-    color: #334155;
-    line-height: 1.6;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .wsai-copy-top a {
-    color: #015887;
+  .wsai-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 0;
+  }
+
+  .wsai-step-badge {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: #fff;
+    font-family: 'Work Sans', system-ui, sans-serif;
     font-weight: 700;
-    text-decoration: underline;
+    font-size: 0.85rem;
+    line-height: 28px;
+    text-align: center;
   }
 
-  .wsai-eyebrow {
-    font-size: 1em;
+  .wsai-step-label {
+    font-size: 0.95rem;
+    color: var(--ink);
+    text-align: left;
+  }
+
+  .wsai-step-connector {
+    flex: 1 1 24px;
+    min-width: 16px;
+    max-width: 48px;
+    height: 2px;
+    background: #cbd5e1;
+    margin: 0 6px;
+  }
+
+  .wsai-banner {
+    background: var(--navy);
+    border-radius: 12px;
+    padding: 22px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .wsai-banner-main {
+    flex: 1 1 260px;
+    min-width: 0;
+  }
+
+  .wsai-banner-eyebrow {
+    font-size: 0.75rem;
     line-height: 1.4;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #86bfe2;
-    font-family: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color: #ffffff;
+    font-family: 'Work Sans', system-ui, sans-serif;
     font-weight: 700;
   }
 
   .wsai-banner-value {
-    margin-top: 4px;
-    font-size: 40px;
-    line-height: 1.2;
+    margin-top: 6px;
+    font-size: clamp(32px, 5vw, 44px);
+    line-height: 1.15;
     font-weight: 700;
     color: #ffffff;
-    font-family: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-family: 'Work Sans', system-ui, sans-serif;
   }
 
   .wsai-banner-sub {
-    margin-top: 4px;
-    font-size: 1em;
-    color: #86bfe2;
+    margin: 8px 0 0;
+    font-size: 1rem;
+    color: #ffffff;
+    line-height: 1.5;
   }
 
-  .wsai-adoption-pill {
+  .wsai-banner-info {
     display: inline-flex;
-    margin-top: 8px;
-    font-size: 1em;
-    color: #ff9940;
-    background: rgba(255, 119, 0, 0.25);
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: underline;
+    font-weight: 600;
+    font-family: 'Work Sans', system-ui, sans-serif;
+  }
+
+  .wsai-banner-info:hover {
+    color: #ffffff;
+  }
+
+  .wsai-info-icon {
+    flex-shrink: 0;
+    opacity: 0.85;
+  }
+
+  .wsai-banner-cta-wrap {
+    flex-shrink: 0;
+  }
+
+  .wsai-banner-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
     border-radius: 999px;
-    padding: 6px 12px;
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    background: transparent;
+    color: #ffffff;
+    font-family: 'Work Sans', system-ui, sans-serif;
     font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .wsai-banner-cta:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #ffffff;
+  }
+
+  .wsai-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(1, 88, 135, 0.08);
+    padding: 20px 20px 24px;
   }
 
   .wsai-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 24px;
   }
 
   .wsai-panel {
-    background: #ffffff;
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 16px;
+    padding: 4px 4px 8px;
+    min-width: 0;
   }
 
-  .wsai-panel-h {
-    margin: 0 0 14px;
-    color: var(--navy);
-    font-size: 1em;
+  .wsai-panel-kicker {
+    margin: 0 0 18px;
+    color: var(--sub);
+    font-size: 0.75rem;
     line-height: 1.4;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    font-family: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-family: 'Work Sans', system-ui, sans-serif;
     font-weight: 700;
   }
 
   .wsai-field {
-    margin-bottom: 16px;
+    margin-bottom: 18px;
   }
 
   .wsai-label {
@@ -256,8 +512,14 @@ const { rootId = 'wsai-roi-calculator' } = Astro.props;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 8px;
-    font-size: 1em;
+    font-size: 1rem;
     color: #334155;
+  }
+
+  .wsai-val-navy {
+    color: var(--navy);
+    font-weight: 700;
+    font-family: 'Work Sans', system-ui, sans-serif;
   }
 
   .wsai-label-single {
@@ -267,40 +529,44 @@ const { rootId = 'wsai-roi-calculator' } = Astro.props;
   .wsai-adopt {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 10px;
   }
 
   .wsai-chip {
     background: #ffffff;
     border: 1px solid #d3d8df;
-    padding: 10px 8px;
-    border-radius: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
     cursor: pointer;
-    font-weight: 700;
-    color: #0f172a;
-    text-align: center;
+    text-align: left;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 4px;
+    font-family: inherit;
   }
 
-  .wsai-chip span {
-    font-size: 1em;
+  .wsai-chip-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+    font-family: 'Work Sans', system-ui, sans-serif;
   }
 
-  .wsai-chip small {
-    font-size: 1em;
-    color: #6b7280;
+  .wsai-chip-sub {
+    font-size: 0.95rem;
+    color: #64748b;
     font-weight: 400;
+    line-height: 1.45;
   }
 
   .wsai-chip[aria-pressed='true'] {
-    border-color: #ff7700;
-    background: #fff5ec;
+    border-color: var(--accent);
+    background: #fff8f2;
+    box-shadow: 0 0 0 1px var(--accent);
   }
 
-  .wsai-chip[aria-pressed='true'] span {
-    color: #ff7700;
+  .wsai-chip[aria-pressed='true'] .wsai-chip-title {
+    color: var(--accent);
   }
 
   .wsai-range {
@@ -345,15 +611,35 @@ const { rootId = 'wsai-roi-calculator' } = Astro.props;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
   }
 
+  .wsai-simple-controls[disabled='true'] .wsai-range {
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
   .wsai-advanced-details {
-    margin-top: 6px;
+    margin-top: 4px;
   }
 
   .wsai-advanced-summary {
     cursor: pointer;
-    font-size: 1em;
-    color: #334155;
+    font-size: 1rem;
+    color: var(--sub);
     font-weight: 700;
+    list-style: none;
+  }
+
+  .wsai-advanced-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .wsai-advanced-summary::before {
+    content: '▶ ';
+    font-size: 0.75em;
+    margin-right: 2px;
+  }
+
+  .wsai-advanced-details[open] .wsai-advanced-summary::before {
+    content: '▼ ';
   }
 
   .wsai-advanced-grid {
@@ -363,14 +649,14 @@ const { rootId = 'wsai-roi-calculator' } = Astro.props;
     background-color: var(--muted);
     padding: 12px;
     border-radius: 10px;
-    margin-top: 10px;
+    margin-top: 12px;
   }
 
   .wsai-col-h {
     margin: 0 0 8px;
     color: var(--navy);
-    font-size: 1em;
-    font-family: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-size: 1rem;
+    font-family: 'Work Sans', system-ui, sans-serif;
     font-weight: 700;
   }
 
@@ -383,162 +669,285 @@ const { rootId = 'wsai-roi-calculator' } = Astro.props;
   }
 
   .wsai-label-adv {
-    font-size: 1em;
+    font-size: 0.95rem;
     color: #374151;
   }
 
   .wsai-input-adv {
     width: 76px;
     min-width: 76px;
-    font-size: 1em;
+    font-size: 1rem;
     padding: 6px 8px;
     border: 1px solid #d3d8df;
     border-radius: 8px;
     text-align: right;
   }
 
+  .wsai-group-label {
+    margin: 0 0 12px;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sub);
+    font-family: 'Work Sans', system-ui, sans-serif;
+    font-weight: 700;
+  }
+
+  .wsai-result-block {
+    margin-bottom: 20px;
+  }
+
+  .wsai-result-block-prod {
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+
   .wsai-metrics {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 12px;
+  }
+
+  .wsai-metrics-prod-top {
+    margin-bottom: 12px;
   }
 
   .wsai-metric-card {
-    background: #f3f5f7;
-    border-radius: 12px;
-    padding: 12px;
+    background: var(--color-background-secondary);
+    border-radius: 10px;
+    padding: 14px;
+    border: none;
+  }
+
+  .wsai-metric-card-wide {
+    grid-column: 1 / -1;
   }
 
   .wsai-metric-label {
-    font-size: 1em;
-    line-height: 1.4;
-    letter-spacing: 0.06em;
+    font-size: 0.72rem;
+    line-height: 1.35;
+    letter-spacing: 0.07em;
     text-transform: uppercase;
-    color: #475569;
-    font-family: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color: #64748b;
+    font-family: 'Work Sans', system-ui, sans-serif;
     font-weight: 700;
   }
 
   .wsai-metric-value {
-    margin-top: 6px;
-    font-size: 26px;
+    margin-top: 8px;
+    font-size: clamp(22px, 3.5vw, 28px);
     line-height: 1.2;
     font-weight: 700;
-    color: #1d9e75;
-    font-family: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-family: 'Work Sans', system-ui, sans-serif;
+  }
+
+  .wsai-metric-navy {
+    color: var(--navy);
   }
 
   .wsai-metric-green {
-    color: #1d9e75;
+    color: var(--green);
   }
 
   .wsai-metric-foot {
     margin-top: 8px;
-    font-size: 1em;
+    font-size: 0.9rem;
     color: #6b7280;
+    line-height: 1.45;
   }
 
-  .wsai-copy-bottom {
-    margin-top: 18px;
-    border-top: 1px solid #dce1e8;
-    padding-top: 18px;
-    text-align: center;
+  .wsai-callout {
+    margin-top: 28px;
+    background: var(--aw-color-bg-footer, rgb(226 239 247));
+    border-left: 4px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   }
 
-  .wsai-copy-bottom p {
+  .wsai-callout-inner {
+    padding: 18px 20px 20px;
+    background: var(--aw-color-bg-footer, rgb(226 239 247));
+    border-radius: 0 10px 10px 0;
+  }
+
+  :global(.dark) .wsai-callout .wsai-callout-kicker {
+    color: rgb(203 213 225);
+  }
+
+  :global(.dark) .wsai-callout .wsai-callout-text {
+    color: rgb(248 248 248);
+  }
+
+  :global(.dark) .wsai-callout .wsai-callout-text strong {
+    color: rgb(191 219 254);
+  }
+
+  .wsai-callout-kicker {
+    margin: 0 0 8px;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #64748b;
+    font-family: 'Work Sans', system-ui, sans-serif;
+    font-weight: 700;
+  }
+
+  .wsai-callout-text {
     margin: 0;
-    font-size: 1em;
-    color: #334155;
+    font-size: 1.05rem;
+    color: var(--ink);
+    line-height: 1.55;
+  }
+
+  .wsai-callout-text strong {
+    color: var(--navy);
+    font-weight: 700;
+  }
+
+  .wsai-copy-actions-wrap {
+    margin-top: 28px;
+    display: flex;
+    justify-content: center;
   }
 
   .wsai-copy-actions {
-    margin-top: 14px;
     display: flex;
-    justify-content: center;
-    gap: 10px;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
   }
 
-  .wsai-copy-btn {
+  .wsai-pill-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
-    padding: 10px 20px;
-    text-decoration: none;
-    font-size: 1em;
+    padding: 12px 28px;
+    border-radius: 999px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: var(--navy);
+    font-family: 'Work Sans', system-ui, sans-serif;
     font-weight: 700;
-    font-family: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-size: 1rem;
+    text-decoration: none;
     transition:
-      background-color 0.2s ease,
       border-color 0.2s ease,
+      background 0.2s ease,
       color 0.2s ease;
   }
 
-  .wsai-copy-btn-primary {
-    border: 1px solid #015887;
-    background: #015887;
+  .wsai-pill-btn:hover {
+    border-color: var(--navy);
+    background: var(--navy);
     color: #ffffff;
   }
 
-  .wsai-copy-btn-primary:hover {
-    border-color: #01466d;
-    background: #01466d;
+  .wsai-pill-btn-muted:hover {
+    border-color: var(--accent);
+    background: var(--accent);
     color: #ffffff;
   }
 
-  .wsai-copy-btn-secondary {
-    border: 1px solid #015887;
+  .wsai-methodology-callout {
+    margin-top: 28px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .wsai-methodology-callout-inner {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px 28px 26px;
+    text-align: center;
     background: #ffffff;
-    color: #015887;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(1, 88, 135, 0.07);
   }
 
-  .wsai-copy-btn-secondary:hover {
-    border-color: #ff7700;
-    background: #ff7700;
-    color: #ffffff;
+  .wsai-methodology-h {
+    margin: 0 0 14px;
+    font-size: 1.35rem;
+    color: var(--navy);
+    font-family: 'Work Sans', system-ui, sans-serif;
+    font-weight: 700;
   }
 
-  @media (max-width: 980px) {
-    .wsai-banner,
+  .wsai-methodology-p {
+    margin: 0;
+    color: var(--ink);
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .wsai-methodology-cta {
+    margin: 16px 0 0;
+  }
+
+  .wsai-methodology-link {
+    display: inline-block;
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .wsai-methodology-link:hover {
+    color: var(--accent);
+  }
+
+  @media (max-width: 900px) {
     .wsai-grid {
       grid-template-columns: 1fr;
+    }
+
+    .wsai-step-connector {
+      display: none;
+    }
+
+    .wsai-steps {
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      max-width: 100%;
     }
   }
 
   @media (max-width: 680px) {
     .wsai-banner {
-      padding: 16px;
-    }
-
-    .wsai-banner-value {
-      font-size: 34px;
-    }
-
-    .wsai-copy-top h2 {
-      font-size: 34px;
-    }
-
-    .wsai-copy-top p {
-      font-size: 1em;
+      padding: 18px;
     }
 
     .wsai-advanced-grid,
-    .wsai-adopt,
-    .wsai-metrics {
+    .wsai-metrics-fin,
+    .wsai-metrics-prod-top {
       grid-template-columns: 1fr;
+    }
+
+    .wsai-hero-title {
+      font-size: 28px;
+    }
+
+    .wsai-methodology-callout-inner {
+      padding: 20px 18px 22px;
     }
   }
 </style>
 
 <script define:vars={{ rootId }} data-astro-rerun>
   (() => {
+    /** Display only: nominal UK FT hours/week for reclaim copy — not used in savings formulas. */
+    const HOURS_PER_WEEK_FT = 37.5;
+
     const CONFIG = {
       currency: 'GBP',
       locale: 'en-GB',
       sliders: {
-        staff: [5, 250, 40],
-        salary: [20000, 120000, 45000],
+        staff: [5, 250, 20],
+        salary: [20000, 120000, 39000],
       },
       onCost: 1.32,
       adoption: {
@@ -582,11 +991,6 @@ const { rootId = 'wsai-roi-calculator' } = Astro.props;
     const nf = (n) => Math.round(n || 0).toLocaleString('en-GB');
     const pct = (x) => `${((x || 0) * 100).toFixed(0)}%`;
     const $ = (sel) => root.querySelector(sel);
-    const adoptionLabelMap = {
-      beginner: 'Early Stage',
-      intermediate: 'Scaling Up',
-      advanced: 'Mature Adoption',
-    };
 
     const staffEl = $(`#${rootId}-staff`);
     const salaryEl = $(`#${rootId}-salary`);
@@ -658,15 +1062,27 @@ const { rootId = 'wsai-roi-calculator' } = Astro.props;
         proj = annualSavings * mult;
       }
 
+      const hoursWeekTotal = Math.round(weightedProdSum * HOURS_PER_WEEK_FT);
+      const hrsPerStaff =
+        totalStaff > 0 ? (weightedProdSum * HOURS_PER_WEEK_FT) / totalStaff : 0;
+      const hrsPerStaffStr = hrsPerStaff >= 0.05 ? hrsPerStaff.toFixed(1) : '0';
+
       $(`#${rootId}-k-savings`).textContent = nfMoney(annualSavings);
-      $(`#${rootId}-k-prod`).textContent = pct(overallProdFraction);
-      $(`#${rootId}-k-fte`).textContent = `${ftes.toFixed(1)} FTE`;
       $(`#${rootId}-k-proj`).textContent = nfMoney(proj);
+      $(`#${rootId}-k-prod`).textContent = pct(overallProdFraction);
+      $(`#${rootId}-k-fte`).textContent = `${ftes.toFixed(1)} roles`;
+      $(`#${rootId}-k-hours`).textContent = `${hoursWeekTotal} hrs`;
 
       $(`#${rootId}-banner-annual`).textContent = nfMoney(annualSavings);
-      $(`#${rootId}-banner-sub`).textContent = `Based on ${pct(uplift)} efficiency at ${pct(adoptionRate)} adoption`;
-      $(`#${rootId}-banner-proj`).textContent = nfMoney(proj);
-      $(`#${rootId}-banner-adoption`).textContent = `${adoptionLabelMap[adoptionKey] || 'Scaling Up'} adoption`;
+      const bannerSubEl = $(`#${rootId}-banner-sub`);
+      if (bannerSubEl) {
+        bannerSubEl.textContent = `If ${nf(totalStaff)} staff each reclaim ~${hrsPerStaffStr} hrs/week`;
+      }
+
+      const calloutSave = $(`#${rootId}-callout-save`);
+      const calloutFte = $(`#${rootId}-callout-fte`);
+      if (calloutSave) calloutSave.textContent = nfMoney(annualSavings);
+      if (calloutFte) calloutFte.textContent = String(Math.round(ftes));
     }
 
     root.querySelectorAll('[data-adopt]').forEach((b) => {
@@ -692,7 +1108,7 @@ const { rootId = 'wsai-roi-calculator' } = Astro.props;
     if (initAdoptionBtn) {
       initAdoptionBtn.setAttribute('aria-pressed', 'true');
     } else {
-      root.querySelector('[data-adopt="intermediate"]').setAttribute('aria-pressed', 'true');
+      root.querySelector('[data-adopt="intermediate"]')?.setAttribute('aria-pressed', 'true');
     }
 
     updateLabels();
