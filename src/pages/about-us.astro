@@ -43,9 +43,9 @@ const founderCards = [
     subtitle="WorkSmart-AI is focused on supporting universities to confidently upskill their staff in AI, ensuring that productivity is increased and ROI achieved."
   />
 
-  <section class="bg-[#f8f8f8] px-6 pb-16 sm:px-8 lg:px-12">
+  <section class="bg-section px-6 pb-16 sm:px-8 lg:px-12">
     <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
-      <div class="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-[#015887]/10">
+      <div class="overflow-hidden rounded-2xl bg-card shadow-card ring-1 ring-border">
         <iframe
           title="WorkSmart AI company video"
           src="https://www.youtube.com/embed/2vSpg6NhX40?feature=oembed"
@@ -54,40 +54,40 @@ const founderCards = [
           referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen></iframe>
       </div>
-      <div class="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-[#015887]/10">
-        <h2 class="font-heading text-3xl font-bold text-[#015887]">Our approach</h2>
-        <p class="mt-4 leading-relaxed text-[#1b0101]/75">
+      <div class="rounded-2xl bg-card p-8 shadow-card ring-1 ring-border">
+        <h2 class="font-heading text-3xl font-bold text-heading">Our approach</h2>
+        <p class="mt-4 leading-relaxed text-muted">
           With over four decades-worth of specialist educational experience within the team, we understand the value in
           working closely with clients in order to personalise every training package that we deliver.
         </p>
-        <p class="mt-4 leading-relaxed text-[#1b0101]/75">
+        <p class="mt-4 leading-relaxed text-muted">
           People are at the heart of everything that we do, as only once people feel confident and engaged in an
           experience, does real learning and transformation take place!
         </p>
-        <p class="mt-4 leading-relaxed text-[#1b0101]/75">
+        <p class="mt-4 leading-relaxed text-muted">
           This is demonstrated by our hands-on, personalised approach towards training and our uncomplicated,
           transparent and proactive approach towards business.
         </p>
-        <p class="mt-4 font-semibold text-[#015887]">
+        <p class="mt-4 font-semibold text-heading">
           Ultimately if the learning is fun, then great things can be achieved!
         </p>
       </div>
     </div>
   </section>
 
-  <section class="bg-white px-6 py-16 sm:px-8 lg:px-12">
+  <section class="bg-page px-6 py-16 sm:px-8 lg:px-12">
     <div class="mx-auto max-w-6xl">
       <div class="text-center">
-        <h2 class="font-heading text-3xl font-bold text-[#015887] sm:text-4xl">Meet Our Founders</h2>
+        <h2 class="font-heading text-3xl font-bold text-heading sm:text-4xl">Meet Our Founders</h2>
       </div>
       <div class="mt-10 grid gap-8 lg:grid-cols-2">
         {
           founderCards.map((founder) => (
-            <article class="rounded-2xl bg-[#f8f8f8] p-6 shadow-sm ring-1 ring-[#015887]/10 sm:p-8">
+            <article class="rounded-2xl bg-card p-6 shadow-card ring-1 ring-border sm:p-8">
               <img src={founder.image} alt={founder.name} class="mx-auto h-52 w-52 rounded-2xl object-cover" />
               <p class="mt-3 text-center text-sm font-semibold text-accent">Founder of WorkSmart-AI</p>
-              <h3 class="mt-2 text-center font-heading text-2xl font-bold text-[#015887]">{founder.name}</h3>
-              <div class="mt-5 space-y-4 text-[#1b0101]/75">
+              <h3 class="mt-2 text-center font-heading text-2xl font-bold text-heading">{founder.name}</h3>
+              <div class="mt-5 space-y-4 text-muted">
                 {founder.paragraphs.map((paragraph) => (
                   <p>{paragraph}</p>
                 ))}
@@ -96,7 +96,7 @@ const founderCards = [
                 href={founder.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="mt-6 inline-flex font-semibold text-[#015887] underline decoration-[#86bfe2] underline-offset-4"
+                class="mt-6 inline-flex font-semibold text-link underline decoration-secondary underline-offset-4 hover:text-link-hover"
               >
                 LinkedIn
               </a>

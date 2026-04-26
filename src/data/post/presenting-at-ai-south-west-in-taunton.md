@@ -2,7 +2,7 @@
 publishDate: 2026-02-20T18:49:43.000Z
 author: 'Katie Steen'
 title: 'Presenting at AI South-West in Taunton'
-excerpt: 'Dave and I had a fantastic afternoon at Tech South West’s AI South West Live event in Taunton, speaking with the region’s AI founders, innovators, educators and technologists.'
+excerpt: 'Reflections from AI South West Live in Taunton, where the biggest theme was clear: successful AI adoption starts with people, not tools.'
 image: '~/assets/images/presenting-at-ai-south-west-in-taunton.png'
 ---
 

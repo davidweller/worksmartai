@@ -175,11 +175,11 @@ const faqItems = [
     items={includedItems}
   />
 
-  <section id="workshops" class="bg-[#f8f8f8] px-6 py-16 sm:px-8 lg:px-12">
+  <section id="workshops" class="bg-section px-6 py-16 sm:px-8 lg:px-12">
     <div class="mx-auto max-w-6xl">
       <div class="mx-auto max-w-3xl text-center">
-        <h2 class="font-heading text-3xl font-bold text-[#015887] sm:text-4xl">Choose Your Workshops</h2>
-        <p class="mt-4 text-base text-[#1b0101]/75">
+        <h2 class="font-heading text-3xl font-bold text-heading sm:text-4xl">Choose Your Workshops</h2>
+        <p class="mt-4 text-base text-muted">
           All packages include a three-hour long workshop, which you can choose from the list below. We?re always keen
           to personalise our offering, so if you?d like additional or different workshops, or you?d like to include
           additional people, then please give us a call.
@@ -188,13 +188,13 @@ const faqItems = [
       <div class="mt-10 grid gap-6">
         {
           workshopGroups.map((group) => (
-            <article class="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-[#015887]/10">
-              <div class="border-b border-[#015887]/10 bg-[#015887] px-5 py-4">
+            <article class="overflow-hidden rounded-2xl bg-card shadow-card ring-1 ring-border">
+              <div class="border-b border-default bg-brand px-5 py-4">
                 <h3 class="font-heading text-xl font-bold text-white">{group.title}</h3>
               </div>
               <div class="overflow-x-auto">
                 <table class="w-full min-w-[700px] text-left text-sm">
-                  <thead class="bg-[#86bfe2]/20 text-[#015887]">
+                  <thead class="bg-[color-mix(in_srgb,var(--aw-color-secondary)_20%,var(--aw-color-bg-card))] text-heading">
                     <tr>
                       <>
                         <th class="px-5 py-3">Workshop</th>
@@ -205,10 +205,10 @@ const faqItems = [
                   </thead>
                   <tbody>
                     {group.rows.map((row) => (
-                      <tr class="border-t border-[#015887]/10">
-                        <td class="px-5 py-3 font-medium text-[#1b0101]">{row[0]}</td>
-                        <td class="px-5 py-3 text-[#1b0101]/75">{row[1]}</td>
-                        <td class="px-5 py-3 text-[#1b0101]/75">{row[2]}</td>
+                      <tr class="border-t border-default">
+                        <td class="px-5 py-3 font-medium text-default">{row[0]}</td>
+                        <td class="px-5 py-3 text-muted">{row[1]}</td>
+                        <td class="px-5 py-3 text-muted">{row[2]}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -221,10 +221,10 @@ const faqItems = [
     </div>
   </section>
 
-  <section class="bg-white px-6 py-16 sm:px-8 lg:px-12">
-    <div class="mx-auto max-w-4xl rounded-2xl bg-[#f8f8f8] p-8 ring-1 ring-[#015887]/10">
-      <h2 class="font-heading text-3xl font-bold text-[#015887]">Senior Leader Consulting</h2>
-      <p class="mt-4 text-base leading-[var(--aw-leading-body,1.7)] text-[#1b0101]/75">
+  <section class="bg-page px-6 py-16 sm:px-8 lg:px-12">
+    <div class="mx-auto max-w-4xl rounded-2xl bg-card p-8 ring-1 ring-border shadow-card">
+      <h2 class="font-heading text-3xl font-bold text-heading">Senior Leader Consulting</h2>
+      <p class="mt-4 text-base leading-[var(--aw-leading-body,1.7)] text-muted">
         This highly interactive and personalised consulting helps strategic leaders identify opportunities and overcome
         challenges that AI poses to their teams. Designed entirely around your institution?s AI and Data policies, this
         in-person workshop is focused on supporting leaders to be able to make informed decisions when it comes to the

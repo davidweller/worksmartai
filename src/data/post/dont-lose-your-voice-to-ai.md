@@ -2,7 +2,7 @@
 publishDate: 2026-03-12T13:26:10.000Z
 author: 'Katie Steen'
 title: 'Don’t Lose Your Voice to AI'
-excerpt: 'As a former journalist, I feel very strongly about writing. Being able to write down exactly what I think or feel on a subject is liberating.'
+excerpt: 'A personal reflection on where AI can help with writing, where it can reduce anxiety, and why keeping a human voice still matters.'
 image: '~/assets/images/dont-lose-your-voice-to-ai.png'
 ---
 

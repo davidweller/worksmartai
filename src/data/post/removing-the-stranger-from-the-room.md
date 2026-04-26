@@ -2,7 +2,7 @@
 publishDate: 2025-12-05T10:36:51.000Z
 author: 'Katie Steen'
 title: 'Removing the Stranger from the Room'
-excerpt: 'Having recently set up a new company, it’s been fascinating to see how many people are excited for me until I tell them it’s to do with AI.'
+excerpt: 'Why anxiety around AI is often a sign of unfamiliarity, and why universities need space for guidance, training, and honest conversations.'
 image: '~/assets/images/removing-the-stranger-from-the-room.png'
 ---
 

@@ -2,7 +2,7 @@
 publishDate: 2025-11-10T20:15:07.000Z
 author: 'Katie Steen'
 title: 'New HEPI Report: AI and the Future of Universities'
-excerpt: 'As I write the first blog on behalf of WorkSmart-AI, my attention has been drawn to a new HEPI report on AI and the future of universities.'
+excerpt: 'A reflection on HEPI’s AI and universities report, and why institution-wide staff development needs to be treated as a strategic priority.'
 image: '~/assets/images/new-hepi-report-ai-future-universities.png'
 ---
 

@@ -292,19 +292,25 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
 
 <style>
   .wsai-sav-root {
-    background: #f8f8f8;
+    background: var(--aw-color-bg-section);
     padding: 12px 0 32px;
   }
 
   .wsai-sav {
-    --color-background-secondary: #f3f5f7;
-    --line: #e2e5ea;
-    --muted: #f2f4f7;
-    --ink: #1b0101;
-    --sub: #64748b;
-    --navy: #015887;
-    --accent: var(--aw-color-accent, #ff7700);
-    --green: #1a7a4a;
+    --surface: var(--aw-color-bg-card);
+    --surface-elevated: var(--aw-color-bg-card-elevated);
+    --color-background-secondary: color-mix(in srgb, var(--aw-color-secondary) 14%, var(--aw-color-bg-card));
+    --line: var(--aw-color-border);
+    --muted: color-mix(in srgb, var(--aw-color-secondary) 12%, var(--aw-color-bg-card));
+    --ink: var(--aw-color-text-default);
+    --sub: var(--aw-color-text-muted);
+    --navy: var(--aw-color-primary);
+    --accent: var(--aw-color-accent);
+    --reversed: var(--aw-brand-white);
+    --green: var(--aw-color-primary);
+    --range-rest: color-mix(in srgb, var(--aw-color-secondary) 28%, var(--aw-color-bg-card));
+    --selected-bg: color-mix(in srgb, var(--aw-color-accent) 10%, var(--aw-color-bg-card));
+    --calc-shadow: var(--aw-shadow-card);
     --slider-thumb-size: 22px;
     --slider-track-height: 12px;
     --fill-percent: 50%;
@@ -322,6 +328,12 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
     color: var(--ink);
     font-size: var(--aw-text-body, 1rem);
     line-height: var(--aw-leading-body, 1.7);
+  }
+
+  :global(.dark) .wsai-sav {
+    --green: var(--aw-color-secondary);
+    --range-rest: color-mix(in srgb, var(--aw-color-secondary) 22%, var(--aw-color-bg-card-elevated));
+    --selected-bg: color-mix(in srgb, var(--aw-color-accent) 16%, var(--aw-color-bg-card-elevated));
   }
 
   .wsai-hero {
@@ -372,7 +384,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
     height: 28px;
     border-radius: 50%;
     background: var(--navy);
-    color: #fff;
+    color: var(--reversed);
     font-family: 'Work Sans', system-ui, sans-serif;
     font-weight: 700;
     font-size: 0.85rem;
@@ -391,7 +403,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
     min-width: 16px;
     max-width: 48px;
     height: 2px;
-    background: #cbd5e1;
+    background: var(--line);
     margin: 0 6px;
   }
 
@@ -417,7 +429,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
     line-height: 1.4;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #ffffff;
+    color: var(--reversed);
     font-family: 'Work Sans', system-ui, sans-serif;
     font-weight: 700;
   }
@@ -427,14 +439,14 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
     font-size: clamp(32px, 5vw, 44px);
     line-height: 1.15;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--reversed);
     font-family: 'Work Sans', system-ui, sans-serif;
   }
 
   .wsai-banner-sub {
     margin: 8px 0 0;
     font-size: 1rem;
-    color: #ffffff;
+    color: var(--reversed);
     line-height: 1.5;
   }
 
@@ -444,14 +456,14 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
     gap: 6px;
     margin-top: 12px;
     font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgb(255 255 255 / 74%);
     text-decoration: underline;
     font-weight: 600;
     font-family: 'Work Sans', system-ui, sans-serif;
   }
 
   .wsai-banner-info:hover {
-    color: #ffffff;
+    color: var(--reversed);
   }
 
   .wsai-info-icon {
@@ -469,9 +481,9 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
     justify-content: center;
     padding: 12px 22px;
     border-radius: 999px;
-    border: 2px solid rgba(255, 255, 255, 0.85);
+    border: 2px solid rgb(255 255 255 / 85%);
     background: transparent;
-    color: #ffffff;
+    color: var(--reversed);
     font-family: 'Work Sans', system-ui, sans-serif;
     font-weight: 700;
     font-size: 1rem;
@@ -482,14 +494,15 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
   }
 
   .wsai-banner-cta:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: #ffffff;
+    background: rgb(255 255 255 / 12%);
+    border-color: var(--reversed);
   }
 
   .wsai-card {
-    background: #ffffff;
+    background: var(--surface);
     border-radius: 12px;
-    box-shadow: 0 4px 24px rgba(1, 88, 135, 0.08);
+    border: 1px solid var(--line);
+    box-shadow: var(--calc-shadow);
     padding: 20px 20px 24px;
   }
 
@@ -525,7 +538,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
     align-items: center;
     margin-bottom: 8px;
     font-size: 1rem;
-    color: #334155;
+    color: var(--ink);
   }
 
   .wsai-val-navy {
@@ -545,10 +558,11 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
   }
 
   .wsai-chip {
-    background: #ffffff;
-    border: 1px solid #d3d8df;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    color: var(--ink);
     padding: 12px 14px;
-    border-radius: 9999px;
+    border-radius: 16px;
     cursor: pointer;
     text-align: left;
     display: flex;
@@ -566,19 +580,29 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
 
   .wsai-chip-sub {
     font-size: 0.95rem;
-    color: #64748b;
+    color: var(--sub);
     font-weight: 400;
     line-height: 1.45;
   }
 
   .wsai-chip[aria-pressed='true'] {
     border-color: var(--accent);
-    background: #fff8f2;
+    background: var(--selected-bg);
     box-shadow: 0 0 0 1px var(--accent);
   }
 
   .wsai-chip[aria-pressed='true'] .wsai-chip-title {
     color: var(--accent);
+  }
+
+  .wsai-chip:focus-visible,
+  .wsai-range:focus-visible,
+  .wsai-input-adv:focus-visible,
+  .wsai-banner-cta:focus-visible,
+  .wsai-pill-btn:focus-visible,
+  .wsai-methodology-link:focus-visible {
+    outline: 3px solid var(--aw-color-focus);
+    outline-offset: 3px;
   }
 
   .wsai-range {
@@ -593,13 +617,13 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
   .wsai-range::-webkit-slider-runnable-track {
     height: var(--slider-track-height);
     border-radius: var(--slider-track-height);
-    background: linear-gradient(to right, var(--accent) var(--fill-percent), #e5e7eb var(--fill-percent));
+    background: linear-gradient(to right, var(--accent) var(--fill-percent), var(--range-rest) var(--fill-percent));
   }
 
   .wsai-range::-moz-range-track {
     height: var(--slider-track-height);
     border-radius: var(--slider-track-height);
-    background: linear-gradient(to right, var(--accent) var(--fill-percent), #e5e7eb var(--fill-percent));
+    background: linear-gradient(to right, var(--accent) var(--fill-percent), var(--range-rest) var(--fill-percent));
   }
 
   .wsai-range::-webkit-slider-thumb {
@@ -610,8 +634,8 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
     width: var(--slider-thumb-size);
     background-color: var(--accent);
     border-radius: 50%;
-    border: 2px solid #ffffff;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    border: 2px solid var(--surface);
+    box-shadow: 0 1px 4px rgb(0 0 0 / 25%);
   }
 
   .wsai-range::-moz-range-thumb {
@@ -619,8 +643,8 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
     width: var(--slider-thumb-size);
     background-color: var(--accent);
     border-radius: 50%;
-    border: 2px solid #ffffff;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    border: 2px solid var(--surface);
+    box-shadow: 0 1px 4px rgb(0 0 0 / 25%);
   }
 
   .wsai-simple-controls[disabled='true'] .wsai-range {
@@ -682,7 +706,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
 
   .wsai-label-adv {
     font-size: 0.95rem;
-    color: #374151;
+    color: var(--ink);
   }
 
   .wsai-input-adv {
@@ -690,7 +714,9 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
     min-width: 76px;
     font-size: 1rem;
     padding: 6px 8px;
-    border: 1px solid #d3d8df;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink);
     border-radius: 8px;
     text-align: right;
   }
@@ -740,7 +766,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
     line-height: 1.35;
     letter-spacing: 0.07em;
     text-transform: uppercase;
-    color: #64748b;
+    color: var(--sub);
     font-family: 'Work Sans', system-ui, sans-serif;
     font-weight: 700;
   }
@@ -764,34 +790,34 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
   .wsai-metric-foot {
     margin-top: 8px;
     font-size: 0.9rem;
-    color: #6b7280;
+    color: var(--sub);
     line-height: 1.45;
   }
 
   .wsai-callout {
     margin-top: 28px;
-    background: var(--aw-color-bg-footer, rgb(226 239 247));
+    background: var(--surface-elevated);
     border-left: 4px solid var(--accent);
     border-radius: 0 10px 10px 0;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--calc-shadow);
   }
 
   .wsai-callout-inner {
     padding: 18px 20px 20px;
-    background: var(--aw-color-bg-footer, rgb(226 239 247));
+    background: var(--surface-elevated);
     border-radius: 0 10px 10px 0;
   }
 
   :global(.dark) .wsai-callout .wsai-callout-kicker {
-    color: rgb(203 213 225);
+    color: var(--sub);
   }
 
   :global(.dark) .wsai-callout .wsai-callout-text {
-    color: rgb(248 248 248);
+    color: var(--ink);
   }
 
   :global(.dark) .wsai-callout .wsai-callout-text strong {
-    color: rgb(191 219 254);
+    color: var(--aw-color-secondary);
   }
 
   .wsai-callout-kicker {
@@ -799,7 +825,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
     font-size: 0.72rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #64748b;
+    color: var(--sub);
     font-family: 'Work Sans', system-ui, sans-serif;
     font-weight: 700;
   }
@@ -818,8 +844,8 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
 
   .wsai-callout--get-in-touch {
     background: var(--accent);
-    border-left-color: var(--aw-color-accent-hover, #e55f00);
-    box-shadow: 0 2px 12px rgba(255, 119, 0, 0.25);
+    border-left-color: var(--aw-color-accent-hover);
+    box-shadow: 0 2px 12px color-mix(in srgb, var(--accent) 35%, transparent);
   }
 
   .wsai-callout--get-in-touch .wsai-callout-inner--get-in-touch {
@@ -830,7 +856,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
   }
 
   :global(.dark) .wsai-callout--get-in-touch .wsai-copy-actions-lead {
-    color: #ffffff;
+    color: var(--reversed);
   }
 
   .wsai-copy-actions {
@@ -851,7 +877,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
   }
 
   .wsai-callout--get-in-touch .wsai-copy-actions-lead {
-    color: #ffffff;
+    color: var(--reversed);
   }
 
   .wsai-pill-btn {
@@ -860,8 +886,8 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
     justify-content: center;
     padding: 12px 28px;
     border-radius: 999px;
-    border: 1px solid #cbd5e1;
-    background: #ffffff;
+    border: 1px solid var(--line);
+    background: var(--aw-brand-white);
     color: var(--navy);
     font-family: 'Work Sans', system-ui, sans-serif;
     font-weight: 700;
@@ -876,7 +902,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
   .wsai-pill-btn:hover {
     border-color: var(--navy);
     background: var(--navy);
-    color: #ffffff;
+    color: var(--reversed);
   }
 
   .wsai-methodology-callout {
@@ -892,10 +918,10 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
     margin: 0 auto;
     padding: 24px 28px 26px;
     text-align: center;
-    background: #ffffff;
+    background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(1, 88, 135, 0.07);
+    box-shadow: var(--calc-shadow);
   }
 
   .wsai-methodology-h {

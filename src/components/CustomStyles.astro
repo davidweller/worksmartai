@@ -13,19 +13,38 @@
     --aw-text-body: 1rem;
     --aw-leading-body: 1.7;
 
-    --aw-color-primary: rgb(1 88 135);
-    --aw-color-secondary: rgb(134 191 226);
-    --aw-color-accent: #ff7700;
+    --aw-brand-navy: #015887;
+    --aw-brand-orange: #ff7700;
+    --aw-brand-light-blue: #86bfe2;
+    --aw-brand-off-white: #f8f8f8;
+    --aw-brand-dark: #1b0101;
+    --aw-brand-white: #ffffff;
+
+    --aw-color-primary: var(--aw-brand-navy);
+    --aw-color-secondary: var(--aw-brand-light-blue);
+    --aw-color-accent: var(--aw-brand-orange);
     /* Slightly darker than accent for button hovers / focus borders (stays on-brand vs Tailwind `orange-600`) */
     --aw-color-accent-hover: #e55f00;
 
-    --aw-color-text-heading: rgb(1 88 135);
-    --aw-color-text-default: rgb(27 1 1);
+    --aw-color-text-heading: var(--aw-brand-navy);
+    --aw-color-text-default: var(--aw-brand-dark);
     --aw-color-text-muted: rgb(27 1 1 / 66%);
-    --aw-color-bg-page: rgb(248 248 248);
-    --aw-color-bg-footer: rgb(226 239 247);
+    --aw-color-text-page: var(--aw-brand-dark);
+    --aw-color-bg-page: var(--aw-brand-off-white);
+    --aw-color-bg-section: var(--aw-brand-off-white);
+    --aw-color-bg-card: var(--aw-brand-white);
+    --aw-color-bg-card-elevated: var(--aw-brand-white);
+    --aw-color-bg-brand: var(--aw-brand-navy);
+    --aw-color-bg-footer: #e2eff7;
+    --aw-color-border: rgb(1 88 135 / 14%);
+    --aw-color-border-strong: rgb(1 88 135 / 24%);
+    --aw-color-link: var(--aw-brand-navy);
+    --aw-color-link-hover: var(--aw-brand-orange);
+    --aw-color-focus: var(--aw-brand-orange);
+    --aw-shadow-card: 0 0.75rem 2rem rgb(1 88 135 / 8%);
+    --aw-shadow-card-elevated: 0 1.25rem 3rem rgb(1 88 135 / 14%);
 
-    --aw-color-bg-page-dark: rgb(1 88 135);
+    --aw-color-bg-page-dark: var(--aw-brand-navy);
 
     ::selection {
       background-color: rgb(134 191 226 / 60%);
@@ -37,16 +56,28 @@
     --aw-font-serif: 'Ubuntu';
     --aw-font-heading: 'Work Sans';
 
-    --aw-color-primary: rgb(1 88 135);
-    --aw-color-secondary: rgb(134 191 226);
-    --aw-color-accent: #ff7700;
+    --aw-color-primary: var(--aw-brand-navy);
+    --aw-color-secondary: var(--aw-brand-light-blue);
+    --aw-color-accent: var(--aw-brand-orange);
     --aw-color-accent-hover: #e55f00;
 
-    --aw-color-text-heading: rgb(248 248 248);
-    --aw-color-text-default: rgb(248 248 248);
-    --aw-color-text-muted: rgb(248 248 248 / 72%);
-    --aw-color-bg-page: rgb(1 88 135);
-    --aw-color-bg-footer: rgb(0 62 96);
+    --aw-color-text-heading: var(--aw-brand-off-white);
+    --aw-color-text-default: var(--aw-brand-off-white);
+    --aw-color-text-muted: rgb(248 248 248 / 74%);
+    --aw-color-text-page: var(--aw-brand-off-white);
+    --aw-color-bg-page: var(--aw-brand-dark);
+    --aw-color-bg-section: #250808;
+    --aw-color-bg-card: #2f0f0f;
+    --aw-color-bg-card-elevated: #3a1515;
+    --aw-color-bg-brand: var(--aw-brand-navy);
+    --aw-color-bg-footer: #110101;
+    --aw-color-border: rgb(248 248 248 / 14%);
+    --aw-color-border-strong: rgb(134 191 226 / 34%);
+    --aw-color-link: var(--aw-brand-light-blue);
+    --aw-color-link-hover: var(--aw-brand-orange);
+    --aw-color-focus: var(--aw-brand-orange);
+    --aw-shadow-card: 0 0.85rem 2rem rgb(0 0 0 / 22%);
+    --aw-shadow-card-elevated: 0 1.25rem 3rem rgb(0 0 0 / 32%);
 
     ::selection {
       background-color: color-mix(in srgb, var(--aw-color-accent) 35%, transparent);

@@ -21,10 +21,8 @@ const { metadata, title, effectiveDate, content, contactHref = '/contact-us/' } 
     title={title}
     subtitle={effectiveDate ? `Effective date: ${effectiveDate}` : undefined}
   />
-  <section class="bg-[#f8f8f8] px-6 pb-16 sm:px-8 lg:px-12">
-    <article
-      class="legal-content mx-auto max-w-4xl rounded-2xl bg-white p-6 shadow-sm ring-1 ring-[#015887]/10 sm:p-10"
-    >
+  <section class="bg-section px-6 pb-16 sm:px-8 lg:px-12">
+    <article class="legal-content mx-auto max-w-4xl rounded-2xl bg-card p-6 shadow-card ring-1 ring-border sm:p-10">
       <Fragment set:html={content} />
     </article>
   </section>
@@ -49,7 +47,7 @@ const { metadata, title, effectiveDate, content, contactHref = '/contact-us/' } 
     display: none;
   }
   .legal-content {
-    color: #1b0101;
+    color: var(--aw-color-text-default);
     font-family: Ubuntu, system-ui, sans-serif;
     font-size: var(--aw-text-body, 1rem);
     line-height: var(--aw-leading-body, 1.7);
@@ -59,13 +57,13 @@ const { metadata, title, effectiveDate, content, contactHref = '/contact-us/' } 
   }
   .legal-content h2,
   .legal-content h3 {
-    color: #015887;
+    color: var(--aw-color-text-heading);
     font-family: 'Work Sans', system-ui, sans-serif;
     font-weight: 700;
     line-height: 1.2;
   }
   .legal-content h2 {
-    border-top: 1px solid rgb(1 88 135 / 12%);
+    border-top: 1px solid var(--aw-color-border);
     font-size: clamp(1.45rem, 3vw, 2rem);
     margin-top: 2rem;
     padding-top: 1.5rem;
@@ -92,10 +90,10 @@ const { metadata, title, effectiveDate, content, contactHref = '/contact-us/' } 
     margin: 0.45rem 0;
   }
   .legal-content a {
-    color: #015887;
+    color: var(--aw-color-link);
     font-weight: 700;
     text-decoration: underline;
-    text-decoration-color: #86bfe2;
+    text-decoration-color: var(--aw-color-secondary);
     text-underline-offset: 0.18em;
   }
 </style>

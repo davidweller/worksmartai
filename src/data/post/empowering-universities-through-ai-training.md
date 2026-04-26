@@ -2,7 +2,7 @@
 publishDate: 2025-11-21T10:20:53.000Z
 author: 'Katie Steen'
 title: 'Empowering Universities Through AI Training'
-excerpt: 'I’ve found myself trying to think of a catchy, accurate tagline for WorkSmart-AI, and kept coming back to one word: empower.'
+excerpt: 'Why meaningful AI adoption in universities depends on empowering staff and leaders with the knowledge, confidence, and involvement to shape decisions.'
 image: '~/assets/images/empowering-universities-through-ai-training.png'
 ---
 

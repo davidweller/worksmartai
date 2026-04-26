@@ -2,7 +2,7 @@
 publishDate: 2025-11-28T15:27:06.000Z
 author: 'Katie Steen'
 title: 'What Do We Gain? AI’s Value to the Workforce'
-excerpt: 'My thoughts this week are inspired by a recent McKinsey report on work partnerships between people, agents and robots, and what AI’s productivity gains mean for the workforce.'
+excerpt: 'A reflection on AI productivity gains, workforce value, and why universities should ask who benefits when technology frees up time.'
 image: '~/assets/images/what-do-we-gain-ais-value-to-the-workforce.png'
 ---
 
