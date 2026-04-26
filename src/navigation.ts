@@ -1,5 +1,4 @@
 import { getAsset } from './utils/permalinks';
-import { BOOK_A_CALL_URL } from './config/booking';
 import type { CallToAction } from './types';
 
 export const headerData: {
@@ -13,7 +12,7 @@ export const headerData: {
     { text: 'News', href: '/news/' },
     { text: 'Contact Us', href: '/contact-us/' },
   ],
-  actions: [{ text: 'Book a Call', href: BOOK_A_CALL_URL, variant: 'primary' }],
+  actions: [{ text: 'Login', href: '/login/', variant: 'primary' }],
 };
 
 export const footerData = {
@@ -26,7 +25,7 @@ export const footerData = {
         { text: 'About Us', href: '/about-us/' },
         { text: 'News', href: '/news/' },
         { text: 'Contact Us', href: '/contact-us/' },
-        { text: 'Book a Call', href: BOOK_A_CALL_URL },
+        { text: 'Login', href: '/login/' },
       ],
     },
     {
