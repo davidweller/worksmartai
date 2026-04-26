@@ -2,6 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 import ROICalculator from '~/components/widgets/ROICalculator.astro';
 import Hero2 from '~/components/widgets/Hero2.astro';
+import { BOOK_A_CALL_URL } from '~/config/booking';
 
 const metadata = {
   title: 'WorkSmart-AI | AI skills training and consulting for higher education',
@@ -18,12 +19,12 @@ const metadata = {
       {
         variant: 'primary',
         text: 'Contact Us',
-        href: '/contact',
+        href: '/contact-us/',
       },
       {
         text: 'ROI Calculator',
         href: '#roi-calculator',
-        class: 'hover:bg-[#ff7700] hover:border-[#ff7700] hover:text-white',
+        class: 'font-bold hover:bg-accent hover:border-accent hover:text-white',
       },
     ]}
     image={{
@@ -72,7 +73,7 @@ const metadata = {
 
   <section class="bg-[#015887] px-6 py-16 sm:px-8 lg:px-12">
     <blockquote
-      class="mx-auto max-w-5xl border-l-4 border-[#ff7700] pl-6 text-white"
+      class="mx-auto max-w-5xl border-l-4 border-accent pl-6 text-white"
       data-aos="fade-right"
     >
       <h4
@@ -99,7 +100,7 @@ const metadata = {
         data-aos="fade-up"
         data-aos-delay="180"
         href="/services"
-        class="mt-8 inline-flex items-center justify-center rounded-full border border-[#ff7700] bg-[#ff7700] px-6 py-3 font-semibold text-white transition hover:bg-orange-600 hover:border-orange-600"
+        class="mt-8 inline-flex items-center justify-center rounded-full border border-accent bg-accent px-6 py-3 font-semibold text-white transition hover:bg-accent-hover hover:border-accent-hover"
       >
         View Our Services
       </a>
@@ -108,7 +109,7 @@ const metadata = {
 
   <section class="bg-[#015887] px-6 py-16 sm:px-8 lg:px-12">
     <blockquote
-      class="mx-auto max-w-5xl border-l-4 border-[#ff7700] pl-6 text-white"
+      class="mx-auto max-w-5xl border-l-4 border-accent pl-6 text-white"
       data-aos="fade-right"
     >
       <h4
@@ -205,8 +206,8 @@ const metadata = {
 
       <div class="mt-12 text-center" data-aos="fade-up">
         <a
-          href="/contact"
-          class="inline-flex items-center justify-center rounded-full border border-[#ff7700] bg-[#ff7700] px-6 py-3 font-semibold text-white transition hover:bg-orange-600 hover:border-orange-600"
+          href={BOOK_A_CALL_URL}
+          class="inline-flex items-center justify-center rounded-full border border-accent bg-accent px-6 py-3 font-semibold text-white transition hover:bg-accent-hover hover:border-accent-hover"
         >
           Book a Call
         </a>

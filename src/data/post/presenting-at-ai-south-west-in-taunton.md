@@ -2,7 +2,7 @@
 publishDate: 2026-02-20T18:49:43.000Z
 author: 'Katie Steen'
 title: 'Presenting at AI South-West in Taunton'
-excerpt: "Dave\\u00a0and\\u00a0I\\u00a0have had\\u00a0a\\u00a0fantastic afternoon at the Tech South West\\u2019s\\u00a0AI\\u00a0South West\\u00a0Live event in Taunton.\\u00a0\\u00a0 The\\u00a0sold-out\\u00a0event was attended by around a hundr"
+excerpt: "Dave and I had a fantastic afternoon at Tech South West’s AI South West Live event in Taunton, speaking with the region’s AI founders, innovators, educators and technologists."
 ---
 
 <figure class="wp-block-image size-large"><img fetchpriority="high" decoding="async" width="1024" height="473" src="https://worksmart-ai.co.uk/wp-content/uploads/2026/02/image-1024x473.png" alt="" class="wp-image-2033" srcset="https://worksmart-ai.co.uk/wp-content/uploads/2026/02/image-1024x473.png 1024w, https://worksmart-ai.co.uk/wp-content/uploads/2026/02/image-300x139.png 300w, https://worksmart-ai.co.uk/wp-content/uploads/2026/02/image-768x355.png 768w, https://worksmart-ai.co.uk/wp-content/uploads/2026/02/image-1536x710.png 1536w, https://worksmart-ai.co.uk/wp-content/uploads/2026/02/image.png 2000w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
@@ -26,7 +26,7 @@ excerpt: "Dave\\u00a0and\\u00a0I\\u00a0have had\\u00a0a\\u00a0fantastic afternoo
 <p class="has-text-align-center"><strong>Want to discuss how WorkSmart-AI could help your team build stronger AI skills?</strong></p>
 
 <div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-212821f5 wp-block-buttons-is-layout-flex">
-<div class="wp-block-button"><a class="wp-block-button__link has-neve-link-color-background-color has-text-color has-background wp-element-button" href="/book-a-call/" style="border-radius:8px;color:#ffffff">Book a Call</a></div>
+<div class="wp-block-button"><a class="wp-block-button__link has-neve-link-color-background-color has-text-color has-background wp-element-button" href="https://new.worksmart-ai.co.uk/book-a-call/" style="border-radius:8px;color:#ffffff">Book a Call</a></div>
 
 <div class="wp-block-button is-style-outline is-style-outline--1"><a class="wp-block-button__link has-nv-site-bg-color has-neve-link-hover-color-background-color has-text-color has-background has-link-color wp-element-button" href="/contact-us/" style="border-radius:8px">Email Us</a></div>
 </div>

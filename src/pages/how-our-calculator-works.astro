@@ -5,6 +5,7 @@ import Features2 from '~/components/widgets/Features2.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Note from '~/components/widgets/Note.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { BOOK_A_CALL_URL } from '~/config/booking';
 
 const metadata = {
   title: 'How our Calculator Works - WorkSmart-AI',
@@ -282,7 +283,7 @@ const evidenceRows = [
     subtitle="Use the calculator or book a call to discuss what the figures could mean for your organisation."
     actions={[
       { variant: 'primary', text: 'Try the Calculator', href: '/#roi-calculator-home' },
-      { text: 'Book a Call', href: '/book-a-call/' },
+      { text: 'Book a Call', href: BOOK_A_CALL_URL },
     ]}
   />
 </Layout>

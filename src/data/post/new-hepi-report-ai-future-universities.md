@@ -2,7 +2,7 @@
 publishDate: 2025-11-10T20:15:07.000Z
 author: 'Katie Steen'
 title: 'New HEPI Report: AI and the Future of Universities'
-excerpt: "As I sit-down to write the first blog on behalf of our new\\u00a0company,\\u00a0WorkSmart-AI, my attention has\\u00a0just\\u00a0been\\u00a0drawn\\u00a0towards\\u00a0a new report by HEPI,\\u00a0AI-and-the"
+excerpt: "As I write the first blog on behalf of WorkSmart-AI, my attention has been drawn to a new HEPI report on AI and the future of universities."
 ---
 
 <figure class="wp-block-image size-large is-style-default"><img decoding="async" width="1024" height="683" src="https://worksmart-ai.co.uk/wp-content/uploads/2025/11/image-1024x683.png" alt="" class="wp-image-1829" srcset="https://worksmart-ai.co.uk/wp-content/uploads/2025/11/image-1024x683.png 1024w, https://worksmart-ai.co.uk/wp-content/uploads/2025/11/image-300x200.png 300w, https://worksmart-ai.co.uk/wp-content/uploads/2025/11/image-768x512.png 768w, https://worksmart-ai.co.uk/wp-content/uploads/2025/11/image-930x620.png 930w, https://worksmart-ai.co.uk/wp-content/uploads/2025/11/image.png 1536w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
@@ -38,7 +38,7 @@ excerpt: "As I sit-down to write the first blog on behalf of our new\\u00a0compa
 <p class="has-text-align-center"><strong>Want to discuss how WorkSmart-AI could help your team build stronger AI skills?</strong></p>
 
 <div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-212821f5 wp-block-buttons-is-layout-flex">
-<div class="wp-block-button"><a class="wp-block-button__link has-neve-link-color-background-color has-text-color has-background wp-element-button" href="/book-a-call/" style="border-radius:8px;color:#ffffff">Book a Call</a></div>
+<div class="wp-block-button"><a class="wp-block-button__link has-neve-link-color-background-color has-text-color has-background wp-element-button" href="https://new.worksmart-ai.co.uk/book-a-call/" style="border-radius:8px;color:#ffffff">Book a Call</a></div>
 
 <div class="wp-block-button is-style-outline is-style-outline--5"><a class="wp-block-button__link has-nv-site-bg-color has-neve-link-hover-color-background-color has-text-color has-background has-link-color wp-element-button" href="/contact-us/" style="border-radius:8px">Email Us</a></div>
 </div>

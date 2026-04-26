@@ -2,7 +2,7 @@
 publishDate: 2025-12-05T10:36:51.000Z
 author: 'Katie Steen'
 title: 'Removing the Stranger from the Room'
-excerpt: "Having recently set-up a new company, it\\u2019s been fascinating to see how many people are so excited for me\\u2026until I tell them it\\u2019s to do with AI. From many of"
+excerpt: "Having recently set up a new company, it’s been fascinating to see how many people are excited for me until I tell them it’s to do with AI."
 ---
 
 <p></p>
@@ -30,7 +30,7 @@ excerpt: "Having recently set-up a new company, it\\u2019s been fascinating to s
 <p class="has-text-align-center"><strong>Want to discuss how WorkSmart-AI could help your team build stronger AI skills?</strong></p>
 
 <div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-212821f5 wp-block-buttons-is-layout-flex">
-<div class="wp-block-button"><a class="wp-block-button__link has-neve-link-color-background-color has-text-color has-background wp-element-button" href="/book-a-call/" style="border-radius:8px;color:#ffffff">Book a Call</a></div>
+<div class="wp-block-button"><a class="wp-block-button__link has-neve-link-color-background-color has-text-color has-background wp-element-button" href="https://new.worksmart-ai.co.uk/book-a-call/" style="border-radius:8px;color:#ffffff">Book a Call</a></div>
 
 <div class="wp-block-button is-style-outline is-style-outline--2"><a class="wp-block-button__link has-nv-site-bg-color has-neve-link-hover-color-background-color has-text-color has-background has-link-color wp-element-button" href="/contact-us/" style="border-radius:8px">Email Us</a></div>
 </div>

@@ -4,6 +4,7 @@ import Hero from '~/components/widgets/Hero.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { BOOK_A_CALL_URL } from '~/config/booking';
 
 const metadata = {
   title: 'Training - WorkSmart-AI',
@@ -161,7 +162,7 @@ const faqItems = [
     title="Training Packages"
     subtitle="Build the AI confidence and capability your organisation needs. From foundational literacy to strategic leadership, our tailored training helps every member of your team adopt AI with confidence, responsibility, and measurable impact."
     actions={[
-      { variant: 'primary', text: 'Book a Call', href: '/book-a-call/' },
+      { variant: 'primary', text: 'Book a Call', href: BOOK_A_CALL_URL },
       { text: 'Email Us', href: '/contact-us/' },
     ]}
     image="<img src='https://worksmart-ai.co.uk/wp-content/uploads/2025/10/medium-shot-people-learning-job-1024x683.jpg' alt='' class='mx-auto w-full rounded-2xl shadow-sm' />"
@@ -238,7 +239,7 @@ const faqItems = [
     title="Ready to upskill with AI?"
     subtitle="Book a call at a time that suits you, or email us and we?ll reach out."
     actions={[
-      { variant: 'primary', text: 'Book a Call', href: '/book-a-call/' },
+      { variant: 'primary', text: 'Book a Call', href: BOOK_A_CALL_URL },
       { text: 'Email Us', href: '/contact-us/' },
     ]}
   />

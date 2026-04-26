@@ -15,7 +15,9 @@
 
     --aw-color-primary: rgb(1 88 135);
     --aw-color-secondary: rgb(134 191 226);
-    --aw-color-accent: rgb(255 119 0);
+    --aw-color-accent: #ff7700;
+    /* Slightly darker than accent for button hovers / focus borders (stays on-brand vs Tailwind `orange-600`) */
+    --aw-color-accent-hover: #e55f00;
 
     --aw-color-text-heading: rgb(1 88 135);
     --aw-color-text-default: rgb(27 1 1);
@@ -37,7 +39,8 @@
 
     --aw-color-primary: rgb(1 88 135);
     --aw-color-secondary: rgb(134 191 226);
-    --aw-color-accent: rgb(255 119 0);
+    --aw-color-accent: #ff7700;
+    --aw-color-accent-hover: #e55f00;
 
     --aw-color-text-heading: rgb(248 248 248);
     --aw-color-text-default: rgb(248 248 248);
@@ -46,7 +49,7 @@
     --aw-color-bg-footer: rgb(0 62 96);
 
     ::selection {
-      background-color: rgb(255 119 0 / 35%);
+      background-color: color-mix(in srgb, var(--aw-color-accent) 35%, transparent);
       color: rgb(248 248 248);
     }
   }

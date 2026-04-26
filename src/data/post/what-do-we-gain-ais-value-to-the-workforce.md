@@ -1,8 +1,8 @@
 ---
 publishDate: 2025-11-28T15:27:06.000Z
 author: 'Katie Steen'
-title: "What Do We Gain? AI\\u2019s Value to the Workforce"
-excerpt: "My thoughts this week are inspired by a recent report by McKinsey \\u2013 AI: Work partnerships between people, agents, and robots | McKinsey .\\u00a0 In it, lots of r"
+title: "What Do We Gain? AI’s Value to the Workforce"
+excerpt: "My thoughts this week are inspired by a recent McKinsey report on work partnerships between people, agents and robots, and what AI’s productivity gains mean for the workforce."
 ---
 
 <p>My thoughts this week are inspired by a recent report by McKinsey &#8211; <a href="https://www.mckinsey.com/mgi/our-research/agents-robots-and-us-skill-partnerships-in-the-age-of-ai?utm_source=tech.therundown.ai&amp;utm_medium=newsletter&amp;utm_campaign=this-device-wiretaps-your-second-brain&amp;_bhlid=a81ae0b91837bc3738e3e7681f84e83da97e32b1" target="_blank" rel="noreferrer noopener">AI: Work partnerships between people, agents, and robots | McKinsey</a> .&nbsp;</p>
@@ -48,7 +48,7 @@ excerpt: "My thoughts this week are inspired by a recent report by McKinsey \\u2
 <p class="has-text-align-center"><strong>Want to discuss how WorkSmart-AI could help your team build stronger AI skills?</strong></p>
 
 <div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-212821f5 wp-block-buttons-is-layout-flex">
-<div class="wp-block-button"><a class="wp-block-button__link has-neve-link-color-background-color has-text-color has-background wp-element-button" href="/book-a-call/" style="border-radius:8px;color:#ffffff">Book a Call</a></div>
+<div class="wp-block-button"><a class="wp-block-button__link has-neve-link-color-background-color has-text-color has-background wp-element-button" href="https://new.worksmart-ai.co.uk/book-a-call/" style="border-radius:8px;color:#ffffff">Book a Call</a></div>
 
 <div class="wp-block-button is-style-outline is-style-outline--3"><a class="wp-block-button__link has-nv-site-bg-color has-neve-link-hover-color-background-color has-text-color has-background has-link-color wp-element-button" href="/contact-us/" style="border-radius:8px">Email Us</a></div>
 </div>

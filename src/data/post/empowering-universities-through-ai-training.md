@@ -2,7 +2,7 @@
 publishDate: 2025-11-21T10:20:53.000Z
 author: 'Katie Steen'
 title: 'Empowering Universities Through AI Training'
-excerpt: "I\\u2019ve\\u00a0found myself this week trying to think of a catchy, yet\\u00a0accurate\\u00a0tagline for our new company \\u2013\\u00a0WorkSmart-AI.\\u00a0After considering many options (admittedl"
+excerpt: "I’ve found myself trying to think of a catchy, accurate tagline for WorkSmart-AI, and kept coming back to one word: empower."
 ---
 
 <p>I’ve&nbsp;found myself this week trying to think of a catchy, yet&nbsp;accurate&nbsp;tagline for our new company –&nbsp;<a href="/" target="_blank" rel="noreferrer noopener">WorkSmart-AI</a>.&nbsp;After considering many options (admittedly with the&nbsp;assistance&nbsp;of AI!)&nbsp;and whittling that down to a shortlist, I found myself making a case for a tagline that&nbsp;contained&nbsp;the word “empower”.&nbsp;</p>
@@ -28,7 +28,7 @@ excerpt: "I\\u2019ve\\u00a0found myself this week trying to think of a catchy, y
 <p class="has-text-align-center"><strong>Want to discuss how WorkSmart-AI could help your team build stronger AI skills?</strong></p>
 
 <div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-212821f5 wp-block-buttons-is-layout-flex">
-<div class="wp-block-button"><a class="wp-block-button__link has-neve-link-color-background-color has-text-color has-background wp-element-button" href="/book-a-call/" style="border-radius:8px;color:#ffffff">Book a Call</a></div>
+<div class="wp-block-button"><a class="wp-block-button__link has-neve-link-color-background-color has-text-color has-background wp-element-button" href="https://new.worksmart-ai.co.uk/book-a-call/" style="border-radius:8px;color:#ffffff">Book a Call</a></div>
 
 <div class="wp-block-button is-style-outline is-style-outline--4"><a class="wp-block-button__link has-nv-site-bg-color has-neve-link-hover-color-background-color has-text-color has-background has-link-color wp-element-button" href="/contact-us/" style="border-radius:8px">Email Us</a></div>
 </div>

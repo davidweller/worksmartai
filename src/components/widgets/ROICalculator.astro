@@ -303,7 +303,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
     --ink: #1b0101;
     --sub: #64748b;
     --navy: #015887;
-    --accent: #ff7700;
+    --accent: var(--aw-color-accent, #ff7700);
     --green: #1a7a4a;
     --slider-thumb-size: 22px;
     --slider-track-height: 12px;
@@ -817,8 +817,8 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
   }
 
   .wsai-callout--get-in-touch {
-    background: #ff7700;
-    border-left-color: #e55f00;
+    background: var(--accent);
+    border-left-color: var(--aw-color-accent-hover, #e55f00);
     box-shadow: 0 2px 12px rgba(255, 119, 0, 0.25);
   }
 
@@ -826,7 +826,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
     text-align: center;
     padding-top: 20px;
     padding-bottom: 22px;
-    background: #ff7700;
+    background: var(--accent);
   }
 
   :global(.dark) .wsai-callout--get-in-touch .wsai-copy-actions-lead {
