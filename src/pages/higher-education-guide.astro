@@ -1,0 +1,574 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { Icon } from 'astro-icon/components';
+import { BOOK_A_CALL_URL } from '~/config/booking';
+
+const metadata = {
+  title: 'Free Higher Education AI Workflow Guide - WorkSmart-AI',
+  description:
+    'Download the free WorkSmart-AI guide for higher education and learn how staff can move from chatbot prompts to repeatable AI workflows.',
+  canonical: '/higher-education-guide/',
+};
+
+const pdfPath = '/WorkSmart-AI - From Chatbot to Workflows.pdf';
+const guideCoverSrc = '/images/guide-from-chatbot-to-workflow-cover.png';
+
+const heroFacts = [
+  { icon: 'tabler:file-type-pdf', label: 'Free 10-page PDF' },
+  { icon: 'tabler:clock-hour-3', label: '5-min read' },
+  { icon: 'tabler:school', label: 'Built for higher education' },
+  { icon: 'tabler:stairs-up', label: 'The 4-level model' },
+];
+
+const aiHierarchy = [
+  {
+    level: '01',
+    title: 'Conversational',
+    summary: 'Open a chatbot, paste, prompt, refine.',
+    detail: 'Where most staff start - and where most AI training stops.',
+    icon: 'tabler:messages',
+    accent: 'secondary',
+  },
+  {
+    level: '02',
+    title: 'Structured',
+    summary: 'Reusable prompts, templates and instructions.',
+    detail: 'Same task every week? Stop typing it from scratch.',
+    icon: 'tabler:template',
+    accent: 'secondary',
+  },
+  {
+    level: '03',
+    title: 'Configured',
+    summary: 'Custom GPTs and Copilot agents tuned to your role.',
+    detail: 'Your guidelines, tone of voice and source files - on tap.',
+    icon: 'tabler:settings-cog',
+    accent: 'accent',
+  },
+  {
+    level: '04',
+    title: 'Agentic',
+    summary: 'Workflows that run with minimal manual effort.',
+    detail: 'Triggered by a meeting, an inbox, a calendar - not by you.',
+    icon: 'tabler:robot',
+    accent: 'accent',
+  },
+];
+
+const learningOutcomes = [
+  { text: "Why most AI training stops at 20% of what's possible." },
+  { text: 'The four-level AI Use Hierarchy every HE team should know.' },
+  { text: 'One familiar task, traced from chatbot prompt to automated workflow.' },
+  { text: 'Where Copilot, Teams and Power Automate fit in the progression.' },
+  { text: 'How to move staff from ad hoc prompts to repeatable systems.' },
+  { text: 'Time-saving estimates at each level of the hierarchy.' },
+];
+
+const audiences = [
+  {
+    icon: 'tabler:building-bank',
+    title: 'Senior leaders & L&D',
+    description:
+      "Frame your AI strategy in language your staff and trustees can act on - not just hype.",
+  },
+  {
+    icon: 'tabler:school',
+    title: 'Academic teams',
+    description:
+      'Move from one-off prompts to repeatable AI for teaching prep, feedback and research admin.',
+  },
+  {
+    icon: 'tabler:briefcase',
+    title: 'Professional services',
+    description:
+      'See where the real time savings live in admissions, comms, finance, HR and student support.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'How long is the guide?',
+    a: '10 pages, designed to read in around five minutes. One worked example, four levels, and the time-saving you can expect at each.',
+  },
+  {
+    q: 'Do I need any special tools to use it?',
+    a: 'No. The guide uses tools many UK universities already have, including Microsoft Copilot, Teams and Power Automate. The principles work with any modern AI assistant.',
+  },
+  {
+    q: 'Will I get spammed?',
+    a: "No. We'll email the guide and a small number of relevant follow-ups. You can unsubscribe in one click at any time.",
+  },
+  {
+    q: 'Can I share it with my team?',
+    a: "Yes - please do. The guide is written to be circulated. If you'd like a session walking your team through it, just reply to the email.",
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <!-- ===========================================================
+       HERO  -  Headline + lead form (sticky on desktop)
+       =========================================================== -->
+  <section
+    class="relative overflow-hidden bg-brand px-6 pb-20 pt-16 sm:px-8 md:pb-24 md:pt-20 lg:px-12"
+    aria-labelledby="guide-hero-heading"
+  >
+    <!-- Background flourishes -->
+    <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand via-brand to-[#013a5c] opacity-95"></div>
+    <div
+      class="pointer-events-none absolute inset-0 opacity-[0.07]"
+      style="background-image:radial-gradient(rgba(255,255,255,0.9) 1px, transparent 1px);background-size:22px 22px;"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-accent/20 blur-3xl"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="pointer-events-none absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-secondary/20 blur-3xl"
+      aria-hidden="true"
+    >
+    </div>
+
+    <div class="relative mx-auto grid max-w-6xl items-start gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+      <div class="text-white" data-aos="fade-up">
+        <p class="inline-flex items-center gap-2 rounded-full border border-accent/50 bg-accent/15 px-3.5 py-1.5 font-heading text-[11px] font-bold uppercase tracking-[0.28em] text-accent sm:text-xs">
+          <Icon name="tabler:download" class="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+          Free PDF guide
+        </p>
+        <h1
+          id="guide-hero-heading"
+          class="mt-5 font-heading text-4xl font-bold leading-tight sm:text-5xl lg:text-[2.85rem] lg:leading-[1.1]"
+        >
+          From chatbot prompts to <span class="text-accent">automated AI workflows</span> in higher education.
+        </h1>
+        <p class="mt-6 max-w-xl text-lg leading-[var(--aw-leading-body,1.7)] text-white/90">
+          A clear four-level model for AI use in HE: from ad-hoc chatbots to repeatable workflows your
+          teams can follow—without drowning in hype or one-off prompts.
+        </p>
+
+        <!-- Hero tags -->
+        <ul class="mt-8 flex flex-wrap gap-2.5" role="list">
+          {
+            heroFacts.map((f) => (
+              <li class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.08] px-3.5 py-2 text-sm font-medium text-white/95 backdrop-blur-sm">
+                <Icon name={f.icon} class="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+                <span>{f.label}</span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <p class="mt-8 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-white/70">
+          <Icon name="tabler:shield-check" class="h-4 w-4 text-accent" />
+          <span>No spam.</span>
+          <span class="opacity-50">·</span>
+          <span>Instant download.</span>
+        </p>
+      </div>
+
+      <!-- Lead form card -->
+      <div
+        id="download-guide"
+        class="relative z-10 scroll-mt-28 lg:sticky lg:top-24"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
+        <div
+          class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-[0_25px_50px_-12px_rgba(0,36,56,0.25)] ring-1 ring-slate-900/5 dark:border-slate-200/80 dark:bg-white"
+        >
+          <div class="flex items-center justify-between border-b border-slate-100 px-6 py-4">
+            <p class="font-heading text-base font-semibold text-slate-900">Get your free copy</p>
+            <span
+              class="inline-flex items-center gap-1 rounded-full bg-accent/12 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-accent"
+            >
+              <Icon name="tabler:bolt" class="h-3.5 w-3.5" aria-hidden="true" />
+              Instant
+            </span>
+          </div>
+          <div class="p-6 sm:p-7">
+            <p class="text-sm leading-relaxed text-slate-600">
+              Enter your name and work email. We'll send your copy straight away.
+            </p>
+            <form
+              class="mt-5 space-y-4"
+              method="post"
+              action="/api/higher-education-guide-leads"
+              aria-describedby="guide-form-note"
+            >
+              <input type="hidden" name="resource" value="higher-education-guide" />
+              <input type="hidden" name="pdfPath" value={pdfPath} />
+
+              <div>
+                <label for="guide-name" class="block text-sm font-semibold text-slate-900">
+                  Name
+                </label>
+                <input
+                  id="guide-name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  required
+                  class="mt-1.5 block w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3 text-base text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-accent focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25"
+                  placeholder="Your name"
+                />
+              </div>
+
+              <div>
+                <label for="guide-email" class="block text-sm font-semibold text-slate-900">
+                  Work email
+                </label>
+                <input
+                  id="guide-email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                  class="mt-1.5 block w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3 text-base text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-accent focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25"
+                  placeholder="you@example.ac.uk"
+                />
+              </div>
+
+              <button
+                type="submit"
+                class="group flex w-full items-center justify-center gap-2 rounded-full border-2 border-brand bg-white py-3.5 font-heading text-base font-semibold text-brand shadow-sm transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
+              >
+                <Icon
+                  name="tabler:download"
+                  class="h-5 w-5 transition group-hover:translate-y-0.5"
+                  aria-hidden="true"
+                />
+                Send me the free guide
+              </button>
+
+              <p id="guide-form-note" class="text-center text-xs leading-relaxed text-slate-500">
+                We will use your details to send this resource and relevant WorkSmart-AI follow-up. Read our{' '}
+                <a
+                  href="/privacy-policy/"
+                  class="font-semibold text-brand underline-offset-2 hover:text-accent hover:underline"
+                >
+                  privacy policy</a>.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================================================
+       CORE HOOK  -  The 4-level AI Use Hierarchy preview
+       =========================================================== -->
+  <section class="relative bg-page px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="hierarchy-heading">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center" data-aos="fade-up">
+        <p class="font-heading text-sm font-bold uppercase tracking-[0.22em] text-accent">Inside the guide</p>
+        <h2 id="hierarchy-heading" class="mt-4 font-heading text-3xl font-bold text-heading sm:text-4xl">
+          The 4-level AI Use Hierarchy
+        </h2>
+        <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-muted">
+          A simple progression that turns ad hoc chatbot use into repeatable systems your staff can rely on.
+          <span class="mt-2 block">Most teams stay stuck on Level 1 - and miss the bigger gains.</span>
+        </p>
+      </div>
+
+      <ol class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" role="list">
+        {
+          aiHierarchy.map((step, idx) => (
+            <li
+              class="flex h-full flex-col rounded-2xl border border-slate-200/90 bg-white p-6 shadow-[0_4px_24px_-8px_rgba(0,36,56,0.12)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_-12px_rgba(0,36,56,0.18)]"
+              data-aos="fade-up"
+              data-aos-delay={idx * 80}
+            >
+              <div class="flex items-start justify-between gap-3">
+                <span
+                  class:list={[
+                    'flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white shadow-sm',
+                    step.accent === 'accent' ? 'bg-accent' : 'bg-brand',
+                  ]}
+                >
+                  <Icon name={step.icon} class="h-5 w-5" aria-hidden="true" />
+                </span>
+                <span class="font-heading text-2xl font-bold leading-none text-slate-300 tabular-nums">
+                  {step.level}
+                </span>
+              </div>
+              <h3 class="mt-5 font-heading text-lg font-bold leading-snug text-heading sm:text-xl">
+                <span class="block">Level {Number(step.level)} -</span>
+                <span class="block">{step.title}</span>
+              </h3>
+              <p class="mt-2 text-sm font-semibold text-default sm:text-base">{step.summary}</p>
+              <p class="mt-3 text-sm leading-relaxed text-muted">{step.detail}</p>
+            </li>
+          ))
+        }
+      </ol>
+
+      <p class="mx-auto mt-10 max-w-2xl text-center text-sm text-muted" data-aos="fade-up">
+        <a href="#download-guide" class="font-heading font-semibold text-accent hover:text-accent-hover">
+          See the worked example in the guide — get your free copy →
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===========================================================
+       VALUE  -  PDF cover + what's inside
+       =========================================================== -->
+  <section class="bg-section px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="whats-inside-heading">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <div class="flex justify-center lg:justify-start" data-aos="fade-up">
+        <figure class="relative w-full max-w-md">
+          <div
+            class="relative rounded-3xl bg-brand px-6 pb-8 pt-10 shadow-[inset_0_2px_0_0_rgba(255,255,255,0.06),0_24px_48px_-12px_rgba(0,36,56,0.35)] sm:px-8 sm:pb-10 sm:pt-12"
+          >
+            <span
+              class="absolute left-5 top-5 z-10 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white ring-1 ring-white/25 backdrop-blur-sm sm:left-6 sm:top-6 sm:text-xs"
+            >
+              <Icon name="tabler:file-type-pdf" class="h-3.5 w-3.5" aria-hidden="true" />
+              10-page PDF
+            </span>
+            <div class="relative mx-auto max-w-[280px] sm:max-w-[300px]">
+              <img
+                src={guideCoverSrc}
+                width="440"
+                height="620"
+                alt="Cover of the WorkSmart-AI PDF guide: From Chatbot to Workflow, for higher education"
+                class="w-full rounded-xl shadow-2xl ring-1 ring-black/10"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+          <figcaption class="mt-6 text-center text-sm text-muted">
+            From Chatbot to Workflows &mdash; a practical guide for HE staff.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div data-aos="fade-up" data-aos-delay="80">
+        <p class="font-heading text-sm font-bold uppercase tracking-[0.22em] text-accent">What's inside</p>
+        <h2 id="whats-inside-heading" class="mt-4 font-heading text-3xl font-bold text-heading sm:text-4xl">
+          Build an AI progression your staff can actually follow
+        </h2>
+        <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-muted">
+          A <strong class="font-semibold text-heading">task-every-term</strong> approach: turning meeting notes
+          into a clean action summary. You'll see how that task evolves from a basic chatbot prompt to an
+          automated workflow, using tools many institutions already have.
+        </p>
+
+        <ul class="mt-8 space-y-3.5" role="list">
+          {
+            learningOutcomes.map((item) => (
+              <li class="flex items-start gap-3.5">
+                <span
+                  class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-secondary/20 text-brand"
+                  aria-hidden="true"
+                >
+                  <Icon name="tabler:check" class="h-4 w-4" />
+                </span>
+                <span class="text-base leading-relaxed text-default">{item.text}</span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <a
+          href="#download-guide"
+          class="mt-9 inline-flex items-center justify-center gap-2 rounded-full border-2 border-brand bg-white px-6 py-3 font-heading text-base font-semibold text-brand shadow-sm transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
+        >
+          <Icon name="tabler:download" class="h-5 w-5" aria-hidden="true" />
+          Get the free guide
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================================================
+       AUDIENCE  -  Who is this for?
+       =========================================================== -->
+  <section class="bg-page px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="audience-heading">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center" data-aos="fade-up">
+        <p class="font-heading text-sm font-bold uppercase tracking-[0.22em] text-accent">Who it's for</p>
+        <h2 id="audience-heading" class="mt-4 font-heading text-3xl font-bold text-heading sm:text-4xl">
+          Written for everyone making AI work in HE
+        </h2>
+        <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-muted">
+          Whether you're shaping policy or saving time on your inbox, the same four-level model applies.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          audiences.map((a, i) => (
+            <article
+              class="rounded-2xl border border-slate-200/90 bg-white p-6 shadow-[0_4px_24px_-8px_rgba(0,36,56,0.1)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_-12px_rgba(0,36,56,0.15)]"
+              data-aos="fade-up"
+              data-aos-delay={i * 80}
+            >
+              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand text-white shadow-sm">
+                <Icon name={a.icon} class="h-5 w-5" aria-hidden="true" />
+              </span>
+              <h3 class="mt-5 font-heading text-xl font-bold text-heading">{a.title}</h3>
+              <p class="mt-3 text-base leading-relaxed text-muted">{a.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================================================
+       STAT  -  Hero stat + supporting quote
+       =========================================================== -->
+  <section class="relative overflow-hidden bg-brand px-6 py-20 sm:px-8 lg:px-12">
+    <div
+      class="pointer-events-none absolute -right-24 top-0 h-64 w-64 rounded-full bg-accent/20 blur-3xl"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-secondary/15 blur-3xl"
+      aria-hidden="true"
+    >
+    </div>
+
+    <div class="relative mx-auto grid max-w-5xl items-center gap-10 text-white lg:grid-cols-[minmax(0,280px)_1fr] lg:gap-16">
+      <div class="text-center lg:text-left" data-aos="fade-right">
+        <p class="font-heading text-5xl font-bold leading-none tracking-tight sm:text-6xl lg:text-7xl">
+          2–3 <span class="text-accent">hours</span>
+        </p>
+        <p class="mt-4 max-w-[14rem] font-heading text-base font-semibold leading-snug text-white/90 sm:text-lg mx-auto lg:mx-0">
+          saved per staff member, per week
+        </p>
+      </div>
+
+      <blockquote
+        class="rounded-2xl border border-white/20 bg-white/[0.04] p-6 backdrop-blur-sm sm:p-8"
+        data-aos="fade-left"
+      >
+        <p class="text-base font-medium leading-relaxed text-white/95 sm:text-lg">
+          &ldquo;Moving from Level 1 to Level 2 alone can save 2–3 hours per staff member per week across
+          common tasks. For a 3,000-person institution, that is the equivalent of nearly 180 full-time
+          roles' worth of time, every year.&rdquo;
+        </p>
+        <footer class="mt-6 font-heading text-xs font-bold uppercase tracking-[0.2em] text-accent">
+          From the WorkSmart-AI Higher Education Guide
+        </footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ===========================================================
+       FAQ
+       =========================================================== -->
+  <section class="bg-section px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="faq-heading">
+    <div class="mx-auto max-w-3xl">
+      <div class="text-center" data-aos="fade-up">
+        <p class="font-heading text-sm font-bold uppercase tracking-[0.22em] text-accent">Quick answers</p>
+        <h2 id="faq-heading" class="mt-4 font-heading text-3xl font-bold text-heading sm:text-4xl">
+          Before you download
+        </h2>
+      </div>
+
+      <div class="mt-10 space-y-3">
+        {
+          faqs.map((item, i) => (
+            <details
+              class="group rounded-xl border border-slate-200/90 bg-white px-5 py-4 shadow-[0_2px_16px_-4px_rgba(0,36,56,0.08)] transition open:shadow-[0_8px_28px_-8px_rgba(0,36,56,0.12)]"
+              data-aos="fade-up"
+              data-aos-delay={i * 60}
+            >
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-heading text-base font-semibold text-heading">
+                <span>{item.q}</span>
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition group-open:rotate-180">
+                  <Icon name="tabler:chevron-down" class="h-4 w-4" aria-hidden="true" />
+                </span>
+              </summary>
+              <p class="mt-3 border-t border-slate-100 pt-3 text-base leading-relaxed text-muted">{item.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================================================
+       FINAL CTA
+       =========================================================== -->
+  <section class="bg-brand px-6 py-20 sm:px-8 lg:px-12">
+    <div class="mx-auto max-w-3xl text-center text-white" data-aos="fade-up">
+      <h2 class="font-heading text-3xl font-bold sm:text-4xl">
+        Ready to take your team beyond the guide?
+      </h2>
+      <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-white/90">
+        WorkSmart-AI delivers structured AI training built specifically for higher education -
+        from foundational literacy to agentic workflows.
+      </p>
+      <div class="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+        <a
+          href={BOOK_A_CALL_URL}
+          class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-accent bg-accent px-7 py-3.5 font-heading font-semibold text-white shadow-lg shadow-accent/25 transition hover:-translate-y-0.5 hover:border-accent-hover hover:bg-accent-hover"
+        >
+          <Icon name="tabler:calendar-event" class="h-5 w-5 shrink-0" aria-hidden="true" />
+          Book a free call
+        </a>
+        <a
+          href="#download-guide"
+          class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/40 bg-transparent px-7 py-3.5 font-heading font-semibold text-white transition hover:border-white hover:bg-white/10"
+        >
+          <Icon name="tabler:download" class="h-5 w-5 shrink-0" aria-hidden="true" />
+          Just send me the guide
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================================================
+       MOBILE STICKY CTA
+       =========================================================== -->
+  <a
+    data-mobile-cta
+    href="#download-guide"
+    class="fixed inset-x-3 bottom-3 z-40 flex items-center justify-center gap-2 rounded-full bg-accent px-5 py-3.5 text-center font-heading text-base font-semibold text-white shadow-card-elevated ring-1 ring-accent/40 transition duration-200 hover:bg-accent-hover lg:hidden"
+    aria-label="Jump to the download form"
+  >
+    <Icon name="tabler:download" class="h-5 w-5" />
+    Get the free guide
+  </a>
+</Layout>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Add bottom padding so the sticky mobile CTA doesn't cover footer/page content. */
+  @media (max-width: 1023px) {
+    body {
+      padding-bottom: 4.5rem;
+    }
+  }
+</style>
+
+<!-- Hide the mobile sticky CTA when the form is on screen. -->
+<script is:inline>
+  (function () {
+    const cta = document.querySelector('a[data-mobile-cta]');
+    const form = document.getElementById('download-guide');
+    if (!cta || !form || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          cta.classList.toggle('opacity-0', entry.isIntersecting);
+          cta.classList.toggle('pointer-events-none', entry.isIntersecting);
+        }
+      },
+      { threshold: 0.25 }
+    );
+    io.observe(form);
+  })();
+</script>
