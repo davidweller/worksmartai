@@ -18,22 +18,22 @@ const modes = [
 ];
 
 const standardItems = [
-  { title: 'What it shows', description: 'Annual savings (?), productivity increase (%), capacity created (FTEs), and five-year projection (?).' },
+  { title: 'What it shows', description: 'Annual savings (£), productivity increase (%), capacity created (FTEs), and five-year projection (£).' },
   { title: 'How it works', description: 'You enter number of employees, average annual salary including typical on-costs such as NI and pensions, and target AI adoption level - basic, intermediate, or advanced.' },
-  { title: 'Core assumptions', description: '1 FTE = 37.5 hours per week ? 46 working weeks; on-cost factor is 1.25 ? salary; AI-eligible tasks are around 50?55% of total workload; productivity uplift is 5?15% faster completion of eligible tasks depending on adoption level.' },
+  { title: 'Core assumptions', description: '1 FTE = 37.5 hours per week × 46 working weeks; on-cost factor is 1.25 × salary; AI-eligible tasks are around 50-55% of total workload; productivity uplift is 5-15% faster completion of eligible tasks depending on adoption level.' },
 ];
 
 const advancedItems = [
   { title: 'What it adds', description: 'The advanced calculator allows you to enter headcounts for different academic and professional service roles for a more precise result.' },
-  { title: 'AI-eligible task share', description: 'This is the proportion of a person?s job made up of activities that AI can assist with directly, such as drafting or summarising text, writing communications or reports, preparing teaching materials, reviewing or analysing data and feedback, searching, referencing, collating information, and formatting or structuring content.' },
+  { title: 'AI-eligible task share', description: "This is the proportion of a person's job made up of activities that AI can assist with directly, such as drafting or summarising text, writing communications or reports, preparing teaching materials, reviewing or analysing data and feedback, searching, referencing, collating information, and formatting or structuring content." },
   { title: 'What it excludes', description: 'It does not include work that requires in-person teaching, decision-making, or practical delivery that AI cannot (yet) perform reliably.' },
 ];
 
 const kpis = [
-  { title: 'Annual cost savings (?)', description: 'Annual savings = Number of staff ? Average loaded salary ? Productivity improvement.', icon: 'tabler:currency-pound' },
-  { title: 'Productivity increase (%)', description: 'Productivity increase = Eligible work ? Adoption rate ? Efficiency gain.', icon: 'tabler:trending-up' },
-  { title: 'Capacity created (FTEs)', description: 'Capacity created = Number of staff ? Productivity increase.', icon: 'tabler:users-plus' },
-  { title: 'Five-year projection (?)', description: 'Five-year savings = Annual savings ? 5, or compounded annually if growth is added.', icon: 'tabler:calendar-stats' },
+  { title: 'Annual cost savings (£)', description: 'Annual savings = Number of staff × Average loaded salary × Productivity improvement.', icon: 'tabler:currency-pound' },
+  { title: 'Productivity increase (%)', description: 'Productivity increase = Eligible work × Adoption rate × Efficiency gain.', icon: 'tabler:trending-up' },
+  { title: 'Capacity created (FTEs)', description: 'Capacity created = Number of staff × Productivity increase.', icon: 'tabler:users-plus' },
+  { title: 'Five-year projection (£)', description: 'Five-year savings = Annual savings × 5, or compounded annually if growth is added.', icon: 'tabler:calendar-stats' },
 ];
 
 const roleRows = [
@@ -44,14 +44,14 @@ const roleRows = [
 ];
 
 const adoptionRows = [
-  ['Basic', '35%', '8% faster completion', '0.55 ? 0.35 ? 0.08 = 1.5% overall'],
-  ['Intermediate', '60%', '12% faster completion', '0.55 ? 0.60 ? 0.12 = 4.0% overall'],
-  ['Advanced', '80%', '15% faster completion', '0.55 ? 0.80 ? 0.15 = 6.6% overall'],
+  ['Basic', '35%', '8% faster completion', '0.55 × 0.35 × 0.08 = 1.5% overall'],
+  ['Intermediate', '60%', '12% faster completion', '0.55 × 0.60 × 0.12 = 4.0% overall'],
+  ['Advanced', '80%', '15% faster completion', '0.55 × 0.80 × 0.15 = 6.6% overall'],
 ];
 
 const evidenceRows = [
-  ['Productivity uplift (5?15%)', 'St. Louis Fed (2025); OECD (2025); Fitzpatrick et al. (2025).'],
-  ['Adoption levels (35?80%)', 'BCG (2025); McKinsey (2025).'],
+  ['Productivity uplift (5-15%)', 'St. Louis Fed (2025); OECD (2025); Fitzpatrick et al. (2025).'],
+  ['Adoption levels (35-80%)', 'BCG (2025); McKinsey (2025).'],
   ['Task eligibility (~50%)', 'Henseke et al. (2025); McKinsey (2025).'],
   ['Higher education adoption', 'Microsoft (2025a); HEPI (2025); UNESCO (2024).'],
   ['Cost avoidance and back-office efficiency', 'Harvard / Wharton (2023).'],
@@ -76,7 +76,7 @@ const evidenceRows = [
       </div>
       <div class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-[#015887]/10 sm:p-8">
         <h2 id="adoption" class="font-heading text-3xl font-bold text-[#015887]">3. Understanding Target Adoption Level</h2>
-        <p class="mt-4 text-[#1b0101]/75">The Target Adoption Level shows how widely and confidently staff are expected to use AI tools in their everyday work. It captures both reach (how many people use AI) and depth (how effectively they use it). High adoption doesn?t just mean more licences - it means AI is built into daily workflows.</p>
+        <p class="mt-4 text-[#1b0101]/75">The Target Adoption Level shows how widely and confidently staff are expected to use AI tools in their everyday work. It captures both reach (how many people use AI) and depth (how effectively they use it). High adoption doesn't just mean more licences - it means AI is built into daily workflows.</p>
         <div class="mt-6 overflow-x-auto"><table class="w-full min-w-[760px] text-left text-sm"><thead class="bg-[#015887] text-white"><tr><th class="px-4 py-3">Adoption level</th><th class="px-4 py-3">Approximate adoption rate</th><th class="px-4 py-3">Typical efficiency uplift</th><th class="px-4 py-3">Example overall productivity gain</th></tr></thead><tbody>{adoptionRows.map((row) => <tr class="border-t border-[#015887]/10"><td class="px-4 py-3 font-semibold">{row[0]}</td><td class="px-4 py-3">{row[1]}</td><td class="px-4 py-3">{row[2]}</td><td class="px-4 py-3">{row[3]}</td></tr>)}</tbody></table></div>
       </div>
     </div>
@@ -87,8 +87,8 @@ const evidenceRows = [
   <section class="bg-white px-6 py-16 sm:px-8 lg:px-12">
     <div class="mx-auto max-w-5xl rounded-2xl bg-[#f8f8f8] p-6 ring-1 ring-[#015887]/10 sm:p-8">
       <h2 class="font-heading text-3xl font-bold text-[#015887]">Worked example</h2>
-      <p class="mt-4 text-[#1b0101]/75">Using 12% efficiency on eligible tasks, 60% adoption rate, 55% eligible task share, 60 staff, ?45,000 average salary, and an on-cost factor of 1.25:</p>
-      <p class="mt-4 rounded-xl bg-white p-5 font-semibold text-[#015887]">Productivity improvement = 0.55 ? 0.60 ? 0.12 = 4%<br />Annual cost savings = 60 ? (?45,000 ? 1.25) ? 0.04 = ?133,650<br />Capacity created = 60 ? 0.04 = 2.4 FTEs<br />Five-year projection = ?133,650 ? 5 = ?668,250</p>
+      <p class="mt-4 text-[#1b0101]/75">Using 12% efficiency on eligible tasks, 60% adoption rate, 55% eligible task share, 60 staff, £45,000 average salary, and an on-cost factor of 1.25:</p>
+      <p class="mt-4 rounded-xl bg-white p-5 font-semibold text-[#015887]">Productivity improvement = 0.55 × 0.60 × 0.12 = 3.96% (rounded to 4%)<br />Annual cost savings = 60 × (£45,000 × 1.25) × 0.0396 = £133,650<br />Capacity created = 60 × 0.0396 = 2.4 FTEs<br />Five-year projection = £133,650 × 5 = £668,250</p>
     </div>
   </section>
 
@@ -99,6 +99,6 @@ const evidenceRows = [
     </div>
   </section>
 
-  <Note title="Interpreting your results" description=" The calculator?s figures are directional, not definitive. They illustrate the scale of potential benefit if AI is adopted effectively, supported by training and governance." />
+  <Note title="Interpreting your results" description=" The calculator's figures are directional, not definitive. They illustrate the scale of potential benefit if AI is adopted effectively, supported by training and governance." />
   <CallToAction title="Ready to estimate your potential savings?" subtitle="Use the calculator or book a call to discuss what the figures could mean for your organisation." actions={[{ variant: 'primary', text: 'Try the Calculator', href: '/#roi-calculator-home' }, { text: 'Book a Call', href: '/book-a-call/' }]} />
 </Layout>
