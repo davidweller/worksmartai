@@ -61,7 +61,7 @@ const {
                 {Array.isArray(actions) ? (
                   actions.map((action) => (
                     <div class="flex w-full sm:w-auto">
-                      <Button {...(action || {})} class={`${action?.class || ''} w-full sm:mb-0 rounded-md`} />
+                      <Button {...(action || {})} class={`${action?.class || ''} w-full sm:mb-0`} />
                     </div>
                   ))
                 ) : (

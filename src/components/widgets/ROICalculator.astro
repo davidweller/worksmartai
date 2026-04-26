@@ -264,26 +264,29 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
       </div>
     </aside>
 
+    <aside class="wsai-callout wsai-callout--get-in-touch" aria-labelledby={`${rootId}-cta-lead`}>
+      <div class="wsai-callout-inner wsai-callout-inner--get-in-touch">
+        <div class="wsai-copy-actions">
+          <p class="wsai-copy-actions-lead" id={`${rootId}-cta-lead`}>
+            To discuss how you can start seeing ROI in your adoption, reach out now.
+          </p>
+          <a class="wsai-pill-btn" href="/contact-us/">Get in Touch</a>
+        </div>
+      </div>
+    </aside>
+
     <section class="wsai-methodology-callout" id="methodology" aria-labelledby={`${rootId}-methodology-heading`}>
       <div class="wsai-methodology-callout-inner">
-        <h2 id={`${rootId}-methodology-heading`} class="wsai-methodology-h">How we calculate this</h2>
+        <h2 id={`${rootId}-methodology-heading`} class="wsai-methodology-h">How our calculator works</h2>
         <p class="wsai-methodology-p">
           Figures combine role-level eligibility, adoption level, and efficiency uplift assumptions drawn from research
-          into AI in higher education. For the full methodology, assumptions, and limitations, read our detailed
-          explainer.
+          into AI in higher education. For the full methodology, assumptions, and limitations of this calculator:
         </p>
         <p class="wsai-methodology-cta">
-          <a class="wsai-methodology-link" href="/how-our-calculator-works/">How our calculator works →</a>
+          <a class="wsai-methodology-link" href="/how-our-calculator-works/">Read more here →</a>
         </p>
       </div>
     </section>
-
-    <div class="wsai-copy-actions-wrap">
-      <div class="wsai-copy-actions">
-        <a class="wsai-pill-btn" href={bookingsUrl} target="_blank" rel="noopener noreferrer">Book a call</a>
-        <a class="wsai-pill-btn wsai-pill-btn-muted" href="mailto:hello@worksmart-ai.co.uk">Email us</a>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -545,7 +548,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
     background: #ffffff;
     border: 1px solid #d3d8df;
     padding: 12px 14px;
-    border-radius: 10px;
+    border-radius: 9999px;
     cursor: pointer;
     text-align: left;
     display: flex;
@@ -813,17 +816,42 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
     font-weight: 700;
   }
 
-  .wsai-copy-actions-wrap {
-    margin-top: 28px;
-    display: flex;
-    justify-content: center;
+  .wsai-callout--get-in-touch {
+    background: #ff7700;
+    border-left-color: #e55f00;
+    box-shadow: 0 2px 12px rgba(255, 119, 0, 0.25);
+  }
+
+  .wsai-callout--get-in-touch .wsai-callout-inner--get-in-touch {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 22px;
+    background: #ff7700;
+  }
+
+  :global(.dark) .wsai-callout--get-in-touch .wsai-copy-actions-lead {
+    color: #ffffff;
   }
 
   .wsai-copy-actions {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 14px;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    max-width: 36rem;
+    margin: 0 auto;
+  }
+
+  .wsai-copy-actions-lead {
+    margin: 0;
+    text-align: center;
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  .wsai-callout--get-in-touch .wsai-copy-actions-lead {
+    color: #ffffff;
   }
 
   .wsai-pill-btn {
@@ -848,12 +876,6 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
   .wsai-pill-btn:hover {
     border-color: var(--navy);
     background: var(--navy);
-    color: #ffffff;
-  }
-
-  .wsai-pill-btn-muted:hover {
-    border-color: var(--accent);
-    background: var(--accent);
     color: #ffffff;
   }
 
