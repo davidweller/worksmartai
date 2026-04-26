@@ -2,10 +2,9 @@
 publishDate: 2026-02-20T18:49:43.000Z
 author: 'Katie Steen'
 title: 'Presenting at AI South-West in Taunton'
-excerpt: "Dave and I had a fantastic afternoon at Tech South West’s AI South West Live event in Taunton, speaking with the region’s AI founders, innovators, educators and technologists."
+excerpt: 'Dave and I had a fantastic afternoon at Tech South West’s AI South West Live event in Taunton, speaking with the region’s AI founders, innovators, educators and technologists.'
+image: '~/assets/images/presenting-at-ai-south-west-in-taunton.png'
 ---
-
-<figure class="wp-block-image size-large"><img fetchpriority="high" decoding="async" width="1024" height="473" src="https://worksmart-ai.co.uk/wp-content/uploads/2026/02/image-1024x473.png" alt="" class="wp-image-2033" srcset="https://worksmart-ai.co.uk/wp-content/uploads/2026/02/image-1024x473.png 1024w, https://worksmart-ai.co.uk/wp-content/uploads/2026/02/image-300x139.png 300w, https://worksmart-ai.co.uk/wp-content/uploads/2026/02/image-768x355.png 768w, https://worksmart-ai.co.uk/wp-content/uploads/2026/02/image-1536x710.png 1536w, https://worksmart-ai.co.uk/wp-content/uploads/2026/02/image.png 2000w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
 
 <p>Dave&nbsp;and&nbsp;I&nbsp;have had&nbsp;a&nbsp;fantastic afternoon at the Tech South West’s&nbsp;AI&nbsp;South West&nbsp;Live event in Taunton.&nbsp;&nbsp;</p>
 

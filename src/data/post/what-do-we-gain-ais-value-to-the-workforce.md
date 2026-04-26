@@ -1,8 +1,9 @@
 ---
 publishDate: 2025-11-28T15:27:06.000Z
 author: 'Katie Steen'
-title: "What Do We Gain? AI’s Value to the Workforce"
-excerpt: "My thoughts this week are inspired by a recent McKinsey report on work partnerships between people, agents and robots, and what AI’s productivity gains mean for the workforce."
+title: 'What Do We Gain? AI’s Value to the Workforce'
+excerpt: 'My thoughts this week are inspired by a recent McKinsey report on work partnerships between people, agents and robots, and what AI’s productivity gains mean for the workforce.'
+image: '~/assets/images/what-do-we-gain-ais-value-to-the-workforce.png'
 ---
 
 <p>My thoughts this week are inspired by a recent report by McKinsey &#8211; <a href="https://www.mckinsey.com/mgi/our-research/agents-robots-and-us-skill-partnerships-in-the-age-of-ai?utm_source=tech.therundown.ai&amp;utm_medium=newsletter&amp;utm_campaign=this-device-wiretaps-your-second-brain&amp;_bhlid=a81ae0b91837bc3738e3e7681f84e83da97e32b1" target="_blank" rel="noreferrer noopener">AI: Work partnerships between people, agents, and robots | McKinsey</a> .&nbsp;</p>

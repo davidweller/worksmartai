@@ -2,7 +2,8 @@
 publishDate: 2026-03-17T14:11:23.000Z
 author: 'David Weller'
 title: 'Staff AI Skills Training in Higher Education: What Actually Works in 2026'
-excerpt: "Here’s a pattern that keeps repeating itself across UK universities right now. The institution rolls out Microsoft Copilot, an AI policy gets drafted, a communication goes out to all staff, and then not much happens."
+excerpt: 'Here’s a pattern that keeps repeating itself across UK universities right now. The institution rolls out Microsoft Copilot, an AI policy gets drafted, a communication goes out to all staff, and then not much happens.'
+image: '~/assets/images/staff-ai-skills-training-higher-education-2026.png'
 ---
 
 <p>Here&#8217;s a pattern that keeps repeating itself across UK universities right now.</p>

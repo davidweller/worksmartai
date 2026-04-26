@@ -2,10 +2,9 @@
 publishDate: 2025-11-10T20:15:07.000Z
 author: 'Katie Steen'
 title: 'New HEPI Report: AI and the Future of Universities'
-excerpt: "As I write the first blog on behalf of WorkSmart-AI, my attention has been drawn to a new HEPI report on AI and the future of universities."
+excerpt: 'As I write the first blog on behalf of WorkSmart-AI, my attention has been drawn to a new HEPI report on AI and the future of universities.'
+image: '~/assets/images/new-hepi-report-ai-future-universities.png'
 ---
-
-<figure class="wp-block-image size-large is-style-default"><img decoding="async" width="1024" height="683" src="https://worksmart-ai.co.uk/wp-content/uploads/2025/11/image-1024x683.png" alt="" class="wp-image-1829" srcset="https://worksmart-ai.co.uk/wp-content/uploads/2025/11/image-1024x683.png 1024w, https://worksmart-ai.co.uk/wp-content/uploads/2025/11/image-300x200.png 300w, https://worksmart-ai.co.uk/wp-content/uploads/2025/11/image-768x512.png 768w, https://worksmart-ai.co.uk/wp-content/uploads/2025/11/image-930x620.png 930w, https://worksmart-ai.co.uk/wp-content/uploads/2025/11/image.png 1536w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
 
 <p>As I sit-down to write the first blog on behalf of our new&nbsp;company,&nbsp;WorkSmart-AI, my attention has&nbsp;just&nbsp;been&nbsp;drawn&nbsp;towards&nbsp;a new report by HEPI,&nbsp;<a href="https://www.hepi.ac.uk/wp-content/uploads/2025/10/AI-and-the-Future-of-Universities.pdf" target="_blank" rel="noreferrer noopener">AI-and-the-Future-of-Universities.pdf.</a>&nbsp;Whilst there are many facts and thoughts that I could highlight from this incredibly interesting series of essays, my particular favourite&nbsp;(I’m&nbsp;unsurprisingly biased given the article’s focus on staff development)&nbsp;is contained within&nbsp;Professor&nbsp;Janice Kay and Derfel Owen’s essay addressing the &#8220;Opportunities and challenges for the higher education workforce&#8221;.&nbsp;&nbsp;</p>
 

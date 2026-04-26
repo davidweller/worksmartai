@@ -1,8 +1,9 @@
 ---
 publishDate: 2026-03-12T13:26:10.000Z
 author: 'Katie Steen'
-title: "Don’t Lose Your Voice to AI"
-excerpt: "As a former journalist, I feel very strongly about writing. Being able to write down exactly what I think or feel on a subject is liberating."
+title: 'Don’t Lose Your Voice to AI'
+excerpt: 'As a former journalist, I feel very strongly about writing. Being able to write down exactly what I think or feel on a subject is liberating.'
+image: '~/assets/images/dont-lose-your-voice-to-ai.png'
 ---
 
 <p>As a former journalist I feel very strongly about this subject. I have always enjoyed writing. Being able to write down exactly my thoughts or feelings on a subject is liberating. As anyone who knows my style of writing, I like to write as if&nbsp;I’m&nbsp;talking to someone – a conversation on a page!&nbsp;&nbsp;</p>

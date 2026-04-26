@@ -2,7 +2,8 @@
 publishDate: 2025-11-21T10:20:53.000Z
 author: 'Katie Steen'
 title: 'Empowering Universities Through AI Training'
-excerpt: "I’ve found myself trying to think of a catchy, accurate tagline for WorkSmart-AI, and kept coming back to one word: empower."
+excerpt: 'I’ve found myself trying to think of a catchy, accurate tagline for WorkSmart-AI, and kept coming back to one word: empower.'
+image: '~/assets/images/empowering-universities-through-ai-training.png'
 ---
 
 <p>I’ve&nbsp;found myself this week trying to think of a catchy, yet&nbsp;accurate&nbsp;tagline for our new company –&nbsp;<a href="/" target="_blank" rel="noreferrer noopener">WorkSmart-AI</a>.&nbsp;After considering many options (admittedly with the&nbsp;assistance&nbsp;of AI!)&nbsp;and whittling that down to a shortlist, I found myself making a case for a tagline that&nbsp;contained&nbsp;the word “empower”.&nbsp;</p>
