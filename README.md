@@ -52,7 +52,7 @@
 
 ## Demo
 
-📌 [https://astrowind.vercel.app/](https://astrowind.vercel.app/)
+📌 [https://worksmart-ai.co.uk/](https://worksmart-ai.co.uk/)
 
 <br>
 
