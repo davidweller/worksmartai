@@ -60,6 +60,7 @@ export default [
       '.github',
       'types.generated.d.ts',
       '.astro',
+      '.netlify',
       // Archived reference copies (e.g. legacy WP theme JS) — not project source
       'reference/**',
     ],
