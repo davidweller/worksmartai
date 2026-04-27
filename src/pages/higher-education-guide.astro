@@ -10,8 +10,12 @@ const metadata = {
   canonical: '/higher-education-guide/',
 };
 
-const pdfPath = '/WorkSmart-AI - From Chatbot to Workflows.pdf';
+/** Public URL after successful lead capture (also on disk as public/higher-education-guide.pdf). */
+const guideDownloadPath = '/higher-education-guide.pdf';
 const guideCoverSrc = '/images/guide-from-chatbot-to-workflow-cover.png';
+
+const supabaseUrl = import.meta.env.SUPABASE_URL ?? '';
+const supabaseAnonKey = import.meta.env.SUPABASE_ANON_KEY ?? '';
 
 const heroFacts = [
   { icon: 'tabler:file-type-pdf', label: 'Free 10-page PDF' },
@@ -193,13 +197,12 @@ const faqs = [
               Enter your name and work email. We'll send your copy straight away.
             </p>
             <form
+              id="guide-lead-form"
               class="mt-5 space-y-4"
-              method="post"
-              action="/api/higher-education-guide-leads"
               aria-describedby="guide-form-note"
+              onsubmit="return false"
             >
-              <input type="hidden" name="resource" value="higher-education-guide" />
-              <input type="hidden" name="pdfPath" value={pdfPath} />
+              <input type="hidden" name="source" value="higher-education-guide" />
 
               <div>
                 <label for="guide-name" class="block text-sm font-semibold text-slate-900"> Name </label>
@@ -227,9 +230,11 @@ const faqs = [
                 />
               </div>
 
+              <p id="guide-form-feedback" class="hidden" role="alert"></p>
+
               <button
                 type="submit"
-                class="group flex w-full items-center justify-center gap-2 rounded-full border-2 border-brand bg-white py-3.5 font-heading text-base font-semibold text-brand shadow-sm transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
+                class="group flex w-full items-center justify-center gap-2 rounded-full border-2 border-brand bg-white py-3.5 font-heading text-base font-semibold text-brand shadow-sm transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <Icon
                   name="tabler:download"
@@ -569,5 +574,68 @@ const faqs = [
       { threshold: 0.25 }
     );
     io.observe(form);
+  })();
+</script>
+
+<!-- define:vars inlines credentials at build time; use fetch so the script can stay is:inline (no bundling). -->
+<script is:inline define:vars={{ supabaseUrl, supabaseAnonKey, guidePdfPath: guideDownloadPath }}>
+  (function () {
+    var form = document.getElementById('guide-lead-form');
+    var feedback = document.getElementById('guide-form-feedback');
+    var restUrl = supabaseUrl.replace(/\/$/, '') + '/rest/v1/leads';
+
+    function showError(message) {
+      if (!feedback) return;
+      feedback.textContent = message;
+      feedback.className = 'mt-3 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-center text-sm text-red-800';
+    }
+
+    function clearFeedback() {
+      if (!feedback) return;
+      feedback.textContent = '';
+      feedback.className = 'hidden';
+    }
+
+    if (!form) return;
+
+    if (!supabaseUrl || !supabaseAnonKey) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        showError('Downloads are temporarily unavailable. Please try again later.');
+      });
+      return;
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var fd = new FormData(form);
+      var name = String(fd.get('name') || '').trim();
+      var email = String(fd.get('email') || '').trim();
+      var source = String(fd.get('source') || '').trim();
+      var submitBtn = form.querySelector('button[type="submit"]');
+
+      clearFeedback();
+      if (submitBtn) submitBtn.disabled = true;
+
+      fetch(restUrl, {
+        method: 'POST',
+        headers: {
+          apikey: supabaseAnonKey,
+          Authorization: 'Bearer ' + supabaseAnonKey,
+          'Content-Type': 'application/json',
+          Prefer: 'return=minimal',
+        },
+        body: JSON.stringify({ name: name, email: email, source: source }),
+      })
+        .then(function (res) {
+          if (submitBtn) submitBtn.disabled = false;
+          if (!res.ok) throw new Error('insert failed');
+          window.location.href = guidePdfPath;
+        })
+        .catch(function () {
+          if (submitBtn) submitBtn.disabled = false;
+          showError('Something went wrong. Please try again or contact us.');
+        });
+    });
   })();
 </script>
