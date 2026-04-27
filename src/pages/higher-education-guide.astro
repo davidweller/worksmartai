@@ -98,7 +98,7 @@ const faqs = [
   },
   {
     q: 'Will I get spammed?',
-    a: "No. We'll email the guide and a small number of relevant follow-ups. You can unsubscribe in one click at any time.",
+    a: 'No. You download the guide right away; we only send a small number of relevant follow-ups. You can unsubscribe in one click at any time.',
   },
   {
     q: 'Can I share it with my team?',
@@ -170,7 +170,7 @@ const faqs = [
           <Icon name="tabler:shield-check" class="h-4 w-4 text-accent" />
           <span>No spam.</span>
           <span class="opacity-50">·</span>
-          <span>Instant download.</span>
+          <span>Download instantly.</span>
         </p>
       </div>
 
@@ -194,9 +194,7 @@ const faqs = [
             </span>
           </div>
           <div class="p-6 sm:p-7">
-            <p class="text-sm leading-relaxed text-slate-600">
-              Enter your name and work email. We'll send your copy straight away.
-            </p>
+            <p class="text-sm leading-relaxed text-slate-600">Enter your name and work email to download instantly.</p>
             <form
               id="guide-lead-form"
               class="mt-5 space-y-4"
@@ -245,11 +243,11 @@ const faqs = [
                   class="h-5 w-5 transition group-hover:translate-y-0.5"
                   aria-hidden="true"
                 />
-                Send me the free guide
+                Download instantly
               </button>
 
               <p id="guide-form-note" class="text-center text-xs leading-relaxed text-slate-500">
-                We will use your details to send this resource and relevant WorkSmart-AI follow-up. Read our{' '}
+                We will use your details to provide this download and relevant WorkSmart-AI follow-up. Read our{' '}
                 <a
                   href="/privacy-policy/"
                   class="font-semibold text-brand underline-offset-2 hover:text-accent hover:underline"
@@ -326,27 +324,23 @@ const faqs = [
   <section class="bg-section px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="whats-inside-heading">
     <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
       <div class="flex justify-center lg:justify-start" data-aos="fade-up">
-        <figure class="relative w-full max-w-md">
-          <div
-            class="relative rounded-3xl bg-brand px-6 pb-8 pt-10 shadow-[inset_0_2px_0_0_rgba(255,255,255,0.06),0_24px_48px_-12px_rgba(0,36,56,0.35)] sm:px-8 sm:pb-10 sm:pt-12"
-          >
+        <figure class="relative w-full max-w-lg">
+          <div class="relative mx-auto max-w-[340px] sm:max-w-[400px]">
             <span
-              class="absolute left-5 top-5 z-10 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white ring-1 ring-white/25 backdrop-blur-sm sm:left-6 sm:top-6 sm:text-xs"
+              class="absolute left-3 top-3 z-10 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand shadow-md ring-1 ring-slate-200/80 backdrop-blur-sm sm:left-4 sm:top-4 sm:text-xs"
             >
               <Icon name="tabler:file-type-pdf" class="h-3.5 w-3.5" aria-hidden="true" />
               10-page PDF
             </span>
-            <div class="relative mx-auto max-w-[280px] sm:max-w-[300px]">
-              <img
-                src={guideCoverSrc}
-                width="440"
-                height="620"
-                alt="Cover of the WorkSmart-AI PDF guide: From Chatbot to Workflow, for higher education"
-                class="w-full rounded-xl shadow-2xl ring-1 ring-black/10"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
+            <img
+              src={guideCoverSrc}
+              width="440"
+              height="620"
+              alt="Cover of the WorkSmart-AI PDF guide: From Chatbot to Workflow, for higher education"
+              class="w-full rounded-xl shadow-2xl ring-1 ring-black/10"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
           <figcaption class="mt-6 text-center text-sm text-muted">
             From Chatbot to Workflows &mdash; a practical guide for HE staff.
@@ -529,7 +523,7 @@ const faqs = [
           class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/40 bg-transparent px-7 py-3.5 font-heading font-semibold text-white transition hover:border-white hover:bg-white/10"
         >
           <Icon name="tabler:download" class="h-5 w-5 shrink-0" aria-hidden="true" />
-          Just send me the guide
+          Download instantly
         </a>
       </div>
     </div>
@@ -591,6 +585,8 @@ const faqs = [
     const supabaseAnonKey = (form.getAttribute('data-supabase-anon-key') || '').trim();
     const guidePdfPath = (form.getAttribute('data-guide-pdf') || '').trim() || '/higher-education-guide.pdf';
     const restUrl = supabaseUrl.replace(/\/$/, '') + '/rest/v1/leads';
+    /** Same-origin; trailing slash matches site config. */
+    const leadEmailUrl = window.location.origin + '/api/guide-lead-email/';
 
     function showError(message) {
       if (!feedback) return;
@@ -635,11 +631,31 @@ const faqs = [
       })
         .then(function (res) {
           return res.text().then(function (text) {
-            if (submitBtn) submitBtn.disabled = false;
             if (res.ok) {
-              window.location.href = guidePdfPath;
-              return;
+              return fetch(leadEmailUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: name, email: email }),
+              })
+                .then(function (mailRes) {
+                  if (!mailRes.ok) {
+                    return mailRes.text().then(function (t) {
+                      if (typeof console !== 'undefined' && console.error) {
+                        console.error('[WorkSmart] Guide email request failed', { status: mailRes.status, detail: t });
+                      }
+                    });
+                  }
+                })
+                .catch(function (err) {
+                  if (typeof console !== 'undefined' && console.error) {
+                    console.error('[WorkSmart] Guide email request error', err);
+                  }
+                })
+                .then(function () {
+                  window.location.href = guidePdfPath;
+                });
             }
+            if (submitBtn) submitBtn.disabled = false;
             let detail = text;
             try {
               if (text) {

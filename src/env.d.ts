@@ -10,8 +10,12 @@ interface ImportMetaEnv {
   /** Prefer these for client-side Supabase (set in host CI + local .env for builds). */
   readonly PUBLIC_SUPABASE_URL?: string;
   readonly PUBLIC_SUPABASE_ANON_KEY?: string;
+  /** Canonical site URL (no trailing slash) for emails and links when request host is not available. */
+  readonly PUBLIC_SITE_URL?: string;
   readonly SUPABASE_URL?: string;
   readonly SUPABASE_ANON_KEY?: string;
+  /** Resend API key (server-only). Used by /api/guide-lead-email. */
+  readonly RESEND_API_KEY?: string;
 }
 
 interface ImportMeta {
