@@ -12,30 +12,9 @@ on:
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
+# Static site: build locally with .env, commit dist/, push. Hostinger serves committed dist/.
+# CI only runs lint/type checks (no build here).
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    # Inlined at build time into the static higher-education guide form (data-supabase-* on the page)
-    env:
-      PUBLIC_SUPABASE_URL: ${{ secrets.PUBLIC_SUPABASE_URL }}
-      PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.PUBLIC_SUPABASE_ANON_KEY }}
-    strategy:
-      matrix:
-        node-version:
-          - 18
-          - 20
-          - 22
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js v${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: npm
-      - run: npm ci
-      - run: npm run build
-      # - run: npm test
-
   check:
     runs-on: ubuntu-latest
     steps:
