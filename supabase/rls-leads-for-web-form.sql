@@ -21,12 +21,14 @@ alter table public.leads enable row level security;
 
 drop policy if exists "web_lead_insert" on public.leads;
 
+-- AllowInserts for site visitors (anon key = role anon) and for any logged-in users if you later use auth
 create policy "web_lead_insert"
   on public.leads
   for insert
-  to anon
+  to anon, authenticated
   with check (true);
 
 -- 3) Privileges: PostgREST uses role "anon" for the publishable key
 grant usage on schema public to anon;
 grant insert on table public.leads to anon;
+grant insert on table public.leads to authenticated;

@@ -14,7 +14,8 @@ const metadata = {
 const guideDownloadPath = '/higher-education-guide.pdf';
 const guideCoverSrc = '/images/guide-from-chatbot-to-workflow-cover.png';
 
-// Use PUBLIC_ so Vite inlines them at build time (required for static deploys). Fallbacks for local .env without prefix.
+// Use PUBLIC_ so Vite inlines them at build time. Fallbacks for local .env without prefix.
+// Keys are read from data-* on the form (not define:vars) so astro-compress cannot mangle the JWT in inline JS.
 const supabaseUrl = (import.meta.env.PUBLIC_SUPABASE_URL ?? import.meta.env.SUPABASE_URL ?? '').trim();
 const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta.env.SUPABASE_ANON_KEY ?? '').trim();
 
@@ -202,6 +203,9 @@ const faqs = [
               class="mt-5 space-y-4"
               aria-describedby="guide-form-note"
               onsubmit="return false"
+              data-supabase-url={supabaseUrl}
+              data-supabase-anon-key={supabaseAnonKey}
+              data-guide-pdf={guideDownloadPath}
             >
               <input type="hidden" name="source" value="higher-education-guide" />
 
@@ -578,11 +582,15 @@ const faqs = [
   })();
 </script>
 
-<!-- define:vars inlines credentials at build time; use fetch so the script can stay is:inline (no bundling). -->
-<script is:inline define:vars={{ supabaseUrl, supabaseAnonKey, guidePdfPath: guideDownloadPath }}>
+<!-- Credentials on data-* (see frontmatter) so build HTML/JS minify cannot break the anon JWT. -->
+<script is:inline>
   (function () {
     var form = document.getElementById('guide-lead-form');
     var feedback = document.getElementById('guide-form-feedback');
+    if (!form) return;
+    var supabaseUrl = (form.getAttribute('data-supabase-url') || '').trim();
+    var supabaseAnonKey = (form.getAttribute('data-supabase-anon-key') || '').trim();
+    var guidePdfPath = (form.getAttribute('data-guide-pdf') || '').trim() || '/higher-education-guide.pdf';
     var restUrl = supabaseUrl.replace(/\/$/, '') + '/rest/v1/leads';
 
     function showError(message) {
@@ -596,8 +604,6 @@ const faqs = [
       feedback.textContent = '';
       feedback.className = 'hidden';
     }
-
-    if (!form) return;
 
     if (!supabaseUrl || !supabaseAnonKey) {
       form.addEventListener('submit', function (e) {
@@ -647,9 +653,15 @@ const faqs = [
             if (typeof console !== 'undefined' && console.error) {
               console.error('[WorkSmart] Lead insert failed', { status: res.status, detail: detail });
             }
-            if (res.status === 401 || res.status === 403) {
+            var d = String(detail || '').toLowerCase();
+            var looksRls = d.indexOf('row-level security') >= 0 || d.indexOf('new row violates') >= 0;
+            if (res.status === 401) {
               showError(
-                'We could not save your details (access denied). Our team can still help: use Contact us, or try again after the site is updated.'
+                'We could not verify the site with the form service (API key). Check that PUBLIC_SUPABASE_URL and PUBLIC_SUPABASE_ANON_KEY in your deploy match Supabase -> Project Settings -> API, then redeploy.'
+              );
+            } else if (res.status === 403 || looksRls) {
+              showError(
+                'The database is blocking new sign-ups (row security). In Supabase SQL Editor, run the policy in supabase/rls-leads-for-web-form.sql, or ask your developer to add an INSERT policy for the anon role on public.leads.'
               );
             } else if (res.status === 400) {
               showError('Could not save your details. Check your name and email, then try again.');
