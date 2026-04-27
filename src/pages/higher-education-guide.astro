@@ -14,8 +14,9 @@ const metadata = {
 const guideDownloadPath = '/higher-education-guide.pdf';
 const guideCoverSrc = '/images/guide-from-chatbot-to-workflow-cover.png';
 
-const supabaseUrl = import.meta.env.SUPABASE_URL ?? '';
-const supabaseAnonKey = import.meta.env.SUPABASE_ANON_KEY ?? '';
+// Use PUBLIC_ so Vite inlines them at build time (required for static deploys). Fallbacks for local .env without prefix.
+const supabaseUrl = (import.meta.env.PUBLIC_SUPABASE_URL ?? import.meta.env.SUPABASE_URL ?? '').trim();
+const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta.env.SUPABASE_ANON_KEY ?? '').trim();
 
 const heroFacts = [
   { icon: 'tabler:file-type-pdf', label: 'Free 10-page PDF' },
@@ -628,13 +629,43 @@ const faqs = [
         body: JSON.stringify({ name: name, email: email, source: source }),
       })
         .then(function (res) {
-          if (submitBtn) submitBtn.disabled = false;
-          if (!res.ok) throw new Error('insert failed');
-          window.location.href = guidePdfPath;
+          return res.text().then(function (text) {
+            if (submitBtn) submitBtn.disabled = false;
+            if (res.ok) {
+              window.location.href = guidePdfPath;
+              return;
+            }
+            var detail = text;
+            try {
+              if (text) {
+                var j = JSON.parse(text);
+                detail = j.message || j.hint || j.details || (j.error && (j.error.message || j.error)) || text;
+              }
+            } catch (parseErr) {
+              void parseErr;
+            }
+            if (typeof console !== 'undefined' && console.error) {
+              console.error('[WorkSmart] Lead insert failed', { status: res.status, detail: detail });
+            }
+            if (res.status === 401 || res.status === 403) {
+              showError(
+                'We could not save your details (access denied). Our team can still help: use Contact us, or try again after the site is updated.'
+              );
+            } else if (res.status === 400) {
+              showError('Could not save your details. Check your name and email, then try again.');
+            } else if (res.status >= 500) {
+              showError('The service is temporarily unavailable. Please try again in a few minutes.');
+            } else {
+              showError('Something went wrong. Please try again or contact us.');
+            }
+          });
         })
-        .catch(function () {
+        .catch(function (err) {
           if (submitBtn) submitBtn.disabled = false;
-          showError('Something went wrong. Please try again or contact us.');
+          if (typeof console !== 'undefined' && console.error) {
+            console.error('[WorkSmart] Lead insert request failed', err);
+          }
+          showError('Something went wrong. Check your connection and try again, or contact us.');
         });
     });
   })();
