@@ -14,8 +14,7 @@ const metadata = {
 const guideDownloadPath = '/higher-education-guide.pdf';
 const guideCoverSrc = '/images/guide-from-chatbot-to-workflow-cover.png';
 
-// Use PUBLIC_ so Vite inlines them at build time. Fallbacks for local .env without prefix.
-// Keys are read from data-* on the form (not define:vars) so astro-compress cannot mangle the JWT in inline JS.
+// Use PUBLIC_* in CI so build inlines them; fallbacks for local .env. Keys on data-* avoid minifier mangling JWT in inline JS.
 const supabaseUrl = (import.meta.env.PUBLIC_SUPABASE_URL ?? import.meta.env.SUPABASE_URL ?? '').trim();
 const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta.env.SUPABASE_ANON_KEY ?? '').trim();
 
@@ -582,7 +581,7 @@ const faqs = [
   })();
 </script>
 
-<!-- Credentials on data-* (see frontmatter) so build HTML/JS minify cannot break the anon JWT. -->
+<!-- Lead capture: values on data-* so HTML minify cannot mangle the anon JWT; post to Supabase REST from the browser. -->
 <script is:inline>
   (function () {
     const form = document.getElementById('guide-lead-form');
@@ -645,7 +644,9 @@ const faqs = [
             try {
               if (text) {
                 const j = JSON.parse(text);
-                detail = j.message || j.hint || j.details || (j.error && (j.error.message || j.error)) || text;
+                const errStr =
+                  typeof j.error === 'string' ? j.error : j.error && (j.error.message || JSON.stringify(j.error));
+                detail = j.message || j.hint || j.details || errStr || text;
               }
             } catch (parseErr) {
               void parseErr;
@@ -657,11 +658,11 @@ const faqs = [
             const looksRls = d.indexOf('row-level security') >= 0 || d.indexOf('new row violates') >= 0;
             if (res.status === 401) {
               showError(
-                'We could not verify the site with the form service (API key). Check that PUBLIC_SUPABASE_URL and PUBLIC_SUPABASE_ANON_KEY in your deploy match Supabase -> Project Settings -> API, then redeploy.'
+                'We could not verify the site with the form service (API key). Check that PUBLIC_SUPABASE_URL and PUBLIC_SUPABASE_ANON_KEY in your build and deploy match Supabase -> Project Settings -> API, then rebuild.'
               );
             } else if (res.status === 403 || looksRls) {
               showError(
-                'The database is blocking new sign-ups (row security). In Supabase SQL Editor, run the policy in supabase/rls-leads-for-web-form.sql, or ask your developer to add an INSERT policy for the anon role on public.leads.'
+                'The database is blocking new sign-ups (row security). In Supabase SQL Editor, run the policy in supabase/rls-leads-for-web-form.sql, or add an INSERT policy for the anon role on public.leads.'
               );
             } else if (res.status === 400) {
               showError('Could not save your details. Check your name and email, then try again.');

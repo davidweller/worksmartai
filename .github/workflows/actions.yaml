@@ -15,6 +15,10 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Inlined at build time into the static higher-education guide form (data-supabase-* on the page)
+    env:
+      PUBLIC_SUPABASE_URL: ${{ secrets.PUBLIC_SUPABASE_URL }}
+      PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.PUBLIC_SUPABASE_ANON_KEY }}
     strategy:
       matrix:
         node-version:
