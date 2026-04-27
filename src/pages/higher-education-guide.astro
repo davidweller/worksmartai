@@ -10,8 +10,8 @@ const metadata = {
   canonical: '/higher-education-guide/',
 };
 
-/** Public URL after successful lead capture (also on disk as public/higher-education-guide.pdf). */
-const guideDownloadPath = '/higher-education-guide.pdf';
+/** Public URL after successful lead capture (file: public/WorkSmart-AI - From Chatbot to Workflows.pdf). */
+const guideDownloadPath = '/WorkSmart-AI%20-%20From%20Chatbot%20to%20Workflows.pdf';
 const guideCoverSrc = '/images/guide-from-chatbot-to-workflow-cover.png';
 
 // Use PUBLIC_* in CI so build inlines them; fallbacks for local .env. Keys on data-* avoid minifier mangling JWT in inline JS.
@@ -583,10 +583,10 @@ const faqs = [
     if (!form) return;
     const supabaseUrl = (form.getAttribute('data-supabase-url') || '').trim();
     const supabaseAnonKey = (form.getAttribute('data-supabase-anon-key') || '').trim();
-    const guidePdfPath = (form.getAttribute('data-guide-pdf') || '').trim() || '/higher-education-guide.pdf';
+    const guidePdfPath =
+      (form.getAttribute('data-guide-pdf') || '').trim() || '/WorkSmart-AI%20-%20From%20Chatbot%20to%20Workflows.pdf';
     const restUrl = supabaseUrl.replace(/\/$/, '') + '/rest/v1/leads';
-    /** Same-origin; trailing slash matches site config. */
-    const leadEmailUrl = window.location.origin + '/api/guide-lead-email/';
+    const guideWelcomeEmailUrl = 'https://qgizwdyeqartoavllsol.supabase.co/functions/v1/rapid-function';
 
     function showError(message) {
       if (!feedback) return;
@@ -632,23 +632,43 @@ const faqs = [
         .then(function (res) {
           return res.text().then(function (text) {
             if (res.ok) {
-              return fetch(leadEmailUrl, {
+              return fetch(guideWelcomeEmailUrl, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: 'Bearer ' + supabaseAnonKey,
+                  apikey: supabaseAnonKey,
+                },
                 body: JSON.stringify({ name: name, email: email }),
               })
                 .then(function (mailRes) {
-                  if (!mailRes.ok) {
-                    return mailRes.text().then(function (t) {
+                  return mailRes.text().then(function (text) {
+                    if (!mailRes.ok) {
                       if (typeof console !== 'undefined' && console.error) {
-                        console.error('[WorkSmart] Guide email request failed', { status: mailRes.status, detail: t });
+                        console.error('[WorkSmart] Guide welcome email request failed', {
+                          status: mailRes.status,
+                          detail: text,
+                        });
                       }
-                    });
-                  }
+                      return;
+                    }
+                    if (text) {
+                      try {
+                        const j = JSON.parse(text);
+                        if (j && j.ok === false) {
+                          if (typeof console !== 'undefined' && console.error) {
+                            console.error('[WorkSmart] Guide welcome email returned ok: false', j);
+                          }
+                        }
+                      } catch (parseErr) {
+                        void parseErr;
+                      }
+                    }
+                  });
                 })
                 .catch(function (err) {
                   if (typeof console !== 'undefined' && console.error) {
-                    console.error('[WorkSmart] Guide email request error', err);
+                    console.error('[WorkSmart] Guide welcome email request error', err);
                   }
                 })
                 .then(function () {

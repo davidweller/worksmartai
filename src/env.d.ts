@@ -14,8 +14,6 @@ interface ImportMetaEnv {
   readonly PUBLIC_SITE_URL?: string;
   readonly SUPABASE_URL?: string;
   readonly SUPABASE_ANON_KEY?: string;
-  /** Resend API key (server-only). Used by /api/guide-lead-email. */
-  readonly RESEND_API_KEY?: string;
 }
 
 interface ImportMeta {
