@@ -585,13 +585,13 @@ const faqs = [
 <!-- Credentials on data-* (see frontmatter) so build HTML/JS minify cannot break the anon JWT. -->
 <script is:inline>
   (function () {
-    var form = document.getElementById('guide-lead-form');
-    var feedback = document.getElementById('guide-form-feedback');
+    const form = document.getElementById('guide-lead-form');
+    const feedback = document.getElementById('guide-form-feedback');
     if (!form) return;
-    var supabaseUrl = (form.getAttribute('data-supabase-url') || '').trim();
-    var supabaseAnonKey = (form.getAttribute('data-supabase-anon-key') || '').trim();
-    var guidePdfPath = (form.getAttribute('data-guide-pdf') || '').trim() || '/higher-education-guide.pdf';
-    var restUrl = supabaseUrl.replace(/\/$/, '') + '/rest/v1/leads';
+    const supabaseUrl = (form.getAttribute('data-supabase-url') || '').trim();
+    const supabaseAnonKey = (form.getAttribute('data-supabase-anon-key') || '').trim();
+    const guidePdfPath = (form.getAttribute('data-guide-pdf') || '').trim() || '/higher-education-guide.pdf';
+    const restUrl = supabaseUrl.replace(/\/$/, '') + '/rest/v1/leads';
 
     function showError(message) {
       if (!feedback) return;
@@ -615,11 +615,11 @@ const faqs = [
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var fd = new FormData(form);
-      var name = String(fd.get('name') || '').trim();
-      var email = String(fd.get('email') || '').trim();
-      var source = String(fd.get('source') || '').trim();
-      var submitBtn = form.querySelector('button[type="submit"]');
+      const fd = new FormData(form);
+      const name = String(fd.get('name') || '').trim();
+      const email = String(fd.get('email') || '').trim();
+      const source = String(fd.get('source') || '').trim();
+      const submitBtn = form.querySelector('button[type="submit"]');
 
       clearFeedback();
       if (submitBtn) submitBtn.disabled = true;
@@ -641,10 +641,10 @@ const faqs = [
               window.location.href = guidePdfPath;
               return;
             }
-            var detail = text;
+            let detail = text;
             try {
               if (text) {
-                var j = JSON.parse(text);
+                const j = JSON.parse(text);
                 detail = j.message || j.hint || j.details || (j.error && (j.error.message || j.error)) || text;
               }
             } catch (parseErr) {
@@ -653,8 +653,8 @@ const faqs = [
             if (typeof console !== 'undefined' && console.error) {
               console.error('[WorkSmart] Lead insert failed', { status: res.status, detail: detail });
             }
-            var d = String(detail || '').toLowerCase();
-            var looksRls = d.indexOf('row-level security') >= 0 || d.indexOf('new row violates') >= 0;
+            const d = String(detail || '').toLowerCase();
+            const looksRls = d.indexOf('row-level security') >= 0 || d.indexOf('new row violates') >= 0;
             if (res.status === 401) {
               showError(
                 'We could not verify the site with the form service (API key). Check that PUBLIC_SUPABASE_URL and PUBLIC_SUPABASE_ANON_KEY in your deploy match Supabase -> Project Settings -> API, then redeploy.'
