@@ -1,6 +1,6 @@
 site:
   name: WorkSmart-AI
-  site: 'https://astrowind.vercel.app'
+  site: 'https://worksmart-ai.co.uk'
   base: '/'
   trailingSlash: true
 
@@ -9,22 +9,22 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+    default: WorkSmart-AI
+    template: '%s'
+  description: 'WorkSmart-AI helps higher education teams build practical AI skills, confidence and measurable productivity gains through training and consultancy.'
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: WorkSmart-AI
     images:
-      - url: '~/assets/images/default.png'
+      - url: '~/assets/images/logo.png'
         width: 1200
         height: 628
     type: website
   twitter:
-    handle: '@arthelokyo'
-    site: '@arthelokyo'
+    handle: '@WorkSmartAI'
+    site: '@WorkSmartAI'
     cardType: summary_large_image
 
 i18n:

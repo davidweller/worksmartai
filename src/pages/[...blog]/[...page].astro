@@ -24,15 +24,16 @@ const currentPage = page.currentPage ?? 1;
 // const allTags = await findTags();
 
 const metadata = {
-  title: `News - WorkSmart-AI${currentPage > 1 ? ` - Page ${currentPage}` : ''}`,
+  title: `AI Training News and Insights | WorkSmart-AI${currentPage > 1 ? ` Page ${currentPage}` : ''}`,
   ignoreTitleTemplate: true,
-  description: 'Latest articles and updates from WorkSmart-AI.',
+  description:
+    'Read WorkSmart-AI news and insights on AI training, higher education adoption, digital skills, productivity and responsible workplace AI.',
   robots: {
     index: blogListRobots?.index && currentPage === 1,
     follow: blogListRobots?.follow,
   },
   openGraph: {
-    type: 'blog',
+    type: 'website',
   },
 };
 ---

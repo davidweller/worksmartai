@@ -20,10 +20,15 @@ const { page, category } = Astro.props as Props;
 const currentPage = page.currentPage ?? 1;
 
 const metadata = {
-  title: `Category '${category.title}' ${currentPage > 1 ? ` — Page ${currentPage}` : ''}`,
+  title: `${category.title} AI Articles | WorkSmart-AI${currentPage > 1 ? ` Page ${currentPage}` : ''}`,
+  ignoreTitleTemplate: true,
+  description: `Browse WorkSmart-AI articles about ${category.title}, including practical AI training insights, higher education adoption and productivity guidance.`,
   robots: {
     index: blogCategoryRobots?.index,
     follow: blogCategoryRobots?.follow,
+  },
+  openGraph: {
+    type: 'website',
   },
 };
 ---

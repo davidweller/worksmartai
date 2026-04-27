@@ -7,7 +7,10 @@ import Testimonials from '~/components/widgets/Testimonials.astro';
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'Services',
+  title: 'AI Training and Consultancy Services | WorkSmart-AI',
+  description:
+    'Explore WorkSmart-AI services for universities, including AI literacy, needs analysis, bespoke workshops, consultancy and support to prove ROI clearly.',
+  canonical: '/services/',
 };
 ---
 
@@ -22,7 +25,7 @@ const metadata = {
       actions={[{ variant: 'primary', target: '_blank', text: 'Start exploring', href: '/' }]}
       image={{
         src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
-        alt: 'AstroWind Hero Image',
+        alt: 'Team collaborating on AI training services',
       }}
     />
   </div>
@@ -212,7 +215,7 @@ const metadata = {
       callToAction={{
         target: '_blank',
         text: 'More testimonials...',
-        href: 'https://github.com/arthelokyo/astrowind',
+        href: '/contact-us/',
         icon: 'tabler:chevron-right',
       }}
     />
@@ -229,8 +232,8 @@ const metadata = {
           href: '/',
         },
       ]}
-      title="Dive into our template collection"
-      subtitle="Whether you're in business, design, or education, our templates are here to elevate your projects."
+      title="Build practical AI capability"
+      subtitle="Whether you're planning training, consultancy or wider adoption support, our services help your team move with confidence."
     />
   </div>
 </Layout>

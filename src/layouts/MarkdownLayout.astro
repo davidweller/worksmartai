@@ -6,6 +6,11 @@ import type { MetaData } from '~/types';
 export interface Props {
   frontmatter: {
     title?: string;
+    description?: string;
+    canonical?: string;
+    robots?: MetaData['robots'];
+    openGraph?: MetaData['openGraph'];
+    twitter?: MetaData['twitter'];
   };
 }
 
@@ -13,6 +18,11 @@ const { frontmatter } = Astro.props;
 
 const metadata: MetaData = {
   title: frontmatter?.title,
+  description: frontmatter?.description,
+  canonical: frontmatter?.canonical,
+  robots: frontmatter?.robots,
+  openGraph: frontmatter?.openGraph,
+  twitter: frontmatter?.twitter,
 };
 ---
 

@@ -28,7 +28,7 @@ const image = (await findImage(post.image)) as ImageMetadata | string | undefine
 
 const metadata = merge(
   {
-    title: `${post.title} - WorkSmart-AI`,
+    title: `${post.title} | WorkSmart-AI`,
     ignoreTitleTemplate: true,
     description: post.excerpt,
     robots: {
@@ -37,6 +37,11 @@ const metadata = merge(
     },
     openGraph: {
       type: 'article',
+      article: {
+        publishedTime: post.publishDate?.toISOString(),
+        ...(post.updateDate ? { modifiedTime: post.updateDate.toISOString() } : {}),
+        ...(post.tags?.length ? { tags: post.tags.map((tag) => tag.title) } : {}),
+      },
       ...(image
         ? { images: [{ url: image, width: (image as ImageMetadata)?.width, height: (image as ImageMetadata)?.height }] }
         : {}),

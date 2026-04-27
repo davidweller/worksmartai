@@ -4,10 +4,14 @@ import { Icon } from 'astro-icon/components';
 import { BOOK_A_CALL_URL } from '~/config/booking';
 
 const metadata = {
-  title: 'Free Higher Education AI Workflow Guide - WorkSmart-AI',
+  title: 'Free AI Workflow Guide for Higher Education Teams Now',
   description:
-    'Download the free WorkSmart-AI guide for higher education and learn how staff can move from chatbot prompts to repeatable AI workflows.',
+    'Download the free WorkSmart-AI guide for higher education teams and learn how staff can progress from chatbot prompts to repeatable AI workflows safely.',
   canonical: '/higher-education-guide/',
+  openGraph: {
+    images: [{ url: '/images/guide-from-chatbot-to-workflow-cover.png' }],
+    type: 'website',
+  },
 };
 
 /** Public URL after successful lead capture (file: public/WorkSmart-AI - From Chatbot to Workflows.pdf). */

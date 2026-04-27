@@ -21,7 +21,11 @@ const hasExternalScripts = false;
 const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroIntegration)[] = []) =>
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
 
+/** Paths excluded from the generated sitemap (trailing slash, matching site trailingSlash) */
+const SITEMAP_EXCLUDED_PATHS = new Set(['/404/', '/academy/login/', '/academy/dashboard/', '/academy/view/']);
+
 export default defineConfig({
+  site: 'https://worksmart-ai.co.uk',
   output: 'static',
   trailingSlash: 'always',
 
@@ -29,7 +33,12 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    sitemap(),
+    sitemap({
+      filter: (page) => {
+        const pathname = new URL(page).pathname;
+        return !SITEMAP_EXCLUDED_PATHS.has(pathname);
+      },
+    }),
     mdx(),
     icon({
       include: {

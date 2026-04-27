@@ -1,5 +1,7 @@
 ---
-title: 'Terms and Conditions'
+title: 'Terms and Conditions Archive for WorkSmart-AI Visitors'
+description: 'Review archived terms information for WorkSmart-AI visitors and use the current terms of service page for up-to-date service details online today here.'
+canonical: '/terms/'
 layout: '~/layouts/MarkdownLayout.astro'
 ---
 
@@ -21,17 +23,17 @@ For the purposes of these Terms and Conditions:
 
 - **Country** refers to: California, United States
 
-- **Company** (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to AstroWind LLC, 1 Cupertino, CA 95014.
+- **Company** (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to WorkSmart-AI.
 
 - **Device** means any device that can access the Service such as a computer, a cellphone or a digital tablet.
 
 - **Service** refers to the Website.
 
-- **Terms and Conditions** (also referred as "Terms") mean these Terms and Conditions that form the entire agreement between You and the Company regarding the use of the Service. This Terms and Conditions agreement is a Demo.
+- **Terms and Conditions** (also referred as "Terms") mean these Terms and Conditions that form the entire agreement between You and the Company regarding the use of the Service.
 
 - **Third-party Social Media Service** means any services or content (including data, information, products or services) provided by a third-party that may be displayed, included or made available by the Service.
 
-- **Website** refers to AstroWind, accessible from [https://astrowind.vercel.app](https://astrowind.vercel.app)
+- **Website** refers to WorkSmart-AI, accessible from [https://worksmart-ai.co.uk](https://worksmart-ai.co.uk)
 
 - **You** means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.
 
