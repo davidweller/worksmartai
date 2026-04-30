@@ -7,7 +7,7 @@ export const headerData: {
 } = {
   links: [
     { text: 'Home', href: '/' },
-    { text: 'Training', href: '/training/' },
+    { text: 'Services', href: '/services/' },
     { text: 'About Us', href: '/about-us/' },
     { text: 'News', href: '/news/' },
     { text: 'Contact Us', href: '/contact-us/' },
@@ -21,7 +21,7 @@ export const footerData = {
       title: 'WorkSmart-AI',
       links: [
         { text: 'Home', href: '/' },
-        { text: 'Training', href: '/training/' },
+        { text: 'Services', href: '/services/' },
         { text: 'About Us', href: '/about-us/' },
         { text: 'News', href: '/news/' },
         { text: 'Contact Us', href: '/contact-us/' },

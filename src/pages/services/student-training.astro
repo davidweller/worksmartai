@@ -1,0 +1,172 @@
+---
+import { Icon } from 'astro-icon/components';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Student Training | WorkSmart-AI',
+  description:
+    'AI literacy programmes for higher education students. Build the skills, critical thinking and ethical grounding to use AI responsibly in study and careers.',
+  canonical: '/services/student-training/',
+};
+
+const programmeContent = [
+  'How large language models actually work',
+  'AI and academic integrity - the real boundaries',
+  'Effective prompting for research and writing',
+  'Critical evaluation of AI-generated content',
+  'AI for data analysis and presentation',
+  'Careers and AI - what employers expect',
+  'Responsible and ethical AI use',
+];
+
+const outcomes = [
+  'Students engage more confidently with complex tasks',
+  'Fewer academic integrity incidents related to AI misuse',
+  'Stronger critical thinking about AI-generated content',
+  'Higher quality research and writing output',
+  'Improved graduate employability profiles',
+  'A more level playing field across the cohort',
+];
+
+const deliveryTags = ['Online', 'Face to face', 'Blended'];
+---
+
+<Layout metadata={metadata}>
+  <div class="bg-section px-6 pt-8 sm:px-8 lg:px-12">
+    <div class="mx-auto max-w-6xl">
+      <a
+        href="/services/"
+        class="inline-flex items-center text-sm font-semibold text-link transition-colors hover:text-accent"
+      >
+        ← Back to Services
+      </a>
+    </div>
+  </div>
+
+  <section class="bg-brand px-6 py-16 sm:px-8 lg:px-12 lg:py-20" data-aos="fade-up">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-secondary sm:text-sm">Student Training</p>
+      <h1 class="font-heading text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+        Build AI literacy from day one of the student journey
+      </h1>
+      <p class="mt-6 text-base leading-[var(--aw-leading-body,1.7)] text-white/90 sm:text-lg">
+        Structured programmes that give students the skills, critical thinking and ethical grounding to use AI responsibly - in their
+        studies today and in their careers tomorrow.
+      </p>
+    </div>
+  </section>
+
+  <section class="border-b border-default bg-section px-6 py-10 sm:px-8 lg:px-12">
+    <div class="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-3">
+      <div class="rounded-xl border border-default bg-card p-6 text-center shadow-card">
+        <p class="font-heading text-3xl font-bold text-heading">78%</p>
+        <p class="mt-2 text-sm text-muted">Students already using AI tools before any training</p>
+      </div>
+      <div class="rounded-xl border border-default bg-card p-6 text-center shadow-card">
+        <p class="font-heading text-3xl font-bold text-heading">2x</p>
+        <p class="mt-2 text-sm text-muted">Assignment quality improvement after structured AI guidance</p>
+      </div>
+      <div class="rounded-xl border border-default bg-card p-6 text-center shadow-card">
+        <p class="font-heading text-3xl font-bold text-heading">100%</p>
+        <p class="mt-2 text-sm text-muted">Programmes aligned to your academic integrity policy</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-section px-6 py-16 sm:px-8 lg:px-12 lg:py-20">
+    <div class="mx-auto max-w-6xl">
+      <div class="rounded-xl border border-default bg-card p-6 shadow-card md:p-10" data-aos="fade-up">
+        <h2 class="font-heading text-2xl font-bold text-heading sm:text-3xl">Why student AI training matters now</h2>
+        <div class="mt-6 space-y-5 text-default">
+          <p>
+            The vast majority of students are already using AI tools - often without guidance, institutional frameworks or any understanding
+            of the risks. This creates a two-tier student body: those who use AI effectively and gain a significant academic advantage, and
+            those who either avoid it or use it in ways that undermine their own learning.
+          </p>
+          <p>
+            Our student programmes address this directly. We give students a clear, structured understanding of how AI works, where it adds
+            genuine value, where it falls short, and how to use it in a way that enhances rather than replaces their own thinking. Critically,
+            all content is aligned to your institution's academic integrity policy from the outset.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10">
+        <div class="rounded-xl border border-default bg-card p-6 shadow-card md:p-8" data-aos="fade-up">
+          <h3 class="font-heading text-xl font-bold text-heading">Programme content</h3>
+          <ul class="mt-6 space-y-3">
+            {
+              programmeContent.map((item) => (
+                <li class="flex gap-3 text-default">
+                  <Icon name="tabler:check" class="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="rounded-xl border border-default bg-card p-6 shadow-card md:p-8" data-aos="fade-up" data-aos-delay="50">
+          <h3 class="font-heading text-xl font-bold text-heading">Typical outcomes</h3>
+          <ul class="mt-6 space-y-3">
+            {
+              outcomes.map((item) => (
+                <li class="flex gap-3 text-default">
+                  <Icon name="tabler:check" class="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div
+        class="mt-10 rounded-xl border-2 border-dashed border-primary/30 bg-card p-6 shadow-card md:mt-14 md:p-10"
+        data-aos="fade-up"
+      >
+        <h2 class="font-heading text-2xl font-bold text-heading sm:text-3xl">Our student training courses</h2>
+        <p class="mt-3 text-muted">Courses coming soon - check back shortly.</p>
+        <div class="mt-4 min-h-[120px]" aria-hidden="true"></div>
+        <!-- TODO: Add course cards here. Each course should show: course name (h4), 2-sentence outcome description, and duration tag. -->
+      </div>
+
+      <div class="mt-10 rounded-xl border border-default bg-card p-6 shadow-card md:mt-14 md:p-10" data-aos="fade-up">
+        <h2 class="font-heading text-2xl font-bold text-heading sm:text-3xl">Delivery options</h2>
+        <p class="mt-4 text-default">
+          Programmes can be embedded into existing induction, skills development or module delivery - or run as standalone initiatives. We
+          work with student unions, careers services, library and IT teams to ensure a joined-up approach.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          {
+            deliveryTags.map((tag) => (
+              <span class="inline-flex rounded-full border border-primary/25 px-3 py-1.5 text-sm font-medium text-default">
+                {tag}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+
+      <section class="mt-10 rounded-2xl bg-brand px-6 py-12 text-center sm:px-10 md:mt-14 md:py-16" data-aos="fade-up">
+        <h2 class="font-heading text-2xl font-bold text-white sm:text-3xl">Let's talk about your students</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-white/90">
+          Every institution has a different starting point. Book a call to explore what's right for yours.
+        </p>
+        <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a
+            href="/contact/"
+            class="inline-flex min-w-[10rem] items-center justify-center rounded-full bg-accent px-8 py-3.5 font-semibold text-white transition-colors hover:bg-accent-hover"
+          >
+            Book a call
+          </a>
+          <a
+            href="/services/"
+            class="inline-flex min-w-[10rem] items-center justify-center rounded-full border-2 border-white px-8 py-3.5 font-semibold text-white transition-colors hover:bg-white/10"
+          >
+            View all services
+          </a>
+        </div>
+      </section>
+    </div>
+  </section>
+</Layout>

@@ -1,6 +1,10 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/training", "destination": "/services/", "permanent": true },
+    { "source": "/training/", "destination": "/services/", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/_astro/(.*)",

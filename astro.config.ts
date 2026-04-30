@@ -29,6 +29,10 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'always',
 
+  redirects: {
+    '/training/': '/services/',
+  },
+
   integrations: [
     tailwind({
       applyBaseStyles: false,

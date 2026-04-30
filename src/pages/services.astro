@@ -1,239 +1,232 @@
 ---
-import CallToAction from '~/components/widgets/CallToAction.astro';
-import Content from '~/components/widgets/Content.astro';
+import { Icon } from 'astro-icon/components';
 import Features2 from '~/components/widgets/Features2.astro';
-import Hero from '~/components/widgets/Hero.astro';
-import Testimonials from '~/components/widgets/Testimonials.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'AI Training and Consultancy Services | WorkSmart-AI',
+  title: 'Our Services | WorkSmart-AI',
   description:
-    'Explore WorkSmart-AI services for universities, including AI literacy, needs analysis, bespoke workshops, consultancy and support to prove ROI clearly.',
+    'Practical AI training, coaching and consulting designed for higher education. Staff training, student programmes, senior leader advisory and academic coaching.',
   canonical: '/services/',
 };
+
+const services = [
+  {
+    href: '/services/staff-training/',
+    title: 'Staff Training',
+    description:
+      'Practical, role-specific AI training for professional services, academic and support staff - delivered in a way that sticks.',
+    icon: 'tabler:users',
+  },
+  {
+    href: '/services/student-training/',
+    title: 'Student Training',
+    description:
+      'Structured AI literacy programmes that equip students with the skills, judgement and ethics to use AI effectively in their studies and careers.',
+    icon: 'tabler:school',
+  },
+  {
+    href: '/services/senior-consulting/',
+    title: 'Senior Leader Consulting',
+    description:
+      'Strategic AI advisory for Vice-Chancellors, Deans and senior leaders navigating institution-wide AI adoption, policy and competitive positioning.',
+    icon: 'tabler:building-bank',
+  },
+  {
+    href: '/services/academic-coaching/',
+    title: 'Academic Coaching',
+    description:
+      'Personalised 1-to-1 and small group coaching for academics - covering research, writing, teaching and administration, all through the lens of AI.',
+    icon: 'tabler:book',
+  },
+];
+
+const whyChooseItems = [
+  {
+    title: 'Higher Ed Specialists',
+    description:
+      "We have been working with Universities for over a decade, supporting senior leaders and their staff to feel confident in making effective technological change. Understanding the business needs, whilst appreciating people's concerns and anxieties when it comes to new digital and AI technologies, underpins everything that we do.",
+    icon: 'tabler:school',
+  },
+  {
+    title: 'Data-Driven ROI',
+    description:
+      "We understand the importance of being able to prove ROI whenever key decisions are made. That's why everything we do is underpinned by data. From the initial consultation, right through to training and delivery, we use cutting-edge technology to support our approach, evidence impact and drive the returns.",
+    icon: 'tabler:chart-bar',
+  },
+  {
+    title: 'Bespoke Workshops',
+    description:
+      "Evidence proves that one-off workshops don't work when it comes to enabling effective digital transformation to happen in the workplace. That's why we offer personalised consultancy, training and support packages - working with you to meet the specific needs of your institution and your budget.",
+    icon: 'tabler:users',
+  },
+];
+
+const programmeIncludesItems = [
+  {
+    title: 'Free Initial Consultation',
+    description:
+      "A collaborative discussion to understand your institution's goals and challenges and see where you are on your AI journey.",
+    icon: 'tabler:messages',
+  },
+  {
+    title: 'On-Demand Access to Online Courses',
+    description:
+      'On-demand access to asynchronous courses that reinforce and extend the learning from our live workshops, for up to 100 staff per package.',
+    icon: 'tabler:device-laptop',
+  },
+  {
+    title: 'AI Literacy & Needs Analysis',
+    description:
+      'We pinpoint knowledge gaps and confidence levels across your team(s) to ensure our training is targeted and effective.',
+    icon: 'tabler:chart-dots',
+  },
+  {
+    title: 'Strategic Roadmap Session',
+    description:
+      'A high-level session with your leadership to translate training insights into a clear action plan for sustaining momentum.',
+    icon: 'tabler:route',
+  },
+  {
+    title: 'Personalised Workshops',
+    description:
+      'Choose which of our workshops for us to personalise and deliver. Expert-led, hands-on training sessions (F2F or online) tailored to your institution.',
+    icon: 'tabler:presentation',
+  },
+  {
+    title: 'Ongoing Support for Staff and SLT',
+    description:
+      'Continuous access to resources and our "AI Cafe" drop-in sessions to keep momentum strong as AI evolves. Follow up calls with SLT.',
+    icon: 'tabler:lifebuoy',
+  },
+];
+
+const faqItems = [
+  {
+    title: 'What makes WorkSmart-AI different from other AI training providers?',
+    description:
+      'We focus on people-first adoption - helping staff feel confident and productive with AI and supporting leadership teams to make strategic data-driven implementation decisions. As AI specialists within higher education, we understand the needs and challenges experienced by staff, and are here to support you in overcoming them. Rather than just demonstrating tools, our training connects AI use to real measurable outcomes, like time saved, improved productivity, and better policy alignment. We also personalise our training to adhere to individual institutions AI and data policies.',
+  },
+  {
+    title: 'Who are your services designed for?',
+    description:
+      'Our core audience is universities and education providers - supporting both academic and professional services staff. We also work with local councils, public sector bodies, and SMEs across the South West who want to build practical AI capability and confidence.',
+  },
+  {
+    title: 'How do you personalise training for each organisation?',
+    description:
+      'Every project begins with a free consultation. We then continue with a needs analysis to identify your current use of AI, challenges, and goals. From there, we design a tailored roadmap that ensures all workshops, online courses, and resources address your specific context, policies and priorities. Through regular data-monitoring, we\'re able to iterate training to ensure that outcomes are fully achieved.',
+  },
+  {
+    title: 'What topics do you cover in training?',
+    description:
+      'Our training covers AI for research and academic workflows, AI fundamentals and safe ethical use, productivity and process improvement, teaching and assessment with AI, policy development and governance, and environmental impact and sustainability considerations.',
+  },
+  {
+    title: 'Can you deliver training in person as well as online?',
+    description:
+      'Yes. We offer a mix of in-person workshops, live online webinars, and asynchronous on-demand courses. Most clients choose a blended approach so staff can learn flexibly and apply their learning right away.',
+  },
+  {
+    title: 'How do you measure the impact of your training?',
+    description:
+      'We track both staff engagement and tangible outcomes, such as hours saved, efficiency gains, and staff confidence. For larger partnerships, we provide dashboards and reports showing the value of AI adoption over time.',
+  },
+  {
+    title: "What's included in your programmes?",
+    description:
+      "All packages include free initial consultation, staff training needs analysis, personalised roadmap and action plan, access to online learning resources, expert-led workshops, pedagogical best practice guidance, ongoing support, monthly online drop-in sessions, follow-up review and next steps. If you're interested in specific tools or training that you don't see here, please let us know - we'll be able to work with you to ensure your priorities are covered in our training.",
+  },
+  {
+    title: 'Do you offer ongoing support?',
+    description:
+      "Yes. Beyond one-off training, we provide Training-as-a-Service retainers for continuous AI upskilling, policy development, and impact measurement - ensuring progress and implementation doesn't stop after the workshops.",
+  },
+  {
+    title: 'How do we get started?',
+    description:
+      "Book a free consultation to discuss your goals. We'll help you assess your organisation's AI readiness, identify the best training approach, and design a package that delivers measurable results.",
+  },
+];
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Widget ******************* -->
+  <section class="bg-brand px-6 py-16 sm:px-8 lg:px-12 lg:py-24" data-aos="fade-up">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-secondary sm:text-sm">What we do</p>
+      <h1 class="font-heading text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+        Practical AI expertise for higher education
+      </h1>
+      <p
+        class="mt-6 text-base leading-[var(--aw-leading-body,1.7)] text-white/90 sm:text-lg"
+      >
+        We help universities and colleges move from AI curiosity to AI confidence - through training, coaching and strategic consulting
+        designed specifically for the sector.
+      </p>
+    </div>
+  </section>
 
-  <div data-aos="fade-up">
-    <Hero
-      tagline="Services"
-      title="Elevate your projects with our stunning templates"
-      subtitle="Explore our meticulously crafted templates tailored to various industries and purposes. From captivating presentations to functional website designs, we offer the tools you need to succeed."
-      actions={[{ variant: 'primary', target: '_blank', text: 'Start exploring', href: '/' }]}
-      image={{
-        src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
-        alt: 'Team collaborating on AI training services',
-      }}
-    />
-  </div>
+  <section class="bg-section px-6 py-16 sm:px-8 lg:px-12 lg:py-20">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-10 text-center md:mb-14">
+        <p class="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-accent">Our services</p>
+        <div class="mx-auto h-1 w-24 rounded-full bg-accent" aria-hidden="true"></div>
+      </div>
 
-  <!-- Features2 Widget ************** -->
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+        {
+          services.map((s) => (
+            <a
+              href={s.href}
+              class="group relative flex h-full flex-col overflow-hidden rounded-xl border border-primary/20 bg-card p-6 shadow-card transition duration-300 ease-out hover:-translate-y-1 hover:border-primary hover:shadow-card-elevated md:p-8"
+            >
+              <span
+                class="absolute bottom-0 left-0 right-0 h-1 origin-left scale-x-0 transform bg-accent transition-transform duration-300 ease-out group-hover:scale-x-100"
+                aria-hidden="true"
+              />
+              <div class="mb-4 inline-flex rounded-lg bg-primary/8 p-3 text-primary">
+                <Icon name={s.icon} class="h-8 w-8" aria-hidden="true" />
+              </div>
+              <h2 class="font-heading text-xl font-bold text-heading sm:text-2xl">{s.title}</h2>
+              <p class="mt-3 flex-1 text-default">{s.description}</p>
+              <span class="mt-6 inline-flex items-center font-semibold text-link group-hover:text-accent">
+                Learn more
+                <span class="ml-1 transition-transform group-hover:translate-x-0.5" aria-hidden="true">
+                  →
+                </span>
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 
-  <div data-aos="fade-up" data-aos-delay="70">
-    <Features2
-      title="Explore our diverse templates"
-      subtitle="Discover our selection below to streamline and elevate your projects."
-      columns={3}
-      items={[
-        {
-          title: 'Educational',
-          description:
-            'By harmonizing instructional design and visual appeal, templates streamline content creation for varied materials, expediting development and cultivating engaging educational spaces.',
-          icon: 'tabler:school',
-        },
-        {
-          title: 'Interior Design',
-          description:
-            'Crafting functional, visually appealing spaces for residential and commercial use. Templates emphasize layout, colors, and furniture setups, offering a versatile toolkit for your design vision.',
-          icon: 'tabler:home-star',
-        },
-        {
-          title: 'Photography',
-          description: `Empowering photographers, our templates facilitate captivating storytelling. With a keen focus on layout, galleries, and typography, they cater to both professionals and enthusiasts.`,
-          icon: 'tabler:photo',
-        },
-        {
-          title: 'E-commerce',
-          description:
-            'Developing engaging online stores, our E-commerce templates ensure a dynamic presence to effectively showcase products. Ideal for startups or revamps.',
-          icon: 'tabler:shopping-cart',
-        },
-        {
-          title: 'Blog',
-          description:
-            'With attention to typography, these templates empower effective content presentation for writers at any stage, ensuring visually engaging and user-friendly blogs.',
-          icon: 'tabler:article',
-        },
-        {
-          title: 'Business',
-          description:
-            'Providing polished options for effective visual communication, these templates empower both startups and established companies for a professional brand presence.',
-          icon: 'tabler:building-store',
-        },
-        {
-          title: 'Branding',
-          description:
-            'Offering pre-designed elements for a consistent brand identity, including logos and marketing materials. Ideal for new ventures or revamps.',
-          icon: 'tabler:arrow-big-up-lines',
-        },
-        {
-          title: 'Medical',
-          description: `From presentations to patient forms, these tools enhance communication effectiveness for healthcare professionals. Ideal for medical practices and research pursuits.`,
-          icon: 'tabler:vaccine',
-        },
-        {
-          title: 'Fashion Design',
-          description:
-            'With attention to detail, customization, and contemporary design, they empower designers to showcase ideas cohesively. Ideal for all levels of designers.',
-          icon: 'tabler:tie',
-        },
-      ]}
-    />
-  </div>
+  <section class="bg-section px-6 py-16 sm:px-8 lg:px-12 lg:py-20">
+    <div class="mx-auto max-w-6xl space-y-16 md:space-y-20">
+      <Features2
+        title="Why choose WorkSmart-AI?"
+        columns={3}
+        items={whyChooseItems}
+        classes={{
+          container: 'max-w-full px-0 py-0 md:py-0 lg:py-0',
+          items: { container: 'gap-6 md:gap-8' },
+        }}
+      />
 
-  <!-- Content Widget **************** -->
+      <Features2
+        title="All-Inclusive Training Package"
+        subtitle="Our all-inclusive training package gives you the opportunity to personalise your training needs - selecting which workshops your staff require, dependent on roles and experience. All in-person/ online workshops are supported by asynchronous courses, to help reinforce and further embed learning. Monthly AI Cafe sessions are also included, to help learners with their application and exploration journey. Throughout, we regularly update you and run a data-driven strategic roadmap session at the end to support your future developments."
+        columns={3}
+        items={programmeIncludesItems}
+        classes={{
+          container: 'max-w-full px-0 py-0 md:py-0 lg:py-0',
+          items: { container: 'gap-6 md:gap-8' },
+        }}
+      />
+    </div>
+  </section>
 
-  <div data-aos="fade-up" data-aos-delay="100">
-    <Content
-      isReversed
-      items={[
-        {
-          title: 'High-Quality Designs',
-          description:
-            'Our templates feature top-tier designs that ensure a professional and polished appearance for your projects.',
-          icon: 'tabler:wand',
-        },
-        {
-          title: 'Customization Tools',
-          description:
-            'Tailor each template to your unique needs with user-friendly customization tools that let you personalize colors, fonts, and content.',
-          icon: 'tabler:settings',
-        },
-        {
-          title: 'Pre-Designed Elements',
-          description:
-            'Save time and effort with our ready-to-use elements, including graphics, icons, and layouts that enhance the visual appeal of your creations.',
-          icon: 'tabler:presentation',
-        },
-        {
-          title: 'Preview and Mockup Views',
-          description:
-            'Visualize the final outcome before making any changes using our preview and mockup views, ensuring your projects meet your expectations.',
-          icon: 'tabler:carousel-horizontal',
-        },
-      ]}
-      image={{
-        src: 'https://images.unsplash.com/photo-1525909002-1b05e0c869d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
-        alt: 'Features Image',
-      }}
-    >
-      <Fragment slot="content">
-        <h3 class="text-2xl font-bold tracking-tight text-heading sm:text-3xl mb-2">Main Features</h3>
-      </Fragment>
-    </Content>
-  </div>
-
-  <!-- Content Widget **************** -->
-
-  <div data-aos="fade-up" data-aos-delay="130">
-    <Content
-      isAfterContent
-      items={[
-        {
-          title: 'Time Savings',
-          description:
-            'Streamline your workflow, enabling you to create stunning materials efficiently and allocate more time to your core tasks.',
-          icon: 'tabler:clock',
-        },
-        {
-          title: 'Professional Appearance',
-          description:
-            'Elevate your projects with the polished and sophisticated look that our templates provide, making a lasting impression on your audience.',
-          icon: 'tabler:school',
-        },
-        {
-          title: 'Cost-Efficiency',
-          description:
-            'Benefit from cost savings by avoiding the need for custom design work, as our templates offer professional-grade designs at a fraction of the cost.',
-          icon: 'tabler:coin',
-        },
-        {
-          title: 'Instant Download',
-          description:
-            'Enjoy immediate access to your chosen templates upon purchase, enabling you to begin working on your projects without delay.',
-          icon: 'tabler:file-download',
-        },
-      ]}
-      image={{
-        src: 'https://images.unsplash.com/photo-1552664688-cf412ec27db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
-        alt: 'Benefits Image',
-      }}
-    >
-      <Fragment slot="content">
-        <h3 class="text-2xl font-bold tracking-tight text-heading sm:text-3xl mb-2">Benefits</h3>
-      </Fragment>
-    </Content>
-  </div>
-
-  <!-- Testimonials Widget *********** -->
-
-  <div data-aos="fade-up" data-aos-delay="160">
-    <Testimonials
-      title="Words from real customers"
-      testimonials={[
-        {
-          testimonial: `The designs are not only visually appealing but also highly professional. The templates have saved me a significant amount of time while helping me make a lasting impression on my clients.`,
-          name: 'Emily Kennedy',
-          job: 'Front-end developer',
-          image: {
-            src: 'https://images.unsplash.com/photo-1618835962148-cf177563c6c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=930&q=80',
-            alt: 'Emily Kennedy Image',
-          },
-        },
-        {
-          testimonial: `It beautifully showcases my work, with its clean and elegant design that lets my photographs shine. Customization was a breeze, even for a non-tech person like me. The result is a professional and immersive portfolio that's garnered numerous compliments.`,
-          name: 'Sarah Hansen',
-          job: 'Photographer',
-          image: {
-            src: 'https://images.unsplash.com/photo-1561406636-b80293969660?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
-            alt: 'Sarah Hansen Image',
-          },
-        },
-        {
-          testimonial: `I discovered these templates and I'm impressed by their variety and quality. They've helped me establish a consistent brand image across my marketing and social platforms, elevating my business's overall appearance.`,
-          name: 'Mark Wilkinson',
-          job: 'Small business owner',
-          image: {
-            src: 'https://images.unsplash.com/photo-1545167622-3a6ac756afa4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=824&q=80',
-            alt: 'Mark Wilkinson Image',
-          },
-        },
-      ]}
-      callToAction={{
-        target: '_blank',
-        text: 'More testimonials...',
-        href: '/contact-us/',
-        icon: 'tabler:chevron-right',
-      }}
-    />
-  </div>
-
-  <!-- CallToAction Widget *********** -->
-
-  <div data-aos="fade-up" data-aos-delay="200">
-    <CallToAction
-      actions={[
-        {
-          variant: 'primary',
-          text: 'Start exploring',
-          href: '/',
-        },
-      ]}
-      title="Build practical AI capability"
-      subtitle="Whether you're planning training, consultancy or wider adoption support, our services help your team move with confidence."
-    />
-  </div>
+  <FAQs title="Frequently Asked Questions" columns={1} items={faqItems} />
 </Layout>
