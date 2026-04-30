@@ -3,7 +3,6 @@ import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import { AOS_STAGGER_MS } from '~/config/motion';
 
 const metadata = {
   title: 'Meet the WorkSmart-AI Founders and Training Team Here',
@@ -45,7 +44,7 @@ const founderCards = [
 
   <section class="bg-section px-6 pb-16 sm:px-8 lg:px-12">
     <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
-      <div class="overflow-hidden rounded-2xl bg-card shadow-card ring-1 ring-border" data-aos="fade-up">
+      <div class="overflow-hidden rounded-2xl bg-card shadow-card ring-1 ring-border">
         <iframe
           title="WorkSmart AI company video"
           src="https://www.youtube.com/embed/2vSpg6NhX40?feature=oembed"
@@ -54,11 +53,7 @@ const founderCards = [
           referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen></iframe>
       </div>
-      <div
-        class="rounded-2xl bg-card p-8 shadow-card ring-1 ring-border"
-        data-aos="fade-up"
-        data-aos-delay={AOS_STAGGER_MS}
-      >
+      <div class="rounded-2xl bg-card p-8 shadow-card ring-1 ring-border">
         <h2 class="font-heading text-3xl font-bold text-heading">Our approach</h2>
         <p class="mt-4 leading-relaxed text-muted">
           With over four decades-worth of specialist educational experience within the team, we understand the value in
@@ -81,17 +76,13 @@ const founderCards = [
 
   <section class="bg-page px-6 py-16 sm:px-8 lg:px-12">
     <div class="mx-auto max-w-6xl">
-      <div class="text-center" data-aos="fade-up">
+      <div class="text-center">
         <h2 class="font-heading text-3xl font-bold text-heading sm:text-4xl">Meet Our Founders</h2>
       </div>
       <div class="mt-10 grid gap-8 lg:grid-cols-2">
         {
-          founderCards.map((founder, idx) => (
-            <article
-              class="rounded-2xl bg-card p-6 shadow-card ring-1 ring-border sm:p-8"
-              data-aos="fade-up"
-              data-aos-delay={(idx + 1) * AOS_STAGGER_MS}
-            >
+          founderCards.map((founder) => (
+            <article class="rounded-2xl bg-card p-6 shadow-card ring-1 ring-border sm:p-8">
               <img src={founder.image} alt={founder.name} class="mx-auto h-52 w-52 rounded-2xl object-cover" />
               <p class="mt-3 text-center text-sm font-semibold text-accent">Founder of WorkSmart-AI</p>
               <h3 class="mt-2 text-center font-heading text-2xl font-bold text-heading">{founder.name}</h3>
@@ -115,36 +106,32 @@ const founderCards = [
     </div>
   </section>
 
-  <div data-aos="fade-up">
-    <Features2
-      title="What this means for clients"
-      columns={3}
-      items={[
-        {
-          title: 'Personalised training',
-          description: 'We work closely with clients in order to personalise every training package that we deliver.',
-          icon: 'tabler:adjustments',
-        },
-        {
-          title: 'People-first learning',
-          description:
-            'Only once people feel confident and engaged in an experience, does real learning and transformation take place.',
-          icon: 'tabler:users',
-        },
-        {
-          title: 'Transparent delivery',
-          description: 'We bring an uncomplicated, transparent and proactive approach towards business.',
-          icon: 'tabler:message-circle',
-        },
-      ]}
-    />
-  </div>
+  <Features2
+    title="What this means for clients"
+    columns={3}
+    items={[
+      {
+        title: 'Personalised training',
+        description: 'We work closely with clients in order to personalise every training package that we deliver.',
+        icon: 'tabler:adjustments',
+      },
+      {
+        title: 'People-first learning',
+        description:
+          'Only once people feel confident and engaged in an experience, does real learning and transformation take place.',
+        icon: 'tabler:users',
+      },
+      {
+        title: 'Transparent delivery',
+        description: 'We bring an uncomplicated, transparent and proactive approach towards business.',
+        icon: 'tabler:message-circle',
+      },
+    ]}
+  />
 
-  <div data-aos="fade-up" data-aos-delay={AOS_STAGGER_MS}>
-    <CallToAction
-      title="Reach out!"
-      subtitle="Interested in hearing how WorkSmart-AI could help your staff become more AI-capable, confident and compliant? Reach out to say hello, and we?ll be happy to talk you through what we can offer, and how it can help your department or institution save money and become more productive."
-      actions={[{ variant: 'primary', text: 'Contact us', href: '/contact-us/' }]}
-    />
-  </div>
+  <CallToAction
+    title="Reach out!"
+    subtitle="Interested in hearing how WorkSmart-AI could help your staff become more AI-capable, confident and compliant? Reach out to say hello, and we?ll be happy to talk you through what we can offer, and how it can help your department or institution save money and become more productive."
+    actions={[{ variant: 'primary', text: 'Contact us', href: '/contact-us/' }]}
+  />
 </Layout>
