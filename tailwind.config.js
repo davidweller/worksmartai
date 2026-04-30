@@ -32,12 +32,12 @@ export default {
       },
 
       animation: {
-        fade: 'fadeInUp 1s both',
+        fade: 'fadeInUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) both',
       },
 
       keyframes: {
         fadeInUp: {
-          '0%': { opacity: 0, transform: 'translateY(2rem)' },
+          '0%': { opacity: 0, transform: 'translateY(0.5rem)' },
           '100%': { opacity: 1, transform: 'translateY(0)' },
         },
       },

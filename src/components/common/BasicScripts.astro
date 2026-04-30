@@ -180,10 +180,10 @@ import { UI } from 'astrowind:config';
   const initAOS = () => {
     if (document.querySelector('[data-aos]')) {
       AOS.init({
-        duration: 450,
-        easing: 'ease-out-sine',
+        duration: 560,
+        easing: 'ease-out-cubic',
         once: true,
-        offset: 40,
+        offset: 28,
       });
       AOS.refreshHard();
     }
@@ -197,7 +197,7 @@ import { UI } from 'astrowind:config';
   /* Inspired by: https://github.com/heidkaemper/tailwindcss-intersect */
   const Observer = {
     observer: null,
-    delayBetweenAnimations: 100,
+    delayBetweenAnimations: 55,
     animationCounter: 0,
     elements: null,
 
