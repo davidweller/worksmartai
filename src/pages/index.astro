@@ -7,7 +7,7 @@ import { BOOK_A_CALL_URL } from '~/config/booking';
 const metadata = {
   title: 'AI Skills Training for Higher Education | WorkSmart-AI',
   description:
-    'Build confident, capable AI use across higher education with WorkSmart-AI training, consultancy and ROI tools for measurable productivity gains at scale.',
+    'Specialist AI training and consultancy for higher education, helping staff, students and senior leaders build confidence, capability and compliance with measurable impact.',
   canonical: '/',
 };
 ---
@@ -19,12 +19,12 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Contact Us',
-        href: '/contact-us/',
+        text: 'View Our Services',
+        href: '/services/',
       },
       {
-        text: 'ROI Calculator',
-        href: '#roi-calculator',
+        text: 'Contact Us',
+        href: '/contact-us/',
         class: 'font-bold hover:bg-accent hover:border-accent hover:text-white',
       },
     ]}
@@ -37,11 +37,16 @@ const metadata = {
     }}
   >
     <Fragment slot="title">
-      AI skills training for <span class="text-accent">higher education</span>.
+      Specialist AI training and consultancy for <span class="text-accent">higher education</span>.
     </Fragment>
     <Fragment slot="subtitle">
-      We help staff build confidence, capability and compliance with AI, to ensure digital transformation leads to
-      measurable ROI.
+      We specialise in supporting staff, students and senior leaders within HE to build confidence, capability and
+      compliance with AI. We help people make the right decisions when it comes to AI by recognising the opportunities
+      as well as the risks.
+      <br />
+      <br />
+      We are people-focused, cutting through technical jargon and overcoming anxieties through a personalised, supportive
+      approach that encourages engagement and long-term use.
     </Fragment>
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-gradient-to-b from-page via-page to-section"></div>
@@ -57,13 +62,12 @@ const metadata = {
   <section class="bg-section px-6 py-20 sm:px-8 lg:px-12">
     <div class="mx-auto max-w-4xl text-center">
       <h2 class="font-heading text-3xl font-bold text-heading sm:text-4xl" data-aos="fade-up">
-        Struggling to see ROI from AI? You're not alone.
+        We talk from experience
       </h2>
       <p class="mt-6 text-base leading-[var(--aw-leading-body,1.7)] text-muted" data-aos="fade-up" data-aos-delay="100">
-        Organisations are overwhelmed with AI hype, staff feel anxious, and leaders can't see ROI. WorkSmart-AI provides
-        people-first training that turns AI adoption into measurable savings, confident staff, and more productive
-        organisations. With over a decade of experience working with universities in edtech, digital skills and AI,
-        we're confident in helping you achieve your outcomes.
+        With over a decade of experience working with universities in edtech, digital skills and AI, we're confident in
+        helping you achieve your outcomes. We understand how universities operate, the differing roles of professional
+        services and academic staff, and the importance of the student.
       </p>
     </div>
   </section>
@@ -71,10 +75,13 @@ const metadata = {
   <section class="bg-brand px-6 py-16 sm:px-8 lg:px-12">
     <blockquote class="mx-auto max-w-5xl border-l-4 border-accent pl-6 text-white" data-aos="fade-right">
       <h4 class="font-heading text-lg font-semibold leading-[var(--aw-leading-body,1.7)]">
-        &ldquo;...the full potential of AI can only be unlocked if the staff are well-trained and confident in using
-        these new technologies responsibly.&rdquo;
+        &ldquo;Students see AI skills as essential, but institutional support lags behind. While over two-thirds (68%)
+        of students believe AI skills are essential to thrive in today&rsquo;s world, fewer than half (48%) feel their
+        teaching staff are helping them to develop these skills for their future careers.&rdquo;
       </h4>
-      <footer class="mt-6 text-base font-normal italic text-white/90">- AI and Jisc's Leadership Survey 2025</footer>
+      <footer class="mt-6 text-base font-normal italic text-white/90">
+        - HEPI / Kortext Student Generative AI Survey, 2026
+      </footer>
     </blockquote>
   </section>
 
@@ -82,16 +89,31 @@ const metadata = {
     <div class="mx-auto max-w-4xl text-center">
       <h2 class="font-heading text-3xl font-bold text-heading sm:text-4xl" data-aos="fade-up">Explore What We Offer</h2>
       <p class="mx-auto mt-5 max-w-3xl text-base text-muted" data-aos="fade-up" data-aos-delay="100">
-        Discover our services to find the right mix of training and support for your institution's AI goals.
+        Services we offer include face-to-face and online training for staff, student AI skills for the workplace
+        sessions, 1:1 senior and middle manager consultancy, and bespoke academic coaching sessions.
       </p>
-      <a
-        data-aos="fade-up"
-        data-aos-delay="180"
-        href="/services/"
-        class="mt-8 inline-flex items-center justify-center rounded-full border border-accent bg-accent px-6 py-3 font-semibold text-white transition hover:bg-accent-hover hover:border-accent-hover"
-      >
-        View Our Services
-      </a>
+      <p class="mx-auto mt-4 max-w-3xl text-base text-muted" data-aos="fade-up" data-aos-delay="130">
+        All of this is underpinned by a data-driven approach, ensuring digital transformation leads to measurable return
+        on investment.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a
+          data-aos="fade-up"
+          data-aos-delay="180"
+          href="/services/"
+          class="inline-flex items-center justify-center rounded-full border border-accent bg-accent px-6 py-3 font-semibold text-white transition hover:bg-accent-hover hover:border-accent-hover"
+        >
+          View Our Services
+        </a>
+        <a
+          data-aos="fade-up"
+          data-aos-delay="220"
+          href="/contact-us/"
+          class="inline-flex items-center justify-center rounded-full border border-accent bg-transparent px-6 py-3 font-semibold text-accent transition hover:bg-accent hover:text-white"
+        >
+          Contact Us
+        </a>
+      </div>
     </div>
   </section>
 
