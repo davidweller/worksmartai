@@ -158,7 +158,8 @@ const courseGroups = [
       >
         <h2 class="font-heading text-2xl font-bold text-heading sm:text-3xl">Our staff training courses</h2>
         <p class="mt-3 text-muted">
-          A practical workshop suite covering foundation skills and role-specific applications for higher education teams.
+          A practical workshop suite covering foundation skills and role-specific applications for higher education
+          teams.
         </p>
 
         <div class="mt-8 space-y-8">
@@ -174,25 +175,21 @@ const courseGroups = [
                   </div>
 
                   <div class="divide-y divide-default/70">
-                    {
-                      group.courses.map((course) => (
-                        <article class="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-3">
-                          <h4 class="text-sm font-medium text-default sm:text-base">
-                            <span class="font-semibold text-heading">{course.code}.</span> {course.name}
-                          </h4>
-                          <span
-                            class:list={[
-                              'inline-flex rounded-full px-3 py-1 text-xs font-semibold',
-                              course.level === 'Foundation'
-                                ? 'bg-primary/10 text-link'
-                                : 'bg-accent/15 text-accent',
-                            ]}
-                          >
-                            {course.level}
-                          </span>
-                        </article>
-                      ))
-                    }
+                    {group.courses.map((course) => (
+                      <article class="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-3">
+                        <h4 class="text-sm font-medium text-default sm:text-base">
+                          <span class="font-semibold text-heading">{course.code}.</span> {course.name}
+                        </h4>
+                        <span
+                          class:list={[
+                            'inline-flex rounded-full px-3 py-1 text-xs font-semibold',
+                            course.level === 'Foundation' ? 'bg-primary/10 text-link' : 'bg-accent/15 text-accent',
+                          ]}
+                        >
+                          {course.level}
+                        </span>
+                      </article>
+                    ))}
                   </div>
                 </div>
               </section>

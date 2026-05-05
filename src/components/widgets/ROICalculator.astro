@@ -274,19 +274,6 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
         </div>
       </div>
     </aside>
-
-    <section class="wsai-methodology-callout" id="methodology" aria-labelledby={`${rootId}-methodology-heading`}>
-      <div class="wsai-methodology-callout-inner">
-        <h2 id={`${rootId}-methodology-heading`} class="wsai-methodology-h">How our calculator works</h2>
-        <p class="wsai-methodology-p">
-          Figures combine role-level eligibility, adoption level, and efficiency uplift assumptions drawn from research
-          into AI in higher education. For the full methodology, assumptions, and limitations of this calculator:
-        </p>
-        <p class="wsai-methodology-cta">
-          <a class="wsai-methodology-link" href="/how-our-calculator-works/">Read more here →</a>
-        </p>
-      </div>
-    </section>
   </div>
 </section>
 
@@ -599,8 +586,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
   .wsai-range:focus-visible,
   .wsai-input-adv:focus-visible,
   .wsai-banner-cta:focus-visible,
-  .wsai-pill-btn:focus-visible,
-  .wsai-methodology-link:focus-visible {
+  .wsai-pill-btn:focus-visible {
     outline: 3px solid var(--aw-color-focus);
     outline-offset: 3px;
   }
@@ -905,57 +891,6 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
     color: var(--reversed);
   }
 
-  .wsai-methodology-callout {
-    margin-top: 28px;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .wsai-methodology-callout-inner {
-    width: 100%;
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 24px 28px 26px;
-    text-align: center;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    box-shadow: var(--calc-shadow);
-  }
-
-  .wsai-methodology-h {
-    margin: 0 0 14px;
-    font-size: 1.35rem;
-    color: var(--navy);
-    font-family: 'Work Sans', system-ui, sans-serif;
-    font-weight: 700;
-  }
-
-  .wsai-methodology-p {
-    margin: 0;
-    color: var(--ink);
-    font-size: 1rem;
-    line-height: 1.65;
-  }
-
-  .wsai-methodology-cta {
-    margin: 16px 0 0;
-  }
-
-  .wsai-methodology-link {
-    display: inline-block;
-    color: var(--navy);
-    font-weight: 700;
-    font-size: 1rem;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-
-  .wsai-methodology-link:hover {
-    color: var(--accent);
-  }
-
   @media (max-width: 900px) {
     .wsai-grid {
       grid-template-columns: 1fr;
@@ -986,10 +921,6 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
 
     .wsai-hero-title {
       font-size: 28px;
-    }
-
-    .wsai-methodology-callout-inner {
-      padding: 20px 18px 22px;
     }
   }
 </style>
