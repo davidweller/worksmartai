@@ -29,6 +29,13 @@ const outcomes = [
 ];
 
 const deliveryTags = ['Online', 'Face to face', 'Blended'];
+
+const studentCourses = [
+  { code: 'W1', name: 'AI Foundations & Responsible Use', level: 'Foundation' },
+  { code: 'W2', name: 'AI for Daily Workflows (Email, Meetings, and Comms)', level: 'Foundation' },
+  { code: 'W3', name: 'AI for Summarising and Analysing (Word & Excel)', level: 'Foundation' },
+  { code: 'W4', name: 'Building Custom AI Agents', level: 'Intermediate' },
+];
 ---
 
 <Layout metadata={metadata}>
@@ -131,9 +138,36 @@ const deliveryTags = ['Online', 'Face to face', 'Blended'];
         data-aos="fade-up"
       >
         <h2 class="font-heading text-2xl font-bold text-heading sm:text-3xl">Our student training courses</h2>
-        <p class="mt-3 text-muted">Courses coming soon - check back shortly.</p>
-        <div class="mt-4 min-h-[120px]" aria-hidden="true"></div>
-        <!-- TODO: Add course cards here. Each course should show: course name (h4), 2-sentence outcome description, and duration tag. -->
+        <p class="mt-3 text-muted">
+          Core practical workshops designed to help students use AI safely, effectively and with academic confidence.
+        </p>
+
+        <div class="mt-6 overflow-hidden rounded-lg border border-default bg-card">
+          <div class="grid grid-cols-[minmax(0,1fr)_auto] gap-4 border-b border-default bg-brand/5 px-4 py-3">
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted">Workshop</p>
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted">Level</p>
+          </div>
+
+          <div class="divide-y divide-default/70">
+            {
+              studentCourses.map((course) => (
+                <article class="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-3">
+                  <h4 class="text-sm font-medium text-default sm:text-base">
+                    <span class="font-semibold text-heading">{course.code}.</span> {course.name}
+                  </h4>
+                  <span
+                    class:list={[
+                      'inline-flex rounded-full px-3 py-1 text-xs font-semibold',
+                      course.level === 'Foundation' ? 'bg-primary/10 text-link' : 'bg-accent/15 text-accent',
+                    ]}
+                  >
+                    {course.level}
+                  </span>
+                </article>
+              ))
+            }
+          </div>
+        </div>
       </div>
 
       <div class="mt-10 rounded-xl border border-default bg-card p-6 shadow-card md:mt-14 md:p-10" data-aos="fade-up">
