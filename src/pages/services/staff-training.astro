@@ -29,6 +29,34 @@ const outcomes = [
 ];
 
 const deliveryTags = ['F2F / Online', 'Asynchronous'];
+
+const courseGroups = [
+  {
+    title: 'All-Staff Workshops',
+    courses: [
+      { code: 'W1', name: 'AI Foundations & Responsible Use', level: 'Foundation' },
+      { code: 'W2', name: 'AI for Daily Workflows (Email, Meetings, and Comms)', level: 'Foundation' },
+      { code: 'W3', name: 'AI for Summarising and Analysing (Word & Excel)', level: 'Foundation' },
+      { code: 'W4', name: 'Building Custom AI Agents', level: 'Intermediate' },
+    ],
+  },
+  {
+    title: 'Academic Workshops',
+    courses: [
+      { code: 'W5', name: 'AI for Academic Content Creation (AI Before Class)', level: 'Intermediate' },
+      { code: 'W6', name: 'The AI-Enabled Classroom: Pedagogy & Practice (AI During Class)', level: 'Intermediate' },
+      { code: 'W7', name: 'AI for Academic Assessments (AI after Class)', level: 'Intermediate' },
+      { code: 'W8', name: 'AI for Researchers', level: 'Foundation' },
+    ],
+  },
+  {
+    title: 'Professional Services Workshops',
+    courses: [
+      { code: 'W9', name: 'AI for Process Improvement', level: 'Intermediate' },
+      { code: 'W10', name: 'AI for Comms and Engagement', level: 'Intermediate' },
+    ],
+  },
+];
 ---
 
 <Layout metadata={metadata}>
@@ -129,9 +157,48 @@ const deliveryTags = ['F2F / Online', 'Asynchronous'];
         data-aos="fade-up"
       >
         <h2 class="font-heading text-2xl font-bold text-heading sm:text-3xl">Our staff training courses</h2>
-        <p class="mt-3 text-muted">Courses coming soon - check back shortly.</p>
-        <div class="mt-4 min-h-[120px]" aria-hidden="true"></div>
-        <!-- TODO: Add course cards here. Each course should show: course name (h4), 2-sentence outcome description, and duration tag. -->
+        <p class="mt-3 text-muted">
+          A practical workshop suite covering foundation skills and role-specific applications for higher education teams.
+        </p>
+
+        <div class="mt-8 space-y-8">
+          {
+            courseGroups.map((group) => (
+              <section class="rounded-xl border border-default bg-section p-4 md:p-6">
+                <h3 class="font-heading text-xl font-bold text-heading sm:text-2xl">{group.title}</h3>
+
+                <div class="mt-4 overflow-hidden rounded-lg border border-default bg-card">
+                  <div class="grid grid-cols-[minmax(0,1fr)_auto] gap-4 border-b border-default bg-brand/5 px-4 py-3">
+                    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted">Workshop</p>
+                    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted">Level</p>
+                  </div>
+
+                  <div class="divide-y divide-default/70">
+                    {
+                      group.courses.map((course) => (
+                        <article class="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-3">
+                          <h4 class="text-sm font-medium text-default sm:text-base">
+                            <span class="font-semibold text-heading">{course.code}.</span> {course.name}
+                          </h4>
+                          <span
+                            class:list={[
+                              'inline-flex rounded-full px-3 py-1 text-xs font-semibold',
+                              course.level === 'Foundation'
+                                ? 'bg-primary/10 text-link'
+                                : 'bg-accent/15 text-accent',
+                            ]}
+                          >
+                            {course.level}
+                          </span>
+                        </article>
+                      ))
+                    }
+                  </div>
+                </div>
+              </section>
+            ))
+          }
+        </div>
       </div>
 
       <div class="mt-10 rounded-xl border border-default bg-card p-6 shadow-card md:mt-14 md:p-10" data-aos="fade-up">
