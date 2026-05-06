@@ -1,6 +1,13 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
+export function getStaticPaths() {
+  const academyCourseIds = ['ai-foundations', 'copilot-workflows', 'agentic-automation'];
+  return academyCourseIds.map((courseId) => ({
+    params: { courseId },
+  }));
+}
+
 const courseId = Astro.params.courseId ?? '';
 
 const metadata = {
