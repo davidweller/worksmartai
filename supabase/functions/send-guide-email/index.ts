@@ -4,6 +4,7 @@
 import 'jsr:@supabase/functions-js/edge-runtime.d.ts';
 
 const DOWNLOAD_URL = 'https://worksmart-ai.co.uk/WorkSmart-AI%20-%20From%20Chatbot%20to%20Workflows.pdf';
+const BOOKING_URL = 'https://new.worksmart-ai.co.uk/book-a-call/';
 
 const corsHeaders: Record<string, string> = {
   'Access-Control-Allow-Origin': '*',
@@ -67,13 +68,19 @@ Deno.serve(async (req) => {
     `<body style="margin:0;padding:24px;font-family:system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.6;color:#0f172a;background:#f8fafc;">`,
     `<div style="max-width:560px;margin:0 auto;background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:28px;box-shadow:0 1px 3px rgba(0,36,56,0.08);">`,
     `<p style="margin:0 0 16px;">Hi ${safeName},</p>`,
-    `<p style="margin:0 0 16px;">Thanks for your interest in WorkSmart-AI. Here is the download link for your <strong>free Higher Education AI guide</strong> (PDF).</p>`,
+    `<p style="margin:0 0 16px;">Thank you for downloading our guide - we hope it gives you some practical ideas for how AI can save time and add real value across your institution.</p>`,
     `<p style="margin:0 0 20px;">`,
-    `<a href="${DOWNLOAD_URL}" style="color:#0d4f6b;font-weight:600;">Download the guide (PDF)</a>`,
+    `<a href="${DOWNLOAD_URL}" style="display:inline-block;background:#0d4f6b;color:#ffffff;font-weight:600;text-decoration:none;padding:10px 16px;border-radius:8px;">Download your guide here &rarr;</a>`,
     `</p>`,
-    `<p style="margin:0 0 8px;font-size:14px;color:#64748b;">If the link does not work, copy and paste this address into your browser:</p>`,
+    `<p style="margin:0 0 16px;">Whether you're just starting to explore AI or already have initiatives underway, the guide covers some of the most impactful use cases we've seen working with higher education teams - from reducing admin overhead to supporting student-facing services.</p>`,
+    `<p style="margin:0 0 16px;">If anything in the guide sparks a question, or you'd like to talk through how any of these ideas could work at your university, we'd love to hear from you.</p>`,
+    `<p style="margin:0 0 8px;">You can:</p>`,
+    `<p style="margin:0 0 8px;">Book a free 30-minute call - <a href="${BOOKING_URL}" style="color:#0d4f6b;font-weight:600;">${BOOKING_URL}</a></p>`,
+    `<p style="margin:0 0 20px;">Email us directly at <a href="mailto:hello@worksmart-ai.co.uk" style="color:#0d4f6b;font-weight:600;">hello@worksmart-ai.co.uk</a></p>`,
+    `<p style="margin:0 0 8px;font-size:14px;color:#64748b;">If the download link does not work, copy and paste this address into your browser:</p>`,
     `<p style="margin:0 0 20px;font-size:13px;word-break:break-all;color:#0d4f6b;">${DOWNLOAD_URL}</p>`,
-    `<p style="margin:0;font-size:14px;color:#64748b;">— WorkSmart-AI</p>`,
+    `<p style="margin:0 0 4px;">Thanks again for your interest, and we look forward to connecting.</p>`,
+    `<p style="margin:0;">The WorkSmart-AI Team<br/><a href="https://worksmart-ai.co.uk" style="color:#0d4f6b;">worksmart-ai.co.uk</a></p>`,
     `</div></body></html>`,
   ].join('');
 
@@ -86,7 +93,7 @@ Deno.serve(async (req) => {
     body: JSON.stringify({
       from: 'WorkSmart-AI <hello@worksmart-ai.co.uk>',
       to: [email],
-      subject: 'Your free Higher Education AI guide',
+      subject: 'Your free guide: AI Use Cases for Higher Education Staff',
       html,
     }),
   });

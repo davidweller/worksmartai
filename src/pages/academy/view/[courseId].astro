@@ -1,0 +1,156 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const courseId = Astro.params.courseId ?? '';
+
+const metadata = {
+  title: 'Academy Course Player | WorkSmart-AI',
+  description: 'Launch your WorkSmart-AI Academy course and continue from your saved progress.',
+  canonical: `/academy/view/${courseId}/`,
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
+const supabaseUrl = (import.meta.env.PUBLIC_SUPABASE_URL ?? import.meta.env.SUPABASE_URL ?? '').trim();
+const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta.env.SUPABASE_ANON_KEY ?? '').trim();
+---
+
+<Layout metadata={metadata}>
+  <section
+    class="bg-page px-4 py-6 sm:px-6 lg:px-8"
+    data-course-id={courseId}
+    data-supabase-url={supabaseUrl}
+    data-supabase-anon-key={supabaseAnonKey}
+  >
+    <div class="mx-auto max-w-[1600px]">
+      <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <p class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-accent">Academy SCORM player</p>
+          <h1 class="mt-1 font-heading text-2xl font-bold text-heading sm:text-3xl">Course: {courseId}</h1>
+        </div>
+        <a
+          href="/academy/dashboard/"
+          class="inline-flex items-center justify-center rounded-full border border-default bg-card px-4 py-2 text-sm font-semibold text-default transition hover:border-brand hover:text-brand"
+        >
+          Back to dashboard
+        </a>
+      </div>
+      <p id="academy-player-feedback" class="mb-4 hidden rounded-lg px-3 py-2 text-sm" role="alert"></p>
+      <iframe
+        id="academy-scorm-frame"
+        src={`/courses/${courseId}/`}
+        title={`SCORM course player for ${courseId}`}
+        class="h-[78vh] min-h-[640px] w-full rounded-xl border border-default bg-white shadow-card"
+        loading="eager"
+        allow="fullscreen"></iframe>
+    </div>
+  </section>
+</Layout>
+
+<script src="https://cdn.jsdelivr.net/gh/gabrieldoty/simplify-scorm@master/src/init.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/gabrieldoty/simplify-scorm@master/src/constants.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/gabrieldoty/simplify-scorm@master/src/baseAPI.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/gabrieldoty/simplify-scorm@master/src/jsonFormatter.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/gabrieldoty/simplify-scorm@master/src/scormAPI.js"></script>
+
+<script type="module" is:inline>
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+  const section = document.querySelector('section[data-course-id]');
+  const feedback = document.getElementById('academy-player-feedback');
+
+  if (!section) {
+    throw new Error('Course player root not found');
+  }
+
+  const courseId = section.getAttribute('data-course-id') || '';
+  const supabaseUrl = (section.getAttribute('data-supabase-url') || '').trim();
+  const supabaseAnonKey = (section.getAttribute('data-supabase-anon-key') || '').trim();
+
+  const setFeedback = (message, isError = true) => {
+    if (!feedback) return;
+    feedback.textContent = message;
+    feedback.className = isError
+      ? 'mb-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800'
+      : 'mb-4 rounded-lg border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-800';
+  };
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    setFeedback('Course player is unavailable. Missing Supabase configuration.');
+  } else if (!courseId) {
+    setFeedback('Course not found.');
+  } else {
+    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+    const { data: sessionData } = await supabase.auth.getSession();
+    const user = sessionData?.session?.user;
+
+    if (!user) {
+      window.location.replace('/academy/login/');
+    } else {
+      const { data: progressRow } = await supabase
+        .from('progress')
+        .select('suspend_data, score, progress_percent')
+        .eq('user_id', user.id)
+        .eq('course_id', courseId)
+        .maybeSingle();
+
+      if (window.API && typeof window.API.loadFromJSON === 'function') {
+        window.API.loadFromJSON({
+          suspend_data: String(progressRow?.suspend_data || ''),
+          core: { score: { raw: progressRow?.score != null ? String(progressRow.score) : '' } },
+        });
+      }
+
+      const persistProgress = async () => {
+        if (!window.API || !window.API.cmi || typeof window.API.cmi.toJSON !== 'function') return;
+
+        const cmi = window.API.cmi.toJSON();
+        const suspendData = String(cmi?.suspend_data || '');
+        const rawScore = Number(cmi?.core?.score?.raw || progressRow?.score || 0);
+        const progressPercent = Number.isFinite(rawScore) ? Math.max(0, Math.min(100, Math.round(rawScore))) : 0;
+
+        const { error } = await supabase.from('progress').upsert(
+          {
+            user_id: user.id,
+            course_id: courseId,
+            score: Number.isFinite(rawScore) ? rawScore : 0,
+            suspend_data: suspendData,
+            progress_percent: progressPercent,
+            updated_at: new Date().toISOString(),
+          },
+          { onConflict: 'user_id,course_id' }
+        );
+
+        if (error) {
+          setFeedback('Progress save failed. Your latest state may not be synced.');
+        }
+      };
+
+      let saveTimer = null;
+      const queueSave = () => {
+        if (saveTimer) window.clearTimeout(saveTimer);
+        saveTimer = window.setTimeout(() => {
+          void persistProgress();
+        }, 300);
+      };
+
+      if (window.API && typeof window.API.on === 'function') {
+        window.API.on('LMSSetValue', () => {
+          queueSave();
+        });
+        window.API.on('LMSCommit', () => {
+          queueSave();
+        });
+        window.API.on('LMSFinish', () => {
+          void persistProgress();
+        });
+      }
+
+      window.addEventListener('beforeunload', () => {
+        void persistProgress();
+      });
+    }
+  }
+</script>

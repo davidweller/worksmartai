@@ -26,12 +26,14 @@
     "@astrolib/analytics": "^0.6.1",
     "@astrolib/seo": "^1.0.0-beta.8",
     "@fontsource-variable/inter": "^5.2.6",
+    "@supabase/supabase-js": "^2.105.3",
     "aos": "^2.3.4",
     "astro": "^5.12.9",
     "astro-embed": "^0.9.0",
     "astro-icon": "^1.1.5",
     "limax": "4.1.0",
     "lodash.merge": "^4.6.2",
+    "simplify-scorm": "github:gabrieldoty/simplify-scorm",
     "unpic": "^4.1.3"
   },
   "devDependencies": {

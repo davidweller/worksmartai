@@ -1,0 +1,157 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Academy Dashboard | WorkSmart-AI',
+  description: 'Track your course progress in the WorkSmart-AI Academy.',
+  canonical: '/academy/dashboard/',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
+const supabaseUrl = (import.meta.env.PUBLIC_SUPABASE_URL ?? import.meta.env.SUPABASE_URL ?? '').trim();
+const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta.env.SUPABASE_ANON_KEY ?? '').trim();
+
+const availableCourses = [
+  {
+    id: 'ai-foundations',
+    title: 'AI Foundations',
+    summary: 'Core principles, safe use patterns, and practical prompting for teams.',
+  },
+  {
+    id: 'copilot-workflows',
+    title: 'Copilot Workflows',
+    summary: 'Move from one-off prompts to repeatable, role-specific Copilot workflows.',
+  },
+  {
+    id: 'agentic-automation',
+    title: 'Agentic Automation',
+    summary: 'Build lightweight autonomous routines that save hours every week.',
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <section class="bg-page px-6 py-16 sm:px-8 lg:px-12">
+    <div class="mx-auto max-w-6xl">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-accent">Academy</p>
+          <h1 class="mt-2 font-heading text-3xl font-bold text-heading sm:text-4xl">Your course dashboard</h1>
+          <p class="mt-2 text-sm text-muted">Resume where you left off and track progress across your learning path.</p>
+        </div>
+        <button
+          id="academy-signout-button"
+          class="inline-flex items-center justify-center rounded-full border border-default bg-card px-5 py-2.5 text-sm font-semibold text-default transition hover:border-brand hover:text-brand"
+        >
+          Sign out
+        </button>
+      </div>
+
+      <p id="academy-dashboard-feedback" class="mt-6 hidden rounded-lg px-3 py-2 text-sm" role="alert"></p>
+
+      <div
+        id="academy-course-grid"
+        class="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3"
+        data-courses={JSON.stringify(availableCourses)}
+      >
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script type="module" is:inline>
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+  const courseGrid = document.getElementById('academy-course-grid');
+  const feedback = document.getElementById('academy-dashboard-feedback');
+  const signOutButton = document.getElementById('academy-signout-button');
+
+  if (!courseGrid) {
+    throw new Error('Academy course grid not found');
+  }
+
+  const supabaseUrl = (document.documentElement.dataset.supabaseUrl || '').trim();
+  const supabaseAnonKey = (document.documentElement.dataset.supabaseAnonKey || '').trim();
+  const courses = JSON.parse(courseGrid.getAttribute('data-courses') || '[]');
+
+  const setFeedback = (message, isError = true) => {
+    if (!feedback) return;
+    feedback.textContent = message;
+    feedback.className = isError
+      ? 'mt-6 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800'
+      : 'mt-6 rounded-lg border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-800';
+  };
+
+  const renderCourses = (progressByCourseId = {}) => {
+    const cards = courses.map((course) => {
+      const progress = Number(progressByCourseId[course.id] ?? 0);
+      const clampedProgress = Number.isFinite(progress) ? Math.max(0, Math.min(100, Math.round(progress))) : 0;
+      return `
+        <article class="rounded-2xl border border-default bg-card p-6 shadow-card">
+          <h2 class="font-heading text-xl font-bold text-heading">${course.title}</h2>
+          <p class="mt-2 text-sm leading-relaxed text-muted">${course.summary}</p>
+          <div class="mt-5">
+            <div class="mb-1.5 flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-muted">
+              <span>Progress</span>
+              <span>${clampedProgress}%</span>
+            </div>
+            <div class="h-2 rounded-full bg-slate-200">
+              <div class="h-full rounded-full bg-accent transition-all" style="width: ${clampedProgress}%"></div>
+            </div>
+          </div>
+          <a
+            href="/academy/view/${course.id}/"
+            class="mt-6 inline-flex items-center justify-center rounded-full border-2 border-brand bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:border-accent hover:bg-accent"
+          >
+            Continue course
+          </a>
+        </article>
+      `;
+    });
+    courseGrid.innerHTML = cards.join('');
+  };
+
+  renderCourses();
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    setFeedback('Dashboard is unavailable. Missing Supabase configuration.');
+  } else {
+    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+    const { data: sessionData } = await supabase.auth.getSession();
+    const user = sessionData?.session?.user;
+
+    if (!user) {
+      window.location.replace('/academy/login/');
+    } else {
+      const { data: progressRows, error } = await supabase
+        .from('progress')
+        .select('course_id, progress_percent')
+        .eq('user_id', user.id);
+
+      if (error) {
+        setFeedback('We could not load your progress yet. Please refresh and try again.');
+      } else {
+        const progressByCourseId = Object.fromEntries(
+          (progressRows || []).map((row) => [String(row.course_id), Number(row.progress_percent || 0)])
+        );
+        renderCourses(progressByCourseId);
+      }
+
+      if (signOutButton) {
+        signOutButton.addEventListener('click', async () => {
+          await supabase.auth.signOut();
+          window.location.replace('/academy/login/');
+        });
+      }
+    }
+  }
+</script>
+
+<script is:inline define:vars={{ supabaseUrl, supabaseAnonKey }}>
+  document.documentElement.dataset.supabaseUrl = supabaseUrl;
+  document.documentElement.dataset.supabaseAnonKey = supabaseAnonKey;
+</script>
