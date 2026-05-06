@@ -588,8 +588,9 @@ const faqs = [
       const supabaseAnonKey = (form.getAttribute('data-supabase-anon-key') || '').trim();
       const guidePdfPath =
         (form.getAttribute('data-guide-pdf') || '').trim() || '/WorkSmart-AI%20-%20From%20Chatbot%20to%20Workflows.pdf';
-      const restUrl = supabaseUrl.replace(/\/$/, '') + '/rest/v1/leads';
-      const guideWelcomeEmailUrl = 'https://qgizwdyeqartoavllsol.supabase.co/functions/v1/rapid-function';
+      const baseSupabaseUrl = supabaseUrl.replace(/\/$/, '');
+      const restUrl = baseSupabaseUrl + '/rest/v1/leads';
+      const guideWelcomeEmailUrl = baseSupabaseUrl + '/functions/v1/send-guide-email';
 
       function showError(message) {
         if (!feedback) return;

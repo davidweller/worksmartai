@@ -1,5 +1,4 @@
 name: GitHub Actions
-
 on:
   pull_request:
     branches:
@@ -7,22 +6,7 @@ on:
   push:
     branches:
       - main
-
-# Use Node.js 24 for @actions/* until default runner image switches (avoids Node 20 deprecation noise)
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
-# Static site: build locally with .env, commit dist/, push. Hostinger serves committed dist/.
-# CI only runs lint/type checks (no build here).
-jobs:
-  check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js 22
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run check
+# Static site: build locally, commit dist/, push. Hostinger serves committed dist/.
+# No CI jobs needed - type checking done locally in Cursor.
