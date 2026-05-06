@@ -14,8 +14,8 @@ const metadata = {
   },
 };
 
-/** Public URL after successful lead capture (file: public/WorkSmart-AI - From Chatbot to Workflows.pdf). */
-const guideDownloadPath = '/WorkSmart-AI%20-%20From%20Chatbot%20to%20Workflows.pdf';
+/** Public URL after successful lead capture (cache-busted to avoid stale CDN/browser PDF). */
+const guideDownloadPath = '/WorkSmart-AI%20-%20From%20Chatbot%20to%20Workflows.pdf?v=2026-05-06';
 const guideCoverSrc = '/images/guide-from-chatbot-to-workflow-cover.png';
 
 // Use PUBLIC_* in CI so build inlines them; fallbacks for local .env. Keys on data-* avoid minifier mangling JWT in inline JS.
@@ -587,7 +587,8 @@ const faqs = [
       const supabaseUrl = (form.getAttribute('data-supabase-url') || '').trim();
       const supabaseAnonKey = (form.getAttribute('data-supabase-anon-key') || '').trim();
       const guidePdfPath =
-        (form.getAttribute('data-guide-pdf') || '').trim() || '/WorkSmart-AI%20-%20From%20Chatbot%20to%20Workflows.pdf';
+        (form.getAttribute('data-guide-pdf') || '').trim() ||
+        '/WorkSmart-AI%20-%20From%20Chatbot%20to%20Workflows.pdf?v=2026-05-06';
       const baseSupabaseUrl = supabaseUrl.replace(/\/$/, '');
       const restUrl = baseSupabaseUrl + '/rest/v1/leads';
       const guideWelcomeEmailUrl = baseSupabaseUrl + '/functions/v1/send-guide-email';
