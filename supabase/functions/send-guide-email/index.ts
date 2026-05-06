@@ -1,9 +1,11 @@
 // Deploy with: supabase functions deploy send-guide-email
 // Set secret with: supabase secrets set RESEND_API_KEY=your_key_here
+// Optional override for the lead magnet URL:
+// supabase secrets set GUIDE_DOWNLOAD_URL="https://new.worksmart-ai.co.uk/WorkSmart-AI%20-%20From%20Chatbot%20to%20Workflows.pdf"
 
 import 'jsr:@supabase/functions-js/edge-runtime.d.ts';
 
-const DOWNLOAD_URL = 'https://worksmart-ai.co.uk/WorkSmart-AI%20-%20From%20Chatbot%20to%20Workflows.pdf';
+const DEFAULT_DOWNLOAD_URL = 'https://new.worksmart-ai.co.uk/WorkSmart-AI%20-%20From%20Chatbot%20to%20Workflows.pdf';
 const BOOKING_URL = 'https://new.worksmart-ai.co.uk/book-a-call/';
 
 const corsHeaders: Record<string, string> = {
@@ -29,6 +31,12 @@ function isPlausibleEmail(s: string): boolean {
 
 function escapeHtml(s: string): string {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function getDownloadUrl(): string {
+  const configured = Deno.env.get('GUIDE_DOWNLOAD_URL');
+  if (configured && configured.trim()) return configured.trim();
+  return DEFAULT_DOWNLOAD_URL;
 }
 
 Deno.serve(async (req) => {
@@ -63,6 +71,7 @@ Deno.serve(async (req) => {
   }
 
   const safeName = escapeHtml(name);
+  const downloadUrl = getDownloadUrl();
   const html = [
     `<!DOCTYPE html><html><head><meta charset="utf-8"/></head>`,
     `<body style="margin:0;padding:24px;font-family:system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.6;color:#0f172a;background:#f8fafc;">`,
@@ -70,7 +79,7 @@ Deno.serve(async (req) => {
     `<p style="margin:0 0 16px;">Hi ${safeName},</p>`,
     `<p style="margin:0 0 16px;">Thank you for downloading our guide - we hope it gives you some practical ideas for how AI can save time and add real value across your institution.</p>`,
     `<p style="margin:0 0 20px;">`,
-    `<a href="${DOWNLOAD_URL}" style="display:inline-block;background:#0d4f6b;color:#ffffff;font-weight:600;text-decoration:none;padding:10px 16px;border-radius:8px;">Download your guide here &rarr;</a>`,
+    `<a href="${downloadUrl}" style="display:inline-block;background:#0d4f6b;color:#ffffff;font-weight:600;text-decoration:none;padding:10px 16px;border-radius:8px;">Download your guide here &rarr;</a>`,
     `</p>`,
     `<p style="margin:0 0 16px;">Whether you're just starting to explore AI or already have initiatives underway, the guide covers some of the most impactful use cases we've seen working with higher education teams - from reducing admin overhead to supporting student-facing services.</p>`,
     `<p style="margin:0 0 16px;">If anything in the guide sparks a question, or you'd like to talk through how any of these ideas could work at your university, we'd love to hear from you.</p>`,
@@ -78,7 +87,7 @@ Deno.serve(async (req) => {
     `<p style="margin:0 0 8px;">Book a free 30-minute call - <a href="${BOOKING_URL}" style="color:#0d4f6b;font-weight:600;">${BOOKING_URL}</a></p>`,
     `<p style="margin:0 0 20px;">Email us directly at <a href="mailto:hello@worksmart-ai.co.uk" style="color:#0d4f6b;font-weight:600;">hello@worksmart-ai.co.uk</a></p>`,
     `<p style="margin:0 0 8px;font-size:14px;color:#64748b;">If the download link does not work, copy and paste this address into your browser:</p>`,
-    `<p style="margin:0 0 20px;font-size:13px;word-break:break-all;color:#0d4f6b;">${DOWNLOAD_URL}</p>`,
+    `<p style="margin:0 0 20px;font-size:13px;word-break:break-all;color:#0d4f6b;">${downloadUrl}</p>`,
     `<p style="margin:0 0 4px;">Thanks again for your interest, and we look forward to connecting.</p>`,
     `<p style="margin:0;">The WorkSmart-AI Team<br/><a href="https://worksmart-ai.co.uk" style="color:#0d4f6b;">worksmart-ai.co.uk</a></p>`,
     `</div></body></html>`,
