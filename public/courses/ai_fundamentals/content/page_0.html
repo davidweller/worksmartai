@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>Module 1: You Already Use AI - AI Foundations &amp; Responsible Use</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&family=Ubuntu:wght@400;600;700&display=swap" />
+  <style>
+    :root { --muted: #6b7280; }
+    body { font-family: 'Ubuntu', system-ui, sans-serif; font-size: 1.05rem; line-height: 1.65; margin: 0; padding: 0; color: #1a1a1a; }
+    .course-wrapper { max-width: 780px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .course-main { background: var(--brand-content-bg, #f7f8fa); border-top: 4px solid var(--brand-accent, #ff7700); padding: 3rem 2rem; margin-top: 0; border-radius: 0 0 12px 12px; }
+    .progress-container { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .progress-label { font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
+    .progress-bar { flex: 1; height: 6px; background: rgba(0,0,0,0.08); border-radius: 3px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; background: var(--brand-accent, #ff7700); border-radius: 3px; transition: width 0.3s ease; }
+    .course-header { margin-bottom: 2rem; }
+    .course-logo { max-height: 48px; width: auto; }
+    .micro-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin: 0 0 0.25rem 0; }
+    .section-heading-wrap { position: relative; margin-bottom: 3rem; }
+    .section-number { position: absolute; left: 0; top: -0.2em; font-size: 4rem; font-weight: 700; opacity: 0.03; line-height: 1; pointer-events: none; }
+    h1, h2, h3, h4, h5, h6, .content-heading { font-family: 'Work Sans', system-ui, sans-serif; }
+    h1 { font-size: 2.25rem; font-weight: 700; margin: 0 0 0.5em 0; }
+    h2 { font-size: 1.65rem; font-weight: 600; margin: 2rem 0 0.5em 0; }
+    h3 { font-size: 1.2rem; font-weight: 500; margin: 1.5rem 0 0.35em 0; }
+    .content-text { margin: 1.2em 0; }
+    .content-text p { margin: 0 0 1.2em 0; }
+    .content-text p:last-child { margin-bottom: 0; }
+    .content-text ul, .content-text ol { margin: 1em 0; padding-left: 1.5em; }
+    .content-text li { margin: 0.25em 0; }
+    .content-text strong, .content-text b { font-weight: 600; }
+    .content-text em, .content-text i { font-style: italic; }
+    .content-heading { margin: 2rem 0 0.5em 0; }
+    .content-heading:first-of-type { margin-top: 0; }
+    .content-image { margin: 3rem 0; }
+    .content-image img { max-width: 100%; height: auto; border-radius: 8px; }
+    .content-video { margin: 3rem 0; }
+    .content-video iframe, .content-video video { width: 100%; aspect-ratio: 16/9; border-radius: 8px; }
+    .key-insight { margin: 3rem 0; padding: 1.5rem 1.5rem 1.5rem 1.75rem; border-left: 4px solid var(--brand-accent, #ff7700); background: rgba(0,0,0,0.02); font-size: 1.1rem; line-height: 1.65; border-radius: 0 8px 8px 0; }
+    .key-insight p { margin: 0; }
+    .key-insight ul, .key-insight ol { margin: 0.5em 0; padding-left: 1.25em; }
+    .key-insight li { margin: 0.2em 0; }
+    .content-card { margin: 3rem 0; padding: 24px 32px; background: #ffffff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+    .content-card-title { font-weight: 600; font-size: 1.1rem; margin: 0 0 0.75em 0; }
+    .content-card-body { margin: 0; }
+    .content-card-body ul, .content-card-body ol { margin: 0.5em 0; padding-left: 1.25em; }
+    .content-card-body li { margin: 0.2em 0; }
+    .content-table { margin: 2rem 0; overflow-x: auto; }
+    .content-table table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+    .content-table th, .content-table td { padding: 0.75rem 1rem; border: 1px solid #e5e7eb; text-align: left; }
+    .content-table th { background: #f9fafb; font-weight: 600; }
+    .content-table tr:nth-child(even) td { background: #fafafa; }
+    .interaction { margin: 4rem 0; padding: 24px 32px; background: #ffffff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+    .interaction .question, .interaction .prompt { margin: 0 0 1rem 0; font-weight: 500; }
+    .interaction .options { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .interaction .option-item { margin: 0; }
+    .interaction .option-item label { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1rem; border-radius: 8px; border: 2px solid #e5e7eb; cursor: pointer; transition: border-color 0.15s ease, background-color 0.15s ease; }
+    .interaction .option-item label:hover { border-color: var(--brand-accent, #ff7700); background: rgba(255,119,0,0.04); }
+    .interaction .option-item:has(input:checked) label { border-color: var(--brand-accent, #ff7700); background: rgba(255,119,0,0.08); }
+    .interaction .option-item label:focus-within { border-color: var(--brand-accent, #ff7700); }
+    .interaction .reflection-input { width: 100%; box-sizing: border-box; padding: 0.75rem; border-radius: 8px; border: 2px solid #e5e7eb; font-family: inherit; font-size: 1rem; resize: vertical; transition: border-color 0.15s ease; }
+    .interaction .reflection-input:focus { outline: none; border-color: var(--brand-accent, #ff7700); }
+    .page-nav { display: flex; justify-content: space-between; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.08); }
+    .page-nav a { text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; transition: background-color 0.15s ease, color 0.15s ease; }
+    .reveal { opacity: 0; transition: opacity 0.25s ease; }
+    .reveal.visible { opacity: 1; }
+    .check-answer-btn { display: block; margin-top: 1.25rem; padding: 0.625rem 1.5rem; background: var(--brand-primary-fill, var(--brand-accent, #ff7700)); color: var(--brand-primary-text, #fff); border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background-color 0.15s ease, opacity 0.15s ease; }
+    .check-answer-btn:hover:not(:disabled) { background: var(--brand-primary-hover, #e66a00); }
+    .check-answer-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .feedback { margin-top: 1rem; padding: 1rem 1.25rem; border-radius: 8px; font-size: 0.95rem; line-height: 1.5; }
+    .feedback.hidden { display: none; }
+    .feedback.correct { background: #ecfdf5; border: 1px solid #10b981; color: #065f46; }
+    .feedback.incorrect { background: #fef2f2; border: 1px solid #ef4444; color: #991b1b; }
+    .feedback .feedback-title { font-weight: 600; margin: 0 0 0.25rem 0; }
+    .feedback .feedback-explanation { margin: 0.5rem 0 0 0; font-size: 0.9rem; opacity: 0.9; }
+    .interaction.checked .option-item label { cursor: default; }
+    .interaction.checked .option-item label:hover { border-color: #e5e7eb; background: transparent; }
+    .interaction.checked .option-item:has(input:checked) label:hover { border-color: var(--brand-accent, #ff7700); background: rgba(255,119,0,0.08); }
+    .interaction.checked .option-item.correct-answer label { border-color: #10b981; background: rgba(16,185,129,0.08); }
+    .interaction.checked .option-item.user-incorrect label { border-color: #ef4444; background: rgba(239,68,68,0.08); }
+    
+    /* Drag and Drop Styles */
+    .drag-instruction, .match-instruction { font-size: 0.9rem; color: var(--muted, #6b7280); margin: 0 0 1rem 0; }
+    .drag-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .drag-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 8px; cursor: grab; transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.15s ease; user-select: none; }
+    .drag-item:hover { border-color: var(--brand-accent, #ff7700); background: rgba(255,119,0,0.04); }
+    .drag-item.dragging { opacity: 0.5; transform: scale(1.02); border-color: var(--brand-accent, #ff7700); }
+    .drag-item.drag-over { border-color: var(--brand-accent, #ff7700); background: rgba(255,119,0,0.08); }
+    .drag-handle { color: var(--muted, #6b7280); font-size: 1.2rem; line-height: 1; cursor: grab; }
+    .drag-content { flex: 1; }
+    .interaction.drag-and-drop.checked .drag-item { cursor: default; }
+    .interaction.drag-and-drop.checked .drag-item.correct-position { border-color: #10b981; background: rgba(16,185,129,0.08); }
+    .interaction.drag-and-drop.checked .drag-item.incorrect-position { border-color: #ef4444; background: rgba(239,68,68,0.08); }
+    
+    /* Matching Styles */
+    .match-container { display: flex; align-items: flex-start; gap: 1rem; position: relative; }
+    .match-column { list-style: none; margin: 0; padding: 0; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
+    .match-item { padding: 0.75rem 1rem; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 8px; cursor: pointer; transition: border-color 0.15s ease, background-color 0.15s ease; text-align: center; }
+    .match-item:hover { border-color: var(--brand-accent, #ff7700); background: rgba(255,119,0,0.04); }
+    .match-item.selected { border-color: var(--brand-accent, #ff7700); background: rgba(255,119,0,0.12); }
+    .match-item.matched { border-color: var(--brand-accent, #ff7700); background: rgba(255,119,0,0.08); cursor: default; }
+    .match-lines { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; }
+    .match-lines line { stroke: var(--brand-accent, #ff7700); stroke-width: 2; }
+    .interaction.matching.checked .match-item { cursor: default; }
+    .interaction.matching.checked .match-item.correct-match { border-color: #10b981; background: rgba(16,185,129,0.08); }
+    .interaction.matching.checked .match-item.incorrect-match { border-color: #ef4444; background: rgba(239,68,68,0.08); }
+    .interaction.matching.checked .match-lines line.correct { stroke: #10b981; }
+    .interaction.matching.checked .match-lines line.incorrect { stroke: #ef4444; }
+    
+    /* Dialog Cards Styles */
+    .dialog-cards-title { font-weight: 600; margin: 0 0 1rem 0; }
+    .cards-viewport { position: relative; min-height: 200px; perspective: 1000px; }
+    .dialog-card { position: absolute; width: 100%; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .dialog-card.active { position: relative; opacity: 1; pointer-events: auto; }
+    .card-inner { position: relative; width: 100%; min-height: 180px; transition: transform 0.5s ease; transform-style: preserve-3d; cursor: pointer; }
+    .dialog-card.flipped .card-inner { transform: rotateY(180deg); }
+    .card-front, .card-back { position: absolute; width: 100%; min-height: 180px; backface-visibility: hidden; border-radius: 12px; padding: 1.5rem; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+    .card-front { background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%); border: 2px solid #e5e7eb; }
+    .card-back { background: linear-gradient(135deg, var(--brand-accent, #ff7700) 0%, #e66a00 100%); color: white; transform: rotateY(180deg); }
+    .card-front p, .card-back p { margin: 0; font-size: 1.1rem; line-height: 1.5; }
+    .flip-hint { font-size: 0.8rem; color: var(--muted, #6b7280); margin-top: 1rem; }
+    .dialog-card.flipped .flip-hint { display: none; }
+    .card-nav { display: flex; justify-content: center; align-items: center; gap: 1rem; margin-top: 1rem; }
+    .card-nav button { background: #f3f4f6; border: 2px solid #e5e7eb; border-radius: 8px; padding: 0.5rem 1rem; cursor: pointer; font-size: 1rem; transition: border-color 0.15s ease, background-color 0.15s ease; }
+    .card-nav button:hover:not(:disabled) { border-color: var(--brand-accent, #ff7700); background: rgba(255,119,0,0.04); }
+    .card-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+    .card-counter { font-size: 0.9rem; color: var(--muted, #6b7280); min-width: 50px; text-align: center; }
+    .card-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1rem; }
+    .card-dot { width: 10px; height: 10px; border-radius: 50%; background: #e5e7eb; border: none; cursor: pointer; padding: 0; transition: background-color 0.15s ease; }
+    .card-dot:hover { background: #d1d5db; }
+    .card-dot.active { background: var(--brand-accent, #ff7700); }
+    
+    :root { --brand-primary: #015887; --brand-primary-fill: #015887; --brand-primary-text: #f8f8f8; --brand-primary-hover: #014670; --brand-secondary: #015887; --brand-secondary-color: #015887; --brand-secondary-bg: #f8f8f8; --brand-accent: #ff7700; --brand-cta-fill: #ff7700; --brand-cta-text: #1b0101; --brand-background: #ffffff; --brand-content-bg: #f7f8fa; --brand-card-bg: #ffffff; --brand-link: #015887 }
+body { background: var(--brand-background); }
+a { color: var(--brand-link); }
+a:hover { color: var(--brand-primary-hover, var(--brand-primary)); text-decoration: underline; }
+.interaction { background: var(--brand-card-bg); }
+.page-nav a { text-decoration: none; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; }
+.page-nav a[href]:not(.secondary) { background: var(--brand-primary-fill); color: var(--brand-primary-text); }
+.page-nav a[href]:not(.secondary):hover { background: var(--brand-primary-hover); color: var(--brand-primary-text); }
+.page-nav a.secondary { background: var(--brand-secondary-bg); color: var(--brand-secondary-color); border: 2px solid var(--brand-secondary-color); }
+.page-nav a.secondary:hover { filter: brightness(0.96); }
+
+    .page-nav a { border-radius: 8px; }
+  </style>
+</head>
+<body data-scorm-page-index="0" data-scorm-total-pages="7" data-scorm-total-max="10">
+  <div class="course-wrapper">
+    
+    <div class="progress-container">
+      <span class="progress-label">Page 1 of 7</span>
+      <div class="progress-bar" role="progressbar" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar-fill" style="width: 14%;"></div>
+      </div>
+    </div>
+    <main class="course-main">
+      <p class="micro-label">MODULE 1 · You Are Already an AI User</p>
+      <div class="section-heading-wrap">
+        <span class="section-number" aria-hidden="true">01</span>
+        <h1>Module 1: You Already Use AI</h1>
+      </div>
+      <div class="blocks"><figure class="content-image reveal"><img src="img_0.png" alt="" /></figure>
+<h2 class="content-heading reveal">Course Overview</h2>
+<div class="content-video reveal"><video controls preload="metadata"><source src="video_0.mp4" type="video/mp4" />Your browser does not support the video tag.</video></div>
+<div class="content-text reveal"><p>This is a fully online, self-access course. It should take you around 60 minutes to complete, but if you need to pause and return, you can do so at any time. When you finish, you should be able to say these about yourself:</p></div>
+<div class="content-text reveal"><ul><li>I can distinguish between key AI terms and give examples relevant to my work.</li><li>I can recognise tasks where AI may help and identify its specific limitations.</li><li>I can apply my institution’s policies to spot risks and ensure ethical, safe AI use.</li><li>I can decide whether a task is suitable for AI support using simple decision prompts.</li><li>I can structure a basic prompt to improve the quality of AI responses. </li></ul></div>
+<div class="content-text reveal"><p>Good luck, and hope you enjoy the course!</p></div>
+<div class="content-text reveal"><p>The WorkSmart-AI team.</p></div>
+<h2 class="content-heading reveal">You Already Use AI</h2>
+<div class="content-text reveal"><p>We often talk about Artificial Intelligence as if it is a futuristic wave coming for our jobs. The reality? You have probably used AI three times before your first meeting of the day.</p></div>
+<div class="content-text reveal"><p><strong>In your personal life:</strong></p></div>
+<div class="content-text reveal"><ul><li>Did you unlock your phone with FaceID this morning? That&#39;s computer vision.</li><li>Did Netflix suggest something you actually wanted to watch? That&#39;s a recommendation engine.</li><li>Did your email finish a sentence for you? That&#39;s predictive text. </li></ul></div>
+<div class="content-text reveal"><p><strong>In your work:</strong></p></div>
+<div class="content-text reveal"><ul><li>Has your VLE ever flagged a student as &quot;at risk&quot; before you noticed a problem? That&#39;s predictive analytics.</li><li>Has Turnitin compared a submission against millions of papers? That&#39;s pattern matching.</li><li>Has your inbox sorted messages into &quot;Focused&quot; and &quot;Other&quot;? That&#39;s classification AI.</li></ul></div>
+<div class="content-text reveal"><p>For years, we have used <strong>Predictive AI</strong> to help us classify data (for example, &quot;Is this email spam? Yes or No&quot;).</p></div>
+<div class="content-text reveal"><p>What has changed recently - and why we are here today - is the rise of <strong>Generative AI</strong>. These tools do not just categorise data; they <em>create</em> it. They can write emails, draft lesson plans, summarise messy meeting notes, and generate first drafts of reports in seconds.</p></div>
+<div class="content-text reveal"><p>But are they reliable? Let us find out.</p></div>
+<h3 class="content-heading reveal">The Question on Everyone&#39;s Mind</h3>
+<div class="content-text reveal"><p><strong><em>&quot;Will AI take my job?&quot;</em></strong></p></div>
+<div class="content-text reveal"><p>Let us address this directly, because it&#39;s the elephant in the room.</p></div>
+<div class="content-text reveal"><p>The AI tools we are learning today are not autonomous agents that can replace human judgement, empathy, or institutional knowledge. They don&#39;t have that human compassion when comforting an anxious student. They cannot navigate the politics of a departmental meeting. They cannot tell whether a policy makes sense for <em>your</em> specific context.</p></div>
+<div class="content-text reveal"><p>What they <em>can</em> do is handle the repetitive, time-consuming parts of your work - drafting, summarising, reformatting, explaining - so you have more time for the work that actually requires a human being.</p></div>
+<div class="content-text reveal"><p><strong>This course is not about replacing you. It is about reclaiming your time.</strong></p></div>
+<div class="content-text reveal"><p>Now, with that settled, let us see how much you can trust these tools.</p></div>
+<figure class="content-image reveal"><img src="img_1.png" alt="" /></figure>
+<h3 class="content-heading reveal">Activity: The &quot;Human or AI?&quot; Challenge</h3>
+<div class="content-text reveal"><p>Read the following three passages, and for each say if you think they were written by a human, or by AI.</p></div>
+<div class="interaction multiple-choice reveal" data-scorm-graded="true" data-block-id="cmmf3mi4g000v4jaua4iaf1u2" data-correct-index="1" data-explanation="Generative AI excels at &quot;corporate speak.&quot; It is polite, grammatically perfect, and efficient - often more polite than busy humans would be."><p class="question">Passage 1: &quot;Thank you so much for the invitation. While I appreciate the opportunity to discuss the project, I currently have a conflict in my schedule that prevents me from attending. Please let me know if there are minutes I can review later.&quot;</p><ul class="options"><li class="option-item" data-index="0"><label><input type="radio" name="mc-cmmf3mi4g000v4jaua4iaf1u2" value="0" /> Human</label></li><li class="option-item" data-index="1"><label><input type="radio" name="mc-cmmf3mi4g000v4jaua4iaf1u2" value="1" /> AI</label></li></ul><button type="button" class="check-answer-btn">Check Answer</button><div class="feedback hidden"></div></div>
+<div class="interaction multiple-choice reveal" data-scorm-graded="true" data-block-id="cmmf3mi4g000w4jaulli55djl" data-correct-index="0" data-explanation="Complexity and jargon are not AI indicators. Humans - particularly academics - often write dense, specialised prose. Do not assume that difficult text must be machine-generated."><p class="question">Passage 2: &quot;The paper argues that constructivist alignment is contingent upon the interplay between learner autonomy and rigid assessment structures, suggesting a bifurcation of traditional modalities.&quot;</p><ul class="options"><li class="option-item" data-index="0"><label><input type="radio" name="mc-cmmf3mi4g000w4jaulli55djl" value="0" /> Human</label></li><li class="option-item" data-index="1"><label><input type="radio" name="mc-cmmf3mi4g000w4jaulli55djl" value="1" /> AI</label></li></ul><button type="button" class="check-answer-btn">Check Answer</button><div class="feedback hidden"></div></div>
+<div class="interaction multiple-choice reveal" data-scorm-graded="true" data-block-id="cmmf3mi4g000x4jauribd6tk5" data-correct-index="1" data-explanation="Correct answer: B - and it is a complete fabrication. This regulation does not exist. The AI invented the entire thing. This is called a hallucination - and it is the single most important concept in this course."><p class="question">Passage 3: &quot;According to the University&#39;s 2024 Assessment Regulation Section 4.2, students are granted a 48-hour automated grace period for all coursework if submitted via the digital portal.&quot;</p><ul class="options"><li class="option-item" data-index="0"><label><input type="radio" name="mc-cmmf3mi4g000x4jauribd6tk5" value="0" /> Human</label></li><li class="option-item" data-index="1"><label><input type="radio" name="mc-cmmf3mi4g000x4jauribd6tk5" value="1" /> AI</label></li></ul><button type="button" class="check-answer-btn">Check Answer</button><div class="feedback hidden"></div></div>
+<h3 class="content-heading reveal">Key Concepts</h3>
+<div class="key-insight reveal"><p>Just because an AI sounds confident does not mean it is correct. Generative AI is a prediction engine, not a truth engine. It predicts the next likely word in a sentence based on patterns from billions of web pages. Sometimes, to complete a pattern convincingly, it will invent facts, citations, policies, or statistics.</p></div>
+<div class="content-text reveal"><p>This is not a theoretical risk. In 2023, two New York lawyers submitted a court filing citing six cases - all invented by ChatGPT. The cases sounded real, with proper citations, but none existed. Both lawyers were sanctioned by the court. AI also regularly invents journal articles, complete with plausible author names, publication dates, and DOI numbers - none of which exist.</p></div>
+<h3 class="content-heading reveal">So Why Use AI?</h3>
+<div class="content-text reveal"><p>If AI can lie so convincingly, why use it at all? Because when used correctly - for the right tasks, with proper verification - it is a remarkable time-saver.</p></div>
+<div class="content-text reveal"><p>Consider these everyday tasks:</p></div>
+<div class="content-table reveal"><table><th><tr><th><p><strong>Task</strong></p></th><th><p><strong>Without AI</strong></p></th><th><p><strong>With AI + Review</strong></p></th></tr></thead><tbody><tr><td><p>Drafting a professional email decline</p></td><td><p>5-10 minutes</p></td><td><p>1-2 minutes</p></td></tr><tr><td><p>Summarising a 20-page report</p></td><td><p>45-60 minutes</p></td><td><p>10-15 minutes</p></td></tr><tr><td><p>Explaining a complex concept simply</p></td><td><p>15-20 minutes</p></td><td><p>3-5 minutes</p></td></tr><tr><td><p>Generating 10 discussion questions</p></td><td><p>20-30 minutes</p></td><td><p>5-8 minutes</p></td></tr></tbody></table></div>
+<div class="content-text reveal"><p>The key is knowing <em>when</em> to use AI, <em>how</em> to use it safely, and <em>what</em> to check afterwards. That is exactly what this course will teach you.</p></div>
+<h2 class="content-heading reveal">What You&#39;ll Learn</h2>
+<div class="content-text reveal"><p>In this course, we will move past the hype and focus on the practical skills you need to use AI tools safely and effectively. By the end of this course, you will be able to understand the technology (so you can predict when it will fail), spot the risks (hallucination, privacy, bias), make the call (using a simple decision checklist), and drive the tool (writing prompts that reduce errors and get useful results).</p></div>
+<h3 class="content-heading reveal">Flashcards: Key Terms Review</h3>
+<div class="interaction dialog-cards reveal" data-total-cards="3"><p class="dialog-cards-title">Key Terms Review</p><div class="cards-viewport"><div class="dialog-card active" data-index="0"><div class="card-inner"><div class="card-front"><p>What is Generative AI?</p><span class="flip-hint">Click to flip</span></div><div class="card-back"><p>A type of AI that creates new content (text, images, code) by predicting what should come next, based on patterns learned from billions of examples. Examples include ChatGPT, Copilot, Claude, and Gemini.</p></div></div></div><div class="dialog-card" data-index="1"><div class="card-inner"><div class="card-front"><p>What is Predictive AI?</p><span class="flip-hint">Click to flip</span></div><div class="card-back"><p>A type of AI that analyses existing data and sorts it into categories or makes predictions. Examples include spam filters, VLE early-warning systems, and library recommendation tools.</p></div></div></div><div class="dialog-card" data-index="2"><div class="card-inner"><div class="card-front"><p>What is an AI hallucination?</p><span class="flip-hint">Click to flip</span></div><div class="card-back"><p>When an AI confidently produces content that is factually incorrect or entirely invented - such as fake citations, non-existent regulations, or made-up statistics.</p></div></div></div></div><div class="card-dots"><button class="card-dot active" data-index="0" aria-label="Card 1"></button><button class="card-dot" data-index="1" aria-label="Card 2"></button><button class="card-dot" data-index="2" aria-label="Card 3"></button></div><div class="card-nav"><button class="card-prev" disabled aria-label="Previous card">←</button><span class="card-counter">1 / 3</span><button class="card-next" aria-label="Next card">→</button></div></div></div>
+      <nav class="page-nav"><div></div><div><a href="page_1.html">Next →</a></div></nav>
+    </main>
+  </div>
+  <script src="../scorm-api.js"></script>
+  <script>
+(function() {
+  var body = document.body;
+  var pageIndex = parseInt(body.getAttribute('data-scorm-page-index') || '0', 10);
+  var totalPages = parseInt(body.getAttribute('data-scorm-total-pages') || '1', 10);
+  var totalScoreMax = Math.max(1, parseInt(body.getAttribute('data-scorm-total-max') || '1', 10));
+  function initScorm() {
+    if (typeof SCORM === 'undefined') return;
+    SCORM.init();
+    SCORM.setLessonStatus('incomplete');
+    var sd = SCORM.getSuspendData();
+    var state = { viewed: [], score: 0, answers: {} };
+    try { if (sd) state = JSON.parse(sd); } catch (e) {}
+    if (!state.viewed) state.viewed = [];
+    if (state.viewed.indexOf(pageIndex) === -1) state.viewed.push(pageIndex);
+    state.viewed = state.viewed.filter(function(v, i, a) { return a.indexOf(v) === i; });
+    if (!state.answers) state.answers = {};
+    SCORM.setSuspendData(JSON.stringify(state));
+    SCORM.setScore(state.score || 0, 0, totalScoreMax);
+    var graded = document.querySelectorAll('[data-scorm-graded="true"]');
+    [].forEach.call(graded, function(el) {
+      var inputs = el.querySelectorAll('input[type="radio"]');
+      var correctVal = el.getAttribute('data-correct');
+      var correctIdx = el.getAttribute('data-correct-index');
+      var isCorrect = correctVal !== null && correctVal !== ''
+        ? function(v) { return v === correctVal; }
+        : function(v) { return parseInt(v, 10) === parseInt(correctIdx, 10); };
+      [].forEach.call(inputs, function(inp) {
+        inp.addEventListener('change', function() {
+          if (typeof SCORM === 'undefined') return;
+          var sd2 = SCORM.getSuspendData();
+          var s2 = { viewed: state.viewed, score: 0, answers: state.answers || {} };
+          try { if (sd2) s2 = JSON.parse(sd2); } catch (e) {}
+          var key = el.getAttribute('data-block-id');
+          s2.answers[key] = isCorrect(this.value);
+          var n = 0;
+          for (var k in s2.answers) if (s2.answers[k]) n++;
+          s2.score = n;
+          state.score = n;
+          state.answers = s2.answers;
+          SCORM.setSuspendData(JSON.stringify(s2));
+          SCORM.setScore(n, 0, totalScoreMax);
+        });
+      });
+    });
+    window.addEventListener('beforeunload', function() { SCORM.setLessonStatus('completed'); });
+    
+    // Global function to track answers from drag-and-drop and matching interactions
+    window.trackInteractionAnswer = function(blockId, isCorrect) {
+      if (typeof SCORM === 'undefined' || !blockId) return;
+      var sd2 = SCORM.getSuspendData();
+      var s2 = { viewed: state.viewed, score: 0, answers: state.answers || {} };
+      try { if (sd2) s2 = JSON.parse(sd2); } catch (err) {}
+      s2.answers[blockId] = isCorrect;
+      var n = 0;
+      for (var k in s2.answers) if (s2.answers[k]) n++;
+      s2.score = n;
+      state.score = n;
+      state.answers = s2.answers;
+      SCORM.setSuspendData(JSON.stringify(s2));
+      SCORM.setScore(n, 0, totalScoreMax);
+    };
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initScorm);
+  else initScorm();
+})();
+
+(function() {
+  function initCheckAnswers() {
+    var interactions = document.querySelectorAll('.interaction.multiple-choice, .interaction.true-false');
+    [].forEach.call(interactions, function(el) {
+      var btn = el.querySelector('.check-answer-btn');
+      var feedback = el.querySelector('.feedback');
+      if (!btn || !feedback) return;
+      
+      btn.addEventListener('click', function() {
+        var selected = el.querySelector('input[type="radio"]:checked');
+        if (!selected) {
+          feedback.className = 'feedback incorrect';
+          feedback.innerHTML = '<p class="feedback-title">Please select an answer first.</p>';
+          return;
+        }
+        
+        var isMultipleChoice = el.classList.contains('multiple-choice');
+        var correctIdx = el.getAttribute('data-correct-index');
+        var correctVal = el.getAttribute('data-correct');
+        var explanation = el.getAttribute('data-explanation') || '';
+        var selectedValue = selected.value;
+        var isCorrect;
+        
+        if (isMultipleChoice) {
+          isCorrect = parseInt(selectedValue, 10) === parseInt(correctIdx, 10);
+        } else {
+          isCorrect = selectedValue === correctVal;
+        }
+        
+        el.classList.add('checked');
+        btn.disabled = true;
+        var inputs = el.querySelectorAll('input[type="radio"]');
+        [].forEach.call(inputs, function(inp) { inp.disabled = true; });
+        
+        var titleText = isCorrect ? 'Correct!' : 'Incorrect';
+        var explanationHtml = explanation ? '<p class="feedback-explanation">' + explanation + '</p>' : '';
+        feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
+        feedback.innerHTML = '<p class="feedback-title">' + titleText + '</p>' + explanationHtml;
+        
+        if (isMultipleChoice) {
+          var optionItems = el.querySelectorAll('.option-item');
+          [].forEach.call(optionItems, function(item) {
+            var idx = item.getAttribute('data-index');
+            if (parseInt(idx, 10) === parseInt(correctIdx, 10)) {
+              item.classList.add('correct-answer');
+            }
+            var itemInput = item.querySelector('input[type="radio"]');
+            if (itemInput && itemInput.checked && !isCorrect) {
+              item.classList.add('user-incorrect');
+            }
+          });
+        } else {
+          var optionItems = el.querySelectorAll('.option-item');
+          [].forEach.call(optionItems, function(item) {
+            var val = item.getAttribute('data-value');
+            if (val === correctVal) {
+              item.classList.add('correct-answer');
+            }
+            var itemInput = item.querySelector('input[type="radio"]');
+            if (itemInput && itemInput.checked && !isCorrect) {
+              item.classList.add('user-incorrect');
+            }
+          });
+        }
+      });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initCheckAnswers);
+  else initCheckAnswers();
+})();
+
+// Drag and Drop Interaction
+(function() {
+  function initDragAndDrop() {
+    var dragDrops = document.querySelectorAll('.interaction.drag-and-drop');
+    [].forEach.call(dragDrops, function(el) {
+      var dragList = el.querySelector('.drag-list');
+      var btn = el.querySelector('.check-answer-btn');
+      var feedback = el.querySelector('.feedback');
+      if (!dragList || !btn || !feedback) return;
+      
+      var draggedItem = null;
+      var items = dragList.querySelectorAll('.drag-item');
+      
+      [].forEach.call(items, function(item) {
+        item.addEventListener('dragstart', function(e) {
+          draggedItem = this;
+          this.classList.add('dragging');
+          e.dataTransfer.effectAllowed = 'move';
+        });
+        
+        item.addEventListener('dragend', function() {
+          this.classList.remove('dragging');
+          draggedItem = null;
+          [].forEach.call(items, function(i) { i.classList.remove('drag-over'); });
+        });
+        
+        item.addEventListener('dragover', function(e) {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'move';
+          if (this !== draggedItem) this.classList.add('drag-over');
+        });
+        
+        item.addEventListener('dragleave', function() {
+          this.classList.remove('drag-over');
+        });
+        
+        item.addEventListener('drop', function(e) {
+          e.preventDefault();
+          this.classList.remove('drag-over');
+          if (draggedItem && this !== draggedItem) {
+            var allItems = Array.prototype.slice.call(dragList.querySelectorAll('.drag-item'));
+            var draggedIdx = allItems.indexOf(draggedItem);
+            var targetIdx = allItems.indexOf(this);
+            if (draggedIdx < targetIdx) {
+              dragList.insertBefore(draggedItem, this.nextSibling);
+            } else {
+              dragList.insertBefore(draggedItem, this);
+            }
+          }
+        });
+        
+        // Touch support
+        var touchY = 0;
+        item.addEventListener('touchstart', function(e) {
+          touchY = e.touches[0].clientY;
+          draggedItem = this;
+          this.classList.add('dragging');
+        }, {passive: true});
+        
+        item.addEventListener('touchmove', function(e) {
+          e.preventDefault();
+          var y = e.touches[0].clientY;
+          var target = document.elementFromPoint(e.touches[0].clientX, y);
+          if (target) {
+            var closest = target.closest('.drag-item');
+            [].forEach.call(items, function(i) { i.classList.remove('drag-over'); });
+            if (closest && closest !== draggedItem) closest.classList.add('drag-over');
+          }
+        });
+        
+        item.addEventListener('touchend', function() {
+          this.classList.remove('dragging');
+          var overItem = dragList.querySelector('.drag-item.drag-over');
+          if (overItem && draggedItem) {
+            var allItems = Array.prototype.slice.call(dragList.querySelectorAll('.drag-item'));
+            var draggedIdx = allItems.indexOf(draggedItem);
+            var targetIdx = allItems.indexOf(overItem);
+            if (draggedIdx < targetIdx) {
+              dragList.insertBefore(draggedItem, overItem.nextSibling);
+            } else {
+              dragList.insertBefore(draggedItem, overItem);
+            }
+          }
+          [].forEach.call(items, function(i) { i.classList.remove('drag-over'); });
+          draggedItem = null;
+        });
+      });
+      
+      btn.addEventListener('click', function() {
+        var correctOrderStr = el.getAttribute('data-correct-order');
+        var explanation = el.getAttribute('data-explanation') || '';
+        var correctOrder;
+        try { correctOrder = JSON.parse(correctOrderStr); } catch(err) { correctOrder = []; }
+        
+        var currentItems = dragList.querySelectorAll('.drag-item');
+        var currentOrder = Array.prototype.slice.call(currentItems).map(function(item) {
+          return parseInt(item.getAttribute('data-index'), 10);
+        });
+        
+        var isCorrect = correctOrder.length === currentOrder.length && 
+          correctOrder.every(function(v, i) { return v === currentOrder[i]; });
+        
+        el.classList.add('checked');
+        btn.disabled = true;
+        
+        [].forEach.call(currentItems, function(item, idx) {
+          item.setAttribute('draggable', 'false');
+          var itemIndex = parseInt(item.getAttribute('data-index'), 10);
+          if (correctOrder[idx] === itemIndex) {
+            item.classList.add('correct-position');
+          } else {
+            item.classList.add('incorrect-position');
+          }
+        });
+        
+        var titleText = isCorrect ? 'Correct!' : 'Incorrect - The items are not in the right order.';
+        var explanationHtml = explanation ? '<p class="feedback-explanation">' + explanation + '</p>' : '';
+        feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
+        feedback.innerHTML = '<p class="feedback-title">' + titleText + '</p>' + explanationHtml;
+        
+        if (typeof window.trackInteractionAnswer === 'function') {
+          window.trackInteractionAnswer(el.getAttribute('data-block-id'), isCorrect);
+        }
+      });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initDragAndDrop);
+  else initDragAndDrop();
+})();
+
+// Matching Interaction
+(function() {
+  function initMatching() {
+    var matchings = document.querySelectorAll('.interaction.matching');
+    [].forEach.call(matchings, function(el) {
+      var leftCol = el.querySelector('.match-left-col');
+      var rightCol = el.querySelector('.match-right-col');
+      var svg = el.querySelector('.match-lines');
+      var btn = el.querySelector('.check-answer-btn');
+      var feedback = el.querySelector('.feedback');
+      if (!leftCol || !rightCol || !btn || !feedback) return;
+      
+      var selectedLeft = null;
+      var matches = {};
+      var pairCount = parseInt(el.getAttribute('data-pair-count') || '0', 10);
+      
+      function updateLines() {
+        if (!svg) return;
+        var container = el.querySelector('.match-container');
+        var containerRect = container.getBoundingClientRect();
+        svg.innerHTML = '';
+        svg.setAttribute('width', containerRect.width);
+        svg.setAttribute('height', containerRect.height);
+        
+        for (var leftIdx in matches) {
+          var rightIdx = matches[leftIdx];
+          var leftItem = leftCol.querySelector('[data-index="' + leftIdx + '"]');
+          var rightItem = rightCol.querySelector('[data-index="' + rightIdx + '"]');
+          if (leftItem && rightItem) {
+            var leftRect = leftItem.getBoundingClientRect();
+            var rightRect = rightItem.getBoundingClientRect();
+            var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', leftRect.right - containerRect.left);
+            line.setAttribute('y1', leftRect.top + leftRect.height/2 - containerRect.top);
+            line.setAttribute('x2', rightRect.left - containerRect.left);
+            line.setAttribute('y2', rightRect.top + rightRect.height/2 - containerRect.top);
+            line.setAttribute('data-left', leftIdx);
+            line.setAttribute('data-right', rightIdx);
+            svg.appendChild(line);
+          }
+        }
+      }
+      
+      var leftItems = leftCol.querySelectorAll('.match-item');
+      var rightItems = rightCol.querySelectorAll('.match-item');
+      
+      [].forEach.call(leftItems, function(item) {
+        item.addEventListener('click', function() {
+          if (el.classList.contains('checked')) return;
+          var idx = this.getAttribute('data-index');
+          if (matches[idx] !== undefined) {
+            var oldRight = matches[idx];
+            delete matches[idx];
+            this.classList.remove('matched');
+            var rightMatch = rightCol.querySelector('[data-index="' + oldRight + '"]');
+            if (rightMatch) rightMatch.classList.remove('matched');
+            updateLines();
+          }
+          [].forEach.call(leftItems, function(i) { i.classList.remove('selected'); });
+          this.classList.add('selected');
+          selectedLeft = idx;
+        });
+      });
+      
+      [].forEach.call(rightItems, function(item) {
+        item.addEventListener('click', function() {
+          if (el.classList.contains('checked')) return;
+          if (selectedLeft === null) return;
+          var rightIdx = this.getAttribute('data-index');
+          
+          for (var k in matches) {
+            if (matches[k] === rightIdx) {
+              delete matches[k];
+              var oldLeft = leftCol.querySelector('[data-index="' + k + '"]');
+              if (oldLeft) oldLeft.classList.remove('matched');
+            }
+          }
+          
+          matches[selectedLeft] = rightIdx;
+          var leftItem = leftCol.querySelector('[data-index="' + selectedLeft + '"]');
+          if (leftItem) {
+            leftItem.classList.remove('selected');
+            leftItem.classList.add('matched');
+          }
+          this.classList.add('matched');
+          selectedLeft = null;
+          updateLines();
+        });
+      });
+      
+      btn.addEventListener('click', function() {
+        var explanation = el.getAttribute('data-explanation') || '';
+        var correctCount = 0;
+        
+        for (var leftIdx in matches) {
+          if (matches[leftIdx] === leftIdx) correctCount++;
+        }
+        
+        var isCorrect = correctCount === pairCount && Object.keys(matches).length === pairCount;
+        
+        el.classList.add('checked');
+        btn.disabled = true;
+        
+        for (var leftIdx in matches) {
+          var rightIdx = matches[leftIdx];
+          var leftItem = leftCol.querySelector('[data-index="' + leftIdx + '"]');
+          var rightItem = rightCol.querySelector('[data-index="' + rightIdx + '"]');
+          var line = svg ? svg.querySelector('line[data-left="' + leftIdx + '"]') : null;
+          
+          if (leftIdx === rightIdx) {
+            if (leftItem) leftItem.classList.add('correct-match');
+            if (rightItem) rightItem.classList.add('correct-match');
+            if (line) line.classList.add('correct');
+          } else {
+            if (leftItem) leftItem.classList.add('incorrect-match');
+            if (rightItem) rightItem.classList.add('incorrect-match');
+            if (line) line.classList.add('incorrect');
+          }
+        }
+        
+        var titleText = isCorrect ? 'Correct!' : 'Incorrect - Some matches are wrong.';
+        var explanationHtml = explanation ? '<p class="feedback-explanation">' + explanation + '</p>' : '';
+        feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
+        feedback.innerHTML = '<p class="feedback-title">' + titleText + '</p>' + explanationHtml;
+        
+        if (typeof window.trackInteractionAnswer === 'function') {
+          window.trackInteractionAnswer(el.getAttribute('data-block-id'), isCorrect);
+        }
+      });
+      
+      window.addEventListener('resize', updateLines);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initMatching);
+  else initMatching();
+})();
+
+// Dialog Cards Interaction
+(function() {
+  function initDialogCards() {
+    var cardSets = document.querySelectorAll('.interaction.dialog-cards');
+    [].forEach.call(cardSets, function(el) {
+      var cards = el.querySelectorAll('.dialog-card');
+      var dots = el.querySelectorAll('.card-dot');
+      var prevBtn = el.querySelector('.card-prev');
+      var nextBtn = el.querySelector('.card-next');
+      var counter = el.querySelector('.card-counter');
+      var totalCards = parseInt(el.getAttribute('data-total-cards') || '1', 10);
+      var currentIndex = 0;
+      
+      function showCard(idx) {
+        currentIndex = Math.max(0, Math.min(idx, totalCards - 1));
+        [].forEach.call(cards, function(card, i) {
+          card.classList.toggle('active', i === currentIndex);
+          card.classList.remove('flipped');
+        });
+        [].forEach.call(dots, function(dot, i) {
+          dot.classList.toggle('active', i === currentIndex);
+        });
+        if (counter) counter.textContent = (currentIndex + 1) + ' / ' + totalCards;
+        if (prevBtn) prevBtn.disabled = currentIndex === 0;
+        if (nextBtn) nextBtn.disabled = currentIndex === totalCards - 1;
+      }
+      
+      [].forEach.call(cards, function(card) {
+        card.addEventListener('click', function() {
+          this.classList.toggle('flipped');
+        });
+      });
+      
+      [].forEach.call(dots, function(dot) {
+        dot.addEventListener('click', function() {
+          showCard(parseInt(this.getAttribute('data-index'), 10));
+        });
+      });
+      
+      if (prevBtn) prevBtn.addEventListener('click', function() { showCard(currentIndex - 1); });
+      if (nextBtn) nextBtn.addEventListener('click', function() { showCard(currentIndex + 1); });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initDialogCards);
+  else initDialogCards();
+})();
+  </script>
+  <script>
+(function() {
+  var reveals = document.querySelectorAll('.reveal');
+  if (!reveals.length) return;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(function(el) { observer.observe(el); });
+})();
+  </script>
+</body>
+</html>

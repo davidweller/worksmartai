@@ -19,18 +19,10 @@ const metadata = {
     follow: false,
   },
 };
-
-const supabaseUrl = (import.meta.env.PUBLIC_SUPABASE_URL ?? import.meta.env.SUPABASE_URL ?? '').trim();
-const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta.env.SUPABASE_ANON_KEY ?? '').trim();
 ---
 
 <Layout metadata={metadata}>
-  <section
-    class="bg-page px-4 py-6 sm:px-6 lg:px-8"
-    data-course-id={courseId}
-    data-supabase-url={supabaseUrl}
-    data-supabase-anon-key={supabaseAnonKey}
-  >
+  <section class="bg-page px-4 py-6 sm:px-6 lg:px-8" data-course-id={courseId}>
     <div class="mx-auto max-w-[1600px]">
       <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div>
@@ -47,7 +39,7 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
       <p id="academy-player-feedback" class="mb-4 hidden rounded-lg px-3 py-2 text-sm" role="alert"></p>
       <iframe
         id="academy-scorm-frame"
-        src={`/courses/${courseId}/`}
+        src={`/courses/${courseId}/content/page_0.html`}
         title={`SCORM course player for ${courseId}`}
         class="h-[78vh] min-h-[640px] w-full rounded-xl border border-default bg-white shadow-card"
         loading="eager"
@@ -62,8 +54,8 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
 <script src="https://cdn.jsdelivr.net/gh/gabrieldoty/simplify-scorm@master/src/jsonFormatter.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/gabrieldoty/simplify-scorm@master/src/scormAPI.js"></script>
 
-<script type="module" is:inline>
-  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+<script type="module">
+  import { academySupabase, hasAcademySupabaseConfig, requireAuth } from '~/lib/academy';
 
   const section = document.querySelector('section[data-course-id]');
   const feedback = document.getElementById('academy-player-feedback');
@@ -73,8 +65,6 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
   }
 
   const courseId = section.getAttribute('data-course-id') || '';
-  const supabaseUrl = (section.getAttribute('data-supabase-url') || '').trim();
-  const supabaseAnonKey = (section.getAttribute('data-supabase-anon-key') || '').trim();
 
   const setFeedback = (message, isError = true) => {
     if (!feedback) return;
@@ -84,19 +74,18 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
       : 'mb-4 rounded-lg border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-800';
   };
 
-  if (!supabaseUrl || !supabaseAnonKey) {
+  if (!hasAcademySupabaseConfig || !academySupabase) {
     setFeedback('Course player is unavailable. Missing Supabase configuration.');
   } else if (!courseId) {
     setFeedback('Course not found.');
   } else {
-    const supabase = createClient(supabaseUrl, supabaseAnonKey);
-    const { data: sessionData } = await supabase.auth.getSession();
-    const user = sessionData?.session?.user;
+    const authState = await requireAuth('/academy/login/');
+    const user = authState?.user;
 
     if (!user) {
-      window.location.replace('/academy/login/');
+      return;
     } else {
-      const { data: progressRow } = await supabase
+      const { data: progressRow } = await academySupabase
         .from('progress')
         .select('suspend_data, score, progress_percent')
         .eq('user_id', user.id)
@@ -118,7 +107,7 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
         const rawScore = Number(cmi?.core?.score?.raw || progressRow?.score || 0);
         const progressPercent = Number.isFinite(rawScore) ? Math.max(0, Math.min(100, Math.round(rawScore))) : 0;
 
-        const { error } = await supabase.from('progress').upsert(
+        const { error } = await academySupabase.from('progress').upsert(
           {
             user_id: user.id,
             course_id: courseId,

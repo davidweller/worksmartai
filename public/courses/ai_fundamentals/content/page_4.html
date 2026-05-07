@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>Module 5: The Decision Matrix - AI Foundations &amp; Responsible Use</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&family=Ubuntu:wght@400;600;700&display=swap" />
+  <style>
+    :root { --muted: #6b7280; }
+    body { font-family: 'Ubuntu', system-ui, sans-serif; font-size: 1.05rem; line-height: 1.65; margin: 0; padding: 0; color: #1a1a1a; }
+    .course-wrapper { max-width: 780px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .course-main { background: var(--brand-content-bg, #f7f8fa); border-top: 4px solid var(--brand-accent, #ff7700); padding: 3rem 2rem; margin-top: 0; border-radius: 0 0 12px 12px; }
+    .progress-container { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .progress-label { font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
+    .progress-bar { flex: 1; height: 6px; background: rgba(0,0,0,0.08); border-radius: 3px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; background: var(--brand-accent, #ff7700); border-radius: 3px; transition: width 0.3s ease; }
+    .course-header { margin-bottom: 2rem; }
+    .course-logo { max-height: 48px; width: auto; }
+    .micro-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin: 0 0 0.25rem 0; }
+    .section-heading-wrap { position: relative; margin-bottom: 3rem; }
+    .section-number { position: absolute; left: 0; top: -0.2em; font-size: 4rem; font-weight: 700; opacity: 0.03; line-height: 1; pointer-events: none; }
+    h1, h2, h3, h4, h5, h6, .content-heading { font-family: 'Work Sans', system-ui, sans-serif; }
+    h1 { font-size: 2.25rem; font-weight: 700; margin: 0 0 0.5em 0; }
+    h2 { font-size: 1.65rem; font-weight: 600; margin: 2rem 0 0.5em 0; }
+    h3 { font-size: 1.2rem; font-weight: 500; margin: 1.5rem 0 0.35em 0; }
+    .content-text { margin: 1.2em 0; }
+    .content-text p { margin: 0 0 1.2em 0; }
+    .content-text p:last-child { margin-bottom: 0; }
+    .content-text ul, .content-text ol { margin: 1em 0; padding-left: 1.5em; }
+    .content-text li { margin: 0.25em 0; }
+    .content-text strong, .content-text b { font-weight: 600; }
+    .content-text em, .content-text i { font-style: italic; }
+    .content-heading { margin: 2rem 0 0.5em 0; }
+    .content-heading:first-of-type { margin-top: 0; }
+    .content-image { margin: 3rem 0; }
+    .content-image img { max-width: 100%; height: auto; border-radius: 8px; }
+    .content-video { margin: 3rem 0; }
+    .content-video iframe, .content-video video { width: 100%; aspect-ratio: 16/9; border-radius: 8px; }
+    .key-insight { margin: 3rem 0; padding: 1.5rem 1.5rem 1.5rem 1.75rem; border-left: 4px solid var(--brand-accent, #ff7700); background: rgba(0,0,0,0.02); font-size: 1.1rem; line-height: 1.65; border-radius: 0 8px 8px 0; }
+    .key-insight p { margin: 0; }
+    .key-insight ul, .key-insight ol { margin: 0.5em 0; padding-left: 1.25em; }
+    .key-insight li { margin: 0.2em 0; }
+    .content-card { margin: 3rem 0; padding: 24px 32px; background: #ffffff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+    .content-card-title { font-weight: 600; font-size: 1.1rem; margin: 0 0 0.75em 0; }
+    .content-card-body { margin: 0; }
+    .content-card-body ul, .content-card-body ol { margin: 0.5em 0; padding-left: 1.25em; }
+    .content-card-body li { margin: 0.2em 0; }
+    .content-table { margin: 2rem 0; overflow-x: auto; }
+    .content-table table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+    .content-table th, .content-table td { padding: 0.75rem 1rem; border: 1px solid #e5e7eb; text-align: left; }
+    .content-table th { background: #f9fafb; font-weight: 600; }
+    .content-table tr:nth-child(even) td { background: #fafafa; }
+    .interaction { margin: 4rem 0; padding: 24px 32px; background: #ffffff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+    .interaction .question, .interaction .prompt { margin: 0 0 1rem 0; font-weight: 500; }
+    .interaction .options { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .interaction .option-item { margin: 0; }
+    .interaction .option-item label { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1rem; border-radius: 8px; border: 2px solid #e5e7eb; cursor: pointer; transition: border-color 0.15s ease, background-color 0.15s ease; }
+    .interaction .option-item label:hover { border-color: var(--brand-accent, #ff7700); background: rgba(255,119,0,0.04); }
+    .interaction .option-item:has(input:checked) label { border-color: var(--brand-accent, #ff7700); background: rgba(255,119,0,0.08); }
+    .interaction .option-item label:focus-within { border-color: var(--brand-accent, #ff7700); }
+    .interaction .reflection-input { width: 100%; box-sizing: border-box; padding: 0.75rem; border-radius: 8px; border: 2px solid #e5e7eb; font-family: inherit; font-size: 1rem; resize: vertical; transition: border-color 0.15s ease; }
+    .interaction .reflection-input:focus { outline: none; border-color: var(--brand-accent, #ff7700); }
+    .page-nav { display: flex; justify-content: space-between; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.08); }
+    .page-nav a { text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; transition: background-color 0.15s ease, color 0.15s ease; }
+    .reveal { opacity: 0; transition: opacity 0.25s ease; }
+    .reveal.visible { opacity: 1; }
+    .check-answer-btn { display: block; margin-top: 1.25rem; padding: 0.625rem 1.5rem; background: var(--brand-primary-fill, var(--brand-accent, #ff7700)); color: var(--brand-primary-text, #fff); border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background-color 0.15s ease, opacity 0.15s ease; }
+    .check-answer-btn:hover:not(:disabled) { background: var(--brand-primary-hover, #e66a00); }
+    .check-answer-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .feedback { margin-top: 1rem; padding: 1rem 1.25rem; border-radius: 8px; font-size: 0.95rem; line-height: 1.5; }
+    .feedback.hidden { display: none; }
+    .feedback.correct { background: #ecfdf5; border: 1px solid #10b981; color: #065f46; }
+    .feedback.incorrect { background: #fef2f2; border: 1px solid #ef4444; color: #991b1b; }
+    .feedback .feedback-title { font-weight: 600; margin: 0 0 0.25rem 0; }
+    .feedback .feedback-explanation { margin: 0.5rem 0 0 0; font-size: 0.9rem; opacity: 0.9; }
+    .interaction.checked .option-item label { cursor: default; }
+    .interaction.checked .option-item label:hover { border-color: #e5e7eb; background: transparent; }
+    .interaction.checked .option-item:has(input:checked) label:hover { border-color: var(--brand-accent, #ff7700); background: rgba(255,119,0,0.08); }
+    .interaction.checked .option-item.correct-answer label { border-color: #10b981; background: rgba(16,185,129,0.08); }
+    .interaction.checked .option-item.user-incorrect label { border-color: #ef4444; background: rgba(239,68,68,0.08); }
+    
+    /* Drag and Drop Styles */
+    .drag-instruction, .match-instruction { font-size: 0.9rem; color: var(--muted, #6b7280); margin: 0 0 1rem 0; }
+    .drag-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .drag-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 8px; cursor: grab; transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.15s ease; user-select: none; }
+    .drag-item:hover { border-color: var(--brand-accent, #ff7700); background: rgba(255,119,0,0.04); }
+    .drag-item.dragging { opacity: 0.5; transform: scale(1.02); border-color: var(--brand-accent, #ff7700); }
+    .drag-item.drag-over { border-color: var(--brand-accent, #ff7700); background: rgba(255,119,0,0.08); }
+    .drag-handle { color: var(--muted, #6b7280); font-size: 1.2rem; line-height: 1; cursor: grab; }
+    .drag-content { flex: 1; }
+    .interaction.drag-and-drop.checked .drag-item { cursor: default; }
+    .interaction.drag-and-drop.checked .drag-item.correct-position { border-color: #10b981; background: rgba(16,185,129,0.08); }
+    .interaction.drag-and-drop.checked .drag-item.incorrect-position { border-color: #ef4444; background: rgba(239,68,68,0.08); }
+    
+    /* Matching Styles */
+    .match-container { display: flex; align-items: flex-start; gap: 1rem; position: relative; }
+    .match-column { list-style: none; margin: 0; padding: 0; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
+    .match-item { padding: 0.75rem 1rem; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 8px; cursor: pointer; transition: border-color 0.15s ease, background-color 0.15s ease; text-align: center; }
+    .match-item:hover { border-color: var(--brand-accent, #ff7700); background: rgba(255,119,0,0.04); }
+    .match-item.selected { border-color: var(--brand-accent, #ff7700); background: rgba(255,119,0,0.12); }
+    .match-item.matched { border-color: var(--brand-accent, #ff7700); background: rgba(255,119,0,0.08); cursor: default; }
+    .match-lines { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; }
+    .match-lines line { stroke: var(--brand-accent, #ff7700); stroke-width: 2; }
+    .interaction.matching.checked .match-item { cursor: default; }
+    .interaction.matching.checked .match-item.correct-match { border-color: #10b981; background: rgba(16,185,129,0.08); }
+    .interaction.matching.checked .match-item.incorrect-match { border-color: #ef4444; background: rgba(239,68,68,0.08); }
+    .interaction.matching.checked .match-lines line.correct { stroke: #10b981; }
+    .interaction.matching.checked .match-lines line.incorrect { stroke: #ef4444; }
+    
+    /* Dialog Cards Styles */
+    .dialog-cards-title { font-weight: 600; margin: 0 0 1rem 0; }
+    .cards-viewport { position: relative; min-height: 200px; perspective: 1000px; }
+    .dialog-card { position: absolute; width: 100%; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .dialog-card.active { position: relative; opacity: 1; pointer-events: auto; }
+    .card-inner { position: relative; width: 100%; min-height: 180px; transition: transform 0.5s ease; transform-style: preserve-3d; cursor: pointer; }
+    .dialog-card.flipped .card-inner { transform: rotateY(180deg); }
+    .card-front, .card-back { position: absolute; width: 100%; min-height: 180px; backface-visibility: hidden; border-radius: 12px; padding: 1.5rem; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+    .card-front { background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%); border: 2px solid #e5e7eb; }
+    .card-back { background: linear-gradient(135deg, var(--brand-accent, #ff7700) 0%, #e66a00 100%); color: white; transform: rotateY(180deg); }
+    .card-front p, .card-back p { margin: 0; font-size: 1.1rem; line-height: 1.5; }
+    .flip-hint { font-size: 0.8rem; color: var(--muted, #6b7280); margin-top: 1rem; }
+    .dialog-card.flipped .flip-hint { display: none; }
+    .card-nav { display: flex; justify-content: center; align-items: center; gap: 1rem; margin-top: 1rem; }
+    .card-nav button { background: #f3f4f6; border: 2px solid #e5e7eb; border-radius: 8px; padding: 0.5rem 1rem; cursor: pointer; font-size: 1rem; transition: border-color 0.15s ease, background-color 0.15s ease; }
+    .card-nav button:hover:not(:disabled) { border-color: var(--brand-accent, #ff7700); background: rgba(255,119,0,0.04); }
+    .card-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+    .card-counter { font-size: 0.9rem; color: var(--muted, #6b7280); min-width: 50px; text-align: center; }
+    .card-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1rem; }
+    .card-dot { width: 10px; height: 10px; border-radius: 50%; background: #e5e7eb; border: none; cursor: pointer; padding: 0; transition: background-color 0.15s ease; }
+    .card-dot:hover { background: #d1d5db; }
+    .card-dot.active { background: var(--brand-accent, #ff7700); }
+    
+    :root { --brand-primary: #015887; --brand-primary-fill: #015887; --brand-primary-text: #f8f8f8; --brand-primary-hover: #014670; --brand-secondary: #015887; --brand-secondary-color: #015887; --brand-secondary-bg: #f8f8f8; --brand-accent: #ff7700; --brand-cta-fill: #ff7700; --brand-cta-text: #1b0101; --brand-background: #ffffff; --brand-content-bg: #f7f8fa; --brand-card-bg: #ffffff; --brand-link: #015887 }
+body { background: var(--brand-background); }
+a { color: var(--brand-link); }
+a:hover { color: var(--brand-primary-hover, var(--brand-primary)); text-decoration: underline; }
+.interaction { background: var(--brand-card-bg); }
+.page-nav a { text-decoration: none; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; }
+.page-nav a[href]:not(.secondary) { background: var(--brand-primary-fill); color: var(--brand-primary-text); }
+.page-nav a[href]:not(.secondary):hover { background: var(--brand-primary-hover); color: var(--brand-primary-text); }
+.page-nav a.secondary { background: var(--brand-secondary-bg); color: var(--brand-secondary-color); border: 2px solid var(--brand-secondary-color); }
+.page-nav a.secondary:hover { filter: brightness(0.96); }
+
+    .page-nav a { border-radius: 8px; }
+  </style>
+</head>
+<body data-scorm-page-index="4" data-scorm-total-pages="7" data-scorm-total-max="10">
+  <div class="course-wrapper">
+    
+    <div class="progress-container">
+      <span class="progress-label">Page 5 of 7</span>
+      <div class="progress-bar" role="progressbar" aria-valuenow="71" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar-fill" style="width: 71%;"></div>
+      </div>
+    </div>
+    <main class="course-main">
+      <p class="micro-label">MODULE 5 · Module 5: The Decision Matrix</p>
+      <div class="section-heading-wrap">
+        <span class="section-number" aria-hidden="true">05</span>
+        <h1>Module 5: The Decision Matrix</h1>
+      </div>
+      <div class="blocks"><h2 class="content-heading reveal">The Three Gates</h2>
+<h3 class="content-heading reveal">Introduction: Two Different Questions</h3>
+<div class="content-text reveal"><p>You now understand the Red Lines - what you must never input into AI. But responsible AI use requires answering two separate questions:</p></div>
+<div class="content-text reveal"><ol><li><strong>Can I use AI for this?</strong> (Is it safe and permitted?)</li><li><strong>Should I use AI for this?</strong> (Is it effective and appropriate?)</li></ol></div>
+<div class="content-text reveal"><p>Something can be <em>permitted</em> but still be a <em>bad idea</em>. For example:</p></div>
+<div class="content-text reveal"><ul><li>Asking AI to calculate exam grade boundaries is not a privacy breach, but it is a bad idea because AI is unreliable at maths</li><li>Asking AI to draft a bereavement condolence message is not illegal, but it may be inappropriate because such messages need genuine human empathy</li></ul></div>
+<div class="content-text reveal"><p>This module gives you a practical tool - the <strong>Decision Matrix</strong> - to answer both questions quickly, every time.</p></div>
+<div class="key-insight reveal"><p>Think of the Decision Matrix as a traffic light system. Before using AI for any task, run it through three &quot;gates&quot; in order. You must pass all three to proceed safely.</p></div>
+<h3 class="content-heading reveal">Gate 1: The Privacy Gate (Can I?)</h3>
+<figure class="content-image reveal"><img src="img_11.png" alt="" /></figure>
+<div class="content-text reveal"><p>Stop if the task contains Personal Identifiable Information (student names, staff names, ID numbers, email addresses, phone numbers), Special Category Data (health information, disability details, religious observance, political views), confidential institutional data (unpublished research, financial records, strategic plans), others&#39; intellectual property, or information that could indirectly identify individuals.</p></div>
+<div class="content-text reveal"><p>If YES to any of these: STOP. Your options are to anonymise first (remove all identifying information, then reassess), do it manually (some tasks simply should not involve AI), or seek guidance from your Data Protection Officer or line manager.</p></div>
+<div class="content-text reveal"><p>If NO to all: proceed to Gate 2.</p></div>
+<h3 class="content-heading reveal">Gate 2: The Accuracy Gate (Should I?)</h3>
+<figure class="content-image reveal"><img src="img_12.png" alt="" /></figure>
+<div class="content-text reveal"><p>Proceed with caution if 100% accuracy is critical (grade calculations, regulatory compliance, legal statements), this is a high-stakes decision affecting someone&#39;s life or career (scholarship decisions, hiring recommendations, disciplinary outcomes), the task requires current or local information (today&#39;s timetable, recent policy changes), the task involves precise numbers or calculations (budget totals, statistical analysis), or you would struggle to verify the output.</p></div>
+<div class="content-text reveal"><p>If YES to any: use AI for a first draft but verify every fact and calculation independently. Use appropriate tools for calculations (Excel). Seek expert review if you cannot verify the output yourself.</p></div>
+<div class="content-text reveal"><p>If NO to all: proceed to Gate 3.</p></div>
+<h3 class="content-heading reveal">Gate 3: The Suitability Gate (Is AI the right tool?)</h3>
+<figure class="content-image reveal"><img src="img_13.png" alt="" /></figure>
+<div class="content-text reveal"><p>Green light if the task involves: drafting and reformulating (email drafts, rewriting for different audiences), summarising content you provide (condensing reports, extracting key points), explaining and simplifying (making complex concepts accessible), ideation and brainstorming (generating options, suggesting approaches), structuring and organising (outlining documents, creating frameworks), reformatting (converting lists to tables, standardising layouts), or getting feedback on your own drafts.</p></div>
+<div class="content-text reveal"><p>If the task fits these categories: GO - with review. Remember to verify any facts, check for bias, and edit to match your voice and the specific context.</p></div>
+<div class="content-text reveal"><p>If the task does not fit: consider whether the &quot;old way&quot; is faster, more reliable, or more appropriate.</p></div>
+<h2 class="content-heading reveal">Magic The Tool: Traffic Lights</h2>
+<div class="content-text reveal"><p><strong>🛑 Red (Can I?)</strong></p></div>
+<div class="content-text reveal"><p><em>The question: &quot;What data am I about to input?&quot;</em></p></div>
+<div class="content-text reveal"><p>This gate catches tasks that would breach the Red Lines from Module 4.</p></div>
+<div class="content-text reveal"><p><strong>Stop if ANY of these apply:</strong></p></div>
+<div class="content-table reveal"><table><th><tr><th><p><strong>Check</strong></p></th><th><p><strong>Examples</strong></p></th></tr></thead><tbody><tr><td><p><strong>Contains Personal Identifiable Information (PII)?</strong></p></td><td><p>Student names, staff names, ID numbers, email addresses, phone numbers</p></td></tr><tr><td><p><strong>Contains Special Category Data?</strong></p></td><td><p>Health information, disability details, religious observance, political views</p></td></tr><tr><td><p><strong>Contains confidential institutional data?</strong></p></td><td><p>Unpublished research, financial records, strategic plans, security information</p></td></tr><tr><td><p><strong>Contains others&#39; intellectual property?</strong></p></td><td><p>Copyrighted textbooks, colleagues&#39; unpublished work, proprietary materials</p></td></tr><tr><td><p><strong>Could identify individuals indirectly?</strong></p></td><td><p>Small cohort + specific characteristic, unique circumstances</p></td></tr></tbody></table></div>
+<div class="content-text reveal"><p><strong>If YES to any → 🛑 STOP</strong></p></div>
+<div class="content-text reveal"><p><strong>Your options:</strong></p></div>
+<div class="content-text reveal"><ol><li><strong>Anonymise first:</strong> Remove all identifying information, then reassess</li><li><strong>Do it manually:</strong> Some tasks simply should not involve AI</li><li><strong>Seek guidance:</strong> Ask your Data Protection Officer or line manager if genuinely unsure</li></ol></div>
+<div class="content-text reveal"><p><strong>If NO to all → Proceed to Gate 2</strong></p></div>
+<div class="content-text reveal"><p><strong> </strong></p></div>
+<div class="content-text reveal"><p><strong>⚠️ Yellow (Should I?)</strong></p></div>
+<div class="content-text reveal"><p><em>The question: &quot;What happens if the AI gets this wrong?&quot;</em></p></div>
+<div class="content-text reveal"><p>You have cleared the privacy check. Now assess whether AI is <em>reliable enough</em> for this task.</p></div>
+<div class="content-text reveal"><p><strong>Proceed with caution if ANY of these apply:</strong></p></div>
+<div class="content-table reveal"><table><th><tr><th><p><strong>Check</strong></p></th><th><p><strong>Examples</strong></p></th><th><p><strong>Why it&#39;s risky</strong></p></th></tr></thead><tbody><tr><td><p><strong>Is 100% accuracy critical?</strong></p></td><td><p>Grade calculations, regulatory compliance, legal statements</p></td><td><p>AI makes confident errors</p></td></tr><tr><td><p><strong>Is this a high-stakes decision affecting someone&#39;s life or career?</strong></p></td><td><p>Scholarship decisions, hiring recommendations, disciplinary outcomes</p></td><td><p>Requires human judgement</p></td></tr><tr><td><p><strong>Does this require current or local information?</strong></p></td><td><p>Today&#39;s timetable, your department&#39;s specific process, recent policy changes</p></td><td><p>AI training data has a cutoff; may not know your context</p></td></tr><tr><td><p><strong>Does this involve precise numbers or calculations?</strong></p></td><td><p>Budget totals, statistical analysis, date calculations</p></td><td><p>AI predicts digits, does not calculate</p></td></tr><tr><td><p><strong>Would I struggle to verify the output?</strong></p></td><td><p>Code I cannot read, legal advice I cannot assess, technical claims outside my expertise</p></td><td><p>Cannot catch errors you cannot recognise</p></td></tr></tbody></table></div>
+<div class="content-text reveal"><p><strong>If YES to any → ⚠️ CAUTION</strong></p></div>
+<div class="content-text reveal"><p><strong>Your options:</strong></p></div>
+<div class="content-text reveal"><ol><li><strong>Human-in-the-loop:</strong> Use AI for a first draft, but verify every fact and calculation independently</li><li><strong>Use appropriate tools:</strong> For calculations, use Excel. For current information, check primary sources.</li><li><strong>Seek expert review:</strong> If you cannot verify the output yourself, have someone who can review it before use</li><li><strong>Reduce the stakes:</strong> Use AI for brainstorming or structure, but write the final high-stakes content yourself</li></ol></div>
+<div class="content-text reveal"><p><strong>If NO to all → Proceed to Gate 3</strong></p></div>
+<div class="content-text reveal"><p><strong> </strong></p></div>
+<div class="content-text reveal"><p><strong>✅ Green (Is AI the right tool?)</strong></p></div>
+<div class="content-text reveal"><p><em>The question: &quot;Is this task a good fit for AI&#39;s strengths?&quot;</em></p></div>
+<div class="content-text reveal"><p>You have confirmed the task is safe and accuracy requirements are manageable. Now check whether AI will actually be <em>helpful</em>.</p></div>
+<div class="content-text reveal"><p><strong>Green light if the task involves:</strong></p></div>
+<div class="content-table reveal"><table><th><tr><th><p><strong>AI Strength</strong></p></th><th><p><strong>Examples</strong></p></th><th><p><strong>Why AI helps</strong></p></th></tr></thead><tbody><tr><td><p><strong>Drafting and reformulating</strong></p></td><td><p>Email drafts, letter templates, rewriting for different audiences</p></td><td><p>Pattern-based text generation is AI&#39;s core capability</p></td></tr><tr><td><p><strong>Summarising provided content</strong></p></td><td><p>Condensing reports, extracting key points from documents you supply</p></td><td><p>Compression of provided information (not retrieval)</p></td></tr><tr><td><p><strong>Explaining and simplifying</strong></p></td><td><p>Making complex concepts accessible, creating analogies</p></td><td><p>Translating between registers and complexity levels</p></td></tr><tr><td><p><strong>Ideation and brainstorming</strong></p></td><td><p>Generating options, suggesting approaches, listing possibilities</p></td><td><p>Quantity of ideas without commitment to any</p></td></tr><tr><td><p><strong>Structuring and organising</strong></p></td><td><p>Outlining documents, creating frameworks, suggesting headings</p></td><td><p>Pattern recognition for structure</p></td></tr><tr><td><p><strong>Reformatting and transforming</strong></p></td><td><p>Converting lists to tables, changing formats, standardising layouts</p></td><td><p>Mechanical transformation tasks</p></td></tr><tr><td><p><strong>Feedback on your drafts</strong></p></td><td><p>&quot;How could I make this clearer?&quot;, &quot;What have I missed?&quot;</p></td><td><p>Fresh perspective on your existing work</p></td></tr></tbody></table></div>
+<div class="content-text reveal"><p><strong>If your task fits these categories → ✅ GO</strong></p></div>
+<div class="content-text reveal"><p><strong>Remember:</strong></p></div>
+<div class="content-text reveal"><ul><li>Review the output before using it</li><li>Verify any facts, citations, or statistics</li><li>Check for bias and inappropriate assumptions</li><li>Edit to match your voice and the specific context</li></ul></div>
+<div class="content-text reveal"><p><strong>If your task does not fit → Consider alternatives</strong></p></div>
+<div class="content-text reveal"><p>Not every task benefits from AI. Sometimes the &quot;old way&quot; is faster, more reliable, or more appropriate:</p></div>
+<div class="content-text reveal"><ul><li>Quick personal messages → Just write them</li><li>Simple factual lookups → Search your institution&#39;s website or documentation</li><li>Emotional or sensitive communications → Human authorship matters</li><li>Tasks requiring real-time information → Check primary sources directly</li></ul></div>
+<h2 class="content-heading reveal">Applying the Matrix</h2>
+<h3 class="content-heading reveal">Activity: Apply the Matrix</h3>
+<figure class="content-image reveal"><img src="img_14.png" alt="" /></figure>
+<div class="interaction multiple-choice reveal" data-scorm-graded="true" data-block-id="cmmf3mkf200804jauuj3dh90t" data-correct-index="2" data-explanation="This is pure ideation with no personal data and no accuracy requirements. You will choose the best title yourself. This is exactly what AI does well."><p class="question">&quot;Generate five possible titles for a workshop on digital accessibility.&quot; Which gate applies?</p><ul class="options"><li class="option-item" data-index="0"><label><input type="radio" name="mc-cmmf3mkf200804jauuj3dh90t" value="0" /> Gate 1: Stop</label></li><li class="option-item" data-index="1"><label><input type="radio" name="mc-cmmf3mkf200804jauuj3dh90t" value="1" /> Gate 2: Caution</label></li><li class="option-item" data-index="2"><label><input type="radio" name="mc-cmmf3mkf200804jauuj3dh90t" value="2" /> Gate 3: Go</label></li></ul><button type="button" class="check-answer-btn">Check Answer</button><div class="feedback hidden"></div></div>
+<div class="interaction multiple-choice reveal" data-scorm-graded="true" data-block-id="cmmf3mkf200814jaud3yx4pk8" data-correct-index="0" data-explanation="Two problems here. Privacy: student grades are personal data - you would need to input names or IDs with their marks. Accuracy: AI is unreliable at arithmetic. Use Excel with verified formulas instead."><p class="question">&quot;Calculate the final module marks for my 45 students based on their component grades and weightings.&quot; Which gate applies?</p><ul class="options"><li class="option-item" data-index="0"><label><input type="radio" name="mc-cmmf3mkf200814jaud3yx4pk8" value="0" /> Gate 1: Stop</label></li><li class="option-item" data-index="1"><label><input type="radio" name="mc-cmmf3mkf200814jaud3yx4pk8" value="1" /> Gate 2: Caution only</label></li><li class="option-item" data-index="2"><label><input type="radio" name="mc-cmmf3mkf200814jaud3yx4pk8" value="2" /> Gate 3: Go</label></li></ul><button type="button" class="check-answer-btn">Check Answer</button><div class="feedback hidden"></div></div>
+<div class="interaction multiple-choice reveal" data-scorm-graded="true" data-block-id="cmmf3mkf200824jaurodfzw7a" data-correct-index="2" data-explanation="This is reformatting your own content - an ideal AI use case. No personal data (assuming lecture notes do not contain student information), low accuracy stakes, and it plays to AI&#39;s strengths."><p class="question">&quot;Reformat my bullet-point lecture notes into a structured handout with headings and subheadings.&quot; Which gate applies?</p><ul class="options"><li class="option-item" data-index="0"><label><input type="radio" name="mc-cmmf3mkf200824jaurodfzw7a" value="0" /> Gate 1: Stop</label></li><li class="option-item" data-index="1"><label><input type="radio" name="mc-cmmf3mkf200824jaurodfzw7a" value="1" /> Gate 2: Caution</label></li><li class="option-item" data-index="2"><label><input type="radio" name="mc-cmmf3mkf200824jaurodfzw7a" value="2" /> Gate 3: Go</label></li></ul><button type="button" class="check-answer-btn">Check Answer</button><div class="feedback hidden"></div></div>
+<div class="interaction true-false reveal" data-scorm-graded="true" data-block-id="cmmf3mkf200834jauw0ytfms0" data-correct="false" data-explanation="You must pass all three gates. A task may be privacy-safe but still be inappropriate for AI if accuracy is critical, verification is difficult, or the task does not suit AI&#39;s actual strengths."><p class="question">If a task passes Gate 1 (privacy), you can always go ahead and use AI without further checks.</p><ul class="options"><li class="option-item" data-value="true"><label><input type="radio" name="tf-cmmf3mkf200834jauw0ytfms0" value="true" /> True</label></li><li class="option-item" data-value="false"><label><input type="radio" name="tf-cmmf3mkf200834jauw0ytfms0" value="false" /> False</label></li></ul><button type="button" class="check-answer-btn">Check Answer</button><div class="feedback hidden"></div></div>
+<h3 class="content-heading reveal">Making It Automatic</h3>
+<div class="content-text reveal"><p>The goal is for this decision process to become instinctive. In weeks 1-2, deliberately pause before each AI use and mentally run through the three gates. By weeks 3-4, you will notice when you are about to skip the check. After week 5, the assessment becomes automatic - you will feel uncomfortable when something does not pass the gates.</p></div>
+<div class="content-text reveal"><p>When in doubt: default to caution (do it manually or seek guidance), ask a colleague, contact your institution&#39;s AI lead or Data Protection Officer, or check your institutional policy.</p></div>
+<h3 class="content-heading reveal">Summary</h3>
+<div class="content-text reveal"><p>The Decision Matrix is a three-gate traffic light system: Gate 1 (Privacy) - does this involve personal or confidential data? Gate 2 (Accuracy) - what happens if the AI is wrong? Gate 3 (Suitability) - is this drafting, summarising, explaining, or brainstorming? Only proceed when all three gates are clear. The framework saves time by preventing mistakes before they happen.</p></div></div>
+      <nav class="page-nav"><div><a href="page_3.html" class="secondary">← Previous</a></div><div><a href="page_5.html">Next →</a></div></nav>
+    </main>
+  </div>
+  <script src="../scorm-api.js"></script>
+  <script>
+(function() {
+  var body = document.body;
+  var pageIndex = parseInt(body.getAttribute('data-scorm-page-index') || '0', 10);
+  var totalPages = parseInt(body.getAttribute('data-scorm-total-pages') || '1', 10);
+  var totalScoreMax = Math.max(1, parseInt(body.getAttribute('data-scorm-total-max') || '1', 10));
+  function initScorm() {
+    if (typeof SCORM === 'undefined') return;
+    SCORM.init();
+    SCORM.setLessonStatus('incomplete');
+    var sd = SCORM.getSuspendData();
+    var state = { viewed: [], score: 0, answers: {} };
+    try { if (sd) state = JSON.parse(sd); } catch (e) {}
+    if (!state.viewed) state.viewed = [];
+    if (state.viewed.indexOf(pageIndex) === -1) state.viewed.push(pageIndex);
+    state.viewed = state.viewed.filter(function(v, i, a) { return a.indexOf(v) === i; });
+    if (!state.answers) state.answers = {};
+    SCORM.setSuspendData(JSON.stringify(state));
+    SCORM.setScore(state.score || 0, 0, totalScoreMax);
+    var graded = document.querySelectorAll('[data-scorm-graded="true"]');
+    [].forEach.call(graded, function(el) {
+      var inputs = el.querySelectorAll('input[type="radio"]');
+      var correctVal = el.getAttribute('data-correct');
+      var correctIdx = el.getAttribute('data-correct-index');
+      var isCorrect = correctVal !== null && correctVal !== ''
+        ? function(v) { return v === correctVal; }
+        : function(v) { return parseInt(v, 10) === parseInt(correctIdx, 10); };
+      [].forEach.call(inputs, function(inp) {
+        inp.addEventListener('change', function() {
+          if (typeof SCORM === 'undefined') return;
+          var sd2 = SCORM.getSuspendData();
+          var s2 = { viewed: state.viewed, score: 0, answers: state.answers || {} };
+          try { if (sd2) s2 = JSON.parse(sd2); } catch (e) {}
+          var key = el.getAttribute('data-block-id');
+          s2.answers[key] = isCorrect(this.value);
+          var n = 0;
+          for (var k in s2.answers) if (s2.answers[k]) n++;
+          s2.score = n;
+          state.score = n;
+          state.answers = s2.answers;
+          SCORM.setSuspendData(JSON.stringify(s2));
+          SCORM.setScore(n, 0, totalScoreMax);
+        });
+      });
+    });
+    window.addEventListener('beforeunload', function() { SCORM.setLessonStatus('completed'); });
+    
+    // Global function to track answers from drag-and-drop and matching interactions
+    window.trackInteractionAnswer = function(blockId, isCorrect) {
+      if (typeof SCORM === 'undefined' || !blockId) return;
+      var sd2 = SCORM.getSuspendData();
+      var s2 = { viewed: state.viewed, score: 0, answers: state.answers || {} };
+      try { if (sd2) s2 = JSON.parse(sd2); } catch (err) {}
+      s2.answers[blockId] = isCorrect;
+      var n = 0;
+      for (var k in s2.answers) if (s2.answers[k]) n++;
+      s2.score = n;
+      state.score = n;
+      state.answers = s2.answers;
+      SCORM.setSuspendData(JSON.stringify(s2));
+      SCORM.setScore(n, 0, totalScoreMax);
+    };
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initScorm);
+  else initScorm();
+})();
+
+(function() {
+  function initCheckAnswers() {
+    var interactions = document.querySelectorAll('.interaction.multiple-choice, .interaction.true-false');
+    [].forEach.call(interactions, function(el) {
+      var btn = el.querySelector('.check-answer-btn');
+      var feedback = el.querySelector('.feedback');
+      if (!btn || !feedback) return;
+      
+      btn.addEventListener('click', function() {
+        var selected = el.querySelector('input[type="radio"]:checked');
+        if (!selected) {
+          feedback.className = 'feedback incorrect';
+          feedback.innerHTML = '<p class="feedback-title">Please select an answer first.</p>';
+          return;
+        }
+        
+        var isMultipleChoice = el.classList.contains('multiple-choice');
+        var correctIdx = el.getAttribute('data-correct-index');
+        var correctVal = el.getAttribute('data-correct');
+        var explanation = el.getAttribute('data-explanation') || '';
+        var selectedValue = selected.value;
+        var isCorrect;
+        
+        if (isMultipleChoice) {
+          isCorrect = parseInt(selectedValue, 10) === parseInt(correctIdx, 10);
+        } else {
+          isCorrect = selectedValue === correctVal;
+        }
+        
+        el.classList.add('checked');
+        btn.disabled = true;
+        var inputs = el.querySelectorAll('input[type="radio"]');
+        [].forEach.call(inputs, function(inp) { inp.disabled = true; });
+        
+        var titleText = isCorrect ? 'Correct!' : 'Incorrect';
+        var explanationHtml = explanation ? '<p class="feedback-explanation">' + explanation + '</p>' : '';
+        feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
+        feedback.innerHTML = '<p class="feedback-title">' + titleText + '</p>' + explanationHtml;
+        
+        if (isMultipleChoice) {
+          var optionItems = el.querySelectorAll('.option-item');
+          [].forEach.call(optionItems, function(item) {
+            var idx = item.getAttribute('data-index');
+            if (parseInt(idx, 10) === parseInt(correctIdx, 10)) {
+              item.classList.add('correct-answer');
+            }
+            var itemInput = item.querySelector('input[type="radio"]');
+            if (itemInput && itemInput.checked && !isCorrect) {
+              item.classList.add('user-incorrect');
+            }
+          });
+        } else {
+          var optionItems = el.querySelectorAll('.option-item');
+          [].forEach.call(optionItems, function(item) {
+            var val = item.getAttribute('data-value');
+            if (val === correctVal) {
+              item.classList.add('correct-answer');
+            }
+            var itemInput = item.querySelector('input[type="radio"]');
+            if (itemInput && itemInput.checked && !isCorrect) {
+              item.classList.add('user-incorrect');
+            }
+          });
+        }
+      });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initCheckAnswers);
+  else initCheckAnswers();
+})();
+
+// Drag and Drop Interaction
+(function() {
+  function initDragAndDrop() {
+    var dragDrops = document.querySelectorAll('.interaction.drag-and-drop');
+    [].forEach.call(dragDrops, function(el) {
+      var dragList = el.querySelector('.drag-list');
+      var btn = el.querySelector('.check-answer-btn');
+      var feedback = el.querySelector('.feedback');
+      if (!dragList || !btn || !feedback) return;
+      
+      var draggedItem = null;
+      var items = dragList.querySelectorAll('.drag-item');
+      
+      [].forEach.call(items, function(item) {
+        item.addEventListener('dragstart', function(e) {
+          draggedItem = this;
+          this.classList.add('dragging');
+          e.dataTransfer.effectAllowed = 'move';
+        });
+        
+        item.addEventListener('dragend', function() {
+          this.classList.remove('dragging');
+          draggedItem = null;
+          [].forEach.call(items, function(i) { i.classList.remove('drag-over'); });
+        });
+        
+        item.addEventListener('dragover', function(e) {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'move';
+          if (this !== draggedItem) this.classList.add('drag-over');
+        });
+        
+        item.addEventListener('dragleave', function() {
+          this.classList.remove('drag-over');
+        });
+        
+        item.addEventListener('drop', function(e) {
+          e.preventDefault();
+          this.classList.remove('drag-over');
+          if (draggedItem && this !== draggedItem) {
+            var allItems = Array.prototype.slice.call(dragList.querySelectorAll('.drag-item'));
+            var draggedIdx = allItems.indexOf(draggedItem);
+            var targetIdx = allItems.indexOf(this);
+            if (draggedIdx < targetIdx) {
+              dragList.insertBefore(draggedItem, this.nextSibling);
+            } else {
+              dragList.insertBefore(draggedItem, this);
+            }
+          }
+        });
+        
+        // Touch support
+        var touchY = 0;
+        item.addEventListener('touchstart', function(e) {
+          touchY = e.touches[0].clientY;
+          draggedItem = this;
+          this.classList.add('dragging');
+        }, {passive: true});
+        
+        item.addEventListener('touchmove', function(e) {
+          e.preventDefault();
+          var y = e.touches[0].clientY;
+          var target = document.elementFromPoint(e.touches[0].clientX, y);
+          if (target) {
+            var closest = target.closest('.drag-item');
+            [].forEach.call(items, function(i) { i.classList.remove('drag-over'); });
+            if (closest && closest !== draggedItem) closest.classList.add('drag-over');
+          }
+        });
+        
+        item.addEventListener('touchend', function() {
+          this.classList.remove('dragging');
+          var overItem = dragList.querySelector('.drag-item.drag-over');
+          if (overItem && draggedItem) {
+            var allItems = Array.prototype.slice.call(dragList.querySelectorAll('.drag-item'));
+            var draggedIdx = allItems.indexOf(draggedItem);
+            var targetIdx = allItems.indexOf(overItem);
+            if (draggedIdx < targetIdx) {
+              dragList.insertBefore(draggedItem, overItem.nextSibling);
+            } else {
+              dragList.insertBefore(draggedItem, overItem);
+            }
+          }
+          [].forEach.call(items, function(i) { i.classList.remove('drag-over'); });
+          draggedItem = null;
+        });
+      });
+      
+      btn.addEventListener('click', function() {
+        var correctOrderStr = el.getAttribute('data-correct-order');
+        var explanation = el.getAttribute('data-explanation') || '';
+        var correctOrder;
+        try { correctOrder = JSON.parse(correctOrderStr); } catch(err) { correctOrder = []; }
+        
+        var currentItems = dragList.querySelectorAll('.drag-item');
+        var currentOrder = Array.prototype.slice.call(currentItems).map(function(item) {
+          return parseInt(item.getAttribute('data-index'), 10);
+        });
+        
+        var isCorrect = correctOrder.length === currentOrder.length && 
+          correctOrder.every(function(v, i) { return v === currentOrder[i]; });
+        
+        el.classList.add('checked');
+        btn.disabled = true;
+        
+        [].forEach.call(currentItems, function(item, idx) {
+          item.setAttribute('draggable', 'false');
+          var itemIndex = parseInt(item.getAttribute('data-index'), 10);
+          if (correctOrder[idx] === itemIndex) {
+            item.classList.add('correct-position');
+          } else {
+            item.classList.add('incorrect-position');
+          }
+        });
+        
+        var titleText = isCorrect ? 'Correct!' : 'Incorrect - The items are not in the right order.';
+        var explanationHtml = explanation ? '<p class="feedback-explanation">' + explanation + '</p>' : '';
+        feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
+        feedback.innerHTML = '<p class="feedback-title">' + titleText + '</p>' + explanationHtml;
+        
+        if (typeof window.trackInteractionAnswer === 'function') {
+          window.trackInteractionAnswer(el.getAttribute('data-block-id'), isCorrect);
+        }
+      });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initDragAndDrop);
+  else initDragAndDrop();
+})();
+
+// Matching Interaction
+(function() {
+  function initMatching() {
+    var matchings = document.querySelectorAll('.interaction.matching');
+    [].forEach.call(matchings, function(el) {
+      var leftCol = el.querySelector('.match-left-col');
+      var rightCol = el.querySelector('.match-right-col');
+      var svg = el.querySelector('.match-lines');
+      var btn = el.querySelector('.check-answer-btn');
+      var feedback = el.querySelector('.feedback');
+      if (!leftCol || !rightCol || !btn || !feedback) return;
+      
+      var selectedLeft = null;
+      var matches = {};
+      var pairCount = parseInt(el.getAttribute('data-pair-count') || '0', 10);
+      
+      function updateLines() {
+        if (!svg) return;
+        var container = el.querySelector('.match-container');
+        var containerRect = container.getBoundingClientRect();
+        svg.innerHTML = '';
+        svg.setAttribute('width', containerRect.width);
+        svg.setAttribute('height', containerRect.height);
+        
+        for (var leftIdx in matches) {
+          var rightIdx = matches[leftIdx];
+          var leftItem = leftCol.querySelector('[data-index="' + leftIdx + '"]');
+          var rightItem = rightCol.querySelector('[data-index="' + rightIdx + '"]');
+          if (leftItem && rightItem) {
+            var leftRect = leftItem.getBoundingClientRect();
+            var rightRect = rightItem.getBoundingClientRect();
+            var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', leftRect.right - containerRect.left);
+            line.setAttribute('y1', leftRect.top + leftRect.height/2 - containerRect.top);
+            line.setAttribute('x2', rightRect.left - containerRect.left);
+            line.setAttribute('y2', rightRect.top + rightRect.height/2 - containerRect.top);
+            line.setAttribute('data-left', leftIdx);
+            line.setAttribute('data-right', rightIdx);
+            svg.appendChild(line);
+          }
+        }
+      }
+      
+      var leftItems = leftCol.querySelectorAll('.match-item');
+      var rightItems = rightCol.querySelectorAll('.match-item');
+      
+      [].forEach.call(leftItems, function(item) {
+        item.addEventListener('click', function() {
+          if (el.classList.contains('checked')) return;
+          var idx = this.getAttribute('data-index');
+          if (matches[idx] !== undefined) {
+            var oldRight = matches[idx];
+            delete matches[idx];
+            this.classList.remove('matched');
+            var rightMatch = rightCol.querySelector('[data-index="' + oldRight + '"]');
+            if (rightMatch) rightMatch.classList.remove('matched');
+            updateLines();
+          }
+          [].forEach.call(leftItems, function(i) { i.classList.remove('selected'); });
+          this.classList.add('selected');
+          selectedLeft = idx;
+        });
+      });
+      
+      [].forEach.call(rightItems, function(item) {
+        item.addEventListener('click', function() {
+          if (el.classList.contains('checked')) return;
+          if (selectedLeft === null) return;
+          var rightIdx = this.getAttribute('data-index');
+          
+          for (var k in matches) {
+            if (matches[k] === rightIdx) {
+              delete matches[k];
+              var oldLeft = leftCol.querySelector('[data-index="' + k + '"]');
+              if (oldLeft) oldLeft.classList.remove('matched');
+            }
+          }
+          
+          matches[selectedLeft] = rightIdx;
+          var leftItem = leftCol.querySelector('[data-index="' + selectedLeft + '"]');
+          if (leftItem) {
+            leftItem.classList.remove('selected');
+            leftItem.classList.add('matched');
+          }
+          this.classList.add('matched');
+          selectedLeft = null;
+          updateLines();
+        });
+      });
+      
+      btn.addEventListener('click', function() {
+        var explanation = el.getAttribute('data-explanation') || '';
+        var correctCount = 0;
+        
+        for (var leftIdx in matches) {
+          if (matches[leftIdx] === leftIdx) correctCount++;
+        }
+        
+        var isCorrect = correctCount === pairCount && Object.keys(matches).length === pairCount;
+        
+        el.classList.add('checked');
+        btn.disabled = true;
+        
+        for (var leftIdx in matches) {
+          var rightIdx = matches[leftIdx];
+          var leftItem = leftCol.querySelector('[data-index="' + leftIdx + '"]');
+          var rightItem = rightCol.querySelector('[data-index="' + rightIdx + '"]');
+          var line = svg ? svg.querySelector('line[data-left="' + leftIdx + '"]') : null;
+          
+          if (leftIdx === rightIdx) {
+            if (leftItem) leftItem.classList.add('correct-match');
+            if (rightItem) rightItem.classList.add('correct-match');
+            if (line) line.classList.add('correct');
+          } else {
+            if (leftItem) leftItem.classList.add('incorrect-match');
+            if (rightItem) rightItem.classList.add('incorrect-match');
+            if (line) line.classList.add('incorrect');
+          }
+        }
+        
+        var titleText = isCorrect ? 'Correct!' : 'Incorrect - Some matches are wrong.';
+        var explanationHtml = explanation ? '<p class="feedback-explanation">' + explanation + '</p>' : '';
+        feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
+        feedback.innerHTML = '<p class="feedback-title">' + titleText + '</p>' + explanationHtml;
+        
+        if (typeof window.trackInteractionAnswer === 'function') {
+          window.trackInteractionAnswer(el.getAttribute('data-block-id'), isCorrect);
+        }
+      });
+      
+      window.addEventListener('resize', updateLines);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initMatching);
+  else initMatching();
+})();
+
+// Dialog Cards Interaction
+(function() {
+  function initDialogCards() {
+    var cardSets = document.querySelectorAll('.interaction.dialog-cards');
+    [].forEach.call(cardSets, function(el) {
+      var cards = el.querySelectorAll('.dialog-card');
+      var dots = el.querySelectorAll('.card-dot');
+      var prevBtn = el.querySelector('.card-prev');
+      var nextBtn = el.querySelector('.card-next');
+      var counter = el.querySelector('.card-counter');
+      var totalCards = parseInt(el.getAttribute('data-total-cards') || '1', 10);
+      var currentIndex = 0;
+      
+      function showCard(idx) {
+        currentIndex = Math.max(0, Math.min(idx, totalCards - 1));
+        [].forEach.call(cards, function(card, i) {
+          card.classList.toggle('active', i === currentIndex);
+          card.classList.remove('flipped');
+        });
+        [].forEach.call(dots, function(dot, i) {
+          dot.classList.toggle('active', i === currentIndex);
+        });
+        if (counter) counter.textContent = (currentIndex + 1) + ' / ' + totalCards;
+        if (prevBtn) prevBtn.disabled = currentIndex === 0;
+        if (nextBtn) nextBtn.disabled = currentIndex === totalCards - 1;
+      }
+      
+      [].forEach.call(cards, function(card) {
+        card.addEventListener('click', function() {
+          this.classList.toggle('flipped');
+        });
+      });
+      
+      [].forEach.call(dots, function(dot) {
+        dot.addEventListener('click', function() {
+          showCard(parseInt(this.getAttribute('data-index'), 10));
+        });
+      });
+      
+      if (prevBtn) prevBtn.addEventListener('click', function() { showCard(currentIndex - 1); });
+      if (nextBtn) nextBtn.addEventListener('click', function() { showCard(currentIndex + 1); });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initDialogCards);
+  else initDialogCards();
+})();
+  </script>
+  <script>
+(function() {
+  var reveals = document.querySelectorAll('.reveal');
+  if (!reveals.length) return;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(function(el) { observer.observe(el); });
+})();
+  </script>
+</body>
+</html>

@@ -11,9 +11,6 @@ const metadata = {
   },
 };
 
-const supabaseUrl = (import.meta.env.PUBLIC_SUPABASE_URL ?? import.meta.env.SUPABASE_URL ?? '').trim();
-const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta.env.SUPABASE_ANON_KEY ?? '').trim();
-
 const availableCourses = [
   {
     id: 'ai-foundations',
@@ -62,8 +59,8 @@ const availableCourses = [
   </section>
 </Layout>
 
-<script type="module" is:inline>
-  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+<script type="module">
+  import { academySupabase, hasAcademySupabaseConfig, requireAuth } from '~/lib/academy';
 
   const courseGrid = document.getElementById('academy-course-grid');
   const feedback = document.getElementById('academy-dashboard-feedback');
@@ -73,8 +70,6 @@ const availableCourses = [
     throw new Error('Academy course grid not found');
   }
 
-  const supabaseUrl = (document.documentElement.dataset.supabaseUrl || '').trim();
-  const supabaseAnonKey = (document.documentElement.dataset.supabaseAnonKey || '').trim();
   const courses = JSON.parse(courseGrid.getAttribute('data-courses') || '[]');
 
   const setFeedback = (message, isError = true) => {
@@ -116,18 +111,16 @@ const availableCourses = [
 
   renderCourses();
 
-  if (!supabaseUrl || !supabaseAnonKey) {
+  if (!hasAcademySupabaseConfig || !academySupabase) {
     setFeedback('Dashboard is unavailable. Missing Supabase configuration.');
   } else {
-    const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
-    const { data: sessionData } = await supabase.auth.getSession();
-    const user = sessionData?.session?.user;
+    const authState = await requireAuth('/academy/login/');
+    const user = authState?.user;
 
     if (!user) {
-      window.location.replace('/academy/login/');
+      return;
     } else {
-      const { data: progressRows, error } = await supabase
+      const { data: progressRows, error } = await academySupabase
         .from('progress')
         .select('course_id, progress_percent')
         .eq('user_id', user.id);
@@ -143,15 +136,10 @@ const availableCourses = [
 
       if (signOutButton) {
         signOutButton.addEventListener('click', async () => {
-          await supabase.auth.signOut();
+          await academySupabase.auth.signOut();
           window.location.replace('/academy/login/');
         });
       }
     }
   }
-</script>
-
-<script is:inline define:vars={{ supabaseUrl, supabaseAnonKey }}>
-  document.documentElement.dataset.supabaseUrl = supabaseUrl;
-  document.documentElement.dataset.supabaseAnonKey = supabaseAnonKey;
 </script>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest identifier="cmmf3mhcl00004jaucacxqjrl" version="1"
+  xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
+  xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd">
+  <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>1.2</schemaversion>
+  </metadata>
+  <organizations default="cmmf3mhcl00004jaucacxqjrl">
+    <organization identifier="cmmf3mhcl00004jaucacxqjrl">
+      <title>AI Foundations &amp; Responsible Use</title>
+    <item identifier="item_0" identifierref="res_0"><title>Module 1: You Already Use AI</title></item>
+    <item identifier="item_1" identifierref="res_1"><title>Module 2: What is AI?</title></item>
+    <item identifier="item_2" identifierref="res_2"><title>Module 3: Hands-On with Microsoft Copilot</title></item>
+    <item identifier="item_3" identifierref="res_3"><title>Module 4: Responsible Use</title></item>
+    <item identifier="item_4" identifierref="res_4"><title>Module 5: The Decision Matrix</title></item>
+    <item identifier="item_5" identifierref="res_5"><title>Module 6: Prompting Basics - The R-C-T Framework</title></item>
+    <item identifier="item_6" identifierref="res_6"><title>Course Conclusion</title></item>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="res_0" type="webcontent" adlcp:scormtype="sco" href="content/page_0.html">
+      <file href="content/page_0.html" />
+      <file href="scorm-api.js" />
+      <file href="content/img_0.png" />
+      <file href="content/img_1.png" />
+      <file href="content/img_2.png" />
+      <file href="content/img_3.png" />
+      <file href="content/img_4.png" />
+      <file href="content/img_5.png" />
+      <file href="content/img_6.png" />
+      <file href="content/img_7.png" />
+      <file href="content/img_8.png" />
+      <file href="content/img_9.png" />
+      <file href="content/img_10.png" />
+      <file href="content/img_11.png" />
+      <file href="content/img_12.png" />
+      <file href="content/img_13.png" />
+      <file href="content/img_14.png" />
+      <file href="content/img_15.png" />
+      <file href="content/img_16.png" />
+      <file href="content/img_17.png" />
+      <file href="content/video_0.mp4" />
+      <file href="content/video_1.mp4" />
+    </resource>
+    <resource identifier="res_1" type="webcontent" adlcp:scormtype="sco" href="content/page_1.html">
+      <file href="content/page_1.html" />
+      <file href="scorm-api.js" />
+      <file href="content/img_0.png" />
+      <file href="content/img_1.png" />
+      <file href="content/img_2.png" />
+      <file href="content/img_3.png" />
+      <file href="content/img_4.png" />
+      <file href="content/img_5.png" />
+      <file href="content/img_6.png" />
+      <file href="content/img_7.png" />
+      <file href="content/img_8.png" />
+      <file href="content/img_9.png" />
+      <file href="content/img_10.png" />
+      <file href="content/img_11.png" />
+      <file href="content/img_12.png" />
+      <file href="content/img_13.png" />
+      <file href="content/img_14.png" />
+      <file href="content/img_15.png" />
+      <file href="content/img_16.png" />
+      <file href="content/img_17.png" />
+      <file href="content/video_0.mp4" />
+      <file href="content/video_1.mp4" />
+    </resource>
+    <resource identifier="res_2" type="webcontent" adlcp:scormtype="sco" href="content/page_2.html">
+      <file href="content/page_2.html" />
+      <file href="scorm-api.js" />
+      <file href="content/img_0.png" />
+      <file href="content/img_1.png" />
+      <file href="content/img_2.png" />
+      <file href="content/img_3.png" />
+      <file href="content/img_4.png" />
+      <file href="content/img_5.png" />
+      <file href="content/img_6.png" />
+      <file href="content/img_7.png" />
+      <file href="content/img_8.png" />
+      <file href="content/img_9.png" />
+      <file href="content/img_10.png" />
+      <file href="content/img_11.png" />
+      <file href="content/img_12.png" />
+      <file href="content/img_13.png" />
+      <file href="content/img_14.png" />
+      <file href="content/img_15.png" />
+      <file href="content/img_16.png" />
+      <file href="content/img_17.png" />
+      <file href="content/video_0.mp4" />
+      <file href="content/video_1.mp4" />
+    </resource>
+    <resource identifier="res_3" type="webcontent" adlcp:scormtype="sco" href="content/page_3.html">
+      <file href="content/page_3.html" />
+      <file href="scorm-api.js" />
+      <file href="content/img_0.png" />
+      <file href="content/img_1.png" />
+      <file href="content/img_2.png" />
+      <file href="content/img_3.png" />
+      <file href="content/img_4.png" />
+      <file href="content/img_5.png" />
+      <file href="content/img_6.png" />
+      <file href="content/img_7.png" />
+      <file href="content/img_8.png" />
+      <file href="content/img_9.png" />
+      <file href="content/img_10.png" />
+      <file href="content/img_11.png" />
+      <file href="content/img_12.png" />
+      <file href="content/img_13.png" />
+      <file href="content/img_14.png" />
+      <file href="content/img_15.png" />
+      <file href="content/img_16.png" />
+      <file href="content/img_17.png" />
+      <file href="content/video_0.mp4" />
+      <file href="content/video_1.mp4" />
+    </resource>
+    <resource identifier="res_4" type="webcontent" adlcp:scormtype="sco" href="content/page_4.html">
+      <file href="content/page_4.html" />
+      <file href="scorm-api.js" />
+      <file href="content/img_0.png" />
+      <file href="content/img_1.png" />
+      <file href="content/img_2.png" />
+      <file href="content/img_3.png" />
+      <file href="content/img_4.png" />
+      <file href="content/img_5.png" />
+      <file href="content/img_6.png" />
+      <file href="content/img_7.png" />
+      <file href="content/img_8.png" />
+      <file href="content/img_9.png" />
+      <file href="content/img_10.png" />
+      <file href="content/img_11.png" />
+      <file href="content/img_12.png" />
+      <file href="content/img_13.png" />
+      <file href="content/img_14.png" />
+      <file href="content/img_15.png" />
+      <file href="content/img_16.png" />
+      <file href="content/img_17.png" />
+      <file href="content/video_0.mp4" />
+      <file href="content/video_1.mp4" />
+    </resource>
+    <resource identifier="res_5" type="webcontent" adlcp:scormtype="sco" href="content/page_5.html">
+      <file href="content/page_5.html" />
+      <file href="scorm-api.js" />
+      <file href="content/img_0.png" />
+      <file href="content/img_1.png" />
+      <file href="content/img_2.png" />
+      <file href="content/img_3.png" />
+      <file href="content/img_4.png" />
+      <file href="content/img_5.png" />
+      <file href="content/img_6.png" />
+      <file href="content/img_7.png" />
+      <file href="content/img_8.png" />
+      <file href="content/img_9.png" />
+      <file href="content/img_10.png" />
+      <file href="content/img_11.png" />
+      <file href="content/img_12.png" />
+      <file href="content/img_13.png" />
+      <file href="content/img_14.png" />
+      <file href="content/img_15.png" />
+      <file href="content/img_16.png" />
+      <file href="content/img_17.png" />
+      <file href="content/video_0.mp4" />
+      <file href="content/video_1.mp4" />
+    </resource>
+    <resource identifier="res_6" type="webcontent" adlcp:scormtype="sco" href="content/page_6.html">
+      <file href="content/page_6.html" />
+      <file href="scorm-api.js" />
+      <file href="content/img_0.png" />
+      <file href="content/img_1.png" />
+      <file href="content/img_2.png" />
+      <file href="content/img_3.png" />
+      <file href="content/img_4.png" />
+      <file href="content/img_5.png" />
+      <file href="content/img_6.png" />
+      <file href="content/img_7.png" />
+      <file href="content/img_8.png" />
+      <file href="content/img_9.png" />
+      <file href="content/img_10.png" />
+      <file href="content/img_11.png" />
+      <file href="content/img_12.png" />
+      <file href="content/img_13.png" />
+      <file href="content/img_14.png" />
+      <file href="content/img_15.png" />
+      <file href="content/img_16.png" />
+      <file href="content/img_17.png" />
+      <file href="content/video_0.mp4" />
+      <file href="content/video_1.mp4" />
+    </resource>
+  </resources>
+</manifest>

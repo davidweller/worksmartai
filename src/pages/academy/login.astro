@@ -10,9 +10,6 @@ const metadata = {
     follow: false,
   },
 };
-
-const supabaseUrl = (import.meta.env.PUBLIC_SUPABASE_URL ?? import.meta.env.SUPABASE_URL ?? '').trim();
-const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta.env.SUPABASE_ANON_KEY ?? '').trim();
 ---
 
 <Layout metadata={metadata}>
@@ -31,12 +28,7 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
         <h1 class="mt-3 font-heading text-3xl font-bold text-heading">Welcome back</h1>
         <p class="mt-2 text-sm text-muted">Sign in to continue your WorkSmart-AI Academy learning journey.</p>
 
-        <form
-          id="academy-login-form"
-          class="mt-8 space-y-4"
-          data-supabase-url={supabaseUrl}
-          data-supabase-anon-key={supabaseAnonKey}
-        >
+        <form id="academy-login-form" class="mt-8 space-y-4">
           <div>
             <label for="academy-email" class="block text-sm font-semibold text-heading">Email</label>
             <input
@@ -77,8 +69,8 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
   </section>
 </Layout>
 
-<script type="module" is:inline>
-  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+<script type="module">
+  import { academySupabase, hasAcademySupabaseConfig, requireAuth } from '~/lib/academy';
 
   const form = document.getElementById('academy-login-form');
   const feedback = document.getElementById('academy-login-feedback');
@@ -86,9 +78,6 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
   if (!form) {
     throw new Error('Academy login form not found');
   }
-
-  const supabaseUrl = (form.getAttribute('data-supabase-url') || '').trim();
-  const supabaseAnonKey = (form.getAttribute('data-supabase-anon-key') || '').trim();
 
   const setFeedback = (message, isError = true) => {
     if (!feedback) return;
@@ -98,15 +87,11 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
       : 'rounded-lg border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-800';
   };
 
-  if (!supabaseUrl || !supabaseAnonKey) {
+  if (!hasAcademySupabaseConfig || !academySupabase) {
     setFeedback('Login is unavailable right now. Please contact support.');
   } else {
-    const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
-    const { data: sessionData } = await supabase.auth.getSession();
-    if (sessionData?.session) {
-      window.location.replace('/academy/dashboard/');
-    }
+    const authState = await requireAuth('/academy/dashboard/');
+    if (authState?.user) return;
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -123,7 +108,7 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
       if (submitButton instanceof HTMLButtonElement) submitButton.disabled = true;
       if (feedback) feedback.className = 'hidden';
 
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      const { error } = await academySupabase.auth.signInWithPassword({ email, password });
 
       if (submitButton instanceof HTMLButtonElement) submitButton.disabled = false;
 
