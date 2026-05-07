@@ -56,8 +56,63 @@ const metadata = {
 </Layout>
 
 <script>
+  import { academySupabase, hasAcademySupabaseConfig } from '~/lib/academy';
+
   const form = document.getElementById('login-form');
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-  });
+  if (!(form instanceof HTMLFormElement)) {
+    throw new Error('Login form not found');
+  }
+
+  const feedback = document.createElement('p');
+  feedback.className = 'mt-4 hidden rounded-lg px-3 py-2 text-sm';
+  feedback.setAttribute('role', 'alert');
+  form.appendChild(feedback);
+
+  const setFeedback = (message, isError = true) => {
+    feedback.textContent = message;
+    feedback.className = isError
+      ? 'mt-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800'
+      : 'mt-4 rounded-lg border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-800';
+  };
+
+  if (!hasAcademySupabaseConfig || !academySupabase) {
+    setFeedback('Login is unavailable right now. Please contact support.');
+  } else {
+    const { data: sessionData, error: sessionError } = await academySupabase.auth.getSession();
+    if (!sessionError && sessionData.session?.user) {
+      window.location.replace('/academy/dashboard/');
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitButton = form.querySelector('button[type="submit"]');
+      const formData = new FormData(form);
+      const email = String(formData.get('email') || '').trim();
+      const password = String(formData.get('password') || '');
+
+      if (!email || !password) {
+        setFeedback('Please provide both email and password.');
+        return;
+      }
+
+      if (submitButton instanceof HTMLButtonElement) submitButton.disabled = true;
+      feedback.className = 'hidden';
+
+      try {
+        const { error } = await academySupabase.auth.signInWithPassword({ email, password });
+        if (error) {
+          setFeedback(error.message || 'Login failed. Please check your credentials.');
+          return;
+        }
+
+        setFeedback('Login successful. Redirecting...', false);
+        window.location.replace('/academy/dashboard/');
+      } catch (caughtError) {
+        const message = caughtError instanceof Error ? caughtError.message : 'Unexpected login error.';
+        setFeedback(`Login failed: ${message}`);
+      } finally {
+        if (submitButton instanceof HTMLButtonElement) submitButton.disabled = false;
+      }
+    });
+  }
 </script>

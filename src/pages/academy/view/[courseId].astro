@@ -9,6 +9,12 @@ export function getStaticPaths() {
 }
 
 const courseId = Astro.params.courseId ?? '';
+const courseContentPathById: Record<string, string> = {
+  'ai-foundations': 'ai_fundamentals',
+  'copilot-workflows': 'copilot-workflows',
+  'agentic-automation': 'agentic-automation',
+};
+const courseContentPath = courseContentPathById[courseId] ?? courseId;
 
 const metadata = {
   title: 'Academy Course Player | WorkSmart-AI',
@@ -22,28 +28,149 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <section class="bg-page px-4 py-6 sm:px-6 lg:px-8" data-course-id={courseId}>
-    <div class="mx-auto max-w-[1600px]">
-      <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <p class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-accent">Academy SCORM player</p>
-          <h1 class="mt-1 font-heading text-2xl font-bold text-heading sm:text-3xl">Course: {courseId}</h1>
+  <section class="academy-player-page" data-course-id={courseId} data-content-path={courseContentPath}>
+    <div class="academy-player-shell">
+      <aside
+        id="academy-sidebar"
+        class="academy-sidebar"
+        style="width: 280px !important; min-width: 280px !important; flex-shrink: 0 !important"
+        aria-label="Course navigation"
+      >
+        <div class="academy-sidebar-header">
+          <p id="academy-course-code" class="academy-course-code" style="font-size: 12px !important">
+            W1 - AI FOUNDATIONS
+          </p>
+          <h1
+            id="academy-course-title"
+            class="academy-course-title"
+            style="font-size: 16px !important; line-height: 1.35 !important"
+          >
+            Course: {courseId}
+          </h1>
+          <div class="academy-sidebar-progress-track" role="presentation">
+            <div id="academy-sidebar-progress-fill" class="academy-sidebar-progress-fill"></div>
+          </div>
+          <p
+            id="academy-sidebar-progress-label"
+            class="academy-sidebar-progress-label"
+            style="font-size: 13px !important"
+          >
+            0 of 0 pages complete
+          </p>
         </div>
-        <a
-          href="/academy/dashboard/"
-          class="inline-flex items-center justify-center rounded-full border border-default bg-card px-4 py-2 text-sm font-semibold text-default transition hover:border-brand hover:text-brand"
-        >
-          Back to dashboard
-        </a>
+
+        <nav id="academy-sidebar-nav" class="academy-sidebar-nav" aria-label="Course pages"></nav>
+
+        <div class="academy-sidebar-footer">
+          <a href="/academy/dashboard/" class="academy-back-link" aria-label="Back to dashboard">
+            <span aria-hidden="true">&#8592;</span>
+            Back to dashboard
+          </a>
+        </div>
+      </aside>
+
+      <div class="academy-content-shell">
+        <header class="academy-content-topbar">
+          <button
+            id="academy-mobile-menu-button"
+            class="academy-mobile-menu-button"
+            type="button"
+            aria-label="Open course navigation"
+            aria-expanded="false"
+            aria-controls="academy-sidebar-overlay"
+          >
+            <span aria-hidden="true">&#9776;</span>
+          </button>
+          <p class="academy-breadcrumb">
+            <span id="academy-breadcrumb-module">Module</span>
+            <span class="academy-breadcrumb-separator">-</span>
+            <span id="academy-breadcrumb-page">Page 1</span>
+          </p>
+          <p id="academy-page-pill" class="academy-page-pill">Page 1 of 1</p>
+        </header>
+
+        <p id="academy-player-feedback" class="academy-player-feedback hidden" role="alert"></p>
+
+        <div class="academy-content-scroll">
+          <div class="academy-content-inner">
+            <div class="academy-iframe-wrap">
+              <iframe
+                id="academy-scorm-frame"
+                src={`/courses/${courseContentPath}/content/page_0.html`}
+                title={`SCORM course player for ${courseId}`}
+                class="academy-scorm-frame"
+                loading="eager"
+                allow="fullscreen"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <footer class="academy-content-bottombar">
+          <button
+            id="academy-prev-button"
+            class="btn font-semibold shadow-none text-sm w-auto py-2.5 px-5.5 md:px-6 academy-nav-button academy-nav-button-prev"
+            style="background: #ffffff; border: 1px solid #015887; color: #015887"
+            type="button"
+          >
+            <span aria-hidden="true">&#8249;</span>
+            Previous
+          </button>
+          <button
+            id="academy-next-button"
+            class="btn font-semibold shadow-none text-sm w-auto py-2.5 px-5.5 md:px-6 academy-nav-button academy-nav-button-next"
+            style="background: #ff7700; border: 1px solid #ff7700; color: #ffffff"
+            type="button"
+          >
+            Next
+            <span aria-hidden="true">&#8250;</span>
+          </button>
+        </footer>
       </div>
-      <p id="academy-player-feedback" class="mb-4 hidden rounded-lg px-3 py-2 text-sm" role="alert"></p>
-      <iframe
-        id="academy-scorm-frame"
-        src={`/courses/${courseId}/content/page_0.html`}
-        title={`SCORM course player for ${courseId}`}
-        class="h-[78vh] min-h-[640px] w-full rounded-xl border border-default bg-white shadow-card"
-        loading="eager"
-        allow="fullscreen"></iframe>
+    </div>
+
+    <div id="academy-sidebar-overlay" class="academy-sidebar-overlay" hidden>
+      <button
+        id="academy-overlay-close"
+        class="academy-sidebar-overlay-backdrop"
+        type="button"
+        aria-label="Close navigation"></button>
+      <aside
+        class="academy-sidebar academy-sidebar-mobile"
+        style="width: 280px !important; min-width: 280px !important; flex-shrink: 0 !important"
+        aria-label="Course navigation mobile"
+      >
+        <div class="academy-sidebar-header">
+          <p id="academy-course-code-mobile" class="academy-course-code" style="font-size: 12px !important">
+            W1 - AI FOUNDATIONS
+          </p>
+          <h2
+            id="academy-course-title-mobile"
+            class="academy-course-title"
+            style="font-size: 16px !important; line-height: 1.35 !important"
+          >
+            Course: {courseId}
+          </h2>
+          <div class="academy-sidebar-progress-track" role="presentation">
+            <div id="academy-sidebar-progress-fill-mobile" class="academy-sidebar-progress-fill"></div>
+          </div>
+          <p
+            id="academy-sidebar-progress-label-mobile"
+            class="academy-sidebar-progress-label"
+            style="font-size: 13px !important"
+          >
+            0 of 0 pages complete
+          </p>
+        </div>
+
+        <nav id="academy-sidebar-nav-mobile" class="academy-sidebar-nav" aria-label="Course pages mobile"></nav>
+
+        <div class="academy-sidebar-footer">
+          <a href="/academy/dashboard/" class="academy-back-link" aria-label="Back to dashboard">
+            <span aria-hidden="true">&#8592;</span>
+            Back to dashboard
+          </a>
+        </div>
+      </aside>
     </div>
   </section>
 </Layout>
@@ -54,25 +181,263 @@ const metadata = {
 <script src="https://cdn.jsdelivr.net/gh/gabrieldoty/simplify-scorm@master/src/jsonFormatter.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/gabrieldoty/simplify-scorm@master/src/scormAPI.js"></script>
 
-<script type="module">
+<script>
   import { academySupabase, hasAcademySupabaseConfig, requireAuth } from '~/lib/academy';
 
   const section = document.querySelector('section[data-course-id]');
   const feedback = document.getElementById('academy-player-feedback');
+  const iframe = document.getElementById('academy-scorm-frame');
+  const sidebarNav = document.getElementById('academy-sidebar-nav');
+  const sidebarNavMobile = document.getElementById('academy-sidebar-nav-mobile');
+  const progressFill = document.getElementById('academy-sidebar-progress-fill');
+  const progressFillMobile = document.getElementById('academy-sidebar-progress-fill-mobile');
+  const progressLabel = document.getElementById('academy-sidebar-progress-label');
+  const progressLabelMobile = document.getElementById('academy-sidebar-progress-label-mobile');
+  const breadcrumbModule = document.getElementById('academy-breadcrumb-module');
+  const breadcrumbPage = document.getElementById('academy-breadcrumb-page');
+  const pagePill = document.getElementById('academy-page-pill');
+  const prevButton = document.getElementById('academy-prev-button');
+  const nextButton = document.getElementById('academy-next-button');
+  const sidebarOverlay = document.getElementById('academy-sidebar-overlay');
+  const mobileMenuButton = document.getElementById('academy-mobile-menu-button');
+  const overlayCloseButton = document.getElementById('academy-overlay-close');
+  const courseCode = document.getElementById('academy-course-code');
+  const courseCodeMobile = document.getElementById('academy-course-code-mobile');
+  const courseTitle = document.getElementById('academy-course-title');
+  const courseTitleMobile = document.getElementById('academy-course-title-mobile');
 
-  if (!section) {
+  if (!section || !iframe || !sidebarNav || !sidebarNavMobile || !prevButton || !nextButton) {
     throw new Error('Course player root not found');
   }
 
   const courseId = section.getAttribute('data-course-id') || '';
+  const contentPath = section.getAttribute('data-content-path') || '';
+
+  const syncPlayerViewportHeight = () => {
+    const siteHeader = document.querySelector('header');
+    const headerHeight = siteHeader instanceof HTMLElement ? siteHeader.offsetHeight : 0;
+    section.style.setProperty('--academy-header-height', `${headerHeight}px`);
+    const pageMain = section.closest('main');
+    if (pageMain instanceof HTMLElement) {
+      pageMain.style.margin = '0';
+      pageMain.style.padding = '0';
+      pageMain.style.maxWidth = 'none';
+      pageMain.style.width = '100%';
+    }
+  };
+  syncPlayerViewportHeight();
+  window.addEventListener('resize', syncPlayerViewportHeight);
+
+  const pageCountByCourseId = {
+    'ai-foundations': 7,
+    'copilot-workflows': 7,
+    'agentic-automation': 7,
+  };
+
+  const courseMetaById = {
+    'ai-foundations': {
+      code: 'W1 - AI FOUNDATIONS',
+      title: 'AI Foundations & Responsible Use',
+      module: 'Module 1',
+      pages: [
+        'You already use AI',
+        'How AI actually works',
+        'The AI use hierarchy',
+        'Responsible use principles',
+        'Green/amber/red decisions',
+        'Your first AI task',
+        'Reflection and next steps',
+      ],
+    },
+    'copilot-workflows': {
+      code: 'W2 - COPILOT WORKFLOWS',
+      title: 'Copilot Workflows',
+      module: 'Copilot Workflows',
+      pages: [
+        'Workflow overview',
+        'Role-based setup',
+        'Prompt chains',
+        'Knowledge grounding',
+        'Quality checks',
+        'Team rollout',
+        'Review and recap',
+      ],
+    },
+    'agentic-automation': {
+      code: 'W3 - AGENTIC AUTOMATION',
+      title: 'Agentic Automation',
+      module: 'Agentic Automation',
+      pages: [
+        'Automation fundamentals',
+        'Agent boundaries',
+        'Tool calling patterns',
+        'Human-in-the-loop design',
+        'Observability basics',
+        'Common pitfalls',
+        'Final checklist',
+      ],
+    },
+  };
+
+  const fallbackPageCount = pageCountByCourseId[courseId] ?? 7;
+  const fallbackTitles = Array.from({ length: fallbackPageCount }, (_, idx) => `Page ${idx + 1}`);
+  const courseMeta = courseMetaById[courseId] ?? {
+    code: 'W1 - COURSE',
+    title: courseId || 'Course player',
+    module: courseId || 'Course module',
+    pages: fallbackTitles,
+  };
+
+  const totalPages = Math.max(1, courseMeta.pages.length);
+  let currentPageIndex = 0;
+
+  const parsePageIndexFromUrl = (value) => {
+    if (!value) return null;
+    const match = String(value).match(/page_(\d+)\.html/i);
+    if (!match) return null;
+    const parsed = Number(match[1]);
+    return Number.isInteger(parsed) ? parsed : null;
+  };
 
   const setFeedback = (message, isError = true) => {
     if (!feedback) return;
     feedback.textContent = message;
     feedback.className = isError
-      ? 'mb-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800'
-      : 'mb-4 rounded-lg border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-800';
+      ? 'academy-player-feedback academy-player-feedback-error'
+      : 'academy-player-feedback academy-player-feedback-success';
   };
+
+  const setOverlayOpen = (isOpen) => {
+    if (!sidebarOverlay || !mobileMenuButton) return;
+    sidebarOverlay.hidden = !isOpen;
+    mobileMenuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  };
+
+  const closeOverlay = () => setOverlayOpen(false);
+
+  const getCompletionCount = () => currentPageIndex;
+
+  const updateHeaderText = () => {
+    const currentPageNumber = currentPageIndex + 1;
+    const pageTitle = courseMeta.pages[currentPageIndex] ?? `Page ${currentPageNumber}`;
+    if (breadcrumbModule) breadcrumbModule.textContent = courseMeta.module;
+    if (breadcrumbPage) breadcrumbPage.textContent = pageTitle;
+    if (pagePill) pagePill.textContent = `Page ${currentPageNumber} of ${totalPages}`;
+  };
+
+  const updateProgress = () => {
+    const completed = Math.min(totalPages, Math.max(0, getCompletionCount()));
+    const progressPercent = Math.round((completed / totalPages) * 100);
+    const progressText = `${completed} of ${totalPages} pages complete`;
+    if (progressLabel) progressLabel.textContent = progressText;
+    if (progressLabelMobile) progressLabelMobile.textContent = progressText;
+    if (progressFill) progressFill.style.width = `${progressPercent}%`;
+    if (progressFillMobile) progressFillMobile.style.width = `${progressPercent}%`;
+  };
+
+  const getPageState = (index) => {
+    if (index < currentPageIndex) return 'complete';
+    if (index === currentPageIndex) return 'current';
+    return 'locked';
+  };
+
+  const goToPage = (index) => {
+    if (index < 0 || index >= totalPages) return;
+    currentPageIndex = index;
+    iframe.src = `/courses/${contentPath}/content/page_${index}.html`;
+    updateUI();
+    closeOverlay();
+  };
+
+  const renderNav = (targetNav) => {
+    const navHtml = courseMeta.pages
+      .map((title, index) => {
+        const state = getPageState(index);
+        const isCurrent = state === 'current';
+        const markerText = state === 'complete' ? '&#10003;' : String(index + 1);
+        return `
+          <button
+            class="academy-nav-item academy-nav-item-${state}"
+            data-page-index="${index}"
+            type="button"
+            ${isCurrent ? 'aria-current="page"' : ''}
+          >
+            <span class="academy-nav-circle">${markerText}</span>
+            <span class="academy-nav-title" style="font-size: 15px !important">${title}</span>
+          </button>
+        `;
+      })
+      .join('');
+    targetNav.innerHTML = navHtml;
+  };
+
+  const bindNavHandlers = (targetNav) => {
+    targetNav.querySelectorAll('[data-page-index]').forEach((item) => {
+      item.addEventListener('click', () => {
+        const pageIndex = Number(item.getAttribute('data-page-index'));
+        goToPage(pageIndex);
+      });
+    });
+  };
+
+  const updateButtons = () => {
+    const isFirstPage = currentPageIndex === 0;
+    const isLastPage = currentPageIndex >= totalPages - 1;
+    prevButton.disabled = isFirstPage;
+    nextButton.disabled = isLastPage;
+  };
+
+  const updateUI = () => {
+    renderNav(sidebarNav);
+    renderNav(sidebarNavMobile);
+    bindNavHandlers(sidebarNav);
+    bindNavHandlers(sidebarNavMobile);
+    updateHeaderText();
+    updateButtons();
+    updateProgress();
+  };
+
+  const syncCurrentPageFromIframe = () => {
+    const directSrcIndex = parsePageIndexFromUrl(iframe.getAttribute('src') || iframe.src);
+    let frameLocationIndex = null;
+    try {
+      frameLocationIndex = parsePageIndexFromUrl(iframe.contentWindow?.location?.pathname || '');
+    } catch {
+      frameLocationIndex = null;
+    }
+    const resolvedIndex = frameLocationIndex ?? directSrcIndex;
+    if (resolvedIndex == null || resolvedIndex < 0 || resolvedIndex >= totalPages) return;
+    if (resolvedIndex !== currentPageIndex) {
+      currentPageIndex = resolvedIndex;
+      updateUI();
+    }
+  };
+
+  if (courseCode) courseCode.textContent = courseMeta.code;
+  if (courseCodeMobile) courseCodeMobile.textContent = courseMeta.code;
+  if (courseTitle) courseTitle.textContent = courseMeta.title;
+  if (courseTitleMobile) courseTitleMobile.textContent = courseMeta.title;
+  updateUI();
+
+  prevButton.addEventListener('click', () => {
+    goToPage(currentPageIndex - 1);
+  });
+
+  nextButton.addEventListener('click', () => {
+    goToPage(currentPageIndex + 1);
+  });
+
+  iframe.addEventListener('load', () => {
+    syncCurrentPageFromIframe();
+  });
+
+  mobileMenuButton?.addEventListener('click', () => {
+    setOverlayOpen(true);
+  });
+  overlayCloseButton?.addEventListener('click', closeOverlay);
+  sidebarOverlay?.addEventListener('click', (event) => {
+    if (event.target === sidebarOverlay) closeOverlay();
+  });
 
   if (!hasAcademySupabaseConfig || !academySupabase) {
     setFeedback('Course player is unavailable. Missing Supabase configuration.');
@@ -82,9 +447,7 @@ const metadata = {
     const authState = await requireAuth('/academy/login/');
     const user = authState?.user;
 
-    if (!user) {
-      return;
-    } else {
+    if (user) {
       const { data: progressRow } = await academySupabase
         .from('progress')
         .select('suspend_data, score, progress_percent')
@@ -98,6 +461,16 @@ const metadata = {
           core: { score: { raw: progressRow?.score != null ? String(progressRow.score) : '' } },
         });
       }
+
+      if (window.API?.cmi?.core?.lesson_location) {
+        const lessonLocation = Number(window.API.cmi.core.lesson_location);
+        if (Number.isInteger(lessonLocation) && lessonLocation >= 0 && lessonLocation < totalPages) {
+          currentPageIndex = lessonLocation;
+          iframe.src = `/courses/${contentPath}/content/page_${lessonLocation}.html`;
+          updateUI();
+        }
+      }
+      // TODO: Replace fallback page completion assumptions with explicit SCORM lesson status per page when available.
 
       const persistProgress = async () => {
         if (!window.API || !window.API.cmi || typeof window.API.cmi.toJSON !== 'function') return;
@@ -134,6 +507,11 @@ const metadata = {
 
       if (window.API && typeof window.API.on === 'function') {
         window.API.on('LMSSetValue', () => {
+          const location = Number(window.API?.cmi?.core?.lesson_location);
+          if (Number.isInteger(location) && location >= 0 && location < totalPages) {
+            currentPageIndex = location;
+            updateUI();
+          }
           queueSave();
         });
         window.API.on('LMSCommit', () => {
@@ -150,3 +528,420 @@ const metadata = {
     }
   }
 </script>
+
+<style is:global>
+  .academy-player-page {
+    --academy-header-height: 88px;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    height: calc(100vh - var(--academy-header-height));
+    min-height: calc(100vh - var(--academy-header-height));
+    background: #f4f5f7;
+    overflow: hidden;
+  }
+
+  .academy-player-shell {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 0;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    margin: 0;
+    min-height: 0;
+    border-radius: 0;
+    overflow: hidden;
+    border: none;
+    background: #ffffff;
+    box-shadow: none;
+  }
+
+  .academy-sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 280px;
+    min-width: 280px;
+    background: #015887;
+    color: #ffffff;
+  }
+
+  .academy-sidebar-header {
+    padding: 20px 18px;
+    border-bottom: 1px solid rgb(255 255 255 / 0.08);
+    flex-shrink: 0;
+  }
+
+  .academy-course-code {
+    margin: 0;
+    font-family: 'Work Sans', sans-serif;
+    color: #86bfe2;
+    font-size: 12px;
+    line-height: 1.2;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .academy-course-title {
+    margin: 10px 0 12px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 17px;
+    line-height: 1.35;
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .academy-sidebar-progress-track {
+    width: 100%;
+    height: 3px;
+    border-radius: 2px;
+    background: rgb(255 255 255 / 0.15);
+  }
+
+  .academy-sidebar-progress-fill {
+    width: 0;
+    height: 100%;
+    border-radius: 2px;
+    background: #ff7700;
+  }
+
+  .academy-sidebar-progress-label {
+    margin: 8px 0 0;
+    font-size: 13px;
+    color: rgb(255 255 255 / 0.5);
+    font-family: 'Ubuntu', sans-serif;
+  }
+
+  .academy-sidebar-nav {
+    flex: 1;
+    overflow: visible;
+    padding: 6px 0;
+  }
+
+  .academy-nav-item {
+    width: 100%;
+    border: none;
+    border-left: 3px solid transparent;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+  }
+
+  .academy-nav-item:hover:not(:disabled) {
+    background: rgb(255 255 255 / 0.05);
+  }
+
+  .academy-nav-item:disabled {
+    cursor: not-allowed;
+  }
+
+  .academy-nav-circle {
+    width: 28px;
+    min-width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-family: 'Ubuntu', sans-serif;
+    color: rgb(255 255 255 / 0.45);
+    border: 1.5px solid rgb(255 255 255 / 0.2);
+    line-height: 1;
+  }
+
+  .academy-nav-title {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .academy-nav-item-current {
+    border-left-color: #ff7700;
+    background: rgb(255 119 0 / 0.15);
+  }
+
+  .academy-nav-item-current .academy-nav-circle {
+    background: transparent;
+    border: 1.5px solid #ff7700;
+    color: #ff7700;
+  }
+
+  .academy-nav-item-current .academy-nav-title {
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .academy-nav-item-locked .academy-nav-circle {
+    border: 1.5px solid rgb(255 255 255 / 0.2);
+    color: rgb(255 255 255 / 0.3);
+  }
+
+  .academy-nav-item-locked .academy-nav-title {
+    color: rgb(255 255 255 / 0.55);
+  }
+
+  .academy-nav-item-complete .academy-nav-circle {
+    background: #1d9e75;
+    border: none;
+    color: #ffffff;
+  }
+
+  .academy-nav-item-complete .academy-nav-title {
+    color: rgb(255 255 255 / 0.72);
+  }
+
+  .academy-sidebar-footer {
+    border-top: 0.5px solid rgb(255 255 255 / 0.1);
+    padding: 14px;
+    background: rgb(0 0 0 / 0.06);
+    flex-shrink: 0;
+  }
+
+  .academy-back-link {
+    color: rgb(255 255 255 / 0.4);
+    font-size: 13px;
+    font-family: 'Ubuntu', sans-serif;
+    text-decoration: none;
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .academy-content-shell {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    background: #ffffff;
+  }
+
+  .academy-content-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: #f8f8f8;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .academy-mobile-menu-button {
+    display: none;
+    border: 1px solid #e0e0e0;
+    background: #ffffff;
+    border-radius: 6px;
+    padding: 4px 8px;
+    color: #015887;
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .academy-breadcrumb {
+    margin: 0;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 12px;
+    color: rgb(27 1 1 / 0.58);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .academy-breadcrumb #academy-breadcrumb-page {
+    color: rgb(27 1 1 / 0.95);
+    font-weight: 700;
+  }
+
+  .academy-breadcrumb-separator {
+    color: rgb(27 1 1 / 0.45);
+  }
+
+  .academy-page-pill {
+    margin: 0;
+    background: #015887;
+    color: #ffffff;
+    font-size: 11px;
+    font-family: 'Ubuntu', sans-serif;
+    border-radius: 20px;
+    padding: 3px 12px;
+    white-space: nowrap;
+  }
+
+  .academy-player-feedback {
+    margin: 12px 20px 0;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    border: 1px solid transparent;
+  }
+
+  .academy-player-feedback.hidden {
+    display: none;
+  }
+
+  .academy-player-feedback-error {
+    border-color: rgb(254 202 202);
+    background: rgb(254 242 242);
+    color: rgb(153 27 27);
+  }
+
+  .academy-player-feedback-success {
+    border-color: rgb(187 247 208);
+    background: rgb(240 253 244);
+    color: rgb(21 128 61);
+  }
+
+  .academy-content-scroll {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: auto;
+    min-height: 0;
+    background: #ffffff;
+    padding: 0 20px;
+  }
+
+  .academy-content-inner {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .academy-iframe-wrap {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    height: 100%;
+  }
+
+  .academy-scorm-frame {
+    flex: 1;
+    width: 100%;
+    min-height: 0;
+    height: 100%;
+    border: none;
+    display: block;
+    border-radius: 0;
+    background: #ffffff;
+  }
+
+  .academy-content-bottombar {
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    border-top: 1px solid #e0e0e0;
+    padding: 14px 24px;
+  }
+
+  .academy-nav-button {
+    font-size: 13px;
+    padding: 9px 18px;
+    border-radius: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .academy-nav-button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  .academy-nav-button-prev {
+    border: 1px solid #015887;
+    color: #015887;
+    background: #ffffff;
+    font-weight: 700;
+  }
+
+  .academy-nav-button-next {
+    border: none;
+    color: #ffffff;
+    background: #ff7700;
+    font-weight: 500;
+  }
+
+  .academy-nav-button-next:hover:not(:disabled) {
+    background: #e06600;
+  }
+
+  .academy-sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    display: none;
+  }
+
+  .academy-sidebar-overlay:not([hidden]) {
+    display: block;
+  }
+
+  .academy-sidebar-overlay-backdrop {
+    position: absolute;
+    inset: 0;
+    border: none;
+    background: rgb(0 0 0 / 0.45);
+  }
+
+  .academy-sidebar-mobile {
+    position: relative;
+    z-index: 2;
+    width: 240px;
+    max-width: 85vw;
+    height: 100%;
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.25);
+  }
+
+  @media (max-width: 767px) {
+    .academy-player-shell {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .academy-sidebar {
+      display: none;
+    }
+
+    .academy-sidebar-mobile {
+      display: flex;
+    }
+
+    .academy-mobile-menu-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .academy-content-topbar {
+      padding: 10px 14px;
+    }
+
+    .academy-content-scroll {
+      padding: 0;
+    }
+
+    .academy-content-bottombar {
+      padding: 10px 14px;
+    }
+  }
+</style>

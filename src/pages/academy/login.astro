@@ -69,8 +69,8 @@ const metadata = {
   </section>
 </Layout>
 
-<script type="module">
-  import { academySupabase, hasAcademySupabaseConfig, requireAuth } from '~/lib/academy';
+<script>
+  import { academySupabase, hasAcademySupabaseConfig } from '~/lib/academy';
 
   const form = document.getElementById('academy-login-form');
   const feedback = document.getElementById('academy-login-feedback');
@@ -90,35 +90,42 @@ const metadata = {
   if (!hasAcademySupabaseConfig || !academySupabase) {
     setFeedback('Login is unavailable right now. Please contact support.');
   } else {
-    const authState = await requireAuth('/academy/dashboard/');
-    if (authState?.user) return;
-
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const submitButton = form.querySelector('button[type="submit"]');
-      const formData = new FormData(form);
-      const email = String(formData.get('email') || '').trim();
-      const password = String(formData.get('password') || '');
-
-      if (!email || !password) {
-        setFeedback('Please provide both email and password.');
-        return;
-      }
-
-      if (submitButton instanceof HTMLButtonElement) submitButton.disabled = true;
-      if (feedback) feedback.className = 'hidden';
-
-      const { error } = await academySupabase.auth.signInWithPassword({ email, password });
-
-      if (submitButton instanceof HTMLButtonElement) submitButton.disabled = false;
-
-      if (error) {
-        setFeedback(error.message || 'Login failed. Please check your credentials.');
-        return;
-      }
-
-      setFeedback('Login successful. Redirecting...', false);
+    const { data: sessionData, error: sessionError } = await academySupabase.auth.getSession();
+    if (!sessionError && sessionData.session?.user) {
       window.location.replace('/academy/dashboard/');
-    });
+    } else {
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const submitButton = form.querySelector('button[type="submit"]');
+        const formData = new FormData(form);
+        const email = String(formData.get('email') || '').trim();
+        const password = String(formData.get('password') || '');
+
+        if (!email || !password) {
+          setFeedback('Please provide both email and password.');
+          return;
+        }
+
+        if (submitButton instanceof HTMLButtonElement) submitButton.disabled = true;
+        if (feedback) feedback.className = 'hidden';
+
+        try {
+          const { error } = await academySupabase.auth.signInWithPassword({ email, password });
+
+          if (error) {
+            setFeedback(error.message || 'Login failed. Please check your credentials.');
+            return;
+          }
+
+          setFeedback('Login successful. Redirecting...', false);
+          window.location.replace('/academy/dashboard/');
+        } catch (caughtError) {
+          const message = caughtError instanceof Error ? caughtError.message : 'Unexpected login error.';
+          setFeedback(`Login failed: ${message}`);
+        } finally {
+          if (submitButton instanceof HTMLButtonElement) submitButton.disabled = false;
+        }
+      });
+    }
   }
 </script>
