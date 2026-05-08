@@ -30,9 +30,9 @@ const metadata = {
     ]}
     image={{
       src: '/images/home-hero.png',
-      alt: 'Team discussing AI strategy in an office',
+      alt: 'Team collaborating around a laptop with sticky notes during an AI strategy workshop',
       width: 1200,
-      height: 900,
+      height: 800,
       class: 'mx-auto rounded-2xl w-full shadow-none ring-0',
     }}
   >
@@ -73,33 +73,44 @@ const metadata = {
   </section>
 
   <section class="bg-section px-6 py-20 sm:px-8 lg:px-12">
-    <div class="mx-auto max-w-4xl text-center">
-      <h2 class="font-heading text-3xl font-bold text-heading sm:text-4xl" data-aos="fade-up">Explore What We Offer</h2>
-      <p class="mx-auto mt-5 max-w-3xl text-base text-muted" data-aos="fade-up" data-aos-delay="100">
-        Services we offer include face-to-face and online training for staff, student AI skills for the workplace
-        sessions, 1:1 senior and middle manager consultancy, and bespoke academic coaching sessions.
-      </p>
-      <p class="mx-auto mt-4 max-w-3xl text-base text-muted" data-aos="fade-up" data-aos-delay="130">
-        All of this is underpinned by a data-driven approach, ensuring digital transformation leads to measurable return
-        on investment.
-      </p>
-      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a
-          data-aos="fade-up"
-          data-aos-delay="180"
-          href="/services/"
-          class="inline-flex items-center justify-center rounded-full border border-accent bg-accent px-6 py-3 font-semibold text-white transition hover:bg-accent-hover hover:border-accent-hover"
-        >
-          View Our Services
-        </a>
-        <a
-          data-aos="fade-up"
-          data-aos-delay="220"
-          href="/contact-us/"
-          class="inline-flex items-center justify-center rounded-full border border-accent bg-transparent px-6 py-3 font-semibold text-accent transition hover:bg-accent hover:text-white"
-        >
-          Contact Us
-        </a>
+    <div class="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
+      <div class="order-1" data-aos="fade-right">
+        <img
+          src="/images/explore-offer-photo.png"
+          alt="WorkSmart-AI team session with participants collaborating in person"
+          class="h-full w-full rounded-2xl object-cover shadow-card"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="order-2 text-center lg:text-left">
+        <h2 class="font-heading text-3xl font-bold text-heading sm:text-4xl" data-aos="fade-up">Explore What We Offer</h2>
+        <p class="mt-5 text-base text-muted" data-aos="fade-up" data-aos-delay="100">
+          Services we offer include face-to-face and online training for staff, student AI skills for the workplace
+          sessions, 1:1 senior and middle manager consultancy, and bespoke academic coaching sessions.
+        </p>
+        <p class="mt-4 text-base text-muted" data-aos="fade-up" data-aos-delay="130">
+          All of this is underpinned by a data-driven approach, ensuring digital transformation leads to measurable
+          return on investment.
+        </p>
+        <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
+          <a
+            data-aos="fade-up"
+            data-aos-delay="180"
+            href="/services/"
+            class="inline-flex items-center justify-center rounded-full border border-accent bg-accent px-6 py-3 font-semibold text-white transition hover:bg-accent-hover hover:border-accent-hover"
+          >
+            View Our Services
+          </a>
+          <a
+            data-aos="fade-up"
+            data-aos-delay="220"
+            href="/contact-us/"
+            class="inline-flex items-center justify-center rounded-full border border-accent bg-transparent px-6 py-3 font-semibold text-accent transition hover:bg-accent hover:text-white"
+          >
+            Contact Us
+          </a>
+        </div>
       </div>
     </div>
   </section>
