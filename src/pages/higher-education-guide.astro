@@ -15,7 +15,7 @@ const metadata = {
 };
 
 /** Public URL after successful lead capture (cache-busted to avoid stale CDN/browser PDF). */
-const guideDownloadPath = '/WorkSmart-AI%20-%20From%20Chatbot%20to%20Workflows.pdf?v=2026-05-08';
+const guideDownloadPath = '/WorkSmart-AI%20From%20Chatbot%20to%20Workflows.pdf?v=2026-05-08';
 const guideCoverSrc = '/images/guide-from-chatbot-to-workflow-cover.png';
 
 // Use PUBLIC_* in CI so build inlines them; fallbacks for local .env. Keys on data-* avoid minifier mangling JWT in inline JS.
@@ -277,8 +277,8 @@ const faqs = [
           The 4-level AI Use Hierarchy
         </h2>
         <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-muted">
-          A clear four-level model for AI use in HE: demonstrating real-life, tangible examples of how AI can be
-          better used within the workplace and the time saved.
+          A clear four-level model for AI use in HE: demonstrating real-life, tangible examples of how AI can be better
+          used within the workplace and the time saved.
         </p>
       </div>
 
@@ -588,7 +588,7 @@ const faqs = [
       const supabaseAnonKey = (form.getAttribute('data-supabase-anon-key') || '').trim();
       const guidePdfPath =
         (form.getAttribute('data-guide-pdf') || '').trim() ||
-        '/WorkSmart-AI%20-%20From%20Chatbot%20to%20Workflows.pdf?v=2026-05-08';
+        '/WorkSmart-AI%20From%20Chatbot%20to%20Workflows.pdf?v=2026-05-08';
       const baseSupabaseUrl = supabaseUrl.replace(/\/$/, '');
       const restUrl = baseSupabaseUrl + '/rest/v1/leads';
       const guideWelcomeEmailUrl = baseSupabaseUrl + '/functions/v1/send-guide-email';
