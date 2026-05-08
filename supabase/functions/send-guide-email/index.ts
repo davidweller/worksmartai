@@ -1,12 +1,12 @@
 // Deploy with: supabase functions deploy send-guide-email
 // Set secret with: supabase secrets set RESEND_API_KEY=your_key_here
 // Optional override for the lead magnet URL:
-// supabase secrets set GUIDE_DOWNLOAD_URL="https://worksmart-ai.co.uk/WorkSmart-AI%20From%20Chatbot%20to%20Workflows.pdf?v=2026-05-08"
+// supabase secrets set GUIDE_DOWNLOAD_URL="https://worksmart-ai.co.uk/WorkSmart-AI%20-%20From%20Chatbot%20to%20Workflows.pdf?v=2026-05-07"
 
 import 'jsr:@supabase/functions-js/edge-runtime.d.ts';
 
 const DEFAULT_DOWNLOAD_URL =
-  'https://worksmart-ai.co.uk/WorkSmart-AI%20From%20Chatbot%20to%20Workflows.pdf?v=2026-05-08';
+  'https://worksmart-ai.co.uk/WorkSmart-AI%20-%20From%20Chatbot%20to%20Workflows.pdf?v=2026-05-07';
 const BOOKING_URL = 'https://worksmart-ai.co.uk/book-a-call';
 
 const corsHeaders: Record<string, string> = {
@@ -82,7 +82,7 @@ Deno.serve(async (req) => {
     `<p style="margin:0 0 20px;">`,
     `<a href="${downloadUrl}" style="display:inline-block;background:#0d4f6b;color:#ffffff;font-weight:600;text-decoration:none;padding:10px 16px;border-radius:8px;">Download your guide here &rarr;</a>`,
     `</p>`,
-    `<p style="margin:0 0 16px;">Whether you're yet to begin or have already started adopting AI, the guide shows where the biggest gains usually appear first - reducing admin overhead, improving consistency, and supporting student-facing services.</p>`,
+    `<p style="margin:0 0 16px;">Whether you are just getting started or have already started adopting AI, the guide shows where the biggest gains usually appear first - reducing admin overhead, improving consistency, and supporting student-facing services.</p>`,
     `<p style="margin:0 0 16px;">If any section sparks questions, we would be happy to talk through how these ideas could be applied in your university context.</p>`,
     `<p style="margin:0 0 8px;">You can:</p>`,
     `<p style="margin:0 0 8px;">Book a free 30-minute call - <a href="${BOOKING_URL}" style="color:#0d4f6b;font-weight:600;">${BOOKING_URL}</a></p>`,
