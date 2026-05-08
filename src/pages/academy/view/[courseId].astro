@@ -96,7 +96,7 @@ const metadata = {
             <div class="academy-iframe-wrap">
               <iframe
                 id="academy-scorm-frame"
-                src={`/courses/${courseContentPath}/content/page_0.html`}
+                src="about:blank"
                 title={`SCORM course player for ${courseId}`}
                 class="academy-scorm-frame"
                 loading="eager"
@@ -175,11 +175,11 @@ const metadata = {
   </section>
 </Layout>
 
-<script src="https://cdn.jsdelivr.net/gh/gabrieldoty/simplify-scorm@master/src/init.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/gabrieldoty/simplify-scorm@master/src/constants.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/gabrieldoty/simplify-scorm@master/src/baseAPI.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/gabrieldoty/simplify-scorm@master/src/jsonFormatter.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/gabrieldoty/simplify-scorm@master/src/scormAPI.js"></script>
+<script is:inline src="https://cdn.jsdelivr.net/gh/gabrieldoty/simplify-scorm@master/src/init.js"></script>
+<script is:inline src="https://cdn.jsdelivr.net/gh/gabrieldoty/simplify-scorm@master/src/constants.js"></script>
+<script is:inline src="https://cdn.jsdelivr.net/gh/gabrieldoty/simplify-scorm@master/src/baseAPI.js"></script>
+<script is:inline src="https://cdn.jsdelivr.net/gh/gabrieldoty/simplify-scorm@master/src/jsonFormatter.js"></script>
+<script is:inline src="https://cdn.jsdelivr.net/gh/gabrieldoty/simplify-scorm@master/src/scormAPI.js"></script>
 
 <script>
   import { academySupabase, hasAcademySupabaseConfig, requireAuth } from '~/lib/academy';
@@ -212,6 +212,33 @@ const metadata = {
 
   const courseId = section.getAttribute('data-course-id') || '';
   const contentPath = section.getAttribute('data-content-path') || '';
+
+  const scormDebug =
+    typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('scorm_debug') === '1';
+
+  const postJson = async (url, body) => {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      body: JSON.stringify(body),
+    });
+    const text = await res.text();
+    let data = null;
+    try {
+      data = text ? JSON.parse(text) : null;
+    } catch {
+      data = null;
+    }
+    if (!res.ok) {
+      const msg =
+        data && typeof data === 'object' && data !== null && 'error' in data
+          ? String(data.error)
+          : text || res.statusText;
+      throw new Error(msg);
+    }
+    return data;
+  };
 
   const syncPlayerViewportHeight = () => {
     const siteHeader = document.querySelector('header');
@@ -448,52 +475,56 @@ const metadata = {
     const user = authState?.user;
 
     if (user) {
-      const { data: progressRow } = await academySupabase
-        .from('progress')
-        .select('suspend_data, score, progress_percent')
-        .eq('user_id', user.id)
-        .eq('course_id', courseId)
-        .maybeSingle();
+      let sessionId = '';
 
-      if (window.API && typeof window.API.loadFromJSON === 'function') {
-        window.API.loadFromJSON({
-          suspend_data: String(progressRow?.suspend_data || ''),
-          core: { score: { raw: progressRow?.score != null ? String(progressRow.score) : '' } },
-        });
-      }
+      try {
+        const init = await postJson('/api/scorm/initialize/', { courseId });
+        sessionId = typeof init?.sessionId === 'string' ? init.sessionId : '';
+        const resume = init?.resume && typeof init.resume === 'object' ? init.resume : {};
 
-      if (window.API?.cmi?.core?.lesson_location) {
-        const lessonLocation = Number(window.API.cmi.core.lesson_location);
-        if (Number.isInteger(lessonLocation) && lessonLocation >= 0 && lessonLocation < totalPages) {
-          currentPageIndex = lessonLocation;
-          iframe.src = `/courses/${contentPath}/content/page_${lessonLocation}.html`;
-          updateUI();
+        if (!sessionId) {
+          throw new Error('Missing session from server.');
         }
+
+        if (window.API && typeof window.API.loadFromJSON === 'function') {
+          window.API.loadFromJSON(resume);
+        }
+
+        const basePath = `/courses/${contentPath}/content/`;
+        let startIndex = 0;
+        if (window.API?.cmi?.core?.lesson_location != null && window.API?.cmi?.core?.lesson_location !== '') {
+          const lessonLocation = Number(window.API.cmi.core.lesson_location);
+          if (Number.isInteger(lessonLocation) && lessonLocation >= 0 && lessonLocation < totalPages) {
+            startIndex = lessonLocation;
+          }
+        }
+        currentPageIndex = startIndex;
+        iframe.src = `${basePath}page_${startIndex}.html`;
+        updateUI();
+      } catch (caught) {
+        const message = caught instanceof Error ? caught.message : 'Could not start course session.';
+        setFeedback(message);
       }
-      // TODO: Replace fallback page completion assumptions with explicit SCORM lesson status per page when available.
 
       const persistProgress = async () => {
+        if (!sessionId) return;
         if (!window.API || !window.API.cmi || typeof window.API.cmi.toJSON !== 'function') return;
 
         const cmi = window.API.cmi.toJSON();
-        const suspendData = String(cmi?.suspend_data || '');
-        const rawScore = Number(cmi?.core?.score?.raw || progressRow?.score || 0);
-        const progressPercent = Number.isFinite(rawScore) ? Math.max(0, Math.min(100, Math.round(rawScore))) : 0;
 
-        const { error } = await academySupabase.from('progress').upsert(
-          {
-            user_id: user.id,
-            course_id: courseId,
-            score: Number.isFinite(rawScore) ? rawScore : 0,
-            suspend_data: suspendData,
-            progress_percent: progressPercent,
-            updated_at: new Date().toISOString(),
-          },
-          { onConflict: 'user_id,course_id' }
-        );
-
-        if (error) {
+        try {
+          await postJson('/api/scorm/commit/', { sessionId, cmi });
+        } catch {
           setFeedback('Progress save failed. Your latest state may not be synced.');
+        }
+      };
+
+      const finishSession = async () => {
+        if (!sessionId) return;
+        try {
+          await postJson('/api/scorm/finish/', { sessionId });
+        } catch {
+          setFeedback('Could not mark the session complete.');
         }
       };
 
@@ -505,8 +536,11 @@ const metadata = {
         }, 300);
       };
 
-      if (window.API && typeof window.API.on === 'function') {
+      if (sessionId && window.API && typeof window.API.on === 'function') {
         window.API.on('LMSSetValue', () => {
+          if (scormDebug && window.API?.cmi?.toJSON) {
+            console.debug('[scorm_debug]', window.API.cmi.toJSON());
+          }
           const location = Number(window.API?.cmi?.core?.lesson_location);
           if (Number.isInteger(location) && location >= 0 && location < totalPages) {
             currentPageIndex = location;
@@ -518,13 +552,18 @@ const metadata = {
           queueSave();
         });
         window.API.on('LMSFinish', () => {
-          void persistProgress();
+          void (async () => {
+            await persistProgress();
+            await finishSession();
+          })();
         });
       }
 
-      window.addEventListener('beforeunload', () => {
-        void persistProgress();
-      });
+      if (sessionId) {
+        window.addEventListener('beforeunload', () => {
+          void persistProgress();
+        });
+      }
     }
   }
 </script>

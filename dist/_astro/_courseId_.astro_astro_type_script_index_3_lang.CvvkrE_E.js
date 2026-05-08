@@ -1,1 +1,0 @@
-import"https://cdn.jsdelivr.net/gh/gabrieldoty/simplify-scorm@master/src/baseAPI.js";

@@ -226,13 +226,23 @@ export const astroAssetsOptimizer: ImagesOptimizer = async (
   return Promise.all(
     breakpoints.map(async (w: number) => {
       const computedHeight = _width && _height ? computeHeight(w, Number(_width) / Number(_height)) : undefined;
-      const result = await getImage({
-        src: image,
-        width: w,
-        ...(computedHeight ? { height: computedHeight } : {}),
-        ...(computedHeight ? {} : { inferSize: true }),
-        ...(format ? { format: format } : {}),
-      });
+      let result: Awaited<ReturnType<typeof getImage>> | null = null;
+      try {
+        result = await getImage({
+          src: image,
+          width: w,
+          ...(computedHeight ? { height: computedHeight } : {}),
+          ...(computedHeight ? {} : { inferSize: true }),
+          ...(format ? { format: format } : {}),
+        });
+      } catch {
+        const fallbackSrc = typeof image === 'string' ? image : typeof image?.src === 'string' ? image.src : '';
+        return {
+          src: fallbackSrc,
+          width: w,
+          height: computedHeight,
+        };
+      }
 
       return {
         src: result?.src,

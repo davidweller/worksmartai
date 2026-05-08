@@ -1,11 +1,9 @@
-import { createClient } from '@supabase/supabase-js';
+import { createAcademyBrowserClient } from '~/lib/supabase/browser';
+import { hasSupabaseEnv } from '~/lib/supabase/env';
 
-const supabaseUrl = (import.meta.env.PUBLIC_SUPABASE_URL ?? import.meta.env.SUPABASE_URL ?? '').trim();
-const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta.env.SUPABASE_ANON_KEY ?? '').trim();
+export const hasAcademySupabaseConfig = hasSupabaseEnv;
 
-export const hasAcademySupabaseConfig = Boolean(supabaseUrl && supabaseAnonKey);
-
-export const academySupabase = hasAcademySupabaseConfig ? createClient(supabaseUrl, supabaseAnonKey) : null;
+export const academySupabase = hasAcademySupabaseConfig ? createAcademyBrowserClient() : null;
 
 export async function requireAuth(redirectTo = '/academy/login/') {
   if (!academySupabase) return null;

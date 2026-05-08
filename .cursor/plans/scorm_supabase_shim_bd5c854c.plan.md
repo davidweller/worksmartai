@@ -4,25 +4,25 @@ overview: Add a SCORM 1.2 persistence layer (sessions, quiz rows, raw CMI) on Su
 todos:
   - id: phase0-inspect
     content: Run SCORMcraft export locally; log cmi.toJSON / suspend_data to classify interactions vs suspend_data only
-    status: pending
+    status: completed
   - id: supabase-migration
     content: Add enrollments, scorm_sessions (incl. updated_at), quiz_responses + RLS; ship progress_compat view; backfill from legacy progress
-    status: pending
+    status: completed
   - id: auth-ssr-uplift
     content: Scoped project—@supabase/ssr browser + server clients, middleware, migrate academy/login/dashboard/player off bare createClient before SCORM APIs
     status: pending
   - id: astro-hybrid-netlify
     content: Add @astrojs/netlify, output hybrid; prerender false on API routes only
-    status: pending
+    status: completed
   - id: api-scorm-routes
     content: POST initialize (resume rule below), commit, finish with server auth + enrollment checks
-    status: pending
+    status: completed
   - id: player-wireup
     content: Wire [courseId].astro to API routes, resume via loadFromJSON, commit/finish from SCORM events
-    status: pending
+    status: completed
   - id: dashboard-sync
     content: Point dashboard at progress_compat (or renamed view); remove legacy progress writes after cutover date
-    status: pending
+    status: completed
 isProject: false
 ---
 
@@ -204,12 +204,12 @@ In [`src/pages/academy/view/[courseId].astro`](src/pages/academy/view/[courseId]
 
 ## Risk register
 
-| Risk | Mitigation |
-|------|------------|
-| Replacing simplify-scorm with a minimal shim | Do not; keep simplify-scorm unless Phase 0 proves otherwise |
-| Static hosting blocks `/api/*` | Hybrid + Netlify adapter or Edge Functions |
-| Quiz data only in `suspend_data` | Store raw + inspect format; parse in a second iteration |
-| SSR auth refactor balloons scope | Phase 1b as explicit prerequisite; finish before SCORM API routes |
-| Dual-write never ends | Fixed **cutover_date** at dual-write start |
-| Dashboard breaks on cutover | **`progress_compat`** view defined and deployed **before** stopping legacy reads |
-| Duplicate `dashboard.astro` paths in git | Normalize to a single file when touching the dashboard |
+| Risk                                         | Mitigation                                                                       |
+| -------------------------------------------- | -------------------------------------------------------------------------------- |
+| Replacing simplify-scorm with a minimal shim | Do not; keep simplify-scorm unless Phase 0 proves otherwise                      |
+| Static hosting blocks `/api/*`               | Hybrid + Netlify adapter or Edge Functions                                       |
+| Quiz data only in `suspend_data`             | Store raw + inspect format; parse in a second iteration                          |
+| SSR auth refactor balloons scope             | Phase 1b as explicit prerequisite; finish before SCORM API routes                |
+| Dual-write never ends                        | Fixed **cutover_date** at dual-write start                                       |
+| Dashboard breaks on cutover                  | **`progress_compat`** view defined and deployed **before** stopping legacy reads |
+| Duplicate `dashboard.astro` paths in git     | Normalize to a single file when touching the dashboard                           |

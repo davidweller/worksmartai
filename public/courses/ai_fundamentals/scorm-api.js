@@ -15,7 +15,7 @@
       try {
         API.LMSInitialize('');
         return true;
-      } catch (e) {
+      } catch {
         return false;
       }
     },
@@ -24,13 +24,15 @@
       try {
         API.LMSSetValue('cmi.core.lesson_status', status);
         API.LMSCommit('');
-      } catch (e) {}
+      } catch {
+        // Ignore LMS adapter errors for best-effort progress sync.
+      }
     },
     getLessonStatus: function () {
       if (!API) return '';
       try {
         return API.LMSGetValue('cmi.core.lesson_status');
-      } catch (e) {
+      } catch {
         return '';
       }
     },
@@ -41,20 +43,24 @@
         API.LMSSetValue('cmi.core.score.min', String(min));
         API.LMSSetValue('cmi.core.score.max', String(max));
         API.LMSCommit('');
-      } catch (e) {}
+      } catch {
+        // Ignore LMS adapter errors for best-effort progress sync.
+      }
     },
     setSuspendData: function (data) {
       if (!API) return;
       try {
         API.LMSSetValue('cmi.suspend_data', data);
         API.LMSCommit('');
-      } catch (e) {}
+      } catch {
+        // Ignore LMS adapter errors for best-effort progress sync.
+      }
     },
     getSuspendData: function () {
       if (!API) return '';
       try {
         return API.LMSGetValue('cmi.suspend_data');
-      } catch (e) {
+      } catch {
         return '';
       }
     },
@@ -63,13 +69,17 @@
       try {
         API.LMSSetValue('cmi.core.lesson_location', location);
         API.LMSCommit('');
-      } catch (e) {}
+      } catch {
+        // Ignore LMS adapter errors for best-effort progress sync.
+      }
     },
     terminate: function () {
       if (!API) return;
       try {
         API.LMSFinish('');
-      } catch (e) {}
+      } catch {
+        // Ignore LMS adapter errors during termination.
+      }
     },
   };
 })();
