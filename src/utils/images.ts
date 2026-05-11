@@ -6,14 +6,7 @@ import type { ImagesOptimizer } from './images-optimization';
 type OptimizedImage = Awaited<ReturnType<ImagesOptimizer>>[0];
 
 const load = async function () {
-  let images: Record<string, () => Promise<unknown>> | undefined = undefined;
-  try {
-    images = import.meta.glob('~/assets/images/**/*.{jpeg,jpg,png,tiff,webp,gif,svg,JPEG,JPG,PNG,TIFF,WEBP,GIF,SVG}');
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (error) {
-    // continue regardless of error
-  }
-  return images;
+  return import.meta.glob('/src/assets/images/**/*.{jpeg,jpg,png,tiff,webp,gif,svg,JPEG,JPG,PNG,TIFF,WEBP,GIF,SVG}');
 };
 
 let _images: Record<string, () => Promise<unknown>> | undefined = undefined;
