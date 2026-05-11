@@ -184,27 +184,34 @@ const metadata = {
 <script>
   import { academySupabase, hasAcademySupabaseConfig, requireAuth } from '~/lib/academy';
 
-  const section = document.querySelector('section[data-course-id]');
-  const feedback = document.getElementById('academy-player-feedback');
-  const iframe = document.getElementById('academy-scorm-frame');
-  const sidebarNav = document.getElementById('academy-sidebar-nav');
-  const sidebarNavMobile = document.getElementById('academy-sidebar-nav-mobile');
-  const progressFill = document.getElementById('academy-sidebar-progress-fill');
-  const progressFillMobile = document.getElementById('academy-sidebar-progress-fill-mobile');
-  const progressLabel = document.getElementById('academy-sidebar-progress-label');
-  const progressLabelMobile = document.getElementById('academy-sidebar-progress-label-mobile');
-  const breadcrumbModule = document.getElementById('academy-breadcrumb-module');
-  const breadcrumbPage = document.getElementById('academy-breadcrumb-page');
-  const pagePill = document.getElementById('academy-page-pill');
-  const prevButton = document.getElementById('academy-prev-button');
-  const nextButton = document.getElementById('academy-next-button');
-  const sidebarOverlay = document.getElementById('academy-sidebar-overlay');
-  const mobileMenuButton = document.getElementById('academy-mobile-menu-button');
-  const overlayCloseButton = document.getElementById('academy-overlay-close');
-  const courseCode = document.getElementById('academy-course-code');
-  const courseCodeMobile = document.getElementById('academy-course-code-mobile');
-  const courseTitle = document.getElementById('academy-course-title');
-  const courseTitleMobile = document.getElementById('academy-course-title-mobile');
+  type JsonObject = Record<string, unknown>;
+  type InitResponse = {
+    sessionId?: string;
+    resume?: JsonObject;
+  };
+  type PageState = 'complete' | 'current' | 'locked';
+
+  const section = document.querySelector<HTMLElement>('section[data-course-id]');
+  const feedback = document.getElementById('academy-player-feedback') as HTMLParagraphElement | null;
+  const iframe = document.getElementById('academy-scorm-frame') as HTMLIFrameElement | null;
+  const sidebarNav = document.getElementById('academy-sidebar-nav') as HTMLElement | null;
+  const sidebarNavMobile = document.getElementById('academy-sidebar-nav-mobile') as HTMLElement | null;
+  const progressFill = document.getElementById('academy-sidebar-progress-fill') as HTMLElement | null;
+  const progressFillMobile = document.getElementById('academy-sidebar-progress-fill-mobile') as HTMLElement | null;
+  const progressLabel = document.getElementById('academy-sidebar-progress-label') as HTMLElement | null;
+  const progressLabelMobile = document.getElementById('academy-sidebar-progress-label-mobile') as HTMLElement | null;
+  const breadcrumbModule = document.getElementById('academy-breadcrumb-module') as HTMLElement | null;
+  const breadcrumbPage = document.getElementById('academy-breadcrumb-page') as HTMLElement | null;
+  const pagePill = document.getElementById('academy-page-pill') as HTMLElement | null;
+  const prevButton = document.getElementById('academy-prev-button') as HTMLButtonElement | null;
+  const nextButton = document.getElementById('academy-next-button') as HTMLButtonElement | null;
+  const sidebarOverlay = document.getElementById('academy-sidebar-overlay') as HTMLElement | null;
+  const mobileMenuButton = document.getElementById('academy-mobile-menu-button') as HTMLButtonElement | null;
+  const overlayCloseButton = document.getElementById('academy-overlay-close') as HTMLButtonElement | null;
+  const courseCode = document.getElementById('academy-course-code') as HTMLElement | null;
+  const courseCodeMobile = document.getElementById('academy-course-code-mobile') as HTMLElement | null;
+  const courseTitle = document.getElementById('academy-course-title') as HTMLElement | null;
+  const courseTitleMobile = document.getElementById('academy-course-title-mobile') as HTMLElement | null;
 
   if (!section || !iframe || !sidebarNav || !sidebarNavMobile || !prevButton || !nextButton) {
     throw new Error('Course player root not found');
@@ -216,7 +223,7 @@ const metadata = {
   const scormDebug =
     typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('scorm_debug') === '1';
 
-  const postJson = async (url, body) => {
+  const postJson = async <T,>(url: string, body: unknown): Promise<T> => {
     const res = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -224,7 +231,7 @@ const metadata = {
       body: JSON.stringify(body),
     });
     const text = await res.text();
-    let data = null;
+    let data: unknown = null;
     try {
       data = text ? JSON.parse(text) : null;
     } catch {
@@ -237,7 +244,7 @@ const metadata = {
           : text || res.statusText;
       throw new Error(msg);
     }
-    return data;
+    return data as T;
   };
 
   const syncPlayerViewportHeight = () => {
@@ -261,7 +268,7 @@ const metadata = {
     'agentic-automation': 7,
   };
 
-  const courseMetaById = {
+  const courseMetaById: Record<string, { code: string; title: string; module: string; pages: string[] }> = {
     'ai-foundations': {
       code: 'W1 - AI FOUNDATIONS',
       title: 'AI Foundations & Responsible Use',
@@ -308,7 +315,7 @@ const metadata = {
 
   const fallbackPageCount = pageCountByCourseId[courseId] ?? 7;
   const fallbackTitles = Array.from({ length: fallbackPageCount }, (_, idx) => `Page ${idx + 1}`);
-  const courseMeta = courseMetaById[courseId] ?? {
+  const courseMeta: { code: string; title: string; module: string; pages: string[] } = courseMetaById[courseId] ?? {
     code: 'W1 - COURSE',
     title: courseId || 'Course player',
     module: courseId || 'Course module',
@@ -318,7 +325,7 @@ const metadata = {
   const totalPages = Math.max(1, courseMeta.pages.length);
   let currentPageIndex = 0;
 
-  const parsePageIndexFromUrl = (value) => {
+  const parsePageIndexFromUrl = (value: string | null | undefined): number | null => {
     if (!value) return null;
     const match = String(value).match(/page_(\d+)\.html/i);
     if (!match) return null;
@@ -326,7 +333,7 @@ const metadata = {
     return Number.isInteger(parsed) ? parsed : null;
   };
 
-  const setFeedback = (message, isError = true) => {
+  const setFeedback = (message: string, isError: boolean = true): void => {
     if (!feedback) return;
     feedback.textContent = message;
     feedback.className = isError
@@ -334,7 +341,7 @@ const metadata = {
       : 'academy-player-feedback academy-player-feedback-success';
   };
 
-  const setOverlayOpen = (isOpen) => {
+  const setOverlayOpen = (isOpen: boolean): void => {
     if (!sidebarOverlay || !mobileMenuButton) return;
     sidebarOverlay.hidden = !isOpen;
     mobileMenuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
@@ -362,13 +369,13 @@ const metadata = {
     if (progressFillMobile) progressFillMobile.style.width = `${progressPercent}%`;
   };
 
-  const getPageState = (index) => {
+  const getPageState = (index: number): PageState => {
     if (index < currentPageIndex) return 'complete';
     if (index === currentPageIndex) return 'current';
     return 'locked';
   };
 
-  const goToPage = (index) => {
+  const goToPage = (index: number): void => {
     if (index < 0 || index >= totalPages) return;
     currentPageIndex = index;
     iframe.src = `/courses/${contentPath}/content/page_${index}.html`;
@@ -376,7 +383,7 @@ const metadata = {
     closeOverlay();
   };
 
-  const renderNav = (targetNav) => {
+  const renderNav = (targetNav: HTMLElement): void => {
     const navHtml = courseMeta.pages
       .map((title, index) => {
         const state = getPageState(index);
@@ -398,8 +405,8 @@ const metadata = {
     targetNav.innerHTML = navHtml;
   };
 
-  const bindNavHandlers = (targetNav) => {
-    targetNav.querySelectorAll('[data-page-index]').forEach((item) => {
+  const bindNavHandlers = (targetNav: HTMLElement): void => {
+    targetNav.querySelectorAll<HTMLElement>('[data-page-index]').forEach((item) => {
       item.addEventListener('click', () => {
         const pageIndex = Number(item.getAttribute('data-page-index'));
         goToPage(pageIndex);
@@ -426,7 +433,7 @@ const metadata = {
 
   const syncCurrentPageFromIframe = () => {
     const directSrcIndex = parsePageIndexFromUrl(iframe.getAttribute('src') || iframe.src);
-    let frameLocationIndex = null;
+    let frameLocationIndex: number | null = null;
     try {
       frameLocationIndex = parsePageIndexFromUrl(iframe.contentWindow?.location?.pathname || '');
     } catch {
@@ -478,9 +485,9 @@ const metadata = {
       let sessionId = '';
 
       try {
-        const init = await postJson('/api/scorm/initialize/', { courseId });
-        sessionId = typeof init?.sessionId === 'string' ? init.sessionId : '';
-        const resume = init?.resume && typeof init.resume === 'object' ? init.resume : {};
+        const init = await postJson<InitResponse>('/api/scorm/initialize/', { courseId });
+        sessionId = typeof init.sessionId === 'string' ? init.sessionId : '';
+        const resume = init.resume && typeof init.resume === 'object' ? init.resume : {};
 
         if (!sessionId) {
           throw new Error('Missing session from server.');
@@ -528,7 +535,7 @@ const metadata = {
         }
       };
 
-      let saveTimer = null;
+      let saveTimer: number | null = null;
       const queueSave = () => {
         if (saveTimer) window.clearTimeout(saveTimer);
         saveTimer = window.setTimeout(() => {

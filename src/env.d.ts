@@ -19,3 +19,16 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
+interface Window {
+  API?: {
+    cmi?: {
+      core?: {
+        lesson_location?: string | number | null;
+      };
+      toJSON?: () => Record<string, unknown>;
+    };
+    loadFromJSON?: (value: unknown) => void;
+    on?: (event: string, cb: () => void) => void;
+  };
+}
