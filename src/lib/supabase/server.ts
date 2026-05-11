@@ -24,20 +24,11 @@ export function createAcademyServerClient(cookies: AstroCookies) {
         }
         return [];
       },
-      setAll(cookiesToSet) {
+      setAll(cookiesToSet: Array<{ name: string; value: string; options?: Record<string, unknown> }>) {
         if (typeof cookieStore.set !== 'function') return;
         cookiesToSet.forEach(({ name, value, options }) => {
           cookieStore.set?.(name, value, options);
         });
-      },
-      get(name) {
-        return cookieStore.get?.(name)?.value;
-      },
-      set(name, value, options) {
-        cookieStore.set?.(name, value, options);
-      },
-      remove(name, options) {
-        cookieStore.delete?.(name, options);
       },
     },
   });

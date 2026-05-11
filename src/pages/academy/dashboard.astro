@@ -201,10 +201,10 @@ const staffTrainingCourseGroups = [
 <script>
   import { academySupabase, hasAcademySupabaseConfig, requireAuth } from '~/lib/academy';
 
-  const feedback = document.getElementById('academy-dashboard-feedback');
-  const signOutButton = document.getElementById('academy-signout-button');
+  const feedback = document.getElementById('academy-dashboard-feedback') as HTMLParagraphElement | null;
+  const signOutButton = document.getElementById('academy-signout-button') as HTMLButtonElement | null;
 
-  const setFeedback = (message, isError = true) => {
+  const setFeedback = (message: string, isError: boolean = true) => {
     if (!feedback) return;
     feedback.textContent = message;
     feedback.className = isError
@@ -212,7 +212,7 @@ const staffTrainingCourseGroups = [
       : 'mt-6 rounded-lg border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-800';
   };
 
-  const renderLiveCourseProgress = (progressByCourseId = {}) => {
+  const renderLiveCourseProgress = (progressByCourseId: Record<string, number> = {}) => {
     const liveCourseId = 'ai-foundations';
     const progress = Number(progressByCourseId[liveCourseId] ?? 0);
     const clampedProgress = Number.isFinite(progress) ? Math.max(0, Math.min(100, Math.round(progress))) : 0;
@@ -224,6 +224,7 @@ const staffTrainingCourseGroups = [
     });
 
     progressBars.forEach((bar) => {
+      if (!(bar instanceof HTMLElement)) return;
       bar.style.width = `${clampedProgress}%`;
     });
   };
@@ -251,7 +252,12 @@ const staffTrainingCourseGroups = [
 
       if (signOutButton) {
         signOutButton.addEventListener('click', async () => {
-          await academySupabase.auth.signOut();
+          const supabase = academySupabase;
+          if (!supabase) {
+            setFeedback('Sign out is unavailable right now. Please refresh and try again.');
+            return;
+          }
+          await supabase.auth.signOut();
           window.location.replace('/academy/login/');
         });
       }

@@ -73,13 +73,13 @@ const metadata = {
   import { academySupabase, hasAcademySupabaseConfig } from '~/lib/academy';
 
   const form = document.getElementById('academy-login-form');
-  const feedback = document.getElementById('academy-login-feedback');
+  const feedback = document.getElementById('academy-login-feedback') as HTMLParagraphElement | null;
 
-  if (!form) {
+  if (!(form instanceof HTMLFormElement)) {
     throw new Error('Academy login form not found');
   }
 
-  const setFeedback = (message, isError = true) => {
+  const setFeedback = (message: string, isError: boolean = true) => {
     if (!feedback) return;
     feedback.textContent = message;
     feedback.className = isError
@@ -110,7 +110,12 @@ const metadata = {
         if (feedback) feedback.className = 'hidden';
 
         try {
-          const { error } = await academySupabase.auth.signInWithPassword({ email, password });
+          const supabase = academySupabase;
+          if (!supabase) {
+            setFeedback('Login is unavailable right now. Please contact support.');
+            return;
+          }
+          const { error } = await supabase.auth.signInWithPassword({ email, password });
 
           if (error) {
             setFeedback(error.message || 'Login failed. Please check your credentials.');

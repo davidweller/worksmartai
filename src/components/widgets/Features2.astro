@@ -18,9 +18,11 @@ const {
   classes = {},
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
+
+const containerClass = typeof classes?.container === 'string' ? classes.container : '';
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={twMerge('max-w-7xl mx-auto', classes?.container ?? '')} bg={bg}>
+<WidgetWrapper id={id} isDark={isDark} containerClass={twMerge('max-w-7xl mx-auto', containerClass)} bg={bg}>
   <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline as Record<string, string>} />
   <ItemGrid2
     items={items}

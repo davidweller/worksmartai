@@ -7,7 +7,7 @@ export async function assertScormSessionOwned(
           column: string,
           value: string
         ) => {
-          maybeSingle: () => Promise<{ data: Record<string, unknown> | null }>;
+          maybeSingle: <T extends Record<string, unknown>>() => Promise<{ data: T | null }>;
         };
       };
     };
@@ -19,15 +19,16 @@ export async function assertScormSessionOwned(
     .from('scorm_sessions')
     .select('enrollment_id')
     .eq('id', sessionId)
-    .maybeSingle();
+    .maybeSingle<{ enrollment_id?: string }>();
 
-  if (!sessionRow?.enrollment_id) return false;
+  const enrollmentId = sessionRow?.enrollment_id;
+  if (!enrollmentId) return false;
 
   const { data: enr } = await supabase
     .from('enrollments')
     .select('user_id')
-    .eq('id', sessionRow.enrollment_id)
-    .maybeSingle();
+    .eq('id', enrollmentId)
+    .maybeSingle<{ user_id?: string }>();
 
   return enr?.user_id === userId;
 }

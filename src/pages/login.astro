@@ -68,7 +68,7 @@ const metadata = {
   feedback.setAttribute('role', 'alert');
   form.appendChild(feedback);
 
-  const setFeedback = (message, isError = true) => {
+  const setFeedback = (message: string, isError: boolean = true) => {
     feedback.textContent = message;
     feedback.className = isError
       ? 'mt-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800'
@@ -99,7 +99,12 @@ const metadata = {
       feedback.className = 'hidden';
 
       try {
-        const { error } = await academySupabase.auth.signInWithPassword({ email, password });
+        const supabase = academySupabase;
+        if (!supabase) {
+          setFeedback('Login is unavailable right now. Please contact support.');
+          return;
+        }
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) {
           setFeedback(error.message || 'Login failed. Please check your credentials.');
           return;
