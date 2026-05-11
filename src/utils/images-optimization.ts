@@ -115,6 +115,12 @@ const normalizeNetlifyImageUrl = (src: string): string => {
   return src.replace('url=_astro%2F', 'url=%2F_astro%2F');
 };
 
+const shouldUseSrcset = (srcset: string): boolean => {
+  // Some Netlify sites do not have the image transform endpoint enabled.
+  // In that case, keep a plain src to avoid 404s on responsive candidates.
+  return !srcset.includes('/.netlify/images?');
+};
+
 const getStyle = ({
   width,
   height,
@@ -358,7 +364,7 @@ export async function getImagesOptimized(
     attributes: {
       width: width,
       height: height,
-      srcset: srcset || undefined,
+      srcset: srcset && shouldUseSrcset(srcset) ? srcset : undefined,
       sizes: sizes,
       style: `${getStyle({
         width: width,
