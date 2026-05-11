@@ -6,7 +6,10 @@ import type { ImagesOptimizer } from './images-optimization';
 type OptimizedImage = Awaited<ReturnType<ImagesOptimizer>>[0];
 
 const load = async function () {
-  return import.meta.glob('/src/assets/images/**/*.{jpeg,jpg,png,tiff,webp,gif,svg,JPEG,JPG,PNG,TIFF,WEBP,GIF,SVG}');
+  return import.meta.glob([
+    '/src/assets/images/**/*.{jpeg,jpg,png,tiff,webp,gif,svg,JPEG,JPG,PNG,TIFF,WEBP,GIF,SVG}',
+    '../assets/images/**/*.{jpeg,jpg,png,tiff,webp,gif,svg,JPEG,JPG,PNG,TIFF,WEBP,GIF,SVG}',
+  ]);
 };
 
 let _images: Record<string, () => Promise<unknown>> | undefined = undefined;
@@ -38,10 +41,20 @@ export const findImage = async (
 
   const images = await fetchLocalImages();
   const key = imagePath.replace('~/', '/src/');
+  const normalizedPath = imagePath.replace('~/assets/images/', '');
+  const fallbackKey = images
+    ? Object.keys(images).find((imageKey) => imageKey.replace(/\\/g, '/').endsWith(`/assets/images/${normalizedPath}`))
+    : undefined;
 
-  return images && typeof images[key] === 'function'
-    ? ((await images[key]()) as { default: ImageMetadata })['default']
-    : null;
+  if (images && typeof images[key] === 'function') {
+    return ((await images[key]()) as { default: ImageMetadata })['default'];
+  }
+
+  if (images && fallbackKey && typeof images[fallbackKey] === 'function') {
+    return ((await images[fallbackKey]()) as { default: ImageMetadata })['default'];
+  }
+
+  return null;
 };
 
 /** */

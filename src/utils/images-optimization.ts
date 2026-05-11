@@ -110,6 +110,11 @@ export const getSizes = (width?: number, layout?: Layout): string | undefined =>
 
 const pixelate = (value?: number) => (value || value === 0 ? `${value}px` : undefined);
 
+const normalizeNetlifyImageUrl = (src: string): string => {
+  if (!src.startsWith('/.netlify/images?')) return src;
+  return src.replace('url=_astro%2F', 'url=%2F_astro%2F');
+};
+
 const getStyle = ({
   width,
   height,
@@ -345,7 +350,7 @@ export async function getImagesOptimized(
   breakpoints = [...new Set(breakpoints)].sort((a, b) => a - b);
 
   const srcset = (await transform(image, breakpoints, Number(width) || undefined, Number(height) || undefined, format))
-    .map(({ src, width }) => `${src} ${width}w`)
+    .map(({ src, width }) => `${normalizeNetlifyImageUrl(src)} ${width}w`)
     .join(', ');
 
   return {
