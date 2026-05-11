@@ -9,7 +9,6 @@ import mdx from '@astrojs/mdx';
 import partytown from '@astrojs/partytown';
 import icon from 'astro-icon';
 import compress from 'astro-compress';
-import netlify from '@astrojs/netlify';
 import type { AstroIntegration } from 'astro';
 
 import astrowind from './vendor/integration';
@@ -28,7 +27,6 @@ const SITEMAP_EXCLUDED_PATHS = new Set(['/404/', '/academy/login/', '/academy/da
 export default defineConfig({
   site: 'https://worksmart-ai.co.uk',
   output: 'static',
-  adapter: netlify(),
   trailingSlash: 'always',
 
   redirects: {

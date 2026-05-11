@@ -1,7 +1,9 @@
 import { createAcademyBrowserClient } from '~/lib/supabase/browser';
 import { hasSupabaseEnv } from '~/lib/supabase/env';
 
-export const hasAcademySupabaseConfig = hasSupabaseEnv;
+// Hostinger deployment is static-only, so academy server endpoints are unavailable.
+// Keep this false to avoid client flows attempting /api/scorm calls that do not exist.
+export const hasAcademySupabaseConfig = false && hasSupabaseEnv;
 
 export const academySupabase = hasAcademySupabaseConfig ? createAcademyBrowserClient() : null;
 
