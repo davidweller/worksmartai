@@ -13,9 +13,6 @@ const metadata = {
   },
 };
 
-const supabaseUrl = (import.meta.env.PUBLIC_SUPABASE_URL ?? import.meta.env.SUPABASE_URL ?? '').trim();
-const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta.env.SUPABASE_ANON_KEY ?? '').trim();
-
 const faqs = [
   {
     q: 'Is the Health Check really free?',
@@ -51,7 +48,7 @@ const steps = [
   {
     icon: 'tabler:calendar-event',
     title: 'Book a slot',
-    body: 'Use the form below to tell us a little about your team and pick a 45-minute window that suits you. We will send a short note in advance explaining the kinds of questions we will cover, so you can think about what you want to bring to the conversation.',
+    body: 'Get in touch to tell us a little about your team and pick a 45-minute window that suits you. We will send a short note in advance explaining the kinds of questions we will cover, so you can think about what you want to bring to the conversation.',
   },
   {
     icon: 'tabler:messages',
@@ -124,7 +121,7 @@ const deliverables = [
       </p>
       <div class="mt-8">
         <a
-          href="#book"
+          href="/contact-us/"
           class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-accent bg-accent px-7 py-3.5 font-heading font-semibold text-white shadow-lg shadow-accent/25 transition hover:-translate-y-0.5 hover:border-accent-hover hover:bg-accent-hover focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand"
         >
           <Icon name="tabler:stethoscope" class="h-5 w-5 shrink-0" aria-hidden="true" />
@@ -143,36 +140,9 @@ const deliverables = [
   </section>
 
   <!-- =========================================================
-       SECTION 1 - Why most AI adoption stalls
+       SECTION 1 - What the AI Health Check is
        ========================================================= -->
-  <section class="bg-page px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="why-stalls-heading">
-    <div class="mx-auto max-w-3xl" data-aos="fade-up">
-      <h2 id="why-stalls-heading" class="font-heading text-3xl font-bold text-heading sm:text-4xl">
-        Why most AI adoption stalls before it starts
-      </h2>
-      <p class="mt-6 text-base leading-[var(--aw-leading-body,1.7)] text-default">
-        Most higher education teams know they should be doing more with AI. Far fewer have a clear, shared picture of
-        what their staff can actually do today, what they should be doing next, and how to get there without
-        overwhelming people or creating compliance risk.
-      </p>
-      <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-default">
-        The result is a familiar pattern. A handful of early adopters race ahead with whatever tool they prefer. Others
-        quietly ignore the whole topic and hope it passes. Leaders feel pressure to &ldquo;do something on AI&rdquo; but
-        lack the evidence base to decide what. Generic training is commissioned, attended, and forgotten. Six months
-        later, nothing meaningful has changed.
-      </p>
-      <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-default">
-        The AI Health Check is designed to break that pattern at the team or department level. It gives you a
-        structured, sector-specific view of where your people genuinely sit on the AI capability ladder, and a credible
-        plan for moving them forward.
-      </p>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       SECTION 2 - What the AI Health Check is
-       ========================================================= -->
-  <section class="bg-section px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="what-is-heading">
+  <section class="bg-page px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="what-is-heading">
     <div class="mx-auto max-w-3xl" data-aos="fade-up">
       <h2 id="what-is-heading" class="font-heading text-3xl font-bold text-heading sm:text-4xl">
         What the AI Health Check is
@@ -196,9 +166,9 @@ const deliverables = [
   </section>
 
   <!-- =========================================================
-       SECTION 3 - What you get
+       SECTION 2 - What you get
        ========================================================= -->
-  <section class="bg-page px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="what-you-get-heading">
+  <section class="bg-section px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="what-you-get-heading">
     <div class="mx-auto max-w-6xl">
       <div class="mx-auto max-w-3xl text-center" data-aos="fade-up">
         <h2 id="what-you-get-heading" class="font-heading text-3xl font-bold text-heading sm:text-4xl">What you get</h2>
@@ -236,35 +206,7 @@ const deliverables = [
   </section>
 
   <!-- =========================================================
-       SECTION 4 - The framework behind the check
-       ========================================================= -->
-  <section class="bg-section px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="framework-heading">
-    <div class="mx-auto max-w-3xl" data-aos="fade-up">
-      <h2 id="framework-heading" class="font-heading text-3xl font-bold text-heading sm:text-4xl">
-        The framework behind the check
-      </h2>
-      <p class="mt-6 text-base leading-[var(--aw-leading-body,1.7)] text-default">
-        The AI Use Hierarchy is our six-level model of individual AI capability, developed specifically for higher
-        education contexts. It runs from Level 1 (Conversational AI: occasional, single-turn chatbot use) through to
-        Level 6 (Integration and Orchestration: full technical pipelines for IT and digital leads).
-      </p>
-      <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-default">
-        Most higher education staff currently sit at Level 1 or below. A smaller cohort, typically in digital,
-        communications, or research roles, has reached Level 2. Levels 3 and above remain rare outside IT departments.
-        This is not a failure on anyone's part. It reflects the simple fact that most institutional AI investment so far
-        has gone into tools and policy, not into the practical, role-specific skills that turn AI access into real
-        productivity.
-      </p>
-      <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-default">
-        The Health Check uses the hierarchy as a diagnostic lens, not a marketing pitch. The aim is to give you an
-        honest read of where your team is, and an honest view of what a sensible next step looks like, even if that step
-        does not involve us.
-      </p>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       SECTION 5 - Who it is for
+       SECTION 3 - Who it is for
        ========================================================= -->
   <section class="bg-page px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="who-for-heading">
     <div class="mx-auto max-w-3xl" data-aos="fade-up">
@@ -289,7 +231,7 @@ const deliverables = [
   </section>
 
   <!-- =========================================================
-       SECTION 6 - How it works
+       SECTION 4 - How it works
        ========================================================= -->
   <section class="bg-section px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="how-it-works-heading">
     <div class="mx-auto max-w-6xl">
@@ -326,7 +268,7 @@ const deliverables = [
   </section>
 
   <!-- =========================================================
-       SECTION 7 - What happens after
+       SECTION 5 - What happens after
        ========================================================= -->
   <section class="bg-page px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="after-heading">
     <div class="mx-auto max-w-3xl" data-aos="fade-up">
@@ -359,7 +301,7 @@ const deliverables = [
       </p>
       <div class="mt-8">
         <a
-          href="#book"
+          href="/contact-us/"
           class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-accent bg-accent px-7 py-3.5 font-heading font-semibold text-white shadow-lg shadow-accent/25 transition hover:-translate-y-0.5 hover:border-accent-hover hover:bg-accent-hover focus:outline-none focus:ring-2 focus:ring-focus focus:ring-offset-2"
         >
           <Icon name="tabler:stethoscope" class="h-5 w-5 shrink-0" aria-hidden="true" />
@@ -370,7 +312,7 @@ const deliverables = [
   </section>
 
   <!-- =========================================================
-       SECTION 8 - FAQ
+       SECTION 6 - FAQ
        ========================================================= -->
   <section class="bg-page px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="faq-heading">
     <div class="mx-auto max-w-3xl">
@@ -415,7 +357,7 @@ const deliverables = [
       </p>
       <div class="mt-8">
         <a
-          href="#book"
+          href="/contact-us/"
           class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-accent bg-accent px-7 py-3.5 font-heading font-semibold text-white shadow-lg shadow-accent/25 transition hover:-translate-y-0.5 hover:border-accent-hover hover:bg-accent-hover focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand"
         >
           <Icon name="tabler:stethoscope" class="h-5 w-5 shrink-0" aria-hidden="true" />
@@ -431,291 +373,9 @@ const deliverables = [
     </div>
   </section>
 
-  <!-- =========================================================
-       BOOKING FORM
-       ========================================================= -->
-  <section class="bg-section px-6 py-20 sm:px-8 lg:px-12" id="book" aria-labelledby="book-heading">
-    <div class="mx-auto max-w-xl scroll-mt-28">
-      <div
-        class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-[0_25px_50px_-12px_rgba(0,36,56,0.25)] ring-1 ring-slate-900/5"
-        data-aos="fade-up"
-      >
-        <div class="flex items-center justify-between border-b border-slate-100 px-6 py-4">
-          <p id="book-heading" class="font-heading text-lg font-bold text-heading">Book your AI Health Check</p>
-          <span
-            class="inline-flex items-center gap-1 rounded-full bg-accent/12 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-accent"
-          >
-            <Icon name="tabler:bolt" class="h-3.5 w-3.5" aria-hidden="true" />
-            Free
-          </span>
-        </div>
-
-        <div class="p-6 sm:p-7">
-          <p class="text-sm leading-relaxed text-slate-600">
-            Fill in the details below and we will be in touch within two working days to arrange your 45-minute call.
-          </p>
-
-          <form
-            id="hc-booking-form"
-            class="mt-5 space-y-4"
-            aria-describedby="hc-form-note"
-            onsubmit="return false"
-            data-supabase-url={supabaseUrl}
-            data-supabase-anon-key={supabaseAnonKey}
-          >
-            <input type="hidden" name="source" value="health-check" />
-
-            <div>
-              <label for="hc-name" class="block text-sm font-semibold text-slate-900">Full name</label>
-              <input
-                id="hc-name"
-                name="full_name"
-                type="text"
-                autocomplete="name"
-                required
-                class="mt-1.5 block w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3 text-base text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-accent focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25"
-                placeholder="Your full name"
-              />
-            </div>
-
-            <div>
-              <label for="hc-email" class="block text-sm font-semibold text-slate-900">Work email</label>
-              <input
-                id="hc-email"
-                name="work_email"
-                type="email"
-                autocomplete="email"
-                required
-                class="mt-1.5 block w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3 text-base text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-accent focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25"
-                placeholder="you@example.ac.uk"
-              />
-            </div>
-
-            <div>
-              <label for="hc-institution" class="block text-sm font-semibold text-slate-900">Institution name</label>
-              <input
-                id="hc-institution"
-                name="institution"
-                type="text"
-                autocomplete="organization"
-                required
-                class="mt-1.5 block w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3 text-base text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-accent focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25"
-                placeholder="e.g. University of Bristol"
-              />
-            </div>
-
-            <div>
-              <label for="hc-role" class="block text-sm font-semibold text-slate-900">Your role</label>
-              <input
-                id="hc-role"
-                name="role"
-                type="text"
-                autocomplete="organization-title"
-                required
-                class="mt-1.5 block w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3 text-base text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-accent focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25"
-                placeholder="e.g. Head of Digital"
-              />
-            </div>
-
-            <div>
-              <label for="hc-team" class="block text-sm font-semibold text-slate-900"
-                >Team or department the Health Check is for</label
-              >
-              <input
-                id="hc-team"
-                name="team"
-                type="text"
-                required
-                class="mt-1.5 block w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3 text-base text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-accent focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25"
-                placeholder="e.g. Faculty of Arts, Student Services"
-              />
-            </div>
-
-            <div>
-              <label for="hc-team-size" class="block text-sm font-semibold text-slate-900">Approximate team size</label>
-              <select
-                id="hc-team-size"
-                name="team_size"
-                required
-                class="mt-1.5 block w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3 text-base text-slate-900 shadow-sm transition focus:border-accent focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25"
-              >
-                <option value="" disabled selected>Select team size</option>
-                <option value="1-10">1-10</option>
-                <option value="11-25">11-25</option>
-                <option value="26-50">26-50</option>
-                <option value="51-100">51-100</option>
-                <option value="100+">100+</option>
-              </select>
-            </div>
-
-            <div>
-              <label for="hc-message" class="block text-sm font-semibold text-slate-900">
-                Message <span class="font-normal text-slate-400">(optional)</span>
-              </label>
-              <textarea
-                id="hc-message"
-                name="message"
-                rows="3"
-                class="mt-1.5 block w-full resize-y rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3 text-base text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-accent focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25"
-                placeholder="Anything else you'd like us to know?"></textarea>
-            </div>
-
-            <p id="hc-form-feedback" class="hidden" role="alert"></p>
-
-            <button
-              type="submit"
-              class="group flex w-full items-center justify-center gap-2 rounded-full border-2 border-accent bg-accent py-3.5 font-heading text-base font-semibold text-white shadow-sm transition hover:bg-accent-hover hover:border-accent-hover focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
-            >
-              <Icon name="tabler:stethoscope" class="h-5 w-5 transition" aria-hidden="true" />
-              Book my Health Check
-            </button>
-
-            <p id="hc-form-note" class="text-center text-xs leading-relaxed text-slate-500">
-              We will use your details to arrange your Health Check and relevant follow-up. Read our{' '}
-              <a
-                href="/privacy-policy/"
-                class="font-semibold text-brand underline-offset-2 hover:text-accent hover:underline">privacy policy</a
-              >.
-            </p>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Mobile sticky CTA -->
-  <a
-    data-mobile-cta-hc
-    href="#book"
-    class="fixed inset-x-3 bottom-3 z-40 flex items-center justify-center gap-2 rounded-full bg-accent px-5 py-3.5 text-center font-heading text-base font-semibold text-white shadow-card-elevated ring-1 ring-accent/40 transition duration-200 hover:bg-accent-hover lg:hidden"
-    aria-label="Jump to the booking form"
-  >
-    <Icon name="tabler:stethoscope" class="h-5 w-5" />
-    Book your free Health Check
-  </a>
-
   <style>
     html {
       scroll-behavior: smooth;
     }
-    @media (max-width: 1023px) {
-      body {
-        padding-bottom: 4.5rem;
-      }
-    }
   </style>
-
-  <!-- Hide mobile sticky CTA when the form is visible -->
-  <script is:inline>
-    (function () {
-      var cta = document.querySelector('a[data-mobile-cta-hc]');
-      var form = document.getElementById('book');
-      if (!cta || !form || !('IntersectionObserver' in window)) return;
-      var io = new IntersectionObserver(
-        function (entries) {
-          for (var i = 0; i < entries.length; i++) {
-            cta.classList.toggle('opacity-0', entries[i].isIntersecting);
-            cta.classList.toggle('pointer-events-none', entries[i].isIntersecting);
-          }
-        },
-        { threshold: 0.25 }
-      );
-      io.observe(form);
-    })();
-  </script>
-
-  <!-- Booking form: post to Supabase REST -->
-  <script is:inline>
-    (function () {
-      var form = document.getElementById('hc-booking-form');
-      var feedback = document.getElementById('hc-form-feedback');
-      if (!form) return;
-
-      var supabaseUrl = (form.getAttribute('data-supabase-url') || '').trim();
-      var supabaseAnonKey = (form.getAttribute('data-supabase-anon-key') || '').trim();
-      var baseUrl = supabaseUrl.replace(/\/$/, '');
-      var restUrl = baseUrl + '/rest/v1/leads';
-
-      function showFeedback(message, isError) {
-        if (!feedback) return;
-        feedback.textContent = message;
-        feedback.className = isError
-          ? 'mt-3 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-center text-sm text-red-800'
-          : 'mt-3 rounded-lg border border-green-200 bg-green-50 px-3 py-2 text-center text-sm text-green-800';
-      }
-
-      function clearFeedback() {
-        if (!feedback) return;
-        feedback.textContent = '';
-        feedback.className = 'hidden';
-      }
-
-      if (!supabaseUrl || !supabaseAnonKey) {
-        form.addEventListener('submit', function (e) {
-          e.preventDefault();
-          showFeedback('Bookings are temporarily unavailable. Please email hello@worksmart-ai.co.uk instead.', true);
-        });
-        return;
-      }
-
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var fd = new FormData(form);
-        var submitBtn = form.querySelector('button[type="submit"]');
-
-        var payload = {
-          name: String(fd.get('full_name') || '').trim(),
-          email: String(fd.get('work_email') || '').trim(),
-          source: String(fd.get('source') || '').trim(),
-          metadata: {
-            institution: String(fd.get('institution') || '').trim(),
-            role: String(fd.get('role') || '').trim(),
-            team: String(fd.get('team') || '').trim(),
-            team_size: String(fd.get('team_size') || '').trim(),
-            message: String(fd.get('message') || '').trim(),
-          },
-        };
-
-        if (!payload.name || !payload.email) return;
-
-        clearFeedback();
-        if (submitBtn) submitBtn.disabled = true;
-
-        fetch(restUrl, {
-          method: 'POST',
-          headers: {
-            apikey: supabaseAnonKey,
-            Authorization: 'Bearer ' + supabaseAnonKey,
-            'Content-Type': 'application/json',
-            Prefer: 'return=minimal',
-          },
-          body: JSON.stringify(payload),
-        })
-          .then(function (res) {
-            return res.text().then(function (text) {
-              if (submitBtn) submitBtn.disabled = false;
-              if (res.ok) {
-                showFeedback(
-                  'Thank you! We will be in touch within two working days to arrange your Health Check.',
-                  false
-                );
-                form.reset();
-                return;
-              }
-              if (typeof console !== 'undefined' && console.error) {
-                console.error('[WorkSmart] Health Check booking failed', { status: res.status, detail: text });
-              }
-              showFeedback('Something went wrong. Please try again or email hello@worksmart-ai.co.uk.', true);
-            });
-          })
-          .catch(function () {
-            if (submitBtn) submitBtn.disabled = false;
-            showFeedback(
-              'Something went wrong. Check your connection and try again, or email hello@worksmart-ai.co.uk.',
-              true
-            );
-          });
-      });
-    })();
-  </script>
 </Layout>
