@@ -1,0 +1,721 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { Icon } from 'astro-icon/components';
+
+const metadata = {
+  title: 'AI Health Check for higher education teams - WorkSmart-AI',
+  description:
+    'A free 45-minute AI Health Check for UK higher education teams. We map where your team is today, where the realistic next steps are, and what credible progress looks like over the next twelve months.',
+  canonical: '/health-check/',
+  openGraph: {
+    images: [{ url: '/images/health-check-og.png' }],
+    type: 'website',
+  },
+};
+
+const supabaseUrl = (import.meta.env.PUBLIC_SUPABASE_URL ?? import.meta.env.SUPABASE_URL ?? '').trim();
+const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta.env.SUPABASE_ANON_KEY ?? '').trim();
+
+const faqs = [
+  {
+    q: 'Is the Health Check really free?',
+    a: 'Yes. There is no fee, no commitment, and no requirement to do anything further. It exists because the most useful conversations we have with potential clients tend to start from a shared understanding of where their team actually is, and the Health Check is the most efficient way to build that.',
+  },
+  {
+    q: 'Who will I be speaking to?',
+    a: 'You will speak with one of the WorkSmart-AI founders, both of whom previously held Digital Skills Lead roles at a UK university before starting the business. You will not be passed to a junior account manager.',
+  },
+  {
+    q: 'What information do you need before the call?',
+    a: 'Very little. The booking form asks for your name, institution, role, the team or department the Health Check is for, and rough team size. We do not ask for confidential information, and you do not need to send documents in advance.',
+  },
+  {
+    q: 'Can I bring colleagues?',
+    a: 'Yes. Many heads of department find it useful to invite an L&D partner, digital lead, or deputy. We would suggest a maximum of three people on the call to keep the conversation focused.',
+  },
+  {
+    q: 'Will you try to sell me a workshop at the end?',
+    a: 'No. If something we offer looks like a genuine fit for what you have described, we will say so, and you can decide whether to explore that separately. If nothing fits, we will tell you that too. The Health Check is the deliverable, not the bait.',
+  },
+  {
+    q: 'What if my team is at a very early stage and I would feel embarrassed to talk about it?',
+    a: 'Most teams are at a very early stage. Honestly, that is the median position in higher education right now, and there is no judgement attached to it. The Health Check is more useful, not less, the earlier you are.',
+  },
+  {
+    q: 'Is this only for UK universities?',
+    a: 'We work primarily with UK higher education institutions. We will run a Health Check for further education colleges and other education settings on request, but the framework and benchmarks are most precisely calibrated for UK HE.',
+  },
+];
+
+const steps = [
+  {
+    icon: 'tabler:calendar-event',
+    title: 'Book a slot',
+    body: 'Use the form below to tell us a little about your team and pick a 45-minute window that suits you. We will send a short note in advance explaining the kinds of questions we will cover, so you can think about what you want to bring to the conversation.',
+  },
+  {
+    icon: 'tabler:messages',
+    title: 'The conversation',
+    body: 'A 45-minute call over Teams or Zoom. No slides, no sales pitch, no homework. We ask, you talk, we listen and probe where it helps. The agenda is shaped around your team and what would be most useful for you to leave with.',
+  },
+  {
+    icon: 'tabler:mail-forward',
+    title: 'Your written summary',
+    body: 'Within three working days you receive a written Health Check summary by email. It is yours to share, file, ignore, or act on, as you see fit. If you want a follow-up conversation to talk through it, we are happy to. If you do not, that is genuinely fine.',
+  },
+];
+
+const deliverables = [
+  {
+    icon: 'tabler:chart-dots-3',
+    title: 'A current-state snapshot',
+    body: 'A clear, evidence-based view of where your team sits on the AI Use Hierarchy today, including the realistic distribution across your staff. Most teams are not all at one level, and that itself matters.',
+  },
+  {
+    icon: 'tabler:list-check',
+    title: 'A prioritised set of next moves',
+    body: "Two or three specific, achievable steps that would meaningfully shift your team's capability in the next quarter, sequenced sensibly so foundations come before sophistication.",
+  },
+  {
+    icon: 'tabler:telescope',
+    title: 'A twelve-month outlook',
+    body: 'A short narrative on what credible progress looks like for a team like yours over the next year, including which staff groups would benefit from what kind of support, and where the obvious quick wins sit alongside the deeper capability shifts.',
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <!-- =========================================================
+       HERO
+       ========================================================= -->
+  <section
+    class="relative overflow-hidden bg-brand px-6 pb-20 pt-16 sm:px-8 md:pb-24 md:pt-20 lg:px-12"
+    aria-labelledby="hc-hero-heading"
+  >
+    <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand via-brand to-[#013a5c] opacity-95">
+    </div>
+    <div
+      class="pointer-events-none absolute inset-0 opacity-[0.07]"
+      style="background-image:radial-gradient(rgba(255,255,255,0.9) 1px, transparent 1px);background-size:22px 22px;"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-accent/20 blur-3xl"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="pointer-events-none absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-secondary/20 blur-3xl"
+      aria-hidden="true"
+    >
+    </div>
+
+    <div class="relative mx-auto max-w-4xl text-center text-white" data-aos="fade-up">
+      <h1
+        id="hc-hero-heading"
+        class="font-heading text-4xl font-bold leading-tight sm:text-5xl lg:text-[3rem] lg:leading-[1.1]"
+      >
+        Where does your team <br />really sit with AI?
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg leading-[var(--aw-leading-body,1.7)] text-white/90">
+        A free AI Health Check for higher education teams, departments, and faculties. We map where your team is today,
+        where the realistic next steps are, and what credible progress looks like over the next twelve months.
+      </p>
+      <div class="mt-8">
+        <a
+          href="#book"
+          class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-accent bg-accent px-7 py-3.5 font-heading font-semibold text-white shadow-lg shadow-accent/25 transition hover:-translate-y-0.5 hover:border-accent-hover hover:bg-accent-hover focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand"
+        >
+          <Icon name="tabler:stethoscope" class="h-5 w-5 shrink-0" aria-hidden="true" />
+          Book your free AI Health Check
+        </a>
+      </div>
+      <p class="mt-5 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-white/70">
+        <Icon name="tabler:shield-check" class="h-4 w-4 text-accent" aria-hidden="true" />
+        <span>No prep required.</span>
+        <span class="opacity-50">&middot;</span>
+        <span>45 minutes.</span>
+        <span class="opacity-50">&middot;</span>
+        <span>A written summary in your inbox afterwards.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 1 - Why most AI adoption stalls
+       ========================================================= -->
+  <section class="bg-page px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="why-stalls-heading">
+    <div class="mx-auto max-w-3xl" data-aos="fade-up">
+      <h2 id="why-stalls-heading" class="font-heading text-3xl font-bold text-heading sm:text-4xl">
+        Why most AI adoption stalls before it starts
+      </h2>
+      <p class="mt-6 text-base leading-[var(--aw-leading-body,1.7)] text-default">
+        Most higher education teams know they should be doing more with AI. Far fewer have a clear, shared picture of
+        what their staff can actually do today, what they should be doing next, and how to get there without
+        overwhelming people or creating compliance risk.
+      </p>
+      <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-default">
+        The result is a familiar pattern. A handful of early adopters race ahead with whatever tool they prefer. Others
+        quietly ignore the whole topic and hope it passes. Leaders feel pressure to &ldquo;do something on AI&rdquo; but
+        lack the evidence base to decide what. Generic training is commissioned, attended, and forgotten. Six months
+        later, nothing meaningful has changed.
+      </p>
+      <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-default">
+        The AI Health Check is designed to break that pattern at the team or department level. It gives you a
+        structured, sector-specific view of where your people genuinely sit on the AI capability ladder, and a credible
+        plan for moving them forward.
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 2 - What the AI Health Check is
+       ========================================================= -->
+  <section class="bg-section px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="what-is-heading">
+    <div class="mx-auto max-w-3xl" data-aos="fade-up">
+      <h2 id="what-is-heading" class="font-heading text-3xl font-bold text-heading sm:text-4xl">
+        What the AI Health Check is
+      </h2>
+      <p class="mt-6 text-base leading-[var(--aw-leading-body,1.7)] text-default">
+        The Health Check is a focused, free diagnostic for a specific team, department, or faculty. It is built around
+        the WorkSmart-AI Use Hierarchy, a six-level framework that describes how individual staff progress in their AI
+        capability, from first conversations with a chatbot through to designing automated workflows.
+      </p>
+      <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-default">
+        You do not need to prepare anything. You do not need to have your team complete a survey beforehand (although we
+        can run one if you want a more detailed snapshot). What you do need is around 45 minutes with someone who knows
+        the team well enough to answer questions about how staff currently work, what tools are in use, where the
+        friction is, and what would constitute a meaningful win in the next six to twelve months.
+      </p>
+      <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-default">
+        From that conversation, we produce a written summary that you can share with colleagues, take to your senior
+        team, or use to inform your own planning. It is yours to keep, whether or not you ever speak to us again.
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 3 - What you get
+       ========================================================= -->
+  <section class="bg-page px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="what-you-get-heading">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center" data-aos="fade-up">
+        <h2 id="what-you-get-heading" class="font-heading text-3xl font-bold text-heading sm:text-4xl">What you get</h2>
+        <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-muted">
+          Every AI Health Check produces three things.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          deliverables.map((card, i) => (
+            <article
+              class="flex h-full flex-col rounded-2xl border border-slate-200/90 bg-white p-6 shadow-[0_4px_24px_-8px_rgba(0,36,56,0.12)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_-12px_rgba(0,36,56,0.18)]"
+              data-aos="fade-up"
+              data-aos-delay={i * 80}
+            >
+              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand text-white shadow-sm">
+                <Icon name={card.icon} class="h-5 w-5" aria-hidden="true" />
+              </span>
+              <h3 class="mt-5 font-heading text-xl font-bold text-heading">{card.title}</h3>
+              <p class="mt-3 text-base leading-relaxed text-muted">{card.body}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <p
+        class="mx-auto mt-10 max-w-3xl text-center text-base leading-[var(--aw-leading-body,1.7)] text-muted"
+        data-aos="fade-up"
+      >
+        The summary is written in plain English, free of jargon, and designed to be useful even if AI is not your
+        specialist area.
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 4 - The framework behind the check
+       ========================================================= -->
+  <section class="bg-section px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="framework-heading">
+    <div class="mx-auto max-w-3xl" data-aos="fade-up">
+      <h2 id="framework-heading" class="font-heading text-3xl font-bold text-heading sm:text-4xl">
+        The framework behind the check
+      </h2>
+      <p class="mt-6 text-base leading-[var(--aw-leading-body,1.7)] text-default">
+        The AI Use Hierarchy is our six-level model of individual AI capability, developed specifically for higher
+        education contexts. It runs from Level 1 (Conversational AI: occasional, single-turn chatbot use) through to
+        Level 6 (Integration and Orchestration: full technical pipelines for IT and digital leads).
+      </p>
+      <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-default">
+        Most higher education staff currently sit at Level 1 or below. A smaller cohort, typically in digital,
+        communications, or research roles, has reached Level 2. Levels 3 and above remain rare outside IT departments.
+        This is not a failure on anyone's part. It reflects the simple fact that most institutional AI investment so far
+        has gone into tools and policy, not into the practical, role-specific skills that turn AI access into real
+        productivity.
+      </p>
+      <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-default">
+        The Health Check uses the hierarchy as a diagnostic lens, not a marketing pitch. The aim is to give you an
+        honest read of where your team is, and an honest view of what a sensible next step looks like, even if that step
+        does not involve us.
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 5 - Who it is for
+       ========================================================= -->
+  <section class="bg-page px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="who-for-heading">
+    <div class="mx-auto max-w-3xl" data-aos="fade-up">
+      <h2 id="who-for-heading" class="font-heading text-3xl font-bold text-heading sm:text-4xl">Who it is for</h2>
+      <p class="mt-6 text-base leading-[var(--aw-leading-body,1.7)] text-default">
+        The AI Health Check is most useful if you lead, manage, or have oversight of a team in a UK higher education
+        institution. That includes heads of department, faculty deans, professional services managers, programme
+        directors, research group leads, and anyone in HR, L&amp;D, or digital roles thinking about staff capability at
+        team level rather than across the whole institution.
+      </p>
+      <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-default">
+        It is particularly useful if you are facing a budget conversation, a strategy refresh, an audit, or a senior
+        leadership request for &ldquo;the AI plan&rdquo; and you would like to be able to answer that question with
+        evidence rather than impressions.
+      </p>
+      <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-default">
+        It is not the right tool if you are looking for an individual self-assessment (our free AI Staff Readiness Quiz
+        is the better starting point for that) or if you are looking for an institution-wide strategic review (in which
+        case our AI Leadership Clarity Programme is the more appropriate engagement).
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 6 - How it works
+       ========================================================= -->
+  <section class="bg-section px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="how-it-works-heading">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center" data-aos="fade-up">
+        <h2 id="how-it-works-heading" class="font-heading text-3xl font-bold text-heading sm:text-4xl">How it works</h2>
+        <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-muted">
+          Three steps, and the whole process takes about a week from booking to receiving your summary.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          steps.map((step, i) => (
+            <article
+              class="relative flex h-full flex-col rounded-2xl border border-slate-200/90 bg-white p-6 shadow-[0_4px_24px_-8px_rgba(0,36,56,0.12)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_-12px_rgba(0,36,56,0.18)]"
+              data-aos="fade-up"
+              data-aos-delay={i * 80}
+            >
+              <div class="flex items-start justify-between gap-3">
+                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent text-white shadow-sm">
+                  <Icon name={step.icon} class="h-5 w-5" aria-hidden="true" />
+                </span>
+                <span class="font-heading text-2xl font-bold leading-none text-slate-300 tabular-nums">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+              </div>
+              <h3 class="mt-5 font-heading text-xl font-bold text-heading">{step.title}</h3>
+              <p class="mt-3 text-base leading-relaxed text-muted">{step.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 7 - What happens after
+       ========================================================= -->
+  <section class="bg-page px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="after-heading">
+    <div class="mx-auto max-w-3xl" data-aos="fade-up">
+      <h2 id="after-heading" class="font-heading text-3xl font-bold text-heading sm:text-4xl">What happens after</h2>
+      <p class="mt-6 text-base leading-[var(--aw-leading-body,1.7)] text-default">
+        Some teams take the Health Check, use the summary internally, and we never hear from them again. That is a
+        perfectly good outcome. The point of the offer is to give you something useful, not to manufacture a sales
+        conversation.
+      </p>
+      <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-default">
+        Where teams do want to take next steps with us, the most common routes are a single targeted workshop (for
+        example, AI Foundations and Responsible Use for all staff, or a role-specific session for academics,
+        researchers, or professional services), a phased twelve-workshop programme mapped to the hierarchy, or, for
+        senior leaders, an institutional-level engagement through our AI Leadership Clarity Programme. Pricing and
+        structure for all of these can be discussed if and when it is useful.
+      </p>
+      <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-default">
+        You are under no obligation to do any of this. The Health Check stands on its own.
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       MID-PAGE CTA
+       ========================================================= -->
+  <section class="bg-section px-6 py-20 sm:px-8 lg:px-12">
+    <div class="mx-auto max-w-3xl text-center" data-aos="fade-up">
+      <p class="font-heading text-2xl font-bold text-heading sm:text-3xl">
+        Ready to find out where your team really stands?
+      </p>
+      <div class="mt-8">
+        <a
+          href="#book"
+          class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-accent bg-accent px-7 py-3.5 font-heading font-semibold text-white shadow-lg shadow-accent/25 transition hover:-translate-y-0.5 hover:border-accent-hover hover:bg-accent-hover focus:outline-none focus:ring-2 focus:ring-focus focus:ring-offset-2"
+        >
+          <Icon name="tabler:stethoscope" class="h-5 w-5 shrink-0" aria-hidden="true" />
+          Book your free AI Health Check
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 8 - FAQ
+       ========================================================= -->
+  <section class="bg-page px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="faq-heading">
+    <div class="mx-auto max-w-3xl">
+      <div class="text-center" data-aos="fade-up">
+        <p class="font-heading text-sm font-bold uppercase tracking-[0.22em] text-accent">Common questions</p>
+        <h2 id="faq-heading" class="mt-4 font-heading text-3xl font-bold text-heading sm:text-4xl">
+          Frequently asked questions
+        </h2>
+      </div>
+
+      <div class="mt-10 space-y-3">
+        {
+          faqs.map((item, i) => (
+            <details
+              class="group rounded-xl border border-slate-200/90 bg-white px-5 py-4 shadow-[0_2px_16px_-4px_rgba(0,36,56,0.08)] transition open:shadow-[0_8px_28px_-8px_rgba(0,36,56,0.12)]"
+              data-aos="fade-up"
+              data-aos-delay={i * 60}
+            >
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-heading text-base font-semibold text-heading">
+                <span>{item.q}</span>
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition group-open:rotate-180">
+                  <Icon name="tabler:chevron-down" class="h-4 w-4" aria-hidden="true" />
+                </span>
+              </summary>
+              <p class="mt-3 border-t border-slate-100 pt-3 text-base leading-relaxed text-muted">{item.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       FINAL CTA
+       ========================================================= -->
+  <section class="bg-brand px-6 py-20 sm:px-8 lg:px-12">
+    <div class="mx-auto max-w-3xl text-center text-white" data-aos="fade-up">
+      <h2 class="font-heading text-3xl font-bold sm:text-4xl">Find out where your team really stands.</h2>
+      <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-white/90">
+        45 minutes. A written summary in your inbox. No obligation, no sales pitch, no jargon. Just a clear,
+        evidence-based view of where your team is today and what credible next steps look like.
+      </p>
+      <div class="mt-8">
+        <a
+          href="#book"
+          class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-accent bg-accent px-7 py-3.5 font-heading font-semibold text-white shadow-lg shadow-accent/25 transition hover:-translate-y-0.5 hover:border-accent-hover hover:bg-accent-hover focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand"
+        >
+          <Icon name="tabler:stethoscope" class="h-5 w-5 shrink-0" aria-hidden="true" />
+          Book your free AI Health Check
+        </a>
+      </div>
+      <p class="mt-5 text-sm text-white/70">
+        Or email <a
+          href="mailto:hello@worksmart-ai.co.uk"
+          class="font-semibold text-accent underline-offset-2 hover:underline">hello@worksmart-ai.co.uk</a
+        > with any questions before you book.
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       BOOKING FORM
+       ========================================================= -->
+  <section class="bg-section px-6 py-20 sm:px-8 lg:px-12" id="book" aria-labelledby="book-heading">
+    <div class="mx-auto max-w-xl scroll-mt-28">
+      <div
+        class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-[0_25px_50px_-12px_rgba(0,36,56,0.25)] ring-1 ring-slate-900/5"
+        data-aos="fade-up"
+      >
+        <div class="flex items-center justify-between border-b border-slate-100 px-6 py-4">
+          <p id="book-heading" class="font-heading text-lg font-bold text-heading">Book your AI Health Check</p>
+          <span
+            class="inline-flex items-center gap-1 rounded-full bg-accent/12 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-accent"
+          >
+            <Icon name="tabler:bolt" class="h-3.5 w-3.5" aria-hidden="true" />
+            Free
+          </span>
+        </div>
+
+        <div class="p-6 sm:p-7">
+          <p class="text-sm leading-relaxed text-slate-600">
+            Fill in the details below and we will be in touch within two working days to arrange your 45-minute call.
+          </p>
+
+          <form
+            id="hc-booking-form"
+            class="mt-5 space-y-4"
+            aria-describedby="hc-form-note"
+            onsubmit="return false"
+            data-supabase-url={supabaseUrl}
+            data-supabase-anon-key={supabaseAnonKey}
+          >
+            <input type="hidden" name="source" value="health-check" />
+
+            <div>
+              <label for="hc-name" class="block text-sm font-semibold text-slate-900">Full name</label>
+              <input
+                id="hc-name"
+                name="full_name"
+                type="text"
+                autocomplete="name"
+                required
+                class="mt-1.5 block w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3 text-base text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-accent focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25"
+                placeholder="Your full name"
+              />
+            </div>
+
+            <div>
+              <label for="hc-email" class="block text-sm font-semibold text-slate-900">Work email</label>
+              <input
+                id="hc-email"
+                name="work_email"
+                type="email"
+                autocomplete="email"
+                required
+                class="mt-1.5 block w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3 text-base text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-accent focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25"
+                placeholder="you@example.ac.uk"
+              />
+            </div>
+
+            <div>
+              <label for="hc-institution" class="block text-sm font-semibold text-slate-900">Institution name</label>
+              <input
+                id="hc-institution"
+                name="institution"
+                type="text"
+                autocomplete="organization"
+                required
+                class="mt-1.5 block w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3 text-base text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-accent focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25"
+                placeholder="e.g. University of Bristol"
+              />
+            </div>
+
+            <div>
+              <label for="hc-role" class="block text-sm font-semibold text-slate-900">Your role</label>
+              <input
+                id="hc-role"
+                name="role"
+                type="text"
+                autocomplete="organization-title"
+                required
+                class="mt-1.5 block w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3 text-base text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-accent focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25"
+                placeholder="e.g. Head of Digital"
+              />
+            </div>
+
+            <div>
+              <label for="hc-team" class="block text-sm font-semibold text-slate-900"
+                >Team or department the Health Check is for</label
+              >
+              <input
+                id="hc-team"
+                name="team"
+                type="text"
+                required
+                class="mt-1.5 block w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3 text-base text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-accent focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25"
+                placeholder="e.g. Faculty of Arts, Student Services"
+              />
+            </div>
+
+            <div>
+              <label for="hc-team-size" class="block text-sm font-semibold text-slate-900">Approximate team size</label>
+              <select
+                id="hc-team-size"
+                name="team_size"
+                required
+                class="mt-1.5 block w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3 text-base text-slate-900 shadow-sm transition focus:border-accent focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25"
+              >
+                <option value="" disabled selected>Select team size</option>
+                <option value="1-10">1-10</option>
+                <option value="11-25">11-25</option>
+                <option value="26-50">26-50</option>
+                <option value="51-100">51-100</option>
+                <option value="100+">100+</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="hc-message" class="block text-sm font-semibold text-slate-900">
+                Message <span class="font-normal text-slate-400">(optional)</span>
+              </label>
+              <textarea
+                id="hc-message"
+                name="message"
+                rows="3"
+                class="mt-1.5 block w-full resize-y rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3 text-base text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-accent focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25"
+                placeholder="Anything else you'd like us to know?"></textarea>
+            </div>
+
+            <p id="hc-form-feedback" class="hidden" role="alert"></p>
+
+            <button
+              type="submit"
+              class="group flex w-full items-center justify-center gap-2 rounded-full border-2 border-accent bg-accent py-3.5 font-heading text-base font-semibold text-white shadow-sm transition hover:bg-accent-hover hover:border-accent-hover focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              <Icon name="tabler:stethoscope" class="h-5 w-5 transition" aria-hidden="true" />
+              Book my Health Check
+            </button>
+
+            <p id="hc-form-note" class="text-center text-xs leading-relaxed text-slate-500">
+              We will use your details to arrange your Health Check and relevant follow-up. Read our{' '}
+              <a
+                href="/privacy-policy/"
+                class="font-semibold text-brand underline-offset-2 hover:text-accent hover:underline">privacy policy</a
+              >.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mobile sticky CTA -->
+  <a
+    data-mobile-cta-hc
+    href="#book"
+    class="fixed inset-x-3 bottom-3 z-40 flex items-center justify-center gap-2 rounded-full bg-accent px-5 py-3.5 text-center font-heading text-base font-semibold text-white shadow-card-elevated ring-1 ring-accent/40 transition duration-200 hover:bg-accent-hover lg:hidden"
+    aria-label="Jump to the booking form"
+  >
+    <Icon name="tabler:stethoscope" class="h-5 w-5" />
+    Book your free Health Check
+  </a>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    @media (max-width: 1023px) {
+      body {
+        padding-bottom: 4.5rem;
+      }
+    }
+  </style>
+
+  <!-- Hide mobile sticky CTA when the form is visible -->
+  <script is:inline>
+    (function () {
+      var cta = document.querySelector('a[data-mobile-cta-hc]');
+      var form = document.getElementById('book');
+      if (!cta || !form || !('IntersectionObserver' in window)) return;
+      var io = new IntersectionObserver(
+        function (entries) {
+          for (var i = 0; i < entries.length; i++) {
+            cta.classList.toggle('opacity-0', entries[i].isIntersecting);
+            cta.classList.toggle('pointer-events-none', entries[i].isIntersecting);
+          }
+        },
+        { threshold: 0.25 }
+      );
+      io.observe(form);
+    })();
+  </script>
+
+  <!-- Booking form: post to Supabase REST -->
+  <script is:inline>
+    (function () {
+      var form = document.getElementById('hc-booking-form');
+      var feedback = document.getElementById('hc-form-feedback');
+      if (!form) return;
+
+      var supabaseUrl = (form.getAttribute('data-supabase-url') || '').trim();
+      var supabaseAnonKey = (form.getAttribute('data-supabase-anon-key') || '').trim();
+      var baseUrl = supabaseUrl.replace(/\/$/, '');
+      var restUrl = baseUrl + '/rest/v1/leads';
+
+      function showFeedback(message, isError) {
+        if (!feedback) return;
+        feedback.textContent = message;
+        feedback.className = isError
+          ? 'mt-3 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-center text-sm text-red-800'
+          : 'mt-3 rounded-lg border border-green-200 bg-green-50 px-3 py-2 text-center text-sm text-green-800';
+      }
+
+      function clearFeedback() {
+        if (!feedback) return;
+        feedback.textContent = '';
+        feedback.className = 'hidden';
+      }
+
+      if (!supabaseUrl || !supabaseAnonKey) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          showFeedback('Bookings are temporarily unavailable. Please email hello@worksmart-ai.co.uk instead.', true);
+        });
+        return;
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var fd = new FormData(form);
+        var submitBtn = form.querySelector('button[type="submit"]');
+
+        var payload = {
+          name: String(fd.get('full_name') || '').trim(),
+          email: String(fd.get('work_email') || '').trim(),
+          source: String(fd.get('source') || '').trim(),
+          metadata: {
+            institution: String(fd.get('institution') || '').trim(),
+            role: String(fd.get('role') || '').trim(),
+            team: String(fd.get('team') || '').trim(),
+            team_size: String(fd.get('team_size') || '').trim(),
+            message: String(fd.get('message') || '').trim(),
+          },
+        };
+
+        if (!payload.name || !payload.email) return;
+
+        clearFeedback();
+        if (submitBtn) submitBtn.disabled = true;
+
+        fetch(restUrl, {
+          method: 'POST',
+          headers: {
+            apikey: supabaseAnonKey,
+            Authorization: 'Bearer ' + supabaseAnonKey,
+            'Content-Type': 'application/json',
+            Prefer: 'return=minimal',
+          },
+          body: JSON.stringify(payload),
+        })
+          .then(function (res) {
+            return res.text().then(function (text) {
+              if (submitBtn) submitBtn.disabled = false;
+              if (res.ok) {
+                showFeedback(
+                  'Thank you! We will be in touch within two working days to arrange your Health Check.',
+                  false
+                );
+                form.reset();
+                return;
+              }
+              if (typeof console !== 'undefined' && console.error) {
+                console.error('[WorkSmart] Health Check booking failed', { status: res.status, detail: text });
+              }
+              showFeedback('Something went wrong. Please try again or email hello@worksmart-ai.co.uk.', true);
+            });
+          })
+          .catch(function () {
+            if (submitBtn) submitBtn.disabled = false;
+            showFeedback(
+              'Something went wrong. Check your connection and try again, or email hello@worksmart-ai.co.uk.',
+              true
+            );
+          });
+      });
+    })();
+  </script>
+</Layout>
