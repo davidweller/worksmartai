@@ -28,6 +28,7 @@ const SITEMAP_EXCLUDED_PATHS = new Set([
   '/academy/dashboard/',
   '/academy/view/',
   '/home-v2/',
+  '/homepage-original/',
 ]);
 
 export default defineConfig({

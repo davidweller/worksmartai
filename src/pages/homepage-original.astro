@@ -1,0 +1,225 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import ROICalculator from '~/components/widgets/ROICalculator.astro';
+import Hero2 from '~/components/widgets/Hero2.astro';
+import { BOOK_A_CALL_URL } from '~/config/booking';
+
+const metadata = {
+  title: 'Original homepage | WorkSmart-AI',
+  description:
+    'Specialist AI training and consultancy for higher education, helping staff, students and senior leaders build confidence, capability and compliance with measurable impact.',
+  canonical: '/homepage-original/',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero2
+    tagline="WORKSMART-AI"
+    topSpacerClass="pt-0 md:pt-[24px]"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'View Our Services',
+        href: '/services/',
+      },
+      {
+        text: 'Contact Us',
+        href: '/contact-us/',
+        class: 'font-bold hover:bg-accent hover:border-accent hover:text-white',
+      },
+    ]}
+    image={{
+      src: '/images/home-hero-photo.png',
+      alt: 'Team collaborating around a table with sticky notes during a planning session',
+      width: 1200,
+      height: 800,
+      class: 'mx-auto rounded-2xl w-full shadow-none ring-0',
+    }}
+  >
+    <Fragment slot="title">
+      Specialist AI training and consultancy for <span class="text-accent">higher education</span>.
+    </Fragment>
+    <Fragment slot="subtitle">
+      We specialise in supporting staff, students and senior leaders within HE to build confidence, capability and
+      compliance with AI. We help people make the right decisions when it comes to AI by recognising the opportunities
+      as well as the risks.
+      <br />
+      <br />
+      We are people-focused, cutting through technical jargon and overcoming anxieties through a personalised, supportive
+      approach that encourages engagement and long-term use.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-gradient-to-b from-page via-page to-section"></div>
+    </Fragment>
+  </Hero2>
+
+  <section id="roi-calculator" class="w-full bg-section px-6 py-16 sm:px-8 lg:px-12">
+    <div class="mx-auto max-w-6xl" data-aos="fade-up">
+      <ROICalculator rootId="roi-calculator-homepage-original" />
+    </div>
+  </section>
+
+  <section class="bg-brand px-6 py-16 sm:px-8 lg:px-12">
+    <blockquote class="mx-auto max-w-5xl border-l-4 border-accent pl-6 text-white" data-aos="fade-right">
+      <h4 class="font-heading text-lg font-semibold leading-[var(--aw-leading-body,1.7)]">
+        &ldquo;Students see AI skills as essential, but institutional support lags behind. While over two-thirds (68%)
+        of students believe AI skills are essential to thrive in today&rsquo;s world, fewer than half (48%) feel their
+        teaching staff are helping them to develop these skills for their future careers.&rdquo;
+      </h4>
+      <footer class="mt-6 text-base font-normal italic text-white/90">
+        - HEPI / Kortext Student Generative AI Survey, 2026
+      </footer>
+    </blockquote>
+  </section>
+
+  <section class="bg-section px-6 py-20 sm:px-8 lg:px-12">
+    <div class="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
+      <div class="order-1" data-aos="fade-right">
+        <img
+          src="/images/explore-offer-photo.png"
+          alt="WorkSmart-AI team session with participants collaborating in person"
+          class="h-full w-full rounded-2xl object-cover shadow-card"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="order-2 text-center lg:text-left">
+        <h2 class="font-heading text-3xl font-bold text-heading sm:text-4xl" data-aos="fade-up">
+          Explore What We Offer
+        </h2>
+        <p class="mt-5 text-base text-muted" data-aos="fade-up" data-aos-delay="100">
+          Services we offer include face-to-face and online training for staff, student AI skills for the workplace
+          sessions, 1:1 senior and middle manager consultancy, and bespoke academic coaching sessions.
+        </p>
+        <p class="mt-4 text-base text-muted" data-aos="fade-up" data-aos-delay="130">
+          All of this is underpinned by a data-driven approach, ensuring digital transformation leads to measurable
+          return on investment.
+        </p>
+        <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
+          <a
+            data-aos="fade-up"
+            data-aos-delay="180"
+            href="/services/"
+            class="inline-flex items-center justify-center rounded-full border border-accent bg-accent px-6 py-3 font-semibold text-white transition hover:bg-accent-hover hover:border-accent-hover"
+          >
+            View Our Services
+          </a>
+          <a
+            data-aos="fade-up"
+            data-aos-delay="220"
+            href="/contact-us/"
+            class="inline-flex items-center justify-center rounded-full border border-accent bg-transparent px-6 py-3 font-semibold text-accent transition hover:bg-accent hover:text-white"
+          >
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-brand px-6 py-16 sm:px-8 lg:px-12">
+    <blockquote class="mx-auto max-w-5xl border-l-4 border-accent pl-6 text-white" data-aos="fade-right">
+      <h4 class="font-heading text-lg font-semibold leading-[var(--aw-leading-body,1.7)]">
+        &ldquo;On average, people say AI has made them 33% more productive and saves them about 1.3 hours per
+        day.&rdquo;
+      </h4>
+      <footer class="mt-6 text-base font-normal italic text-white/90">- AI Collaboration Index 2025, Atlassian</footer>
+    </blockquote>
+  </section>
+
+  <section class="bg-section px-6 py-20 sm:px-8 lg:px-12">
+    <div class="mx-auto max-w-6xl">
+      <div class="text-center">
+        <h2 class="font-heading text-3xl font-bold text-heading sm:text-4xl" data-aos="fade-up">
+          How we help you succeed
+        </h2>
+        <p class="mx-auto mt-4 max-w-3xl text-base text-muted" data-aos="fade-up" data-aos-delay="100">
+          A structured, people-first approach to confident and measurable AI adoption.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <article class="rounded-xl border border-default bg-card p-6 shadow-card" data-aos="fade-up">
+          <h3 class="font-heading text-xl font-semibold text-heading">Free Initial Consultation</h3>
+          <p class="mt-3 text-base leading-[var(--aw-leading-body,1.7)] text-muted">
+            A collaborative discussion to understand your institution's goals and challenges and see where you are on
+            your AI journey.
+          </p>
+        </article>
+
+        <article
+          class="rounded-xl border border-default bg-card p-6 shadow-card"
+          data-aos="fade-up"
+          data-aos-delay="60"
+        >
+          <h3 class="font-heading text-xl font-semibold text-heading">AI Literacy &amp; Needs Analysis</h3>
+          <p class="mt-3 text-base leading-[var(--aw-leading-body,1.7)] text-muted">
+            A collaborative discussion to understand your institution's goals and challenges and see where you are on
+            your AI journey.
+          </p>
+        </article>
+
+        <article
+          class="rounded-xl border border-default bg-card p-6 shadow-card"
+          data-aos="fade-up"
+          data-aos-delay="120"
+        >
+          <h3 class="font-heading text-xl font-semibold text-heading">Personalised Workshops</h3>
+          <p class="mt-3 text-base leading-[var(--aw-leading-body,1.7)] text-muted">
+            Choose four of our workshops for us to personalise and deliver. Expert-led, hands-on training sessions (F2F
+            or online) tailored to your institution.
+          </p>
+        </article>
+
+        <article
+          class="rounded-xl border border-default bg-card p-6 shadow-card"
+          data-aos="fade-up"
+          data-aos-delay="180"
+        >
+          <h3 class="font-heading text-xl font-semibold text-heading">On-Demand Online Courses</h3>
+          <p class="mt-3 text-base leading-[var(--aw-leading-body,1.7)] text-muted">
+            On-demand access to asynchronous courses that reinforce and extend the learning from our live workshops, for
+            up to 100 staff per package.
+          </p>
+        </article>
+
+        <article
+          class="rounded-xl border border-default bg-card p-6 shadow-card"
+          data-aos="fade-up"
+          data-aos-delay="240"
+        >
+          <h3 class="font-heading text-xl font-semibold text-heading">Strategic Roadmap Session</h3>
+          <p class="mt-3 text-base leading-[var(--aw-leading-body,1.7)] text-muted">
+            A high-level session with your leadership to translate training insights into a clear action plan for
+            sustaining momentum.
+          </p>
+        </article>
+
+        <article
+          class="rounded-xl border border-default bg-card p-6 shadow-card"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <h3 class="font-heading text-xl font-semibold text-heading">Ongoing Support</h3>
+          <p class="mt-3 text-base leading-[var(--aw-leading-body,1.7)] text-muted">
+            Continuous access to resources and our AI Cafe drop-in sessions to keep momentum strong as AI evolves.
+            Follow up calls with SLT.
+          </p>
+        </article>
+      </div>
+
+      <div class="mt-12 text-center" data-aos="fade-up">
+        <a
+          href={BOOK_A_CALL_URL}
+          class="inline-flex items-center justify-center rounded-full border border-accent bg-accent px-6 py-3 font-semibold text-white transition hover:bg-accent-hover hover:border-accent-hover"
+        >
+          Book a Call
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
