@@ -32,7 +32,7 @@ export const footerData = {
       title: 'Resources',
       links: [
         { text: 'How our Calculator Works', href: '/how-our-calculator-works/' },
-        { text: 'ROI Calculator', href: '/#roi-calculator-home' },
+        { text: 'ROI Calculator', href: '/roi-calculator/' },
       ],
     },
     {

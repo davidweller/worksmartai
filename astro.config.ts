@@ -22,7 +22,13 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
 
 /** Paths excluded from the generated sitemap (trailing slash, matching site trailingSlash) */
-const SITEMAP_EXCLUDED_PATHS = new Set(['/404/', '/academy/login/', '/academy/dashboard/', '/academy/view/']);
+const SITEMAP_EXCLUDED_PATHS = new Set([
+  '/404/',
+  '/academy/login/',
+  '/academy/dashboard/',
+  '/academy/view/',
+  '/home-v2/',
+]);
 
 export default defineConfig({
   site: 'https://worksmart-ai.co.uk',
@@ -31,6 +37,7 @@ export default defineConfig({
 
   redirects: {
     '/training/': '/services/',
+    '/calculator/': '/roi-calculator/',
   },
 
   integrations: [

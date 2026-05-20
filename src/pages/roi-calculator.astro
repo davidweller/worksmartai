@@ -6,12 +6,14 @@ const metadata = {
   title: 'AI ROI Calculator for Higher Education | WorkSmart-AI',
   description:
     'Estimate annual savings, productivity uplift and staff capacity your university could create through confident, well-supported AI adoption at scale today.',
-  canonical: '/calculator/',
+  canonical: '/roi-calculator/',
 };
 ---
 
 <Layout metadata={metadata}>
   <section class="bg-section px-6 py-14 sm:px-8 lg:px-12">
-    <ROICalculator rootId="roi-calculator-page" />
+    <div class="mx-auto max-w-6xl" data-aos="fade-up">
+      <ROICalculator rootId="roi-calculator-page" />
+    </div>
   </section>
 </Layout>
