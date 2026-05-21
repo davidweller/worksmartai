@@ -26,3 +26,9 @@ pnpm-lock.yaml
 
 # Local Netlify folder
 .netlify
+
+# Playwright CLI artifacts
+.playwright-cli/
+
+# Supabase CLI temp files
+supabase/.temp/

@@ -1,0 +1,64 @@
+---
+const steps = [
+  {
+    num: '01',
+    title: 'Free consultation',
+    body: 'Map where your institution stands and where the real opportunities are.',
+  },
+  {
+    num: '02',
+    title: 'Needs analysis',
+    body: 'A written report on staff readiness by role - specific enough to act on.',
+  },
+  {
+    num: '03',
+    title: 'Tailored workshops',
+    body: 'Built around your institution, your roles, your working calendar.',
+  },
+  {
+    num: '04',
+    title: 'On-demand courses',
+    body: 'Extend learning to staff at scale, available when it suits them.',
+  },
+  {
+    num: '05',
+    title: 'Strategic roadmap',
+    body: 'Translate outcomes into a board-ready institutional AI plan.',
+  },
+  {
+    num: '06',
+    title: 'Ongoing support',
+    body: 'Drop-ins, resources, senior team check-ins. A partnership, not a handover.',
+  },
+];
+---
+
+<section class="bg-[#F8F8F8] px-6 py-20 sm:px-8 lg:px-12" no-intersect>
+  <div class="mx-auto max-w-6xl">
+    <p class="text-center font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]">Our approach</p>
+    <h2 class="mt-3 text-center font-heading text-3xl font-bold text-[#015887] sm:text-4xl">
+      From uncertainty to confident AI adoption.
+    </h2>
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        steps.map(({ num, title, body }) => (
+          <article class="rounded-xl border border-[#E0E0E0] bg-white p-6" style="border-width: 0.5px">
+            <span class="font-heading text-[28px] font-bold text-[#015887]/20" aria-hidden="true">
+              {num}
+            </span>
+            <h3 class="mt-2 font-heading text-xl font-bold text-[#015887]">{title}</h3>
+            <p class="mt-3 font-sans text-sm leading-[1.7] text-[#1B0101]">{body}</p>
+          </article>
+        ))
+      }
+    </div>
+    <div class="mt-12 text-center">
+      <a
+        href="/contact/"
+        class="inline-flex items-center justify-center rounded-full border border-[#FF7700] bg-[#FF7700] px-6 py-3 font-heading font-bold text-white transition hover:border-[#e55f00] hover:bg-[#e55f00]"
+      >
+        Book a call
+      </a>
+    </div>
+  </div>
+</section>

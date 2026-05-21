@@ -1,0 +1,51 @@
+---
+import Button from '~/components/ui/Button.astro';
+---
+
+<section class="relative md:-mt-[76px] not-prose bg-[#015887]" no-intersect>
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="pointer-events-none pt-0 md:pt-[24px]"></div>
+    <div class="flex flex-col items-center gap-10 py-12 md:py-20 lg:flex-row lg:items-center lg:gap-8 lg:py-20">
+      <div class="w-full basis-1/2 pb-4 text-center lg:pb-0 lg:text-left">
+        <p class="mb-3 font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#86BFE2]">
+          Higher education
+        </p>
+        <h1 class="mb-4 font-heading text-4xl font-bold leading-tight tracking-tight text-white md:text-[2.5rem]">
+          AI capability built for higher education.
+        </h1>
+        <p class="mb-4 max-w-xl font-sans text-base text-white/75 lg:max-w-none">
+          Your staff move from anxious bystanders to confident, capable practitioners. Hours saved, tracked and reported
+          - not estimated.
+        </p>
+        <p class="mb-8 max-w-xl font-sans text-sm italic text-[#86BFE2] lg:max-w-none">
+          Built by people who worked inside universities - not consultants who studied it from the outside.
+        </p>
+        <div class="mx-auto flex max-w-md flex-col gap-4 sm:flex-row sm:justify-center lg:mx-0 lg:justify-start">
+          <Button
+            variant="primary"
+            text="View our services"
+            href="/services/"
+            class="w-full !border-[#FF7700] !bg-[#FF7700] font-heading font-bold hover:!border-[#e55f00] hover:!bg-[#e55f00] sm:w-auto"
+          />
+          <Button
+            variant="secondary"
+            text="Book a free call"
+            href="/contact/"
+            class="w-full !border-white !bg-transparent font-heading font-bold !text-white hover:!border-white hover:!bg-white/10 sm:w-auto"
+          />
+        </div>
+      </div>
+      <div class="w-full basis-1/2">
+        <img
+          src="/images/home-hero-photo.png"
+          alt="Team collaborating around a table with sticky notes during a planning session"
+          width={1200}
+          height={800}
+          loading="eager"
+          decoding="async"
+          class="mx-auto w-full rounded-2xl"
+        />
+      </div>
+    </div>
+  </div>
+</section>

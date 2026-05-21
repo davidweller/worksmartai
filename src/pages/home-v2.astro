@@ -1,0 +1,185 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Header from '~/components/widgets/Header.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Content from '~/components/widgets/Content.astro';
+import ROICalculator from '~/components/widgets/ROICalculator.astro';
+
+import HomeHero from '~/components/home/HomeHero.astro';
+import HomeTrustBand from '~/components/home/HomeTrustBand.astro';
+import HomeStatsRow from '~/components/home/HomeStatsRow.astro';
+import HomeStatCallout from '~/components/home/HomeStatCallout.astro';
+import HomeApproachSteps from '~/components/home/HomeApproachSteps.astro';
+import HomeQuoteStrip from '~/components/home/HomeQuoteStrip.astro';
+import HomeFinalCta from '~/components/home/HomeFinalCta.astro';
+import HomeFooter from '~/components/home/HomeFooter.astro';
+
+const metadata = {
+  title: 'Homepage preview | WorkSmart-AI',
+  description:
+    'Preview of the redesigned WorkSmart-AI homepage: AI training and consultancy built for higher education.',
+  canonical: '/home-v2/',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
+const previewHeaderData = {
+  links: [
+    { text: 'Services', href: '/services/' },
+    { text: 'About', href: '/about-us/' },
+    { text: 'News', href: '/news/' },
+  ],
+  actions: [
+    {
+      text: 'Book a call',
+      href: '/contact/',
+      variant: 'primary' as const,
+      class: '!border-[#FF7700] !bg-[#FF7700] font-heading font-bold hover:!border-[#e55f00] hover:!bg-[#e55f00]',
+    },
+  ],
+};
+
+const serviceItems = [
+  {
+    title: 'Staff capability programmes',
+    description: 'Role-specific workshops built around real HE tasks, not generic AI theory.',
+    icon: 'tabler:users',
+    callToAction: { text: 'Explore →', href: '/services/', variant: 'link' as const },
+  },
+  {
+    title: 'AI needs analysis',
+    description: 'A written baseline your leadership can act on - specific enough to make decisions from.',
+    icon: 'tabler:chart-bar',
+    callToAction: { text: 'Explore →', href: '/services/', variant: 'link' as const },
+  },
+  {
+    title: 'Leadership advisory',
+    description: 'Confidential 1:1 strategic guidance for VCs, PVCs and HR Directors navigating AI.',
+    icon: 'tabler:crown',
+    callToAction: { text: 'Explore →', href: '/services/', variant: 'link' as const },
+  },
+  {
+    title: 'On-demand courses',
+    description: 'Asynchronous learning that extends workshop outcomes to staff at scale.',
+    icon: 'tabler:device-laptop',
+    callToAction: { text: 'Explore →', href: '/services/', variant: 'link' as const },
+  },
+];
+
+const credibilityTags = [
+  'REF cycles',
+  'Clearing',
+  'Exam boards',
+  'NSS pressures',
+  'Academic scepticism',
+  'UKCISA fee status',
+];
+---
+
+<Layout metadata={metadata}>
+  <Header slot="header" {...previewHeaderData} isSticky showToggleTheme />
+
+  <HomeHero />
+
+  <HomeTrustBand />
+
+  <HomeStatsRow />
+
+  <div no-intersect>
+    <Features2
+      columns={4}
+      items={serviceItems}
+      classes={{
+        container: 'max-w-6xl',
+        headline: {
+          tagline: 'font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]',
+          title: 'font-heading text-3xl font-bold text-[#015887] sm:text-4xl',
+          container: 'max-w-3xl',
+        },
+        items: {
+          panel:
+            'rounded-xl border border-[#E0E0E0] bg-white p-6 shadow-none [border-width:0.5px] flex-col items-start',
+          icon: 'mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#E6F1FB] p-2 text-[#015887]',
+          title: 'font-heading text-lg font-bold text-[#015887]',
+          description: 'font-sans text-sm text-[#1B0101]',
+        },
+      }}
+    >
+      <Fragment slot="title">Everything your institution needs.</Fragment>
+      <Fragment slot="tagline">What we offer</Fragment>
+    </Features2>
+  </div>
+
+  <section class="bg-[#F8F8F8] px-6 py-16 sm:px-8 lg:px-12" no-intersect aria-labelledby="roi-heading">
+    <div class="mx-auto max-w-6xl">
+      <p class="font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]">ROI Calculator</p>
+      <h2 id="roi-heading" class="mt-3 font-heading text-3xl font-bold text-[#015887] sm:text-4xl">
+        How much is the status quo costing you?
+      </h2>
+      <p class="mt-4 max-w-3xl font-sans text-sm text-[#1B0101]">
+        Inconsistent, unreviewed AI use has a cost. This calculator shows what a structured approach could reclaim.
+      </p>
+      <div class="home-v2-roi-calculator mt-10">
+        <ROICalculator rootId="roi-calculator-home-v2" />
+      </div>
+    </div>
+  </section>
+
+  <HomeStatCallout />
+
+  <div no-intersect>
+    <Content
+      isReversed={false}
+      image={{
+        src: '/images/explore-offer-photo.png',
+        alt: 'WorkSmart-AI team session with participants collaborating in person',
+      }}
+      classes={{
+        container: 'max-w-6xl',
+        headline: {
+          tagline: 'font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]',
+          title: 'font-heading text-3xl font-bold text-[#015887] sm:text-4xl',
+          container: 'max-w-xl text-left sm:mx-0',
+        },
+      }}
+      bg='<div class="absolute inset-0 bg-white"></div>'
+    >
+      <Fragment slot="title">Built from inside higher education.</Fragment>
+      <Fragment slot="tagline">Why WorkSmart-AI?</Fragment>
+      <Fragment slot="content">
+        <p class="font-sans text-sm leading-[1.7] text-[#1B0101]">
+          We know what a REF return looks like. We know what clearing does to professional services teams. We know why
+          academics distrust anything that feels imposed on them. We know this because we worked inside universities
+          before we built WorkSmart-AI - and that context shapes every session we design.
+        </p>
+        <ul class="mt-6 flex flex-wrap gap-2" aria-label="Areas of expertise">
+          {
+            credibilityTags.map((tag) => (
+              <li>
+                <span class="inline-block rounded-[20px] bg-[#E6F1FB] px-3 py-1 font-heading text-[11px] font-bold text-[#0C447C]">
+                  {tag}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </Fragment>
+    </Content>
+  </div>
+
+  <HomeApproachSteps />
+
+  <HomeQuoteStrip />
+
+  <HomeFinalCta />
+
+  <HomeFooter slot="footer" />
+</Layout>
+
+<style>
+  .home-v2-roi-calculator :global(.wsai-hero) {
+    display: none;
+  }
+</style>

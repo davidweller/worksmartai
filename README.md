@@ -261,6 +261,17 @@ Now, your website is ready to be deployed. All generated files are located at
 `dist` folder, which you can deploy the folder to any hosting service you
 prefer.
 
+#### Deploy to Hostinger (production)
+
+WorkSmart-AI production runs on Hostinger (static files from `dist/`). After
+`npm run build`, upload the **entire** `dist` folder — especially `dist/_astro/`.
+Partial uploads (HTML only) break the site when Astro changes hashed CSS names.
+
+1. Run `npm run build` (includes `verify:dist` — fails if HTML references missing CSS).
+2. Upload all of `dist/` to the site root (File Manager or FTP).
+3. Confirm a stylesheet from the homepage loads, e.g.
+   `https://worksmart-ai.co.uk/_astro/accessibility-statement.*.css` returns HTTP 200.
+
 #### Deploy to Netlify
 
 Clone this repository on your own GitHub account and deploy it to Netlify:
