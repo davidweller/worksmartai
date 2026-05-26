@@ -1,15 +1,14 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import Header from '~/components/widgets/Header.astro';
-import Features2 from '~/components/widgets/Features2.astro';
+import { Icon } from 'astro-icon/components';
 import ROICalculator from '~/components/widgets/ROICalculator.astro';
-import Button from '~/components/ui/Button.astro';
-import HomeFooter from '~/components/home/HomeFooter.astro';
+import logo from '~/assets/images/Logo Title.png';
 
 const metadata = {
   title: 'AI Capability Built for Higher Education | WorkSmart-AI',
   description:
-    'AI training and consultancy built for UK higher education. We help institutions move staff from anxious bystanders to confident, capable practitioners - with hours saved tracked and reported, not estimated.',
+    'AI training and consultancy built for UK higher education. We help institutions move staff from anxious bystanders to confident, capable practitioners - with hours saved tracked and reported.',
   canonical: 'https://worksmart-ai.co.uk/home-v3/',
   robots: {
     index: false,
@@ -17,50 +16,99 @@ const metadata = {
   },
 };
 
-const previewHeaderData = {
+const homeV3HeaderData = {
   links: [
-    { text: 'Services', href: '/services/' },
+    { text: 'Home', href: '/' },
+    {
+      text: 'Services',
+      links: [
+        { text: 'Staff Training', href: '/services/staff-training/' },
+        { text: 'Student Programmes', href: '/services/student-training/' },
+        { text: 'Leadership and Manager Consulting', href: '/services/senior-consulting/' },
+        { text: 'Academic Coaching', href: '/services/academic-coaching/' },
+        { text: 'Talks and Away Days', href: '/services/talks-workshops/' },
+      ],
+    },
+    {
+      text: 'Resources',
+      links: [
+        { text: 'AI Savings Calculator', href: '/roi-calculator/' },
+        { text: 'AI Use Cases Guide', href: '/higher-education-guide/' },
+      ],
+    },
     { text: 'About', href: '/about-us/' },
     { text: 'News', href: '/news/' },
+    { text: 'Contact', href: '/contact-us/' },
   ],
   actions: [
     {
-      text: 'Book a call',
-      href: '/contact/',
+      text: 'Login',
+      href: '/login/',
       variant: 'primary' as const,
-      class: '!border-[#FF7700] !bg-[#FF7700] font-heading font-bold hover:!border-[#e55f00] hover:!bg-[#e55f00]',
     },
   ],
 };
 
+const trustLogos = ['SDF', 'HE partner', 'Next logo'];
+
+const personas = [
+  {
+    title: 'HR and People Directors',
+    body: 'You need staff to feel supported, not left alone with tools that change every week.',
+  },
+  {
+    title: 'Learning and Development Leads',
+    body: 'You need practical capability building that reaches academic and professional services teams.',
+  },
+  {
+    title: 'Digital Transformation Leads',
+    body: 'You need visible progress that connects tools, policy, adoption and measurable value.',
+  },
+  {
+    title: 'Professional Services Leaders',
+    body: 'You need teams to reclaim time from repeatable work without compromising quality or judgement.',
+  },
+  {
+    title: 'Academic Leaders',
+    body: 'You need staff confidence on AI that respects academic integrity, research practice and teaching reality.',
+  },
+];
+
 const serviceItems = [
   {
-    title: 'Staff capability',
+    title: 'Staff Training',
     description:
-      'Role-specific AI training for professional services, academic and research staff. Designed to embed, not just to demonstrate.',
+      'Your professional services and academic staff using AI confidently in real work, not just nodding through a session. Role by role, with time savings tracked.',
     icon: 'tabler:users',
-    callToAction: { text: 'Learn more →', href: '/services/staff-training/', variant: 'link' as const },
+    href: '/services/staff-training/',
   },
   {
-    title: 'Student programmes',
+    title: 'Student Programmes',
     description:
-      'Structured AI literacy that equips students with the skills, judgement and ethics to use AI confidently in their studies and careers.',
+      'Students who graduate able to use AI well and explain how. Programmes that satisfy your academic integrity policy and your employability strategy at the same time.',
     icon: 'tabler:school',
-    callToAction: { text: 'Learn more →', href: '/services/student-training/', variant: 'link' as const },
+    href: '/services/student-training/',
   },
   {
-    title: 'Leadership advisory',
+    title: 'Leadership and Manager Consulting',
     description:
-      'Practical AI consulting for SLT, deans and HoDs translating strategy into action without losing academic confidence.',
+      'A confident institutional position on AI, not a deck of slides. Strategic clarity for SLT, deans and heads of department.',
     icon: 'tabler:crown',
-    callToAction: { text: 'Learn more →', href: '/services/senior-consulting/', variant: 'link' as const },
+    href: '/services/senior-consulting/',
   },
   {
-    title: 'Talks and away days',
+    title: 'Academic Coaching',
     description:
-      'Single-engagement sessions for conferences, leadership days or team events. A confident, sector-aware introduction.',
+      'One-to-one and small-group coaching for academics who want to develop their own AI practice, in research, teaching and admin. Confidential, paced to fit a teaching schedule.',
+    icon: 'tabler:book',
+    href: '/services/academic-coaching/',
+  },
+  {
+    title: 'Talks and Away Days',
+    description:
+      'A confident, sector-aware introduction to AI for conferences, leadership days and team events. Single-engagement sessions that leave a room thinking differently.',
     icon: 'tabler:presentation',
-    callToAction: { text: 'Learn more →', href: '/services/talks-workshops/', variant: 'link' as const },
+    href: '/services/talks-workshops/',
   },
 ];
 
@@ -74,7 +122,7 @@ const partnershipIncludes = [
   'Follow-up calls with leadership',
 ];
 
-const journeyStages = [
+const maturityStages = [
   {
     num: '01',
     title: 'Recognising the strategic priority',
@@ -102,46 +150,82 @@ const journeyStages = [
   },
 ];
 
-const guideBullets = [
-  'Real examples from teaching, research and professional services',
-  'Time-saved estimates for common tasks',
-  'Practical prompts your staff can use today',
-  'Honest notes on what works and what doesn\u2019t in an HE context',
+const footerColumns = [
+  {
+    title: 'Services',
+    links: [
+      { text: 'Staff Training', href: '/services/staff-training/' },
+      { text: 'Student Programmes', href: '/services/student-training/' },
+      { text: 'Leadership and Manager Consulting', href: '/services/senior-consulting/' },
+      { text: 'Academic Coaching', href: '/services/academic-coaching/' },
+      { text: 'Talks and Away Days', href: '/services/talks-workshops/' },
+      { text: 'The AI Partnership', href: '#ai-partnership' },
+    ],
+  },
+  {
+    title: 'Resources',
+    links: [
+      { text: 'AI Savings Calculator', href: '/roi-calculator/' },
+      { text: 'AI Use Cases Guide', href: '/higher-education-guide/' },
+      { text: 'How our Calculator Works', href: '/how-our-calculator-works/' },
+      { text: 'News', href: '/news/' },
+    ],
+  },
+  {
+    title: 'About',
+    links: [
+      { text: 'About Us', href: '/about-us/' },
+      { text: 'Meet the Team', href: '/about-us/' },
+      { text: 'Contact', href: '/contact-us/' },
+      { text: 'Login', href: '/login/' },
+    ],
+  },
+];
+
+const legalLinks = [
+  { text: 'Privacy Policy', href: '/privacy-policy/' },
+  { text: 'Cookie Policy', href: '/cookie-policy/' },
+  { text: 'Terms of Service', href: '/terms-of-service/' },
+  { text: 'Accessibility Statement', href: '/accessibility-statement/' },
+  { text: 'Modern Slavery', href: '/modern-slavery/' },
+  { text: 'EDI', href: '/equality-diversity-inclusion/' },
+  { text: 'Sustainability', href: '/sustainability/' },
+  { text: 'Insurance', href: '/insurance-statement/' },
 ];
 ---
 
 <Layout metadata={metadata}>
-  <Header slot="header" {...previewHeaderData} isSticky showToggleTheme />
+  <Header slot="header" {...homeV3HeaderData} isSticky />
 
   <!-- 1. Hero -->
-  <section class="relative md:-mt-[76px] not-prose bg-[#015887]" no-intersect>
+  <section class="relative overflow-hidden bg-[#015887] px-6 py-12 sm:px-8 md:py-20 lg:px-12" no-intersect>
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6">
-      <div class="pointer-events-none pt-0 md:pt-[24px]"></div>
-      <div class="flex flex-col items-center gap-10 py-12 md:py-20 lg:flex-row lg:items-center lg:gap-8 lg:py-20">
+      <div class="flex flex-col items-center gap-10 lg:flex-row lg:items-center lg:gap-12">
         <div class="w-full basis-1/2 pb-4 text-center lg:pb-0 lg:text-left">
-          <h1 class="mb-4 font-heading text-4xl font-bold leading-tight tracking-tight text-white md:text-[2.5rem]">
-            AI Capability Built for Higher Education
+          <h1
+            class="mb-5 font-heading text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
+          >
+            AI Capability Built for <span class="text-[#FF7700]">Higher Education</span>
           </h1>
-          <p class="mb-4 max-w-xl font-sans text-base text-white/75 lg:max-w-none">
-            Your staff move from anxious bystanders to confident, capable practitioners. Hours saved, tracked and
-            reported - not estimated.
+          <p class="mb-4 max-w-xl font-sans text-lg leading-[1.7] text-white/85 lg:max-w-none">
+            Move your staff and students to confident, capable and compliant AI practitioners.<br />
+            Hours saved, tracked and reported.
           </p>
-          <p class="mb-8 max-w-xl font-sans text-sm text-[#86BFE2] lg:max-w-none">
-            Built by people who worked inside universities, not consultants who studied it from the outside.
+          <p class="mb-8 max-w-xl font-sans text-base text-[#B6DCF4] lg:max-w-none">
+            AI adoption by those who fully understand universities.
           </p>
-          <div class="mx-auto flex max-w-md flex-col gap-4 lg:mx-0 lg:max-w-none lg:items-start">
-            <Button
-              variant="primary"
-              text="Book a free call"
-              href="/contact/"
-              class="w-full !border-[#FF7700] !bg-[#FF7700] font-heading font-bold hover:!border-[#e55f00] hover:!bg-[#e55f00] sm:w-auto"
-            />
-            <a href="/services/" class="font-heading text-sm font-bold text-white transition hover:text-[#86BFE2]">
-              View our services &rarr;
+          <div
+            class="mx-auto flex max-w-md flex-col gap-4 sm:flex-row sm:justify-center lg:mx-0 lg:max-w-none lg:justify-start"
+          >
+            <a
+              href="/health-check/"
+              class="inline-flex items-center justify-center rounded-lg border border-[#FF7700] bg-[#FF7700] px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-[#e55f00] hover:bg-[#e55f00]"
+            >
+              Book Your AI Health Check
             </a>
           </div>
-          <p class="mt-6 max-w-xl font-sans text-xs text-white/55 lg:max-w-none">
-            No obligation, no slides, no pitch deck. Just a conversation about where you are.
+          <p class="mt-6 max-w-xl font-sans text-sm text-white/65 lg:max-w-none">
+            A free, confidential 45-minute call followed by a written summary report.
           </p>
         </div>
         <div class="w-full basis-1/2">
@@ -159,144 +243,97 @@ const guideBullets = [
     </div>
   </section>
 
-  <!-- 2. The HE context -->
-  <section class="bg-white px-6 py-16 sm:px-8 lg:px-12" no-intersect aria-labelledby="he-context-heading">
-    <div class="mx-auto max-w-3xl text-center">
-      <p class="font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]">
-        Where higher education is today
+  <!-- 2. Trust strip -->
+  <section class="bg-[#F8F8F8] px-6 py-6 sm:px-8 lg:px-12" no-intersect aria-label="Credibility and memberships">
+    <div class="mx-auto flex max-w-6xl flex-col gap-5 md:flex-row md:items-center md:justify-between">
+      <p class="max-w-3xl font-sans text-sm font-medium leading-[1.7] text-[#015887]">
+        Built by former Digital Skills Leads from UK universities.<br />
+        Proud members of the Staff Development Forum.
       </p>
-      <h2 id="he-context-heading" class="mt-3 font-heading text-3xl font-bold text-[#015887] sm:text-4xl">
-        A capability gap that students notice.
-      </h2>
-    </div>
-    <blockquote class="mx-auto mt-12 max-w-[640px] rounded-xl bg-[#013A5A] px-8 py-10 text-center">
-      <p class="font-heading text-[40px] font-bold leading-none text-[#FF7700]" aria-hidden="true">&ldquo;</p>
-      <p class="-mt-4 font-sans text-sm italic leading-[1.7] text-white/85">
-        Students see AI skills as essential, but institutional support lags behind. While over two-thirds of students
-        believe AI skills are essential to thrive in today&rsquo;s world, fewer than half feel their teaching staff are
-        helping them develop those skills.
-      </p>
-      <footer class="mt-6 font-sans text-[11px] text-[#86BFE2]">
-        HEPI / Kortext Student Generative AI Survey, 2026
-      </footer>
-    </blockquote>
-  </section>
-
-  <!-- 3. What we do for higher education -->
-  <div no-intersect>
-    <Features2
-      columns={4}
-      items={serviceItems}
-      classes={{
-        container: 'max-w-6xl',
-        headline: {
-          tagline: 'font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]',
-          title: 'font-heading text-3xl font-bold text-[#015887] sm:text-4xl',
-          subtitle: 'mt-4 font-sans text-sm text-[#1B0101]',
-          container: 'max-w-3xl',
-        },
-        items: {
-          container: 'gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-4',
-          panel:
-            'rounded-xl border border-[#E0E0E0] bg-white p-6 shadow-none [border-width:0.5px] flex-col items-start',
-          icon: 'mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#E6F1FB] p-2 text-[#015887]',
-          title: 'font-heading text-lg font-bold text-[#015887]',
-          description: 'font-sans text-sm text-[#1B0101]',
-        },
-      }}
-    >
-      <Fragment slot="tagline">Services</Fragment>
-      <Fragment slot="title">AI support designed for every part of the institution.</Fragment>
-      <Fragment slot="subtitle">
-        Whether you need to lift staff capability, equip students for an AI-shaped workplace, or give your leadership
-        team a confident strategic position, we have a programme that fits.
-      </Fragment>
-    </Features2>
-    <div class="mx-auto max-w-6xl -mt-4 pb-16 text-center">
-      <a href="/services/" class="font-heading text-sm font-bold text-[#015887] transition hover:text-[#FF7700]">
-        See all our services &rarr;
-      </a>
-    </div>
-  </div>
-
-  <!-- 4. The AI Partnership -->
-  <section class="bg-[#015887] px-6 py-16 sm:px-8 lg:px-12" no-intersect aria-labelledby="partnership-heading">
-    <div class="mx-auto max-w-6xl">
-      <p class="font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#86BFE2]">Our flagship offering</p>
-      <h2 id="partnership-heading" class="mt-3 font-heading text-3xl font-bold text-white sm:text-4xl">
-        The AI Partnership
-      </h2>
-      <p class="mt-4 max-w-3xl font-sans text-sm leading-[1.7] text-white/75">
-        A wrap-around programme that takes your institution from scattered AI experimentation to a coordinated,
-        evidenced approach. Built around your roles, your policies, and your academic calendar.
-      </p>
-      <ul class="mt-10 grid gap-3 sm:grid-cols-2" aria-label="What's included in the AI Partnership">
+      <ul class="flex flex-wrap gap-3" aria-label="Credibility logos">
         {
-          partnershipIncludes.map((item) => (
-            <li class="flex items-start gap-3 font-sans text-sm text-white/90">
-              <span
-                class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#FF7700] text-xs font-bold text-white"
-                aria-hidden="true"
-              >
-                &#10003;
-              </span>
+          trustLogos.map((item) => (
+            <li class="flex h-10 min-w-28 items-center justify-center rounded-md border border-[#E0E0E0] bg-white px-4 font-heading text-xs font-bold uppercase tracking-[0.16em] text-[#015887]/55 grayscale">
               {item}
             </li>
           ))
         }
       </ul>
-      <div class="mt-10">
-        <Button
-          variant="primary"
-          text="Discuss the AI Partnership"
-          href="/contact/"
-          class="!border-[#FF7700] !bg-[#FF7700] font-heading font-bold hover:!border-[#e55f00] hover:!bg-[#e55f00]"
-        />
+    </div>
+  </section>
+
+  <!-- 3. Who we work with -->
+  <section class="bg-white px-6 py-12 sm:px-8 md:py-20 lg:px-12" no-intersect aria-labelledby="personas-heading">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]">Who we work with</p>
+        <h2 id="personas-heading" class="mt-3 font-heading text-3xl font-bold text-[#015887] sm:text-4xl">
+          Designed for those responsible<br class="hidden sm:block" />
+          for AI adoption
+        </h2>
+        <p class="mt-4 font-sans text-base leading-[1.7] text-[#1B0101]">
+          We work with those who are responsible for turning AI curiosity and AI pilots<br class="hidden sm:block" />
+          into institution-wide confidence, capability and compliance.
+        </p>
+      </div>
+      <div class="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+        {
+          personas.map((persona) => (
+            <article class="rounded-xl border border-[#E0E0E0] bg-white p-5 shadow-[0_6px_28px_-18px_rgba(1,88,135,0.25)]">
+              <h3 class="font-heading text-lg font-bold leading-tight text-[#015887]">{persona.title}</h3>
+              <p class="mt-3 font-sans text-sm leading-[1.65] text-[#1B0101]">{persona.body}</p>
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <!-- 5. Where are you on the AI journey? -->
-  <section class="bg-[#F8F8F8] px-6 py-20 sm:px-8 lg:px-12" no-intersect aria-labelledby="journey-heading">
+  <!-- 4. Services -->
+  <section class="bg-[#F8F8F8] px-6 py-12 sm:px-8 md:py-20 lg:px-12" no-intersect aria-labelledby="services-heading">
     <div class="mx-auto max-w-6xl">
-      <p class="text-center font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]">
-        Your journey
-      </p>
-      <h2 id="journey-heading" class="mt-3 text-center font-heading text-3xl font-bold text-[#015887] sm:text-4xl">
-        Wherever you are, we meet you there.
-      </h2>
-      <p class="mx-auto mt-4 max-w-3xl text-center font-sans text-sm text-[#1B0101]">
-        AI adoption isn&rsquo;t a single moment, it&rsquo;s a path. These are the stages most institutions move through.
-        We support you at every one.
-      </p>
-      <ol class="mt-12 flex flex-col gap-6">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]">Services</p>
+        <h2 id="services-heading" class="mt-3 font-heading text-3xl font-bold text-[#015887] sm:text-4xl">
+          AI support designed for every part of the institution
+        </h2>
+        <p class="mt-4 font-sans text-base leading-[1.7] text-[#1B0101]">
+          Whether you need to lift staff capability, equip students for an AI-shaped workplace, coach an individual
+          academic, or give your leadership team a confident strategic position, we have something built for it.
+        </p>
+      </div>
+      <div class="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-5">
         {
-          journeyStages.map(({ num, title, body }) => (
-            <li class="flex gap-6 rounded-xl border border-[#E0E0E0] bg-white p-6" style="border-width: 0.5px">
-              <span
-                class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#E6F1FB] font-heading text-sm font-bold text-[#015887]"
-                aria-hidden="true"
-              >
-                {num}
+          serviceItems.map((service) => (
+            <a
+              href={service.href}
+              class="group flex h-full flex-col rounded-xl border border-[#E0E0E0] bg-white p-6 shadow-[0_6px_28px_-18px_rgba(1,88,135,0.25)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-22px_rgba(1,88,135,0.45)]"
+            >
+              <span class="flex h-12 w-12 items-center justify-center rounded-lg bg-[#E6F1FB] text-[#015887]">
+                <Icon name={service.icon} class="h-6 w-6" aria-hidden="true" />
               </span>
-              <div>
-                <h3 class="font-heading text-xl font-bold text-[#015887]">{title}</h3>
-                <p class="mt-2 font-sans text-sm leading-[1.7] text-[#1B0101]">{body}</p>
-              </div>
-            </li>
+              <h3 class="mt-5 font-heading text-xl font-bold leading-tight text-[#015887]">{service.title}</h3>
+              <p class="mt-3 flex-1 font-sans text-sm leading-[1.65] text-[#1B0101]">{service.description}</p>
+              <span class="mt-6 inline-flex items-center font-heading text-sm font-bold text-[#FF7700]">
+                Learn more{' '}
+                <span class="ml-1 transition-transform group-hover:translate-x-1" aria-hidden="true">
+                  &rarr;
+                </span>
+              </span>
+            </a>
           ))
         }
-      </ol>
-      <div class="mt-12 text-center">
-        <a href="/contact/" class="font-heading text-sm font-bold text-[#015887] transition hover:text-[#FF7700]">
-          Talk to us about your stage &rarr;
+      </div>
+      <div class="mt-10 text-center">
+        <a href="/services/" class="font-heading text-sm font-bold text-[#015887] transition hover:text-[#FF7700]">
+          See all our services <span aria-hidden="true">&rarr;</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- 6. Built from inside higher education -->
-  <section class="bg-white px-6 py-16 sm:px-8 lg:px-12" no-intersect aria-labelledby="inside-he-heading">
+  <!-- 5. Founder credibility -->
+  <section class="bg-white px-6 py-12 sm:px-8 md:py-20 lg:px-12" no-intersect aria-labelledby="inside-he-heading">
     <div class="mx-auto flex max-w-6xl flex-col-reverse gap-10 md:flex-row md:items-center md:gap-16">
       <div class="md:basis-1/2">
         <h2 id="inside-he-heading" class="font-heading text-3xl font-bold text-[#015887] sm:text-4xl">
@@ -331,70 +368,113 @@ const guideBullets = [
           aria-label="The WorkSmart-AI team"
         >
           <p class="font-sans text-sm text-[#015887]/60">
-            Team photo placeholder &mdash; replace with /images/team-photo.jpg
+            Team photo placeholder - replace with /images/team-photo.jpg
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 7. Lead magnet teaser -->
-  <section class="bg-[#F8F8F8] px-6 py-16 sm:px-8 lg:px-12" no-intersect aria-labelledby="guide-heading">
-    <div class="mx-auto max-w-3xl">
-      <p class="font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]">Free resource</p>
-      <h2 id="guide-heading" class="mt-3 font-heading text-3xl font-bold text-[#015887] sm:text-4xl">
-        AI use cases for higher education staff.
-      </h2>
-      <p class="mt-4 font-sans text-sm text-[#1B0101]">
-        A practical guide showing how staff across academic and professional services are using AI to save hours every
-        week. Useful as a conversation starter for your own teams.
-      </p>
-      <ul class="mt-6 list-disc space-y-2 pl-5 font-sans text-sm text-[#1B0101]">
-        {guideBullets.map((item) => <li>{item}</li>)}
-      </ul>
-      <div class="mt-8">
-        <Button
-          variant="primary"
-          text="Download the free guide"
-          href="/higher-education-guide/"
-          class="!border-[#FF7700] !bg-[#FF7700] font-heading font-bold hover:!border-[#e55f00] hover:!bg-[#e55f00]"
-        />
-      </div>
-    </div>
-  </section>
-
-  <!-- 8. ROI calculator -->
-  <section class="bg-white px-6 py-16 sm:px-8 lg:px-12" no-intersect aria-labelledby="roi-heading">
+  <!-- 6. The AI Partnership -->
+  <section
+    id="ai-partnership"
+    class="scroll-mt-24 bg-[#015887] px-6 py-12 sm:px-8 md:py-20 lg:px-12"
+    no-intersect
+    aria-labelledby="partnership-heading"
+  >
     <div class="mx-auto max-w-6xl">
-      <p class="font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]">ROI calculator</p>
-      <h2 id="roi-heading" class="mt-3 font-heading text-3xl font-bold text-[#015887] sm:text-4xl">
-        How much is the status quo costing you?
+      <p class="font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]">Our flagship offering</p>
+      <h2 id="partnership-heading" class="mt-3 font-heading text-3xl font-bold text-white sm:text-4xl">
+        The AI Partnership
       </h2>
-      <p class="mt-4 max-w-3xl font-sans text-sm text-[#1B0101]">
-        Inconsistent, unreviewed AI use has a hidden cost. This calculator shows what a structured approach could
-        reclaim for your institution.
+      <p class="mt-4 max-w-3xl font-sans text-base leading-[1.7] text-white/80">
+        For institutions that want to stop running pilots and start running an approach. A wrap-around programme
+        delivered across an academic year, built around your roles, your policies and your calendar.
       </p>
-      <div class="home-v3-roi-calculator mt-10">
-        <ROICalculator rootId="roi-calculator-home-v3" />
+      <ul class="mt-10 grid gap-3 sm:grid-cols-2" aria-label="What's included in the AI Partnership">
+        {
+          partnershipIncludes.map((item) => (
+            <li class="flex items-start gap-3 font-sans text-sm text-white/90">
+              <span
+                class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#FF7700] text-xs font-bold text-white"
+                aria-hidden="true"
+              >
+                &#10003;
+              </span>
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+      <div class="mt-10">
+        <a
+          href="/contact-us/"
+          class="inline-flex items-center justify-center rounded-lg border border-[#FF7700] bg-[#FF7700] px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-[#e55f00] hover:bg-[#e55f00]"
+        >
+          Discuss the AI Partnership
+        </a>
+      </div>
+      <p class="mt-6 max-w-3xl font-sans text-sm italic leading-[1.7] text-white/65">
+        Every partnership is scoped to the institution. Book an AI Health Check to start that conversation.
+      </p>
+    </div>
+  </section>
+
+  <!-- 7. Five stages of AI maturity -->
+  <section class="bg-[#F8F8F8] px-6 py-12 sm:px-8 md:py-20 lg:px-12" no-intersect aria-labelledby="maturity-heading">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]">AI maturity</p>
+        <h2 id="maturity-heading" class="mt-3 font-heading text-3xl font-bold text-[#015887] sm:text-4xl">
+          Five stages of AI maturity in higher education
+        </h2>
+        <p class="mt-4 font-sans text-base leading-[1.7] text-[#1B0101]">
+          AI adoption happens in stages. These are the five we see most often. We support you at each.
+        </p>
+      </div>
+      <ol class="home-v3-timeline mt-12 grid gap-5 lg:grid-cols-5">
+        {
+          maturityStages.map(({ num, title, body }) => (
+            <li class="relative rounded-xl border border-[#E0E0E0] bg-white p-6 shadow-[0_6px_28px_-18px_rgba(1,88,135,0.25)]">
+              <span class="font-heading text-3xl font-bold text-[#FF7700]">{num}</span>
+              <h3 class="mt-4 font-heading text-lg font-bold leading-tight text-[#015887]">{title}</h3>
+              <p class="mt-3 font-sans text-sm leading-[1.65] text-[#1B0101]">{body}</p>
+            </li>
+          ))
+        }
+      </ol>
+      <div class="mt-10 text-center">
+        <a href="/health-check/" class="font-heading text-sm font-bold text-[#015887] transition hover:text-[#FF7700]">
+          Not sure which stage you&rsquo;re at? Book your AI Health Check <span aria-hidden="true">&rarr;</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- 9. Retention reframe callout -->
-  <section class="bg-[#FF7700] px-6 py-12 sm:px-8 lg:px-12" no-intersect aria-label="Retention statistic">
-    <div class="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[auto_1fr_auto] lg:gap-10">
-      <p class="font-heading text-5xl font-bold text-white">34%</p>
-      <div class="text-center lg:text-left">
-        <p class="font-sans text-sm text-white">
-          of HE staff say their institution&rsquo;s stance on AI affects their likelihood to stay. That&rsquo;s a
-          retention question, not a training question.
-        </p>
-        <p class="mt-2 font-sans text-[11px] text-white/70">Jisc Digital Experience Insights, 2024</p>
+  <!-- 8. Retention feature -->
+  <section class="bg-[#F8F8F8] px-6 py-12 sm:px-8 md:py-20 lg:px-12" no-intersect aria-labelledby="retention-heading">
+    <div
+      class="mx-auto grid max-w-6xl gap-10 rounded-2xl bg-white p-8 shadow-[0_18px_60px_-36px_rgba(1,88,135,0.4)] md:grid-cols-[0.75fr_1.25fr] md:p-12"
+    >
+      <div>
+        <h2 id="retention-heading" class="font-heading text-3xl font-bold leading-tight text-[#015887] sm:text-4xl">
+          The retention angle most institutions are missing.
+        </h2>
+        <p class="mt-6 font-heading text-7xl font-bold leading-none text-[#FF7700] sm:text-8xl">34%</p>
+        <p class="mt-4 font-sans text-sm text-[#1B0101]/60">Jisc Digital Experience Insights, 2024</p>
       </div>
-      <div class="flex justify-center lg:justify-end">
+      <div class="flex flex-col justify-center">
+        <p class="font-sans text-xl font-medium leading-[1.6] text-[#015887]">
+          of HE staff say their institution&rsquo;s stance on AI affects their likelihood to stay.
+        </p>
+        <p class="mt-5 font-sans text-base leading-[1.7] text-[#1B0101]">
+          That isn&rsquo;t a training problem. It&rsquo;s a retention problem. Every month without a structured approach
+          is a month of inconsistent, unreviewed AI use across your institution, and a month of capable staff watching
+          to see whether you&rsquo;re serious.
+        </p>
         <a
-          href="/contact/"
-          class="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 font-heading text-sm font-bold text-[#FF7700] transition hover:bg-white/90"
+          href="/contact-us/?topic=retention"
+          class="mt-8 inline-flex w-fit items-center justify-center rounded-lg border border-[#FF7700] bg-[#FF7700] px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-[#e55f00] hover:bg-[#e55f00]"
         >
           Talk to us about retention
         </a>
@@ -402,30 +482,303 @@ const guideBullets = [
     </div>
   </section>
 
-  <!-- 10. Final CTA -->
-  <section class="bg-[#015887] px-6 py-16 sm:px-8 lg:px-12" no-intersect aria-labelledby="final-cta-heading">
-    <div class="mx-auto max-w-3xl text-center">
-      <h2 id="final-cta-heading" class="font-heading text-2xl font-bold text-white sm:text-3xl">
-        Ready to give your institution a structured approach to AI?
+  <!-- 9. ROI calculator -->
+  <section class="bg-white px-6 py-12 sm:px-8 md:py-20 lg:px-12" no-intersect aria-labelledby="roi-heading">
+    <div class="mx-auto max-w-6xl">
+      <p class="font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]">ROI calculator</p>
+      <h2 id="roi-heading" class="mt-3 font-heading text-3xl font-bold text-[#015887] sm:text-4xl">
+        What does the status quo cost you?
       </h2>
-      <p class="mt-4 font-sans text-sm text-white/65">
-        Book a free 45-minute consultation. No pitch, no slides, no obligation - just a clear picture of where you stand
-        and where you could go.
+      <p class="mt-4 max-w-3xl font-sans text-base leading-[1.7] text-[#1B0101]">
+        Unstructured AI use isn&rsquo;t free. Staff are spending hours working out tools and prompts that someone else
+        has already worked out. This calculator shows what a coordinated approach could reclaim.
       </p>
-      <a
-        href="/contact/"
-        class="mt-8 inline-flex items-center justify-center rounded-full border border-[#FF7700] bg-[#FF7700] px-6 py-3 font-heading font-bold text-white transition hover:border-[#e55f00] hover:bg-[#e55f00]"
-      >
-        Book a free call
-      </a>
+      <div class="home-v3-roi-calculator mt-10">
+        <ROICalculator rootId="roi-calculator-home-v3" />
+      </div>
     </div>
   </section>
 
-  <HomeFooter slot="footer" />
+  <!-- 10. Free guide -->
+  <section class="bg-[#F8F8F8] px-6 py-12 sm:px-8 md:py-20 lg:px-12" no-intersect aria-labelledby="guide-heading">
+    <div class="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-[0.8fr_1.2fr]">
+      <div class="mx-auto max-w-xs md:max-w-none">
+        <img
+          src="/images/guide-from-chatbot-to-workflow-cover.png"
+          alt="Cover of the AI use cases guide"
+          width={800}
+          height={1035}
+          loading="lazy"
+          decoding="async"
+          class="rounded-xl shadow-[0_20px_60px_-32px_rgba(1,88,135,0.65)]"
+        />
+      </div>
+      <div>
+        <p class="font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]">Free resource</p>
+        <h2 id="guide-heading" class="mt-3 font-heading text-3xl font-bold text-[#015887] sm:text-4xl">
+          From chatbot to agent in one task.
+        </h2>
+        <p class="mt-4 font-sans text-base leading-[1.7] text-[#1B0101]">
+          A short guide that takes a single task most staff already do, and shows how it can be improved with AI - from
+          a quick AI prompt to a full agentic workflow. See how AI capability works at different levels, depending on
+          workforce capability.
+        </p>
+        <a
+          href="/higher-education-guide/"
+          class="mt-8 inline-flex items-center justify-center rounded-lg border border-[#FF7700] bg-[#FF7700] px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-[#e55f00] hover:bg-[#e55f00]"
+        >
+          Download the guide
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. Final CTA -->
+  <section class="bg-[#015887] px-6 py-12 sm:px-8 md:py-20 lg:px-12" no-intersect aria-labelledby="final-cta-heading">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]">
+        Where does your institution stand?
+      </p>
+      <h2 id="final-cta-heading" class="mt-3 font-heading text-3xl font-bold text-white sm:text-4xl">
+        Book your AI Health Check
+      </h2>
+      <p class="mt-4 font-sans text-base leading-[1.7] text-white/75">
+        A confidential 45-minute conversation, followed by a written summary report on where your institution sits and
+        the three things to do next. No pitch, no slides, no obligation.
+      </p>
+      <a
+        href="/health-check/"
+        class="mt-8 inline-flex items-center justify-center rounded-lg border border-[#FF7700] bg-[#FF7700] px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-[#e55f00] hover:bg-[#e55f00]"
+      >
+        Book Your AI Health Check
+      </a>
+      <p class="mt-5 font-sans text-sm text-white/60">
+        Prefer to read first? <a
+          href="/higher-education-guide/"
+          class="font-heading font-bold text-[#FF7700] hover:text-white"
+          >Download the use cases guide <span aria-hidden="true">&rarr;</span></a
+        >
+      </p>
+    </div>
+  </section>
+
+  <footer slot="footer" class="bg-[#012B42] px-6 py-12 text-white sm:px-8 lg:px-12" no-intersect>
+    <div class="mx-auto max-w-7xl">
+      <div class="grid gap-10 lg:grid-cols-[1fr_1fr_1fr_1.1fr]">
+        {
+          footerColumns.map((column) => (
+            <nav aria-label={column.title}>
+              <h2 class="font-heading text-sm font-bold text-white">{column.title}</h2>
+              <div class="mt-2 h-0.5 w-10 rounded-full bg-[#FF7700]" aria-hidden="true" />
+              <ul class="mt-5 space-y-3">
+                {column.links.map((link) => (
+                  <li>
+                    <a href={link.href} class="font-sans text-sm text-white/65 transition hover:text-white">
+                      {link.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))
+        }
+        <div>
+          <h2 class="font-heading text-sm font-bold text-white">Get in touch</h2>
+          <div class="mt-2 h-0.5 w-10 rounded-full bg-[#FF7700]" aria-hidden="true"></div>
+          <a
+            href="mailto:hello@worksmart-ai.co.uk"
+            class="mt-5 inline-flex font-sans text-sm text-white/75 transition hover:text-white"
+          >
+            hello@worksmart-ai.co.uk
+          </a>
+          <div class="mt-5">
+            <a
+              href="https://www.linkedin.com/company/worksmart-ai-ltd"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 font-sans text-sm text-white/65 transition hover:text-white"
+            >
+              <Icon name="tabler:brand-linkedin" class="h-5 w-5" aria-hidden="true" />
+              LinkedIn
+            </a>
+          </div>
+          <a
+            href="/health-check/"
+            class="mt-6 inline-flex items-center justify-center rounded-lg border border-[#FF7700] bg-[#FF7700] px-5 py-2.5 font-heading text-sm font-bold text-white transition hover:border-[#e55f00] hover:bg-[#e55f00]"
+          >
+            Book Your AI Health Check
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-12 border-t border-white/10 pt-8">
+        <a href="/" class="inline-flex">
+          <img
+            src={logo.src}
+            alt="WorkSmart-AI"
+            class="h-10 w-auto brightness-0 invert"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+        <nav class="mt-8" aria-label="Legal links">
+          <ul class="flex flex-wrap gap-x-5 gap-y-2">
+            {
+              legalLinks.map((link) => (
+                <li>
+                  <a href={link.href} class="font-sans text-xs text-white/45 transition hover:text-white/75">
+                    {link.text}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+        <p class="mt-5 font-sans text-xs text-white/40">&copy; WorkSmart-AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 </Layout>
 
 <style>
+  :global(#header),
+  :global(#header.expanded) {
+    background-color: #f8f8f8 !important;
+    border-bottom-color: rgb(1 88 135 / 12%) !important;
+    box-shadow: 0 10px 30px -26px rgb(1 88 135 / 40%);
+  }
+
+  :global(#header > div:first-child),
+  :global(#header.scroll > div:first-child) {
+    background-color: #f8f8f8 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+
+  :global(#header > div:nth-child(2)) {
+    max-width: none;
+  }
+
+  @media (min-width: 1180px) {
+    :global(#header > div:nth-child(2)) {
+      grid-template-columns: minmax(145px, 0.6fr) auto minmax(155px, 0.6fr) !important;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
+  @media (max-width: 1179px) {
+    :global(#header > div:nth-child(2)) {
+      display: flex !important;
+      align-items: center;
+      justify-content: space-between;
+      grid-template-columns: none !important;
+    }
+
+    :global(#header > div:nth-child(2) > div:first-child) {
+      flex: 1 1 auto;
+    }
+
+    :global(#header > div:nth-child(2) > div:first-child > div:last-child) {
+      display: flex !important;
+    }
+
+    :global(#header nav),
+    :global(#header > div:nth-child(2) > div:last-child) {
+      display: none !important;
+    }
+
+    :global(#header.expanded nav) {
+      display: flex !important;
+    }
+
+    :global(#header.expanded > div:nth-child(2) > div:last-child) {
+      display: flex !important;
+    }
+  }
+
+  :global(#header img) {
+    height: 2rem;
+    filter: none;
+    opacity: 1;
+  }
+
+  :global(#header nav ul) {
+    font-size: 0.86rem !important;
+  }
+
+  :global(#header nav a),
+  :global(#header nav button) {
+    padding-left: 0.4rem !important;
+    padding-right: 0.4rem !important;
+    color: #015887 !important;
+  }
+
+  :global(#header nav a:hover),
+  :global(#header nav button:hover),
+  :global(#header nav a.aw-link-active) {
+    background-color: rgb(1 88 135 / 8%) !important;
+    color: #015887 !important;
+  }
+
+  :global(#header .dropdown-menu) {
+    background-color: #ffffff !important;
+    border-color: rgb(1 88 135 / 15%) !important;
+  }
+
+  :global(#header .dropdown-menu a) {
+    color: #015887 !important;
+  }
+
+  :global(#header .dropdown-menu a:hover) {
+    background-color: #e6f1fb !important;
+    color: #015887 !important;
+  }
+
+  :global(#header [data-aw-toggle-menu]),
+  :global(#header [data-aw-toggle-menu] span) {
+    color: #015887 !important;
+  }
+
+  :global(#header .btn-primary) {
+    border-color: #ff7700 !important;
+    background-color: #ff7700 !important;
+    color: #ffffff !important;
+    border-radius: 0.5rem;
+    font-family: var(--aw-font-heading, ui-sans-serif);
+    font-weight: 700;
+    padding: 0.75rem 1rem !important;
+    font-size: 0.875rem !important;
+    line-height: 1.25 !important;
+    text-align: center;
+    max-width: 9.5rem;
+    white-space: normal;
+  }
+
+  :global(#header .btn-primary:hover) {
+    border-color: #e55f00 !important;
+    background-color: #e55f00 !important;
+  }
+
+  @media (min-width: 1024px) {
+    .home-v3-timeline > li:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 2.35rem;
+      right: -1.25rem;
+      width: 1.25rem;
+      height: 2px;
+      background: #ff7700;
+      opacity: 0.45;
+    }
+  }
+
   .home-v3-roi-calculator :global(.wsai-hero) {
     display: none;
+  }
+
+  .home-v3-roi-calculator :global(.wsai-sav-root) {
+    background: transparent;
+    padding: 0;
   }
 </style>

@@ -257,9 +257,9 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
       <div class="wsai-callout-inner">
         <p id={`${rootId}-result-heading`} class="wsai-callout-kicker">Your result</p>
         <p class="wsai-callout-text">
-          Your institution could save <strong id={`${rootId}-callout-save`}>£0</strong> this year — equivalent to freeing
-          up
-          <strong id={`${rootId}-callout-fte`}>0</strong> full-time staff members.
+          Your institution could reclaim <strong id={`${rootId}-callout-save`}>£0</strong> this year, the equivalent of freeing
+          up <strong id={`${rootId}-callout-fte`}>0</strong> full-time staff. That's the gap between unstructured AI use
+          and a coordinated approach. We close it.
         </p>
       </div>
     </aside>
@@ -268,9 +268,12 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
       <div class="wsai-callout-inner wsai-callout-inner--get-in-touch">
         <div class="wsai-copy-actions">
           <p class="wsai-copy-actions-lead" id={`${rootId}-cta-lead`}>
-            To discuss how you can start seeing ROI in your adoption, reach out now.
+            Turn the estimate into a practical institutional plan.
           </p>
-          <a class="wsai-pill-btn" href="/contact-us/">Get in Touch</a>
+          <div class="wsai-copy-actions-buttons">
+            <a class="wsai-pill-btn" href="/health-check/">Book your AI Health Check</a>
+            <a class="wsai-pill-btn wsai-pill-btn--outline" href="/how-our-calculator-works/">How we calculate this</a>
+          </div>
         </div>
       </div>
     </aside>
@@ -866,6 +869,13 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
     color: var(--reversed);
   }
 
+  .wsai-copy-actions-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
   .wsai-pill-btn {
     display: inline-flex;
     align-items: center;
@@ -888,6 +898,18 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
   .wsai-pill-btn:hover {
     border-color: var(--navy);
     background: var(--navy);
+    color: var(--reversed);
+  }
+
+  .wsai-pill-btn--outline {
+    background: transparent;
+    border-color: rgb(255 255 255 / 70%);
+    color: var(--reversed);
+  }
+
+  .wsai-pill-btn--outline:hover {
+    border-color: var(--aw-brand-white);
+    background: rgb(255 255 255 / 12%);
     color: var(--reversed);
   }
 
