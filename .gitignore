@@ -32,3 +32,7 @@ pnpm-lock.yaml
 
 # Supabase CLI temp files
 supabase/.temp/
+
+# Local planning/docs not for remote
+docs/
+.cursor/plans/
