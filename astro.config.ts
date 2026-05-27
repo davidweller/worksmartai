@@ -28,7 +28,9 @@ const SITEMAP_EXCLUDED_PATHS = new Set([
   '/academy/dashboard/',
   '/academy/view/',
   '/home-v2/',
+  '/home-v3/',
   '/homepage-original/',
+  '/homepage-pre-v3/',
 ]);
 
 export default defineConfig({
@@ -39,6 +41,7 @@ export default defineConfig({
   redirects: {
     '/training/': '/services/',
     '/calculator/': '/roi-calculator/',
+    '/home-v3/': '/',
   },
 
   integrations: [

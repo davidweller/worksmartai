@@ -177,10 +177,11 @@ Privacy, cookie policy, terms of service, accessibility statement, modern slaver
 
 - `/training/` → `/services/`
 - `/calculator/` → `/roi-calculator/`
+- `/home-v3/` → `/` (legacy staging URL)
 
 ### Staging / alternate homepages (excluded from sitemap)
 
-- `/home-v2/`, `/home-v3/`, `/homepage-original/` — design/copy experiments; production home is `/` (`src/pages/index.astro`).
+- `/home-v2/`, `/homepage-original/`, `/homepage-pre-v3/` — design/copy experiments and archives; production home is `/` (`src/pages/index.astro`, promoted from home-v3).
 
 ---
 
@@ -188,14 +189,14 @@ Privacy, cookie policy, terms of service, accessibility statement, modern slaver
 
 ### 7.1 Marketing and content
 
-| ID  | Requirement                                                                                            | Priority |
-| --- | ------------------------------------------------------------------------------------------------------ | -------- |
-| M-1 | Home page presents HE-specific positioning, trust quotes, 5-step process, CTAs to services and contact | P0       |
-| M-2 | Services hub routes to all five service detail pages with consistent tone (“specialist” HE focus)      | P0       |
-| M-3 | About page shows founders (Katie Steen, David Weller), video, credibility narrative                    | P0       |
-| M-4 | News posts render with SEO metadata, reading time, related posts (4), RSS                              | P1       |
-| M-5 | All public pages expose canonical URLs, Open Graph, and site metadata from `src/config.yaml`           | P0       |
-| M-6 | Sitemap excludes 404, academy routes, and alternate home experiments                                   | P1       |
+| ID  | Requirement                                                                                                                                                     | Priority |
+| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| M-1 | Home page presents HE-specific positioning, service cards, AI Partnership, personas, capability timeline, ROI calculator, health-check CTAs, and guide download | P0       |
+| M-2 | Services hub routes to all five service detail pages with consistent tone (“specialist” HE focus)                                                               | P0       |
+| M-3 | About page shows founders (Katie Steen, David Weller), video, credibility narrative                                                                             | P0       |
+| M-4 | News posts render with SEO metadata, reading time, related posts (4), RSS                                                                                       | P1       |
+| M-5 | All public pages expose canonical URLs, Open Graph, and site metadata from `src/config.yaml`                                                                    | P0       |
+| M-6 | Sitemap excludes 404, academy routes, and alternate home experiments                                                                                            | P1       |
 
 ### 7.2 Lead magnet (Higher Education Guide)
 
@@ -386,7 +387,7 @@ Derived from `.cursor/plans/` and `SCORM_SIGNOFF.md`:
 | Auth SSR uplift (`@supabase/ssr`, middleware)   | Pending                                                   | Plan: before relying on API auth                           |
 | Enable `hasAcademySupabaseConfig` in production | Blocked                                                   | Hostinger static; no live `/api/scorm`                     |
 | Launch W2–W7 Academy modules                    | Planned                                                   | Dashboard placeholders exist                               |
-| May 2026 website copy refresh                   | Plan exists                                               | home-v3 / wording plan                                     |
+| May 2026 website copy refresh                   | Complete (home-v3 promoted to `/`)                        | Site-wide nav/footer aligned with new homepage             |
 | Google Analytics ID                             | Not configured                                            | `config.yaml` null                                         |
 | Post-deploy SCORM smoke test                    | Outstanding                                               | login → course → commit → finish                           |
 
@@ -402,7 +403,7 @@ Copy and design should consistently reflect:
 - **Responsible use** — GDPR, institutional policy, role-specific data sensitivity.
 - **Founder-led credibility** — ex–Digital Skills Lead, University of Exeter scale (7,500 staff narrative).
 
-Reference positioning on live home page (`src/pages/index.astro`): specialist training/consultancy, productivity + leadership confidence + student outcomes.
+Reference positioning on live home page (`src/pages/index.astro`): AI capability for higher education, health-check lead magnet, service cards, AI Partnership, personas, maturity timeline, ROI calculator, and founder credibility.
 
 ---
 
