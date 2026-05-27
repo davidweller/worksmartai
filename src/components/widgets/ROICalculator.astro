@@ -1,9 +1,15 @@
 ---
 interface Props {
   rootId?: string;
+  bookButtonLabel?: string;
+  ctaLead?: string;
 }
 
-const { rootId = 'wsai-roi-calculator' } = Astro.props;
+const {
+  rootId = 'wsai-roi-calculator',
+  bookButtonLabel = 'Book your AI Health Check',
+  ctaLead = 'Turn the estimate into a practical institutional plan.',
+} = Astro.props;
 
 const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@worksmart-ai.co.uk/?ismsaljsauthenabled';
 ---
@@ -268,10 +274,10 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
       <div class="wsai-callout-inner wsai-callout-inner--get-in-touch">
         <div class="wsai-copy-actions">
           <p class="wsai-copy-actions-lead" id={`${rootId}-cta-lead`}>
-            Turn the estimate into a practical institutional plan.
+            {ctaLead}
           </p>
           <div class="wsai-copy-actions-buttons">
-            <a class="wsai-pill-btn" href="/health-check/">Book your AI Health Check</a>
+            <a class="wsai-pill-btn" href="/health-check/">{bookButtonLabel}</a>
             <a class="wsai-pill-btn wsai-pill-btn--outline" href="/how-our-calculator-works/">How we calculate this</a>
           </div>
         </div>

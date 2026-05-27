@@ -49,8 +49,6 @@ const homeV3HeaderData = {
   ],
 };
 
-const trustLogos = ['SDF'];
-
 const personas = [
   {
     title: 'Department / Faculty SLT',
@@ -237,20 +235,11 @@ const legalLinks = [
 
   <!-- 2. Digital Skills Leads banner -->
   <section class="bg-secondary px-6 py-6 sm:px-8 lg:px-12" no-intersect aria-label="Credibility and memberships">
-    <div class="mx-auto flex max-w-6xl flex-col gap-5 md:flex-row md:items-center md:justify-between">
+    <div class="mx-auto max-w-6xl">
       <p class="max-w-3xl font-sans text-base font-medium leading-[1.7] text-[#015887] sm:text-lg">
         Built by former Digital Skills Leads from UK universities.<br />
         Proud members of the Staff Development Forum and the Association of Learning Technology.
       </p>
-      <ul class="flex flex-wrap gap-3" aria-label="Credibility logos">
-        {
-          trustLogos.map((item) => (
-            <li class="flex h-10 min-w-28 items-center justify-center rounded-md border border-[#E0E0E0] bg-white px-4 font-heading text-xs font-bold uppercase tracking-[0.16em] text-[#015887]/55 grayscale">
-              {item}
-            </li>
-          ))
-        }
-      </ul>
     </div>
   </section>
 
@@ -473,16 +462,15 @@ const legalLinks = [
         </a>
       </div>
       <div class="md:basis-1/2">
-        <!-- Replace this placeholder with <img src="/images/team-photo.jpg" ...> when the asset is ready -->
-        <div
-          class="flex aspect-[4/3] w-full items-center justify-center rounded-lg border border-dashed border-[#86BFE2] bg-[#E6F1FB] px-6 text-center"
-          role="img"
-          aria-label="The WorkSmart-AI team"
-        >
-          <p class="font-sans text-sm text-[#015887]/60">
-            Team photo placeholder - replace with /images/team-photo.jpg
-          </p>
-        </div>
+        <img
+          src="/images/team-photo.jpg"
+          alt="WorkSmart-AI co-founders presenting at a conference to an audience"
+          width={1200}
+          height={900}
+          loading="lazy"
+          decoding="async"
+          class="aspect-[4/3] w-full rounded-lg object-cover"
+        />
       </div>
     </div>
   </section>
@@ -501,7 +489,11 @@ const legalLinks = [
         </p>
       </div>
       <div class="home-v3-roi-calculator mt-10">
-        <ROICalculator rootId="roi-calculator-home-v3" />
+        <ROICalculator
+          rootId="roi-calculator-home-v3"
+          bookButtonLabel="Book your AI Capability Check"
+          ctaLead="Turn your estimate into a practical institutional plan."
+        />
       </div>
     </div>
   </section>

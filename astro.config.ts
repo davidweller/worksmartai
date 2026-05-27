@@ -108,5 +108,11 @@ export default defineConfig({
         '~': path.resolve(__dirname, './src'),
       },
     },
+    server: {
+      watch: {
+        // Avoid Windows EBUSY crashes when external apps lock this root image file.
+        ignored: ['**/CABS 2.jpg'],
+      },
+    },
   },
 });
