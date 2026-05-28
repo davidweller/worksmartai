@@ -29,6 +29,7 @@ export const headerData: {
     { text: 'Home', href: '/' },
     {
       text: 'Services',
+      href: '/services/',
       links: [
         { text: 'Workforce Capability', href: '/services/staff-training/' },
         { text: 'Student Programmes', href: '/services/student-training/' },

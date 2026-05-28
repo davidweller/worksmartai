@@ -39,16 +39,14 @@ const engagementTags = [
 
 const leadershipWorkshops = [
   {
-    code: 'W11',
+    code: 'W13',
     name: 'The AI Leadership Briefing (3-hour)',
     level: 'Strategic',
-    prerequisite: 'None',
   },
   {
-    code: 'W12',
+    code: 'W14',
     name: 'The AI Strategic Roadmap (Full day)',
     level: 'Strategic',
-    prerequisite: 'W11',
   },
 ];
 ---
@@ -147,23 +145,21 @@ const leadershipWorkshops = [
         </p>
 
         <div class="mt-6 overflow-hidden rounded-lg border border-default bg-card">
-          <div class="grid grid-cols-[minmax(0,1fr)_auto_auto] gap-4 border-b border-default bg-brand/5 px-4 py-3">
+          <div class="grid grid-cols-[minmax(0,1fr)_auto] gap-4 border-b border-default bg-brand/5 px-4 py-3">
             <p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted">Workshop</p>
             <p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted">Level</p>
-            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted">Prerequisite</p>
           </div>
 
           <div class="divide-y divide-default/70">
             {
               leadershipWorkshops.map((workshop) => (
-                <article class="grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-4 px-4 py-3">
+                <article class="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-3">
                   <h4 class="text-sm font-medium text-default sm:text-base">
                     <span class="font-semibold text-heading">{workshop.code}.</span> {workshop.name}
                   </h4>
                   <span class="inline-flex rounded-full bg-accent/15 px-3 py-1 text-xs font-semibold text-accent">
                     {workshop.level}
                   </span>
-                  <span class="text-sm font-medium text-default">{workshop.prerequisite}</span>
                 </article>
               ))
             }
