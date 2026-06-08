@@ -183,6 +183,7 @@ const metadata = {
 
 <script>
   import { academySupabase, hasAcademySupabaseConfig, requireAuth } from '~/lib/academy';
+  import { postScorm } from '~/lib/scorm/api';
 
   type JsonObject = Record<string, unknown>;
   type InitResponse = {
@@ -223,28 +224,16 @@ const metadata = {
   const scormDebug =
     typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('scorm_debug') === '1';
 
-  const postJson = async <T,>(url: string, body: unknown): Promise<T> => {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'same-origin',
-      body: JSON.stringify(body),
-    });
-    const text = await res.text();
-    let data: unknown = null;
-    try {
-      data = text ? JSON.parse(text) : null;
-    } catch {
-      data = null;
+  const getAccessToken = async (): Promise<string> => {
+    if (!academySupabase) throw new Error('Missing Supabase configuration.');
+    const {
+      data: { session },
+      error,
+    } = await academySupabase.auth.getSession();
+    if (error || !session?.access_token) {
+      throw new Error('Your session has expired. Please sign in again.');
     }
-    if (!res.ok) {
-      const msg =
-        data && typeof data === 'object' && data !== null && 'error' in data
-          ? String(data.error)
-          : text || res.statusText;
-      throw new Error(msg);
-    }
-    return data as T;
+    return session.access_token;
   };
 
   const syncPlayerViewportHeight = () => {
@@ -485,7 +474,8 @@ const metadata = {
       let sessionId = '';
 
       try {
-        const init = await postJson<InitResponse>('/api/scorm/initialize/', { courseId });
+        const accessToken = await getAccessToken();
+        const init = await postScorm<InitResponse>('initialize', { courseId }, accessToken);
         sessionId = typeof init.sessionId === 'string' ? init.sessionId : '';
         const resume = init.resume && typeof init.resume === 'object' ? init.resume : {};
 
@@ -520,7 +510,8 @@ const metadata = {
         const cmi = window.API.cmi.toJSON();
 
         try {
-          await postJson('/api/scorm/commit/', { sessionId, cmi });
+          const accessToken = await getAccessToken();
+          await postScorm('commit', { sessionId, cmi }, accessToken);
         } catch {
           setFeedback('Progress save failed. Your latest state may not be synced.');
         }
@@ -529,7 +520,8 @@ const metadata = {
       const finishSession = async () => {
         if (!sessionId) return;
         try {
-          await postJson('/api/scorm/finish/', { sessionId });
+          const accessToken = await getAccessToken();
+          await postScorm('finish', { sessionId }, accessToken);
         } catch {
           setFeedback('Could not mark the session complete.');
         }

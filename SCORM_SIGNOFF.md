@@ -1,86 +1,102 @@
 # SCORM Supabase Shim Sign-off
 
-Date: 2026-05-08
+Date: 2026-05-08 (original) · Updated 2026-06-01 (Hostinger + Edge Functions)
 
 ## Scope
 
-Operational sign-off for the SCORM API persistence rollout:
+Operational sign-off for the SCORM persistence rollout:
 
-- SCORM player shim/runtime wiring in `src/pages/academy/view/[courseId].astro`
-- Supabase schema/migration in `supabase/migrations/20260507153000_scorm_academy.sql`
-- API routes:
-  - `src/pages/api/scorm/initialize.ts`
-  - `src/pages/api/scorm/commit.ts`
-  - `src/pages/api/scorm/finish.ts`
+- SCORM player in `src/pages/academy/view/[courseId].astro`
+- Supabase schema in `supabase/migrations/20260507153000_scorm_academy.sql`
+- Admin-only enrollments: `supabase/migrations/20260601120000_enrollments_admin_only.sql`
+- **Persistence:** Supabase Edge Functions (replaces Astro `/api/scorm/*` on static Hostinger)
 
-## Test Summary
+| Function   | Deploy name        |
+| ---------- | ------------------ |
+| Initialize | `scorm-initialize` |
+| Commit     | `scorm-commit`     |
+| Finish     | `scorm-finish`     |
+
+Client: `src/lib/scorm/api.ts` → `{SUPABASE_URL}/functions/v1/scorm-{name}` with `Authorization: Bearer <access_token>`.
+
+## Test Summary (2026-05-08 dev)
 
 ### Build and static checks
 
 - `npm run build`: PASS
-- `npm run check:astro`: known existing project-wide warnings/errors outside this scope
-- `npm run check:eslint`: PASS after cleanup in `public/courses/ai_fundamentals/scorm-api.js`
+- `npm run check:eslint`: PASS (SCORM package JS)
 
 ### Supabase schema and security
 
 Verified on linked remote database:
 
-- Objects exist:
-  - `public.enrollments`
-  - `public.scorm_sessions`
-  - `public.quiz_responses`
-  - `public.progress_compat` (view)
-- RLS enabled on all 3 tables
-- Expected policies present:
-  - `enrollments_select_own`
-  - `enrollments_insert_own`
-  - `enrollments_update_own`
-  - `sessions_all_via_enrollment`
-  - `quiz_all_via_session`
+- Objects: `enrollments`, `scorm_sessions`, `quiz_responses`, `progress_compat`
+- RLS enabled on all three tables
+- Policies: `enrollments_select_own`, `sessions_all_via_enrollment`, `quiz_all_via_session`
+- **After 2026-06-01 migration:** `enrollments_insert_own` and `enrollments_update_own` removed (admin provisioning only)
 
-### SCORM runtime and API behavior
+### SCORM runtime (historical — Astro API dev)
 
-- simplify-scorm script load issue fixed by using inline classic script tags to preserve order.
-- `?scorm_debug=1` shows active SCORM event logging.
-- Runtime network evidence:
-  - `POST /api/scorm/commit/` returns `200`
-  - `POST /api/scorm/finish/` returns `200`
+- simplify-scorm loaded via ordered inline script tags
+- `?scorm_debug=1` logs SCORM events
+- Session resume, commit, finish lifecycle: PASS in dev
 
-### Lifecycle behavior
+### Scenario classification
 
-- Refresh during in-progress attempt reuses latest incomplete session: PASS
-- Finish marks current session complete (`is_complete=true`, `finished_at` set): PASS
-- Relaunch after completion creates a new session row: PASS
+**Scenario B:** progress primarily in `cmi.suspend_data`; `quiz_responses` often empty for W1.
 
-## Scenario Classification
+---
 
-Observed behavior indicates **Scenario B** (quiz/progress state primarily in `cmi.suspend_data`):
+## Post-Hostinger smoke test (required after deploy)
 
-- Example stored value:
-  - `suspend_data = {"viewed":[0],"score":0,"answers":{}}`
-- `raw_cmi` shows `core` and `suspend_data` populated
-- `raw_cmi.interactions` not present in observed session data
-- `quiz_responses` remains empty for observed run
+### Deploy status (2026-06-01)
 
-## Governance Decision
+- `supabase db push`: remote database up to date (includes `20260601120000_enrollments_admin_only.sql`)
+- Edge Functions deployed to project `qgizwdyeqartoavllsol`: `scorm-initialize`, `scorm-commit`, `scorm-finish`
+- `npm run build`: PASS
+- Unauthenticated `POST scorm-initialize`: returns `401` (expected)
 
-Decision: **Immediate cutover** (no dual-write period).
+Prerequisites for production browser test:
 
-Rationale:
+1. `supabase db push` (includes `20260601120000_enrollments_admin_only.sql`)
+2. Deploy all three `scorm-*` Edge Functions
+3. Build site with `PUBLIC_SUPABASE_URL` and `PUBLIC_SUPABASE_ANON_KEY`
+4. Upload full `dist/` to Hostinger
+5. Test user in Supabase Auth + enrollment:
 
-- App is already operating on new SCORM API write path and `progress_compat` read path.
-- Adding dual-write now would add complexity with low rollback value.
+```sql
+insert into public.enrollments (user_id, course_id)
+values ('<uuid>', 'ai-foundations');
+```
 
-## Remaining Production Actions
+### Checklist
 
-1. Deploy latest build to production environment.
-   - Current smoke test result for production endpoint:
-     - `https://worksmart-ai.co.uk/api/scorm/initialize/` returns `404` (at test time)
-2. Confirm Netlify environment variables and auth redirect/cookie settings in linked site config.
-3. Run one post-deploy smoke test:
-   - login -> open course -> commit observed -> finish observed.
+| Step                                 | Expected                                                |
+| ------------------------------------ | ------------------------------------------------------- |
+| Login `/academy/login/`              | Redirect to dashboard                                   |
+| Open `/academy/view/ai-foundations/` | `POST .../functions/v1/scorm-initialize` → 200          |
+| Interact with course                 | `POST .../scorm-commit` → 200                           |
+| Refresh mid-course                   | Resume same session                                     |
+| Finish / complete                    | `POST .../scorm-finish` → 200; dashboard % updates      |
+| User without enrollment              | `scorm-initialize` → 403; UI shows not-enrolled message |
+
+### Function URLs (replace project ref)
+
+- `https://<project-ref>.supabase.co/functions/v1/scorm-initialize`
+- `https://<project-ref>.supabase.co/functions/v1/scorm-commit`
+- `https://<project-ref>.supabase.co/functions/v1/scorm-finish`
+
+Legacy Astro path `https://worksmart-ai.co.uk/api/scorm/initialize/` is **not used** on Hostinger static hosting (expected 404).
+
+---
+
+## Governance
+
+**Immediate cutover** to Edge Functions + `progress_compat` (no dual-write to legacy `progress` table).
+
+---
 
 ## Notes
 
-- Temporary dev-only finish button was added only for QA completion and removed immediately after verification.
-- No plan file changes were made.
+- Production uses **Hostinger static** + **Supabase Edge Functions**, not Netlify hybrid APIs.
+- No `src/middleware.ts` required; JWT passed from browser session.

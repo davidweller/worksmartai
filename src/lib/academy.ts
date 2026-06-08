@@ -1,9 +1,8 @@
 import { createAcademyBrowserClient } from '~/lib/supabase/browser';
 import { hasSupabaseEnv } from '~/lib/supabase/env';
 
-// Hostinger deployment is static-only, so academy server endpoints are unavailable.
-// Keep this false to avoid client flows attempting /api/scorm calls that do not exist.
-export const hasAcademySupabaseConfig = false && hasSupabaseEnv;
+// Academy persistence uses Supabase Edge Functions (scorm-initialize/commit/finish), not Astro API routes.
+export const hasAcademySupabaseConfig = hasSupabaseEnv;
 
 export const academySupabase = hasAcademySupabaseConfig ? createAcademyBrowserClient() : null;
 
