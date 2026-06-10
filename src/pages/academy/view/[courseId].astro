@@ -55,7 +55,7 @@ const metadata = {
             class="academy-sidebar-progress-label"
             style="font-size: 13px !important"
           >
-            0 of 0 pages complete
+            0% complete
           </p>
         </div>
 
@@ -158,7 +158,7 @@ const metadata = {
             class="academy-sidebar-progress-label"
             style="font-size: 13px !important"
           >
-            0 of 0 pages complete
+            0% complete
           </p>
         </div>
 
@@ -183,6 +183,13 @@ const metadata = {
 
 <script>
   import { academySupabase, hasAcademySupabaseConfig, requireAuth } from '~/lib/academy';
+  import {
+    computeHybridProgressPercent,
+    countViewedPages,
+    formatHybridProgressLabel,
+    parseSuspendData,
+    readQuizScoreFromCmi,
+  } from '~/lib/academy/progress';
   import { postScorm } from '~/lib/scorm/api';
 
   type JsonObject = Record<string, unknown>;
@@ -338,7 +345,22 @@ const metadata = {
 
   const closeOverlay = () => setOverlayOpen(false);
 
-  const getCompletionCount = () => currentPageIndex;
+  const readHybridProgressSnapshot = () => {
+    const suspendData = String(window.API?.cmi?.suspend_data ?? '');
+    const { viewed, score: suspendScore } = parseSuspendData(suspendData);
+    const { score: cmiScore, max: quizMax } = readQuizScoreFromCmi(window.API?.cmi?.core?.score);
+    const quizScore = cmiScore > 0 ? cmiScore : suspendScore;
+    const pagesViewed = countViewedPages(viewed, totalPages, currentPageIndex);
+    const percent = computeHybridProgressPercent({
+      courseId,
+      viewedPageIndices: viewed,
+      quizScore,
+      quizScoreMax: quizMax,
+      currentPageIndex,
+    });
+
+    return { percent, pagesViewed, quizScore, quizMax };
+  };
 
   const updateHeaderText = () => {
     const currentPageNumber = currentPageIndex + 1;
@@ -349,13 +371,12 @@ const metadata = {
   };
 
   const updateProgress = () => {
-    const completed = Math.min(totalPages, Math.max(0, getCompletionCount()));
-    const progressPercent = Math.round((completed / totalPages) * 100);
-    const progressText = `${completed} of ${totalPages} pages complete`;
+    const { percent, pagesViewed, quizScore, quizMax } = readHybridProgressSnapshot();
+    const progressText = formatHybridProgressLabel(percent, pagesViewed, totalPages, quizScore, quizMax);
     if (progressLabel) progressLabel.textContent = progressText;
     if (progressLabelMobile) progressLabelMobile.textContent = progressText;
-    if (progressFill) progressFill.style.width = `${progressPercent}%`;
-    if (progressFillMobile) progressFillMobile.style.width = `${progressPercent}%`;
+    if (progressFill) progressFill.style.width = `${percent}%`;
+    if (progressFillMobile) progressFillMobile.style.width = `${percent}%`;
   };
 
   const getPageState = (index: number): PageState => {
@@ -544,6 +565,8 @@ const metadata = {
           if (Number.isInteger(location) && location >= 0 && location < totalPages) {
             currentPageIndex = location;
             updateUI();
+          } else {
+            updateProgress();
           }
           queueSave();
         });
