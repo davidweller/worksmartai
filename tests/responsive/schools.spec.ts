@@ -18,9 +18,10 @@ test.describe('schools page responsive layout', () => {
         })
       ).toBeVisible();
 
-      await expect(
-        page.getByRole('link', { name: /Book a 20-minute call/i }).first()
-      ).toHaveAttribute('href', '/contact-us/');
+      await expect(page.getByRole('link', { name: /Book a 20-minute call/i }).first()).toHaveAttribute(
+        'href',
+        '/contact-us/'
+      );
 
       const overflow = await page.evaluate(() => ({
         scrollWidth: document.documentElement.scrollWidth,

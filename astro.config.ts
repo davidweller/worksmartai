@@ -79,7 +79,13 @@ export default defineConfig({
     ),
 
     compress({
-      CSS: true,
+      // csso strips Tailwind v3.4+ range media queries (`@media (width>=640px)`), breaking responsive layout.
+      CSS: {
+        csso: false,
+        lightningcss: {
+          minify: true,
+        },
+      },
       HTML: {
         'html-minifier-terser': {
           removeAttributeQuotes: false,

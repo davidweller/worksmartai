@@ -25,6 +25,7 @@ async function collectHtmlFiles(dir) {
 
 const stylesheetPattern = /href="(\/_astro\/[^"]+\.css)"/g;
 const missing = new Set();
+const layoutCssFiles = [];
 
 for (const htmlPath of await collectHtmlFiles(distDir)) {
   const html = await readFile(htmlPath, 'utf8');
@@ -32,6 +33,9 @@ for (const htmlPath of await collectHtmlFiles(distDir)) {
     const assetPath = path.join(distDir, match[1].slice(1));
     try {
       await readFile(assetPath);
+      if (match[1].includes('Layout.') && match[1].endsWith('.css')) {
+        layoutCssFiles.push(assetPath);
+      }
     } catch {
       missing.add(match[1]);
     }
@@ -46,4 +50,14 @@ if (missing.size > 0) {
   process.exit(1);
 }
 
-console.log('verify-dist: all stylesheet assets present in dist/');
+for (const cssPath of [...new Set(layoutCssFiles)]) {
+  const css = await readFile(cssPath, 'utf8');
+  const mediaQueryCount = (css.match(/@media/g) ?? []).length;
+  if (mediaQueryCount < 5) {
+    console.error(`verify-dist: ${path.relative(distDir, cssPath)} has only ${mediaQueryCount} @media rule(s).`);
+    console.error('verify-dist: responsive Tailwind breakpoints were likely stripped during CSS compression.');
+    process.exit(1);
+  }
+}
+
+console.log('verify-dist: all stylesheet assets present in dist/ with responsive @media rules');
