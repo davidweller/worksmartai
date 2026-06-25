@@ -1,0 +1,1 @@
+function e(e,t){typeof window<`u`&&typeof window.gtag==`function`&&window.gtag(`event`,e,t)}function t(){document.addEventListener(`click`,t=>{let n=t.target;if(!(n instanceof Element))return;let r=n.closest(`[data-track]`);if(!r)return;let i=r.dataset.track;if(!i)return;let a={};r.dataset.trackSector&&(a.sector=r.dataset.trackSector),e(i,a)})}export{t};

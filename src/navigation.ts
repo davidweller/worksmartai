@@ -37,7 +37,7 @@ const schoolsLinks: NavLink[] = [
   { text: 'What staff gain', href: '/schools/#outcomes' },
   { text: 'Trust and safety', href: '/schools/#trust-safety' },
   { text: 'Packages', href: '/schools/#packages' },
-  { text: 'Contact', href: '/schools/#schools-contact' },
+  { text: 'Contact', href: '/contact-us/' },
 ];
 
 export const headerData: {
@@ -76,7 +76,7 @@ export const footerColumns: FooterColumn[] = [
       { text: 'Schools overview', href: '/schools/' },
       { text: 'Packages', href: '/schools/#packages' },
       { text: 'Trust and safety', href: '/schools/#trust-safety' },
-      { text: 'Book a call', href: '/schools/#schools-contact' },
+      { text: 'Book a call', href: '/contact-us/' },
     ],
   },
   {
@@ -113,7 +113,7 @@ export const footerData = {
   contactEmail: 'hello@worksmart-ai.co.uk',
   linkedInUrl: 'https://www.linkedin.com/company/worksmart-ai-ltd',
   healthCheckHref: '/health-check/',
-  schoolsContactHref: '/schools/#schools-contact',
+  schoolsContactHref: '/contact-us/',
 };
 
 /** Infer sector from URL path for layout defaults. */

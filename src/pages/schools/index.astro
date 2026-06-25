@@ -1,8 +1,6 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import { Icon } from 'astro-icon/components';
-import SchoolsContactForm from '~/components/schools/SchoolsContactForm.astro';
-
 const metadata = {
   title: 'AI training for schools and teachers | WorkSmart-AI',
   description:
@@ -74,15 +72,18 @@ const packages = [
   <section class="relative overflow-hidden bg-[#015887] px-6 py-12 sm:px-8 md:py-20 lg:px-12" no-intersect>
     <div class="relative mx-auto max-w-4xl text-center lg:text-left">
       <h1 class="font-heading text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-        Your teachers are drowning in workload. AI can buy back hours every week, if they know how to use it safely.
+        Give your teachers<br />their time back.
       </h1>
+      <p class="mt-4 max-w-2xl font-sans text-lg leading-[1.7] text-[#86BFE2] sm:text-xl">
+        AI can buy back hours every week, if they know how to use it safely.
+      </p>
       <p class="mt-6 max-w-2xl font-sans text-lg leading-[1.7] text-white/85">
         Practical AI training for schools and trusts, built around the realities of teaching: lesson planning,
         differentiation, marking, and parent communication. Safe, GDPR-aware, and grounded in classroom practice.
       </p>
       <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
         <a
-          href="#schools-contact"
+          href="/contact-us/"
           class="inline-flex items-center justify-center rounded-full border border-[#FF7700] bg-[#FF7700] px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-[#e55f00] hover:bg-[#e55f00]"
           data-track="schools_cta_click"
         >
@@ -173,7 +174,7 @@ const packages = [
               <p class="mt-4 flex-1 font-sans text-sm leading-[1.65] text-white/85">{pkg.outcome}</p>
               <p class="mt-6 font-heading text-lg font-bold text-[#FF7700]">{pkg.pricing}</p>
               <a
-                href="#schools-contact"
+                href="/contact-us/"
                 class="mt-4 inline-flex font-heading text-sm font-bold text-white transition hover:text-[#FF7700]"
                 data-track="schools_cta_click"
               >
@@ -207,7 +208,7 @@ const packages = [
       </p>
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <a
-          href="#schools-contact"
+          href="/contact-us/"
           class="inline-flex items-center justify-center rounded-full border border-[#FF7700] bg-[#FF7700] px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-[#e55f00] hover:bg-[#e55f00]"
           data-track="schools_cta_click"
         >
@@ -223,18 +224,6 @@ const packages = [
           Download the one-pager (PDF)
         </a>
       </div>
-    </div>
-  </section>
-
-  <section
-    id="schools-contact"
-    class="scroll-mt-24 bg-white px-6 py-12 sm:px-8 md:py-20 lg:px-12"
-    no-intersect
-    aria-labelledby="contact-heading"
-  >
-    <div class="mx-auto max-w-xl">
-      <h2 id="contact-heading" class="sr-only">Contact form</h2>
-      <SchoolsContactForm />
     </div>
   </section>
 </Layout>
