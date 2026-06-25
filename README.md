@@ -264,13 +264,29 @@ prefer.
 #### Deploy to Hostinger (production)
 
 WorkSmart-AI production runs on Hostinger (static files from `dist/`). After
-`npm run build`, upload the **entire** `dist` folder — especially `dist/_astro/`.
+`npm run build`, deploy the **entire** `dist` folder — especially `dist/_astro/`.
 Partial uploads (HTML only) break the site when Astro changes hashed CSS names.
 
-1. Run `npm run build` (includes `verify:dist` — fails if HTML references missing CSS).
-2. Upload all of `dist/` to the site root (File Manager or FTP).
-3. Confirm a stylesheet from the homepage loads, e.g.
-   `https://worksmart-ai.co.uk/_astro/accessibility-statement.*.css` returns HTTP 200.
+**Automated (recommended):**
+
+1. Create a Hostinger API token at [hPanel → API](https://hpanel.hostinger.com/profile/api).
+2. Set `HOSTINGER_API_TOKEN` in your environment (or GitHub repo secret for CI).
+3. Run `npm run deploy:hostinger` — builds, zips `dist/`, uploads and deploys via the Hostinger API.
+
+CI: push to `main` runs `.github/workflows/hostinger-deploy.yaml` when
+`HOSTINGER_API_TOKEN`, `PUBLIC_SUPABASE_URL`, and `PUBLIC_SUPABASE_ANON_KEY` secrets are set.
+
+**Cursor + MCP:** the `user-hostinger-api` MCP server can deploy with
+`hosting_deployStaticWebsite` after `npm run deploy:prepare`. See `.cursor/rules/hostinger.mdc`.
+
+**Manual hPanel:** File Manager or FTP — upload all of `dist/` to the site root.
+
+**Why you had to click Deploy:** Hostinger Git integration defaults to manual redeploy.
+Enable **Auto Deployment** in hPanel → Advanced → Git and add the GitHub webhook, or use
+the API/CI flow above (builds Astro locally — Git pull alone does not run `astro build`).
+
+Verify after deploy: a stylesheet from the homepage loads, e.g.
+`https://worksmart-ai.co.uk/_astro/accessibility-statement.*.css` returns HTTP 200.
 
 #### Deploy to Netlify
 

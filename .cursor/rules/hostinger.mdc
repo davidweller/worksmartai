@@ -1,0 +1,56 @@
+---
+description: Hostinger production hosting and MCP deploy workflow for worksmart-ai.co.uk
+globs: scripts/deploy-hostinger-static.mjs,scripts/prepare-hostinger-static-archive.mjs,.github/workflows/hostinger-deploy.yaml
+alwaysApply: false
+---
+
+# Hostinger production (worksmart-ai.co.uk)
+
+## Account facts (from API)
+
+| Field | Value |
+|-------|-------|
+| Domain | `worksmart-ai.co.uk` |
+| Username | `u334398320` |
+| Document root | `/home/u334398320/domains/worksmart-ai.co.uk/public_html` |
+| Hosting type | Standard static web hosting (not Node.js Web App) |
+| GitHub repo | `davidweller/worksmartai` (`main`) |
+
+Site is **Astro static** (`output: 'static'`). Production serves pre-built files from `dist/` at the domain root (`/_astro/…`).
+
+## MCP server
+
+Use the `user-hostinger-api` MCP server (Hostinger API token in Cursor MCP config).
+
+### Deploy (preferred)
+
+1. `npm run deploy:prepare` — builds and zips `dist/` to `.hostinger-deploy/worksmart_YYYYMMDD_HHMMSS.zip`
+2. Call **`hosting_deployStaticWebsite`** with:
+   - `domain`: `worksmart-ai.co.uk`
+   - `archivePath`: path to the zip (contents = `dist/` root, not a `dist/` folder)
+   - `removeArchive`: `true` optional
+
+Do **not** use `hosting_deployJsApplication` — this project has no server runtime; build locally or in CI, then deploy static output.
+
+### Status / inventory
+
+- **`hosting_listWebsitesV1`** — filter `domain: worksmart-ai.co.uk`
+- **`hosting_listJsDeployments`** — empty for this site (confirms not on Node.js hosting)
+
+## Why manual hPanel "Deploy" was required
+
+Hostinger does **not** auto-publish on git push unless configured:
+
+1. **Git integration (Advanced → Git)** — "Auto Deployment" must be enabled **and** a GitHub webhook added. Default is manual **Redeploy**.
+2. **Static/API deploy** — uploading an archive triggers a deploy job; each new upload needs a deploy call (use MCP or `npm run deploy:hostinger`).
+3. **This project** — built `dist/` files must land in `public_html` root. Pushing source to GitHub does not run `astro build` on standard hosting.
+
+## CI alternative
+
+`.github/workflows/hostinger-deploy.yaml` deploys on push to `main` when `HOSTINGER_API_TOKEN` and Supabase public secrets are set in GitHub.
+
+## Post-deploy smoke test
+
+- Homepage loads at `https://worksmart-ai.co.uk/`
+- A stylesheet under `/_astro/*.css` returns HTTP 200
+- Academy login works (Supabase env baked in at build time)

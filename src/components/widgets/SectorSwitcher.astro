@@ -1,0 +1,41 @@
+---
+import { inferSectorFromPath, type SiteSector } from '~/navigation';
+
+export interface Props {
+  sector?: SiteSector;
+}
+
+const { sector: sectorProp } = Astro.props;
+const pathname = Astro.url.pathname;
+const sector = sectorProp ?? inferSectorFromPath(pathname);
+
+const heActive = sector === 'he';
+const schoolsActive = sector === 'schools';
+---
+
+<nav
+  class="flex items-center gap-1 rounded-full border border-default bg-card/80 px-1 py-0.5 text-xs font-heading font-semibold"
+  aria-label="Sector switcher"
+>
+  <a
+    href="/higher-education/"
+    class:list={[
+      'rounded-full px-2.5 py-1 transition',
+      heActive ? 'bg-[#015887] text-white' : 'text-muted hover:text-heading',
+    ]}
+    aria-current={heActive ? 'page' : undefined}
+  >
+    Higher Education
+  </a>
+  <span class="text-muted/50" aria-hidden="true">|</span>
+  <a
+    href="/schools/"
+    class:list={[
+      'rounded-full px-2.5 py-1 transition',
+      schoolsActive ? 'bg-[#015887] text-white' : 'text-muted hover:text-heading',
+    ]}
+    aria-current={schoolsActive ? 'page' : undefined}
+  >
+    Schools
+  </a>
+</nav>

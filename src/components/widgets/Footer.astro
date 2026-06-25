@@ -2,7 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import logoMark from '~/assets/images/New Logo.png';
 
-import type { FooterColumn, FooterLink } from '~/navigation';
+import type { FooterColumn, FooterLink, SiteSector } from '~/navigation';
 
 export interface Props {
   columns: FooterColumn[];
@@ -10,14 +10,24 @@ export interface Props {
   contactEmail: string;
   linkedInUrl: string;
   healthCheckHref: string;
+  schoolsContactHref: string;
+  sector?: SiteSector;
 }
 
-const { columns, legalLinks, contactEmail, linkedInUrl, healthCheckHref } = Astro.props;
+const {
+  columns,
+  legalLinks,
+  contactEmail,
+  linkedInUrl,
+  healthCheckHref,
+  schoolsContactHref,
+  sector = 'neutral',
+} = Astro.props;
 ---
 
 <footer class="bg-[#012B42] px-6 py-12 text-white sm:px-8 lg:px-12 not-prose" no-intersect>
   <div class="mx-auto max-w-7xl">
-    <div class="grid gap-10 lg:grid-cols-[1fr_1fr_1fr_1.1fr]">
+    <div class="grid gap-10 lg:grid-cols-2 xl:grid-cols-5">
       {
         columns.map((column) => (
           <nav aria-label={column.title}>
@@ -55,12 +65,38 @@ const { columns, legalLinks, contactEmail, linkedInUrl, healthCheckHref } = Astr
             LinkedIn
           </a>
         </div>
-        <a
-          href={healthCheckHref}
-          class="mt-6 inline-flex items-center justify-center rounded-full border border-[#FF7700] bg-[#FF7700] px-5 py-2.5 font-heading text-sm font-bold text-white transition hover:border-[#e55f00] hover:bg-[#e55f00]"
-        >
-          Book Your AI Capability Check
-        </a>
+        {
+          sector === 'schools' ? (
+            <a
+              href={schoolsContactHref}
+              class="mt-6 inline-flex items-center justify-center rounded-full border border-[#FF7700] bg-[#FF7700] px-5 py-2.5 font-heading text-sm font-bold text-white transition hover:border-[#e55f00] hover:bg-[#e55f00]"
+            >
+              Book a 20-minute call
+            </a>
+          ) : sector === 'he' ? (
+            <a
+              href={healthCheckHref}
+              class="mt-6 inline-flex items-center justify-center rounded-full border border-[#FF7700] bg-[#FF7700] px-5 py-2.5 font-heading text-sm font-bold text-white transition hover:border-[#e55f00] hover:bg-[#e55f00]"
+            >
+              Book Your AI Capability Check
+            </a>
+          ) : (
+            <div class="mt-6 flex flex-col gap-3">
+              <a
+                href={healthCheckHref}
+                class="inline-flex items-center justify-center rounded-full border border-[#FF7700] bg-[#FF7700] px-5 py-2.5 font-heading text-sm font-bold text-white transition hover:border-[#e55f00] hover:bg-[#e55f00]"
+              >
+                HE: AI Capability Check
+              </a>
+              <a
+                href={schoolsContactHref}
+                class="inline-flex items-center justify-center rounded-full border border-white/30 bg-transparent px-5 py-2.5 font-heading text-sm font-bold text-white transition hover:border-white hover:bg-white/10"
+              >
+                Schools: Book a call
+              </a>
+            </div>
+          )
+        }
       </div>
     </div>
 

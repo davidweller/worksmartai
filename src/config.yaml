@@ -11,7 +11,7 @@ metadata:
   title:
     default: WorkSmart-AI
     template: '%s'
-  description: 'WorkSmart-AI helps higher education teams build practical AI skills, confidence and measurable productivity gains through training and consultancy.'
+  description: 'WorkSmart-AI helps education teams build practical AI skills, confidence and measurable outcomes - for universities, colleges, schools and trusts.'
   robots:
     index: true
     follow: true

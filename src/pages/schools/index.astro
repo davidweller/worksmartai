@@ -1,0 +1,246 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { Icon } from 'astro-icon/components';
+import SchoolsContactForm from '~/components/schools/SchoolsContactForm.astro';
+
+const metadata = {
+  title: 'AI training for schools and teachers | WorkSmart-AI',
+  description:
+    'Practical AI training for schools and trusts. Help your teachers buy back hours every week with safe, GDPR-aware workflows for planning, marking, and parent communication.',
+  canonical: '/schools/',
+};
+
+const schoolsPdfPath = '/downloads/worksmart-ai-schools.pdf';
+
+const outcomes = [
+  {
+    title: 'Hours back every week',
+    body: 'AI handles the first draft of lesson plans, differentiated resources, quizzes, and parent emails, so staff spend their time on the work only they can do.',
+    icon: 'tabler:clock-hour-4',
+  },
+  {
+    title: 'Confidence, not anxiety',
+    body: 'We start with the worry that sits underneath AI in every staffroom, and replace it with practical, repeatable skills.',
+    icon: 'tabler:heart-handshake',
+  },
+  {
+    title: 'Safe by default',
+    body: 'Staff leave knowing exactly what is and is not safe to put into an AI tool, using a simple decision matrix they can apply in seconds.',
+    icon: 'tabler:shield-check',
+  },
+];
+
+const trustItems = [
+  {
+    title: 'Data and GDPR',
+    body: 'We teach staff exactly what never goes into a public AI tool: no pupil names, no SEND data, no safeguarding details. Our Green/Amber/Red decision matrix makes the line unmissable.',
+  },
+  {
+    title: 'Academic integrity',
+    body: 'How to design AI-resistant assessment and recognise AI-generated work, rather than pretending pupils are not already using these tools.',
+  },
+  {
+    title: 'Age-appropriate use',
+    body: "How staff can guide pupils to use AI safely, within your school's policy rather than around it.",
+  },
+];
+
+const packages = [
+  {
+    title: 'Twilight session',
+    format: '1-2 hours, after school',
+    outcome: 'Their first confident, safe AI workflows for lesson planning and admin',
+    pricing: 'From £300',
+    pricingNote: null,
+  },
+  {
+    title: 'INSET workshop',
+    format: 'Half-day or full-day',
+    outcome: 'Hands-on building: resources, quizzes, and differentiated plans they make themselves',
+    pricing: 'From £800',
+    pricingNote: null,
+  },
+  {
+    title: 'Leadership briefing',
+    format: '1 hour, SLT and governors',
+    outcome: 'A clear, safe school-wide AI position',
+    pricing: 'Book a call for pricing',
+    pricingNote: null,
+  },
+];
+---
+
+<Layout metadata={metadata} sector="schools">
+  <section class="relative overflow-hidden bg-[#015887] px-6 py-12 sm:px-8 md:py-20 lg:px-12" no-intersect>
+    <div class="relative mx-auto max-w-4xl text-center lg:text-left">
+      <h1 class="font-heading text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+        Your teachers are drowning in workload. AI can buy back hours every week, if they know how to use it safely.
+      </h1>
+      <p class="mt-6 max-w-2xl font-sans text-lg leading-[1.7] text-white/85">
+        Practical AI training for schools and trusts, built around the realities of teaching: lesson planning,
+        differentiation, marking, and parent communication. Safe, GDPR-aware, and grounded in classroom practice.
+      </p>
+      <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
+        <a
+          href="#schools-contact"
+          class="inline-flex items-center justify-center rounded-full border border-[#FF7700] bg-[#FF7700] px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-[#e55f00] hover:bg-[#e55f00]"
+          data-track="schools_cta_click"
+        >
+          Book a 20-minute call
+        </a>
+        <a
+          href={schoolsPdfPath}
+          download
+          class="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 bg-transparent px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-white hover:bg-white/10"
+          data-track="schools_onepager_download"
+        >
+          <Icon name="tabler:download" class="h-5 w-5" aria-hidden="true" />
+          Download the schools one-pager (PDF)
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="outcomes"
+    class="scroll-mt-24 bg-[#F8F8F8] px-6 py-12 sm:px-8 md:py-20 lg:px-12"
+    no-intersect
+    aria-labelledby="outcomes-heading"
+  >
+    <div class="mx-auto max-w-6xl">
+      <h2 id="outcomes-heading" class="text-center font-heading text-3xl font-bold text-[#015887] sm:text-4xl">
+        What your staff gain
+      </h2>
+      <div class="mt-12 grid gap-5 md:grid-cols-3">
+        {
+          outcomes.map((item) => (
+            <article class="rounded-xl border border-[#E0E0E0] bg-white p-6 shadow-[0_6px_28px_-18px_rgba(1,88,135,0.25)]">
+              <span class="flex h-12 w-12 items-center justify-center rounded-lg bg-[#E6F1FB] text-[#015887]">
+                <Icon name={item.icon} class="h-6 w-6" aria-hidden="true" />
+              </span>
+              <h3 class="mt-5 font-heading text-xl font-bold text-[#015887]">{item.title}</h3>
+              <p class="mt-3 font-sans text-sm leading-[1.65] text-[#1B0101]">{item.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="trust-safety"
+    class="scroll-mt-24 bg-white px-6 py-12 sm:px-8 md:py-20 lg:px-12"
+    no-intersect
+    aria-labelledby="trust-heading"
+  >
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <h2 id="trust-heading" class="font-heading text-3xl font-bold text-[#015887] sm:text-4xl">Trust and safety</h2>
+        <p class="mt-4 font-sans text-base leading-[1.7] text-[#1B0101]">
+          Schools are right to be cautious. Our training answers the hard questions before they&rsquo;re asked.
+        </p>
+      </div>
+      <div class="mt-12 grid gap-5 md:grid-cols-3">
+        {
+          trustItems.map((item) => (
+            <article class="rounded-xl border border-[#E0E0E0] bg-[#F8F8F8] p-6">
+              <h3 class="font-heading text-lg font-bold text-[#015887]">{item.title}</h3>
+              <p class="mt-3 font-sans text-sm leading-[1.65] text-[#1B0101]">{item.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="packages"
+    class="scroll-mt-24 bg-[#015887] px-6 py-12 sm:px-8 md:py-20 lg:px-12"
+    no-intersect
+    aria-labelledby="packages-heading"
+  >
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]">How it works</p>
+        <h2 id="packages-heading" class="mt-3 font-heading text-3xl font-bold text-white sm:text-4xl">Packages</h2>
+      </div>
+      <div class="mt-12 grid gap-5 md:grid-cols-3">
+        {
+          packages.map((pkg) => (
+            <article class="flex h-full flex-col rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+              <h3 class="font-heading text-xl font-bold text-white">{pkg.title}</h3>
+              <p class="mt-2 font-sans text-sm text-[#86BFE2]">{pkg.format}</p>
+              <p class="mt-4 flex-1 font-sans text-sm leading-[1.65] text-white/85">{pkg.outcome}</p>
+              <p class="mt-6 font-heading text-lg font-bold text-[#FF7700]">{pkg.pricing}</p>
+              <a
+                href="#schools-contact"
+                class="mt-4 inline-flex font-heading text-sm font-bold text-white transition hover:text-[#FF7700]"
+                data-track="schools_cta_click"
+              >
+                Book a call <span aria-hidden="true">&rarr;</span>
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#F8F8F8] px-6 py-12 sm:px-8 md:py-20 lg:px-12" no-intersect aria-labelledby="who-heading">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 id="who-heading" class="font-heading text-3xl font-bold text-[#015887] sm:text-4xl">Who we are</h2>
+      <p class="mt-6 font-sans text-base leading-[1.7] text-[#1B0101]">
+        Built by educators who train teachers. We&rsquo;ve spent years helping teaching staff build new skills, and
+        we&rsquo;ve translated structured AI capability into something that works for the realities of the classroom. We
+        don&rsquo;t sell software. We build capability that sticks.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#015887] px-6 py-12 sm:px-8 md:py-20 lg:px-12" no-intersect aria-labelledby="closing-cta-heading">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 id="closing-cta-heading" class="font-heading text-3xl font-bold text-white sm:text-4xl">
+        Want to see what this looks like for your school or trust?
+      </h2>
+      <p class="mt-4 font-sans text-base leading-[1.7] text-white/75">
+        Book a short call, or download the one-pager to share with your SLT.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a
+          href="#schools-contact"
+          class="inline-flex items-center justify-center rounded-full border border-[#FF7700] bg-[#FF7700] px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-[#e55f00] hover:bg-[#e55f00]"
+          data-track="schools_cta_click"
+        >
+          Book a 20-minute call
+        </a>
+        <a
+          href={schoolsPdfPath}
+          download
+          class="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 bg-transparent px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-white hover:bg-white/10"
+          data-track="schools_onepager_download"
+        >
+          <Icon name="tabler:download" class="h-5 w-5" aria-hidden="true" />
+          Download the one-pager (PDF)
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="schools-contact"
+    class="scroll-mt-24 bg-white px-6 py-12 sm:px-8 md:py-20 lg:px-12"
+    no-intersect
+    aria-labelledby="contact-heading"
+  >
+    <div class="mx-auto max-w-xl">
+      <h2 id="contact-heading" class="sr-only">Contact form</h2>
+      <SchoolsContactForm />
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import { initTrackClicks } from '~/lib/analytics/track-clicks';
+
+  initTrackClicks();
+</script>

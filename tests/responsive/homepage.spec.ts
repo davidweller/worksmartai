@@ -23,12 +23,19 @@ test.describe('homepage responsive layout', () => {
       await page.setViewportSize({ width: viewport.width, height: viewport.height });
       await page.goto('/', { waitUntil: 'load' });
 
-      await expect(page.getByRole('heading', { name: /AI Capability Built for Higher Education/i })).toBeVisible();
+      await expect(page.getByRole('heading', { name: /AI skills training, designed for education/i })).toBeVisible();
 
-      const primaryCta = page.getByRole('link', { name: 'Book Your AI Capability Check' }).first();
-      await expect(primaryCta).toBeVisible();
-      await expect(primaryCta).toHaveAttribute('href', '/health-check/');
-      await primaryCta.click({ trial: true });
+      const heDoor = page.getByRole('link', { name: 'For Higher Education' }).first();
+      await expect(heDoor).toBeVisible();
+      await expect(heDoor).toHaveAttribute('href', '/higher-education/');
+
+      const schoolsDoor = page.getByRole('link', { name: 'For Schools' }).first();
+      await expect(schoolsDoor).toBeVisible();
+      await expect(schoolsDoor).toHaveAttribute('href', '/schools/');
+
+      await expect(page.getByRole('heading', { name: /A structured approach, not a one-off workshop/i })).toBeVisible();
+      await expect(page.getByRole('heading', { name: /Choose your sector/i })).toBeVisible();
+      await expect(page.getByRole('heading', { name: /Not sure where your staff are starting from/i })).toBeVisible();
 
       const overflow = await page.evaluate(() => ({
         scrollWidth: document.documentElement.scrollWidth,
@@ -62,7 +69,7 @@ test.describe('homepage responsive layout', () => {
     await page.goto('/', { waitUntil: 'load' });
 
     const header = page.locator('#header');
-    const heroHeading = page.getByRole('heading', { name: /AI Capability Built for Higher Education/i });
+    const heroHeading = page.getByRole('heading', { name: /AI skills training, designed for education/i });
 
     await expect(header).toBeVisible();
     await expect(heroHeading).toBeVisible();

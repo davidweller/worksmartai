@@ -21,32 +21,41 @@ export interface FooterColumn {
   links: FooterLink[];
 }
 
+export type SiteSector = 'neutral' | 'he' | 'schools';
+
+const heServiceLinks: NavLink[] = [
+  { text: 'Workforce Capability', href: '/services/staff-training/' },
+  { text: 'Student Programmes', href: '/services/student-training/' },
+  { text: 'Leadership Consulting', href: '/services/senior-consulting/' },
+  { text: 'Academic Coaching', href: '/services/academic-coaching/' },
+  { text: 'Events and Away Days', href: '/services/talks-workshops/' },
+  { text: 'AI Capability Check', href: '/health-check/' },
+  { text: 'AI Use Cases Guide', href: '/higher-education-guide/' },
+];
+
+const schoolsLinks: NavLink[] = [
+  { text: 'What staff gain', href: '/schools/#outcomes' },
+  { text: 'Trust and safety', href: '/schools/#trust-safety' },
+  { text: 'Packages', href: '/schools/#packages' },
+  { text: 'Contact', href: '/schools/#schools-contact' },
+];
+
 export const headerData: {
   links: NavMenuLink[];
   actions: CallToAction[];
 } = {
   links: [
-    { text: 'Home', href: '/' },
     {
-      text: 'Services',
-      href: '/services/',
-      links: [
-        { text: 'Workforce Capability', href: '/services/staff-training/' },
-        { text: 'Student Programmes', href: '/services/student-training/' },
-        { text: 'Leadership Consulting', href: '/services/senior-consulting/' },
-        { text: 'Academic Coaching', href: '/services/academic-coaching/' },
-        { text: 'Events and Away Days', href: '/services/talks-workshops/' },
-      ],
+      text: 'Higher Education',
+      href: '/higher-education/',
+      links: heServiceLinks,
     },
     {
-      text: 'Resources',
-      links: [
-        { text: 'AI Savings Calculator', href: '/roi-calculator/' },
-        { text: 'AI Use Cases Guide', href: '/higher-education-guide/' },
-      ],
+      text: 'Schools',
+      href: '/schools/',
+      links: schoolsLinks,
     },
     { text: 'About', href: '/about-us/' },
-    { text: 'News', href: '/news/' },
     { text: 'Contact', href: '/contact-us/' },
   ],
   actions: [{ text: 'Login', href: '/login/', variant: 'primary' }],
@@ -54,30 +63,33 @@ export const headerData: {
 
 export const footerColumns: FooterColumn[] = [
   {
-    title: 'Services',
+    title: 'Higher Education',
     links: [
-      { text: 'Workforce Capability', href: '/services/staff-training/' },
-      { text: 'Student Programmes', href: '/services/student-training/' },
-      { text: 'Leadership Consulting', href: '/services/senior-consulting/' },
-      { text: 'Academic Coaching', href: '/services/academic-coaching/' },
-      { text: 'Events and Away Days', href: '/services/talks-workshops/' },
-      { text: 'The AI Partnership', href: '#ai-partnership' },
+      { text: 'HE overview', href: '/higher-education/' },
+      ...heServiceLinks.slice(0, 5),
+      { text: 'AI Savings Calculator', href: '/roi-calculator/' },
+    ],
+  },
+  {
+    title: 'Schools',
+    links: [
+      { text: 'Schools overview', href: '/schools/' },
+      { text: 'Packages', href: '/schools/#packages' },
+      { text: 'Trust and safety', href: '/schools/#trust-safety' },
+      { text: 'Book a call', href: '/schools/#schools-contact' },
     ],
   },
   {
     title: 'Resources',
     links: [
-      { text: 'AI Savings Calculator', href: '/roi-calculator/' },
-      { text: 'AI Use Cases Guide', href: '/higher-education-guide/' },
-      { text: 'How our Calculator Works', href: '/how-our-calculator-works/' },
       { text: 'News', href: '/news/' },
+      { text: 'How our Calculator Works', href: '/how-our-calculator-works/' },
+      { text: 'About Us', href: '/about-us/' },
     ],
   },
   {
     title: 'About',
     links: [
-      { text: 'About Us', href: '/about-us/' },
-      { text: 'Meet the Team', href: '/about-us/' },
       { text: 'Contact', href: '/contact-us/' },
       { text: 'Login', href: '/login/' },
     ],
@@ -101,4 +113,22 @@ export const footerData = {
   contactEmail: 'hello@worksmart-ai.co.uk',
   linkedInUrl: 'https://www.linkedin.com/company/worksmart-ai-ltd',
   healthCheckHref: '/health-check/',
+  schoolsContactHref: '/schools/#schools-contact',
 };
+
+/** Infer sector from URL path for layout defaults. */
+export function inferSectorFromPath(pathname: string): SiteSector {
+  const path = pathname.replace(/\/$/, '') || '/';
+  if (path === '/' || path === '') return 'neutral';
+  if (path.startsWith('/schools')) return 'schools';
+  if (
+    path.startsWith('/higher-education') ||
+    path.startsWith('/services') ||
+    path.startsWith('/health-check') ||
+    path.startsWith('/higher-education-guide') ||
+    path.startsWith('/roi-calculator')
+  ) {
+    return 'he';
+  }
+  return 'neutral';
+}
