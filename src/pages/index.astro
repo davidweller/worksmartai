@@ -58,7 +58,7 @@ const sectorDoors = [
   <section class="bg-[#015887] px-6 py-16 text-white sm:px-8 md:py-20 lg:px-12" no-intersect>
     <div class="mx-auto max-w-7xl">
       <div class="grid items-center gap-8 md:grid-cols-12">
-        <div class="text-center md:col-span-7 md:text-left">
+        <div class="text-center md:col-span-6 md:text-left">
           <h1 class="font-heading text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
             AI skills training, designed for education.
           </h1>
@@ -85,15 +85,20 @@ const sectorDoors = [
           </div>
         </div>
 
-        <div class="hidden md:col-span-5 md:block" aria-hidden="true">
-          <svg viewBox="0 0 400 320" class="h-auto w-full" xmlns="http://www.w3.org/2000/svg">
-            <rect x="40" y="240" width="44" height="48" rx="6" fill="#86BFE2" opacity="0.55"></rect>
-            <rect x="98" y="200" width="44" height="88" rx="6" fill="#86BFE2" opacity="0.7"></rect>
-            <rect x="156" y="160" width="44" height="128" rx="6" fill="#FFFFFF" opacity="0.85"></rect>
-            <rect x="214" y="120" width="44" height="168" rx="6" fill="#FFFFFF"></rect>
-            <rect x="272" y="80" width="44" height="208" rx="6" fill="#FF7700" opacity="0.85"></rect>
-            <rect x="330" y="40" width="44" height="248" rx="6" fill="#FF7700"></rect>
-          </svg>
+        <div class="md:col-span-6">
+          <div class="overflow-hidden rounded-2xl shadow-lg ring-1 ring-white/20">
+            <video
+              controls
+              playsinline
+              preload="metadata"
+              class="aspect-video w-full bg-black"
+              title="WorkSmart AI introduction video"
+            >
+              <source src="/videos/worksmart_intro.webm" type="video/webm" />
+              <source src="/videos/worksmart_intro.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
       </div>
     </div>
