@@ -6,8 +6,8 @@ const responsiveViewports = [
   { name: 'tailwind-sm', width: 640, height: 900 },
   { name: 'tablet', width: 768, height: 1024 },
   { name: 'tailwind-lg', width: 1024, height: 768 },
-  { name: 'before-header-switch', width: 1179, height: 900 },
-  { name: 'at-header-switch', width: 1180, height: 900 },
+  { name: 'before-header-switch', width: 1279, height: 900 },
+  { name: 'at-header-switch', width: 1280, height: 900 },
   { name: 'desktop', width: 1280, height: 900 },
 ];
 
@@ -48,16 +48,16 @@ test.describe('homepage responsive layout', () => {
     });
   }
 
-  test('uses the mobile header below the custom 1180px breakpoint', async ({ page }) => {
-    await page.setViewportSize({ width: 1179, height: 900 });
+  test('uses the mobile header below the custom 1280px breakpoint', async ({ page }) => {
+    await page.setViewportSize({ width: 1279, height: 900 });
     await page.goto('/', { waitUntil: 'load' });
 
     await expect(page.getByRole('button', { name: 'Toggle Menu' })).toBeVisible();
     await expect(page.getByRole('navigation', { name: 'Main navigation' })).toBeHidden();
   });
 
-  test('uses the desktop header at the custom 1180px breakpoint', async ({ page }) => {
-    await page.setViewportSize({ width: 1180, height: 900 });
+  test('uses the desktop header at the custom 1280px breakpoint', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto('/', { waitUntil: 'load' });
 
     await expect(page.getByRole('button', { name: 'Toggle Menu' })).toBeHidden();

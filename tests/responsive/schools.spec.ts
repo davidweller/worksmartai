@@ -14,7 +14,7 @@ test.describe('schools page responsive layout', () => {
 
       await expect(
         page.getByRole('heading', {
-          name: /Give your teachers their time back/i,
+          name: /Supporting schools to benefit from AI/i,
         })
       ).toBeVisible();
 

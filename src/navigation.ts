@@ -45,6 +45,7 @@ export const headerData: {
   actions: CallToAction[];
 } = {
   links: [
+    { text: 'Home', href: '/' },
     {
       text: 'Higher Education',
       href: '/higher-education/',

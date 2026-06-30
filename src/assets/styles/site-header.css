@@ -16,15 +16,25 @@
   max-width: none;
 }
 
-@media (min-width: 1180px) {
+@media (min-width: 1280px) {
   #header > div:nth-child(2) {
-    grid-template-columns: minmax(145px, 0.6fr) auto minmax(155px, 0.6fr) !important;
+    grid-template-columns: minmax(145px, auto) minmax(0, 1fr) minmax(300px, auto) !important;
     padding-left: 1rem;
     padding-right: 1rem;
   }
+
+  #header nav[aria-label='Main navigation'] {
+    justify-self: center;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  #header > div:nth-child(2) > div:last-child {
+    justify-self: end;
+  }
 }
 
-@media (max-width: 1179px) {
+@media (max-width: 1279px) {
   #header > div:nth-child(2) {
     display: flex !important;
     align-items: center;
