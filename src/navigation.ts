@@ -57,6 +57,7 @@ export const headerData: {
       links: schoolsLinks,
     },
     { text: 'About', href: '/about-us/' },
+    { text: 'News', href: '/news/' },
     { text: 'Contact', href: '/contact-us/' },
   ],
   actions: [{ text: 'Login', href: '/login/', variant: 'primary' }],
