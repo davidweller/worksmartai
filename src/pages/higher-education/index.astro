@@ -27,7 +27,7 @@ const personas = [
 
 const serviceItems = [
   {
-    title: 'Workforce Capability',
+    title: 'Staff Training',
     description:
       'Your professional services and academic staff using AI in real work, not just sitting through a session. Built role by role, mapped to tasks they already do, with time savings tracked from day one.',
     icon: 'tabler:users',
@@ -39,6 +39,13 @@ const serviceItems = [
       'Students feel confident in understanding how to use AI responsibly in their studies and the wider world of work. Programmes support your academic integrity policy and employability strategy at the same time.',
     icon: 'tabler:school',
     href: '/services/student-training/',
+  },
+  {
+    title: 'Your Own AI Course',
+    description:
+      "Your institution's own AI course, in your branding, on your LMS, built around your AI policy. Ready in four weeks and priced at £4,995.",
+    icon: 'tabler:certificate',
+    href: '/services/your-own-ai-course/',
   },
   {
     title: 'Leadership Consulting',
@@ -173,7 +180,7 @@ const maturityStages = [
           academic, or give your leadership team a confident strategic position, we can design something for you.
         </p>
       </div>
-      <div class="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-5">
+      <div class="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {
           serviceItems.map((service) => (
             <a

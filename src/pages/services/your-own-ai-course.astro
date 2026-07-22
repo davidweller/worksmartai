@@ -1,0 +1,396 @@
+---
+import { Icon } from 'astro-icon/components';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Your Own AI Course | White-labelled AI training for universities | WorkSmart-AI',
+  description:
+    "Your institution's own AI course, in your branding, built around your AI policy and delivered to your LMS in four weeks. £4,995, unlimited staff, no tender required.",
+  canonical: '/services/your-own-ai-course/',
+};
+
+const builtAround = [
+  'your visual identity, including colours, fonts, and logo',
+  'your AI policy, acceptable use guidance, and data protection position',
+  'the tools your staff are licensed to use, whether that is Copilot, Gemini, ChatGPT, or a combination',
+  'the roles and workflows that matter most to you',
+];
+
+const included = [
+  'Discovery session and policy review',
+  'One asynchronous course, 45-60 minutes',
+  'Full white-labelling to your visual identity',
+  'AI Institutional policy and guidance documents incorporated',
+  'Interactive knowledge checks throughout',
+  'Accessibility review',
+  'SCORM or xAPI package, ready for your LMS',
+  'Two rounds of amendments',
+  '12-month licence, unlimited internal staff users',
+];
+
+const outcomes = [
+  'Every member of staff reached, not only those who can attend a workshop',
+  'Your AI policy read and understood rather than filed and forgotten',
+  'A consistent institutional position on AI, stated in your own words',
+  'Evidence of completion for governance, audit, and inspection',
+  'A baseline that live training can then build on',
+];
+
+const addOns = [
+  { name: 'Additional white-labelled course', price: '£4,495' },
+  { name: 'Annual renewal, per course', price: '£4,995' },
+  { name: 'Custom welcome video from your leadership', price: '£750' },
+  { name: 'Department-specific scenario pack', price: '£950' },
+  { name: 'Quarterly policy update service, 12 months', price: '£1,950' },
+  { name: 'Live launch or onboarding session, online', price: '£850' },
+];
+
+const courses = [
+  {
+    name: 'AI Foundations and Responsible Use',
+    bestFor: 'All staff. The usual starting point, and the one most often tied to policy rollout.',
+  },
+  {
+    name: 'AI for Daily Workflows',
+    bestFor: 'All staff. Email, meetings, and written communications.',
+  },
+  {
+    name: 'AI for Summarising and Analysing',
+    bestFor: 'Professional services and research staff working with documents and data.',
+  },
+  {
+    name: 'Copilot Chat to Copilot 365',
+    bestFor: 'All staff moving from Copilot Chat into Microsoft 365 Copilot.',
+  },
+  {
+    name: 'Intermediate to Advanced Copilot',
+    bestFor: 'All staff building on Copilot foundations.',
+  },
+];
+
+const steps = [
+  {
+    title: 'Scoping call, 30 minutes.',
+    body: 'We establish what you need the course to do, which staff it is for, and where it will sit.',
+  },
+  {
+    title: 'You send us your materials.',
+    body: 'Brand assets, your AI policy, your data protection position, any acceptable use guidance, and a named person who can approve the drafts.',
+  },
+  {
+    title: 'We build, four weeks.',
+    body: 'The four-week clock starts when your materials arrive, not when the order is signed. You get two rounds of amendments inside that window.',
+  },
+  {
+    title: 'You launch.',
+    body: 'We hand over the SCORM or xAPI package. It goes into your LMS and it is yours to run.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Will it look like ours?',
+    a: 'Yes. Your colours, fonts, and logo throughout, with your policies named in the text. Staff should not be able to tell it came from outside the institution.',
+  },
+  {
+    q: 'Can we host it ourselves?',
+    a: 'Yes. You get a SCORM or xAPI package for your own LMS. Completion and progress data stays in your systems.',
+  },
+  {
+    q: 'Is there a cap on users?',
+    a: 'No. The licence covers every member of staff for the licence period, whether that is 200 people or 20,000.',
+  },
+  {
+    q: 'What if our policy changes?',
+    a: 'Minor policy updates are included in the annual renewal. If you expect frequent change, the quarterly policy update service keeps the course current through the year.',
+  },
+  {
+    q: 'Can we edit it ourselves?',
+    a: 'Not directly. Amendments come through us, which keeps the content accurate and the accessibility standard intact. Two rounds are included in the build, and further changes can be quoted.',
+  },
+  {
+    q: 'Do you charge VAT?',
+    a: 'No. WorkSmart-AI is not VAT registered, so the price you see is the price you are invoiced.',
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <div class="bg-section px-6 pt-8 sm:px-8 lg:px-12">
+    <div class="mx-auto max-w-6xl">
+      <a
+        href="/services/"
+        class="inline-flex items-center text-sm font-semibold text-link transition-colors hover:text-accent"
+      >
+        ← Back to Services
+      </a>
+    </div>
+  </div>
+
+  <section class="bg-brand px-6 py-16 sm:px-8 lg:px-12 lg:py-20" data-aos="fade-up">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-secondary sm:text-sm">Your Own AI Course</p>
+      <h1 class="font-heading text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+        Your institution's AI course, not ours
+      </h1>
+      <p class="mt-6 text-base leading-[var(--aw-leading-body,1.7)] text-white/90 sm:text-lg">
+        A complete asynchronous AI course in your branding, built around your own AI and data policies, delivered to
+        your LMS and licensed for every member of staff.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a
+          href="/contact/"
+          class="inline-flex min-w-[10rem] items-center justify-center rounded-full bg-accent px-8 py-3.5 font-semibold text-white transition-colors hover:bg-accent-hover"
+        >
+          Book a scoping call
+        </a>
+        <a
+          href="#whats-included"
+          class="inline-flex min-w-[10rem] items-center justify-center rounded-full border-2 border-white px-8 py-3.5 font-semibold text-white transition-colors hover:bg-white/10"
+        >
+          See what's included
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-b border-default bg-section px-6 py-10 sm:px-8 lg:px-12">
+    <div class="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-3">
+      <div class="rounded-xl border border-default bg-card p-6 text-center shadow-card">
+        <p class="font-heading text-3xl font-bold text-heading">45-60 mins</p>
+        <p class="mt-2 text-sm text-muted">Course length</p>
+      </div>
+      <div class="rounded-xl border border-default bg-card p-6 text-center shadow-card">
+        <p class="font-heading text-3xl font-bold text-heading">4 weeks</p>
+        <p class="mt-2 text-sm text-muted">From order to launch</p>
+      </div>
+      <div class="rounded-xl border border-default bg-card p-6 text-center shadow-card">
+        <p class="font-heading text-3xl font-bold text-heading">£4,995</p>
+        <p class="mt-2 text-sm text-muted">Fixed price, unlimited staff</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-section px-6 py-16 sm:px-8 lg:px-12 lg:py-20">
+    <div class="mx-auto max-w-6xl">
+      <div class="rounded-xl border border-default bg-card p-6 shadow-card md:p-10" data-aos="fade-up">
+        <h2 class="font-heading text-2xl font-bold text-heading sm:text-3xl">What this service covers</h2>
+        <div class="mt-6 space-y-5 text-default">
+          <p>
+            Most universities already have an AI policy. Far fewer have a way of getting it in front of staff in a form
+            anyone will sit through.
+          </p>
+          <p>
+            This service closes that gap. We build a single asynchronous course that carries your branding, references
+            your own policies by name, and uses examples drawn from the work your staff actually do. You receive it as a
+            SCORM or xAPI package, load it into your existing LMS, and it looks and behaves like something your
+            institution made.
+          </p>
+          <p>Your course is built around:</p>
+          <ul class="list-disc space-y-2 pl-6">
+            {builtAround.map((item) => <li>{item}</li>)}
+          </ul>
+          <p>
+            We are an HE-specialist training provider, not a course factory. The content that goes into your course is
+            the same content we teach live in universities, adapted for self-access and grounded in your institutional
+            context rather than a generic one.
+          </p>
+        </div>
+      </div>
+
+      <div id="whats-included" class="mt-8 grid scroll-mt-24 grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10">
+        <div class="rounded-xl border border-default bg-card p-6 shadow-card md:p-8" data-aos="fade-up">
+          <h3 class="font-heading text-xl font-bold text-heading">What's included</h3>
+          <ul class="mt-6 space-y-3">
+            {
+              included.map((item) => (
+                <li class="flex gap-3 text-default">
+                  <Icon name="tabler:check" class="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div
+          class="rounded-xl border border-default bg-card p-6 shadow-card md:p-8"
+          data-aos="fade-up"
+          data-aos-delay="50"
+        >
+          <h3 class="font-heading text-xl font-bold text-heading">Typical outcomes</h3>
+          <ul class="mt-6 space-y-3">
+            {
+              outcomes.map((item) => (
+                <li class="flex gap-3 text-default">
+                  <Icon name="tabler:check" class="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-10 rounded-xl border border-default bg-card p-6 shadow-card md:mt-14 md:p-10" data-aos="fade-up">
+        <h2 class="font-heading text-2xl font-bold text-heading sm:text-3xl">Pricing</h2>
+        <p class="mt-6 font-heading text-3xl font-bold text-heading sm:text-4xl">
+          £4,995. One course, unlimited staff, 12 months.
+        </p>
+        <div class="mt-6 space-y-5 text-default">
+          <p>No VAT is charged. WorkSmart-AI is not VAT registered, so £4,995 is the total you are invoiced.</p>
+          <p>
+            That price is deliberate. Most universities require a competitive tender above £5,000, which turns a
+            straightforward purchase into a process measured in months. At £4,995 the decision usually sits with the
+            department, the directorate, or the programme lead who wants the course, and can proceed on a single
+            purchase order.
+          </p>
+          <p>
+            Renewal is £4,995 a year, which includes policy updates and a content refresh. The licence renews
+            automatically unless you tell us otherwise 30 days before it ends.
+          </p>
+        </div>
+
+        <h3 class="mt-10 font-heading text-xl font-bold text-heading">Add to it later</h3>
+        <p class="mt-3 text-default">
+          Each of these is quoted and invoiced separately, so no single order breaches your threshold.
+        </p>
+
+        <div class="mt-6 overflow-x-auto rounded-lg border border-default">
+          <div class="min-w-[20rem]">
+            <div class="grid grid-cols-[minmax(0,1fr)_auto] gap-4 border-b border-default bg-brand/5 px-4 py-3">
+              <p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted">Add-on</p>
+              <p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted">Price</p>
+            </div>
+            <div class="divide-y divide-default/70 bg-card">
+              {
+                addOns.map((item) => (
+                  <div class="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-3">
+                    <p class="text-sm text-default sm:text-base">{item.name}</p>
+                    <p class="whitespace-nowrap text-sm font-semibold text-heading sm:text-base">{item.price}</p>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="mt-10 rounded-xl border-2 border-dashed border-primary/30 bg-card p-6 shadow-card md:mt-14 md:p-10"
+        data-aos="fade-up"
+      >
+        <h2 class="font-heading text-2xl font-bold text-heading sm:text-3xl">Courses you can white-label</h2>
+        <p class="mt-4 text-default">
+          Any of our HE workshop content can be built into your own course. The most commonly requested are:
+        </p>
+
+        <div class="mt-6 overflow-x-auto rounded-lg border border-default">
+          <div class="min-w-[24rem]">
+            <div
+              class="grid grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-4 border-b border-default bg-brand/5 px-4 py-3"
+            >
+              <p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted">Course</p>
+              <p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted">Best for</p>
+            </div>
+            <div class="divide-y divide-default/70 bg-card">
+              {
+                courses.map((course) => (
+                  <div class="grid grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-4 px-4 py-3">
+                    <p class="text-sm font-medium text-heading sm:text-base">{course.name}</p>
+                    <p class="text-sm text-default sm:text-base">{course.bestFor}</p>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+
+        <p class="mt-6 text-muted">
+          Institutions building a full programme usually start with AI Foundations and Responsible Use, then add a
+          second and third course across separate orders once completion data from the first is in hand.
+        </p>
+      </div>
+
+      <div class="mt-10 rounded-xl border border-default bg-card p-6 shadow-card md:mt-14 md:p-10" data-aos="fade-up">
+        <h2 class="font-heading text-2xl font-bold text-heading sm:text-3xl">How it works</h2>
+        <ol class="mt-8 space-y-6">
+          {
+            steps.map((step, i) => (
+              <li class="flex gap-4">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand font-heading text-sm font-bold text-white">
+                  {i + 1}
+                </span>
+                <div>
+                  <p class="font-heading text-lg font-bold text-heading">{step.title}</p>
+                  <p class="mt-1 text-default">{step.body}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+        <p class="mt-8 text-default">
+          We can deliver in three weeks without customisation, but we do not recommend it. The institutional
+          personalisation is what makes staff recognise the course as theirs rather than as another generic e-learning
+          module, and it is the difference between a course that gets completed and one that gets clicked through.
+        </p>
+      </div>
+
+      <div class="mt-10 rounded-xl border border-default bg-section p-6 md:mt-14 md:p-8" data-aos="fade-up">
+        <h2 class="font-heading text-lg font-bold text-heading sm:text-xl">Licence</h2>
+        <div class="mt-4 space-y-4 text-sm leading-relaxed text-muted">
+          <p>
+            You receive a non-exclusive, non-transferable licence to use the course internally with your employees for
+            the licence period. WorkSmart-AI retains ownership of the intellectual property, source files, and content.
+            The course cannot be distributed, modified, sold, sublicensed, or made available to third parties without
+            written permission.
+          </p>
+          <p>
+            The licence renews automatically for further 12-month periods at the current renewal rate, unless either
+            party gives 30 days' written notice.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-10 md:mt-14" data-aos="fade-up">
+        <h2 class="text-center font-heading text-2xl font-bold text-heading sm:text-3xl">Common questions</h2>
+        <div class="mx-auto mt-8 max-w-3xl space-y-3">
+          {
+            faqs.map((item) => (
+              <details class="group rounded-xl border border-default bg-card px-5 py-4 shadow-card transition open:shadow-card-elevated">
+                <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-heading text-base font-semibold text-heading">
+                  <span>{item.q}</span>
+                  <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-default text-muted transition group-open:rotate-180">
+                    <Icon name="tabler:chevron-down" class="h-4 w-4" aria-hidden="true" />
+                  </span>
+                </summary>
+                <p class="mt-3 border-t border-default pt-3 text-base leading-relaxed text-muted">{item.a}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+
+      <section class="mt-10 rounded-2xl bg-brand px-6 py-12 text-center sm:px-10 md:mt-14 md:py-16" data-aos="fade-up">
+        <h2 class="font-heading text-2xl font-bold text-white sm:text-3xl">Ready to get started?</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-white/90">
+          Book a free 30-minute scoping call and we will tell you honestly whether a white-labelled course is the right
+          route for your institution, or whether live training would serve you better.
+        </p>
+        <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a
+            href="/contact/"
+            class="inline-flex min-w-[10rem] items-center justify-center rounded-full bg-accent px-8 py-3.5 font-semibold text-white transition-colors hover:bg-accent-hover"
+          >
+            Book a call
+          </a>
+          <a
+            href="/services/"
+            class="inline-flex min-w-[10rem] items-center justify-center rounded-full border-2 border-white px-8 py-3.5 font-semibold text-white transition-colors hover:bg-white/10"
+          >
+            View all services
+          </a>
+        </div>
+      </section>
+    </div>
+  </section>
+</Layout>

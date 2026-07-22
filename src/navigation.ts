@@ -24,8 +24,9 @@ export interface FooterColumn {
 export type SiteSector = 'neutral' | 'he' | 'schools';
 
 const heServiceLinks: NavLink[] = [
-  { text: 'Workforce Capability', href: '/services/staff-training/' },
+  { text: 'Staff Training', href: '/services/staff-training/' },
   { text: 'Student Programmes', href: '/services/student-training/' },
+  { text: 'Your Own AI Course', href: '/services/your-own-ai-course/' },
   { text: 'Leadership Consulting', href: '/services/senior-consulting/' },
   { text: 'Academic Coaching', href: '/services/academic-coaching/' },
   { text: 'Events and Away Days', href: '/services/talks-workshops/' },
@@ -68,7 +69,7 @@ export const footerColumns: FooterColumn[] = [
     title: 'Higher Education',
     links: [
       { text: 'HE overview', href: '/higher-education/' },
-      ...heServiceLinks.slice(0, 5),
+      ...heServiceLinks.slice(0, 6),
       { text: 'AI Savings Calculator', href: '/roi-calculator/' },
     ],
   },
