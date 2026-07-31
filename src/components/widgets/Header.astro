@@ -192,3 +192,22 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     </div>
   </div>
 </header>
+
+<script>
+  import { academySupabase, getAcademyUserLabel, hasAcademySupabaseConfig } from '~/lib/academy';
+
+  const loginButton = document.getElementById('site-login-button');
+  if (loginButton instanceof HTMLAnchorElement && hasAcademySupabaseConfig && academySupabase) {
+    const { data, error } = await academySupabase.auth.getSession();
+    const user = !error ? data.session?.user : null;
+    if (user) {
+      const label = getAcademyUserLabel(user);
+      loginButton.textContent = label;
+      loginButton.href = '/academy/dashboard/';
+      loginButton.setAttribute('aria-label', 'Academy dashboard');
+      if (user.email) {
+        loginButton.title = user.email;
+      }
+    }
+  }
+</script>

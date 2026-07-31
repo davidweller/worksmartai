@@ -61,7 +61,7 @@ export const headerData: {
     { text: 'News', href: '/news/' },
     { text: 'Contact', href: '/contact-us/' },
   ],
-  actions: [{ text: 'Login', href: '/login/', variant: 'primary' }],
+  actions: [{ text: 'Login', href: '/login/', variant: 'primary', id: 'site-login-button' }],
 };
 
 export const footerColumns: FooterColumn[] = [
