@@ -34,28 +34,28 @@ const courseGroups = [
   {
     title: 'All-Staff Workshops',
     courses: [
-      { code: 'W1', name: 'AI Foundations & Responsible Use', level: 'Foundation' },
-      { code: 'W2', name: 'AI for Daily Workflows (Email, Meetings, and Comms)', level: 'Foundation' },
-      { code: 'W3', name: 'AI for Summarising and Analysing (Word & Excel)', level: 'Foundation' },
-      { code: 'W4', name: 'Building Custom AI Agents', level: 'Intermediate' },
-      { code: 'W11', name: 'Copilot Chat to 365 Copilot', level: 'Foundation' },
-      { code: 'W12', name: 'Intermediate to Advanced Copilot', level: 'Intermediate' },
+      { name: 'AI Foundations & Responsible Use', level: 'Foundation' },
+      { name: 'AI for Daily Workflows (Email, Meetings, and Comms)', level: 'Foundation' },
+      { name: 'AI for Summarising and Analysing (Word & Excel)', level: 'Foundation' },
+      { name: 'Building Custom AI Agents', level: 'Intermediate' },
+      { name: 'Copilot Chat to 365 Copilot', level: 'Foundation' },
+      { name: 'Intermediate to Advanced Copilot', level: 'Intermediate' },
     ],
   },
   {
     title: 'Academic Workshops',
     courses: [
-      { code: 'W5', name: 'AI for Academic Content Creation (AI Before Class)', level: 'Intermediate' },
-      { code: 'W6', name: 'The AI-Enabled Classroom: Pedagogy & Practice (AI During Class)', level: 'Intermediate' },
-      { code: 'W7', name: 'AI for Academic Assessments (AI after Class)', level: 'Intermediate' },
-      { code: 'W8', name: 'AI for Researchers', level: 'Foundation' },
+      { name: 'AI for Academic Content Creation (AI Before Class)', level: 'Intermediate' },
+      { name: 'The AI-Enabled Classroom: Pedagogy & Practice (AI During Class)', level: 'Intermediate' },
+      { name: 'AI for Academic Assessments (AI after Class)', level: 'Intermediate' },
+      { name: 'AI for Researchers', level: 'Foundation' },
     ],
   },
   {
     title: 'Professional Services Workshops',
     courses: [
-      { code: 'W9', name: 'AI for Process Improvement', level: 'Intermediate' },
-      { code: 'W10', name: 'AI for Comms and Engagement', level: 'Intermediate' },
+      { name: 'AI for Process Improvement', level: 'Intermediate' },
+      { name: 'AI for Comms and Engagement', level: 'Intermediate' },
     ],
   },
 ];
@@ -201,7 +201,7 @@ const courseGroups = [
                     {group.courses.map((course) => (
                       <article class="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-3">
                         <h4 class="text-sm font-medium text-default sm:text-base">
-                          <span class="font-semibold text-heading">{course.code}.</span> {course.name}
+                          <span class="font-semibold text-heading">{course.name}</span>
                         </h4>
                         <span
                           class:list={[

@@ -31,8 +31,8 @@ const outcomes = [
 const deliveryTags = ['Online', 'Face to face', 'Blended'];
 
 const studentCourses = [
-  { code: 'W11', name: 'AI Foundations & Responsible Use', level: 'Foundation' },
-  { code: 'W12', name: 'AI for the Workplace', level: 'Foundation' },
+  { name: 'AI Foundations & Responsible Use', level: 'Foundation' },
+  { name: 'AI for the Workplace', level: 'Foundation' },
 ];
 ---
 
@@ -156,7 +156,7 @@ const studentCourses = [
               studentCourses.map((course) => (
                 <article class="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-3">
                   <h4 class="text-sm font-medium text-default sm:text-base">
-                    <span class="font-semibold text-heading">{course.code}.</span> {course.name}
+                    <span class="font-semibold text-heading">{course.name}</span>
                   </h4>
                   <span
                     class:list={[

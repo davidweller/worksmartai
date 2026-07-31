@@ -37,9 +37,7 @@ const metadata = {
         aria-label="Course navigation"
       >
         <div class="academy-sidebar-header">
-          <p id="academy-course-code" class="academy-course-code" style="font-size: 12px !important">
-            W1 - AI FOUNDATIONS
-          </p>
+          <p id="academy-course-code" class="academy-course-code" style="font-size: 12px !important">AI FOUNDATIONS</p>
           <h1
             id="academy-course-title"
             class="academy-course-title"
@@ -141,7 +139,7 @@ const metadata = {
       >
         <div class="academy-sidebar-header">
           <p id="academy-course-code-mobile" class="academy-course-code" style="font-size: 12px !important">
-            W1 - AI FOUNDATIONS
+            AI FOUNDATIONS
           </p>
           <h2
             id="academy-course-title-mobile"
@@ -266,7 +264,7 @@ const metadata = {
 
   const courseMetaById: Record<string, { code: string; title: string; module: string; pages: string[] }> = {
     'ai-foundations': {
-      code: 'W1 - AI FOUNDATIONS',
+      code: 'AI FOUNDATIONS',
       title: 'AI Foundations & Responsible Use',
       module: 'Module 1',
       pages: [
@@ -280,7 +278,7 @@ const metadata = {
       ],
     },
     'copilot-workflows': {
-      code: 'W2 - COPILOT WORKFLOWS',
+      code: 'COPILOT WORKFLOWS',
       title: 'Copilot Workflows',
       module: 'Copilot Workflows',
       pages: [
@@ -294,7 +292,7 @@ const metadata = {
       ],
     },
     'agentic-automation': {
-      code: 'W3 - AGENTIC AUTOMATION',
+      code: 'AGENTIC AUTOMATION',
       title: 'Agentic Automation',
       module: 'Agentic Automation',
       pages: [
@@ -312,7 +310,7 @@ const metadata = {
   const fallbackPageCount = pageCountByCourseId[courseId] ?? 7;
   const fallbackTitles = Array.from({ length: fallbackPageCount }, (_, idx) => `Page ${idx + 1}`);
   const courseMeta: { code: string; title: string; module: string; pages: string[] } = courseMetaById[courseId] ?? {
-    code: 'W1 - COURSE',
+    code: 'COURSE',
     title: courseId || 'Course player',
     module: courseId || 'Course module',
     pages: fallbackTitles,
