@@ -14,7 +14,7 @@ const metadata = {
   },
 };
 
-/** Public URL after successful lead capture (cache-busted to avoid stale CDN/browser PDF). */
+/** Public URL after lead form submit (cache-busted to avoid stale CDN/browser PDF). */
 const guideDownloadPath = '/WorkSmart-AI%20From%20Chatbot%20to%20Workflows.pdf?v=2026-05-08';
 const guideCoverSrc = '/images/guide-from-chatbot-to-workflow-cover.png';
 
@@ -608,12 +608,50 @@ const faqs = [
         feedback.className = 'hidden';
       }
 
-      if (!supabaseUrl || !supabaseAnonKey) {
-        form.addEventListener('submit', function (e) {
-          e.preventDefault();
-          showError('Downloads are temporarily unavailable. Please try again later.');
-        });
-        return;
+      function deliverGuide() {
+        window.location.href = guidePdfPath;
+      }
+
+      function sendWelcomeEmail(name, email) {
+        return fetch(guideWelcomeEmailUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + supabaseAnonKey,
+            apikey: supabaseAnonKey,
+          },
+          body: JSON.stringify({ name: name, email: email }),
+        })
+          .then(function (mailRes) {
+            return mailRes.text().then(function (text) {
+              if (!mailRes.ok) {
+                if (typeof console !== 'undefined' && console.error) {
+                  console.error('[WorkSmart] Guide welcome email request failed', {
+                    status: mailRes.status,
+                    detail: text,
+                  });
+                }
+                return;
+              }
+              if (text) {
+                try {
+                  const j = JSON.parse(text);
+                  if (j && j.ok === false) {
+                    if (typeof console !== 'undefined' && console.error) {
+                      console.error('[WorkSmart] Guide welcome email returned ok: false', j);
+                    }
+                  }
+                } catch (parseErr) {
+                  void parseErr;
+                }
+              }
+            });
+          })
+          .catch(function (err) {
+            if (typeof console !== 'undefined' && console.error) {
+              console.error('[WorkSmart] Guide welcome email request error', err);
+            }
+          });
       }
 
       form.addEventListener('submit', function (e) {
@@ -625,7 +663,30 @@ const faqs = [
         const submitBtn = form.querySelector('button[type="submit"]');
 
         clearFeedback();
+        if (!name || !email) {
+          showError('Please enter your name and work email.');
+          return;
+        }
         if (submitBtn) submitBtn.disabled = true;
+
+        // Always deliver the PDF after a short attempt at lead capture so a paused
+        // backend (or network blip) cannot block the download visitors came for.
+        function finishWithDownload() {
+          deliverGuide();
+        }
+
+        if (!supabaseUrl || !supabaseAnonKey) {
+          finishWithDownload();
+          return;
+        }
+
+        const leadTimeoutMs = 8000;
+        const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+        const timeoutId = controller
+          ? setTimeout(function () {
+              controller.abort();
+            }, leadTimeoutMs)
+          : null;
 
         fetch(restUrl, {
           method: 'POST',
@@ -636,93 +697,30 @@ const faqs = [
             Prefer: 'return=minimal',
           },
           body: JSON.stringify({ name: name, email: email, source: source }),
+          signal: controller ? controller.signal : undefined,
         })
           .then(function (res) {
             return res.text().then(function (text) {
+              if (timeoutId) clearTimeout(timeoutId);
               if (res.ok) {
-                return fetch(guideWelcomeEmailUrl, {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: 'Bearer ' + supabaseAnonKey,
-                    apikey: supabaseAnonKey,
-                  },
-                  body: JSON.stringify({ name: name, email: email }),
-                })
-                  .then(function (mailRes) {
-                    return mailRes.text().then(function (text) {
-                      if (!mailRes.ok) {
-                        if (typeof console !== 'undefined' && console.error) {
-                          console.error('[WorkSmart] Guide welcome email request failed', {
-                            status: mailRes.status,
-                            detail: text,
-                          });
-                        }
-                        return;
-                      }
-                      if (text) {
-                        try {
-                          const j = JSON.parse(text);
-                          if (j && j.ok === false) {
-                            if (typeof console !== 'undefined' && console.error) {
-                              console.error('[WorkSmart] Guide welcome email returned ok: false', j);
-                            }
-                          }
-                        } catch (parseErr) {
-                          void parseErr;
-                        }
-                      }
-                    });
-                  })
-                  .catch(function (err) {
-                    if (typeof console !== 'undefined' && console.error) {
-                      console.error('[WorkSmart] Guide welcome email request error', err);
-                    }
-                  })
-                  .then(function () {
-                    window.location.href = guidePdfPath;
-                  });
-              }
-              if (submitBtn) submitBtn.disabled = false;
-              let detail = text;
-              try {
-                if (text) {
-                  const j = JSON.parse(text);
-                  const errStr =
-                    typeof j.error === 'string' ? j.error : j.error && (j.error.message || JSON.stringify(j.error));
-                  detail = j.message || j.hint || j.details || errStr || text;
-                }
-              } catch (parseErr) {
-                void parseErr;
+                // Don't block the PDF on email delivery.
+                sendWelcomeEmail(name, email);
+                finishWithDownload();
+                return;
               }
               if (typeof console !== 'undefined' && console.error) {
-                console.error('[WorkSmart] Lead insert failed', { status: res.status, detail: detail });
+                console.error('[WorkSmart] Lead insert failed', { status: res.status, detail: text });
               }
-              const d = String(detail || '').toLowerCase();
-              const looksRls = d.indexOf('row-level security') >= 0 || d.indexOf('new row violates') >= 0;
-              if (res.status === 401) {
-                showError(
-                  'We could not verify the site with the form service (API key). Check that PUBLIC_SUPABASE_URL and PUBLIC_SUPABASE_ANON_KEY in your build and deploy match Supabase -> Project Settings -> API, then rebuild.'
-                );
-              } else if (res.status === 403 || looksRls) {
-                showError(
-                  'The database is blocking new sign-ups (row security). In Supabase SQL Editor, run the policy in supabase/rls-leads-for-web-form.sql, or add an INSERT policy for the anon role on public.leads.'
-                );
-              } else if (res.status === 400) {
-                showError('Could not save your details. Check your name and email, then try again.');
-              } else if (res.status >= 500) {
-                showError('The service is temporarily unavailable. Please try again in a few minutes.');
-              } else {
-                showError('Something went wrong. Please try again or contact us.');
-              }
+              // Soft-fail: still hand over the guide.
+              finishWithDownload();
             });
           })
           .catch(function (err) {
-            if (submitBtn) submitBtn.disabled = false;
+            if (timeoutId) clearTimeout(timeoutId);
             if (typeof console !== 'undefined' && console.error) {
               console.error('[WorkSmart] Lead insert request failed', err);
             }
-            showError('Something went wrong. Check your connection and try again, or contact us.');
+            finishWithDownload();
           });
       });
     })();

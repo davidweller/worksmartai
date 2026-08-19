@@ -1,12 +1,12 @@
 // Deploy with: supabase functions deploy send-guide-email
 // Set secret with: supabase secrets set RESEND_API_KEY=your_key_here
 // Optional override for the lead magnet URL:
-// supabase secrets set GUIDE_DOWNLOAD_URL="https://worksmart-ai.co.uk/WorkSmart-AI%20-%20From%20Chatbot%20to%20Workflows.pdf?v=2026-05-07"
+// supabase secrets set GUIDE_DOWNLOAD_URL="https://worksmart-ai.co.uk/WorkSmart-AI%20From%20Chatbot%20to%20Workflows.pdf?v=2026-05-08"
 
 import 'jsr:@supabase/functions-js/edge-runtime.d.ts';
 
 const DEFAULT_DOWNLOAD_URL =
-  'https://worksmart-ai.co.uk/WorkSmart-AI%20-%20From%20Chatbot%20to%20Workflows.pdf?v=2026-05-07';
+  'https://worksmart-ai.co.uk/WorkSmart-AI%20From%20Chatbot%20to%20Workflows.pdf?v=2026-05-08';
 const BOOKING_URL = 'https://worksmart-ai.co.uk/book-a-call';
 
 const corsHeaders: Record<string, string> = {
@@ -36,7 +36,13 @@ function escapeHtml(s: string): string {
 
 function getDownloadUrl(): string {
   const configured = Deno.env.get('GUIDE_DOWNLOAD_URL');
-  if (configured && configured.trim()) return configured.trim();
+  if (configured && configured.trim()) {
+    const url = configured.trim();
+    // Ignore the known-broken filename (extra " - ") if a stale secret still points at it.
+    if (!url.includes('WorkSmart-AI%20-%20From') && !url.includes('WorkSmart-AI - From')) {
+      return url;
+    }
+  }
   return DEFAULT_DOWNLOAD_URL;
 }
 
