@@ -19,7 +19,9 @@ const metadata = {
         using it, not the person configuring it.
       </p>
       <p class="stand sub">
-        Search or filter below. The tag on each entry says which part of the picture it belongs to.
+        Search or filter below. The tag is an ordinary category &mdash; licences, your work, where you use it, prompts,
+        agents, trust, your organisation &mdash; not a Microsoft product name. Every entry links to the Microsoft page
+        it was checked against on 20 August 2026, or says plainly that no such page exists.
       </p>
 
       <section class="core">
@@ -31,7 +33,10 @@ const metadata = {
             </dd>
           </div>
           <div>
-            <dt>Skill</dt><dd><b>What</b> that agent can do &mdash; one named task, described once and reused.</dd>
+            <dt>Skill</dt><dd>
+              <b>What</b> that agent can do &mdash; one named task, described once and reused. Copilot Studio has a Skills
+              panel for exactly this.
+            </dd>
           </div>
           <div>
             <dt>Action</dt><dd>
@@ -52,13 +57,13 @@ const metadata = {
         <input id="q" class="search" type="search" placeholder="Search a term, or what it does…" autocomplete="off" />
         <div class="filters" role="group" aria-label="Filter by part of the picture">
           <button type="button" data-cat="all" aria-pressed="true">All</button>
-          <button type="button" data-cat="licence" aria-pressed="false">Licence</button>
-          <button type="button" data-cat="workiq" aria-pressed="false">Work IQ</button>
-          <button type="button" data-cat="surface" aria-pressed="false">Surfaces</button>
-          <button type="button" data-cat="asking" aria-pressed="false">Asking</button>
-          <button type="button" data-cat="building" aria-pressed="false">Building</button>
+          <button type="button" data-cat="licences" aria-pressed="false">Licences</button>
+          <button type="button" data-cat="work" aria-pressed="false">Your work</button>
+          <button type="button" data-cat="where" aria-pressed="false">Where you use it</button>
+          <button type="button" data-cat="prompts" aria-pressed="false">Prompts</button>
+          <button type="button" data-cat="agents" aria-pressed="false">Agents</button>
           <button type="button" data-cat="trust" aria-pressed="false">Trust</button>
-          <button type="button" data-cat="adoption" aria-pressed="false">Adoption</button>
+          <button type="button" data-cat="org" aria-pressed="false">Your organisation</button>
           <span class="count" id="count" aria-live="polite"></span>
         </div>
       </div>
@@ -66,68 +71,121 @@ const metadata = {
       <div id="list">
         <section class="lgroup">
           <h2 class="letter">A</h2><div class="entries">
-            <div class="entry" data-cat="building">
-              <h3>Action</h3><span class="tag">Building</span>
+            <div class="entry" data-cat="agents">
+              <h3>Action</h3><span class="tag">Agents</span>
               <p>
                 An agent&rsquo;s ability to touch a real system rather than just talk about it &mdash; read a document
                 library, send an email, add a row to a list, create a task. Without actions, an agent can only produce
                 text.
               </p>
               <p class="not">
-                <b>Also called</b> a tool, or a connector, depending on which screen you are looking at.
+                <b>On screen it says:</b> tool. The Tools panel in Copilot Studio is worded &ldquo;connect the agent to external
+                systems and actions&rdquo; &mdash; tool is the container, action is what it does. Separately, Copilot Actions
+                is Microsoft&rsquo;s name for Copilot filling in a form or working through a website on your behalf: a feature,
+                not a building block.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio"
+                  rel="nofollow noopener"
+                  target="_blank">Copilot Studio overview</a
+                >
               </p>
             </div>
-            <div class="entry" data-cat="building">
-              <h3>Agent</h3><span class="tag">Building</span>
+            <div class="entry" data-cat="agents">
+              <h3>Agent</h3><span class="tag">Agents</span>
               <p>
                 A Copilot you have given a name, a job, a set of rules and a fixed set of sources. Instead of explaining
                 the task every time, you explain it once and then talk to the thing you made. Colleagues can use it too.
+                Most agents wait to be asked; some are given their own account and work on a process without being
+                prompted.
               </p>
               <p class="not">
-                <b>Not the same as</b> Agent Mode, which is ordinary Copilot working harder inside one document.
+                <b>Not the same as:</b> Agent Mode, which is ordinary Copilot working harder inside one document. An agent
+                you build by describing it is a declarative agent; one a developer writes in code is a custom-engine agent.
+                You will only meet the first kind.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio"
+                  rel="nofollow noopener"
+                  target="_blank">Copilot Studio overview</a
+                >
               </p>
             </div>
-            <div class="entry" data-cat="surface">
-              <h3>Agent Mode</h3><span class="tag">Surfaces</span>
+            <div class="entry" data-cat="where">
+              <h3>Agent Mode</h3><span class="tag">Where you use it</span>
               <p>
                 Copilot taking on a whole multi-step job inside Word, Excel or PowerPoint &mdash; building a document or
-                reworking a spreadsheet across several moves &mdash; rather than making one edit and stopping.
+                reworking a spreadsheet across several moves &mdash; rather than making one edit and stopping. Generally
+                available in those three apps.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://support.microsoft.com/en-us/topic/get-started-with-agent-mode-in-word-excel-and-powerpoint-4d322d7f-5e89-4f66-9fa4-57d328b156ff"
+                  rel="nofollow noopener"
+                  target="_blank">Get started with Agent Mode</a
+                >
               </p>
             </div>
-            <div class="entry" data-cat="building">
-              <h3>Agent Store</h3><span class="tag">Building</span>
+            <div class="entry" data-cat="agents">
+              <h3>Agent Store</h3><span class="tag">Agents</span>
               <p>
-                Where ready-made agents are published &mdash; Microsoft&rsquo;s, your organisation&rsquo;s, and third
-                parties&rsquo;. Worth a look before you build anything: somebody has often done it already.
+                Where ready-made agents are published &mdash; Microsoft&rsquo;s, trusted partners&rsquo;, and your own
+                organisation&rsquo;s &mdash; reachable from Teams, Outlook, Word, Excel and PowerPoint. Worth a look
+                before you build anything: somebody has often done it already. Anything your colleagues build has to be
+                approved by an admin before it appears there.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-365/copilot/copilot-agent-store"
+                  rel="nofollow noopener"
+                  target="_blank">Agent Store</a
+                >
               </p>
             </div>
-            <div class="entry" data-cat="building">
-              <h3>Analyst</h3><span class="tag">Building</span>
+            <div class="entry" data-cat="agents">
+              <h3>Analyst</h3><span class="tag">Agents</span>
               <p>
                 A specialist agent that works with data. Give it a spreadsheet or a set of figures and it reasons
-                through the analysis, writes and runs the code, and shows you its working.
+                through the analysis, writes and runs the code, and shows you its working. Needs the paid seat, and at
+                launch Microsoft capped it and Researcher at 25 combined runs a month between them.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://www.microsoft.com/en-us/microsoft-365/blog/2025/06/02/researcher-and-analyst-are-now-generally-available-in-microsoft-365-copilot/"
+                  rel="nofollow noopener"
+                  target="_blank">Researcher and Analyst general availability</a
+                >
               </p>
             </div>
-            <div class="entry" data-cat="building">
-              <h3>Approval step</h3><span class="tag">Building</span>
+            <div class="entry" data-cat="agents">
+              <h3>Approval step</h3><span class="tag">Agents</span>
               <p>
-                A point in a workflow where a person has to say yes before anything continues. The safety catch on
-                automation, and usually the difference between a workflow you can defend and one you cannot.
+                A point in a workflow where a person has to say yes before anything continues. Also called human in the
+                loop. The safety catch on automation, and usually the difference between a workflow you can defend and
+                one you cannot.
               </p>
-              <p class="not"><b>Also called</b> human in the loop.</p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/workflows-experience/flows-overview"
+                  rel="nofollow noopener"
+                  target="_blank">Workflows overview</a
+                >
+              </p>
             </div>
             <div class="entry" data-cat="trust">
               <h3>Audit trail</h3><span class="tag">Trust</span>
               <p>
-                The record of what Copilot was asked and what it did, kept by your organisation. It exists, and it
-                matters for FOI, data-protection requests and investigations.
+                The record of what Copilot was asked and what it did, kept in your organisation&rsquo;s compliance
+                tools. It exists, and it matters for FOI, data-protection requests and investigations.
               </p>
-            </div>
-            <div class="entry" data-cat="building">
-              <h3>Autonomy</h3><span class="tag">Building</span>
-              <p>
-                Whether an agent waits to be asked or acts on its own. Most agents you meet are the first kind. The
-                second kind needs an owner, a scope, and someone who checks on it.
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-365/copilot/microsoft-365-copilot-architecture-data-protection-auditing"
+                  rel="nofollow noopener"
+                  target="_blank">Data protection and auditing</a
+                >
               </p>
             </div>
           </div>
@@ -136,103 +194,172 @@ const metadata = {
         <section class="lgroup">
           <h2 class="letter">C</h2><div class="entries">
             <div class="entry" data-cat="trust">
-              <h3>Commercial data protection</h3><span class="tag">Trust</span>
+              <h3>Chat history</h3><span class="tag">Trust</span>
               <p>
-                The promise that what you type at work stays inside your organisation&rsquo;s boundary and is not used
-                to train the public model. It applies when you are signed in with your work account &mdash; which is the
-                whole reason to use the work version rather than a personal one.
+                Your past conversations, listed in the chat pane. You can delete a single chat from its More menu, or
+                wipe the lot from My Account under Data and Privacy. Deleting your copy is not the end of it: your
+                organisation can apply a retention policy that keeps prompts and responses for compliance regardless.
+              </p>
+              <p class="not">
+                <b>Not the same as:</b> Memory. History is the transcript; memory is what Copilot concluded about how you
+                work. Switch off chat-history personalisation and those conclusions are deleted &mdash; switch it back on
+                within 30 days and they return.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://support.microsoft.com/en-us/microsoft-365-copilot/how-microsoft-365-copilot-chat-history-works"
+                  rel="nofollow noopener"
+                  target="_blank">How chat history works</a
+                >
               </p>
             </div>
-            <div class="entry" data-cat="workiq">
-              <h3>Connector</h3><span class="tag">Work IQ</span>
+            <div class="entry" data-cat="work">
+              <h3>Connector</h3><span class="tag">Your work</span>
               <p>
                 A bridge that lets Copilot read a system that is not Microsoft&rsquo;s &mdash; a student record system,
                 a CRM, a ticketing tool. Someone in IT sets these up; you only notice that Copilot suddenly knows more.
               </p>
-            </div>
-            <div class="entry" data-cat="trust">
-              <h3>Consumption and credits</h3><span class="tag">Trust</span>
-              <p>
-                Agent runs cost money, metered per run rather than covered by a flat licence. Relevant the moment you
-                build something that runs on a schedule rather than when you press a button.
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-365/copilot/connectors/"
+                  rel="nofollow noopener"
+                  target="_blank">Copilot connectors</a
+                >
               </p>
             </div>
-            <div class="entry" data-cat="licence">
-              <h3>Copilot Academy</h3><span class="tag">Licence</span>
+            <div class="entry" data-cat="licences">
+              <h3>Copilot Academy</h3><span class="tag">Licences</span>
               <p>
                 Guided Copilot training already switched on inside Viva Learning for most Microsoft 365 users. Free,
                 already paid for, and usually nobody knows it is there.
               </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/viva/learning/academy-copilot"
+                  rel="nofollow noopener"
+                  target="_blank">Copilot Academy</a
+                >
+              </p>
             </div>
-            <div class="entry" data-cat="surface">
-              <h3>Copilot Actions</h3><span class="tag">Surfaces</span>
+            <div class="entry" data-cat="licences">
+              <h3>Copilot Credits</h3><span class="tag">Licences</span>
               <p>
-                Copilot carrying out a task on your device or in the browser on your behalf &mdash; filling a form,
-                working through a website &mdash; rather than telling you how to do it.
+                The metered currency for AI that sits outside the seat. Two things consume them. First, people without a
+                paid seat using Copilot Chat, SharePoint agents or the retrieval API on a pay-as-you-go meter. Second,
+                anything built on Copilot Studio&rsquo;s reasoning harness &mdash; and there billing starts the moment
+                you start building, not when you publish: creating, previewing, testing and evaluating an agent all
+                consume credits. Agents grounded only in their own instructions and public websites cost nothing.
               </p>
               <p class="not">
-                <b>Not the same as</b> an action in the agent sense, which is a capability you grant an agent you built.
+                <b>Replaces:</b> the phrase &ldquo;Copilot Premium&rdquo;, which is not a Microsoft product. There are three
+                things to buy: Copilot Chat (free), the Microsoft Copilot seat, and credits.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/agents-experience/billing-credit-overview"
+                  rel="nofollow noopener"
+                  target="_blank">Usage-based billing for agents</a
+                >
               </p>
             </div>
-            <div class="entry" data-cat="licence">
-              <h3>Copilot Chat</h3><span class="tag">Licence</span>
-              <p>
-                The free tier, included with a work sign-in. Protected, useful, and grounded in the web &mdash; but it
-                cannot see your files, mail or meetings unless you paste them in.
-              </p>
-            </div>
-            <div class="entry" data-cat="surface">
-              <h3>Copilot Notebooks</h3><span class="tag">Surfaces</span>
+            <div class="entry" data-cat="where">
+              <h3>Copilot Notebooks</h3><span class="tag">Where you use it</span>
               <p>
                 A place to pin the sources for one project &mdash; a set of documents, pages and notes &mdash; so that
                 every question you ask is answered from those, and only those. The fix for &ldquo;it keeps dragging in
-                the wrong report&rdquo;.
+                the wrong report&rdquo;. Needs a Copilot or Copilot Chat licence.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-365/loop/cpcn-requirements"
+                  rel="nofollow noopener"
+                  target="_blank">Copilot Pages and Notebooks</a
+                >
               </p>
             </div>
-            <div class="entry" data-cat="surface">
-              <h3>Copilot Pages</h3><span class="tag">Surfaces</span>
+            <div class="entry" data-cat="where">
+              <h3>Copilot Pages</h3><span class="tag">Where you use it</span>
               <p>
                 Turns an answer in a chat into a document you and colleagues can edit together. Use it the moment an
-                answer is worth keeping; chat threads are disposable, pages are not.
+                answer is worth keeping; chat threads are disposable, pages are not. Available on the free tier too
+                &mdash; it needs a OneDrive licence rather than a Copilot one.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-365/loop/cpcn-requirements"
+                  rel="nofollow noopener"
+                  target="_blank">Copilot Pages and Notebooks</a
+                >
               </p>
             </div>
-            <div class="entry" data-cat="licence">
-              <h3>Copilot Premium</h3><span class="tag">Licence</span>
+            <div class="entry" data-cat="where">
+              <h3>Copilot Search</h3><span class="tag">Where you use it</span>
               <p>
-                The top tier. Adds the specialist reasoning agents, the ability to build agents, and higher usage
-                limits, on top of everything the standard licence gives you.
+                Search across your organisation&rsquo;s content and connected third-party systems that answers the
+                question rather than handing you twenty links to open. It comes with the paid seat at no extra cost,
+                appears as a tab in the Copilot app, and needs no setting up.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-365/copilot/microsoft-365-copilot-search"
+                  rel="nofollow noopener"
+                  target="_blank">Copilot Search</a
+                >
               </p>
             </div>
-            <div class="entry" data-cat="surface">
-              <h3>Copilot Search</h3><span class="tag">Surfaces</span>
+            <div class="entry" data-cat="agents">
+              <h3>Copilot Studio</h3><span class="tag">Agents</span>
               <p>
-                Search across your organisation&rsquo;s content that answers the question rather than handing you twenty
-                links to open.
-              </p>
-            </div>
-            <div class="entry" data-cat="building">
-              <h3>Copilot Studio</h3><span class="tag">Building</span>
-              <p>
-                The place where agents are built, tested and published &mdash; without writing code. This is where a
-                repeated prompt becomes something your team can use.
+                The place where agents, workflows and agent flows are built, tested and published &mdash; without
+                writing code. This is where a repeated prompt becomes something your team can use.
               </p>
               <p class="not">
-                <b>Not the same as</b> Power Automate, which follows fixed rules. Studio builds something that exercises
-                judgement.
+                <b>Not the same as:</b> Power Automate, which follows fixed rules. An agent built in Studio exercises judgement
+                about what to do next.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio"
+                  rel="nofollow noopener"
+                  target="_blank">Copilot Studio overview</a
+                >
               </p>
             </div>
-            <div class="entry" data-cat="asking">
-              <h3>Custom instructions</h3><span class="tag">Asking</span>
+            <div class="entry" data-cat="licences">
+              <h3>Cowork</h3><span class="tag">Licences</span>
+              <p>
+                Long-running, delegated multi-step work: you give Copilot a task and walk away. The paid seat is a
+                prerequisite, not an entitlement &mdash; holding Microsoft Copilot licences does not cover Cowork. Tasks
+                are metered in Copilot Credits on top of the seat.
+              </p>
+              <p class="not">
+                <b>Not the same as:</b> Agent Mode, which works inside one document while you watch. Cowork is billed separately;
+                the seat does not pay for it.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-365/copilot/usage-based-billing-overview-copilot-credits"
+                  rel="nofollow noopener"
+                  target="_blank">Usage-based billing and cost management for Copilot Credits</a
+                >
+              </p>
+            </div>
+            <div class="entry" data-cat="prompts">
+              <h3>Custom instructions</h3><span class="tag">Prompts</span>
               <p>
                 Standing context you set once &mdash; your role, your department, how you like things written &mdash; so
                 you stop retyping it in every prompt.
               </p>
-            </div>
-            <div class="entry" data-cat="building">
-              <h3>Custom-engine agent</h3><span class="tag">Building</span>
-              <p>
-                An agent built from scratch by developers rather than configured on top of Copilot. Worth knowing the
-                phrase exists so you can recognise when a conversation has left your territory.
+              <p class="not">
+                <b>Not the same as:</b> the Instructions you write when building an agent. Custom instructions shape your
+                own Copilot; an agent&rsquo;s instructions shape everybody&rsquo;s.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://support.microsoft.com/en-us/Microsoft-365-Copilot/personalize-what-microsoft-365-copilot-remembers"
+                  rel="nofollow noopener"
+                  target="_blank">Personalise what Copilot remembers</a
+                >
               </p>
             </div>
           </div>
@@ -240,19 +367,33 @@ const metadata = {
 
         <section class="lgroup">
           <h2 class="letter">D</h2><div class="entries">
-            <div class="entry" data-cat="building">
-              <h3>Declarative agent</h3><span class="tag">Building</span>
-              <p>
-                The ordinary kind &mdash; an agent you make by describing what it should do and which sources it may
-                use. Everything a business user builds is one of these.
-              </p>
-            </div>
-            <div class="entry" data-cat="building">
-              <h3>Deep reasoning</h3><span class="tag">Building</span>
+            <div class="entry" data-cat="agents">
+              <h3>Deep reasoning</h3><span class="tag">Agents</span>
               <p>
                 Copilot taking longer to think before it answers. Slower and more expensive, and worth it for genuine
                 analysis rather than for drafting an email.
               </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-365/copilot/researcher-agent"
+                  rel="nofollow noopener"
+                  target="_blank">Researcher and Analyst</a
+                >
+              </p>
+            </div>
+            <div class="entry" data-cat="org">
+              <h3>Disclosure</h3><span class="tag">Your organisation</span>
+              <p>
+                Saying that you used AI, and how. Your institution decides when this is required &mdash; marking,
+                admissions, research outputs, student-facing writing &mdash; and the rule is usually about the decision,
+                not the draft. Nobody declares spellcheck; people do declare a marking rubric applied by a machine. Find
+                your own policy before you need it.
+              </p>
+              <p class="not">
+                <b>Our term:</b> not Microsoft&rsquo;s. Microsoft governs what the tool may do; your institution governs
+                what you must say about it.
+              </p>
+              <p class="src">No Microsoft page defines this. It is a WorkSmart-AI teaching term.</p>
             </div>
             <div class="entry" data-cat="trust">
               <h3>DLP</h3><span class="tag">Trust</span>
@@ -260,17 +401,73 @@ const metadata = {
                 Data loss prevention &mdash; the rules your organisation sets about what can leave, and where. Copilot
                 obeys them, which is occasionally why an answer stops short.
               </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/purview/dlp-learn-about-dlp"
+                  rel="nofollow noopener"
+                  target="_blank">Purview data loss prevention</a
+                >
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="lgroup">
+          <h2 class="letter">E</h2><div class="entries">
+            <div class="entry" data-cat="licences">
+              <h3>Education licences</h3><span class="tag">Licences</span>
+              <p>
+                The academic versions: Microsoft 365 A1, A3 and A5, and their Office 365 equivalents. Copilot Chat comes
+                with them at no extra cost, though admins have to take extra steps before students aged 13 and over can
+                use it. The paid Microsoft Copilot seat is a separate academic add-on, bought through EES or a reseller.
+                &ldquo;We have A5&rdquo; therefore does not mean &ldquo;we have Copilot&rdquo;.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-365/copilot/microsoft-365-copilot-licensing"
+                  rel="nofollow noopener"
+                  target="_blank">Licence options for Microsoft Copilot</a
+                >
+              </p>
+            </div>
+            <div class="entry" data-cat="trust">
+              <h3>Enterprise data protection</h3><span class="tag">Trust</span>
+              <p>
+                The contractual promise covering what you type into Copilot: prompts and responses carry the same terms
+                as your mail in Exchange and your files in SharePoint, and are not used to train the foundation models.
+                It applies to anyone signed in with a work account, with no admin action required, and it brings your
+                sensitivity labels, retention policies and audit with it.
+              </p>
+              <p class="not">
+                <b>Older material calls this:</b> commercial data protection. For Copilot and Copilot Chat on a work account,
+                the current term is enterprise data protection, or EDP.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-365/copilot/enterprise-data-protection"
+                  rel="nofollow noopener"
+                  target="_blank">Enterprise data protection</a
+                >
+              </p>
             </div>
           </div>
         </section>
 
         <section class="lgroup">
           <h2 class="letter">G</h2><div class="entries">
-            <div class="entry" data-cat="workiq">
-              <h3>Grounding</h3><span class="tag">Work IQ</span>
+            <div class="entry" data-cat="work">
+              <h3>Grounding</h3><span class="tag">Your work</span>
               <p>
-                Answering from real sources rather than from memory. A grounded answer can cite where it came from; an
-                ungrounded one is the model&rsquo;s best guess. Always check which you were given.
+                Answering from real sources rather than from memory. A grounded answer carries numbered references you
+                can click; an ungrounded one is the model&rsquo;s best guess. Look for the references before you trust
+                the paragraph.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoftsearch/semantic-index-for-copilot"
+                  rel="nofollow noopener"
+                  target="_blank">Semantic index for Copilot</a
+                >
               </p>
             </div>
           </div>
@@ -278,47 +475,75 @@ const metadata = {
 
         <section class="lgroup">
           <h2 class="letter">H</h2><div class="entries">
-            <div class="entry" data-cat="asking">
-              <h3>Hallucination</h3><span class="tag">Asking</span>
+            <div class="entry" data-cat="prompts">
+              <h3>Hallucination</h3><span class="tag">Prompts</span>
               <p>
                 A confident, fluent, wrong answer. It is not a bug being fixed next release &mdash; it is how these
                 tools work, and it is why verification is your job rather than Microsoft&rsquo;s.
               </p>
+              <p class="src">No Microsoft page defines this. It is a WorkSmart-AI teaching term.</p>
             </div>
-            <div class="entry" data-cat="building">
-              <h3>Human in the loop</h3><span class="tag">Building</span>
-              <p>See <b>Approval step</b>.</p>
+            <div class="entry" data-cat="agents">
+              <h3>Harness</h3><span class="tag">Agents</span>
+              <p>
+                Which engine an agent runs on. Copilot Studio offers the GitHub Copilot harness for reasoning-heavy,
+                multi-step work, the standard harness for rule-based conversations, and the Copilot chat harness for
+                adding your knowledge to Copilot Chat. The choice decides how capable the agent is and how it is billed,
+                so it is a budget decision as much as a technical one.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/harnesses-overview"
+                  rel="nofollow noopener"
+                  target="_blank">Agent harnesses overview</a
+                >
+              </p>
             </div>
           </div>
         </section>
 
         <section class="lgroup">
           <h2 class="letter">I</h2><div class="entries">
-            <div class="entry" data-cat="building">
-              <h3>Instructions</h3><span class="tag">Building</span>
+            <div class="entry" data-cat="agents">
+              <h3>Instructions</h3><span class="tag">Agents</span>
               <p>
                 What you write when you build an agent: its job, its rules, its tone, what it must never do. The single
                 biggest lever on whether the agent is any good.
               </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio"
+                  rel="nofollow noopener"
+                  target="_blank">Copilot Studio overview</a
+                >
+              </p>
             </div>
-            <div class="entry" data-cat="asking">
-              <h3>Iteration</h3><span class="tag">Asking</span>
+            <div class="entry" data-cat="prompts">
+              <h3>Iteration</h3><span class="tag">Prompts</span>
               <p>
                 Steering the answer with follow-up turns instead of retyping the prompt from scratch.
                 &ldquo;Shorter.&rdquo; &ldquo;More formal.&rdquo; &ldquo;Now for the student audience.&rdquo; The
                 cheapest skill on this list and the most under-used.
               </p>
+              <p class="src">No Microsoft page defines this. It is a WorkSmart-AI teaching term.</p>
             </div>
           </div>
         </section>
 
         <section class="lgroup">
           <h2 class="letter">K</h2><div class="entries">
-            <div class="entry" data-cat="workiq">
-              <h3>Knowledge source</h3><span class="tag">Work IQ</span>
+            <div class="entry" data-cat="work">
+              <h3>Knowledge source</h3><span class="tag">Your work</span>
               <p>
                 The specific places an agent is allowed to read &mdash; a SharePoint site, a set of documents, a
                 connector. Narrowing these is what turns a vague agent into a reliable one.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/knowledge-copilot-studio"
+                  rel="nofollow noopener"
+                  target="_blank">Knowledge in Copilot Studio</a
+                >
               </p>
             </div>
           </div>
@@ -326,33 +551,115 @@ const metadata = {
 
         <section class="lgroup">
           <h2 class="letter">M</h2><div class="entries">
-            <div class="entry" data-cat="workiq">
-              <h3>Memory</h3><span class="tag">Work IQ</span>
+            <div class="entry" data-cat="where">
+              <h3>Meeting recap</h3><span class="tag">Where you use it</span>
               <p>
-                Copilot holding on to preferences and context across sessions, so it does not start from nothing each
-                morning. Check what it has remembered occasionally; it is editable.
+                The summary, action points and &ldquo;what did I miss&rdquo; answers after a Teams meeting. The catch
+                nobody mentions is the transcript. The organiser&rsquo;s meeting options decide it: set to only during
+                the meeting, Copilot works live on temporary speech-to-text and leaves nothing behind; set to during and
+                after, somebody has to actually start transcription. No transcript, no recap &mdash; and no asking about
+                it tomorrow.
+              </p>
+              <p class="not">
+                <b>Also:</b> Copilot in meetings needs a paid seat, and does not work at all in end-to-end encrypted meetings.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoftteams/copilot-teams-transcription"
+                  rel="nofollow noopener"
+                  target="_blank">Copilot in Teams meetings and transcription</a
+                >
               </p>
             </div>
-            <div class="entry" data-cat="workiq">
-              <h3>Microsoft Graph</h3><span class="tag">Work IQ</span>
+            <div class="entry" data-cat="work">
+              <h3>Memory</h3><span class="tag">Your work</span>
               <p>
-                The plumbing underneath Work IQ &mdash; the layer that holds your files, mail, calendar, chats and the
-                connections between people. You will hear it named in IT conversations and never need to touch it.
+                Copilot holding on to preferences and context across sessions &mdash; how you like things written, what
+                you work on, the tasks that recur &mdash; so it does not start from nothing each morning. You can read
+                what it has saved in Chat settings, delete any of it, or turn the whole thing off. Turning it back on
+                within 30 days restores what was deleted.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://support.microsoft.com/en-us/Microsoft-365-Copilot/personalize-what-microsoft-365-copilot-remembers"
+                  rel="nofollow noopener"
+                  target="_blank">Personalise what Copilot remembers</a
+                >
               </p>
             </div>
-            <div class="entry" data-cat="licence">
-              <h3>Microsoft 365 Copilot</h3><span class="tag">Licence</span>
+            <div class="entry" data-cat="licences">
+              <h3>Microsoft Copilot</h3><span class="tag">Licences</span>
               <p>
                 The paid seat. This is the one that can see your work &mdash; files, mail, chats, meetings &mdash; and
-                that appears inside Word, Excel, Outlook and Teams.
+                that appears inside Word, Excel, Outlook and Teams. Microsoft Copilot Business is the same idea sold
+                against the Microsoft 365 Business plans.
               </p>
-              <p class="not"><b>Not the same as</b> Copilot Chat, which is free and cannot reach your work data.</p>
+              <p class="not">
+                <b>Was called:</b> Microsoft 365 Copilot. Microsoft renamed it, and its own documentation says some experiences
+                and licences will keep the old name during the transition.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-365/copilot/microsoft-365-copilot-licensing"
+                  rel="nofollow noopener"
+                  target="_blank">Licence options for Microsoft Copilot</a
+                >
+              </p>
             </div>
-            <div class="entry" data-cat="building">
-              <h3>Multi-agent orchestration</h3><span class="tag">Building</span>
+            <div class="entry" data-cat="licences">
+              <h3>Microsoft Copilot Chat</h3><span class="tag">Licences</span>
               <p>
-                Agents handing work to other agents. Real, occasionally useful, and firmly a job for whoever owns the
-                platform rather than for you on a Tuesday afternoon.
+                The free tier, included with any eligible Microsoft 365 subscription and reached at m365copilot.com. It
+                has two halves: web-based chat, grounded in the internet and available to everyone, and work-based chat,
+                which reads your organisation&rsquo;s content and needs the paid seat. Both carry enterprise data
+                protection. File upload, image generation and Copilot Pages are included.
+              </p>
+              <p class="not">
+                <b>Why it matters:</b> the free and paid versions look almost identical on screen. Most &ldquo;Copilot is
+                useless&rdquo; verdicts are somebody using the free one and expecting the demo.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/copilot/overview"
+                  rel="nofollow noopener"
+                  target="_blank">Copilot Chat overview</a
+                >
+              </p>
+            </div>
+            <div class="entry" data-cat="prompts">
+              <h3>Model</h3><span class="tag">Prompts</span>
+              <p>
+                The engine underneath. Copilot is not one fixed thing: it runs on frontier models from OpenAI and
+                Anthropic, Microsoft swaps the default without telling you, and in some apps you can pick. An agent you
+                build in Copilot Studio has its own model box at the top of the Build pane. The practical consequence is
+                that the same prompt can behave differently this month than last, which is a reason to check output
+                rather than to memorise tricks.
+              </p>
+              <p class="not">
+                <b>Not the same as:</b> the app. Copilot is Microsoft&rsquo;s wrapper &mdash; the licence, the permissions,
+                the grounding &mdash; around somebody else&rsquo;s model.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-365/copilot/copilot-anthropic-apps"
+                  rel="nofollow noopener"
+                  target="_blank">Copilot with Anthropic models</a
+                >
+              </p>
+            </div>
+            <div class="entry" data-cat="agents">
+              <h3>Multi-agent orchestration</h3><span class="tag">Agents</span>
+              <p>
+                Agents handing work to other agents. On screen it is the Connected agents box in the Build pane. Real,
+                occasionally useful, and firmly a job for whoever owns the platform rather than for you on a Tuesday
+                afternoon.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/agents-experience/overview"
+                  rel="nofollow noopener"
+                  target="_blank">Build an agent</a
+                >
               </p>
             </div>
           </div>
@@ -365,7 +672,15 @@ const metadata = {
               <p>
                 Copilot surfacing something that was always technically visible to you but practically buried &mdash; an
                 old pay file in a site nobody tidied. Copilot did not break a permission. It found one that was already
-                wrong.
+                wrong. IT can hide a site from Copilot and organisation-wide search without changing who may open it,
+                using restricted content discovery, which also strips the Copilot buttons from that site.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/sharepoint/restricted-content-discovery"
+                  rel="nofollow noopener"
+                  target="_blank">Restricted content discovery</a
+                >
               </p>
             </div>
           </div>
@@ -379,20 +694,40 @@ const metadata = {
                 Copilot can only see what your account can already see &mdash; no more, and no less. The answer to
                 &ldquo;can it read my colleague&rsquo;s mail?&rdquo; is no, unless you already could.
               </p>
-            </div>
-            <div class="entry" data-cat="asking">
-              <h3>Prompt</h3><span class="tag">Asking</span>
-              <p>
-                What you ask for. A good one carries five things: the <b>goal</b>, the <b>context</b>, the <b>source</b>
-                to use, the <b>format</b> you want back, and the <b>tone</b>. Most disappointing answers are missing
-                three of those.
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-365/copilot/microsoft-365-copilot-architecture-data-protection-auditing"
+                  rel="nofollow noopener"
+                  target="_blank">Data protection and auditing</a
+                >
               </p>
             </div>
-            <div class="entry" data-cat="asking">
-              <h3>Prompt Gallery</h3><span class="tag">Asking</span>
+            <div class="entry" data-cat="prompts">
+              <h3>Prompt</h3><span class="tag">Prompts</span>
+              <p>
+                What you ask for. A good one carries five things: the goal, the context, the source to use, the format
+                you want back, and the tone. Most disappointing answers are missing three of those.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://support.microsoft.com/en-us/topic/learn-about-copilot-prompts-f6c3b467-f07c-4db1-ae54-ffac96184dd5"
+                  rel="nofollow noopener"
+                  target="_blank">Learn about Copilot prompts</a
+                >
+              </p>
+            </div>
+            <div class="entry" data-cat="prompts">
+              <h3>Prompt Gallery</h3><span class="tag">Prompts</span>
               <p>
                 A library of prompts inside Copilot &mdash; Microsoft&rsquo;s, your organisation&rsquo;s, and ones you
                 save yourself. Start here rather than from a blank box.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-365/copilot/copilot-prompt-gallery"
+                  rel="nofollow noopener"
+                  target="_blank">Copilot Prompt Gallery</a
+                >
               </p>
             </div>
           </div>
@@ -400,18 +735,34 @@ const metadata = {
 
         <section class="lgroup">
           <h2 class="letter">R</h2><div class="entries">
-            <div class="entry" data-cat="asking">
-              <h3>Referencing</h3><span class="tag">Asking</span>
+            <div class="entry" data-cat="prompts">
+              <h3>Referencing</h3><span class="tag">Prompts</span>
               <p>
                 Pointing Copilot at a specific file, person or meeting inside your prompt, usually by typing a slash or
                 an oblique. Turns &ldquo;summarise our policy&rdquo; into a question it can actually answer.
               </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://support.microsoft.com/en-us/topic/learn-about-copilot-prompts-f6c3b467-f07c-4db1-ae54-ffac96184dd5"
+                  rel="nofollow noopener"
+                  target="_blank">Learn about Copilot prompts</a
+                >
+              </p>
             </div>
-            <div class="entry" data-cat="building">
-              <h3>Researcher</h3><span class="tag">Building</span>
+            <div class="entry" data-cat="agents">
+              <h3>Researcher</h3><span class="tag">Agents</span>
               <p>
                 A specialist agent that works through a question over several steps, across your work data and the web,
-                and comes back with a sourced report rather than a paragraph.
+                and comes back with a sourced report rather than a paragraph. It deliberately takes longer, and it will
+                ask you clarifying questions on the way. Needs the paid seat, and shares a monthly allowance of 25 runs
+                with Analyst.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://www.microsoft.com/en-us/microsoft-365/blog/2025/06/02/researcher-and-analyst-are-now-generally-available-in-microsoft-365-copilot/"
+                  rel="nofollow noopener"
+                  target="_blank">Researcher and Analyst general availability</a
+                >
               </p>
             </div>
             <div class="entry" data-cat="trust">
@@ -421,43 +772,79 @@ const metadata = {
                 data, student-facing decisions. These sit above anything Microsoft permits, and they are the ones you
                 will be held to.
               </p>
+              <p class="src">No Microsoft page defines this. It is a WorkSmart-AI teaching term.</p>
             </div>
           </div>
         </section>
 
         <section class="lgroup">
           <h2 class="letter">S</h2><div class="entries">
-            <div class="entry" data-cat="asking">
-              <h3>Saved and team prompts</h3><span class="tag">Asking</span>
+            <div class="entry" data-cat="prompts">
+              <h3>Saved and team prompts</h3><span class="tag">Prompts</span>
               <p>
                 A prompt you keep, and one your team shares. The step between &ldquo;I worked out a good prompt&rdquo;
                 and &ldquo;the department has a good prompt&rdquo;.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-365/copilot/copilot-prompt-gallery"
+                  rel="nofollow noopener"
+                  target="_blank">Copilot Prompt Gallery</a
+                >
               </p>
             </div>
             <div class="entry" data-cat="trust">
               <h3>Sensitivity label</h3><span class="tag">Trust</span>
               <p>
-                The classification stuck to a document &mdash; public, internal, confidential. Copilot respects it and
-                passes it on to anything it produces from that document.
+                The classification stuck to a document &mdash; public, internal, confidential. Copilot and agents
+                recognise it. Where an answer draws on several documents, you see the most restrictive label of the
+                sources, and where a label encrypts the file, Copilot returns its content only if you personally have
+                the right to copy from it.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/purview/sensitivity-labels"
+                  rel="nofollow noopener"
+                  target="_blank">Sensitivity labels</a
+                >
               </p>
             </div>
-            <div class="entry" data-cat="building">
-              <h3>SharePoint agent</h3><span class="tag">Building</span>
+            <div class="entry" data-cat="agents">
+              <h3>SharePoint agent</h3><span class="tag">Agents</span>
               <p>
-                An agent created straight from a document library, so it answers only from what is in there. The easiest
-                first agent anyone builds, and often the only one a team needs.
+                An agent created straight from a site or document library, so it answers only from what is in there, and
+                only what each person is already allowed to see. The easiest first agent anyone builds, and often the
+                only one a team needs. You need a paid seat to create one; colleagues without a seat can use it only if
+                your organisation has switched on pay-as-you-go billing.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/sharepoint/get-started-sharepoint-agents"
+                  rel="nofollow noopener"
+                  target="_blank">Agents in SharePoint</a
+                >
               </p>
             </div>
-            <div class="entry" data-cat="building">
-              <h3>Skill</h3><span class="tag">Building</span>
+            <div class="entry" data-cat="agents">
+              <h3>Skill</h3><span class="tag">Agents</span>
               <p>
                 One named thing an agent can do, written out once: &ldquo;triage an enquiry&rdquo;, &ldquo;draft a reply
-                in our house style&rdquo;, &ldquo;flag anything about fees&rdquo;. An agent with three clear skills
+                in our house style&rdquo;, &ldquo;flag anything about fees&rdquo;. In Copilot Studio a skill is three
+                fields &mdash; a name, a description of when it applies, and the instructions to follow &mdash; and the
+                agent picks the one whose description matches what it has been asked. An agent with three clear skills
                 beats an agent with one vague instruction.
               </p>
               <p class="not">
-                <b>Not the same as</b> a workflow. A skill sits ready to be used; a workflow is an order of events that fires
-                on its own.
+                <b>Not the same as:</b> a tool. In the Build pane, Skills sits directly above Tools: a skill is behaviour,
+                how to do the job; a tool is reach, the system it touches. Skills are plain Markdown, so a good one can be
+                handed to another agent.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/agents-experience/skills-overview"
+                  rel="nofollow noopener"
+                  target="_blank">Skills overview for agents</a
+                >
               </p>
             </div>
           </div>
@@ -465,12 +852,13 @@ const metadata = {
 
         <section class="lgroup">
           <h2 class="letter">T</h2><div class="entries">
-            <div class="entry" data-cat="adoption">
-              <h3>Tacit knowledge</h3><span class="tag">Adoption</span>
+            <div class="entry" data-cat="org">
+              <h3>Tacit knowledge</h3><span class="tag">Your organisation</span>
               <p>
                 What your team knows but has never written down &mdash; so Copilot cannot read it. The most common
                 reason a technically correct answer is still the wrong answer for your institution.
               </p>
+              <p class="src">No Microsoft page defines this. It is a WorkSmart-AI teaching term.</p>
             </div>
             <div class="entry" data-cat="trust">
               <h3>Tenant</h3><span class="tag">Trust</span>
@@ -478,24 +866,26 @@ const metadata = {
                 Your organisation&rsquo;s own walled section of Microsoft&rsquo;s cloud. &ldquo;Inside the tenant&rdquo;
                 means inside the boundary your data protection promise covers.
               </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-365/copilot/enterprise-data-protection"
+                  rel="nofollow noopener"
+                  target="_blank">Enterprise data protection</a
+                >
+              </p>
             </div>
-            <div class="entry" data-cat="building">
-              <h3>Trigger</h3><span class="tag">Building</span>
+            <div class="entry" data-cat="agents">
+              <h3>Trigger</h3><span class="tag">Agents</span>
               <p>
                 What starts a workflow without you: a time of day, an email arriving, a file being added, a form being
                 submitted. Choosing the trigger is most of designing the workflow.
               </p>
-            </div>
-          </div>
-        </section>
-
-        <section class="lgroup">
-          <h2 class="letter">U</h2><div class="entries">
-            <div class="entry" data-cat="adoption">
-              <h3>Use case</h3><span class="tag">Adoption</span>
-              <p>
-                A specific job in your actual week that Copilot could take on. Not &ldquo;improve productivity&rdquo;
-                &mdash; &ldquo;turn Monday&rsquo;s three committee papers into a one-page brief before Tuesday&rdquo;.
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/workflows-experience/flows-overview"
+                  rel="nofollow noopener"
+                  target="_blank">Workflows overview</a
+                >
               </p>
             </div>
           </div>
@@ -503,44 +893,113 @@ const metadata = {
 
         <section class="lgroup">
           <h2 class="letter">V</h2><div class="entries">
-            <div class="entry" data-cat="asking">
-              <h3>Verification</h3><span class="tag">Asking</span>
+            <div class="entry" data-cat="prompts">
+              <h3>Verification</h3><span class="tag">Prompts</span>
               <p>
                 Checking the output before you use it. This does not transfer to the tool, the vendor or your IT
                 department. If it goes out under your name, it is yours.
               </p>
+              <p class="src">No Microsoft page defines this. It is a WorkSmart-AI teaching term.</p>
             </div>
           </div>
         </section>
 
         <section class="lgroup">
           <h2 class="letter">W</h2><div class="entries">
-            <div class="entry" data-cat="asking">
-              <h3>Work, web, or both</h3><span class="tag">Asking</span>
+            <div class="entry" data-cat="work">
+              <h3>What Copilot cannot see</h3><span class="tag">Your work</span>
               <p>
-                The toggle that decides whether Copilot answers from your organisation&rsquo;s content, from the open
-                internet, or from both. It changes the answer completely, and people forget it is there.
+                The honest limits of the organisation-wide index. It covers Word, PowerPoint, PDF, OneNote and
+                SharePoint pages, plus your own mailbox. It does not cover shared or delegated mailboxes, archived
+                content, or anything in a site an admin has set not to appear in search. Files over 512 MB are skipped,
+                and images and video are ignored beyond their file names. Spreadsheets are not in the indexed list,
+                which is why &ldquo;find the report&rdquo; works better than &ldquo;find the spreadsheet&rdquo;.
+              </p>
+              <p class="not">
+                <b>Also:</b> a new document on a SharePoint site is indexed daily rather than instantly, so a file added
+                this morning may genuinely not be findable this afternoon.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoftsearch/semantic-index-for-copilot"
+                  rel="nofollow noopener"
+                  target="_blank">Semantic indexing for Copilot</a
+                >
               </p>
             </div>
-            <div class="entry" data-cat="workiq">
-              <h3>Work IQ</h3><span class="tag">Work IQ</span>
+            <div class="entry" data-cat="where">
+              <h3>Where Copilot lives</h3><span class="tag">Where you use it</span>
               <p>
-                The layer that gives Copilot an understanding of your organisation &mdash; your documents, mail,
-                meetings, and how people and projects connect. It is the reason Copilot&rsquo;s answer is different from
-                a public chatbot&rsquo;s, and the reason it can be wrong in specific, local ways.
+                One product, several doors: the Microsoft Copilot app at m365.cloud.microsoft, the side pane inside
+                Word, Excel, Outlook and Teams, the Copilot button on a SharePoint library, and Edge. What you can do
+                changes with the room you are standing in &mdash; the app is for asking across everything, the side pane
+                is for working on the thing in front of you.
+              </p>
+              <p class="not">
+                <b>Note:</b> the free Copilot Chat lives at m365copilot.com and redirects into the same app. The consumer
+                Copilot at copilot.microsoft.com is a different product on a personal account.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-365/copilot/which-copilot-for-your-organization"
+                  rel="nofollow noopener"
+                  target="_blank">Decide which Copilot is right for you</a
+                >
+              </p>
+            </div>
+            <div class="entry" data-cat="work">
+              <h3>Work IQ</h3><span class="tag">Your work</span>
+              <p>
+                Microsoft&rsquo;s name for the layer that gives Copilot an understanding of your organisation &mdash;
+                your documents, mail, meetings, and how people and projects connect, built on the plumbing IT calls the
+                Microsoft Graph. It is the reason Copilot&rsquo;s answer is different from a public chatbot&rsquo;s, and
+                the reason it can be wrong in specific, local ways.
               </p>
               <p class="not">
                 <b>What it is not:</b> a person reading your email. It is a permissions-bound index your account already
                 had access to.
               </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/work-iq/"
+                  rel="nofollow noopener"
+                  target="_blank">Work IQ overview</a
+                >
+              </p>
             </div>
-            <div class="entry" data-cat="building">
-              <h3>Workflow</h3><span class="tag">Building</span>
+            <div class="entry" data-cat="prompts">
+              <h3>Work, web, or both</h3><span class="tag">Prompts</span>
+              <p>
+                The toggle that decides whether Copilot answers from your organisation&rsquo;s content, from the open
+                internet, or from both. It changes the answer completely, and people forget it is there.
+              </p>
+              <p class="not">
+                <b>On screen it says:</b> Work IQ. Turning that button on grounds the answer in what your account can reach;
+                turning it off sends you back to the web.
+              </p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-365/copilot/which-copilot-for-your-organization"
+                  rel="nofollow noopener"
+                  target="_blank">Decide which Copilot is right for you</a
+                >
+              </p>
+            </div>
+            <div class="entry" data-cat="agents">
+              <h3>Workflow</h3><span class="tag">Agents</span>
               <p>
                 An ordered set of steps that runs on a trigger, usually without you watching. A step can call an agent,
-                wait for a person to approve, and then carry on.
+                wait for a person to approve, and then carry on. Copilot Studio also keeps the older, more literal
+                version under the name agent flows.
               </p>
-              <p class="not"><b>Not the same as</b> an agent. The agent is the worker; the workflow is the rota.</p>
+              <p class="not"><b>Not the same as:</b> an agent. The agent is the worker; the workflow is the rota.</p>
+              <p class="src">
+                Microsoft: <a
+                  href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/workflows-experience/flows-overview"
+                  rel="nofollow noopener"
+                  target="_blank">Workflows overview</a
+                >
+              </p>
             </div>
           </div>
         </section>
@@ -549,9 +1008,12 @@ const metadata = {
       <p class="empty" id="empty">Nothing matches that. Try a shorter word, or clear the filter.</p>
 
       <p class="foot">
-        <strong>A note on names.</strong> Microsoft renames things often. The four core terms &mdash; agent, skill, action,
-        workflow &mdash; describe how the thing works and will outlast whatever it is called this quarter. If a name here
-        does not match what is on your screen, trust the screen and tell us, and we will update this page.
+        <strong>A note on names.</strong> Microsoft renames things often, and this page carries the scars: its own documentation
+        now says Microsoft Copilot where it used to say Microsoft 365 Copilot, and enterprise data protection where older
+        material says commercial data protection. The four core terms &mdash; agent, skill, action, workflow &mdash; describe
+        how the thing works and will outlast whatever it is called this quarter; all four appear on the Copilot Studio build
+        screen. Where a name here does not match your screen, trust the screen and tell us. Every entry was checked against
+        the linked Microsoft page on 20 August 2026.
       </p>
     </div>
   </article>
@@ -760,6 +1222,9 @@ const metadata = {
     gap: 4px 16px;
   }
   .entry h3 {
+    grid-column: 1;
+    justify-self: start;
+    text-align: left;
     font-family: 'Work Sans', system-ui, sans-serif;
     font-weight: 700;
     font-size: 17px;
@@ -773,6 +1238,7 @@ const metadata = {
     font-weight: 400;
   }
   .tag {
+    grid-column: 2;
     grid-row: 1;
     justify-self: end;
     align-self: start;
@@ -804,6 +1270,20 @@ const metadata = {
   .entry .not b {
     color: var(--ink);
     font-weight: 700;
+  }
+  .entry .src {
+    grid-column: 1 / -1;
+    margin: 8px 0 0;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+  .entry .src a {
+    color: var(--navy);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .entry .src a:hover {
+    color: var(--orange);
   }
   .hidden {
     display: none !important;
@@ -839,6 +1319,7 @@ const metadata = {
       grid-template-columns: 1fr;
     }
     .tag {
+      grid-column: 1;
       grid-row: auto;
       justify-self: start;
       margin-top: 4px;
@@ -859,7 +1340,9 @@ const metadata = {
     let cat = 'all';
 
     entries.forEach((entry) => {
-      entry.dataset.text = (entry.textContent || '').toLowerCase().replace(/\s+/g, ' ');
+      const clone = entry.cloneNode(true);
+      clone.querySelectorAll('.src').forEach((node) => node.remove());
+      entry.dataset.text = (clone.textContent || '').toLowerCase().replace(/\s+/g, ' ');
     });
 
     function apply() {
