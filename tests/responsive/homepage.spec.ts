@@ -25,7 +25,7 @@ test.describe('homepage responsive layout', () => {
 
       await expect(page.getByRole('heading', { name: /AI skills training, designed for education/i })).toBeVisible();
 
-      const heDoor = page.getByRole('link', { name: 'For Higher Education' }).first();
+      const heDoor = page.getByRole('link', { name: 'For Universities' }).first();
       await expect(heDoor).toBeVisible();
       await expect(heDoor).toHaveAttribute('href', '/higher-education/');
 
