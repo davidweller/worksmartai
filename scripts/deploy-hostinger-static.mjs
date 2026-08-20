@@ -112,8 +112,10 @@ function uploadFile(filePath, basename, uploadUrl, authToken, authRestToken) {
 }
 
 async function triggerDeploy(username, domain, archiveBasename) {
+  // Hostinger stores TUS uploads under public_html/; the deploy endpoint 500s
+  // with Hosting:9999 if archive_path is the bare filename.
   return apiRequest('POST', `api/hosting/v1/accounts/${username}/websites/${domain}/deploy`, {
-    archive_path: archiveBasename,
+    archive_path: `public_html/${archiveBasename}`,
   });
 }
 
