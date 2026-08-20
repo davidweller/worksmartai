@@ -30,8 +30,16 @@ const heServiceLinks: NavLink[] = [
   { text: 'Leadership Consulting', href: '/services/senior-consulting/' },
   { text: 'Academic Coaching', href: '/services/academic-coaching/' },
   { text: 'Events and Away Days', href: '/services/talks-workshops/' },
+];
+
+const universitiesLinks: NavLink[] = [{ text: 'Overview', href: '/higher-education/' }, ...heServiceLinks];
+
+const resourceLinks: NavLink[] = [
+  { text: 'AI Calculator', href: '/roi-calculator/' },
   { text: 'AI Capability Check', href: '/health-check/' },
   { text: 'AI Use Cases Guide', href: '/higher-education-guide/' },
+  { text: 'Copilot Licensing', href: '/copilot-licensing/' },
+  { text: 'Copilot Glossary', href: '/copilot-glossary/' },
 ];
 
 const schoolsLinks: NavLink[] = [
@@ -48,14 +56,18 @@ export const headerData: {
   links: [
     { text: 'Home', href: '/' },
     {
-      text: 'Higher Education',
+      text: 'Universities',
       href: '/higher-education/',
-      links: heServiceLinks,
+      links: universitiesLinks,
     },
     {
       text: 'Schools',
       href: '/schools/',
       links: schoolsLinks,
+    },
+    {
+      text: 'Resources',
+      links: resourceLinks,
     },
     { text: 'About', href: '/about-us/' },
     { text: 'News', href: '/news/' },
@@ -66,12 +78,8 @@ export const headerData: {
 
 export const footerColumns: FooterColumn[] = [
   {
-    title: 'Higher Education',
-    links: [
-      { text: 'HE overview', href: '/higher-education/' },
-      ...heServiceLinks.slice(0, 6),
-      { text: 'AI Savings Calculator', href: '/roi-calculator/' },
-    ],
+    title: 'Universities',
+    links: universitiesLinks,
   },
   {
     title: 'Schools',
@@ -85,14 +93,15 @@ export const footerColumns: FooterColumn[] = [
   {
     title: 'Resources',
     links: [
-      { text: 'News', href: '/news/' },
+      ...resourceLinks,
       { text: 'How our Calculator Works', href: '/how-our-calculator-works/' },
-      { text: 'About Us', href: '/about-us/' },
+      { text: 'News', href: '/news/' },
     ],
   },
   {
     title: 'About',
     links: [
+      { text: 'About Us', href: '/about-us/' },
       { text: 'Contact', href: '/contact-us/' },
       { text: 'Login', href: '/login/' },
     ],
@@ -129,7 +138,9 @@ export function inferSectorFromPath(pathname: string): SiteSector {
     path.startsWith('/services') ||
     path.startsWith('/health-check') ||
     path.startsWith('/higher-education-guide') ||
-    path.startsWith('/roi-calculator')
+    path.startsWith('/roi-calculator') ||
+    path.startsWith('/copilot-licensing') ||
+    path.startsWith('/copilot-glossary')
   ) {
     return 'he';
   }

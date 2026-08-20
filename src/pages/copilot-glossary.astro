@@ -1,0 +1,895 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Copilot in Plain English | WorkSmart-AI',
+  description:
+    'Every term you will hear in a Copilot session, explained once, without the marketing. Written for the person using it, not the person configuring it.',
+  canonical: '/copilot-glossary/',
+};
+---
+
+<Layout metadata={metadata}>
+  <article class="copilot-glossary">
+    <div class="wrap">
+      <p class="eyebrow">WorkSmart-AI &middot; Copilot curriculum</p>
+      <h1>Copilot in plain English</h1>
+      <p class="stand">
+        Every term you will hear in a Copilot session, explained once, without the marketing. Written for the person
+        using it, not the person configuring it.
+      </p>
+      <p class="stand sub">
+        Search or filter below. The tag on each entry says which part of the picture it belongs to.
+      </p>
+
+      <section class="core">
+        <h2>If you only learn four</h2>
+        <dl>
+          <div>
+            <dt>Agent</dt><dd>
+              <b>Who</b> does the work &mdash; a named Copilot with a job, rules, and a fixed set of places it may read.
+            </dd>
+          </div>
+          <div>
+            <dt>Skill</dt><dd><b>What</b> that agent can do &mdash; one named task, described once and reused.</dd>
+          </div>
+          <div>
+            <dt>Action</dt><dd>
+              <b>What it can reach</b> &mdash; the ability to touch a real system: read a library, send a mail, update a
+              list.
+            </dd>
+          </div>
+          <div>
+            <dt>Workflow</dt><dd>
+              <b>When, and in what order</b> &mdash; steps that fire on a trigger and run without you sitting there.
+            </dd>
+          </div>
+        </dl>
+      </section>
+
+      <div class="controls">
+        <label for="q" class="hidden">Search the glossary</label>
+        <input id="q" class="search" type="search" placeholder="Search a term, or what it does…" autocomplete="off" />
+        <div class="filters" role="group" aria-label="Filter by part of the picture">
+          <button type="button" data-cat="all" aria-pressed="true">All</button>
+          <button type="button" data-cat="licence" aria-pressed="false">Licence</button>
+          <button type="button" data-cat="workiq" aria-pressed="false">Work IQ</button>
+          <button type="button" data-cat="surface" aria-pressed="false">Surfaces</button>
+          <button type="button" data-cat="asking" aria-pressed="false">Asking</button>
+          <button type="button" data-cat="building" aria-pressed="false">Building</button>
+          <button type="button" data-cat="trust" aria-pressed="false">Trust</button>
+          <button type="button" data-cat="adoption" aria-pressed="false">Adoption</button>
+          <span class="count" id="count" aria-live="polite"></span>
+        </div>
+      </div>
+
+      <div id="list">
+        <section class="lgroup">
+          <h2 class="letter">A</h2><div class="entries">
+            <div class="entry" data-cat="building">
+              <h3>Action</h3><span class="tag">Building</span>
+              <p>
+                An agent&rsquo;s ability to touch a real system rather than just talk about it &mdash; read a document
+                library, send an email, add a row to a list, create a task. Without actions, an agent can only produce
+                text.
+              </p>
+              <p class="not">
+                <b>Also called</b> a tool, or a connector, depending on which screen you are looking at.
+              </p>
+            </div>
+            <div class="entry" data-cat="building">
+              <h3>Agent</h3><span class="tag">Building</span>
+              <p>
+                A Copilot you have given a name, a job, a set of rules and a fixed set of sources. Instead of explaining
+                the task every time, you explain it once and then talk to the thing you made. Colleagues can use it too.
+              </p>
+              <p class="not">
+                <b>Not the same as</b> Agent Mode, which is ordinary Copilot working harder inside one document.
+              </p>
+            </div>
+            <div class="entry" data-cat="surface">
+              <h3>Agent Mode</h3><span class="tag">Surfaces</span>
+              <p>
+                Copilot taking on a whole multi-step job inside Word, Excel or PowerPoint &mdash; building a document or
+                reworking a spreadsheet across several moves &mdash; rather than making one edit and stopping.
+              </p>
+            </div>
+            <div class="entry" data-cat="building">
+              <h3>Agent Store</h3><span class="tag">Building</span>
+              <p>
+                Where ready-made agents are published &mdash; Microsoft&rsquo;s, your organisation&rsquo;s, and third
+                parties&rsquo;. Worth a look before you build anything: somebody has often done it already.
+              </p>
+            </div>
+            <div class="entry" data-cat="building">
+              <h3>Analyst</h3><span class="tag">Building</span>
+              <p>
+                A specialist agent that works with data. Give it a spreadsheet or a set of figures and it reasons
+                through the analysis, writes and runs the code, and shows you its working.
+              </p>
+            </div>
+            <div class="entry" data-cat="building">
+              <h3>Approval step</h3><span class="tag">Building</span>
+              <p>
+                A point in a workflow where a person has to say yes before anything continues. The safety catch on
+                automation, and usually the difference between a workflow you can defend and one you cannot.
+              </p>
+              <p class="not"><b>Also called</b> human in the loop.</p>
+            </div>
+            <div class="entry" data-cat="trust">
+              <h3>Audit trail</h3><span class="tag">Trust</span>
+              <p>
+                The record of what Copilot was asked and what it did, kept by your organisation. It exists, and it
+                matters for FOI, data-protection requests and investigations.
+              </p>
+            </div>
+            <div class="entry" data-cat="building">
+              <h3>Autonomy</h3><span class="tag">Building</span>
+              <p>
+                Whether an agent waits to be asked or acts on its own. Most agents you meet are the first kind. The
+                second kind needs an owner, a scope, and someone who checks on it.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="lgroup">
+          <h2 class="letter">C</h2><div class="entries">
+            <div class="entry" data-cat="trust">
+              <h3>Commercial data protection</h3><span class="tag">Trust</span>
+              <p>
+                The promise that what you type at work stays inside your organisation&rsquo;s boundary and is not used
+                to train the public model. It applies when you are signed in with your work account &mdash; which is the
+                whole reason to use the work version rather than a personal one.
+              </p>
+            </div>
+            <div class="entry" data-cat="workiq">
+              <h3>Connector</h3><span class="tag">Work IQ</span>
+              <p>
+                A bridge that lets Copilot read a system that is not Microsoft&rsquo;s &mdash; a student record system,
+                a CRM, a ticketing tool. Someone in IT sets these up; you only notice that Copilot suddenly knows more.
+              </p>
+            </div>
+            <div class="entry" data-cat="trust">
+              <h3>Consumption and credits</h3><span class="tag">Trust</span>
+              <p>
+                Agent runs cost money, metered per run rather than covered by a flat licence. Relevant the moment you
+                build something that runs on a schedule rather than when you press a button.
+              </p>
+            </div>
+            <div class="entry" data-cat="licence">
+              <h3>Copilot Academy</h3><span class="tag">Licence</span>
+              <p>
+                Guided Copilot training already switched on inside Viva Learning for most Microsoft 365 users. Free,
+                already paid for, and usually nobody knows it is there.
+              </p>
+            </div>
+            <div class="entry" data-cat="surface">
+              <h3>Copilot Actions</h3><span class="tag">Surfaces</span>
+              <p>
+                Copilot carrying out a task on your device or in the browser on your behalf &mdash; filling a form,
+                working through a website &mdash; rather than telling you how to do it.
+              </p>
+              <p class="not">
+                <b>Not the same as</b> an action in the agent sense, which is a capability you grant an agent you built.
+              </p>
+            </div>
+            <div class="entry" data-cat="licence">
+              <h3>Copilot Chat</h3><span class="tag">Licence</span>
+              <p>
+                The free tier, included with a work sign-in. Protected, useful, and grounded in the web &mdash; but it
+                cannot see your files, mail or meetings unless you paste them in.
+              </p>
+            </div>
+            <div class="entry" data-cat="surface">
+              <h3>Copilot Notebooks</h3><span class="tag">Surfaces</span>
+              <p>
+                A place to pin the sources for one project &mdash; a set of documents, pages and notes &mdash; so that
+                every question you ask is answered from those, and only those. The fix for &ldquo;it keeps dragging in
+                the wrong report&rdquo;.
+              </p>
+            </div>
+            <div class="entry" data-cat="surface">
+              <h3>Copilot Pages</h3><span class="tag">Surfaces</span>
+              <p>
+                Turns an answer in a chat into a document you and colleagues can edit together. Use it the moment an
+                answer is worth keeping; chat threads are disposable, pages are not.
+              </p>
+            </div>
+            <div class="entry" data-cat="licence">
+              <h3>Copilot Premium</h3><span class="tag">Licence</span>
+              <p>
+                The top tier. Adds the specialist reasoning agents, the ability to build agents, and higher usage
+                limits, on top of everything the standard licence gives you.
+              </p>
+            </div>
+            <div class="entry" data-cat="surface">
+              <h3>Copilot Search</h3><span class="tag">Surfaces</span>
+              <p>
+                Search across your organisation&rsquo;s content that answers the question rather than handing you twenty
+                links to open.
+              </p>
+            </div>
+            <div class="entry" data-cat="building">
+              <h3>Copilot Studio</h3><span class="tag">Building</span>
+              <p>
+                The place where agents are built, tested and published &mdash; without writing code. This is where a
+                repeated prompt becomes something your team can use.
+              </p>
+              <p class="not">
+                <b>Not the same as</b> Power Automate, which follows fixed rules. Studio builds something that exercises
+                judgement.
+              </p>
+            </div>
+            <div class="entry" data-cat="asking">
+              <h3>Custom instructions</h3><span class="tag">Asking</span>
+              <p>
+                Standing context you set once &mdash; your role, your department, how you like things written &mdash; so
+                you stop retyping it in every prompt.
+              </p>
+            </div>
+            <div class="entry" data-cat="building">
+              <h3>Custom-engine agent</h3><span class="tag">Building</span>
+              <p>
+                An agent built from scratch by developers rather than configured on top of Copilot. Worth knowing the
+                phrase exists so you can recognise when a conversation has left your territory.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="lgroup">
+          <h2 class="letter">D</h2><div class="entries">
+            <div class="entry" data-cat="building">
+              <h3>Declarative agent</h3><span class="tag">Building</span>
+              <p>
+                The ordinary kind &mdash; an agent you make by describing what it should do and which sources it may
+                use. Everything a business user builds is one of these.
+              </p>
+            </div>
+            <div class="entry" data-cat="building">
+              <h3>Deep reasoning</h3><span class="tag">Building</span>
+              <p>
+                Copilot taking longer to think before it answers. Slower and more expensive, and worth it for genuine
+                analysis rather than for drafting an email.
+              </p>
+            </div>
+            <div class="entry" data-cat="trust">
+              <h3>DLP</h3><span class="tag">Trust</span>
+              <p>
+                Data loss prevention &mdash; the rules your organisation sets about what can leave, and where. Copilot
+                obeys them, which is occasionally why an answer stops short.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="lgroup">
+          <h2 class="letter">G</h2><div class="entries">
+            <div class="entry" data-cat="workiq">
+              <h3>Grounding</h3><span class="tag">Work IQ</span>
+              <p>
+                Answering from real sources rather than from memory. A grounded answer can cite where it came from; an
+                ungrounded one is the model&rsquo;s best guess. Always check which you were given.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="lgroup">
+          <h2 class="letter">H</h2><div class="entries">
+            <div class="entry" data-cat="asking">
+              <h3>Hallucination</h3><span class="tag">Asking</span>
+              <p>
+                A confident, fluent, wrong answer. It is not a bug being fixed next release &mdash; it is how these
+                tools work, and it is why verification is your job rather than Microsoft&rsquo;s.
+              </p>
+            </div>
+            <div class="entry" data-cat="building">
+              <h3>Human in the loop</h3><span class="tag">Building</span>
+              <p>See <b>Approval step</b>.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="lgroup">
+          <h2 class="letter">I</h2><div class="entries">
+            <div class="entry" data-cat="building">
+              <h3>Instructions</h3><span class="tag">Building</span>
+              <p>
+                What you write when you build an agent: its job, its rules, its tone, what it must never do. The single
+                biggest lever on whether the agent is any good.
+              </p>
+            </div>
+            <div class="entry" data-cat="asking">
+              <h3>Iteration</h3><span class="tag">Asking</span>
+              <p>
+                Steering the answer with follow-up turns instead of retyping the prompt from scratch.
+                &ldquo;Shorter.&rdquo; &ldquo;More formal.&rdquo; &ldquo;Now for the student audience.&rdquo; The
+                cheapest skill on this list and the most under-used.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="lgroup">
+          <h2 class="letter">K</h2><div class="entries">
+            <div class="entry" data-cat="workiq">
+              <h3>Knowledge source</h3><span class="tag">Work IQ</span>
+              <p>
+                The specific places an agent is allowed to read &mdash; a SharePoint site, a set of documents, a
+                connector. Narrowing these is what turns a vague agent into a reliable one.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="lgroup">
+          <h2 class="letter">M</h2><div class="entries">
+            <div class="entry" data-cat="workiq">
+              <h3>Memory</h3><span class="tag">Work IQ</span>
+              <p>
+                Copilot holding on to preferences and context across sessions, so it does not start from nothing each
+                morning. Check what it has remembered occasionally; it is editable.
+              </p>
+            </div>
+            <div class="entry" data-cat="workiq">
+              <h3>Microsoft Graph</h3><span class="tag">Work IQ</span>
+              <p>
+                The plumbing underneath Work IQ &mdash; the layer that holds your files, mail, calendar, chats and the
+                connections between people. You will hear it named in IT conversations and never need to touch it.
+              </p>
+            </div>
+            <div class="entry" data-cat="licence">
+              <h3>Microsoft 365 Copilot</h3><span class="tag">Licence</span>
+              <p>
+                The paid seat. This is the one that can see your work &mdash; files, mail, chats, meetings &mdash; and
+                that appears inside Word, Excel, Outlook and Teams.
+              </p>
+              <p class="not"><b>Not the same as</b> Copilot Chat, which is free and cannot reach your work data.</p>
+            </div>
+            <div class="entry" data-cat="building">
+              <h3>Multi-agent orchestration</h3><span class="tag">Building</span>
+              <p>
+                Agents handing work to other agents. Real, occasionally useful, and firmly a job for whoever owns the
+                platform rather than for you on a Tuesday afternoon.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="lgroup">
+          <h2 class="letter">O</h2><div class="entries">
+            <div class="entry" data-cat="trust">
+              <h3>Oversharing</h3><span class="tag">Trust</span>
+              <p>
+                Copilot surfacing something that was always technically visible to you but practically buried &mdash; an
+                old pay file in a site nobody tidied. Copilot did not break a permission. It found one that was already
+                wrong.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="lgroup">
+          <h2 class="letter">P</h2><div class="entries">
+            <div class="entry" data-cat="trust">
+              <h3>Permissions inheritance</h3><span class="tag">Trust</span>
+              <p>
+                Copilot can only see what your account can already see &mdash; no more, and no less. The answer to
+                &ldquo;can it read my colleague&rsquo;s mail?&rdquo; is no, unless you already could.
+              </p>
+            </div>
+            <div class="entry" data-cat="asking">
+              <h3>Prompt</h3><span class="tag">Asking</span>
+              <p>
+                What you ask for. A good one carries five things: the <b>goal</b>, the <b>context</b>, the <b>source</b>
+                to use, the <b>format</b> you want back, and the <b>tone</b>. Most disappointing answers are missing
+                three of those.
+              </p>
+            </div>
+            <div class="entry" data-cat="asking">
+              <h3>Prompt Gallery</h3><span class="tag">Asking</span>
+              <p>
+                A library of prompts inside Copilot &mdash; Microsoft&rsquo;s, your organisation&rsquo;s, and ones you
+                save yourself. Start here rather than from a blank box.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="lgroup">
+          <h2 class="letter">R</h2><div class="entries">
+            <div class="entry" data-cat="asking">
+              <h3>Referencing</h3><span class="tag">Asking</span>
+              <p>
+                Pointing Copilot at a specific file, person or meeting inside your prompt, usually by typing a slash or
+                an oblique. Turns &ldquo;summarise our policy&rdquo; into a question it can actually answer.
+              </p>
+            </div>
+            <div class="entry" data-cat="building">
+              <h3>Researcher</h3><span class="tag">Building</span>
+              <p>
+                A specialist agent that works through a question over several steps, across your work data and the web,
+                and comes back with a sourced report rather than a paragraph.
+              </p>
+            </div>
+            <div class="entry" data-cat="trust">
+              <h3>Responsible use</h3><span class="tag">Trust</span>
+              <p>
+                Your institution&rsquo;s own rules about what AI may be used for &mdash; marking, admissions, personal
+                data, student-facing decisions. These sit above anything Microsoft permits, and they are the ones you
+                will be held to.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="lgroup">
+          <h2 class="letter">S</h2><div class="entries">
+            <div class="entry" data-cat="asking">
+              <h3>Saved and team prompts</h3><span class="tag">Asking</span>
+              <p>
+                A prompt you keep, and one your team shares. The step between &ldquo;I worked out a good prompt&rdquo;
+                and &ldquo;the department has a good prompt&rdquo;.
+              </p>
+            </div>
+            <div class="entry" data-cat="trust">
+              <h3>Sensitivity label</h3><span class="tag">Trust</span>
+              <p>
+                The classification stuck to a document &mdash; public, internal, confidential. Copilot respects it and
+                passes it on to anything it produces from that document.
+              </p>
+            </div>
+            <div class="entry" data-cat="building">
+              <h3>SharePoint agent</h3><span class="tag">Building</span>
+              <p>
+                An agent created straight from a document library, so it answers only from what is in there. The easiest
+                first agent anyone builds, and often the only one a team needs.
+              </p>
+            </div>
+            <div class="entry" data-cat="building">
+              <h3>Skill</h3><span class="tag">Building</span>
+              <p>
+                One named thing an agent can do, written out once: &ldquo;triage an enquiry&rdquo;, &ldquo;draft a reply
+                in our house style&rdquo;, &ldquo;flag anything about fees&rdquo;. An agent with three clear skills
+                beats an agent with one vague instruction.
+              </p>
+              <p class="not">
+                <b>Not the same as</b> a workflow. A skill sits ready to be used; a workflow is an order of events that fires
+                on its own.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="lgroup">
+          <h2 class="letter">T</h2><div class="entries">
+            <div class="entry" data-cat="adoption">
+              <h3>Tacit knowledge</h3><span class="tag">Adoption</span>
+              <p>
+                What your team knows but has never written down &mdash; so Copilot cannot read it. The most common
+                reason a technically correct answer is still the wrong answer for your institution.
+              </p>
+            </div>
+            <div class="entry" data-cat="trust">
+              <h3>Tenant</h3><span class="tag">Trust</span>
+              <p>
+                Your organisation&rsquo;s own walled section of Microsoft&rsquo;s cloud. &ldquo;Inside the tenant&rdquo;
+                means inside the boundary your data protection promise covers.
+              </p>
+            </div>
+            <div class="entry" data-cat="building">
+              <h3>Trigger</h3><span class="tag">Building</span>
+              <p>
+                What starts a workflow without you: a time of day, an email arriving, a file being added, a form being
+                submitted. Choosing the trigger is most of designing the workflow.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="lgroup">
+          <h2 class="letter">U</h2><div class="entries">
+            <div class="entry" data-cat="adoption">
+              <h3>Use case</h3><span class="tag">Adoption</span>
+              <p>
+                A specific job in your actual week that Copilot could take on. Not &ldquo;improve productivity&rdquo;
+                &mdash; &ldquo;turn Monday&rsquo;s three committee papers into a one-page brief before Tuesday&rdquo;.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="lgroup">
+          <h2 class="letter">V</h2><div class="entries">
+            <div class="entry" data-cat="asking">
+              <h3>Verification</h3><span class="tag">Asking</span>
+              <p>
+                Checking the output before you use it. This does not transfer to the tool, the vendor or your IT
+                department. If it goes out under your name, it is yours.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="lgroup">
+          <h2 class="letter">W</h2><div class="entries">
+            <div class="entry" data-cat="asking">
+              <h3>Work, web, or both</h3><span class="tag">Asking</span>
+              <p>
+                The toggle that decides whether Copilot answers from your organisation&rsquo;s content, from the open
+                internet, or from both. It changes the answer completely, and people forget it is there.
+              </p>
+            </div>
+            <div class="entry" data-cat="workiq">
+              <h3>Work IQ</h3><span class="tag">Work IQ</span>
+              <p>
+                The layer that gives Copilot an understanding of your organisation &mdash; your documents, mail,
+                meetings, and how people and projects connect. It is the reason Copilot&rsquo;s answer is different from
+                a public chatbot&rsquo;s, and the reason it can be wrong in specific, local ways.
+              </p>
+              <p class="not">
+                <b>What it is not:</b> a person reading your email. It is a permissions-bound index your account already
+                had access to.
+              </p>
+            </div>
+            <div class="entry" data-cat="building">
+              <h3>Workflow</h3><span class="tag">Building</span>
+              <p>
+                An ordered set of steps that runs on a trigger, usually without you watching. A step can call an agent,
+                wait for a person to approve, and then carry on.
+              </p>
+              <p class="not"><b>Not the same as</b> an agent. The agent is the worker; the workflow is the rota.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <p class="empty" id="empty">Nothing matches that. Try a shorter word, or clear the filter.</p>
+
+      <p class="foot">
+        <strong>A note on names.</strong> Microsoft renames things often. The four core terms &mdash; agent, skill, action,
+        workflow &mdash; describe how the thing works and will outlast whatever it is called this quarter. If a name here
+        does not match what is on your screen, trust the screen and tell us, and we will update this page.
+      </p>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .copilot-glossary {
+    --navy: #015887;
+    --navy-deep: #013e60;
+    --orange: #ff7700;
+    --sky: #86bfe2;
+    --ground: #f8f8f8;
+    --surface: #ffffff;
+    --surface-2: #eef4f8;
+    --ink: #1b0101;
+    --ink-soft: #4d4442;
+    --rule: #c9dae5;
+    --rule-soft: #e2ecf3;
+    --tint: #f2f7fa;
+    --focus: #ff7700;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--aw-font-sans, Ubuntu, 'Segoe UI', system-ui, sans-serif);
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  :global(.dark) .copilot-glossary {
+    --navy: #5cb0dd;
+    --navy-deep: #8dcdef;
+    --orange: #ff9440;
+    --sky: #86bfe2;
+    --ground: #0b1920;
+    --surface: #12242e;
+    --surface-2: #183140;
+    --ink: #e9f2f7;
+    --ink-soft: #a9bfcc;
+    --rule: #2c4b5e;
+    --rule-soft: #1d3b4b;
+    --tint: #0f212b;
+    --focus: #ff9440;
+  }
+  .wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .eyebrow {
+    font-family: 'Work Sans', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin: 0 0 10px;
+  }
+  h1 {
+    font-family: 'Work Sans', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(30px, 4.6vw, 46px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+    color: var(--navy);
+    text-wrap: balance;
+  }
+  .stand {
+    max-width: 64ch;
+    font-size: 17px;
+    margin: 0 0 8px;
+  }
+  .stand.sub {
+    color: var(--ink-soft);
+    font-size: 15px;
+  }
+
+  /* ---- the four ---- */
+  .core {
+    margin: 36px 0 0;
+    border: 2px solid var(--orange);
+    border-radius: 3px;
+    background: var(--surface);
+    padding: 20px 22px;
+  }
+  .core h2 {
+    font-family: 'Work Sans', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin: 0 0 14px;
+  }
+  .core dl {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px 24px;
+    margin: 0;
+  }
+  .core dt {
+    font-family: 'Work Sans', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--navy);
+    margin-bottom: 3px;
+  }
+  .core dd {
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .core dd b {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  /* ---- controls ---- */
+  .controls {
+    position: sticky;
+    top: 4.75rem;
+    z-index: 5;
+    background: var(--ground);
+    padding: 18px 0 14px;
+    margin: 40px 0 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .search {
+    width: 100%;
+    font-family: Ubuntu, system-ui, sans-serif;
+    font-size: 16px;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1.5px solid var(--rule);
+    border-radius: 3px;
+    padding: 11px 14px;
+  }
+  .search::placeholder {
+    color: var(--ink-soft);
+  }
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+    align-items: center;
+  }
+  .filters button {
+    font-family: 'Work Sans', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    background: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 5px 11px;
+    cursor: pointer;
+  }
+  .filters button:hover {
+    border-color: var(--navy);
+    color: var(--navy);
+  }
+  .filters button[aria-pressed='true'] {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: #fff;
+  }
+  .count {
+    margin-left: auto;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---- entries ---- */
+  .lgroup {
+    margin-top: 34px;
+  }
+  .letter {
+    font-family: 'Work Sans', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--orange);
+    margin: 0 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--rule-soft);
+  }
+  .entries {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--rule-soft);
+  }
+  .entry {
+    background: var(--surface);
+    padding: 16px 18px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4px 16px;
+  }
+  .entry h3 {
+    font-family: 'Work Sans', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    margin: 0;
+    color: var(--navy);
+    line-height: 1.25;
+  }
+  .entry .also {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+  .tag {
+    grid-row: 1;
+    justify-self: end;
+    align-self: start;
+    font-family: 'Work Sans', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 3px 7px;
+    white-space: nowrap;
+  }
+  .entry p {
+    grid-column: 1 / -1;
+    margin: 2px 0 0;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .entry .not {
+    grid-column: 1 / -1;
+    margin: 8px 0 0;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    border-left: 3px solid var(--sky);
+    padding-left: 10px;
+  }
+  .entry .not b {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .hidden {
+    display: none !important;
+  }
+
+  .empty {
+    display: none;
+    margin-top: 40px;
+    padding: 24px;
+    text-align: center;
+    border: 1px dashed var(--rule);
+    border-radius: 3px;
+    color: var(--ink-soft);
+  }
+  .empty.show {
+    display: block;
+  }
+
+  .foot {
+    margin-top: 64px;
+    padding-top: 20px;
+    border-top: 2px solid var(--rule);
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    max-width: 74ch;
+  }
+  .foot strong {
+    color: var(--ink);
+  }
+
+  @media (max-width: 560px) {
+    .entry {
+      grid-template-columns: 1fr;
+    }
+    .tag {
+      grid-row: auto;
+      justify-self: start;
+      margin-top: 4px;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const q = document.getElementById('q');
+    const count = document.getElementById('count');
+    const empty = document.getElementById('empty');
+    if (!(q instanceof HTMLInputElement) || !count || !empty) return;
+
+    const groups = Array.from(document.querySelectorAll('.lgroup'));
+    const entries = Array.from(document.querySelectorAll('.entry'));
+    const buttons = Array.from(document.querySelectorAll('.filters button'));
+    let cat = 'all';
+
+    entries.forEach((entry) => {
+      entry.dataset.text = (entry.textContent || '').toLowerCase().replace(/\s+/g, ' ');
+    });
+
+    function apply() {
+      const term = q.value.trim().toLowerCase();
+      let shown = 0;
+      entries.forEach((entry) => {
+        const ok =
+          (cat === 'all' || entry.dataset.cat === cat) && (term === '' || (entry.dataset.text || '').includes(term));
+        entry.classList.toggle('hidden', !ok);
+        if (ok) shown += 1;
+      });
+      groups.forEach((group) => {
+        const any = group.querySelector('.entry:not(.hidden)');
+        group.classList.toggle('hidden', !any);
+      });
+      count.textContent = `${shown} of ${entries.length} terms`;
+      empty.classList.toggle('show', shown === 0);
+    }
+
+    q.addEventListener('input', apply);
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        cat = button.dataset.cat || 'all';
+        buttons.forEach((other) => {
+          other.setAttribute('aria-pressed', String(other === button));
+        });
+        apply();
+      });
+    });
+
+    apply();
+  })();
+</script>

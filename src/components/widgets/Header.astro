@@ -3,13 +3,11 @@ import { Icon } from 'astro-icon/components';
 import ToggleTheme from '~/components/common/ToggleTheme.astro';
 import ToggleMenu from '~/components/common/ToggleMenu.astro';
 import Button from '~/components/ui/Button.astro';
-import SectorSwitcher from '~/components/widgets/SectorSwitcher.astro';
 import logo from '~/assets/images/Logo Title.png';
 
 import { getHomePermalink } from '~/utils/permalinks';
 import { trimSlash, getAsset } from '~/utils/permalinks';
 import type { CallToAction } from '~/types';
-import type { SiteSector } from '~/navigation';
 
 interface Link {
   text?: string;
@@ -26,7 +24,6 @@ export interface Props {
   id?: string;
   links?: Array<MenuLink>;
   actions?: Array<CallToAction>;
-  sector?: SiteSector;
   isSticky?: boolean;
   isDark?: boolean;
   isFullWidth?: boolean;
@@ -39,7 +36,6 @@ const {
   id = 'header',
   links = [],
   actions = [],
-  sector = 'neutral',
   isSticky = false,
   isDark = false,
   isFullWidth = false,
@@ -79,8 +75,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         <a class="flex items-center" href={getHomePermalink()}>
           <img src={logo.src} alt="WorkSmart-AI" class="h-10 w-auto" loading="eager" decoding="async" />
         </a>
-        <div class="flex items-center gap-2 min-[1280px]:hidden">
-          <SectorSwitcher sector={sector} />
+        <div class="flex items-center min-[1280px]:hidden">
           <ToggleMenu />
         </div>
       </div>
@@ -161,7 +156,6 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         ]}
       >
         <div class="flex w-full items-center justify-end gap-3 md:w-auto">
-          <SectorSwitcher sector={sector} class="hidden min-[1280px]:flex shrink-0" />
           <div class="flex">
             {showToggleTheme && <ToggleTheme iconClass="w-6 h-6 md:w-5 md:h-5 md:inline-block" />}
             {
