@@ -1,0 +1,79 @@
+/*
+ * Dark-mode remap for hard-coded light colours.
+ *
+ * Many pages use fixed brand hex classes (bg-white, text-[#015887], text-[#1B0101], ...)
+ * instead of the theme tokens in CustomStyles.astro. Every rule here is scoped to `.dark`,
+ * so light mode is untouched. Navy bands, orange buttons and white-on-navy text are left
+ * alone because they read the same in both modes.
+ *
+ * White pill buttons (`bg-white rounded-full`) keep their fill and navy text so CTAs on
+ * navy bands look the same in both modes.
+ */
+
+/* Surfaces */
+.dark .bg-white:not(.rounded-full),
+.dark .focus\:bg-white:focus,
+.dark .bg-white\/95 {
+  background-color: var(--aw-color-bg-card);
+}
+
+.dark .bg-\[\#F8F8F8\],
+.dark .bg-slate-50\/80,
+.dark .bg-slate-100 {
+  background-color: var(--aw-color-bg-section);
+}
+
+.dark .bg-slate-200,
+.dark .hover\:bg-slate-50:hover {
+  background-color: var(--aw-color-bg-card-elevated);
+}
+
+.dark .bg-\[\#E6F1FB\],
+.dark .bg-\[\#86BFE2\]\/20 {
+  background-color: rgb(134 191 226 / 14%);
+}
+
+/* Text */
+.dark .text-\[\#015887\]:not(.bg-white.rounded-full) {
+  color: var(--aw-brand-light-blue);
+}
+
+/* Navy text on the light-blue band stays navy */
+.dark .bg-secondary .text-\[\#015887\] {
+  color: var(--aw-brand-navy);
+}
+
+.dark .text-\[\#1B0101\],
+.dark .text-slate-900,
+.dark .text-slate-700,
+.dark .text-gray-700 {
+  color: var(--aw-color-text-default);
+}
+
+.dark .text-\[\#1B0101\]\/60,
+.dark .text-slate-600,
+.dark .text-slate-500,
+.dark .text-gray-500 {
+  color: var(--aw-color-text-muted);
+}
+
+/* Borders and rings */
+.dark .border-\[\#E0E0E0\],
+.dark .border-slate-100,
+.dark .border-slate-200,
+.dark .border-slate-200\/80,
+.dark .border-slate-200\/90,
+.dark .border-gray-100,
+.dark .border-gray-200 {
+  border-color: var(--aw-color-border);
+}
+
+.dark .border-\[\#015887\]:not(.bg-white.rounded-full),
+.dark .focus\:border-\[\#015887\]:focus {
+  border-color: var(--aw-brand-light-blue);
+}
+
+.dark .ring-slate-900\/5,
+.dark .ring-slate-200\/80 {
+  --tw-ring-color: var(--aw-color-border);
+}

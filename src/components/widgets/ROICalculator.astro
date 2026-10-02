@@ -301,6 +301,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
     --ink: var(--aw-color-text-default);
     --sub: var(--aw-color-text-muted);
     --navy: var(--aw-color-primary);
+    --navy-ink: var(--navy);
     --accent: var(--aw-color-accent);
     --reversed: var(--aw-brand-white);
     --green: var(--aw-color-primary);
@@ -327,6 +328,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
   }
 
   :global(.dark) .wsai-sav {
+    --navy-ink: var(--aw-color-secondary);
     --green: var(--aw-color-secondary);
     --range-rest: color-mix(in srgb, var(--aw-color-secondary) 22%, var(--aw-color-bg-card-elevated));
     --selected-bg: color-mix(in srgb, var(--aw-color-accent) 16%, var(--aw-color-bg-card-elevated));
@@ -339,7 +341,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
 
   .wsai-hero-title {
     margin: 0;
-    color: var(--navy);
+    color: var(--navy-ink);
     font-family:
       'Work Sans',
       system-ui,
@@ -538,7 +540,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
   }
 
   .wsai-val-navy {
-    color: var(--navy);
+    color: var(--navy-ink);
     font-weight: 700;
     font-family: 'Work Sans', system-ui, sans-serif;
   }
@@ -685,7 +687,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
 
   .wsai-col-h {
     margin: 0 0 8px;
-    color: var(--navy);
+    color: var(--navy-ink);
     font-size: 1rem;
     font-family: 'Work Sans', system-ui, sans-serif;
     font-weight: 700;
@@ -775,7 +777,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
   }
 
   .wsai-metric-navy {
-    color: var(--navy);
+    color: var(--navy-ink);
   }
 
   .wsai-metric-green {
@@ -833,7 +835,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
   }
 
   .wsai-callout-text strong {
-    color: var(--navy);
+    color: var(--navy-ink);
     font-weight: 700;
   }
 

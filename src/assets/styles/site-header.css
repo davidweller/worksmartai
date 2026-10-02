@@ -143,3 +143,11 @@
   background-color: #e55f00 !important;
   color: #ffffff !important;
 }
+
+#header [data-aw-toggle-color-scheme] {
+  color: #015887 !important;
+}
+
+#header [data-aw-toggle-color-scheme]:hover {
+  background-color: rgb(1 88 135 / 8%) !important;
+}

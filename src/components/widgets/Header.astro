@@ -76,6 +76,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
           <img src={logo.src} alt="WorkSmart-AI" class="h-10 w-auto" loading="eager" decoding="async" />
         </a>
         <div class="flex items-center min-[1280px]:hidden">
+          {showToggleTheme && <ToggleTheme class="md:hidden rounded-lg p-2.5 inline-flex items-center" />}
           <ToggleMenu />
         </div>
       </div>
