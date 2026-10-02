@@ -42,6 +42,11 @@ const metadata = {
               required
               class="mt-1 py-3 px-4 block w-full text-md rounded-lg border border-default bg-card text-default focus:outline-none focus:ring-2 focus:ring-focus"
             />
+            <p class="mt-2 text-right text-sm">
+              <a class="text-primary underline hover:no-underline" href="/academy/forgot-password/"
+                >Forgot your password?</a
+              >
+            </p>
           </div>
           <div>
             <Button variant="primary" type="submit" text="Sign in" class="w-full" />
@@ -56,7 +61,12 @@ const metadata = {
 </Layout>
 
 <script>
-  import { academySupabase, hasAcademySupabaseConfig } from '~/lib/academy';
+  import {
+    academySupabase,
+    hasAcademySupabaseConfig,
+    isInvalidCredentialsError,
+    showInvalidCredentials,
+  } from '~/lib/academy';
 
   const form = document.getElementById('login-form');
   if (!(form instanceof HTMLFormElement)) {
@@ -106,6 +116,11 @@ const metadata = {
         }
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) {
+          if (isInvalidCredentialsError(error)) {
+            setFeedback('');
+            showInvalidCredentials(feedback, email);
+            return;
+          }
           setFeedback(error.message || 'Login failed. Please check your credentials.');
           return;
         }

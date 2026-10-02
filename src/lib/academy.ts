@@ -47,3 +47,22 @@ export function getAcademyUserLabel(user: { email?: string | null; user_metadata
 
   return 'Account';
 }
+
+export const FORGOT_PASSWORD_PATH = '/academy/forgot-password/';
+
+export function forgotPasswordHref(email = ''): string {
+  return email ? `${FORGOT_PASSWORD_PATH}?email=${encodeURIComponent(email)}` : FORGOT_PASSWORD_PATH;
+}
+
+export function isInvalidCredentialsError(error: { code?: string; message?: string }): boolean {
+  return error.code === 'invalid_credentials' || /invalid login credentials/i.test(error.message ?? '');
+}
+
+// Replaces the bare "Invalid login credentials" message with one that offers a reset.
+export function showInvalidCredentials(el: HTMLElement, email: string) {
+  const link = document.createElement('a');
+  link.href = forgotPasswordHref(email);
+  link.textContent = 'Reset your password';
+  link.className = 'font-semibold underline hover:no-underline';
+  el.replaceChildren("That email and password don't match. ", link, '.');
+}
