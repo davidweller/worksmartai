@@ -2,7 +2,12 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 export function getStaticPaths() {
-  const academyCourseIds = ['ai-foundations', 'copilot-workflows', 'agentic-automation'];
+  const academyCourseIds = [
+    'ai-foundations',
+    'copilot-workflows',
+    'agentic-automation',
+    'copilot-intermediate-advanced',
+  ];
   return academyCourseIds.map((courseId) => ({
     params: { courseId },
   }));
@@ -13,6 +18,7 @@ const courseContentPathById: Record<string, string> = {
   'ai-foundations': 'ai_fundamentals',
   'copilot-workflows': 'copilot-workflows',
   'agentic-automation': 'agentic-automation',
+  'copilot-intermediate-advanced': 'copilot-intermediate-advanced',
 };
 const courseContentPath = courseContentPathById[courseId] ?? courseId;
 
@@ -260,6 +266,7 @@ const metadata = {
     'ai-foundations': 7,
     'copilot-workflows': 7,
     'agentic-automation': 7,
+    'copilot-intermediate-advanced': 9,
   };
 
   const courseMetaById: Record<string, { code: string; title: string; module: string; pages: string[] }> = {
@@ -303,6 +310,22 @@ const metadata = {
         'Observability basics',
         'Common pitfalls',
         'Final checklist',
+      ],
+    },
+    'copilot-intermediate-advanced': {
+      code: 'INTERMEDIATE TO ADVANCED COPILOT',
+      title: 'Intermediate to Advanced Copilot',
+      module: 'Agents and Workflows',
+      pages: [
+        'Introduction',
+        'Module 1: Prompt, agent, workflow',
+        'Module 2: What an agent is made of',
+        'Module 3: Plan the agent',
+        'Module 4: Build and test the agent',
+        'Module 5: Plan the workflow',
+        'Module 6: Build and test the workflow',
+        'Module 7: Good enough to use?',
+        'Course conclusion and next steps',
       ],
     },
   };

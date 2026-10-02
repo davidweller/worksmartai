@@ -2,6 +2,7 @@ export const COURSE_TOTAL_PAGES: Record<string, number> = {
   'ai-foundations': 7,
   'copilot-workflows': 7,
   'agentic-automation': 7,
+  'copilot-intermediate-advanced': 9,
 };
 
 export const DEFAULT_QUIZ_SCORE_MAX = 10;
