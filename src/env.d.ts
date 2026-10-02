@@ -25,7 +25,9 @@ interface Window {
     cmi?: {
       core?: {
         lesson_location?: string | number | null;
+        score?: { raw?: string | number; max?: string | number };
       };
+      suspend_data?: string;
       toJSON?: () => Record<string, unknown>;
     };
     loadFromJSON?: (value: unknown) => void;

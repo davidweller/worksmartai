@@ -10,103 +10,6 @@ const metadata = {
     follow: false,
   },
 };
-
-const staffTrainingCourseGroups = [
-  {
-    staffType: 'All-Staff Workshops',
-    courses: [
-      {
-        title: 'AI Foundations & Responsible Use',
-        level: 'Foundation',
-        summary: 'Core principles, safe use patterns, and practical prompting for teams.',
-        isLive: true,
-        courseId: 'ai-foundations',
-        ctaLabel: 'Continue course',
-      },
-      {
-        title: 'AI for Daily Workflows (Email, Meetings, and Comms)',
-        level: 'Foundation',
-        summary: 'Apply AI assistants to day-to-day communication and coordination tasks.',
-        isLive: false,
-        ctaLabel: 'Start course',
-      },
-      {
-        title: 'AI for Summarising and Analysing (Word & Excel)',
-        level: 'Foundation',
-        summary: 'Use AI support to summarise information and speed up data-focused work.',
-        isLive: false,
-        ctaLabel: 'Start course',
-      },
-      {
-        title: 'Building Custom AI Agents',
-        level: 'Intermediate',
-        summary: 'Design practical agents that automate recurring team processes.',
-        isLive: false,
-        ctaLabel: 'Start course',
-      },
-      {
-        title: 'Intermediate to Advanced Copilot',
-        level: 'Intermediate',
-        summary: 'Plan, build and test Copilot agents and workflows, and judge when they are good enough to use.',
-        isLive: true,
-        courseId: 'copilot-intermediate-advanced',
-        ctaLabel: 'Start course',
-      },
-    ],
-  },
-  {
-    staffType: 'Academic Workshops',
-    courses: [
-      {
-        title: 'AI for Academic Content Creation (AI Before Class)',
-        level: 'Intermediate',
-        summary: 'Plan and prepare teaching materials with structured AI support.',
-        isLive: false,
-        ctaLabel: 'Start course',
-      },
-      {
-        title: 'The AI-Enabled Classroom: Pedagogy & Practice (AI During Class)',
-        level: 'Intermediate',
-        summary: 'Use AI during delivery while maintaining sound pedagogy and student trust.',
-        isLive: false,
-        ctaLabel: 'Start course',
-      },
-      {
-        title: 'AI for Academic Assessments (AI after Class)',
-        level: 'Intermediate',
-        summary: 'Create and review assessment workflows with reliable academic safeguards.',
-        isLive: false,
-        ctaLabel: 'Start course',
-      },
-      {
-        title: 'AI for Researchers',
-        level: 'Foundation',
-        summary: 'Support literature, synthesis, and workflow efficiency for research teams.',
-        isLive: false,
-        ctaLabel: 'Start course',
-      },
-    ],
-  },
-  {
-    staffType: 'Professional Services Workshops',
-    courses: [
-      {
-        title: 'AI for Process Improvement',
-        level: 'Intermediate',
-        summary: 'Identify bottlenecks and redesign services with practical AI methods.',
-        isLive: false,
-        ctaLabel: 'Start course',
-      },
-      {
-        title: 'AI for Comms and Engagement',
-        level: 'Intermediate',
-        summary: 'Improve engagement and communications output across professional services.',
-        isLive: false,
-        ctaLabel: 'Start course',
-      },
-    ],
-  },
-];
 ---
 
 <Layout metadata={metadata}>
@@ -118,12 +21,21 @@ const staffTrainingCourseGroups = [
           <h1 class="mt-2 font-heading text-3xl font-bold text-heading sm:text-4xl">Your course dashboard</h1>
           <p class="mt-2 text-sm text-muted">Resume where you left off and track progress across your learning path.</p>
         </div>
-        <button
-          id="academy-signout-button"
-          class="inline-flex items-center justify-center rounded-full border border-default bg-card px-5 py-2.5 text-sm font-semibold text-default transition hover:border-brand hover:text-brand"
-        >
-          Sign out
-        </button>
+        <div class="flex flex-wrap gap-3">
+          <a
+            id="academy-admin-link"
+            href="/academy/admin/"
+            class="hidden items-center justify-center rounded-full border border-default bg-card px-5 py-2.5 text-sm font-semibold text-default transition hover:border-brand hover:text-brand"
+          >
+            Admin
+          </a>
+          <button
+            id="academy-signout-button"
+            class="inline-flex items-center justify-center rounded-full border border-default bg-card px-5 py-2.5 text-sm font-semibold text-default transition hover:border-brand hover:text-brand"
+          >
+            Sign out
+          </button>
+        </div>
       </div>
 
       <p id="academy-dashboard-feedback" class="mt-6 hidden rounded-lg px-3 py-2 text-sm" role="alert"></p>
@@ -150,64 +62,7 @@ const staffTrainingCourseGroups = [
           You are not enrolled in any courses yet. Please contact your administrator.
         </p>
 
-        <div id="academy-course-grid" class="mt-8 hidden space-y-8" aria-busy="true">
-          {
-            staffTrainingCourseGroups.map((group) => (
-              <div data-course-group>
-                <h3 class="font-heading text-xl font-bold text-heading">{group.staffType}</h3>
-                <div class="mt-4 grid gap-4 md:grid-cols-2">
-                  {group.courses.map((course) => (
-                    <article
-                      class="rounded-xl border border-default bg-page p-5"
-                      {...(course.courseId ? { 'data-course-id': course.courseId } : {})}
-                    >
-                      <h4 class="text-base font-semibold text-heading">{course.title}</h4>
-                      <p class="mt-2 text-sm leading-relaxed text-muted">{course.summary}</p>
-                      <p class="mt-3 inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
-                        {course.level}
-                      </p>
-                      {course.isLive ? (
-                        <>
-                          <div class="mt-5">
-                            <div class="mb-1.5 flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-muted">
-                              <span>Progress</span>
-                              <span data-progress-label={course.courseId}>0%</span>
-                            </div>
-                            <div class="h-2 rounded-full bg-slate-200">
-                              <div
-                                class="h-full rounded-full bg-accent transition-all"
-                                style="width: 0%"
-                                data-progress-bar={course.courseId}
-                              />
-                            </div>
-                          </div>
-                          <a
-                            href={`/academy/view/${course.courseId}/`}
-                            class="mt-4 inline-flex items-center justify-center rounded-full border-2 border-brand bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:border-accent hover:bg-accent"
-                          >
-                            {course.ctaLabel}
-                          </a>
-                        </>
-                      ) : (
-                        <>
-                          <p class="mt-5 inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-700">
-                            Coming soon
-                          </p>
-                          <button
-                            type="button"
-                            class="mt-4 inline-flex items-center justify-center rounded-full border-2 border-default bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-500"
-                          >
-                            {course.ctaLabel}
-                          </button>
-                        </>
-                      )}
-                    </article>
-                  ))}
-                </div>
-              </div>
-            ))
-          }
-        </div>
+        <div id="academy-course-grid" class="mt-8 hidden space-y-8" aria-busy="true"></div>
       </section>
     </div>
   </section>
@@ -215,6 +70,7 @@ const staffTrainingCourseGroups = [
 
 <script>
   import { academySupabase, hasAcademySupabaseConfig, requireAuth } from '~/lib/academy';
+  import { COURSE_GROUPS, coursePlayerHref, escapeHtml, fetchCourses, type AcademyCourse } from '~/lib/academy/courses';
 
   const feedback = document.getElementById('academy-dashboard-feedback') as HTMLParagraphElement | null;
   const signOutButton = document.getElementById('academy-signout-button') as HTMLButtonElement | null;
@@ -246,48 +102,69 @@ const staffTrainingCourseGroups = [
     });
   };
 
-  const filterEnrolledCourses = (enrolledCourseIds: Set<string>) => {
+  const renderCourseCard = (course: AcademyCourse) => `
+    <article class="rounded-xl border border-default bg-page p-5" data-course-id="${escapeHtml(course.id)}">
+      <h4 class="text-base font-semibold text-heading">${escapeHtml(course.title)}</h4>
+      <p class="mt-2 text-sm leading-relaxed text-muted">${escapeHtml(course.summary)}</p>
+      <p class="mt-3 inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+        ${escapeHtml(course.level)}
+      </p>
+      ${
+        course.is_live
+          ? `<div class="mt-5">
+              <div class="mb-1.5 flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-muted">
+                <span>Progress</span>
+                <span data-progress-label="${escapeHtml(course.id)}">0%</span>
+              </div>
+              <div class="h-2 rounded-full bg-slate-200">
+                <div class="h-full rounded-full bg-accent transition-all" style="width: 0%" data-progress-bar="${escapeHtml(course.id)}"></div>
+              </div>
+            </div>
+            <a
+              href="${coursePlayerHref(course.id)}"
+              class="mt-4 inline-flex items-center justify-center rounded-full border-2 border-brand bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:border-accent hover:bg-accent"
+            >
+              Continue course
+            </a>`
+          : `<p class="mt-5 inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-700">
+              Coming soon
+            </p>`
+      }
+    </article>`;
+
+  // Shows only the courses this learner is enrolled in, grouped by audience.
+  const renderEnrolledCourses = (courses: AcademyCourse[], enrolledCourseIds: Set<string>) => {
     const courseGrid = document.getElementById('academy-course-grid');
     const emptyState = document.getElementById('academy-empty-enrollments');
     const introLabel = document.getElementById('academy-course-intro-label');
     const intro = document.getElementById('academy-course-intro');
-    let visibleCount = 0;
 
-    document.querySelectorAll<HTMLElement>('[data-course-id]').forEach((article) => {
-      const courseId = article.getAttribute('data-course-id');
-      const isEnrolled = Boolean(courseId && enrolledCourseIds.has(courseId));
+    const enrolled = courses.filter((course) => enrolledCourseIds.has(course.id));
+    const groupNames = [
+      ...COURSE_GROUPS,
+      ...new Set(enrolled.map((course) => course.group_name).filter((name) => !COURSE_GROUPS.includes(name))),
+    ];
 
-      if (isEnrolled) {
-        article.classList.remove('hidden');
-        visibleCount += 1;
-      } else {
-        article.classList.add('hidden');
-      }
-    });
-
-    document.querySelectorAll<HTMLElement>('article:not([data-course-id])').forEach((article) => {
-      article.classList.add('hidden');
-    });
-
-    document.querySelectorAll<HTMLElement>('[data-course-group]').forEach((group) => {
-      const hasVisibleCourse = Boolean(group.querySelector('[data-course-id]:not(.hidden)'));
-      group.classList.toggle('hidden', !hasVisibleCourse);
-    });
-
-    if (visibleCount === 0) {
-      emptyState?.classList.remove('hidden');
-      courseGrid?.classList.add('hidden');
-      introLabel?.classList.add('hidden');
-      intro?.classList.add('hidden');
-    } else {
-      emptyState?.classList.add('hidden');
-      courseGrid?.classList.remove('hidden');
-      introLabel?.classList.remove('hidden');
-      intro?.classList.remove('hidden');
+    if (courseGrid) {
+      courseGrid.innerHTML = groupNames
+        .map((groupName) => {
+          const groupCourses = enrolled.filter((course) => course.group_name === groupName);
+          if (groupCourses.length === 0) return '';
+          return `
+            <div data-course-group>
+              <h3 class="font-heading text-xl font-bold text-heading">${escapeHtml(groupName)}</h3>
+              <div class="mt-4 grid gap-4 md:grid-cols-2">${groupCourses.map(renderCourseCard).join('')}</div>
+            </div>`;
+        })
+        .join('');
     }
 
+    const hasCourses = enrolled.length > 0;
+    emptyState?.classList.toggle('hidden', hasCourses);
+    courseGrid?.classList.toggle('hidden', !hasCourses);
+    introLabel?.classList.toggle('hidden', !hasCourses);
+    intro?.classList.toggle('hidden', !hasCourses);
     courseGrid?.setAttribute('aria-busy', 'false');
-    return visibleCount;
   };
 
   if (!hasAcademySupabaseConfig || !academySupabase) {
@@ -297,16 +174,29 @@ const staffTrainingCourseGroups = [
     const user = authState?.user;
 
     if (user) {
+      if (user.app_metadata?.role === 'admin') {
+        const adminLink = document.getElementById('academy-admin-link');
+        adminLink?.classList.remove('hidden');
+        adminLink?.classList.add('inline-flex');
+      }
+
       const { data: enrollmentRows, error: enrollmentError } = await academySupabase
         .from('enrollments')
         .select('course_id')
         .eq('user_id', user.id);
 
-      if (enrollmentError) {
+      let courses: AcademyCourse[] | null = null;
+      try {
+        courses = await fetchCourses();
+      } catch {
+        courses = null;
+      }
+
+      if (enrollmentError || !courses) {
         setFeedback('We could not load your courses yet. Please refresh and try again.');
       } else {
         const enrolledCourseIds = new Set((enrollmentRows || []).map((row) => String(row.course_id)).filter(Boolean));
-        filterEnrolledCourses(enrolledCourseIds);
+        renderEnrolledCourses(courses, enrolledCourseIds);
 
         const { data: progressRows, error: progressError } = await academySupabase
           .from('progress_compat')
