@@ -1,0 +1,714 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { COURSE_GROUPS } from '~/lib/academy/courses';
+
+const metadata = {
+  title: 'Academy Admin | WorkSmart-AI',
+  description: 'Upload Academy courses and enrol learners.',
+  canonical: '/academy/admin/',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
+const inputClass =
+  'mt-1 block w-full rounded-lg border border-default bg-page px-3 py-2 text-sm text-default focus:border-brand focus:outline-none';
+const labelClass = 'block text-sm font-semibold text-heading';
+const primaryButton =
+  'inline-flex items-center justify-center rounded-full border-2 border-brand bg-brand px-5 py-2 text-sm font-semibold text-white transition hover:border-accent hover:bg-accent disabled:opacity-50';
+const secondaryButton =
+  'inline-flex items-center justify-center rounded-full border border-default bg-card px-4 py-2 text-sm font-semibold text-default transition hover:border-brand hover:text-brand disabled:opacity-50';
+const panelClass = 'mt-8 rounded-2xl border border-default bg-card p-6 shadow-card sm:p-8';
+const levels = ['Foundation', 'Intermediate', 'Advanced'];
+---
+
+<Layout metadata={metadata}>
+  <section class="bg-page px-6 py-16 sm:px-8 lg:px-12">
+    <div class="mx-auto max-w-6xl">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-accent">Academy</p>
+          <h1 class="mt-2 font-heading text-3xl font-bold text-heading sm:text-4xl">Admin</h1>
+          <p class="mt-2 text-sm text-muted">Upload courses and choose who can take them.</p>
+        </div>
+        <a href="/academy/dashboard/" class={secondaryButton}>Back to dashboard</a>
+      </div>
+
+      <p id="admin-feedback" class="mt-6 hidden rounded-lg px-3 py-2 text-sm" role="alert"></p>
+
+      <div id="admin-root" hidden>
+        <!-- Courses -->
+        <section class={panelClass} aria-labelledby="admin-courses-heading">
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <h2 id="admin-courses-heading" class="font-heading text-2xl font-bold text-heading">Courses</h2>
+            <button id="admin-new-course" type="button" class={primaryButton}>Upload course</button>
+          </div>
+          <div class="mt-6 overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead class="text-xs uppercase tracking-wide text-muted">
+                <tr>
+                  <th class="py-2 pr-4">Course</th>
+                  <th class="py-2 pr-4">ID</th>
+                  <th class="py-2 pr-4">Pages</th>
+                  <th class="py-2 pr-4">Learners</th>
+                  <th class="py-2 pr-4">Visible</th>
+                  <th class="py-2"></th>
+                </tr>
+              </thead>
+              <tbody id="admin-course-rows"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Upload / edit -->
+        <section id="admin-upload-panel" class={panelClass} hidden aria-labelledby="admin-upload-heading">
+          <h2 id="admin-upload-heading" class="font-heading text-2xl font-bold text-heading">Upload course</h2>
+          <p id="admin-upload-intro" class="mt-2 text-sm text-muted">
+            Export the course from SCORMcraft as SCORM 1.2 and upload the zip. Pages must be named
+            <code>content/page_0.html</code>, <code>page_1.html</code> and so on.
+          </p>
+
+          <form id="admin-upload-form" class="mt-6 grid gap-4 md:grid-cols-2">
+            <label class={labelClass}>
+              Course title
+              <input id="admin-upload-title" name="title" required class={inputClass} />
+            </label>
+            <label class={labelClass}>
+              Course ID
+              <input
+                id="admin-upload-id"
+                name="course_id"
+                required
+                pattern="[a-z0-9-]{3,60}"
+                class={inputClass}
+                aria-describedby="admin-upload-id-help"
+              />
+              <span id="admin-upload-id-help" class="mt-1 block text-xs font-normal text-muted">
+                Used in links and enrolments. It can't be changed once people are enrolled.
+              </span>
+            </label>
+            <label class={`${labelClass} md:col-span-2`}>
+              SCORM zip
+              <input id="admin-upload-file" name="package" type="file" accept=".zip" required class={inputClass} />
+            </label>
+            <div class="md:col-span-2">
+              <button id="admin-upload-submit" type="submit" class={primaryButton}>Upload</button>
+              <button id="admin-upload-cancel" type="button" class={`${secondaryButton} ml-2`}>Cancel</button>
+            </div>
+          </form>
+
+          <form id="admin-details-form" class="mt-6 grid gap-4 md:grid-cols-2" hidden>
+            <p
+              id="admin-details-status"
+              class="md:col-span-2 rounded-lg border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-800"
+            >
+            </p>
+            <label class={labelClass}>
+              Course title
+              <input id="admin-details-title" required class={inputClass} />
+            </label>
+            <label class={labelClass}>
+              Sidebar code
+              <input id="admin-details-code" class={inputClass} placeholder="e.g. COPILOT AGENTS" />
+            </label>
+            <label class={`${labelClass} md:col-span-2`}>
+              Dashboard summary
+              <input id="admin-details-summary" class={inputClass} maxlength="200" />
+            </label>
+            <label class={labelClass}>
+              Level
+              <select id="admin-details-level" class={inputClass}>
+                {levels.map((level) => <option value={level}>{level}</option>)}
+              </select>
+            </label>
+            <label class={labelClass}>
+              Dashboard group
+              <select id="admin-details-group" class={inputClass}>
+                {COURSE_GROUPS.map((group) => <option value={group}>{group}</option>)}
+              </select>
+            </label>
+            <label class={labelClass}>
+              Breadcrumb label
+              <input id="admin-details-module" class={inputClass} placeholder="Shown above each page" />
+            </label>
+            <label class={`${labelClass} flex items-center gap-2 self-end`}>
+              <input id="admin-details-live" type="checkbox" checked />
+              Visible to enrolled learners
+            </label>
+            <label class={`${labelClass} md:col-span-2`}>
+              Page titles, one per line
+              <textarea id="admin-details-pages" rows="10" class={inputClass}></textarea>
+              <span id="admin-details-pages-help" class="mt-1 block text-xs font-normal text-muted"></span>
+            </label>
+            <div class="md:col-span-2">
+              <button id="admin-details-submit" type="submit" class={primaryButton}>Save course</button>
+              <button id="admin-details-cancel" type="button" class={`${secondaryButton} ml-2`}>Cancel</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Enrol -->
+        <section id="admin-enrol-panel" class={panelClass} aria-labelledby="admin-enrol-heading">
+          <h2 id="admin-enrol-heading" class="font-heading text-2xl font-bold text-heading">Enrol learners</h2>
+          <form id="admin-enrol-form" class="mt-6 grid gap-4">
+            <label class={labelClass}>
+              Course
+              <select id="admin-enrol-course" required class={inputClass}></select>
+            </label>
+            <label class={labelClass}>
+              Emails
+              <textarea
+                id="admin-enrol-emails"
+                rows="5"
+                class={inputClass}
+                placeholder="One per line, or separated by commas"></textarea>
+            </label>
+            <label class={labelClass}>
+              Or upload a CSV
+              <input id="admin-enrol-csv" type="file" accept=".csv,text/csv,.txt" class={inputClass} />
+              <span class="mt-1 block text-xs font-normal text-muted">
+                Uses the column headed "email" if there is one, otherwise every email address in the file.
+              </span>
+            </label>
+            <label class="flex items-start gap-2 text-sm text-default">
+              <input id="admin-enrol-invite" type="checkbox" class="mt-1" />
+              <span>
+                <strong class="text-heading">Invite people who don't have an account yet.</strong>
+                They get an email with a link to set their password. Leave this off to enrol only people who already have
+                an account; anyone else is listed as skipped.
+              </span>
+            </label>
+            <p id="admin-enrol-count" class="text-sm text-muted">0 email addresses</p>
+            <div>
+              <button id="admin-enrol-submit" type="submit" class={primaryButton}>Enrol</button>
+            </div>
+          </form>
+          <div id="admin-enrol-results" class="mt-6 overflow-x-auto" hidden>
+            <table class="w-full text-left text-sm">
+              <thead class="text-xs uppercase tracking-wide text-muted">
+                <tr><th class="py-2 pr-4">Email</th><th class="py-2 pr-4">Result</th><th class="py-2">Detail</th></tr>
+              </thead>
+              <tbody id="admin-enrol-result-rows"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Learners -->
+        <section class={panelClass} aria-labelledby="admin-learners-heading">
+          <h2 id="admin-learners-heading" class="font-heading text-2xl font-bold text-heading">Learners</h2>
+          <label class={`${labelClass} mt-6 max-w-md`}>
+            Course
+            <select id="admin-learners-course" class={inputClass}></select>
+          </label>
+          <div class="mt-6 overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead class="text-xs uppercase tracking-wide text-muted">
+                <tr>
+                  <th class="py-2 pr-4">Email</th>
+                  <th class="py-2 pr-4">Enrolled</th>
+                  <th class="py-2 pr-4">Progress</th>
+                  <th class="py-2 pr-4">Last activity</th>
+                  <th class="py-2"></th>
+                </tr>
+              </thead>
+              <tbody id="admin-learner-rows"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import { academySupabase, hasAcademySupabaseConfig, requireAuth } from '~/lib/academy';
+  import { escapeHtml, fetchCourses, type AcademyCourse } from '~/lib/academy/courses';
+  import { getSupabaseAnonKey, getSupabaseUrl } from '~/lib/supabase/env';
+
+  type EnrolResult = { email: string; status: string; detail?: string };
+  type Learner = { email: string; enrolled_at: string; progress_percent: number; last_activity: string | null };
+
+  const UPLOAD_URL = '/academy-api/upload-course.php';
+  const ENROL_URL = `${getSupabaseUrl().replace(/\/$/, '')}/functions/v1/admin-enroll`;
+  const EMAIL_PATTERN = /[^\s@,;"'<>]+@[^\s@,;"'<>]+\.[^\s@,;"'<>]+/g;
+
+  const byId = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+  const feedback = byId<HTMLParagraphElement>('admin-feedback');
+  const root = byId<HTMLDivElement>('admin-root');
+  const courseRows = byId<HTMLTableSectionElement>('admin-course-rows');
+  const uploadPanel = byId<HTMLElement>('admin-upload-panel');
+  const uploadHeading = byId<HTMLElement>('admin-upload-heading');
+  const uploadIntro = byId<HTMLElement>('admin-upload-intro');
+  const uploadForm = byId<HTMLFormElement>('admin-upload-form');
+  const uploadTitle = byId<HTMLInputElement>('admin-upload-title');
+  const uploadId = byId<HTMLInputElement>('admin-upload-id');
+  const uploadFile = byId<HTMLInputElement>('admin-upload-file');
+  const uploadSubmit = byId<HTMLButtonElement>('admin-upload-submit');
+  const detailsForm = byId<HTMLFormElement>('admin-details-form');
+  const detailsStatus = byId<HTMLElement>('admin-details-status');
+  const detailsTitle = byId<HTMLInputElement>('admin-details-title');
+  const detailsCode = byId<HTMLInputElement>('admin-details-code');
+  const detailsSummary = byId<HTMLInputElement>('admin-details-summary');
+  const detailsLevel = byId<HTMLSelectElement>('admin-details-level');
+  const detailsGroup = byId<HTMLSelectElement>('admin-details-group');
+  const detailsModule = byId<HTMLInputElement>('admin-details-module');
+  const detailsLive = byId<HTMLInputElement>('admin-details-live');
+  const detailsPages = byId<HTMLTextAreaElement>('admin-details-pages');
+  const detailsPagesHelp = byId<HTMLElement>('admin-details-pages-help');
+  const detailsSubmit = byId<HTMLButtonElement>('admin-details-submit');
+  const enrolForm = byId<HTMLFormElement>('admin-enrol-form');
+  const enrolCourse = byId<HTMLSelectElement>('admin-enrol-course');
+  const enrolEmails = byId<HTMLTextAreaElement>('admin-enrol-emails');
+  const enrolCsv = byId<HTMLInputElement>('admin-enrol-csv');
+  const enrolInvite = byId<HTMLInputElement>('admin-enrol-invite');
+  const enrolCount = byId<HTMLElement>('admin-enrol-count');
+  const enrolSubmit = byId<HTMLButtonElement>('admin-enrol-submit');
+  const enrolResults = byId<HTMLElement>('admin-enrol-results');
+  const enrolResultRows = byId<HTMLTableSectionElement>('admin-enrol-result-rows');
+  const learnersCourse = byId<HTMLSelectElement>('admin-learners-course');
+  const learnerRows = byId<HTMLTableSectionElement>('admin-learner-rows');
+
+  let courses: AcademyCourse[] = [];
+  let csvEmails: string[] = [];
+  // The course being saved: a fresh upload (mode 'new'), replaced files, or an edit with no upload.
+  let pending: { mode: 'new' | 'replace' | 'edit'; id: string; pageCount: number } | null = null;
+
+  const setFeedback = (message: string, isError = true) => {
+    feedback.textContent = message;
+    feedback.className = message
+      ? isError
+        ? 'mt-6 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800'
+        : 'mt-6 rounded-lg border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-800'
+      : 'hidden';
+    if (message) feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+
+  const getAccessToken = async () => {
+    const { data } = await academySupabase!.auth.getSession();
+    const token = data.session?.access_token;
+    if (!token) throw new Error('Your session has expired. Please sign in again.');
+    return token;
+  };
+
+  const slugify = (value: string) =>
+    value
+      .toLowerCase()
+      .replace(/&/g, ' and ')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .slice(0, 60)
+      .replace(/-+$/, '');
+
+  const formatDate = (value: string | null) =>
+    value ? new Date(value).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : '—';
+
+  const callEnrolFunction = async <T,>(body: Record<string, unknown>): Promise<T> => {
+    const res = await fetch(ENROL_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${await getAccessToken()}`,
+        apikey: getSupabaseAnonKey(),
+      },
+      body: JSON.stringify(body),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || `Request failed (${res.status})`);
+    return data as T;
+  };
+
+  // --- Courses table --------------------------------------------------------
+
+  const renderCourseSelects = () => {
+    const options = courses
+      .map((course) => `<option value="${escapeHtml(course.id)}">${escapeHtml(course.title)}</option>`)
+      .join('');
+    for (const select of [enrolCourse, learnersCourse]) {
+      const current = select.value;
+      select.innerHTML = options;
+      if (courses.some((course) => course.id === current)) select.value = current;
+    }
+  };
+
+  const loadCourses = async () => {
+    courses = await fetchCourses();
+    const { data: enrolments } = await academySupabase!.from('enrollments').select('course_id');
+    const counts = new Map<string, number>();
+    for (const row of enrolments ?? []) {
+      const id = String(row.course_id);
+      counts.set(id, (counts.get(id) ?? 0) + 1);
+    }
+
+    courseRows.innerHTML = courses
+      .map(
+        (course) => `
+          <tr class="border-t border-default">
+            <td class="py-3 pr-4 font-semibold text-heading">${escapeHtml(course.title)}</td>
+            <td class="py-3 pr-4"><code>${escapeHtml(course.id)}</code></td>
+            <td class="py-3 pr-4">${course.page_count}</td>
+            <td class="py-3 pr-4">${counts.get(course.id) ?? 0}</td>
+            <td class="py-3 pr-4">${course.is_live ? 'Yes' : 'No'}</td>
+            <td class="py-3 text-right whitespace-nowrap">
+              <a class="text-brand underline hover:no-underline" href="/academy/view/?id=${encodeURIComponent(course.id)}">Open</a>
+              <button type="button" class="ml-3 text-brand underline hover:no-underline" data-action="enrol" data-id="${escapeHtml(course.id)}">Enrol</button>
+              <button type="button" class="ml-3 text-brand underline hover:no-underline" data-action="edit" data-id="${escapeHtml(course.id)}">Edit</button>
+              <button type="button" class="ml-3 text-brand underline hover:no-underline" data-action="replace" data-id="${escapeHtml(course.id)}">Replace files</button>
+            </td>
+          </tr>`
+      )
+      .join('');
+
+    renderCourseSelects();
+  };
+
+  // --- Upload and details ---------------------------------------------------
+
+  const showUploadForm = (mode: 'new' | 'replace', course?: AcademyCourse) => {
+    pending = null;
+    uploadForm.reset();
+    uploadForm.hidden = false;
+    detailsForm.hidden = true;
+    uploadPanel.hidden = false;
+    uploadHeading.textContent = mode === 'new' ? 'Upload course' : `Replace files: ${course?.title ?? ''}`;
+    uploadIntro.hidden = false;
+    uploadTitle.disabled = mode === 'replace';
+    uploadId.readOnly = mode === 'replace';
+    uploadId.dataset.touched = '';
+    uploadForm.dataset.mode = mode;
+    if (course) {
+      uploadTitle.value = course.title;
+      uploadId.value = course.id;
+    }
+    uploadPanel.scrollIntoView({ behavior: 'smooth' });
+    (mode === 'new' ? uploadTitle : uploadFile).focus();
+  };
+
+  const showDetailsForm = (
+    mode: 'new' | 'replace' | 'edit',
+    id: string,
+    pageTitles: string[],
+    course?: AcademyCourse,
+    title = ''
+  ) => {
+    pending = { mode, id, pageCount: pageTitles.length };
+    uploadForm.hidden = true;
+    uploadIntro.hidden = true;
+    detailsForm.hidden = false;
+    uploadPanel.hidden = false;
+    uploadHeading.textContent = mode === 'edit' ? `Edit: ${course?.title ?? id}` : `Course details: ${id}`;
+    detailsStatus.hidden = mode === 'edit';
+    detailsStatus.textContent =
+      mode === 'edit' ? '' : `Files uploaded: ${pageTitles.length} pages. Check the details below and save to finish.`;
+    detailsTitle.value = course?.title ?? title;
+    detailsCode.value = course?.code ?? title.toUpperCase();
+    detailsSummary.value = course?.summary ?? '';
+    detailsLevel.value = course?.level ?? 'Foundation';
+    detailsGroup.value = course?.group_name ?? 'All-Staff Workshops';
+    detailsModule.value = course?.module ?? '';
+    detailsLive.checked = course?.is_live ?? true;
+    // A replaced package keeps its edited titles when the page count still matches.
+    const keepTitles = mode === 'replace' && course && course.page_titles.length === pageTitles.length;
+    detailsPages.value = (keepTitles ? course.page_titles : pageTitles).join('\n');
+    detailsPagesHelp.textContent = `Exactly ${pageTitles.length} lines, one for each page in the course.`;
+    uploadPanel.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const hideUploadPanel = () => {
+    pending = null;
+    uploadPanel.hidden = true;
+  };
+
+  uploadTitle.addEventListener('input', () => {
+    if (uploadForm.dataset.mode === 'new' && !uploadId.dataset.touched) uploadId.value = slugify(uploadTitle.value);
+  });
+  uploadId.addEventListener('input', () => {
+    uploadId.dataset.touched = '1';
+  });
+
+  uploadForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    setFeedback('');
+    const mode = (uploadForm.dataset.mode as 'new' | 'replace') || 'new';
+    const id = uploadId.value.trim();
+    const file = uploadFile.files?.[0];
+    if (!file) return;
+    if (mode === 'new' && courses.some((course) => course.id === id)) {
+      setFeedback('A course with that ID already exists. Use Replace files on it instead.');
+      return;
+    }
+
+    uploadSubmit.disabled = true;
+    uploadSubmit.textContent = 'Uploading…';
+    try {
+      const token = await getAccessToken();
+      const body = new FormData();
+      body.append('course_id', id);
+      body.append('mode', mode);
+      body.append('access_token', token);
+      body.append('package', file);
+      const res = await fetch(UPLOAD_URL, { method: 'POST', headers: { Authorization: `Bearer ${token}` }, body });
+      const data = await res.json().catch(() => ({ error: `Upload failed (${res.status})` }));
+      if (!res.ok) throw new Error(data.error || `Upload failed (${res.status})`);
+
+      showDetailsForm(
+        mode,
+        id,
+        data.page_titles as string[],
+        courses.find((course) => course.id === id),
+        uploadTitle.value.trim()
+      );
+    } catch (caught) {
+      setFeedback(caught instanceof Error ? caught.message : 'Upload failed.');
+    } finally {
+      uploadSubmit.disabled = false;
+      uploadSubmit.textContent = 'Upload';
+    }
+  });
+
+  detailsForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!pending) return;
+    setFeedback('');
+
+    const pageTitles = detailsPages.value
+      .split('\n')
+      .map((line) => line.trim())
+      .filter(Boolean);
+    if (pageTitles.length !== pending.pageCount) {
+      setFeedback(`There are ${pending.pageCount} pages in this course, so enter ${pending.pageCount} page titles.`);
+      return;
+    }
+
+    const title = detailsTitle.value.trim();
+    const row = {
+      title,
+      code: detailsCode.value.trim() || title.toUpperCase(),
+      summary: detailsSummary.value.trim(),
+      level: detailsLevel.value,
+      group_name: detailsGroup.value,
+      module: detailsModule.value.trim(),
+      is_live: detailsLive.checked,
+      page_titles: pageTitles,
+      updated_at: new Date().toISOString(),
+    };
+
+    detailsSubmit.disabled = true;
+    try {
+      const { error } =
+        pending.mode === 'new'
+          ? await academySupabase!
+              .from('courses')
+              .insert({ ...row, id: pending.id, content_path: pending.id, sort_order: 100 + courses.length })
+          : await academySupabase!.from('courses').update(row).eq('id', pending.id);
+      if (error) throw new Error(error.message);
+
+      const savedId = pending.id;
+      const wasNew = pending.mode === 'new';
+      hideUploadPanel();
+      await loadCourses();
+      enrolCourse.value = savedId;
+      setFeedback(
+        wasNew ? `${title} is saved. Enrol learners below so it appears on their dashboard.` : `${title} is saved.`,
+        false
+      );
+    } catch (caught) {
+      setFeedback(caught instanceof Error ? caught.message : 'Could not save the course.');
+    } finally {
+      detailsSubmit.disabled = false;
+    }
+  });
+
+  byId<HTMLButtonElement>('admin-new-course').addEventListener('click', () => showUploadForm('new'));
+  byId<HTMLButtonElement>('admin-upload-cancel').addEventListener('click', hideUploadPanel);
+  byId<HTMLButtonElement>('admin-details-cancel').addEventListener('click', () => {
+    if (pending?.mode === 'new') {
+      setFeedback(
+        'The files are uploaded but the course was not saved, so nobody can see it. Upload it again to finish.',
+        false
+      );
+    }
+    hideUploadPanel();
+  });
+
+  courseRows.addEventListener('click', (event) => {
+    const button = (event.target as HTMLElement).closest<HTMLButtonElement>('button[data-action]');
+    if (!button) return;
+    const course = courses.find((item) => item.id === button.dataset.id);
+    if (!course) return;
+    if (button.dataset.action === 'edit') showDetailsForm('edit', course.id, course.page_titles, course);
+    if (button.dataset.action === 'replace') showUploadForm('replace', course);
+    if (button.dataset.action === 'enrol') {
+      enrolCourse.value = course.id;
+      byId<HTMLElement>('admin-enrol-panel').scrollIntoView({ behavior: 'smooth' });
+      enrolEmails.focus();
+    }
+  });
+
+  // --- Enrol ----------------------------------------------------------------
+
+  const emailsFromText = (text: string) =>
+    (text.match(EMAIL_PATTERN) ?? []).map((email: string) => email.toLowerCase());
+
+  const emailsFromCsv = (text: string) => {
+    const rows = text
+      .split(/\r?\n/)
+      .map((line) => line.split(/[,;\t]/).map((cell) => cell.trim().replace(/^"|"$/g, '')));
+    const header = rows[0]?.map((cell) => cell.toLowerCase()) ?? [];
+    const column = header.findIndex((cell) => cell === 'email' || cell === 'email address' || cell === 'e-mail');
+    if (column === -1) return emailsFromText(text);
+    return rows
+      .slice(1)
+      .map((row) => row[column] ?? '')
+      .flatMap(emailsFromText);
+  };
+
+  const collectEmails = () => [...new Set([...emailsFromText(enrolEmails.value), ...csvEmails])];
+
+  const updateEnrolCount = () => {
+    const count = collectEmails().length;
+    enrolCount.textContent = `${count} email address${count === 1 ? '' : 'es'}`;
+  };
+
+  enrolEmails.addEventListener('input', updateEnrolCount);
+  enrolCsv.addEventListener('change', async () => {
+    const file = enrolCsv.files?.[0];
+    csvEmails = file ? emailsFromCsv(await file.text()) : [];
+    updateEnrolCount();
+  });
+
+  const STATUS_LABELS: Record<string, string> = {
+    enrolled: 'Enrolled',
+    already_enrolled: 'Already enrolled',
+    invited: 'Invited and enrolled',
+    skipped: 'Skipped',
+    invalid: 'Not a valid email',
+    error: 'Error',
+  };
+
+  enrolForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    setFeedback('');
+    const emails = collectEmails();
+    if (emails.length === 0) {
+      setFeedback('Add at least one email address.');
+      return;
+    }
+
+    enrolSubmit.disabled = true;
+    enrolSubmit.textContent = 'Enrolling…';
+    try {
+      const { results } = await callEnrolFunction<{ results: EnrolResult[] }>({
+        action: 'enroll',
+        course_id: enrolCourse.value,
+        emails,
+        invite_missing: enrolInvite.checked,
+      });
+      enrolResultRows.innerHTML = results
+        .map(
+          (result) => `
+            <tr class="border-t border-default">
+              <td class="py-2 pr-4">${escapeHtml(result.email)}</td>
+              <td class="py-2 pr-4 font-semibold">${escapeHtml(STATUS_LABELS[result.status] ?? result.status)}</td>
+              <td class="py-2 text-muted">${escapeHtml(result.detail ?? '')}</td>
+            </tr>`
+        )
+        .join('');
+      enrolResults.hidden = false;
+
+      const done = results.filter((r) => r.status === 'enrolled' || r.status === 'invited').length;
+      const skipped = results.filter((r) => r.status === 'skipped').length;
+      setFeedback(
+        `${done} of ${results.length} enrolled.` +
+          (skipped ? ` ${skipped} skipped because they don't have an account; tick "Invite" to add them.` : ''),
+        false
+      );
+      enrolEmails.value = '';
+      enrolCsv.value = '';
+      csvEmails = [];
+      updateEnrolCount();
+      await loadCourses();
+      if (learnersCourse.value === enrolCourse.value) await loadLearners();
+    } catch (caught) {
+      setFeedback(caught instanceof Error ? caught.message : 'Enrolment failed.');
+    } finally {
+      enrolSubmit.disabled = false;
+      enrolSubmit.textContent = 'Enrol';
+    }
+  });
+
+  // --- Learners -------------------------------------------------------------
+
+  const loadLearners = async () => {
+    const courseId = learnersCourse.value;
+    if (!courseId) {
+      learnerRows.innerHTML = '';
+      return;
+    }
+    learnerRows.innerHTML = '<tr><td class="py-3 text-muted" colspan="5">Loading…</td></tr>';
+    try {
+      const { learners } = await callEnrolFunction<{ learners: Learner[] }>({
+        action: 'learners',
+        course_id: courseId,
+      });
+      learnerRows.innerHTML = learners.length
+        ? learners
+            .map(
+              (learner) => `
+                <tr class="border-t border-default">
+                  <td class="py-2 pr-4">${escapeHtml(learner.email)}</td>
+                  <td class="py-2 pr-4">${formatDate(learner.enrolled_at)}</td>
+                  <td class="py-2 pr-4">${learner.progress_percent}%</td>
+                  <td class="py-2 pr-4">${formatDate(learner.last_activity)}</td>
+                  <td class="py-2 text-right">
+                    <button type="button" class="text-red-700 underline hover:no-underline" data-unenrol="${escapeHtml(learner.email)}">Unenrol</button>
+                  </td>
+                </tr>`
+            )
+            .join('')
+        : '<tr><td class="py-3 text-muted" colspan="5">Nobody is enrolled yet.</td></tr>';
+    } catch (caught) {
+      learnerRows.innerHTML = '';
+      setFeedback(caught instanceof Error ? caught.message : 'Could not load learners.');
+    }
+  };
+
+  learnersCourse.addEventListener('change', () => void loadLearners());
+  learnerRows.addEventListener('click', async (event) => {
+    const button = (event.target as HTMLElement).closest<HTMLButtonElement>('button[data-unenrol]');
+    if (!button) return;
+    const email = button.dataset.unenrol ?? '';
+    const ok = window.confirm(
+      `Remove ${email} from this course? Their saved progress on it is deleted too, and can't be recovered.`
+    );
+    if (!ok) return;
+    try {
+      await callEnrolFunction({ action: 'unenroll', course_id: learnersCourse.value, email });
+      setFeedback(`${email} is no longer enrolled.`, false);
+      await Promise.all([loadLearners(), loadCourses()]);
+    } catch (caught) {
+      setFeedback(caught instanceof Error ? caught.message : 'Could not unenrol.');
+    }
+  });
+
+  // --- Start ----------------------------------------------------------------
+
+  if (!hasAcademySupabaseConfig || !academySupabase) {
+    setFeedback('Admin is unavailable. Missing Supabase configuration.');
+  } else {
+    const authState = await requireAuth('/academy/login/');
+    if (authState?.user) {
+      if (authState.user.app_metadata?.role !== 'admin') {
+        window.location.replace('/academy/dashboard/');
+      } else {
+        try {
+          await loadCourses();
+          root.hidden = false;
+          await loadLearners();
+        } catch (caught) {
+          setFeedback(caught instanceof Error ? caught.message : 'Could not load courses.');
+        }
+      }
+    }
+  }
+</script>

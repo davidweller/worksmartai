@@ -1,23 +1,15 @@
-export const COURSE_TOTAL_PAGES: Record<string, number> = {
-  'ai-foundations': 7,
-  'copilot-workflows': 7,
-  'agentic-automation': 7,
-  'copilot-intermediate-advanced': 9,
-};
-
 export const DEFAULT_QUIZ_SCORE_MAX = 10;
 
+// Page totals come from public.courses (course.page_count); 7 is the old default.
+export const DEFAULT_TOTAL_PAGES = 7;
+
 export type HybridProgressInput = {
-  courseId: string;
+  totalPages: number;
   viewedPageIndices: number[];
   quizScore: number;
   quizScoreMax?: number | null;
   currentPageIndex?: number;
 };
-
-export function getCourseTotalPages(courseId: string): number {
-  return COURSE_TOTAL_PAGES[courseId] ?? 7;
-}
 
 export function countViewedPages(viewedPageIndices: number[], totalPages: number, currentPageIndex?: number): number {
   const unique = new Set(
@@ -32,7 +24,7 @@ export function countViewedPages(viewedPageIndices: number[], totalPages: number
 }
 
 export function computeHybridProgressPercent(input: HybridProgressInput): number {
-  const totalPages = getCourseTotalPages(input.courseId);
+  const totalPages = input.totalPages > 0 ? input.totalPages : DEFAULT_TOTAL_PAGES;
   const pagesViewed = countViewedPages(input.viewedPageIndices, totalPages, input.currentPageIndex);
   const pagePercent = totalPages > 0 ? (pagesViewed / totalPages) * 100 : 0;
 
