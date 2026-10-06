@@ -35,6 +35,7 @@
     .content-heading:first-of-type { margin-top: 0; }
     .content-image { margin: 3rem 0; }
     .content-image img { max-width: 100%; height: auto; border-radius: 8px; }
+    .content-image figcaption { margin-top: 0.6em; font-style: italic; font-size: 0.95rem; opacity: 0.8; white-space: pre-line; }
     .content-video { margin: 3rem 0; }
     .content-video iframe, .content-video video { width: 100%; aspect-ratio: 16/9; border-radius: 8px; }
     .key-insight { margin: 3rem 0; padding: 1.5rem 1.5rem 1.5rem 1.75rem; border-left: 4px solid var(--brand-accent, #ff7700); background: rgba(0,0,0,0.02); font-size: 1.1rem; line-height: 1.65; border-radius: 0 8px 8px 0; }
@@ -152,7 +153,7 @@ a:hover { color: var(--brand-primary-hover, var(--brand-primary)); text-decorati
     .page-nav a { border-radius: 8px; }
   </style>
 </head>
-<body data-scorm-page-index="0" data-scorm-total-pages="9" data-scorm-total-max="12">
+<body data-scorm-page-index="0" data-scorm-total-pages="9" data-scorm-total-max="8">
   <div class="course-wrapper">
     
     <div class="progress-container">
@@ -169,25 +170,16 @@ a:hover { color: var(--brand-primary-hover, var(--brand-primary)); text-decorati
       </div>
       <div class="blocks"><div class="content-text reveal"><p>Intermediate to Advanced | ~65 minutes, plus about 40 minutes of hands-on building | Online</p></div>
 <h2 class="content-heading reveal">Course overview</h2>
-<div class="content-video reveal"><iframe src="https://youtube.com/embed/A5oV4jCi-4A" title="Embedded video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<div class="content-video reveal"><iframe src="https://youtube.com/embed/RwmyTkv0lVU" title="Embedded video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
 <h2 class="content-heading reveal">What you’ll be better able to do by the end of this course</h2>
-<div class="content-text reveal"><ul><li>Tell the difference between a prompt, an agent, and a workflow.</li><li>Use Copilot in your own documents and University context.</li><li>Plan and create a reusable agent, and a workflow, end to end for a real task.</li><li>Judge whether an output is reliable enough to use in higher-stakes work.</li></ul></div>
-<h2 class="content-heading reveal">About this course</h2>
-<div class="content-text reveal"><p>This course covers three ways of getting work done with Copilot. A <strong>prompt</strong> is typed and explained each time. An <strong>agent</strong> is a job written down, with its sources attached. A <strong>workflow</strong> is a job broken into steps, with each step being a prompt, an agent, a decision, or a person.</p></div>
-<div class="content-text reveal"><p>It suits work that comes round on a cycle: the actions from each week’s project meeting, the weekly admissions position, the report that follows each year’s survey.</p></div>
-<div class="content-text reveal"><p>One job runs as an example through the whole course: an NSS report for a single programme, at a fictional university. Even if you’re not directly involved in a report like this, hopefully you can imagine the value that this adds. </p></div>
-<div class="content-text reveal"><ul><li>Module 1 runs it as a prompt. </li><li>Module 2 takes expands that prompt into an agent that does more of the task. </li><li>Module 3 plans that agent</li><li>Module 4 builds and tests it. </li><li>Module 5 plans a workflow, expanding that agent to do even more of the work around it, with a second agent to check the draft</li><li>Module 6 builds and tests that workflow. </li><li>Module 7 covers judging whether an output is reliable enough to use.</li></ul></div>
-<div class="content-text reveal"><p>The course runs on two threads. The NSS report is the worked example, shown at every stage. Alongside it, you plan and build an agent and a workflow of your own, on one of four Strategy Office jobs or a job you choose, in the <strong>Your turn</strong> and <strong>Reflection</strong> tasks.</p></div>
-<div class="key-insight reveal"><p>Everything in this course sits within the University of Southampton’s AI Policy and the Strategy Office Guardrails Policy, in the Strategy Office AI Toolkit. Read both before building an agent. The Agent Creation &amp; Management Framework, from the Strategy Office AI Steering Group, sets out how agents are created and recorded. The Guardrails are under review now that everyone has Copilot Premium, and updates on agent creation will be circulated. Module 3 covers which agents need approval before they’re shared.</p></div>
-<h2 class="content-heading reveal">Warm-up</h2>
-<div class="content-text reveal"><p>Are you ready? Two questions to activate your brain before Module 1.</p></div>
-<div class="interaction multiple-choice reveal" data-scorm-graded="true" data-block-id="cmupuat110013xpukclksb3vx" data-correct-index="1" data-explanation="A prompt carries nothing forward. The themes and rules explained before year lived in that conversation, and a new start means a new conversation. An agent solves that issue."><p class="question">Imagine you pasted a programme’s National Student Survey (NSS) comments into Copilot, explained the four themes and the rule about never naming staff, and got a useful summary. What do you have to do the next time you want to do the same task?</p><ul class="options"><li class="option-item" data-index="0"><label><input type="radio" name="mc-cmupuat110013xpukclksb3vx" value="0" /> Nothing. Copilot remembers last year’s conversation and runs it again</label></li><li class="option-item" data-index="1"><label><input type="radio" name="mc-cmupuat110013xpukclksb3vx" value="1" /> Paste in this year’s comments and explain the themes and rules again</label></li><li class="option-item" data-index="2"><label><input type="radio" name="mc-cmupuat110013xpukclksb3vx" value="2" /> Type “same as last year” and attach the new file</label></li><li class="option-item" data-index="3"><label><input type="radio" name="mc-cmupuat110013xpukclksb3vx" value="3" /> Ask a colleague to run it from their account instead</label></li></ul><button type="button" class="check-answer-btn">Check Answer</button><div class="feedback hidden"></div></div>
-<div class="interaction true-false reveal" data-scorm-graded="true" data-block-id="cmupuat110014xpukzanowlvl" data-correct="false" data-explanation="The difference isn’t quality. An agent has its instructions and sources attached, so they don’t need supplying each time, and anyone on the team can run it and get the same shape of answer. Module 2 breaks one down so you can see how each part looks, so you can plan your own."><p class="question">An agent is a better-written prompt, saved so you can use it again.</p><ul class="options"><li class="option-item" data-value="true"><label><input type="radio" name="tf-cmupuat110014xpukzanowlvl" value="true" /> True</label></li><li class="option-item" data-value="false"><label><input type="radio" name="tf-cmupuat110014xpukzanowlvl" value="false" /> False</label></li></ul><button type="button" class="check-answer-btn">Check Answer</button><div class="feedback hidden"></div></div>
+<div class="content-text reveal"><ul><li><p>Tell the difference between a prompt, an agent, and a workflow</p></li><li><p>Use Copilot in your own documents and University context</p></li><li><p>Plan and create a reusable agent, and a workflow, end to end for a real task</p></li><li><p>Judge whether an output is reliable to use for high value work</p></li></ul><p></p></div>
 <h2 class="content-heading reveal">How to use this course</h2>
 <div class="content-text reveal"><ul><li><p><strong>Have Copilot and Copilot Studio open.</strong> Most modules ask you to run or build something, and the tasks are short.</p></li><li><p><strong>Have a job in mind.</strong> In Module 3 you’ll choose one of four Strategy Office jobs to build, or bring your own. Something weekly and a bit dull is ideal.</p></li><li><p><strong>Sign in with your work account</strong> the first time a task asks you to open a tool.</p></li><li><p><strong>Download the course files</strong> when a module asks for them - every name, figure, and comment in the workbook is invented, so you can use it freely.</p></li></ul><p></p></div>
 <a class="content-download reveal" href="files/NSS-2026-Free-Text-and-Scores.xlsx" download="NSS 2026 Free Text and Scores.xlsx"><svg class="content-download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg><span class="content-download-text"><span class="content-download-label">NSS 2026 Free Text and Scores workbook</span><span class="content-download-meta">Excel · 15 KB</span></span></a>
 <a class="content-download reveal" href="files/Agent-Planning-Template.docx" download="Agent Planning Template.docx"><svg class="content-download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg><span class="content-download-text"><span class="content-download-label">Agent Planning Template</span><span class="content-download-meta">Word · 14 KB</span></span></a>
-<a class="content-download reveal" href="files/Workflow-Planning-Template.docx" download="Workflow Planning Template.docx"><svg class="content-download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg><span class="content-download-text"><span class="content-download-label">Workflow Planning Template</span><span class="content-download-meta">Word · 14 KB</span></span></a></div>
+<a class="content-download reveal" href="files/Workflow-Planning-Template.docx" download="Workflow Planning Template.docx"><svg class="content-download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg><span class="content-download-text"><span class="content-download-label">Workflow Planning Template</span><span class="content-download-meta">Word · 14 KB</span></span></a>
+<h2 class="content-heading reveal">Policy and Guardrails</h2>
+<div class="key-insight reveal"><ul><li><p>Everything in this course sits within the University of Southampton’s AI Policy and the Strategy Office Guardrails Policy, in the Strategy Office AI Toolkit.</p></li><li><p>The Agent Creation and Management Framework, from the Strategy Office AI Steering Group, sets out how agents are created and recorded.</p></li><li><p>The Guardrails are under review now that everyone has Copilot Premium, and updates on agent creation will be circulated.</p></li></ul><p></p></div></div>
       <nav class="page-nav"><div></div><div><a href="page_1.html">Next →</a></div></nav>
     </main>
   </div>
@@ -340,9 +332,25 @@ a:hover { color: var(--brand-primary-hover, var(--brand-primary)); text-decorati
       var feedback = el.querySelector('.feedback');
       if (!dragList || !btn || !feedback) return;
       
+      // Shuffle on load, re-rolling until the start order isn't already the answer
+      var correctForShuffle;
+      try { correctForShuffle = JSON.parse(el.getAttribute('data-correct-order') || '[]'); } catch(err) { correctForShuffle = []; }
+      var shuffled = Array.prototype.slice.call(dragList.querySelectorAll('.drag-item'));
+      for (var attempt = 0; attempt < 10 && shuffled.length > 1; attempt++) {
+        for (var s = shuffled.length - 1; s > 0; s--) {
+          var r = Math.floor(Math.random() * (s + 1));
+          var tmp = shuffled[s]; shuffled[s] = shuffled[r]; shuffled[r] = tmp;
+        }
+        var solved = correctForShuffle.length === shuffled.length && shuffled.every(function(item, i) {
+          return parseInt(item.getAttribute('data-index'), 10) === correctForShuffle[i];
+        });
+        if (!solved) break;
+      }
+      shuffled.forEach(function(item) { dragList.appendChild(item); });
+
       var draggedItem = null;
       var items = dragList.querySelectorAll('.drag-item');
-      
+
       [].forEach.call(items, function(item) {
         item.addEventListener('dragstart', function(e) {
           draggedItem = this;

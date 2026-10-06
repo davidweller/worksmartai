@@ -35,6 +35,7 @@
     .content-heading:first-of-type { margin-top: 0; }
     .content-image { margin: 3rem 0; }
     .content-image img { max-width: 100%; height: auto; border-radius: 8px; }
+    .content-image figcaption { margin-top: 0.6em; font-style: italic; font-size: 0.95rem; opacity: 0.8; white-space: pre-line; }
     .content-video { margin: 3rem 0; }
     .content-video iframe, .content-video video { width: 100%; aspect-ratio: 16/9; border-radius: 8px; }
     .key-insight { margin: 3rem 0; padding: 1.5rem 1.5rem 1.5rem 1.75rem; border-left: 4px solid var(--brand-accent, #ff7700); background: rgba(0,0,0,0.02); font-size: 1.1rem; line-height: 1.65; border-radius: 0 8px 8px 0; }
@@ -152,7 +153,7 @@ a:hover { color: var(--brand-primary-hover, var(--brand-primary)); text-decorati
     .page-nav a { border-radius: 8px; }
   </style>
 </head>
-<body data-scorm-page-index="6" data-scorm-total-pages="9" data-scorm-total-max="12">
+<body data-scorm-page-index="6" data-scorm-total-pages="9" data-scorm-total-max="8">
   <div class="course-wrapper">
     
     <div class="progress-container">
@@ -168,24 +169,16 @@ a:hover { color: var(--brand-primary-hover, var(--brand-primary)); text-decorati
         <h1>Module 6: Build and test the workflow</h1>
       </div>
       <div class="blocks"><div class="content-text reveal"><p><em>Estimated time: 7-8 minutes, plus about 20 minutes to build and test</em></p></div>
-<div class="content-text reveal"><p><strong>Goal:</strong> Build the planned workflow in Copilot Studio, and test it before anyone relies on it.</p></div>
+<div class="content-text reveal"><p><strong>Objective:</strong> Build the planned workflow in Copilot Studio, and test it before anyone relies on it.</p></div>
+<figure class="content-image reveal"><img src="img_20.png" alt="Example workflow" /><figcaption>An example workflow</figcaption></figure>
 <h2 class="content-heading reveal">Before you build</h2>
-<div class="content-text reveal"><p>A workflow uses agents that already exist, so both agents come first.</p></div>
-<div class="content-text reveal"><ul><li><strong>Build and test the checker</strong> with the Module 4 steps, from its plan in Module 5. It gets no tools and no house template.</li><li><strong>Publish both agents to your own profile.</strong> An agent step can only call a published agent. Publishing isn’t sharing: nobody else can use the agents until they’re shared, and sharing still follows the category from Module 3.</li><li><strong>Set up test folders</strong>, a test Responses folder and a test Reports folder, and send every email to yourself while you test.</li><li><strong>Keep the dummy files small.</strong> Every agent step uses Copilot Credits each time it runs.</li></ul></div>
+<div class="content-text reveal"><p>A workflow uses agents that already exist, so if your plan involves a second agent, make sure you build that one first.</p></div>
+<div class="content-text reveal"><ul><li><p><strong>Build and publish both agents to your own profile.</strong> An agent step can only call a published agent. Publishing isn’t sharing: nobody else can use the agents until they’re shared.</p></li><li><p><strong>Set up test folders</strong>, a test Responses folder and a test Reports folder, and send every email to yourself while you test.</p></li><li><p><strong>Keep the dummy files small.</strong> Every agent step uses Copilot Credits each time it runs.</p></li></ul><p></p></div>
 <h2 class="content-heading reveal">Build it: From plan to Copilot Studio</h2>
 <div class="content-text reveal"><p>Workflows are built in the same place as the agents. Build in the order of the plan, one step at a time.</p></div>
-<div class="content-text reveal"><ol><li><strong>Open Copilot Studio, go to Workflows in the left sidebar, and choose New workflow.</strong> Name it after the job, such as NSS Feedback Report Cycle. It builds on the same GitHub Copilot harness as the agents from Module 4.</li><li>Set the trigger on the Start step. Choose the SharePoint trigger for a new file in a folder, and point it at the test Responses folder, not the live one.</li><li><strong>Add an action to get the file’s content.</strong> Add a Connector step for SharePoint that gets the content of the file from the trigger.</li><li><strong>Add the drafting agent step.</strong> Add an Agent step, choose the Programme Feedback Report agent, and write the message it receives. Insert the file content as dynamic content, so each run works on the file that started it.</li></ol></div>
-<figure class="content-image reveal"><img src="img_15.png" alt="The NSS workflow in the Copilot Studio designer, with the drafting agent step selected." /></figure>
-<div class="content-text reveal"><ul><li>The NSS workflow in the Copilot Studio designer, with the drafting agent step selected.</li></ul></div>
-<div class="content-text reveal"><ol><li><strong>Add the checking agent step.</strong> Add a second Agent step for the Programme Feedback Report Checker. Pass in the draft from step 4 and the file content from step 3, and nothing else.</li><li><strong>Add the condition.</strong> Add an If/Else step that looks for mismatched or untraceable rows in the claims register, and puts any it finds first in the review message. Both branches go on to the review.</li><li>Add the human review. Assign it to one named person: the programme lead in use, and yourself while testing. Collect a yes or no for the decision, and a text input for the Recommendations section.</li><li><strong>Add an If/Else on the decision.</strong> If approved: save the report and the claims register side by side in the Reports folder, email the report to the circulation list, and email the accessibility section to the Disability and Inclusion Service. If rejected: nothing is filed or sent.</li><li><strong>Test each step as you add it</strong>, with a dummy file dropped into the test Responses folder, before running the whole workflow.</li></ol></div>
-<div class="content-text reveal"><p>Copilot Studio’s workflow designer is changing quickly. If a step name here doesn’t match what you see, use the step that does the same job.</p></div>
-<div class="content-text reveal"><p>Two alternatives sit alongside New workflow:</p></div>
-<div class="content-text reveal"><ul><li><strong>New agent flow</strong>, on the same Workflows page, builds on the standard harness. It’s free to build and test, and uses credits only once published. It works with standard-harness agents, so an agent from Module 4 would need rebuilding on that harness to be used in one.</li><li><strong>Power Automate cloud flows</strong> handle the actions and approvals without the agent steps, for jobs that need no language work.</li></ul></div>
-<h2 class="content-heading reveal">A test set for the workflow</h2>
-<div class="content-text reveal"><p>The agents have already passed their own tests, so the workflow’s test set checks what happens between the steps.</p></div>
-<div class="content-table reveal"><table><thead><tr><th><p>Test</p></th><th><p>A correct run produces</p></th></tr></thead><tbody><tr><td><p>A dummy file lands in the test Responses folder</p></td><td><p>The workflow starts on its own, with nobody pressing anything</p></td></tr><tr><td><p>The checker step, run on a draft with one figure changed by hand</p></td><td><p>That figure marked mismatched, and first in the review message</p></td></tr><tr><td><p>A clean claims register</p></td><td><p>The review still goes to the programme lead for a decision</p></td></tr><tr><td><p>The programme lead rejects the report</p></td><td><p>Nothing filed and nothing sent</p></td></tr><tr><td><p>The programme lead approves the report</p></td><td><p>The report and register filed side by side, the report sent to the circulation list, and the accessibility section sent only to the Disability and Inclusion Service</p></td></tr></tbody></table></div>
-<div class="content-text reveal"><p>Two of these test what doesn’t happen: a clean register still reaching a person, and a rejected report going nowhere. As with the agent, those are the easiest to miss.</p></div>
-<div class="content-text reveal"><p><strong>Your turn:</strong> Build your planned workflow in Copilot Studio, on test folders and dummy files. Start with the trigger and the first agent step, test them with a dummy file, then add the rest one step at a time. Run your test set before anyone relies on the output.</p></div></div>
+<div class="content-text reveal"><ol><li><p><strong>Open Copilot Studio, go to Workflows in the left sidebar, and choose New workflow.</strong> Name it after the job, such as NSS Feedback Report Cycle.</p></li><li><p><strong>Set the trigger on the Start step. </strong>Choose the SharePoint trigger for a new file in a folder, and point it at the test Responses folder, not the live one.</p></li><li><p><strong>Add an action to get the file’s content.</strong> Add a Connector step for SharePoint that gets the content of the file from the trigger.</p></li><li><p><strong>Add the drafting agent step.</strong> Add an Agent step, choose the Programme Feedback Report agent, and write the message it receives. Insert the file content as dynamic content, so each run works on the file that started it.</p></li></ol><p></p></div>
+<h2 class="content-heading reveal">Test your workflow</h2>
+<div class="content-text reveal"><p>Time to test! See if your workflow produces what you were hoping for. If needed, analyse the output just as you did with your agent and identify where it can be tweaked.</p><p>Congratulations!</p></div></div>
       <nav class="page-nav"><div><a href="page_5.html" class="secondary">← Previous</a></div><div><a href="page_7.html">Next →</a></div></nav>
     </main>
   </div>
@@ -338,9 +331,25 @@ a:hover { color: var(--brand-primary-hover, var(--brand-primary)); text-decorati
       var feedback = el.querySelector('.feedback');
       if (!dragList || !btn || !feedback) return;
       
+      // Shuffle on load, re-rolling until the start order isn't already the answer
+      var correctForShuffle;
+      try { correctForShuffle = JSON.parse(el.getAttribute('data-correct-order') || '[]'); } catch(err) { correctForShuffle = []; }
+      var shuffled = Array.prototype.slice.call(dragList.querySelectorAll('.drag-item'));
+      for (var attempt = 0; attempt < 10 && shuffled.length > 1; attempt++) {
+        for (var s = shuffled.length - 1; s > 0; s--) {
+          var r = Math.floor(Math.random() * (s + 1));
+          var tmp = shuffled[s]; shuffled[s] = shuffled[r]; shuffled[r] = tmp;
+        }
+        var solved = correctForShuffle.length === shuffled.length && shuffled.every(function(item, i) {
+          return parseInt(item.getAttribute('data-index'), 10) === correctForShuffle[i];
+        });
+        if (!solved) break;
+      }
+      shuffled.forEach(function(item) { dragList.appendChild(item); });
+
       var draggedItem = null;
       var items = dragList.querySelectorAll('.drag-item');
-      
+
       [].forEach.call(items, function(item) {
         item.addEventListener('dragstart', function(e) {
           draggedItem = this;

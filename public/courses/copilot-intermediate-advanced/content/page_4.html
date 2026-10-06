@@ -35,6 +35,7 @@
     .content-heading:first-of-type { margin-top: 0; }
     .content-image { margin: 3rem 0; }
     .content-image img { max-width: 100%; height: auto; border-radius: 8px; }
+    .content-image figcaption { margin-top: 0.6em; font-style: italic; font-size: 0.95rem; opacity: 0.8; white-space: pre-line; }
     .content-video { margin: 3rem 0; }
     .content-video iframe, .content-video video { width: 100%; aspect-ratio: 16/9; border-radius: 8px; }
     .key-insight { margin: 3rem 0; padding: 1.5rem 1.5rem 1.5rem 1.75rem; border-left: 4px solid var(--brand-accent, #ff7700); background: rgba(0,0,0,0.02); font-size: 1.1rem; line-height: 1.65; border-radius: 0 8px 8px 0; }
@@ -152,7 +153,7 @@ a:hover { color: var(--brand-primary-hover, var(--brand-primary)); text-decorati
     .page-nav a { border-radius: 8px; }
   </style>
 </head>
-<body data-scorm-page-index="4" data-scorm-total-pages="9" data-scorm-total-max="12">
+<body data-scorm-page-index="4" data-scorm-total-pages="9" data-scorm-total-max="8">
   <div class="course-wrapper">
     
     <div class="progress-container">
@@ -168,48 +169,34 @@ a:hover { color: var(--brand-primary-hover, var(--brand-primary)); text-decorati
         <h1>Module 4: Build and test the agent</h1>
       </div>
       <div class="blocks"><div class="content-text reveal"><p><em>Estimated time: 9-10 minutes, plus about 20 minutes to build and test</em></p></div>
-<div class="content-text reveal"><p><strong>Goal:</strong> Build your planned agent in Copilot Studio and test it.</p></div>
-<h2 class="content-heading reveal">Test before it’s trusted</h2>
-<div class="content-text reveal"><p>A well-formatted report isn’t necessarily correct. The only way to know is to run it on a case where the right answer is already known and compare.</p></div>
-<h2 class="content-heading reveal">Sandbox first</h2>
-<div class="content-text reveal"><p>Build and test with dummy data in test folders. Keep live data out until the agent has passed its tests.</p></div>
-<div class="content-text reveal"><p>Dummy data does two jobs. It keeps personal and sensitive information out of test conversations while the agent is still unreliable. And it can be built to contain the difficult cases on purpose, so every test has an answer to check against. Live data only holds whatever cases this week happened to produce.</p></div>
-<div class="content-text reveal"><p>The NSS workbook from Module 1 is dummy data of this kind.</p></div>
-<div class="content-text reveal"><p>For your own agent, a small dummy set is enough: a copy of the document with names changed, and one or two rows edited to create the case most likely to go wrong. For the actions tracker, that’s an action with no due date.</p></div>
+<div class="content-text reveal"><p><strong>Objective:</strong> Build your planned agent in Copilot Studio and test it.</p></div>
+<h2 class="content-heading reveal">Introduction to building</h2>
+<div class="content-text reveal"><p>There are three things to be aware of before you start building an agent:</p><ol><li><p>An agent can change, overwrite or even delete live data</p></li><li><p>There are two versions of Copilot that can build agents</p></li><li><p>Running and testing an agent can cost credits</p></li></ol><p>Let&#39;s look at each in turn.</p><p></p></div>
+<h2 class="content-heading reveal">Before you build: use dummy data</h2>
+<div class="content-text reveal"><p>Dummy data does two jobs. </p><ol><li><p>It keeps personal and sensitive information out of test conversations while the agent is still being built. </p></li><li><p>It can be built to contain the difficult cases on purpose, so it&#39;s a real test for your new agent - you can test for edge cases and unusual cases, rather than on last week&#39;s routine data.</p></li></ol><p></p></div>
+<div class="content-text reveal"><p>For your own agent, a small dummy set is enough: a copy of the document with names changed, and one or two rows edited to create the case most likely to go wrong. </p></div>
 <div class="interaction true-false reveal" data-scorm-graded="true" data-block-id="cmupuavch0058xpuk4wjisf0f" data-correct="false" data-explanation="An agent that only reads can still carry personal or sensitive information into test conversations and outputs while it’s unreliable. Dummy data also lets you plant the difficult cases, so every test has a known answer. Reading is enough to cause a problem. Test runs carry whatever the agent reads into conversations and outputs, while the agent is still unreliable. Dummy data avoids that, and it can be built to contain the difficult cases, so each test has a known answer."><p class="question">Live data is fine for testing, as long as the agent only reads it and doesn’t change anything.</p><ul class="options"><li class="option-item" data-value="true"><label><input type="radio" name="tf-cmupuavch0058xpuk4wjisf0f" value="true" /> True</label></li><li class="option-item" data-value="false"><label><input type="radio" name="tf-cmupuavch0058xpuk4wjisf0f" value="false" /> False</label></li></ul><button type="button" class="check-answer-btn">Check Answer</button><div class="feedback hidden"></div></div>
-<h2 class="content-heading reveal">Before you build: Choose the harness</h2>
-<div class="content-text reveal"><p>Copilot Studio builds agents on two different foundations, which Microsoft calls harnesses. The one used throughout this course is the <strong>GitHub Copilot harness</strong>, the default when the <strong>New experience</strong> is switched on. The older <strong>standard harness</strong> is still available.</p></div>
+<h2 class="content-heading reveal">Before you build: Choose which version of Copilot to use</h2>
+<div class="content-text reveal"><p>Copilot Studio builds agents on two different foundations, which Microsoft calls harnesses. The one used throughout this course is the <strong>GitHub Copilot harness</strong>, the default when the <strong>New experience</strong> is switched on.  The older <strong>standard harness</strong> is still available</p><p>Here are some differences between them:</p></div>
 <div class="content-table reveal"><table><th><tr><th><p>Feature</p></th><th><p>GitHub Copilot harness</p></th><th><p>Standard harness</p></th></tr></thead><tbody><tr><td><p>Skills</p></td><td><p>Supported</p></td><td><p>Not supported. Format goes in the instructions</p></td></tr><tr><td><p>Memory</p></td><td><p>Supported, in preview</p></td><td><p>Not supported</p></td></tr><tr><td><p>A spreadsheet in knowledge</p></td><td><p>Opened and counted</p></td><td><p>Split into chunks and searched</p></td></tr></tbody></table></div>
+<figure class="content-image reveal"><img src="img_12.png" alt="Be aware of how the harnesses are different." /><figcaption>Be aware of how the harnesses are different.</figcaption></figure>
 <div class="content-text reveal"><p>The last row matters for any job built on counts. Searching chunks is right for finding the relevant paragraph in a policy, and wrong for counting how many of 64 students mentioned assessment. An agent can’t be moved between harnesses, so choose before building.</p></div>
-<figure class="content-image reveal"><img src="img_8.png" alt="The Copilot Studio start screen. Agent and Workflow both build on the GitHub Copilot harness." /></figure>
-<div class="content-text reveal"><p>The Copilot Studio start screen. Agent and Workflow both build on the GitHub Copilot harness.</p></div>
-<figure class="content-image reveal"><img src="img_9.png" alt="Other ways to build in Copilot Studio: a standard-harness agent, or an agent flow." /></figure>
-<div class="content-text reveal"><p>Other ways to build in Copilot Studio: a standard-harness agent, or an agent flow.</p></div>
-<h2 class="content-heading reveal">Credits and costs</h2>
+<figure class="content-image reveal"><img src="img_13.png" alt="The Copilot Studio start screen. Agent and Workflow both build on the GitHub Copilot harness." /><figcaption>The new Copilot Studio start screen.</figcaption></figure>
+<figure class="content-image reveal"><img src="img_14.png" alt="The older version of Copilot, the standard harness." /><figcaption>The older version of Copilot, the standard harness.</figcaption></figure>
+<h2 class="content-heading reveal">Before you build: credits and costs</h2>
 <div class="content-text reveal"><p>Agents run on <strong>Copilot Credits</strong>, which come with the University’s subscription. The two harnesses meter them differently:</p></div>
 <div class="content-text reveal"><ul><li>On the GitHub Copilot harness, building, testing, and running all use credits, from the first test.</li><li>On the standard harness, building and testing are free, and credits are used once the agent or flow is published and running.</li></ul></div>
 <div class="content-text reveal"><p>Credits are a shared budget. Check the current position with IT before building anything that will run often, and plan the build so testing happens on small, dummy files.</p></div>
-<h2 class="content-heading reveal">Build it: From plan to Copilot Studio</h2>
-<div class="content-text reveal"><p>The planning template follows Copilot Studio’s order, so the build copies the plan across field by field.</p></div>
+<h2 class="content-heading reveal">Your task: build an agent from a plan</h2>
+<div class="content-text reveal"><p>It&#39;s time to take your plan from the last module and turn it into a real agent.</p><p>Assuming you&#39;re now aware of the three items above, let&#39;s begin!</p></div>
 <div class="content-text reveal"><ol><li><strong>Open Copilot Studio</strong> and sign in with your work account. Check that the <strong>New experience</strong> is on, which gives the GitHub Copilot harness described above.</li><li><strong>Create the agent and name it.</strong> Set the language and any solution settings before the first save, as some settings lock once saved.</li><li>Paste the purpose into the description. Copilot reads it to decide when the agent applies.</li><li><strong>Paste the instructions</strong> from the plan.</li><li>Add each knowledge source, and give each a name and a description in the form “contains X, use for Y”. Copilot reads these descriptions to decide which source to reach for. For the NSS agent, last year’s report is described as “use only for the year-on-year comparison”.</li><li>Add the skill, uploaded as a file, with a description that says exactly which output it shapes.</li><li><strong>Add tools</strong>, or leave them empty if the plan says “none”.</li><li>Set authentication to Authenticate with Microsoft, so the agent runs as the signed-in person and reaches only what they can.</li><li>Test in the test pane, against the test set below.</li></ol></div>
-<div class="content-text reveal"><p>The finished NSS agent in Module 2 shows what the build looks like once every field is filled.</p></div>
-<div class="content-text reveal"><p>The plan’s trigger isn’t set here. An agent on its own runs when someone asks it something. A schedule or a file arriving starts a workflow, which then calls the agent, and Module 6 sets that up. While you test, you’re the trigger: each run starts from the test pane.</p></div>
-<div class="content-text reveal"><p>Don’t publish or share it yet. Sharing follows the category from Module 3: an agent for a team goes through the use case suggestion form first.</p></div>
-<div class="content-text reveal"><p><strong>Your turn:</strong> Build your planned agent now, on your own profile, using dummy files in a test folder. Follow the nine steps and stop at the test pane. Each test run uses Copilot Credits, so keep the test files small.</p></div>
-<h2 class="content-heading reveal">A test set: Answers you already know</h2>
-<div class="content-text reveal"><p>A test set is a short list of requests, each with the result a correct run produces. Three to five cases is enough to start, provided they include the ways the agent is most likely to fail.</p></div>
-<div class="content-text reveal"><p>The NSS writer’s test set comes straight from the traps built into the workbook:</p></div>
-<div class="content-table reveal"><table><th><tr><th><p>Test</p></th><th><p>A correct run produces</p></th></tr></thead><tbody><tr><td><p>Theme the 64 responses</p></td><td><p>Four themes and no fifth, despite last year’s report carrying “student voice”</p></td></tr><tr><td><p>Comments naming staff</p></td><td><p>A count of four, and no name anywhere in the report</p></td></tr><tr><td><p>Access needs</p></td><td><p>Three comments reproduced in full in their own section, counted in no theme</p></td></tr><tr><td><p>A small theme</p></td><td><p>Learning resources reported as 2 and below the reporting threshold, not summarised</p></td></tr><tr><td><p>A question not asked</p></td><td><p>No overall satisfaction score, as that question isn’t asked of providers in England</p></td></tr><tr><td><p>The recommendations</p></td><td><p>The section present and empty, for the programme lead to write</p></td></tr></tbody></table></div>
-<div class="content-text reveal"><p>Two of these are cases where the right answer is “nothing”: no name, no score. Those are the easiest to miss, because a report that invents a figure looks just as finished as one that doesn’t.</p></div>
-<div class="content-text reveal"><p>Each of the four Strategy Office jobs has its own trap to test:</p></div>
-<div class="content-text reveal"><ul><li><strong>Meeting actions tracker:</strong> an action with no due date, which should be reported as having no date, not as overdue.</li><li><strong>Scope and milestone extractor:</strong> a milestone the business case doesn’t mention, which should come back as “not in the business case”.</li><li><strong>Admission cycle monitor:</strong> a week where the cycle point and the calendar week differ, where the agent should state which week it compared.</li><li><strong>Planning submission checker:</strong> a section with a heading and boilerplate beneath it, which should be marked present but unanswered.</li></ul></div>
+<div class="content-text reveal"><p>Don’t publish or share it yet - make sure you&#39;ve followed the internal guidelines for publishing and sharing agents. </p></div>
 <h2 class="content-heading reveal">Diagnosing a weak output</h2>
-<div class="content-text reveal"><p>When a test fails, the fix depends on which part of the agent caused it. Most failures are one of three kinds, and each maps to a part from Module 2.</p></div>
+<div class="content-text reveal"><p>Assuming you&#39;ve gotten approval for publishing and testing your agent, hopefully it produces the output you want, to the accuracy and standard you desire.</p><p>However if it doesn&#39;t work to standard, then the fix depends on which part of the agent caused it. Most failures are one of three kinds:</p></div>
 <div class="content-table reveal"><table><th><tr><th><p>Symptom</p></th><th><p>Likely cause</p></th><th><p>Where the fix goes</p></th></tr></thead><tbody><tr><td><p>Figures or content that aren’t in this year’s file, or generic content that could describe any programme</p></td><td><p>Grounding</p></td><td><p>Knowledge: attach the right source, sharpen its “contains X, use for Y” description, or remove a source that misleads</p></td></tr><tr><td><p>The right material, but a rule broken: a name included, a fifth theme added, a reason offered</p></td><td><p>Instructions</p></td><td><p>Instructions: add or sharpen the “never” rule</p></td></tr><tr><td><p>The right content and rules, in the wrong shape: sections out of order, missing columns</p></td><td><p>Skills</p></td><td><p>Skill: fix the format, or its description if the skill isn’t loading</p></td></tr></tbody></table></div>
-<figure class="content-image reveal"><img src="img_10.jpg" alt="Diagnosing a failed test: each symptom points to grounding, instructions, or skills." /></figure>
-<div class="content-text reveal"><p>Diagnosing a failed test: each symptom points to grounding, instructions, or skills.</p></div>
 <div class="content-text reveal"><p>Grounding problems are the ones most often mistaken for something else. A weak answer tempts a longer set of instructions, when the real problem is that the agent read the wrong document, or didn’t read the right one.</p></div>
 <div class="content-text reveal"><p>Change one thing at a time, then rerun the whole test set. A fix to one case can break another.</p></div>
+<figure class="content-image reveal"><img src="img_15.png" alt="Diagnose weak output." /><figcaption>Diagnose weak output.</figcaption></figure>
 <div class="interaction multiple-choice reveal" data-scorm-graded="true" data-block-id="cmupuavch0066xpukhwb9hurm" data-correct-index="2" data-explanation="The figures came from last year’s report instead of this year’s workbook, which is a grounding problem. The fix is in knowledge: describe last year’s report as “use only for the year-on-year comparison”, and describe the workbook as the source of every figure. The shape and rules are fine. The figures came from the wrong document, which makes it a grounding problem. The fix is in the knowledge descriptions: last year’s report is “use only for the year-on-year comparison”, and the workbook is the source of every figure. A new instruction may help, but it leaves the misleading description in place."><p class="question">In testing, the NSS agent’s report shows this year’s positivity figures exactly matching last year’s signed report, not this year’s workbook. What kind of problem is it?</p><ul class="options"><li class="option-item" data-index="0"><label><input type="radio" name="mc-cmupuavch0066xpukhwb9hurm" value="0" /> An instructions problem. Add a rule saying “use this year’s figures”</label></li><li class="option-item" data-index="1"><label><input type="radio" name="mc-cmupuavch0066xpukhwb9hurm" value="1" /> A skills problem. The report format needs a new section</label></li><li class="option-item" data-index="2"><label><input type="radio" name="mc-cmupuavch0066xpukhwb9hurm" value="2" /> A grounding problem. The agent is drawing figures from the wrong source</label></li><li class="option-item" data-index="3"><label><input type="radio" name="mc-cmupuavch0066xpukhwb9hurm" value="3" /> A model problem. Switch to a different model</label></li></ul><button type="button" class="check-answer-btn">Check Answer</button><div class="feedback hidden"></div></div></div>
       <nav class="page-nav"><div><a href="page_3.html" class="secondary">← Previous</a></div><div><a href="page_5.html">Next →</a></div></nav>
     </main>
@@ -363,9 +350,25 @@ a:hover { color: var(--brand-primary-hover, var(--brand-primary)); text-decorati
       var feedback = el.querySelector('.feedback');
       if (!dragList || !btn || !feedback) return;
       
+      // Shuffle on load, re-rolling until the start order isn't already the answer
+      var correctForShuffle;
+      try { correctForShuffle = JSON.parse(el.getAttribute('data-correct-order') || '[]'); } catch(err) { correctForShuffle = []; }
+      var shuffled = Array.prototype.slice.call(dragList.querySelectorAll('.drag-item'));
+      for (var attempt = 0; attempt < 10 && shuffled.length > 1; attempt++) {
+        for (var s = shuffled.length - 1; s > 0; s--) {
+          var r = Math.floor(Math.random() * (s + 1));
+          var tmp = shuffled[s]; shuffled[s] = shuffled[r]; shuffled[r] = tmp;
+        }
+        var solved = correctForShuffle.length === shuffled.length && shuffled.every(function(item, i) {
+          return parseInt(item.getAttribute('data-index'), 10) === correctForShuffle[i];
+        });
+        if (!solved) break;
+      }
+      shuffled.forEach(function(item) { dragList.appendChild(item); });
+
       var draggedItem = null;
       var items = dragList.querySelectorAll('.drag-item');
-      
+
       [].forEach.call(items, function(item) {
         item.addEventListener('dragstart', function(e) {
           draggedItem = this;

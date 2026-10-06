@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <title>Module 1: Prompt, agent, workflow - Intermediate to Advanced Copilot (SOTON)</title>
+  <title>Module 1: Prompts and agents - Intermediate to Advanced Copilot (SOTON)</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&family=Ubuntu:wght@400;600;700&display=swap" />
   <style>
     :root { --muted: #6b7280; }
@@ -35,6 +35,7 @@
     .content-heading:first-of-type { margin-top: 0; }
     .content-image { margin: 3rem 0; }
     .content-image img { max-width: 100%; height: auto; border-radius: 8px; }
+    .content-image figcaption { margin-top: 0.6em; font-style: italic; font-size: 0.95rem; opacity: 0.8; white-space: pre-line; }
     .content-video { margin: 3rem 0; }
     .content-video iframe, .content-video video { width: 100%; aspect-ratio: 16/9; border-radius: 8px; }
     .key-insight { margin: 3rem 0; padding: 1.5rem 1.5rem 1.5rem 1.75rem; border-left: 4px solid var(--brand-accent, #ff7700); background: rgba(0,0,0,0.02); font-size: 1.1rem; line-height: 1.65; border-radius: 0 8px 8px 0; }
@@ -152,7 +153,7 @@ a:hover { color: var(--brand-primary-hover, var(--brand-primary)); text-decorati
     .page-nav a { border-radius: 8px; }
   </style>
 </head>
-<body data-scorm-page-index="1" data-scorm-total-pages="9" data-scorm-total-max="12">
+<body data-scorm-page-index="1" data-scorm-total-pages="9" data-scorm-total-max="8">
   <div class="course-wrapper">
     
     <div class="progress-container">
@@ -165,52 +166,48 @@ a:hover { color: var(--brand-primary-hover, var(--brand-primary)); text-decorati
       <p class="micro-label">Module 1: Prompt, agent, workflow</p>
       <div class="section-heading-wrap">
         <span class="section-number" aria-hidden="true">02</span>
-        <h1>Module 1: Prompt, agent, workflow</h1>
+        <h1>Module 1: Prompts and agents</h1>
       </div>
       <div class="blocks"><div class="content-text reveal"><p><em>Estimated time: 9-10 minutes</em></p></div>
-<div class="content-text reveal"><p><strong>Goal:</strong> Tell the difference between a prompt, an agent, and a workflow.</p></div>
-<h2 class="content-heading reveal">The job that needs explaining every time</h2>
-<div class="content-text reveal"><p>Imagine someone pasted a programme’s National Student Survey comments into Copilot and explained what they wanted: a report that condensed the comments into four themes to use, a rule about never naming staff, and what to do with a comment about a student’s accessibility needs. The summary was useful. You&#39;d like to do the same task, and it would be useful if you could just click a button (and start an agent), rather than try to find the old prompt or start again. Now you have access to Copilot Premium, you can!</p></div>
-<figure class="content-image reveal"><img src="img_0.jpg" alt="Before and after: explaining the NSS job every summer, compared with writing the rules down once." /></figure>
-<div class="content-text reveal"><p>Before and after: explaining the NSS job every summer, compared with writing the rules down once.</p></div>
-<h2 class="content-heading reveal">What this changes</h2>
-<div class="content-text reveal"><p>Jobs worth moving from a prompt to an agent share three things: </p></div>
-<div class="content-text reveal"><ol><li>They come round on a cycle, </li><li>They draw on the same sources each time, </li><li>The rules for doing them well don’t change. </li></ol></div>
-<div class="content-text reveal"><p>The NSS report has all three: it comes round every summer, it draws on the same response file, house template, and last year’s report, and its rules don’t change from one year to the next. The examples below, grouped by role, share that shape. The last one under planning and analytics is the NSS report itself.</p></div>
-<h3 class="content-heading reveal">Possibilities for agents</h3>
-<div class="content-text reveal"><p>Here are some ideas for agents that could be useful for you:</p></div>
+<div class="content-text reveal"><p><strong>Objective:</strong> Understand the difference between a prompt, an agent, and a workflow.</p></div>
+<h2 class="content-heading reveal">Introduction</h2>
+<div class="content-text reveal"><p>Imagine someone pasted a programme’s National Student Survey comments into Copilot and explained what they wanted: a report that categorised student comments into four themes, condensed into a summary for each theme, and a rule about never naming staff.</p><p></p><p>Now imagine you&#39;d like to do the same task - would you prefer writing the prompt again (and trying to write a prompt from scratch), or clicking a button and it just starts?</p><p></p><p>The &#39;clicking a button&#39; option is where agents come in!</p></div>
+<figure class="content-image reveal"><img src="img_0.png" alt="Re-do every time, or just click a button to run?" /><figcaption>Re-do every time, or just click a button to run?</figcaption></figure>
+<h2 class="content-heading reveal">Definitions: Prompts, Agents and Workflows </h2>
+<div class="content-text reveal"><p><strong>A prompt</strong> is an instruction you type into a chatbox in an AI like Copilot. You give the context every time - attach any documents needed, give the background, explain what you&#39;d like done and what good looks like.</p></div>
+<div class="content-text reveal"><p><strong>An agent</strong> is a saved, expanded prompt. An agent has saved your instructions (an expanded, detailed prompt), knows where your files are (and can access them), and can run any time when you ask it to, or on a schedule (or even when something changes in a file).  No saving prompts, or trying to remember them.</p></div>
+<div class="content-text reveal"><p><strong>A workflow</strong> is a process that you’ve broken into steps and linked together. Those steps can be an agent, a person, or even something else, like a Power Automate automation. You can set the rules about when it starts and stops.</p></div>
+<figure class="content-image reveal"><img src="img_1.png" alt="Prompts progress to agents, which can expand to workflows." /><figcaption>Prompts progress to agents, which can expand to workflows.</figcaption></figure>
+<div class="content-text reveal"><p>For example, here&#39;s what the that NSS report task might look like as a prompt, an agent and a workflow:</p></div>
+<div class="content-table reveal"><table><thead><tr><th><p>Level</p></th><th><p>The NSS report as…</p></th><th><p>What you still do by hand</p></th></tr></thead><tbody><tr><td><p>Prompt</p></td><td><p>Attach the file, explain the job, read the answer</p></td><td><p>Everything, every year</p></td></tr><tr><td><p>Agent</p></td><td><p>The rules, the report template, and last year’s report written in once</p></td><td><p>Check the draft and write the recommendations</p></td></tr><tr><td><p>Workflow</p></td><td><p>It starts, an agent drafts, a second agent checks the draft, a person approves, and then it&#39;s emailed to SLT and saved in Sharepoint</p></td><td><p>Decide when and how it starts. Also approve, if you&#39;re the designated human in the loop.</p></td></tr></tbody></table></div>
+<h2 class="content-heading reveal">Should you use a prompt or an agent?</h2>
+<div class="content-text reveal"><p>A task worth moving from a prompt to an agent usually has three things:</p></div>
+<div class="content-text reveal"><ol><li><p>It comes round regularly</p></li><li><p>It uses the same or similar files each time</p></li><li><p>The rules for doing it don’t change</p></li></ol><p></p></div>
+<div class="content-text reveal"><p>The NSS report example has all three: it comes round every summer, it draws on the same feedback file, report template, and last year’s report, and its rules don’t change from one year to the next.</p></div>
+<figure class="content-image reveal"><img src="img_2.png" alt="Use an agent if it repeats regularly, uses same data, and the instructions remain the same. " /><figcaption>Use an agent if it repeats regularly, uses same data, and the instructions remain the same.</figcaption></figure>
+<h3 class="content-heading reveal">Any more examples?</h3>
+<div class="content-text reveal"><p>If you&#39;re struggling to think of any more tasks that could be agents, here are some ideas for agents that could be useful:</p></div>
 <h3 class="content-heading reveal">If you deliver projects and programmes:</h3>
-<div class="content-text reveal"><ul><li>Track the actions from each week’s project meeting: what’s open, what’s overdue, and what’s closed since last week.</li><li>Draft a new project’s scope, milestones, and dependencies from the approved business case, with every line citing its paragraph.</li><li>Turn a month of project updates into the highlight report, in the same shape every time.</li></ul></div>
-<h3 class="content-heading reveal">If you manage the portfolio or administer projects:</h3>
-<div class="content-text reveal"><ul><li>Pull the same fields from every project’s return into one portfolio view.</li><li>Check each submission against the template before it reaches a board, and list what’s missing.</li><li>Draft the covering note for a meeting pack from the papers already in the folder.</li></ul></div>
+<div class="content-text reveal"><ul><li><p>Track the actions from each week’s project meeting: what’s open, what’s overdue, and what’s closed since last week.</p></li><li><p>Draft a new project’s scope, milestones, and dependencies from the approved business case, with every line citing its paragraph.</p></li><li><p>Turn a month of project updates into the highlight report.</p></li></ul><p></p></div>
+<h3 class="content-heading reveal">If you manage dashboards or administer projects:</h3>
+<div class="content-text reveal"><ul><li><p>Pull the same fields from every project’s return into one dashboard view.</p></li><li><p>Check each submission against the template before it reaches a board, and list what’s missing.</p></li><li><p>Draft the covering note for a meeting pack from the papers already in the folder.</p></li></ul><p></p></div>
 <h3 class="content-heading reveal">If you work in planning and analytics:</h3>
 <div class="content-text reveal"><ul><li>Give the week’s admissions position against target and against the same point last cycle.</li><li>Run the same check on every faculty planning submission against the planning guidance.</li><li>Theme a survey’s free text against a fixed framework, so this year can be compared with last.</li></ul></div>
-<div class="key-insight reveal"><p>Time saved is the smaller gain. The larger one is consistency: the job is done the same way whoever runs it and whichever week it is, so the time spent goes on the part that needs judgement, such as what the overdue actions mean and what to do about them.</p></div>
-<h2 class="content-heading reveal">First run: The NSS report as a prompt</h2>
-<div class="content-text reveal"><p>This is the job that runs through the course. A programme’s National Student Survey results have arrived, and a report is needed on what students said. The university, Calderbrook, is fictional, and every name, figure, and comment in the file is invented.</p></div>
+<h2 class="content-heading reveal">Activity: Test a prompt</h2>
 <div class="content-text reveal"><p><strong>Download the NSS 2026 Free Text and Scores workbook </strong>then open Copilot and sign in with your work account.</p></div>
 <a class="content-download reveal" href="files/NSS-2026-Free-Text-and-Scores.xlsx" download="NSS 2026 Free Text and Scores.xlsx"><svg class="content-download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg><span class="content-download-text"><span class="content-download-label">NSS 2026 Free Text and Scores workbook</span><span class="content-download-meta">Excel · 15 KB</span></span></a>
-<div class="content-text reveal"><p>Attach the workbook and paste in the prompt below. It gives Copilot three things: the role to take, the context it needs, and the task. </p></div>
+<div class="content-text reveal"><p>Attach the workbook and paste in the prompt below. This gives Copilot three things: the role to take, the context it needs, and the task.</p></div>
 <div class="content-text reveal"><p><em>You’re a student surveys analyst at a UK university. The attached workbook holds one programme’s National Student Survey responses, with scored questions and a free-text column. Theme the free-text comments against four themes and no others: teaching and learning, assessment and feedback, organisation and management, and learning resources. For each theme, give the number of responses, a one-line summary, and one comment quoted word for word. Put the four themes in a table.</em></p></div>
-<figure class="content-image reveal"><img src="img_1.png" alt="The prompt for the NSS report in Copilot, with the workbook attached." /></figure>
-<div class="content-text reveal"><p>The structured prompt for the NSS report in Copilot, with the workbook attached.</p></div>
+<figure class="content-image reveal"><img src="img_3.png" alt="The prompt for the NSS report in Copilot, with the workbook attached." /><figcaption>The prompt for the NSS report in Copilot, with the workbook attached.</figcaption></figure>
 <div class="content-text reveal"><p>The result should be a table with four rows, counts, and quotes. Check it against three points:</p></div>
-<div class="content-text reveal"><ul><li>Does any quote name a member of staff? Four comments in the file do.</li><li>Has a student’s comment about their learning support plan been counted as a learning resources complaint, or summarised into a line?</li><li>Has a fifth theme appeared, such as student voice?</li></ul></div>
-<div class="content-text reveal"><p>The prompt didn’t include the rules that make this report safe to circulate: never name staff, keep access needs out of the counts, four themes and no more. Each would need adding to the prompt, and adding again on every run, by anyone who runs it. An agent holds those rules once.</p></div>
-<div class="interaction reflection reveal"><p class="prompt">Think of one job you do on a cycle, weekly or monthly basis, where you explain the same thing to Copilot each time. Write your answers to these three questions: What’s the job, and what do you have to explain every time you run it? Which files or folders does it always draw on? Is there anything it must never do, and have you ever had to correct it for doing it?</p><textarea class="reflection-input" rows="4" placeholder="Your response..."></textarea></div>
-<h2 class="content-heading reveal">Three ways to do the same job</h2>
-<div class="content-text reveal"><p>Each definition comes with a quick test.</p></div>
-<div class="content-text reveal"><p><strong>A prompt</strong> is an instruction you type once and read the answer to yourself. You supply the context every time: the document, the background, what good looks like. <strong>The test:</strong> if you closed the window, it’s gone.</p></div>
-<div class="content-text reveal"><p><strong>An agent</strong> is “a job you’ve written down, with sources attached, so you can run it again without re-explaining.” Same instructions, same documents, whoever runs it. <strong>The test:</strong> someone else on your team can run it and get the same shape of answer.</p></div>
-<div class="content-text reveal"><p><strong>A workflow</strong> is “a job that you’ve broken into steps and linked together. Those steps can be people, agents, or automations.” Something starts it, such as a file arriving or a set time, so nobody has to remember to. <strong>The test:</strong> it has a step that isn’t an agent, such as a person approving, a branch, or a file landing somewhere.</p></div>
-<div class="content-text reveal"><p>Here’s the NSS report at each level.</p></div>
-<div class="content-table reveal"><table><thead><tr><th><p>Level</p></th><th><p>The NSS report as…</p></th><th><p>What you still do by hand</p></th></tr></thead><tbody><tr><td><p>Prompt</p></td><td><p>Attach the file, explain the job, read the answer</p></td><td><p>Everything, every year</p></td></tr><tr><td><p>Agent</p></td><td><p>The rules, the house template, and last year’s report written in once</p></td><td><p>Check the draft and write the recommendations</p></td></tr><tr><td><p>Workflow</p></td><td><p>The file lands, one agent drafts, a second agent checks it, the programme lead approves, and only then is it filed</p></td><td><p>Decide, at the one point where it matters</p></td></tr></tbody></table></div>
-<figure class="content-image reveal"><img src="img_2.jpg" alt="Three ways to run the same job: what a prompt, an agent, and a workflow each hold, and what you still do by hand." /></figure>
-<div class="content-text reveal"><p>Three ways to run the same job: what a prompt, an agent, and a workflow each hold, and what you still do by hand.</p></div>
+<div class="content-text reveal"><ol><li><p>Does any quote name a member of staff? Four comments in the file do.</p></li><li><p>Has a student’s comment about their learning support plan been counted as a learning resources complaint, or summarised into a line?</p></li><li><p>Has a fifth theme appeared, such as student voice?</p></li></ol><p></p></div>
+<div class="content-text reveal"><p><strong>Note:</strong> the prompt didn’t include the rules that make this report safe to circulate: never name staff, keep accessiblity needs out of the counts, etc.</p></div>
+<figure class="content-image reveal"><img src="img_4.png" alt="Table produced from the NSS example prompt." /><figcaption>Table produced from the NSS example prompt.</figcaption></figure>
+<div class="content-card reveal"><p class="content-card-title">Reflection:</p><div class="content-card-body"><p>Think of one job you do on a cycle, weekly or monthly basis, where you explain the same thing to Copilot each time. Write your answers to these three questions: </p><ol><li><p>What’s the job, and what do you have to explain every time you run it? </p></li><li><p>Which files or folders does it always draw on? </p></li><li><p>Is there anything it must never do, and have you ever had to correct it for doing it?</p></li></ol><p></p></div></div>
 <h3 class="content-heading reveal">Activity: Prompt, agent, or workflow?</h3>
-<div class="content-text reveal"><p>Match each Strategy Office job to the level it’s been built at.</p></div>
+<div class="content-text reveal"><p>Which of these is a prompt, an agent and a workflow?</p></div>
 <div class="content-text reveal"><p><strong>Match the following:</strong></p></div>
-<div class="interaction matching reveal" data-scorm-graded="true" data-block-id="cmupuatm7002jxpuk8ahcy56m" data-pair-count="3" data-explanation="Prompt = one-off instruction you type and read. Agent = reusable job with the same shape output for anyone. Workflow = multiple linked steps including at least one non-agent step (e.g., human approval and sending emails)."><p class="question">Match each Strategy Office job to the level it’s been built at.</p><p class="match-instruction">Click an item on the left, then click its match on the right.</p><div class="match-container"><ul class="match-column match-left-col"><li class="match-item match-left" data-index="0">Pasting this week’s meeting notes in and asking what actions came out of them</li><li class="match-item match-left" data-index="1">An actions list from the meeting notes that anyone in the team can run on a Monday and get in the same shape</li><li class="match-item match-left" data-index="2">The actions are listed, chase emails are drafted for overdue ones, the project manager approves each one, and the approved emails are sent</li></ul><svg class="match-lines" aria-hidden="true"></svg><ul class="match-column match-right-col"><li class="match-item match-right" data-index="1">Agent</li><li class="match-item match-right" data-index="0">Prompt</li><li class="match-item match-right" data-index="2">Workflow</li></ul></div><button type="button" class="check-answer-btn">Check Matches</button><div class="feedback hidden"></div></div></div>
+<div class="interaction matching reveal" data-scorm-graded="true" data-block-id="cmupuatm7002jxpuk8ahcy56m" data-pair-count="3" data-explanation="Prompt = one-off instruction you type and read. Agent = reusable job with the same shape output for anyone. Workflow = multiple linked steps including at least one non-agent step (e.g., human approval and sending emails)."><p class="question">Which task do you think is a prompt, agent or workflow?</p><p class="match-instruction">Click an item on the left, then click its match on the right.</p><div class="match-container"><ul class="match-column match-left-col"><li class="match-item match-left" data-index="0">Pasting this week’s meeting notes in and asking what actions came out of them</li><li class="match-item match-left" data-index="1">An actions list from the meeting notes that anyone in the team can run on a Monday and get in the same shape</li><li class="match-item match-left" data-index="2">The actions are listed, chase emails are drafted for overdue ones, the project manager approves each one, and the approved emails are sent</li></ul><svg class="match-lines" aria-hidden="true"></svg><ul class="match-column match-right-col"><li class="match-item match-right" data-index="1">Agent</li><li class="match-item match-right" data-index="0">Prompt</li><li class="match-item match-right" data-index="2">Workflow</li></ul></div><button type="button" class="check-answer-btn">Check Matches</button><div class="feedback hidden"></div></div></div>
       <nav class="page-nav"><div><a href="page_0.html" class="secondary">← Previous</a></div><div><a href="page_2.html">Next →</a></div></nav>
     </main>
   </div>
@@ -363,9 +360,25 @@ a:hover { color: var(--brand-primary-hover, var(--brand-primary)); text-decorati
       var feedback = el.querySelector('.feedback');
       if (!dragList || !btn || !feedback) return;
       
+      // Shuffle on load, re-rolling until the start order isn't already the answer
+      var correctForShuffle;
+      try { correctForShuffle = JSON.parse(el.getAttribute('data-correct-order') || '[]'); } catch(err) { correctForShuffle = []; }
+      var shuffled = Array.prototype.slice.call(dragList.querySelectorAll('.drag-item'));
+      for (var attempt = 0; attempt < 10 && shuffled.length > 1; attempt++) {
+        for (var s = shuffled.length - 1; s > 0; s--) {
+          var r = Math.floor(Math.random() * (s + 1));
+          var tmp = shuffled[s]; shuffled[s] = shuffled[r]; shuffled[r] = tmp;
+        }
+        var solved = correctForShuffle.length === shuffled.length && shuffled.every(function(item, i) {
+          return parseInt(item.getAttribute('data-index'), 10) === correctForShuffle[i];
+        });
+        if (!solved) break;
+      }
+      shuffled.forEach(function(item) { dragList.appendChild(item); });
+
       var draggedItem = null;
       var items = dragList.querySelectorAll('.drag-item');
-      
+
       [].forEach.call(items, function(item) {
         item.addEventListener('dragstart', function(e) {
           draggedItem = this;

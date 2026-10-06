@@ -35,6 +35,7 @@
     .content-heading:first-of-type { margin-top: 0; }
     .content-image { margin: 3rem 0; }
     .content-image img { max-width: 100%; height: auto; border-radius: 8px; }
+    .content-image figcaption { margin-top: 0.6em; font-style: italic; font-size: 0.95rem; opacity: 0.8; white-space: pre-line; }
     .content-video { margin: 3rem 0; }
     .content-video iframe, .content-video video { width: 100%; aspect-ratio: 16/9; border-radius: 8px; }
     .key-insight { margin: 3rem 0; padding: 1.5rem 1.5rem 1.5rem 1.75rem; border-left: 4px solid var(--brand-accent, #ff7700); background: rgba(0,0,0,0.02); font-size: 1.1rem; line-height: 1.65; border-radius: 0 8px 8px 0; }
@@ -152,7 +153,7 @@ a:hover { color: var(--brand-primary-hover, var(--brand-primary)); text-decorati
     .page-nav a { border-radius: 8px; }
   </style>
 </head>
-<body data-scorm-page-index="8" data-scorm-total-pages="9" data-scorm-total-max="12">
+<body data-scorm-page-index="8" data-scorm-total-pages="9" data-scorm-total-max="8">
   <div class="course-wrapper">
     
     <div class="progress-container">
@@ -167,19 +168,16 @@ a:hover { color: var(--brand-primary-hover, var(--brand-primary)); text-decorati
         <span class="section-number" aria-hidden="true">09</span>
         <h1>Course conclusion and next steps</h1>
       </div>
-      <div class="blocks"><div class="content-text reveal"><p>The course took one job, the NSS report, from a prompt to an agent to a workflow, then asked whether its output was good enough to use. The same route applies to any job that comes round on a cycle.</p></div>
-<h2 class="content-heading reveal">What the course covered</h2>
+      <div class="blocks"><div class="content-text reveal"><p>The course looked at agents and workflows, the differences between them, and how to plan and build both. </p><p>Here&#39;s a quick reminder:</p></div>
 <div class="content-table reveal"><table><th><tr><th><p>Module</p></th><th><p>What it covered</p></th><th><p>The takeaway</p></th></tr></thead><tbody><tr><td><p>1. Prompt, agent, workflow</p></td><td><p>Three ways to run the same job, each with its own test</p></td><td><p>A job that needs explaining every time is a candidate for an agent</p></td></tr><tr><td><p>2. What an agent is made of</p></td><td><p>Instructions, skills, knowledge, and tools</p></td><td><p>Behaviour goes in the instructions, format goes in a skill</p></td></tr><tr><td><p>3. Plan the agent</p></td><td><p>The ten-field planning template, filled in for the NSS agent, and the four categories of use</p></td><td><p>Decide who checks it and who can use it before building</p></td></tr><tr><td><p>4. Build and test the agent</p></td><td><p>The harness, credits, and Copilot Studio field by field, on dummy data, against known answers</p></td><td><p>A failed test is grounding, instructions, or skills</p></td></tr><tr><td><p>5. Plan the workflow</p></td><td><p>Triggers, steps, dynamic content, the checker agent, and the human review</p></td><td><p>The person decides after the check and before the send</p></td></tr><tr><td><p>6. Build and test the workflow</p></td><td><p>Copilot Studio step by step, on test folders, with a test set for the workflow</p></td><td><p>Test what shouldn’t happen as well as what should</p></td></tr><tr><td><p>7. Good enough to use?</p></td><td><p>Confident error, omission and bias, overreach, and disclosure</p></td><td><p>Name the tool, the check, and who’s responsible</p></td></tr></tbody></table></div>
-<h2 class="content-heading reveal">Five things to remember</h2>
-<div class="content-text reveal"><ol><li><strong>An agent is a job written down, with sources attached.</strong> If the rules keep changing, it isn’t ready to be one yet.</li><li><strong>Put each rule where it belongs.</strong> A rule that holds whatever the output goes in the instructions. The shape of one output goes in a skill.</li><li><strong>Test against answers already known</strong>, including the cases where the right answer is nothing: no name, no score, “not in the business case”.</li><li><strong>A workflow needs a step that isn’t an agent.</strong> The person reads the check’s result before anything is filed or sent, even when it comes back clean.</li><li><strong>A well-formatted output isn’t evidence that it’s right.</strong> Before it goes out, check four things: fabrication, accuracy, completeness, and tone. Then say how it was made.</li></ol></div>
 <h2 class="content-heading reveal">Take this with you</h2>
 <div class="content-text reveal"><p>Two templates carry the course into real work:</p></div>
 <div class="content-text reveal"><ul><li><strong>The Agent Planning Template</strong>, from Module 3. Ten fields in three blocks: write it down, build it, decide it. The build block follows Copilot Studio’s order, so a finished plan copies straight into the tool.</li><li><strong>The Workflow Planning Template</strong>, from Module 5. The trigger, the steps in order, which agent does which step, where the person decides, and where the output lands.</li></ul></div>
-<div class="content-text reveal"><p>The Module 3 reflection and the Module 7 release check together make a first draft of both, for a job from your own week. An agent for your own use can be built on your own profile now. Anything for a team or wider goes through the use case suggestion form on the Strategy Office SharePoint site first, and questions about the process go to StrategyDelivery@soton.ac.uk. The AI Policy, the Guardrails Policy, and the Agent Creation &amp; Management Framework all sit in the Strategy Office AI Toolkit, and they’re under review, so check there for the current versions.</p></div>
 <h2 class="content-heading reveal">Can-do self-check</h2>
 <div class="content-text reveal"><p>These are the four outcomes from the start of the course.</p></div>
 <div class="content-text reveal"><ul><li>Tell the difference between a prompt, an agent, and a workflow.</li><li>Ground Copilot in my own documents and University context.</li><li>Plan and create a reusable agent, and a workflow, end to end for a real task.</li><li>Judge whether an output is reliable enough to use in higher-stakes work.</li></ul></div>
-<div class="content-text reveal"><p>For any you’re unsure of, go back to its modules: 1 and 2 for the first, 2 and 4 for the second, 3 to 6 for the third, and 7 for the fourth.</p></div></div>
+<div class="content-text reveal"><p>For any you’re unsure of, go back to its modules: 1 and 2 for the first, 2 and 4 for the second, 3 to 6 for the third, and 7 for the fourth.</p></div>
+<figure class="content-image reveal"><img src="img_22.png" alt="Final tips" /><figcaption>Final tips.</figcaption></figure></div>
       <nav class="page-nav"><div><a href="page_7.html" class="secondary">← Previous</a></div><div></div></nav>
     </main>
   </div>
@@ -332,9 +330,25 @@ a:hover { color: var(--brand-primary-hover, var(--brand-primary)); text-decorati
       var feedback = el.querySelector('.feedback');
       if (!dragList || !btn || !feedback) return;
       
+      // Shuffle on load, re-rolling until the start order isn't already the answer
+      var correctForShuffle;
+      try { correctForShuffle = JSON.parse(el.getAttribute('data-correct-order') || '[]'); } catch(err) { correctForShuffle = []; }
+      var shuffled = Array.prototype.slice.call(dragList.querySelectorAll('.drag-item'));
+      for (var attempt = 0; attempt < 10 && shuffled.length > 1; attempt++) {
+        for (var s = shuffled.length - 1; s > 0; s--) {
+          var r = Math.floor(Math.random() * (s + 1));
+          var tmp = shuffled[s]; shuffled[s] = shuffled[r]; shuffled[r] = tmp;
+        }
+        var solved = correctForShuffle.length === shuffled.length && shuffled.every(function(item, i) {
+          return parseInt(item.getAttribute('data-index'), 10) === correctForShuffle[i];
+        });
+        if (!solved) break;
+      }
+      shuffled.forEach(function(item) { dragList.appendChild(item); });
+
       var draggedItem = null;
       var items = dragList.querySelectorAll('.drag-item');
-      
+
       [].forEach.call(items, function(item) {
         item.addEventListener('dragstart', function(e) {
           draggedItem = this;
