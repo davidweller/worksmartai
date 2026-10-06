@@ -267,26 +267,29 @@ WorkSmart-AI production runs on Hostinger (static files from `dist/`). After
 `npm run build`, deploy the **entire** `dist` folder — especially `dist/_astro/`.
 Partial uploads (HTML only) break the site when Astro changes hashed CSS names.
 
-**Automated (recommended):**
+The site is served straight from `public_html` on the `worksmart-ai.co.uk` account.
+There is **no** `.htaccess` rewrite, no Git clone on the server, and no Hostinger Git
+integration — that setup (a clone at `public_html/new` serving the committed `dist/`)
+was retired on 2026-10-06 after it reverted the live site to a stale build. Do not
+re-enable Git deployment in hPanel, and do not commit `dist/` again.
 
-1. Create a Hostinger API token at [hPanel → API](https://hpanel.hostinger.com/profile/api).
-2. Set `HOSTINGER_API_TOKEN` in your environment (or GitHub repo secret for CI).
-3. Run `npm run deploy:hostinger` — builds, zips `dist/`, uploads and deploys via the Hostinger API.
+**The two ways to deploy — both verify themselves:**
 
-CI: push to `main` runs `.github/workflows/hostinger-deploy.yaml` when
-`HOSTINGER_API_TOKEN`, `PUBLIC_SUPABASE_URL`, and `PUBLIC_SUPABASE_ANON_KEY` secrets are set.
+1. **Push to `main`** — `.github/workflows/hostinger-deploy.yaml` builds, zips `dist/`,
+   deploys via the Hostinger API, then polls `https://worksmart-ai.co.uk/deploy-stamp.txt`
+   until the live site serves the new build. The job **fails** if the live site doesn't
+   change within 5 minutes. Needs the `HOSTINGER_API_TOKEN`, `PUBLIC_SUPABASE_URL` and
+   `PUBLIC_SUPABASE_ANON_KEY` repo secrets (all set).
+2. **Locally:** `npm run deploy:hostinger` — same pipeline, same stamp verification.
+   Put `HOSTINGER_API_TOKEN` in `.env` (hPanel → Profile → API); the script loads it.
 
-**Cursor + MCP:** the `user-hostinger-api` MCP server can deploy with
-`hosting_deployStaticWebsite` after `npm run deploy:prepare`. See `.cursor/rules/hostinger.mdc`.
+**Manual hPanel (fallback only):** File Manager or FTP — upload all of `dist/`
+(especially `dist/_astro/`) into `public_html`.
 
-**Manual hPanel:** File Manager or FTP — upload all of `dist/` to the site root.
-
-**Why you had to click Deploy:** Hostinger Git integration defaults to manual redeploy.
-Enable **Auto Deployment** in hPanel → Advanced → Git and add the GitHub webhook, or use
-the API/CI flow above (builds Astro locally — Git pull alone does not run `astro build`).
-
-Verify after deploy: a stylesheet from the homepage loads, e.g.
-`https://worksmart-ai.co.uk/_astro/accessibility-statement.*.css` returns HTTP 200.
+**SCORM courses:** the repo is the source of truth. A course uploaded or replaced
+through `/academy/admin/` lands in `public_html/courses/{id}/` on the server only —
+copy the same package into `public/courses/{id}/` and commit, or the next deploy
+reverts it. See `docs/ADD_SCORM_COURSE.md`.
 
 #### Deploy to Netlify
 
