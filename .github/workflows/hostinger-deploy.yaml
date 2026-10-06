@@ -37,6 +37,6 @@ jobs:
           HOSTINGER_API_TOKEN: ${{ secrets.HOSTINGER_API_TOKEN }}
           HOSTINGER_DOMAIN: worksmart-ai.co.uk
           HOSTINGER_REMOVE_ARCHIVE: 'true'
-        run: |
-          ARCHIVE=$(ls -1t .hostinger-deploy/worksmart_*.zip | head -1)
-          node scripts/deploy-hostinger-static.mjs "$ARCHIVE"
+        # The script picks the newest archive itself, and fails the job unless the
+        # live site serves the build's deploy-stamp.txt within 5 minutes.
+        run: node scripts/deploy-hostinger-static.mjs

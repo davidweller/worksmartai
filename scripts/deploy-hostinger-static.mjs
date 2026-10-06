@@ -11,16 +11,31 @@
  * Or one step after build:
  *   npm run deploy:hostinger
  */
-import { createReadStream, existsSync, statSync, unlinkSync } from 'node:fs';
+import { createReadStream, existsSync, readdirSync, readFileSync, statSync, unlinkSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as tus from 'tus-js-client';
+
+const scriptRoot = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
+
+// Load .env for local runs (CI sets real env vars). Never overrides an existing var.
+try {
+  const envFile = readFileSync(path.join(scriptRoot, '.env'), 'utf8');
+  for (const line of envFile.split('\n')) {
+    const match = line.match(/^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)\s*$/);
+    if (match && process.env[match[1]] === undefined) {
+      process.env[match[1]] = match[2].replace(/^["']|["']$/g, '');
+    }
+  }
+} catch {
+  // no .env — fine in CI
+}
 
 const API_BASE = (process.env.HOSTINGER_API_BASE ?? 'https://developers.hostinger.com').replace(/\/$/, '');
 const DOMAIN = process.env.HOSTINGER_DOMAIN ?? 'worksmart-ai.co.uk';
 const REMOVE_ARCHIVE = process.env.HOSTINGER_REMOVE_ARCHIVE === 'true';
 
-const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
+const root = scriptRoot;
 
 function getToken() {
   const token = process.env.HOSTINGER_API_TOKEN?.trim();
@@ -112,10 +127,9 @@ function uploadFile(filePath, basename, uploadUrl, authToken, authRestToken) {
 }
 
 async function triggerDeploy(username, domain, archiveBasename) {
-  // Hostinger stores TUS uploads under public_html/; the deploy endpoint 500s
-  // with Hosting:9999 if archive_path is the bare filename.
+  // archive_path is relative to the document root (public_html), where the upload lands.
   return apiRequest('POST', `api/hosting/v1/accounts/${username}/websites/${domain}/deploy`, {
-    archive_path: `public_html/${archiveBasename}`,
+    archive_path: archiveBasename,
   });
 }
 
@@ -128,15 +142,49 @@ function resolveArchivePath(arg) {
     return resolved;
   }
 
+  // No argument: use the newest archive from prepare-hostinger-static-archive.mjs.
   const deployDir = path.join(root, '.hostinger-deploy');
-  if (!existsSync(deployDir)) {
-    throw new Error(
-      'No archive path given and .hostinger-deploy/ is missing. Run prepare-hostinger-static-archive.mjs first.'
-    );
+  const newest = existsSync(deployDir)
+    ? readdirSync(deployDir)
+        .filter((f) => /^worksmart_\d{8}_\d{6}\.zip$/.test(f))
+        .sort()
+        .pop()
+    : undefined;
+  if (!newest) {
+    throw new Error('No archive found in .hostinger-deploy/. Run prepare-hostinger-static-archive.mjs first.');
   }
+  return path.join(deployDir, newest);
+}
 
+async function verifyLiveStamp(domain) {
+  // The build wrote dist/deploy-stamp.txt and it shipped inside the archive.
+  // The deploy only counts once the live site serves that exact stamp.
+  const stampPath = path.join(root, 'dist', 'deploy-stamp.txt');
+  if (!existsSync(stampPath)) {
+    throw new Error('dist/deploy-stamp.txt missing — rebuild via prepare-hostinger-static-archive.mjs before deploying.');
+  }
+  const expected = readFileSync(stampPath, 'utf8').trim();
+  const deadline = Date.now() + 5 * 60 * 1000;
+
+  process.stdout.write('Verifying the live site serves this deploy');
+  while (Date.now() < deadline) {
+    try {
+      const res = await fetch(`https://${domain}/deploy-stamp.txt?bust=${Date.now()}`, {
+        headers: { 'Cache-Control': 'no-cache' },
+      });
+      if (res.ok && (await res.text()).trim() === expected) {
+        console.log(`\nLive stamp matches: ${expected}`);
+        return;
+      }
+    } catch {
+      // transient network error — keep polling
+    }
+    process.stdout.write('.');
+    await new Promise((r) => setTimeout(r, 10000));
+  }
   throw new Error(
-    'Pass the archive path, e.g. node scripts/deploy-hostinger-static.mjs .hostinger-deploy/worksmart_YYYYMMDD_HHMMSS.zip'
+    `\nDeploy NOT verified: https://${domain}/deploy-stamp.txt never served "${expected}" within 5 minutes. ` +
+      'The live site was not updated — do not assume this deploy landed.'
   );
 }
 
@@ -162,12 +210,14 @@ async function main() {
   const deployResult = await triggerDeploy(username, DOMAIN, archiveBasename);
   console.log('Deploy triggered:', JSON.stringify(deployResult, null, 2));
 
+  await verifyLiveStamp(DOMAIN);
+
   if (REMOVE_ARCHIVE) {
     unlinkSync(archivePath);
     console.log(`Removed ${archivePath}`);
   }
 
-  console.log(`Done. Verify https://${DOMAIN}/ loads and _astro/ assets return HTTP 200.`);
+  console.log(`Done. https://${DOMAIN}/ is serving this build.`);
 }
 
 main().catch((err) => {

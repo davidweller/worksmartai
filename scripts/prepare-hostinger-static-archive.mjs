@@ -8,7 +8,7 @@
  */
 import { execSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
-import { mkdir, readdir, stat } from 'node:fs/promises';
+import { mkdir, readdir, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -33,9 +33,28 @@ async function ensureDist() {
   }
 }
 
+async function writeDeployStamp() {
+  // deploy-hostinger-static.mjs polls /deploy-stamp.txt after deploying and fails
+  // loudly if the live site never serves this exact stamp.
+  let sha = 'unknown';
+  try {
+    sha = execSync('git rev-parse --short HEAD', { cwd: root }).toString().trim();
+  } catch {
+    // not a git checkout (e.g. exported archive) — timestamp alone still verifies
+  }
+  const stamp = `${new Date().toISOString()} ${sha}\n`;
+  await writeFile(path.join(distDir, 'deploy-stamp.txt'), stamp);
+  return stamp.trim();
+}
+
 async function createZip(zipPath) {
-  // tar is available on Windows 10+, macOS, and Linux CI runners
-  execSync(`tar -acf "${zipPath}" -C "${distDir}" .`, { stdio: 'inherit' });
+  // Windows bsdtar picks zip format from the .zip suffix; GNU tar on Linux does not
+  // and writes a plain tar, which Hostinger's deploy cannot extract.
+  if (process.platform === 'win32') {
+    execSync(`tar -acf "${zipPath}" -C "${distDir}" .`, { stdio: 'inherit' });
+  } else {
+    execSync(`zip -qr "${zipPath}" .`, { cwd: distDir, stdio: 'inherit' });
+  }
 }
 
 async function main() {
@@ -45,6 +64,8 @@ async function main() {
   }
 
   await ensureDist();
+  const stamp = await writeDeployStamp();
+  console.log(`Deploy stamp: ${stamp}`);
   await mkdir(deployDir, { recursive: true });
 
   const zipName = `worksmart_${timestamp()}.zip`;
