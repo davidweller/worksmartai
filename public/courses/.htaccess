@@ -5,3 +5,13 @@
 </FilesMatch>
 RedirectMatch 404 /courses/\.
 Options -Indexes
+
+# Course pages change when a course is replaced, but their URLs don't, so
+# browsers must revalidate HTML (and the manifest/API shim) on every load.
+# Media keeps a day of caching - replacements rarely reuse image names.
+<FilesMatch "\.(html|xml|js)$">
+  Header set Cache-Control "no-cache, must-revalidate"
+</FilesMatch>
+<FilesMatch "\.(png|jpe?g|gif|webp|svg|mp4|docx|xlsx|pdf)$">
+  Header set Cache-Control "max-age=86400"
+</FilesMatch>
