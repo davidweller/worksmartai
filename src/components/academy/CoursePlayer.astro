@@ -475,8 +475,9 @@ const { courseId = '' } = Astro.props;
         try {
           const accessToken = await getAccessToken();
           await postScorm('commit', { sessionId, cmi }, accessToken);
-        } catch {
-          setFeedback('Progress save failed. Your latest state may not be synced.');
+        } catch (caught) {
+          const detail = caught instanceof Error && caught.message ? ` ${caught.message}` : '';
+          setFeedback(`Progress save failed.${detail} Your latest state may not be synced.`);
         }
       };
 
@@ -485,8 +486,9 @@ const { courseId = '' } = Astro.props;
         try {
           const accessToken = await getAccessToken();
           await postScorm('finish', { sessionId }, accessToken);
-        } catch {
-          setFeedback('Could not mark the session complete.');
+        } catch (caught) {
+          const detail = caught instanceof Error && caught.message ? ` ${caught.message}` : '';
+          setFeedback(`Could not mark the session complete.${detail}`);
         }
       };
 
