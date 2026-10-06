@@ -44,3 +44,5 @@ docs/
 test-results/
 playwright-report/
 video/
+.server-backup-*/
+dist/

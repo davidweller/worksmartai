@@ -1,7 +1,0 @@
-# Uploaded course files are static. Never execute scripts here, and hide the
-# .tmp-* and .old-* folders the admin uploader creates.
-<FilesMatch "\.(php\d?|phtml|phar|pl|py|cgi|sh)$">
-  Require all denied
-</FilesMatch>
-RedirectMatch 404 /courses/\.
-Options -Indexes

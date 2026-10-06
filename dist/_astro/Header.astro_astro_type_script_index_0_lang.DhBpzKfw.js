@@ -1,1 +1,0 @@
-import{i as e,r as t,t as n}from"./academy.BKyaevXY.js";var r=document.getElementById(`site-login-button`);if(r instanceof HTMLAnchorElement&&e&&n){let{data:e,error:i}=await n.auth.getSession(),a=i?null:e.session?.user;a&&(r.textContent=t(a),r.href=`/academy/dashboard/`,r.setAttribute(`aria-label`,`Academy dashboard`),a.email&&(r.title=a.email))}

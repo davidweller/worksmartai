@@ -1,4 +1,0 @@
-User-agent: *
-Disallow:
-
-Sitemap: https://worksmart-ai.co.uk/sitemap-index.xml
