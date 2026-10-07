@@ -132,6 +132,33 @@ const levels = ['Foundation', 'Intermediate', 'Advanced'];
               Breadcrumb label
               <input id="admin-details-module" class={inputClass} placeholder="Shown above each page" />
             </label>
+            <label class={labelClass}>
+              Certificate pass mark (%)
+              <input
+                id="admin-details-pass-mark"
+                type="number"
+                min="0"
+                max="100"
+                step="1"
+                required
+                class={inputClass}
+              />
+              <span class="mt-1 block text-xs font-normal text-muted">
+                Quiz score needed, with every page viewed, to claim the certificate.
+              </span>
+            </label>
+            <label class={labelClass}>
+              Certificate details line
+              <input
+                id="admin-details-cert-details"
+                class={inputClass}
+                maxlength="80"
+                placeholder="e.g. 3 CPD hours | Foundation"
+              />
+              <span class="mt-1 block text-xs font-normal text-muted">
+                Printed under the course name. Leave blank to leave it off.
+              </span>
+            </label>
             <label class={`${labelClass} flex items-center gap-2 self-end`}>
               <input id="admin-details-live" type="checkbox" checked />
               Visible to enrolled learners
@@ -209,6 +236,7 @@ const levels = ['Foundation', 'Intermediate', 'Advanced'];
                   <th class="py-2 pr-4">Enrolled</th>
                   <th class="py-2 pr-4">Progress</th>
                   <th class="py-2 pr-4">Last activity</th>
+                  <th class="py-2 pr-4">Certificate</th>
                   <th class="py-2"></th>
                 </tr>
               </thead>
@@ -227,7 +255,13 @@ const levels = ['Foundation', 'Intermediate', 'Advanced'];
   import { getSupabaseAnonKey, getSupabaseUrl } from '~/lib/supabase/env';
 
   type EnrolResult = { email: string; status: string; detail?: string };
-  type Learner = { email: string; enrolled_at: string; progress_percent: number; last_activity: string | null };
+  type Learner = {
+    email: string;
+    enrolled_at: string;
+    progress_percent: number;
+    last_activity: string | null;
+    certificate_issued_at: string | null;
+  };
 
   const UPLOAD_URL = '/academy-api/upload-course.php';
   const ENROL_URL = `${getSupabaseUrl().replace(/\/$/, '')}/functions/v1/admin-enroll`;
@@ -254,6 +288,8 @@ const levels = ['Foundation', 'Intermediate', 'Advanced'];
   const detailsGroup = byId<HTMLSelectElement>('admin-details-group');
   const detailsModule = byId<HTMLInputElement>('admin-details-module');
   const detailsLive = byId<HTMLInputElement>('admin-details-live');
+  const detailsPassMark = byId<HTMLInputElement>('admin-details-pass-mark');
+  const detailsCertDetails = byId<HTMLInputElement>('admin-details-cert-details');
   const detailsPages = byId<HTMLTextAreaElement>('admin-details-pages');
   const detailsPagesHelp = byId<HTMLElement>('admin-details-pages-help');
   const detailsSubmit = byId<HTMLButtonElement>('admin-details-submit');
@@ -407,6 +443,8 @@ const levels = ['Foundation', 'Intermediate', 'Advanced'];
     detailsGroup.value = course?.group_name ?? 'All-Staff Workshops';
     detailsModule.value = course?.module ?? '';
     detailsLive.checked = course?.is_live ?? true;
+    detailsPassMark.value = String(course?.pass_mark ?? 70);
+    detailsCertDetails.value = course?.certificate_details ?? '';
     // A replaced package keeps its edited titles when the page count still matches.
     const keepTitles = mode === 'replace' && course && course.page_titles.length === pageTitles.length;
     detailsPages.value = (keepTitles ? course.page_titles : pageTitles).join('\n');
@@ -489,6 +527,8 @@ const levels = ['Foundation', 'Intermediate', 'Advanced'];
       group_name: detailsGroup.value,
       module: detailsModule.value.trim(),
       is_live: detailsLive.checked,
+      pass_mark: Math.max(0, Math.min(100, Math.round(Number(detailsPassMark.value) || 0))),
+      certificate_details: detailsCertDetails.value.trim(),
       page_titles: pageTitles,
       updated_at: new Date().toISOString(),
     };
@@ -645,7 +685,7 @@ const levels = ['Foundation', 'Intermediate', 'Advanced'];
       learnerRows.innerHTML = '';
       return;
     }
-    learnerRows.innerHTML = '<tr><td class="py-3 text-muted" colspan="5">Loading…</td></tr>';
+    learnerRows.innerHTML = '<tr><td class="py-3 text-muted" colspan="6">Loading…</td></tr>';
     try {
       const { learners } = await callEnrolFunction<{ learners: Learner[] }>({
         action: 'learners',
@@ -660,13 +700,14 @@ const levels = ['Foundation', 'Intermediate', 'Advanced'];
                   <td class="py-2 pr-4">${formatDate(learner.enrolled_at)}</td>
                   <td class="py-2 pr-4">${learner.progress_percent}%</td>
                   <td class="py-2 pr-4">${formatDate(learner.last_activity)}</td>
+                  <td class="py-2 pr-4">${learner.certificate_issued_at ? formatDate(learner.certificate_issued_at) : '–'}</td>
                   <td class="py-2 text-right">
                     <button type="button" class="text-red-700 underline hover:no-underline" data-unenrol="${escapeHtml(learner.email)}">Unenrol</button>
                   </td>
                 </tr>`
             )
             .join('')
-        : '<tr><td class="py-3 text-muted" colspan="5">Nobody is enrolled yet.</td></tr>';
+        : '<tr><td class="py-3 text-muted" colspan="6">Nobody is enrolled yet.</td></tr>';
     } catch (caught) {
       learnerRows.innerHTML = '';
       setFeedback(caught instanceof Error ? caught.message : 'Could not load learners.');

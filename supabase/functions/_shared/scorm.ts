@@ -152,3 +152,54 @@ export async function assertSessionOwned(
 
   return enr?.user_id === userId;
 }
+
+export type CompletionResult = {
+  eligible: boolean;
+  pageCount: number;
+  viewedPages: number[];
+  missingPages: number[];
+  scorePercent: number;
+  passMark: number;
+};
+
+// Mirrors src/lib/academy/progress.ts: pages come from suspend_data.viewed, score from cmi.core.score.
+export function evaluateCompletion(
+  session: { suspend_data?: string | null; raw_cmi?: unknown },
+  course: { page_count: number; pass_mark: number }
+): CompletionResult {
+  const pageCount = Math.max(1, course.page_count);
+  let viewedRaw: unknown[] = [];
+  let suspendScore = 0;
+  const suspend = String(session.suspend_data ?? '').trim();
+  if (suspend.startsWith('{')) {
+    try {
+      const state = JSON.parse(suspend) as { viewed?: unknown; score?: unknown };
+      if (Array.isArray(state.viewed)) viewedRaw = state.viewed;
+      suspendScore = Number(state.score) || 0;
+    } catch {
+      // Unreadable suspend_data counts as nothing viewed.
+    }
+  }
+
+  const viewed = new Set(viewedRaw.map((v) => Number(v)).filter((v) => Number.isInteger(v) && v >= 0 && v < pageCount));
+  const viewedPages = [...viewed].sort((a, b) => a - b);
+  const missingPages = Array.from({ length: pageCount }, (_, i) => i).filter((i) => !viewed.has(i));
+
+  const cmi =
+    session.raw_cmi && typeof session.raw_cmi === 'object' ? (session.raw_cmi as Record<string, unknown>) : {};
+  const core = typeof cmi.core === 'object' && cmi.core !== null ? (cmi.core as Record<string, unknown>) : {};
+  const scoreObj = typeof core.score === 'object' && core.score !== null ? (core.score as Record<string, unknown>) : {};
+  const cmiScore = Number(scoreObj.raw) || 0;
+  const max = Number(scoreObj.max) > 0 ? Number(scoreObj.max) : 10;
+  const score = cmiScore > 0 ? cmiScore : suspendScore;
+  const scorePercent = Math.max(0, Math.min(100, Math.round((score / max) * 100)));
+
+  return {
+    eligible: missingPages.length === 0 && scorePercent >= course.pass_mark,
+    pageCount,
+    viewedPages,
+    missingPages,
+    scorePercent,
+    passMark: course.pass_mark,
+  };
+}

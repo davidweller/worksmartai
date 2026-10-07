@@ -71,6 +71,7 @@ const metadata = {
 <script>
   import { academySupabase, hasAcademySupabaseConfig, requireAuth } from '~/lib/academy';
   import { COURSE_GROUPS, coursePlayerHref, escapeHtml, fetchCourses, type AcademyCourse } from '~/lib/academy/courses';
+  import { openCertificateDialog, type Certificate } from '~/lib/academy/certificates';
 
   const feedback = document.getElementById('academy-dashboard-feedback') as HTMLParagraphElement | null;
   const signOutButton = document.getElementById('academy-signout-button') as HTMLButtonElement | null;
@@ -102,6 +103,23 @@ const metadata = {
     });
   };
 
+  const renderCertificates = (certificates: Certificate[]) => {
+    for (const certificate of certificates) {
+      const courseId = certificate.course_id;
+      document.querySelectorAll(`[data-progress-label="${courseId}"]`).forEach((label) => {
+        label.textContent = 'Completed';
+      });
+      const bar = document.querySelector<HTMLElement>(`[data-progress-bar="${courseId}"]`);
+      if (bar) bar.style.width = '100%';
+      const button = document.querySelector<HTMLButtonElement>(`[data-certificate-button="${courseId}"]`);
+      if (button) {
+        button.classList.remove('hidden');
+        button.classList.add('inline-flex');
+        button.addEventListener('click', () => openCertificateDialog(certificate));
+      }
+    }
+  };
+
   const renderCourseCard = (course: AcademyCourse) => `
     <article class="rounded-xl border border-default bg-page p-5" data-course-id="${escapeHtml(course.id)}">
       <h4 class="text-base font-semibold text-heading">${escapeHtml(course.title)}</h4>
@@ -120,12 +138,21 @@ const metadata = {
                 <div class="h-full rounded-full bg-accent transition-all" style="width: 0%" data-progress-bar="${escapeHtml(course.id)}"></div>
               </div>
             </div>
-            <a
-              href="${coursePlayerHref(course.id)}"
-              class="mt-4 inline-flex items-center justify-center rounded-full border-2 border-brand bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:border-accent hover:bg-accent"
-            >
-              Continue course
-            </a>`
+            <div class="mt-4 flex flex-wrap gap-3">
+              <a
+                href="${coursePlayerHref(course.id)}"
+                class="inline-flex items-center justify-center rounded-full border-2 border-brand bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:border-accent hover:bg-accent"
+              >
+                Continue course
+              </a>
+              <button
+                type="button"
+                data-certificate-button="${escapeHtml(course.id)}"
+                class="hidden items-center justify-center rounded-full border-2 border-accent bg-card px-4 py-2 text-sm font-semibold text-accent transition hover:bg-accent hover:text-white"
+              >
+                View certificate
+              </button>
+            </div>`
           : `<p class="mt-5 inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-700">
               Coming soon
             </p>`
@@ -211,6 +238,13 @@ const metadata = {
           );
           renderLiveCourseProgress(progressByCourseId);
         }
+
+        // A certificate is the completion record: it wins over a later, partly done session.
+        const { data: certificateRows } = await academySupabase
+          .from('certificates')
+          .select('id, cert_code, course_id, learner_name, course_title, issued_at')
+          .eq('user_id', user.id);
+        renderCertificates((certificateRows || []) as Certificate[]);
       }
 
       if (signOutButton) {

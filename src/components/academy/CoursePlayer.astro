@@ -102,6 +102,16 @@ const { courseId = '' } = Astro.props;
           Next
           <span aria-hidden="true">&#8250;</span>
         </button>
+        <button
+          id="academy-finish-button"
+          class="btn font-semibold shadow-none text-sm w-auto py-2.5 px-5.5 md:px-6 academy-nav-button academy-nav-button-next"
+          style="background: #ff7700; border: 1px solid #ff7700; color: #ffffff"
+          type="button"
+          hidden
+        >
+          Finish course
+          <span aria-hidden="true">&#10003;</span>
+        </button>
       </footer>
     </div>
   </div>
@@ -166,6 +176,7 @@ const { courseId = '' } = Astro.props;
   } from '~/lib/academy/progress';
   import { escapeHtml, fetchCourse } from '~/lib/academy/courses';
   import { postScorm } from '~/lib/scorm/api';
+  import { openFinishDialog } from '~/lib/academy/certificates';
 
   type JsonObject = Record<string, unknown>;
   type InitResponse = {
@@ -188,6 +199,7 @@ const { courseId = '' } = Astro.props;
   const pagePill = document.getElementById('academy-page-pill') as HTMLElement | null;
   const prevButton = document.getElementById('academy-prev-button') as HTMLButtonElement | null;
   const nextButton = document.getElementById('academy-next-button') as HTMLButtonElement | null;
+  const finishButton = document.getElementById('academy-finish-button') as HTMLButtonElement | null;
   const sidebarOverlay = document.getElementById('academy-sidebar-overlay') as HTMLElement | null;
   const mobileMenuButton = document.getElementById('academy-mobile-menu-button') as HTMLButtonElement | null;
   const overlayCloseButton = document.getElementById('academy-overlay-close') as HTMLButtonElement | null;
@@ -239,6 +251,9 @@ const { courseId = '' } = Astro.props;
   let contentPath = '';
   let totalPages = 1;
   let currentPageIndex = 0;
+  let hasCertificate = false;
+  // Replaced once the SCORM session starts, so Finish saves the latest state before checking it.
+  let saveBeforeFinish: () => Promise<void> = async () => {};
 
   const parsePageIndexFromUrl = (value: string | null | undefined): number | null => {
     if (!value) return null;
@@ -348,6 +363,11 @@ const { courseId = '' } = Astro.props;
     const isLastPage = currentPageIndex >= totalPages - 1;
     prevButton.disabled = isFirstPage;
     nextButton.disabled = isLastPage;
+    nextButton.hidden = isLastPage;
+    if (finishButton) {
+      finishButton.hidden = !isLastPage || !contentPath;
+      finishButton.firstChild!.textContent = hasCertificate ? 'View certificate ' : 'Finish course ';
+    }
   };
 
   const updateUI = () => {
@@ -396,6 +416,28 @@ const { courseId = '' } = Astro.props;
     goToPage(currentPageIndex + 1);
   });
 
+  finishButton?.addEventListener('click', async () => {
+    finishButton.disabled = true;
+    try {
+      await saveBeforeFinish();
+      const user = (await academySupabase?.auth.getSession())?.data.session?.user;
+      const metaName = user?.user_metadata?.full_name;
+      await openFinishDialog({
+        courseId,
+        courseTitle: courseMeta.title,
+        pageTitles: courseMeta.pages,
+        defaultName: typeof metaName === 'string' ? metaName : '',
+        goToPage,
+        onIssued: () => {
+          hasCertificate = true;
+          updateButtons();
+        },
+      });
+    } finally {
+      finishButton.disabled = false;
+    }
+  });
+
   iframe.addEventListener('load', () => {
     syncCurrentPageFromIframe();
   });
@@ -434,6 +476,14 @@ const { courseId = '' } = Astro.props;
         module: course.module || course.title,
         pages: course.page_titles,
       });
+      const { data: certRow } = await academySupabase
+        .from('certificates')
+        .select('id')
+        .eq('user_id', user.id)
+        .eq('course_id', courseId)
+        .maybeSingle();
+      hasCertificate = Boolean(certRow);
+      updateButtons();
       let sessionId = '';
 
       try {
@@ -491,6 +541,8 @@ const { courseId = '' } = Astro.props;
           setFeedback(`Could not mark the session complete.${detail}`);
         }
       };
+
+      saveBeforeFinish = persistProgress;
 
       let saveTimer: number | null = null;
       const queueSave = () => {
@@ -866,6 +918,10 @@ const { courseId = '' } = Astro.props;
     display: inline-flex;
     align-items: center;
     gap: 8px;
+  }
+
+  .academy-nav-button[hidden] {
+    display: none !important;
   }
 
   .academy-nav-button:disabled {

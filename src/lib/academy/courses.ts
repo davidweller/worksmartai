@@ -15,10 +15,12 @@ export type AcademyCourse = {
   page_count: number;
   is_live: boolean;
   sort_order: number;
+  pass_mark: number;
+  certificate_details: string;
 };
 
 const COURSE_COLUMNS =
-  'id, title, code, summary, level, group_name, module, content_path, page_titles, page_count, is_live, sort_order';
+  'id, title, code, summary, level, group_name, module, content_path, page_titles, page_count, is_live, sort_order, pass_mark, certificate_details';
 
 export const COURSE_GROUPS = ['All-Staff Workshops', 'Academic Workshops', 'Professional Services Workshops'];
 
