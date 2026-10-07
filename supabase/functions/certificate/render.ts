@@ -1,7 +1,7 @@
 import { PDFDocument, rgb, type PDFFont, type PDFPage } from 'https://esm.sh/pdf-lib@1.17.1';
 import * as fontkitModule from 'https://esm.sh/@pdf-lib/fontkit@1.1.1';
 
-import { ASSET_PATHS, PAGE, RULES, SIGNATORY, TEXT, type FontKey, type TextLayout } from './layout.ts';
+import { ASSET_PATHS, PAGE, RULES, SIGNATORY, SIGNATURE, TEXT, type FontKey, type TextLayout } from './layout.ts';
 
 // esm.sh serves fontkit as a default export at runtime, but its types only declare named ones.
 const fontkit = (fontkitModule as unknown as { default?: typeof fontkitModule }).default ?? fontkitModule;
@@ -50,13 +50,14 @@ export async function renderCertificate(
   cert: CertificateRow,
   loadAsset: (path: string) => Promise<Uint8Array | null>
 ): Promise<Uint8Array> {
-  const [background, headingBytes, regularBytes, boldBytes] = await Promise.all([
+  const [background, headingBytes, regularBytes, boldBytes, signatureBytes] = await Promise.all([
     loadAsset(ASSET_PATHS.background),
     loadAsset(ASSET_PATHS.heading),
     loadAsset(ASSET_PATHS.regular),
     loadAsset(ASSET_PATHS.bold),
+    loadAsset(ASSET_PATHS.signature),
   ]);
-  if (!background || !headingBytes || !regularBytes || !boldBytes) {
+  if (!background || !headingBytes || !regularBytes || !boldBytes || !signatureBytes) {
     throw new Error('Certificate design files are missing from the site');
   }
 
@@ -66,6 +67,7 @@ export async function renderCertificate(
     heading: await pdf.embedFont(headingBytes, { subset: true }),
     regular: await pdf.embedFont(regularBytes, { subset: true }),
     bold: await pdf.embedFont(boldBytes, { subset: true }),
+    signature: await pdf.embedFont(signatureBytes, { subset: true }),
   };
   const textFont = (text: string, layout: TextLayout) => fontFor(text, fonts[layout.font], fonts.bold);
 
@@ -93,6 +95,7 @@ export async function renderCertificate(
     ['code', `Certificate no. ${cert.cert_code}`],
     ['signedLabel', 'Signed for WorkSmart-AI'],
     ['signatory', SIGNATORY],
+    ['signature', SIGNATURE],
   ];
   for (const [key, text] of lines) {
     drawCentred(page, text, TEXT[key], textFont(text, TEXT[key]));

@@ -10,11 +10,14 @@ export const ASSET_PATHS = {
   heading: '/academy/certificate/WorkSans-Bold.ttf',
   regular: '/academy/certificate/Ubuntu-Regular.ttf',
   bold: '/academy/certificate/Ubuntu-Bold.ttf',
+  signature: '/academy/certificate/MrsSaintDelafield-Regular.ttf',
 };
 
 export const SIGNATORY = 'David Weller, Director';
+// Drawn in the handwriting font, sitting on the signature line.
+export const SIGNATURE = 'DWeller';
 
-export type FontKey = 'heading' | 'regular' | 'bold';
+export type FontKey = 'heading' | 'regular' | 'bold' | 'signature';
 export type Colour = [number, number, number];
 
 export type TextLayout = {
@@ -52,7 +55,8 @@ export const TEXT: Record<
   | 'dateLabel'
   | 'code'
   | 'signedLabel'
-  | 'signatory',
+  | 'signatory'
+  | 'signature',
   TextLayout
 > = {
   title: { x: 421, y: 433, size: 38, font: 'heading', color: NAVY, maxWidth: 620 },
@@ -66,6 +70,7 @@ export const TEXT: Record<
   code: { x: LEFT_COL, y: 106, size: 9, font: 'regular', color: INK, maxWidth: 220 },
   signedLabel: { x: RIGHT_COL, y: 118, size: 9, font: 'bold', color: NAVY, maxWidth: 220 },
   signatory: { x: RIGHT_COL, y: 106, size: 9, font: 'regular', color: INK, maxWidth: 220 },
+  signature: { x: RIGHT_COL, y: 136, size: 42, font: 'signature', color: NAVY, maxWidth: 200 },
 };
 
 export const RULES: { x1: number; x2: number; y: number; thickness: number; color: Colour }[] = [
