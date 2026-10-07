@@ -30,6 +30,27 @@ function normaliseName(input: unknown): string | null {
   return name;
 }
 
+// The saved file is called after the course and the learner. PDF viewers name a download after
+// the link's last segment, so the storage key carries the name too. Storage keys accept ASCII only:
+// accents are folded (Zoë -> Zoe) and anything else dropped. The download keeps the full name.
+const CERT_BUCKET = 'certificates';
+const LINK_SECONDS = 60 * 60;
+
+function certificateFileName(cert: CertificateRow): string {
+  const name = `${cert.course_title} - ${cert.learner_name}`.replace(/[\\/:*?"<>|]+/g, '').replace(/\s+/g, ' ').trim();
+  return `${name || 'Certificate'}.pdf`;
+}
+
+function storageKeyName(fileName: string): string {
+  const ascii = fileName
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^A-Za-z0-9 ._()&,'+-]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return ascii && ascii !== '.pdf' ? ascii : 'Certificate.pdf';
+}
+
 // Static assets are cached for the life of the worker.
 const assetCache = new Map<string, Promise<Uint8Array | null>>();
 function fetchAsset(path: string): Promise<Uint8Array | null> {
@@ -74,7 +95,9 @@ Deno.serve(async (req) => {
     return json({ error: 'Invalid JSON body' }, 400);
   }
 
-  if (payload.action === 'pdf') {
+  // pdf returns the file itself (kept for pages loaded before link existed);
+  // link stores it under its readable name and returns short-lived view and download links.
+  if (payload.action === 'pdf' || payload.action === 'link') {
     const certificateId = String(payload.certificateId ?? '').trim();
     const { data: cert, error } = await admin
       .from('certificates')
@@ -88,9 +111,31 @@ Deno.serve(async (req) => {
 
     try {
       const bytes = await renderCertificate(cert as CertificateRow, fetchAsset);
-      return new Response(new Blob([bytes as BlobPart]), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/pdf', 'Cache-Control': 'private, no-store' },
+      if (payload.action === 'pdf') {
+        return new Response(new Blob([bytes as BlobPart]), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/pdf', 'Cache-Control': 'private, no-store' },
+        });
+      }
+
+      // Re-rendered on every request, so design changes reach certificates already issued.
+      const fileName = certificateFileName(cert as CertificateRow);
+      const path = `${cert.id}/${storageKeyName(fileName)}`;
+      const bucket = admin.storage.from(CERT_BUCKET);
+      const { error: uploadError } = await bucket.upload(path, bytes, {
+        contentType: 'application/pdf',
+        cacheControl: '0',
+        upsert: true,
       });
+      if (uploadError) throw new Error(uploadError.message);
+
+      const [view, download] = await Promise.all([
+        bucket.createSignedUrl(path, LINK_SECONDS),
+        bucket.createSignedUrl(path, LINK_SECONDS, { download: fileName }),
+      ]);
+      if (view.error || download.error || !view.data || !download.data) {
+        throw new Error(view.error?.message ?? download.error?.message ?? 'Could not link the certificate');
+      }
+      return json({ viewUrl: view.data.signedUrl, downloadUrl: download.data.signedUrl, fileName });
     } catch (caught) {
       return json({ error: caught instanceof Error ? caught.message : 'Could not build the certificate' }, 500);
     }

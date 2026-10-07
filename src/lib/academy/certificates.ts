@@ -57,17 +57,12 @@ export function claimCertificate(courseId: string, name: string): Promise<Certif
   return callCertificateJson<CertificateStatus>({ action: 'claim', courseId, name });
 }
 
-export async function fetchCertificatePdfUrl(certificateId: string): Promise<string> {
-  const res = await callCertificate({ action: 'pdf', certificateId });
-  if (!res.ok) {
-    const data = (await res.json().catch(() => null)) as { error?: string } | null;
-    throw new Error(data?.error || `Could not load the certificate (${res.status})`);
-  }
-  return URL.createObjectURL(await res.blob());
-}
+export type CertificateLinks = { viewUrl: string; downloadUrl: string; fileName: string };
 
-export function certificateFileName(courseTitle: string): string {
-  return `${courseTitle.replace(/[\\/:*?"<>|]+/g, '').trim()} – Certificate.pdf`;
+// Short-lived links to the stored PDF. Its address ends in the file name, so saving from the
+// PDF viewer gives the same name as Download: '<Course> - <Learner>.pdf'.
+export function fetchCertificateLinks(certificateId: string): Promise<CertificateLinks> {
+  return callCertificateJson<CertificateLinks>({ action: 'link', certificateId });
 }
 
 // ---------- Dialog ----------
@@ -157,28 +152,24 @@ async function showCertificate(
   bindClose(dialog);
 
   try {
-    const url = await fetchCertificatePdfUrl(certificate.id);
-    const prevClose = dialog.close;
-    dialog.close = () => {
-      URL.revokeObjectURL(url);
-      prevClose();
-    };
+    const { viewUrl, downloadUrl } = await fetchCertificateLinks(certificate.id);
     dialog.body.querySelector('[data-cert-loading]')?.replaceWith(
       Object.assign(document.createElement('iframe'), {
         className: 'academy-cert-frame',
-        src: url,
+        src: viewUrl,
         title: `Certificate for ${certificate.course_title}`,
       })
     );
     const view = dialog.body.querySelector<HTMLAnchorElement>('[data-cert-view]');
     const download = dialog.body.querySelector<HTMLAnchorElement>('[data-cert-download]');
+    // The download link's server response names the file, so no download attribute is needed
+    // (browsers ignore it on links to another site anyway).
     if (view) {
-      view.href = url;
+      view.href = viewUrl;
       view.removeAttribute('aria-disabled');
     }
     if (download) {
-      download.href = url;
-      download.download = certificateFileName(certificate.course_title);
+      download.href = downloadUrl;
       download.removeAttribute('aria-disabled');
     }
   } catch (caught) {
