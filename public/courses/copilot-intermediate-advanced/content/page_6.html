@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="generator" content="scormcraft/1" />
+  <meta name="scormcraft-sidecar" content="scormcraft/course.json" />
   <title>Module 6: Build and test the workflow - Intermediate to Advanced Copilot (SOTON)</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&family=Ubuntu:wght@400;600;700&display=swap" />
   <style>
@@ -153,7 +155,7 @@ a:hover { color: var(--brand-primary-hover, var(--brand-primary)); text-decorati
     .page-nav a { border-radius: 8px; }
   </style>
 </head>
-<body data-scorm-page-index="6" data-scorm-total-pages="9" data-scorm-total-max="8">
+<body data-scorm-page-index="6" data-scorm-total-pages="9" data-scorm-total-max="9">
   <div class="course-wrapper">
     
     <div class="progress-container">
@@ -168,17 +170,17 @@ a:hover { color: var(--brand-primary-hover, var(--brand-primary)); text-decorati
         <span class="section-number" aria-hidden="true">07</span>
         <h1>Module 6: Build and test the workflow</h1>
       </div>
-      <div class="blocks"><div class="content-text reveal"><p><em>Estimated time: 7-8 minutes, plus about 20 minutes to build and test</em></p></div>
-<div class="content-text reveal"><p><strong>Objective:</strong> Build the planned workflow in Copilot Studio, and test it before anyone relies on it.</p></div>
-<figure class="content-image reveal"><img src="img_20.png" alt="Example workflow" /><figcaption>An example workflow</figcaption></figure>
-<h2 class="content-heading reveal">Before you build</h2>
-<div class="content-text reveal"><p>A workflow uses agents that already exist, so if your plan involves a second agent, make sure you build that one first.</p></div>
-<div class="content-text reveal"><ul><li><p><strong>Build and publish both agents to your own profile.</strong> An agent step can only call a published agent. Publishing isn’t sharing: nobody else can use the agents until they’re shared.</p></li><li><p><strong>Set up test folders</strong>, a test Responses folder and a test Reports folder, and send every email to yourself while you test.</p></li><li><p><strong>Keep the dummy files small.</strong> Every agent step uses Copilot Credits each time it runs.</p></li></ul><p></p></div>
-<h2 class="content-heading reveal">Build it: From plan to Copilot Studio</h2>
-<div class="content-text reveal"><p>Workflows are built in the same place as the agents. Build in the order of the plan, one step at a time.</p></div>
-<div class="content-text reveal"><ol><li><p><strong>Open Copilot Studio, go to Workflows in the left sidebar, and choose New workflow.</strong> Name it after the job, such as NSS Feedback Report Cycle.</p></li><li><p><strong>Set the trigger on the Start step. </strong>Choose the SharePoint trigger for a new file in a folder, and point it at the test Responses folder, not the live one.</p></li><li><p><strong>Add an action to get the file’s content.</strong> Add a Connector step for SharePoint that gets the content of the file from the trigger.</p></li><li><p><strong>Add the drafting agent step.</strong> Add an Agent step, choose the Programme Feedback Report agent, and write the message it receives. Insert the file content as dynamic content, so each run works on the file that started it.</p></li></ol><p></p></div>
-<h2 class="content-heading reveal">Test your workflow</h2>
-<div class="content-text reveal"><p>Time to test! See if your workflow produces what you were hoping for. If needed, analyse the output just as you did with your agent and identify where it can be tweaked.</p><p>Congratulations!</p></div></div>
+      <div class="blocks"><div data-sc-block="cmupuawid0088xpukg7mt6338" data-sc-cat="content" data-sc-type="text" class="content-text reveal"><p><em>Estimated time: 7-8 minutes, plus about 20 minutes to build and test</em></p></div>
+<div data-sc-block="cmupuawid0089xpuk40gi3km0" data-sc-cat="content" data-sc-type="text" class="content-text reveal"><p><strong>Objective:</strong> Build the planned workflow in Copilot Studio, and test it before anyone relies on it.</p></div>
+<figure data-sc-block="cmupuawid008gxpukul7z9zjg" data-sc-cat="content" data-sc-type="image" class="content-image reveal"><img src="img_19.png" alt="Example workflow" /><figcaption>An example workflow</figcaption></figure>
+<h2 data-sc-block="cmupuawid008axpukigg4s62d" data-sc-cat="content" data-sc-type="heading" class="content-heading reveal">Before you build</h2>
+<div data-sc-block="cmupuawid008bxpukfnu6dmn6" data-sc-cat="content" data-sc-type="text" class="content-text reveal"><p>A workflow uses agents that already exist, so if your plan involves a second agent, make sure you build that one first.</p></div>
+<div data-sc-block="cmupuawid008cxpukxae0xcuw" data-sc-cat="content" data-sc-type="text" class="content-text reveal"><ul><li><p><strong>Build and publish both agents to your own profile.</strong> An agent step can only call a published agent. Publishing isn’t sharing: nobody else can use the agents until they’re shared.</p></li><li><p><strong>Set up test folders</strong>, a test Responses folder and a test Reports folder, and send every email to yourself while you test.</p></li><li><p><strong>Keep the dummy files small.</strong> Every agent step uses Copilot Credits each time it runs.</p></li></ul><p></p></div>
+<h2 data-sc-block="cmupuawid008dxpuktc1fstzl" data-sc-cat="content" data-sc-type="heading" class="content-heading reveal">Build it: From plan to Copilot Studio</h2>
+<div data-sc-block="cmupuawid008expukvwfd53ai" data-sc-cat="content" data-sc-type="text" class="content-text reveal"><p>Workflows are built in the same place as the agents. Build in the order of the plan, one step at a time.</p></div>
+<div data-sc-block="cmupuawid008fxpukcux33a3c" data-sc-cat="content" data-sc-type="text" class="content-text reveal"><ol><li><p><strong>Open Copilot Studio, go to Workflows in the left sidebar, and choose New workflow.</strong> Name it after the job, such as NSS Feedback Report Cycle.</p></li><li><p><strong>Set the trigger on the Start step. </strong>Choose the SharePoint trigger for a new file in a folder, and point it at the test Responses folder, not the live one.</p></li><li><p><strong>Add an action to get the file’s content.</strong> Add a Connector step for SharePoint that gets the content of the file from the trigger.</p></li><li><p><strong>Add the drafting agent step.</strong> Add an Agent step, choose the Programme Feedback Report agent, and write the message it receives. Insert the file content as dynamic content, so each run works on the file that started it.</p></li></ol><p></p></div>
+<h2 data-sc-block="cmupuawid008mxpuko42c5mvh" data-sc-cat="content" data-sc-type="heading" class="content-heading reveal">Test your workflow</h2>
+<div data-sc-block="cmupuawid008nxpuk784iby83" data-sc-cat="content" data-sc-type="text" class="content-text reveal"><p>Time to test! See if your workflow produces what you were hoping for. If needed, analyse the output just as you did with your agent and identify where it can be tweaked.</p><p>Congratulations!</p></div></div>
       <nav class="page-nav"><div><a href="page_5.html" class="secondary">← Previous</a></div><div><a href="page_7.html">Next →</a></div></nav>
     </main>
   </div>

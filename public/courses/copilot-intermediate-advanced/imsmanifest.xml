@@ -48,7 +48,6 @@
       <file href="content/img_19.png" />
       <file href="content/img_20.png" />
       <file href="content/img_21.png" />
-      <file href="content/img_22.png" />
       <file href="content/files/NSS-2026-Free-Text-and-Scores.xlsx" />
       <file href="content/files/Agent-Planning-Template.docx" />
       <file href="content/files/Workflow-Planning-Template.docx" />
@@ -78,7 +77,6 @@
       <file href="content/img_19.png" />
       <file href="content/img_20.png" />
       <file href="content/img_21.png" />
-      <file href="content/img_22.png" />
       <file href="content/files/NSS-2026-Free-Text-and-Scores.xlsx" />
       <file href="content/files/Agent-Planning-Template.docx" />
       <file href="content/files/Workflow-Planning-Template.docx" />
@@ -108,7 +106,6 @@
       <file href="content/img_19.png" />
       <file href="content/img_20.png" />
       <file href="content/img_21.png" />
-      <file href="content/img_22.png" />
       <file href="content/files/NSS-2026-Free-Text-and-Scores.xlsx" />
       <file href="content/files/Agent-Planning-Template.docx" />
       <file href="content/files/Workflow-Planning-Template.docx" />
@@ -138,7 +135,6 @@
       <file href="content/img_19.png" />
       <file href="content/img_20.png" />
       <file href="content/img_21.png" />
-      <file href="content/img_22.png" />
       <file href="content/files/NSS-2026-Free-Text-and-Scores.xlsx" />
       <file href="content/files/Agent-Planning-Template.docx" />
       <file href="content/files/Workflow-Planning-Template.docx" />
@@ -168,7 +164,6 @@
       <file href="content/img_19.png" />
       <file href="content/img_20.png" />
       <file href="content/img_21.png" />
-      <file href="content/img_22.png" />
       <file href="content/files/NSS-2026-Free-Text-and-Scores.xlsx" />
       <file href="content/files/Agent-Planning-Template.docx" />
       <file href="content/files/Workflow-Planning-Template.docx" />
@@ -198,7 +193,6 @@
       <file href="content/img_19.png" />
       <file href="content/img_20.png" />
       <file href="content/img_21.png" />
-      <file href="content/img_22.png" />
       <file href="content/files/NSS-2026-Free-Text-and-Scores.xlsx" />
       <file href="content/files/Agent-Planning-Template.docx" />
       <file href="content/files/Workflow-Planning-Template.docx" />
@@ -228,7 +222,6 @@
       <file href="content/img_19.png" />
       <file href="content/img_20.png" />
       <file href="content/img_21.png" />
-      <file href="content/img_22.png" />
       <file href="content/files/NSS-2026-Free-Text-and-Scores.xlsx" />
       <file href="content/files/Agent-Planning-Template.docx" />
       <file href="content/files/Workflow-Planning-Template.docx" />
@@ -258,7 +251,6 @@
       <file href="content/img_19.png" />
       <file href="content/img_20.png" />
       <file href="content/img_21.png" />
-      <file href="content/img_22.png" />
       <file href="content/files/NSS-2026-Free-Text-and-Scores.xlsx" />
       <file href="content/files/Agent-Planning-Template.docx" />
       <file href="content/files/Workflow-Planning-Template.docx" />
@@ -288,10 +280,12 @@
       <file href="content/img_19.png" />
       <file href="content/img_20.png" />
       <file href="content/img_21.png" />
-      <file href="content/img_22.png" />
       <file href="content/files/NSS-2026-Free-Text-and-Scores.xlsx" />
       <file href="content/files/Agent-Planning-Template.docx" />
       <file href="content/files/Workflow-Planning-Template.docx" />
+    </resource>
+    <resource identifier="res_scormcraft_sidecar" type="webcontent" adlcp:scormtype="asset">
+      <file href="scormcraft/course.json" />
     </resource>
   </resources>
 </manifest>

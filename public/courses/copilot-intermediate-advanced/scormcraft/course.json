@@ -1,0 +1,2491 @@
+{
+  "formatVersion": 1,
+  "generator": {
+    "name": "scormcraft",
+    "appVersion": "0.1.0"
+  },
+  "exportedAt": "2026-10-07T13:03:14.817Z",
+  "scorm": {
+    "version": "1.2",
+    "manifestIdentifier": "cmupuas4g000ixpukvtislmt0"
+  },
+  "course": {
+    "id": "cmupuas4g000ixpukvtislmt0",
+    "title": "Intermediate to Advanced Copilot (SOTON)",
+    "overview": "<p>This course covers three ways of getting work done with Copilot: prompts, agents, and workflows. It uses one worked example throughout (an NSS report for a single programme at a fictional university) while learners also plan and build an agent and workflow of their own. It suits work that comes round on a cycle and draws on the same sources each time, with rules that don’t change.</p>",
+    "audience": "<p>Intermediate to Advanced</p>",
+    "tone": "conversational",
+    "complianceLevel": null,
+    "targetWordCount": null,
+    "brandConfig": null,
+    "ilos": [
+      "Tell the difference between a prompt, an agent, and a workflow.",
+      "Use Copilot in your own documents and University context.",
+      "Plan and create a reusable agent, and a workflow, end to end for a real task.",
+      "Judge whether an output is reliable enough to use in higher-stakes work."
+    ],
+    "assessmentPlan": null,
+    "interactionConfig": null,
+    "scormMetadata": null,
+    "modules": [
+      {
+        "id": "cmupuasij000kxpukok02f90j",
+        "title": "Introduction",
+        "order": 0,
+        "lessons": [
+          {
+            "id": "cmupuasoz000mxpukheqia0fq",
+            "title": "Introduction",
+            "order": 0,
+            "pages": [
+              {
+                "id": "cmupuasuz000oxpukqydc1ob6",
+                "title": "Introduction",
+                "order": 0,
+                "completionRules": null,
+                "href": "content/page_0.html",
+                "blocks": [
+                  {
+                    "id": "cmupuat11000pxpukr376n11f",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Intermediate to Advanced | ~65 minutes, plus about 40 minutes of hands-on building | Online</p>"
+                    },
+                    "order": 0
+                  },
+                  {
+                    "id": "cmupuat11000qxpukfwo2pwyn",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Course overview",
+                      "level": 2
+                    },
+                    "order": 1
+                  },
+                  {
+                    "id": "cmupuat11000rxpukdtez84tw",
+                    "category": "content",
+                    "type": "video_embed",
+                    "data": {
+                      "url": "https://youtu.be/RwmyTkv0lVU",
+                      "sourceType": "embed"
+                    },
+                    "order": 2
+                  },
+                  {
+                    "id": "cmupuat11000sxpuksrmsx1lt",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "What you’ll be better able to do by the end of this course",
+                      "level": 2
+                    },
+                    "order": 3
+                  },
+                  {
+                    "id": "cmupuat11000txpukfdrbwxg8",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ul><li><p>Tell the difference between a prompt, an agent, and a workflow</p></li><li><p>Use Copilot in your own documents and University context</p></li><li><p>Plan and create a reusable agent, and a workflow, end to end for a real task</p></li><li><p>Judge whether an output is reliable to use for high value work</p></li></ul><p></p>"
+                    },
+                    "order": 4
+                  },
+                  {
+                    "id": "cmupuat110015xpuk7tonuyo8",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "How to use this course",
+                      "level": 2
+                    },
+                    "order": 5
+                  },
+                  {
+                    "id": "cmupuat110016xpukpjhst4q7",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ul><li><p><strong>Have Copilot and Copilot Studio open.</strong> Most modules ask you to run or build something, and the tasks are short.</p></li><li><p><strong>Have a job in mind.</strong> In Module 3 you’ll choose one of four Strategy Office jobs to build, or bring your own. Something weekly and a bit dull is ideal.</p></li><li><p><strong>Sign in with your work account</strong> the first time a task asks you to open a tool.</p></li><li><p><strong>Download the course files</strong> when a module asks for them - every name, figure, and comment in the workbook is invented, so you can use it freely.</p></li></ul><p></p>"
+                    },
+                    "order": 6
+                  },
+                  {
+                    "id": "cmupxbwdo0001o0krrmayl6h5",
+                    "category": "content",
+                    "type": "file_download",
+                    "data": {
+                      "url": "files/NSS-2026-Free-Text-and-Scores.xlsx",
+                      "size": 15134,
+                      "label": "NSS 2026 Free Text and Scores workbook",
+                      "filename": "NSS 2026 Free Text and Scores.xlsx",
+                      "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                      "description": ""
+                    },
+                    "order": 7
+                  },
+                  {
+                    "id": "cmupxct320003o0krchuro3r5",
+                    "category": "content",
+                    "type": "file_download",
+                    "data": {
+                      "url": "files/Agent-Planning-Template.docx",
+                      "size": 13979,
+                      "label": "Agent Planning Template",
+                      "filename": "Agent Planning Template.docx",
+                      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                      "description": ""
+                    },
+                    "order": 8
+                  },
+                  {
+                    "id": "cmupxcw3e0005o0krdms1qdft",
+                    "category": "content",
+                    "type": "file_download",
+                    "data": {
+                      "url": "files/Workflow-Planning-Template.docx",
+                      "size": 14408,
+                      "label": "Workflow Planning Template",
+                      "filename": "Workflow Planning Template.docx",
+                      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                      "description": ""
+                    },
+                    "order": 9
+                  },
+                  {
+                    "id": "cmupuat11000uxpuk3yg30a1i",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Policy and Guardrails",
+                      "level": 2
+                    },
+                    "order": 10
+                  },
+                  {
+                    "id": "cmupuat110010xpukr4w6ox9r",
+                    "category": "content",
+                    "type": "key_insight",
+                    "data": {
+                      "text": "<ul><li><p>Everything in this course sits within the University of Southampton’s AI Policy and the Strategy Office Guardrails Policy, in the Strategy Office AI Toolkit.</p></li><li><p>The Agent Creation and Management Framework, from the Strategy Office AI Steering Group, sets out how agents are created and recorded.</p></li><li><p>The Guardrails are under review now that everyone has Copilot Premium, and updates on agent creation will be circulated.</p></li></ul><p></p>"
+                    },
+                    "order": 11
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cmupuatdd0018xpuka8wwnm5t",
+        "title": "Module 1: Prompt, agent, workflow",
+        "order": 1,
+        "lessons": [
+          {
+            "id": "cmupuatgb001axpukfjjlod0c",
+            "title": "Module 1: Prompt, agent, workflow",
+            "order": 0,
+            "pages": [
+              {
+                "id": "cmupuatj7001cxpuk9jc29p00",
+                "title": "Module 1: Prompts and agents",
+                "order": 0,
+                "completionRules": null,
+                "href": "content/page_1.html",
+                "blocks": [
+                  {
+                    "id": "cmupuatm6001dxpuky6cwkw46",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><em>Estimated time: 9-10 minutes</em></p>"
+                    },
+                    "order": 0
+                  },
+                  {
+                    "id": "cmupuatm6001expuk34tf2nrh",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><strong>Objective:</strong> Understand the difference between a prompt, an agent, and a workflow.</p>"
+                    },
+                    "order": 1
+                  },
+                  {
+                    "id": "cmupuatm6001fxpukl3zhv588",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Introduction",
+                      "level": 2
+                    },
+                    "order": 2
+                  },
+                  {
+                    "id": "cmupuatm6001gxpukatj8wjwl",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Imagine someone pasted a programme’s National Student Survey comments into Copilot and explained what they wanted: a report that categorised student comments into four themes, condensed into a summary for each theme, and a rule about never naming staff.</p><p></p><p>Now imagine you'd like to do the same task - would you prefer writing the prompt again (and trying to write a prompt from scratch), or clicking a button and it just starts?</p><p></p><p>The 'clicking a button' option is where agents come in!</p>"
+                    },
+                    "order": 3
+                  },
+                  {
+                    "id": "cmuwcs6wq0005101lrua1etbg",
+                    "category": "content",
+                    "type": "image",
+                    "data": {
+                      "alt": "Re-do every time, or just click a button to run?",
+                      "url": "img_0.png",
+                      "caption": "Re-do every time, or just click a button to run?"
+                    },
+                    "order": 4
+                  },
+                  {
+                    "id": "cmupuatm60027xpukmrkt0rtf",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Definitions: Prompts, Agents and Workflows ",
+                      "level": 2
+                    },
+                    "order": 5
+                  },
+                  {
+                    "id": "cmupuatm60029xpukqnpnd2ji",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><strong>A prompt</strong> is an instruction you type into a chatbox in an AI like Copilot. You give the context every time - attach any documents needed, give the background, explain what you'd like done and what good looks like.</p>"
+                    },
+                    "order": 6
+                  },
+                  {
+                    "id": "cmupuatm6002axpuk6csu7ff1",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><strong>An agent</strong> is a saved, expanded prompt. An agent has saved your instructions (an expanded, detailed prompt), knows where your files are (and can access them), and can run any time when you ask it to, or on a schedule (or even when something changes in a file).  No saving prompts, or trying to remember them.</p>"
+                    },
+                    "order": 7
+                  },
+                  {
+                    "id": "cmupuatm7002bxpuk42vyf0nd",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><strong>A workflow</strong> is a process that you’ve broken into steps and linked together. Those steps can be an agent, a person, or even something else, like a Power Automate automation. You can set the rules about when it starts and stops.</p>"
+                    },
+                    "order": 8
+                  },
+                  {
+                    "id": "cmuwcno150002101lm0apfahw",
+                    "category": "content",
+                    "type": "image",
+                    "data": {
+                      "alt": "Prompts progress to agents, which can expand to workflows.",
+                      "url": "img_1.png",
+                      "caption": "Prompts progress to agents, which can expand to workflows."
+                    },
+                    "order": 9
+                  },
+                  {
+                    "id": "cmupuatm7002cxpukv6e3i458",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>For example, here's what the that NSS report task might look like as a prompt, an agent and a workflow:</p>"
+                    },
+                    "order": 10
+                  },
+                  {
+                    "id": "cmupuatm7002dxpukzxt5d0pt",
+                    "category": "content",
+                    "type": "table",
+                    "data": {
+                      "html": "<table><thead><tr><th><p>Level</p></th><th><p>The NSS report as…</p></th><th><p>What you still do by hand</p></th></tr></thead><tbody><tr><td><p>Prompt</p></td><td><p>Attach the file, explain the job, read the answer</p></td><td><p>Everything, every year</p></td></tr><tr><td><p>Agent</p></td><td><p>The rules, the report template, and last year’s report written in once</p></td><td><p>Check the draft and write the recommendations</p></td></tr><tr><td><p>Workflow</p></td><td><p>It starts, an agent drafts, a second agent checks the draft, a person approves, and then it's emailed to SLT and saved in Sharepoint</p></td><td><p>Decide when and how it starts. Also approve, if you're the designated human in the loop.</p></td></tr></tbody></table>"
+                    },
+                    "order": 11
+                  },
+                  {
+                    "id": "cmupuatm6001jxpuk9sczct2j",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Should you use a prompt or an agent?",
+                      "level": 2
+                    },
+                    "order": 12
+                  },
+                  {
+                    "id": "cmupuatm6001kxpukqs2cxw70",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>A task worth moving from a prompt to an agent usually has three things:</p>"
+                    },
+                    "order": 13
+                  },
+                  {
+                    "id": "cmupuatm6001lxpukftc3qkv7",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ol><li><p>It comes round regularly</p></li><li><p>It uses the same or similar files each time</p></li><li><p>The rules for doing it don’t change</p></li></ol><p></p>"
+                    },
+                    "order": 14
+                  },
+                  {
+                    "id": "cmupuatm6001mxpuk3oqgmgrz",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>The NSS report example has all three: it comes round every summer, it draws on the same feedback file, report template, and last year’s report, and its rules don’t change from one year to the next.</p>"
+                    },
+                    "order": 15
+                  },
+                  {
+                    "id": "cmuwcupoj0008101lkth6rd92",
+                    "category": "content",
+                    "type": "image",
+                    "data": {
+                      "alt": "Use an agent if it repeats regularly, uses same data, and the instructions remain the same. ",
+                      "url": "img_2.png",
+                      "caption": "Use an agent if it repeats regularly, uses same data, and the instructions remain the same. "
+                    },
+                    "order": 16
+                  },
+                  {
+                    "id": "cmupuatm6001nxpuk7igh6t8c",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Any more examples?",
+                      "level": 3
+                    },
+                    "order": 17
+                  },
+                  {
+                    "id": "cmupuatm6001oxpukhh8d7yi4",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>If you're struggling to think of any more tasks that could be agents, here are some ideas for agents that could be useful:</p>"
+                    },
+                    "order": 18
+                  },
+                  {
+                    "id": "cmupuatm6001pxpuknoid0h5f",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "If you deliver projects and programmes:",
+                      "level": 3
+                    },
+                    "order": 19
+                  },
+                  {
+                    "id": "cmupuatm6001qxpukvhjvrfma",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ul><li><p>Track the actions from each week’s project meeting: what’s open, what’s overdue, and what’s closed since last week.</p></li><li><p>Draft a new project’s scope, milestones, and dependencies from the approved business case, with every line citing its paragraph.</p></li><li><p>Turn a month of project updates into the highlight report.</p></li></ul><p></p>"
+                    },
+                    "order": 20
+                  },
+                  {
+                    "id": "cmupuatm6001rxpukockjnjdb",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "If you manage dashboards or administer projects:",
+                      "level": 3
+                    },
+                    "order": 21
+                  },
+                  {
+                    "id": "cmupuatm6001sxpuk4r3ak3r2",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ul><li><p>Pull the same fields from every project’s return into one dashboard view.</p></li><li><p>Check each submission against the template before it reaches a board, and list what’s missing.</p></li><li><p>Draft the covering note for a meeting pack from the papers already in the folder.</p></li></ul><p></p>"
+                    },
+                    "order": 22
+                  },
+                  {
+                    "id": "cmupuatm6001txpukdckeufan",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "If you work in planning and analytics:",
+                      "level": 3
+                    },
+                    "order": 23
+                  },
+                  {
+                    "id": "cmupuatm6001uxpukdtiuwehi",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ul><li>Give the week’s admissions position against target and against the same point last cycle.</li><li>Run the same check on every faculty planning submission against the planning guidance.</li><li>Theme a survey’s free text against a fixed framework, so this year can be compared with last.</li></ul>"
+                    },
+                    "order": 24
+                  },
+                  {
+                    "id": "cmuv5mn7l00031dqw134eiymk",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Activity: Test a prompt",
+                      "level": 2
+                    },
+                    "order": 25
+                  },
+                  {
+                    "id": "cmupuatm6001yxpuk6osrmd6f",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><strong>Download the NSS 2026 Free Text and Scores workbook </strong>then open Copilot and sign in with your work account.</p>"
+                    },
+                    "order": 26
+                  },
+                  {
+                    "id": "cmupxk14w000ao0krfvcv088n",
+                    "category": "content",
+                    "type": "file_download",
+                    "data": {
+                      "url": "files/NSS-2026-Free-Text-and-Scores.xlsx",
+                      "size": 15134,
+                      "label": "NSS 2026 Free Text and Scores workbook",
+                      "filename": "NSS 2026 Free Text and Scores.xlsx",
+                      "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                      "description": ""
+                    },
+                    "order": 27
+                  },
+                  {
+                    "id": "cmupuatm6001zxpukj4qaqs67",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Attach the workbook and paste in the prompt below. This gives Copilot three things: the role to take, the context it needs, and the task.</p>"
+                    },
+                    "order": 28
+                  },
+                  {
+                    "id": "cmupuatm60020xpukeng253xt",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><em>You’re a student surveys analyst at a UK university. The attached workbook holds one programme’s National Student Survey responses, with scored questions and a free-text column. Theme the free-text comments against four themes and no others: teaching and learning, assessment and feedback, organisation and management, and learning resources. For each theme, give the number of responses, a one-line summary, and one comment quoted word for word. Put the four themes in a table.</em></p>"
+                    },
+                    "order": 29
+                  },
+                  {
+                    "id": "cmupuatm60021xpukq4ah1ywh",
+                    "category": "content",
+                    "type": "image",
+                    "data": {
+                      "alt": "The prompt for the NSS report in Copilot, with the workbook attached.",
+                      "url": "img_3.png",
+                      "caption": "The prompt for the NSS report in Copilot, with the workbook attached."
+                    },
+                    "order": 30
+                  },
+                  {
+                    "id": "cmupuatm60023xpukeqxd9unb",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>The result should be a table with four rows, counts, and quotes. Check it against three points:</p>"
+                    },
+                    "order": 31
+                  },
+                  {
+                    "id": "cmupuatm60024xpukzy2zymb7",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ol><li><p>Does any quote name a member of staff? Four comments in the file do.</p></li><li><p>Has a student’s comment about their learning support plan been counted as a learning resources complaint, or summarised into a line?</p></li><li><p>Has a fifth theme appeared, such as student voice?</p></li></ol><p></p>"
+                    },
+                    "order": 32
+                  },
+                  {
+                    "id": "cmupuatm60025xpuklkmdwn0t",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><strong>Note:</strong> the prompt didn’t include the rules that make this report safe to circulate: never name staff, keep accessiblity needs out of the counts, etc.</p>"
+                    },
+                    "order": 33
+                  },
+                  {
+                    "id": "cmuwdz1si000b101ljw5c9t7l",
+                    "category": "content",
+                    "type": "image",
+                    "data": {
+                      "alt": "Table produced from the NSS example prompt.",
+                      "url": "img_4.png",
+                      "caption": "An example table your prompt might produce. There may be differences. "
+                    },
+                    "order": 34
+                  },
+                  {
+                    "id": "cmuuyqt9d00011dqwmhes49md",
+                    "category": "content",
+                    "type": "key_point",
+                    "data": {
+                      "text": "<p>Think of one job you do on a cycle, weekly or monthly basis, where you explain the same thing to Copilot each time. Write your answers to these three questions: </p><ol><li><p>What’s the job, and what do you have to explain every time you run it? </p></li><li><p>Which files or folders does it always draw on? </p></li><li><p>Is there anything it must never do, and have you ever had to correct it for doing it?</p></li></ol><p></p>",
+                      "title": "Reflection:"
+                    },
+                    "order": 35
+                  },
+                  {
+                    "id": "cmupuatm7002gxpukhk59a85v",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Activity: Prompt, agent, or workflow?",
+                      "level": 3
+                    },
+                    "order": 36
+                  },
+                  {
+                    "id": "cmupuatm7002hxpuk11v3htx5",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Which of these is a prompt, an agent and a workflow?</p>"
+                    },
+                    "order": 37
+                  },
+                  {
+                    "id": "cmupuatm7002ixpukwszezrb1",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><strong>Match the following:</strong></p>"
+                    },
+                    "order": 38
+                  },
+                  {
+                    "id": "cmupuatm7002jxpuk8ahcy56m",
+                    "category": "interaction",
+                    "type": "matching",
+                    "data": {
+                      "pairs": [
+                        {
+                          "left": "Pasting this week’s meeting notes in and asking what actions came out of them",
+                          "right": "Prompt"
+                        },
+                        {
+                          "left": "An actions list from the meeting notes that anyone in the team can run on a Monday and get in the same shape",
+                          "right": "Agent"
+                        },
+                        {
+                          "left": "The actions are listed, chase emails are drafted for overdue ones, the project manager approves each one, and the approved emails are sent",
+                          "right": "Workflow"
+                        }
+                      ],
+                      "question": "Which task do you think is a prompt, agent or workflow?",
+                      "explanation": "Prompt = one-off instruction you type and read. Agent = reusable job with the same shape output for anyone. Workflow = multiple linked steps including at least one non-agent step (e.g., human approval and sending emails)."
+                    },
+                    "order": 39
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cmupuatxz002nxpukeez4gaco",
+        "title": "Module 2: What an agent is made of",
+        "order": 2,
+        "lessons": [
+          {
+            "id": "cmupuau0v002pxpuk9vo7cv82",
+            "title": "Module 2: What an agent is made of",
+            "order": 0,
+            "pages": [
+              {
+                "id": "cmupuau3r002rxpukjcs04f49",
+                "title": "Module 2: How to make an agent",
+                "order": 0,
+                "completionRules": null,
+                "href": "content/page_2.html",
+                "blocks": [
+                  {
+                    "id": "cmupuau6o002sxpuk51v1p2xq",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><em>Estimated time: 7-8 minutes</em></p>"
+                    },
+                    "order": 0
+                  },
+                  {
+                    "id": "cmupuau6o002txpuk1rmkvn9m",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><strong>Objective:</strong> Understand the different parts of an agent, and what each one does.</p>"
+                    },
+                    "order": 1
+                  },
+                  {
+                    "id": "cmupuau6o002uxpukqoe2qvlw",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Introduction",
+                      "level": 2
+                    },
+                    "order": 2
+                  },
+                  {
+                    "id": "cmuwe67lg000f101l790hxqd7",
+                    "category": "content",
+                    "type": "image",
+                    "data": {
+                      "alt": "The components of an agent.",
+                      "url": "img_5.png",
+                      "caption": "The components of an agent."
+                    },
+                    "order": 3
+                  },
+                  {
+                    "id": "cmupuau6o002wxpuk2i5xa0jh",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>First, what does an agent look like?</p><p></p><p>Well, for starters they live on <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://copilotstudio.preview.microsoft.com/\">Copilot Studio,</a> rather than <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://m365.cloud.microsoft/chat\">Copilot chat</a>. Here's what our example NSS report agent looks like:</p>"
+                    },
+                    "order": 4
+                  },
+                  {
+                    "id": "cmupuau6o002zxpukt9zsxyw7",
+                    "category": "content",
+                    "type": "image",
+                    "data": {
+                      "alt": "",
+                      "url": "img_6.jpg",
+                      "caption": "An example agent"
+                    },
+                    "order": 5
+                  },
+                  {
+                    "id": "cmupuau6o002vxpuktgz02a3y",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>You can see it's made up of a few different components. Let's take a look at each, and see what they do. </p><p></p><p>Let's use the NSS report example again:</p>"
+                    },
+                    "order": 6
+                  },
+                  {
+                    "id": "cmupuau6o002xxpuk9vavk2qe",
+                    "category": "content",
+                    "type": "table",
+                    "data": {
+                      "html": "<table><th><tr><th><p>Part</p></th><th><p>What it does</p></th><th><p>In the NSS agent</p></th></tr></thead><tbody><tr><td><p>Instructions</p></td><td><p>This is basically an extended prompt, telling the agent what to do.</p></td><td><p>Read every comment, theme against four categories, never name staff, leave Recommendations empty</p></td></tr><tr><td><p>Model</p></td><td><p>The specific AI model that does the work</p></td><td><p>Set once in the agent’s settings</p></td></tr><tr><td><p>Channels</p></td><td><p>Where people use the agent</p></td><td><p>Microsoft Teams and Microsoft 365 Copilot</p></td></tr><tr><td><p>Skills</p></td><td><p>The format you want the output to have</p></td><td><p>The report: ten sections, the themes table, the flagged sections</p></td></tr><tr><td><p>Tools</p></td><td><p>The other software or apps you allow the agent to use to complete the task</p></td><td><p>Specifies the agent can use SharePoint to access the NSS folder</p></td></tr><tr><td><p>Knowledge</p></td><td><p>The documents the agent reads from</p></td><td><p>This year’s workbook, the report template, and the previous report</p></td></tr><tr><td><p>Connected agents (optional)</p></td><td><p>Other agents it can hand work to</p></td><td><p>None</p></td></tr><tr><td><p>Memory (optional)</p></td><td><p>What is carried between conversations</p></td><td><p>Off. Memory is still in preview</p></td></tr></tbody></table>"
+                    },
+                    "order": 7
+                  },
+                  {
+                    "id": "cmupuau6o002yxpukns11334b",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Of all these, instructions and skills are most often confused, so remember this:</p>"
+                    },
+                    "order": 8
+                  },
+                  {
+                    "id": "cmupuau6o0032xpuk1c0jjhri",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Instructions are the behaviour, skills are the format",
+                      "level": 2
+                    },
+                    "order": 9
+                  },
+                  {
+                    "id": "cmupuau6o0033xpuk5qjw28zl",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><strong>Instructions</strong> say who the agent is and what it must never do. </p>"
+                    },
+                    "order": 10
+                  },
+                  {
+                    "id": "cmupuau6o0036xpukj2vqa2f7",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><strong>Skills</strong> say how one output is formatted. The NSS agent’s skill sets out the ten report sections in order, the columns of the themes table, and how the flagged comments are laid out.</p>"
+                    },
+                    "order": 11
+                  },
+                  {
+                    "id": "cmuwe6gn7000h101lbzl48j0x",
+                    "category": "content",
+                    "type": "image",
+                    "data": {
+                      "alt": "Instructions define behaviour, skills define the format.",
+                      "url": "img_7.png",
+                      "caption": "Instructions define behaviour, skills define the format."
+                    },
+                    "order": 12
+                  },
+                  {
+                    "id": "cmupuau6o003axpuk2c0phubr",
+                    "category": "interaction",
+                    "type": "multiple_choice",
+                    "data": {
+                      "options": [
+                        "A) In the instructions, as a new rule about section order",
+                        "B) In the skill that defines the report’s format",
+                        "C) In knowledge, by attaching the template a second time",
+                        "D) In the model setting, by choosing a different model"
+                      ],
+                      "question": "The NSS agent’s reports have the right themes and counts, but the sections come back in a different order from the house template each time. Where does the fix belong?",
+                      "explanation": "Section order is the format. It only matters for this report, so it belongs in the skill. If the skill already covers it, check the skill’s description: a skill that doesn’t load can’t shape anything. Section order is format rather than behaviour.",
+                      "correctIndex": 1
+                    },
+                    "order": 13
+                  },
+                  {
+                    "id": "cmupuau6o003bxpukqs7d5tpn",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Knowledge, tools, and grounding",
+                      "level": 2
+                    },
+                    "order": 14
+                  },
+                  {
+                    "id": "cmupuau6o003cxpukh67xet9j",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>An agent is <strong>grounded</strong> when its answers come from sources you chose: your documents and your University’s own material, rather than whatever the model knows in general. A grounded answer is about this specific programme, not about programmes like it.</p>"
+                    },
+                    "order": 15
+                  },
+                  {
+                    "id": "cmupuau6o003dxpukxl4vvrgp",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>The NSS agent is grounded in three documents, each with a job:</p>"
+                    },
+                    "order": 16
+                  },
+                  {
+                    "id": "cmupuau6o003expukauw7ddlm",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ul><li><p><strong>This year’s workbook</strong> is the evidence. Every number and quote comes from it.</p></li><li><p><strong>The report template</strong> shows what the finished report looks like.</p></li><li><p><strong>Last year’s signed report</strong> gives the comparison, an example of the University’s own style.</p></li></ul><p></p>"
+                    },
+                    "order": 17
+                  },
+                  {
+                    "id": "cmuwea7xo000l101ly52ewt5l",
+                    "category": "content",
+                    "type": "image",
+                    "data": {
+                      "alt": "The files you give your agent are the ones it uses (the one's it's grounded in).",
+                      "url": "img_8.png",
+                      "caption": "The files you give your agent are the ones it uses (the one's it's grounded in)."
+                    },
+                    "order": 18
+                  },
+                  {
+                    "id": "cmupuau6o003mxpukbfw4kvza",
+                    "category": "interaction",
+                    "type": "dialog_cards",
+                    "data": {
+                      "cards": [
+                        {
+                          "back": "Behaviour. Who the agent is, what it does, and what it must never do. Loads on every run.",
+                          "front": "Instructions"
+                        },
+                        {
+                          "back": "Format. How one particular output is shaped. Loads when the agent reads the skill’s description and decides it applies.",
+                          "front": "Skills"
+                        },
+                        {
+                          "back": "The documents the agent reads from. Grounds its answers in your sources.",
+                          "front": "Knowledge"
+                        },
+                        {
+                          "back": "Live connections the agent acts through, such as a SharePoint. Lets a new file start the agent.",
+                          "front": "Tools"
+                        },
+                        {
+                          "back": "Where people use the agent, such as Microsoft Teams or Microsoft 365 Copilot.",
+                          "front": "Channels"
+                        }
+                      ],
+                      "title": "Can you define the parts of an agent? Click to reveal."
+                    },
+                    "order": 19
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cmupuauj2003qxpukvsx1157o",
+        "title": "Module 3: Plan the agent",
+        "order": 3,
+        "lessons": [
+          {
+            "id": "cmupuaum0003sxpuk2s7lrvdn",
+            "title": "Module 3: Plan the agent",
+            "order": 0,
+            "pages": [
+              {
+                "id": "cmupuauow003uxpukv9682vf1",
+                "title": "Module 3: Plan the agent",
+                "order": 0,
+                "completionRules": null,
+                "href": "content/page_3.html",
+                "blocks": [
+                  {
+                    "id": "cmupuaurt003vxpuktu1pumdo",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><em>Estimated time: 9-10 minutes</em></p>"
+                    },
+                    "order": 0
+                  },
+                  {
+                    "id": "cmupuaurt003wxpukod4qjv2x",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><strong>Objective:</strong> Plan an agent using a planning template.</p>"
+                    },
+                    "order": 1
+                  },
+                  {
+                    "id": "cmupuaurt003xxpuk3726lyry",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Introduction to planning",
+                      "level": 2
+                    },
+                    "order": 2
+                  },
+                  {
+                    "id": "cmuwefn9j000o101lrhr42o6e",
+                    "category": "content",
+                    "type": "image",
+                    "data": {
+                      "alt": "Planning an agent together.",
+                      "url": "img_9.png",
+                      "caption": "Planning an agent together."
+                    },
+                    "order": 3
+                  },
+                  {
+                    "id": "cmupuaurt003yxpukhj251ytt",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Planning an agent before building it is a great idea. It does three things:</p>"
+                    },
+                    "order": 4
+                  },
+                  {
+                    "id": "cmupuaurt003zxpukgy1tcnoc",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ol><li><p>It ensures accuracy - it makes sure everyone agrees on how to do this task. If people doing the same task or process don't agree, this can be resolved before building.</p></li><li><p>It's keeps things simple - each field on the template maps to a part of the agent, so the build becomes a matter of copying the plan across.</p></li><li><p>It costs nothing - building and testing in Copilot Studio can use Copilot Credits from the first test (as Module 4 explains). A plan on paper uses none.</p></li></ol><p></p>"
+                    },
+                    "order": 5
+                  },
+                  {
+                    "id": "cmupuaurt0040xpukf4imhegh",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Also, done well, it can be a great team building activity! </p>"
+                    },
+                    "order": 6
+                  },
+                  {
+                    "id": "cmupuaurt0046xpukn8g7p7e4",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Example template: the NSS report agent",
+                      "level": 2
+                    },
+                    "order": 7
+                  },
+                  {
+                    "id": "cmupuaurt0047xpukglsblooi",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Here’s the plan for the agent that writes the NSS report:</p>"
+                    },
+                    "order": 8
+                  },
+                  {
+                    "id": "cmupuaurt0048xpukxz08xe0d",
+                    "category": "content",
+                    "type": "table",
+                    "data": {
+                      "html": "<table><thead><tr><th><p>Field</p></th><th><p>Programme Feedback Report agent</p></th></tr></thead><tbody><tr><td><p>Purpose</p></td><td><p>Turn one programme’s NSS response file into the house report: themes, counts, quotes, and flagged comments, ready for the programme lead to check and sign</p></td></tr><tr><td><p>Instructions</p></td><td><p>Read every comment. Theme against four categories and no others. Keep comments that name staff and comments about access needs out of the themes, in their own sections. Never name staff. Never report a theme from fewer than three comments. Leave Recommendations empty</p></td></tr><tr><td><p>Knowledge</p></td><td><p>This year’s response workbook, the source of every figure. The house template. Last year’s signed report, for the year-on-year comparison only</p></td></tr><tr><td><p>Tools</p></td><td><p>A SharePoint connection to the NSS Responses folder, so a new file can be picked up where it lands</p></td></tr><tr><td><p>Skills</p></td><td><p>The house report: ten sections in order, the themes table, and the flagged sections</p></td></tr><tr><td><p>Trigger</p></td><td><p>A person, on demand, while it’s tested. Later, the reporting workflow, when a new response file lands</p></td></tr><tr><td><p>What a human checks</p></td><td><p>Every figure, quote, and flagged section. The programme lead writes Recommendations and decides whether the report is used</p></td></tr><tr><td><p>Who can use it</p></td><td><p>The programme quality team. Not students, and not staff named in the responses</p></td></tr><tr><td><p>Owner and review date</p></td><td><p>The Director of Education and Student Experience. Reviewed each September, before fieldwork opens</p></td></tr><tr><td><p>Disclosure line</p></td><td><p>“Drafted by an AI agent from the NSS 2026 response file. Reviewed by the programme lead, who is responsible for this report.”</p></td></tr></tbody></table>"
+                    },
+                    "order": 9
+                  },
+                  {
+                    "id": "cmupuaurt004dxpukhw7mkz3n",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Activity: Put the planning steps in order",
+                      "level": 3
+                    },
+                    "order": 11
+                  },
+                  {
+                    "id": "cmupuaurt004expukzxvd5p3y",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Arrange the planning steps in the order the template works through them.</p>"
+                    },
+                    "order": 12
+                  },
+                  {
+                    "id": "cmupuaurt004fxpukb99r4hng",
+                    "category": "interaction",
+                    "type": "drag_and_drop",
+                    "data": {
+                      "items": [
+                        "Write the purpose in one sentence",
+                        "Write the instructions, including the “never” rules",
+                        "Choose the knowledge, including what to leave out",
+                        "Decide on tools, or record “none”",
+                        "Define the output shape as a skill",
+                        "Set the trigger",
+                        "Decide what a human checks, who can use it, who owns it, and the disclosure line"
+                      ],
+                      "question": "Put these steps in the correct order.",
+                      "explanation": "These steps follow the template sequence: purpose, instructions, knowledge, tools, skills, trigger, then the decisions a product field doesn’t record.",
+                      "correctOrder": [
+                        0,
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6
+                      ]
+                    },
+                    "order": 13
+                  },
+                  {
+                    "id": "cmupuaurt004gxpuk5meei673",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Choose an agent to plan",
+                      "level": 2
+                    },
+                    "order": 14
+                  },
+                  {
+                    "id": "cmuweh9bu000r101lhlxdyk6p",
+                    "category": "content",
+                    "type": "image",
+                    "data": {
+                      "alt": "Which agent will you plan?",
+                      "url": "img_10.png",
+                      "caption": "Which agent will you plan?"
+                    },
+                    "order": 15
+                  },
+                  {
+                    "id": "cmupuaurt004hxpukl7z70rdr",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Now it's time to choose a task to turn into a planned agent.</p><p></p><p>Take a look at these four tasks below. Choose one to plan now - or feel free to choose one of your own tasks if you prefer!</p>"
+                    },
+                    "order": 16
+                  },
+                  {
+                    "id": "cmupuaurt004ixpukbozmctmf",
+                    "category": "content",
+                    "type": "table",
+                    "data": {
+                      "html": "<table><thead><tr><th><p>Job</p></th><th><p>Purpose</p></th><th><p>Be aware of</p></th></tr></thead><tbody><tr><td><p>Meeting actions tracker</p></td><td><p>This week’s actions list: open actions, overdue actions, and what’s closed since last week, each with its owner</p></td><td><p>An action with no due date isn’t the same as an overdue one. The instructions need a rule for empty fields</p></td></tr><tr><td><p>Scope and milestone extractor</p></td><td><p>Scope, out-of-scope list, milestones, and dependencies for an initiation pack, each item citing its business-case paragraph</p></td><td><p>A milestone that’s plausible for this kind of project but isn’t in the business case. Anything the case doesn’t cover is marked “not in the business case”</p></td></tr><tr><td><p>Admission cycle monitor</p></td><td><p>This week’s position against target and against the same point last cycle, by faculty, programme, and domicile</p></td><td><p>Cycle weeks don’t line up with calendar weeks. The agent states which week it compared against, and reports movement, never the reason for it</p></td></tr><tr><td><p>Planning submission checker</p></td><td><p>The same check on every faculty submission: each requirement present, missing, or present but unanswered, and each claim matched to a strategic objective</p></td><td><p>A heading with boilerplate under it looks present. The agent never rates or ranks faculties</p></td></tr></tbody></table>"
+                    },
+                    "order": 17
+                  },
+                  {
+                    "id": "cmuqm9nzq000113eh3dndpbti",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Now, download the file template and create your plan:</p>"
+                    },
+                    "order": 18
+                  },
+                  {
+                    "id": "cmuqmacku000313eh6dqssssd",
+                    "category": "content",
+                    "type": "file_download",
+                    "data": {
+                      "url": "files/Agent-Planning-Template.docx",
+                      "size": 13979,
+                      "label": "Agent Planning Template",
+                      "filename": "Agent Planning Template.docx",
+                      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                      "description": "Agent Planning Template"
+                    },
+                    "order": 19
+                  },
+                  {
+                    "id": "cmuv8bz5s00071dqw1ggzbex5",
+                    "category": "content",
+                    "type": "key_point",
+                    "data": {
+                      "text": "<p>Once you've finished your plan, ideally ask a colleague to take a look at your plan and see if it makes sense to them. Then talk it through with them, and see if there's anything that can be improved.</p><p>Well done!</p>",
+                      "title": "Reflection"
+                    },
+                    "order": 20
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cmupuav3o004uxpukh836d7mc",
+        "title": "Module 4: Build and test the agent",
+        "order": 4,
+        "lessons": [
+          {
+            "id": "cmupuav6k004wxpukn72lq3fh",
+            "title": "Module 4: Build and test the agent",
+            "order": 0,
+            "pages": [
+              {
+                "id": "cmupuav9k004yxpuk0td4xiks",
+                "title": "Module 4: Build and test the agent",
+                "order": 0,
+                "completionRules": null,
+                "href": "content/page_4.html",
+                "blocks": [
+                  {
+                    "id": "cmupuavch004zxpukkwbllf11",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><em>Estimated time: 9-10 minutes, plus about 20 minutes to build and test</em></p>"
+                    },
+                    "order": 0
+                  },
+                  {
+                    "id": "cmupuavch0050xpukg1xgjrvg",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><strong>Objective:</strong> Build your planned agent in Copilot Studio and test it.</p>"
+                    },
+                    "order": 1
+                  },
+                  {
+                    "id": "cmupuavch0051xpukixuwjuga",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Introduction to building",
+                      "level": 2
+                    },
+                    "order": 2
+                  },
+                  {
+                    "id": "cmupuavch0052xpuk842aq31o",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>There are three things to be aware of before you start building an agent:</p><ol><li><p>An agent can change, overwrite or even delete live data</p></li><li><p>There are two versions of Copilot that can build agents</p></li><li><p>Running and testing an agent can cost credits</p></li></ol><p>Let's look at each in turn.</p><p></p>"
+                    },
+                    "order": 3
+                  },
+                  {
+                    "id": "cmupuavch0053xpuk4nnv68nv",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Before you build: use dummy data",
+                      "level": 2
+                    },
+                    "order": 4
+                  },
+                  {
+                    "id": "cmupuavch0055xpukyn43xlf0",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Dummy data does two jobs. </p><ol><li><p>It keeps personal and sensitive information out of test conversations while the agent is still being built. </p></li><li><p>It can be built to contain the difficult cases on purpose, so it's a real test for your new agent - you can test for edge cases and unusual cases, rather than on last week's routine data.</p></li></ol><p></p>"
+                    },
+                    "order": 5
+                  },
+                  {
+                    "id": "cmupuavch0057xpuk7wfxpgjo",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>For your own agent, a small dummy set is enough: a copy of the document with names changed, and one or two rows edited to create the case most likely to go wrong. </p>"
+                    },
+                    "order": 6
+                  },
+                  {
+                    "id": "cmupuavch0058xpuk4wjisf0f",
+                    "category": "interaction",
+                    "type": "true_false",
+                    "data": {
+                      "correct": false,
+                      "question": "Live data is fine for testing, as long as the agent only reads it and doesn’t change anything."
+                    },
+                    "order": 7
+                  },
+                  {
+                    "id": "cmupuavch0059xpukfv6dj6ts",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Before you build: Choose which version of Copilot to use",
+                      "level": 2
+                    },
+                    "order": 8
+                  },
+                  {
+                    "id": "cmupuavch005axpukhhp4lqer",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Copilot Studio builds agents on two different foundations, which Microsoft calls harnesses. The one used throughout this course is the <strong>GitHub Copilot harness</strong>, the default when the <strong>New experience</strong> is switched on.  The older <strong>standard harness</strong> is still available</p><p>Here are some differences between them:</p>"
+                    },
+                    "order": 9
+                  },
+                  {
+                    "id": "cmupuavch005bxpukirndmhc2",
+                    "category": "content",
+                    "type": "table",
+                    "data": {
+                      "html": "<table><th><tr><th><p>Feature</p></th><th><p>GitHub Copilot harness</p></th><th><p>Standard harness</p></th></tr></thead><tbody><tr><td><p>Skills</p></td><td><p>Supported</p></td><td><p>Not supported. Format goes in the instructions</p></td></tr><tr><td><p>Memory</p></td><td><p>Supported, in preview</p></td><td><p>Not supported</p></td></tr><tr><td><p>A spreadsheet in knowledge</p></td><td><p>Opened and counted</p></td><td><p>Split into chunks and searched</p></td></tr></tbody></table>"
+                    },
+                    "order": 10
+                  },
+                  {
+                    "id": "cmuwf39ad000u101lglmsczgk",
+                    "category": "content",
+                    "type": "image",
+                    "data": {
+                      "alt": "Be aware of how the harnesses are different.",
+                      "url": "img_11.png",
+                      "caption": "Be aware of how the harnesses are different."
+                    },
+                    "order": 11
+                  },
+                  {
+                    "id": "cmupuavch005cxpukktqtey4f",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>The last row matters for any job built on counts. Searching chunks is right for finding the relevant paragraph in a policy, and wrong for counting how many of 64 students mentioned assessment. An agent can’t be moved between harnesses, so choose before building.</p>"
+                    },
+                    "order": 12
+                  },
+                  {
+                    "id": "cmupuavch005dxpukvxem76ay",
+                    "category": "content",
+                    "type": "image",
+                    "data": {
+                      "alt": "The Copilot Studio start screen. Agent and Workflow both build on the GitHub Copilot harness.",
+                      "url": "img_12.png",
+                      "caption": "The new Copilot Studio start screen."
+                    },
+                    "order": 13
+                  },
+                  {
+                    "id": "cmupuavch005fxpuk689uaya4",
+                    "category": "content",
+                    "type": "image",
+                    "data": {
+                      "alt": "The older version of Copilot, the standard harness.",
+                      "url": "img_13.png",
+                      "caption": "The older version of Copilot, the standard harness."
+                    },
+                    "order": 14
+                  },
+                  {
+                    "id": "cmupuavch005hxpukwhxhr84p",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Before you build: credits and costs",
+                      "level": 2
+                    },
+                    "order": 15
+                  },
+                  {
+                    "id": "cmupuavch005ixpuk93aioprk",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Agents run on <strong>Copilot Credits</strong>, which come with the University’s subscription. The two harnesses meter them differently:</p>"
+                    },
+                    "order": 16
+                  },
+                  {
+                    "id": "cmupuavch005jxpuk0nhj9ui6",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ul><li>On the GitHub Copilot harness, building, testing, and running all use credits, from the first test.</li><li>On the standard harness, building and testing are free, and credits are used once the agent or flow is published and running.</li></ul>"
+                    },
+                    "order": 17
+                  },
+                  {
+                    "id": "cmupuavch005kxpuktwfu3nut",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Credits are a shared budget. Check the current position with IT before building anything that will run often, and plan the build so testing happens on small, dummy files.</p>"
+                    },
+                    "order": 18
+                  },
+                  {
+                    "id": "cmupuavch005lxpuk025hrq7n",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Your task: build an agent from a plan",
+                      "level": 2
+                    },
+                    "order": 19
+                  },
+                  {
+                    "id": "cmupuavch005mxpukujxg0lla",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>It's time to take your plan from the last module and turn it into a real agent.</p><p>Assuming you're now aware of the three items above, let's begin!</p>"
+                    },
+                    "order": 20
+                  },
+                  {
+                    "id": "cmupuavch005nxpuk6weic09p",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ol><li><p><strong>Open Copilot Studio</strong> and sign in with your work account. Check that the <strong>New experience</strong> is on, which gives the GitHub Copilot harness described above.</p></li><li><p><strong>Create the agent and name it.</strong> Set the language and any solution settings before the first save, as some settings lock once saved.</p></li><li><p><strong>Paste the purpose into the description. </strong>Copilot reads it to decide when the agent applies.</p></li><li><p><strong>Paste the instructions</strong> from the plan.</p></li><li><p><strong>Add each knowledge source</strong>, and give each a name and a description in the form “contains X, use for Y”. Copilot reads these descriptions to decide which source to reach for. For the NSS agent, last year’s report is described as “use only for the year-on-year comparison”.</p></li><li><p><strong>Add the skill,</strong> uploaded as a file, with a description that says exactly which output it shapes.</p></li><li><p><strong>Add tools</strong>, or leave them empty if the plan says “none”.</p></li><li><p>Set authentication to Authenticate with Microsoft, so the agent runs as the signed-in person and reaches only what they can.</p></li><li><p><strong>Test in the test pane</strong>, against the test set below.</p></li></ol><p></p>"
+                    },
+                    "order": 21
+                  },
+                  {
+                    "id": "cmupuavch005qxpuksxe3s65d",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Don’t publish or share it yet - make sure you've followed the internal guidelines for publishing and sharing agents. </p>"
+                    },
+                    "order": 22
+                  },
+                  {
+                    "id": "cmupuavch005zxpukv2w5gxuc",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Diagnosing a weak output",
+                      "level": 2
+                    },
+                    "order": 23
+                  },
+                  {
+                    "id": "cmupuavch0060xpuk21bz08ky",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Assuming you've gotten approval for publishing and testing your agent, hopefully it produces the output you want, to the accuracy and standard you desire.</p><p>However if it doesn't work to standard, then the fix depends on which part of the agent caused it. Most failures are one of three kinds:</p>"
+                    },
+                    "order": 24
+                  },
+                  {
+                    "id": "cmupuavch0061xpuky87g96rj",
+                    "category": "content",
+                    "type": "table",
+                    "data": {
+                      "html": "<table><th><tr><th><p>Symptom</p></th><th><p>Likely cause</p></th><th><p>Where the fix goes</p></th></tr></thead><tbody><tr><td><p>Figures or content that aren’t in this year’s file, or generic content that could describe any programme</p></td><td><p>Grounding</p></td><td><p>Knowledge: attach the right source, sharpen its “contains X, use for Y” description, or remove a source that misleads</p></td></tr><tr><td><p>The right material, but a rule broken: a name included, a fifth theme added, a reason offered</p></td><td><p>Instructions</p></td><td><p>Instructions: add or sharpen the “never” rule</p></td></tr><tr><td><p>The right content and rules, in the wrong shape: sections out of order, missing columns</p></td><td><p>Skills</p></td><td><p>Skill: fix the format, or its description if the skill isn’t loading</p></td></tr></tbody></table>"
+                    },
+                    "order": 25
+                  },
+                  {
+                    "id": "cmupuavch0064xpukkmgueifv",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Grounding problems are the ones most often mistaken for something else. A weak answer tempts a longer set of instructions, when the real problem is that the agent read the wrong document, or didn’t read the right one.</p>"
+                    },
+                    "order": 26
+                  },
+                  {
+                    "id": "cmupuavch0065xpukx6kpc6vq",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Change one thing at a time, then rerun the whole test set. A fix to one case can break another.</p>"
+                    },
+                    "order": 27
+                  },
+                  {
+                    "id": "cmuwf3b89000w101lrdkpjw05",
+                    "category": "content",
+                    "type": "image",
+                    "data": {
+                      "alt": "Diagnose weak output.",
+                      "url": "img_14.png",
+                      "caption": "Diagnose weak output."
+                    },
+                    "order": 28
+                  },
+                  {
+                    "id": "cmupuavch0066xpukhwb9hurm",
+                    "category": "interaction",
+                    "type": "multiple_choice",
+                    "data": {
+                      "options": [
+                        "An instructions problem. Add a rule saying “use this year’s figures”",
+                        "A skills problem. The report format needs a new section",
+                        "A grounding problem. The agent is drawing figures from the wrong source",
+                        "A model problem. Switch to a different model"
+                      ],
+                      "question": "In testing, the NSS agent’s report shows this year’s positivity figures exactly matching last year’s signed report, not this year’s workbook. What kind of problem is it?",
+                      "explanation": "The figures came from last year’s report instead of this year’s workbook, which is a grounding problem. The fix is in knowledge: describe last year’s report as “use only for the year-on-year comparison”, and describe the workbook as the source of every figure.",
+                      "correctIndex": 2
+                    },
+                    "order": 29
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cmupuavoz006axpukh2spgjpo",
+        "title": "Module 5: Plan the workflow",
+        "order": 5,
+        "lessons": [
+          {
+            "id": "cmupuavrw006cxpukkr48jf4b",
+            "title": "Module 5: Plan the workflow",
+            "order": 0,
+            "pages": [
+              {
+                "id": "cmupuavut006expukju5fw6zl",
+                "title": "Module 5: Plan a workflow",
+                "order": 0,
+                "completionRules": null,
+                "href": "content/page_5.html",
+                "blocks": [
+                  {
+                    "id": "cmupuavxr006fxpuk9161l4al",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><em>Estimated time: 9-10 minutes</em></p>"
+                    },
+                    "order": 0
+                  },
+                  {
+                    "id": "cmupuavxr006gxpukn3y3mbxm",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><strong>Objective:</strong> Plan a workflow that connects two agents, actions, and a human decision, on the Workflow Planning Template.</p>"
+                    },
+                    "order": 1
+                  },
+                  {
+                    "id": "cmupuavxr006hxpuk848ynkoc",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Introduction to workflows",
+                      "level": 2
+                    },
+                    "order": 2
+                  },
+                  {
+                    "id": "cmupuavxr006jxpuknd1ffwle",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Remember, a workflow is a task that you’ve broken into steps and linked together. Those steps can be people, agents, or automations.</p>"
+                    },
+                    "order": 3
+                  },
+                  {
+                    "id": "cmupuavxr006lxpukdj785ibg",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Every workflow has three kinds of step.</p>"
+                    },
+                    "order": 4
+                  },
+                  {
+                    "id": "cmupuavxr006mxpukwpfrghri",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ol><li><p><strong>A trigger</strong> is what starts it: a file arriving in a folder, a weekly schedule, or a person pressing a button.</p></li></ol><p></p>"
+                    },
+                    "order": 5
+                  },
+                  {
+                    "id": "cmupuavxr006nxpuk4j5f8wey",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ol start=\"2\"><li><p><strong>Steps</strong>. There are three kinds of step:</p></li></ol><p></p>"
+                    },
+                    "order": 6
+                  },
+                  {
+                    "id": "cmupuavxr006oxpuk6or7jxuo",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ul><li><p><strong>Actions</strong> do one fixed thing: get a file, create a document, send an email.</p></li><li><p><strong>Agents</strong> do a specific job: draft the report, check the report.</p></li><li><p><strong>Decisions</strong> choose an option: if something is true, choose one way. If not, choose another. Or ask a human to approve.</p></li></ul><p></p>"
+                    },
+                    "order": 7
+                  },
+                  {
+                    "id": "cmupuavxr006pxpukq37k0v9z",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ol start=\"3\"><li><p><strong>Dynamic content</strong> is information or files that gets handed on from one step to the next. The file from the trigger goes into the drafting agent. The draft goes into the checking agent, and so on.</p></li></ol><p></p>"
+                    },
+                    "order": 8
+                  },
+                  {
+                    "id": "cmupuavxr006qxpukcd3tuob8",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Activity: Match the following",
+                      "level": 3
+                    },
+                    "order": 9
+                  },
+                  {
+                    "id": "cmuy481ri0001kkalxm5kftsq",
+                    "category": "interaction",
+                    "type": "matching",
+                    "data": {
+                      "pairs": [
+                        {
+                          "left": "A new NSS response file lands in the Responses folder",
+                          "right": "Trigger"
+                        },
+                        {
+                          "left": "The NSS report agent drafts the report",
+                          "right": "Agent step"
+                        },
+                        {
+                          "left": "If the checker found any mismatches, list them first",
+                          "right": "Condition"
+                        },
+                        {
+                          "left": "The programme lead approves the report or sends it back",
+                          "right": "The programme lead approves the report or sends it back"
+                        },
+                        {
+                          "left": "The drafted report is passed into the checker’s message",
+                          "right": "Dynamic content"
+                        },
+                        {
+                          "left": "The approved report is saved to the Reports folder",
+                          "right": "The approved report is saved to the Reports folder"
+                        }
+                      ],
+                      "question": "Which of the following belong together?"
+                    },
+                    "order": 12
+                  },
+                  {
+                    "id": "cmupuavxr006zxpuk75ytx01n",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Example workflow",
+                      "level": 2
+                    },
+                    "order": 13
+                  },
+                  {
+                    "id": "cmupuavxr0070xpuktezdnm2s",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>As a workflow, the NSS report has seven steps.</p>"
+                    },
+                    "order": 14
+                  },
+                  {
+                    "id": "cmupuavxr0071xpuk8gv4b7fy",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ol><li><p><strong>Trigger:</strong> a new response file is created in the NSS Responses folder.</p></li><li><p><strong>Action:</strong> get the file’s content, and its modified date.</p></li><li><p><strong>Agent step:</strong> the Programme Feedback Report agent drafts the report.</p></li><li><p><strong>Agent step:</strong> another agent, a Programme Feedback Report Checker checks the draft against the response file, and returns its claims register.</p></li><li><p><strong>Condition:</strong> if the checker flagged anything, those rows go first in the review message.</p></li><li><p><strong>Human review:</strong> the programme lead reads the register and the report, approves or rejects, and writes the Recommendations section.</p></li><li><p><strong>Actions, if approved:</strong> file the report and its claims register side by side, send the report to its circulation list, and send the accessibility section separately to the Disability and Inclusion Service. If rejected, nothing is filed or sent.</p></li></ol><p></p>"
+                    },
+                    "order": 15
+                  },
+                  {
+                    "id": "cmuwhjhb30010101lddj6p9n3",
+                    "category": "content",
+                    "type": "image",
+                    "data": {
+                      "alt": "Plan your workflow.",
+                      "url": "img_15.png",
+                      "caption": "Plan your workflow."
+                    },
+                    "order": 16
+                  },
+                  {
+                    "id": "cmupuavxr007fxpukkj0fmcqv",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Where the person goes",
+                      "level": 2
+                    },
+                    "order": 17
+                  },
+                  {
+                    "id": "cmupuavxr007gxpukghys9bkq",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Human judgement belongs at the start and the end, with AI doing the middle. In a workflow, the end slice has a precise place: <strong>after the check, before anything is filed or sent.</strong></p>"
+                    },
+                    "order": 18
+                  },
+                  {
+                    "id": "cmupuavxr007kxpuk4wdjvy6e",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>The human review step in Copilot Studio has four rules worth planning around:</p>"
+                    },
+                    "order": 19
+                  },
+                  {
+                    "id": "cmupuavxr007lxpukj5r99zl6",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ul><li>The request arrives by Outlook email.</li><li>It can’t be sent to anyone outside the University’s tenant.</li><li>It collects up to five kinds of input: text, yes or no, email, number, and date. Use these to capture the decision, and the part only a person can write, such as the recommendations.</li><li><strong>The first person to respond decides.</strong> With several people assigned, whoever answers first decides for all of them. Assign one named person.</li></ul>"
+                    },
+                    "order": 20
+                  },
+                  {
+                    "id": "cmuwhmgbe0016101l9kb8vopk",
+                    "category": "content",
+                    "type": "image",
+                    "data": {
+                      "alt": "Where do people fit in a flow?",
+                      "url": "img_16.png",
+                      "caption": "Where do people fit in a flow?"
+                    },
+                    "order": 21
+                  },
+                  {
+                    "id": "cmupuavxr007mxpukhemdcxx7",
+                    "category": "interaction",
+                    "type": "multiple_choice",
+                    "data": {
+                      "options": [
+                        "Before the monitor runs, to check the extracts are complete",
+                        "Between the variance tables and the commentary agent",
+                        "After the commentary is drafted, before the weekly pack is circulated",
+                        "After the pack is circulated, as a weekly quality check"
+                      ],
+                      "question": "In the admission cycle workflow, where should the analyst’s review sit?",
+                      "explanation": "The analyst checks the finished commentary against the tables, and confirms the comparison week, before anything reaches the circulation list. That’s after the check and before the send. The review needs to see the finished commentary, so it can’t come before the commentary is written. And it has to happen before circulation, or it’s a review of something already sent. The gate sits after the commentary is drafted, before the pack goes out.",
+                      "correctIndex": 2
+                    },
+                    "order": 22
+                  },
+                  {
+                    "id": "cmupuavxr007nxpuk3o9yn9of",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Plan your workflow",
+                      "level": 2
+                    },
+                    "order": 23
+                  },
+                  {
+                    "id": "cmupuavxr007uxpukok23fxhs",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Before you plan your own, here’s what the NSS workflow looks like on the template:</p>"
+                    },
+                    "order": 24
+                  },
+                  {
+                    "id": "cmupuavxr007vxpukpc6b1job",
+                    "category": "content",
+                    "type": "table",
+                    "data": {
+                      "html": "<table><th><tr><th><p>Field</p></th><th><p>NSS Feedback Report Cycle</p></th></tr></thead><tbody><tr><td><p>The job it does</p></td><td><p>Drafts, checks, and files each programme’s NSS report, once the programme lead approves it</p></td></tr><tr><td><p>Trigger</p></td><td><p>A new response file created in the NSS Responses folder</p></td></tr><tr><td><p>Where the output lands</p></td><td><p>The report and its claims register side by side in the Reports folder, the report to its circulation list, and the accessibility section to the Disability and Inclusion Service. Nothing lands until the programme lead approves</p></td></tr></tbody></table>"
+                    },
+                    "order": 25
+                  },
+                  {
+                    "id": "cmupuavxr007wxpukhqtr7kru",
+                    "category": "content",
+                    "type": "table",
+                    "data": {
+                      "html": "<table><th><tr><th><p>#</p></th><th><p>Step</p></th><th><p>Type</p></th><th><p>Takes in</p></th><th><p>Passes on</p></th></tr></thead><tbody><tr><td><p>1</p></td><td><p>A new response file lands in the Responses folder</p></td><td><p>Trigger</p></td><td><p>-</p></td><td><p>The file</p></td></tr><tr><td><p>2</p></td><td><p>Get the file’s content</p></td><td><p>Action</p></td><td><p>The file</p></td><td><p>The responses</p></td></tr><tr><td><p>3</p></td><td><p>Draft the report</p></td><td><p>Agent step: Programme Feedback Report agent</p></td><td><p>The responses</p></td><td><p>The draft</p></td></tr><tr><td><p>4</p></td><td><p>Check the draft cold</p></td><td><p>Agent step: Programme Feedback Report Checker</p></td><td><p>The draft and the responses</p></td><td><p>The claims register</p></td></tr><tr><td><p>5</p></td><td><p>Put any flagged rows first</p></td><td><p>Condition</p></td><td><p>The claims register</p></td><td><p>The review message</p></td></tr><tr><td><p>6</p></td><td><p>Approve or reject, and write Recommendations</p></td><td><p>Human review: the programme lead</p></td><td><p>The draft and the review message</p></td><td><p>The decision and the Recommendations</p></td></tr><tr><td><p>7</p></td><td><p>If approved, file and send. If rejected, nothing is filed or sent</p></td><td><p>Action</p></td><td><p>The decision, the report, and the register</p></td><td><p>The filed report and register, and the emails</p></td></tr></tbody></table>"
+                    },
+                    "order": 26
+                  },
+                  {
+                    "id": "cmupuavxr007zxpukrt4oh8gu",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><strong>Your turn:</strong> Plan the workflow for your own agent on the Workflow Planning Template: what starts it, the steps in order, which agent does which step, where the person decides and what they decide, what happens when the check fails, and where the output lands. If it needs a second agent, plan that agent on the Agent Planning Template first.</p>"
+                    },
+                    "order": 27
+                  },
+                  {
+                    "id": "cmuqmg9hf000713ehjqlr45an",
+                    "category": "content",
+                    "type": "file_download",
+                    "data": {
+                      "url": "files/Workflow-Planning-Template.docx",
+                      "size": 14408,
+                      "label": "Workflow Planning Template",
+                      "filename": "Workflow Planning Template.docx",
+                      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                      "description": ""
+                    },
+                    "order": 28
+                  },
+                  {
+                    "id": "cmupuavxr007oxpuknkltzb4u",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Just as you planned your agent, plan your workflow before you build it. Download the Workflow Planning Template <strong>a</strong>nd work through it in order.</p>"
+                    },
+                    "order": 29
+                  },
+                  {
+                    "id": "cmupuavxr007xxpukgzmzzc3m",
+                    "category": "content",
+                    "type": "image",
+                    "data": {
+                      "alt": "The Workflow Planning Template, ready to fill in for your own workflow.",
+                      "url": "img_17.png",
+                      "caption": "The Workflow Planning Template, ready to fill in for your own workflow."
+                    },
+                    "order": 30
+                  },
+                  {
+                    "id": "cmupuavxr007pxpukt74n0nq6",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Start with what triggers it, such as a new NSS response file arriving in the Responses folder.</p>"
+                    },
+                    "order": 31
+                  },
+                  {
+                    "id": "cmupuavxr007qxpukn5o0zo07",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Then list the steps in order and say which agent does each one: the Programme Feedback Report agent drafts, and the checker reads the draft cold against the response file.</p>"
+                    },
+                    "order": 32
+                  },
+                  {
+                    "id": "cmupuavxr007rxpuku6obx97u",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Mark the point where a person decides, and name that person and the decision they make: the programme lead reads the claims register, approves or rejects the report, and writes the Recommendations section.</p>"
+                    },
+                    "order": 33
+                  },
+                  {
+                    "id": "cmupuavxr007txpuk52oaifb4",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Finish with where the output lands: the approved report and its register filed side by side, the report sent to its circulation list, and the accessibility section sent separately to where it needs to go.</p>"
+                    },
+                    "order": 34
+                  },
+                  {
+                    "id": "cmupuavxr007sxpuklv6jhb4e",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Say what happens when the check fails, so a rejected report goes back and nothing is filed or sent.</p>"
+                    },
+                    "order": 35
+                  },
+                  {
+                    "id": "cmuwhjqa10012101l5iwh6jaw",
+                    "category": "content",
+                    "type": "image",
+                    "data": {
+                      "alt": "An example workflow.",
+                      "url": "img_18.png",
+                      "caption": "An example workflow."
+                    },
+                    "order": 36
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cmupuaw9n0083xpukxyog0dwi",
+        "title": "Module 6: Build and test the workflow",
+        "order": 6,
+        "lessons": [
+          {
+            "id": "cmupuawcj0085xpuk4gf5w78r",
+            "title": "Module 6: Build and test the workflow",
+            "order": 0,
+            "pages": [
+              {
+                "id": "cmupuawfg0087xpukfdnhquzs",
+                "title": "Module 6: Build and test the workflow",
+                "order": 0,
+                "completionRules": null,
+                "href": "content/page_6.html",
+                "blocks": [
+                  {
+                    "id": "cmupuawid0088xpukg7mt6338",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><em>Estimated time: 7-8 minutes, plus about 20 minutes to build and test</em></p>"
+                    },
+                    "order": 0
+                  },
+                  {
+                    "id": "cmupuawid0089xpuk40gi3km0",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><strong>Objective:</strong> Build the planned workflow in Copilot Studio, and test it before anyone relies on it.</p>"
+                    },
+                    "order": 1
+                  },
+                  {
+                    "id": "cmupuawid008gxpukul7z9zjg",
+                    "category": "content",
+                    "type": "image",
+                    "data": {
+                      "alt": "Example workflow",
+                      "url": "img_19.png",
+                      "caption": "An example workflow"
+                    },
+                    "order": 2
+                  },
+                  {
+                    "id": "cmupuawid008axpukigg4s62d",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Before you build",
+                      "level": 2
+                    },
+                    "order": 3
+                  },
+                  {
+                    "id": "cmupuawid008bxpukfnu6dmn6",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>A workflow uses agents that already exist, so if your plan involves a second agent, make sure you build that one first.</p>"
+                    },
+                    "order": 4
+                  },
+                  {
+                    "id": "cmupuawid008cxpukxae0xcuw",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ul><li><p><strong>Build and publish both agents to your own profile.</strong> An agent step can only call a published agent. Publishing isn’t sharing: nobody else can use the agents until they’re shared.</p></li><li><p><strong>Set up test folders</strong>, a test Responses folder and a test Reports folder, and send every email to yourself while you test.</p></li><li><p><strong>Keep the dummy files small.</strong> Every agent step uses Copilot Credits each time it runs.</p></li></ul><p></p>"
+                    },
+                    "order": 5
+                  },
+                  {
+                    "id": "cmupuawid008dxpuktc1fstzl",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Build it: From plan to Copilot Studio",
+                      "level": 2
+                    },
+                    "order": 6
+                  },
+                  {
+                    "id": "cmupuawid008expukvwfd53ai",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Workflows are built in the same place as the agents. Build in the order of the plan, one step at a time.</p>"
+                    },
+                    "order": 7
+                  },
+                  {
+                    "id": "cmupuawid008fxpukcux33a3c",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ol><li><p><strong>Open Copilot Studio, go to Workflows in the left sidebar, and choose New workflow.</strong> Name it after the job, such as NSS Feedback Report Cycle.</p></li><li><p><strong>Set the trigger on the Start step. </strong>Choose the SharePoint trigger for a new file in a folder, and point it at the test Responses folder, not the live one.</p></li><li><p><strong>Add an action to get the file’s content.</strong> Add a Connector step for SharePoint that gets the content of the file from the trigger.</p></li><li><p><strong>Add the drafting agent step.</strong> Add an Agent step, choose the Programme Feedback Report agent, and write the message it receives. Insert the file content as dynamic content, so each run works on the file that started it.</p></li></ol><p></p>"
+                    },
+                    "order": 8
+                  },
+                  {
+                    "id": "cmupuawid008mxpuko42c5mvh",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Test your workflow",
+                      "level": 2
+                    },
+                    "order": 14
+                  },
+                  {
+                    "id": "cmupuawid008nxpuk784iby83",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Time to test! See if your workflow produces what you were hoping for. If needed, analyse the output just as you did with your agent and identify where it can be tweaked.</p><p>Congratulations!</p>"
+                    },
+                    "order": 15
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cmupuawu4008uxpukbkfhgynj",
+        "title": "Module 7: Good enough to use?",
+        "order": 7,
+        "lessons": [
+          {
+            "id": "cmupuawx0008wxpukbwjic9mz",
+            "title": "Module 7: Good enough to use?",
+            "order": 0,
+            "pages": [
+              {
+                "id": "cmupuawzw008yxpukwvtio9u5",
+                "title": "Module 7: Good enough to use?",
+                "order": 0,
+                "completionRules": null,
+                "href": "content/page_7.html",
+                "blocks": [
+                  {
+                    "id": "cmupuax2t008zxpukf49v3h8z",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><em>Estimated time: 9-10 minutes</em></p>"
+                    },
+                    "order": 0
+                  },
+                  {
+                    "id": "cmupuax2t0090xpukbmeoy6qe",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><strong>Objective:</strong> Decide whether an output is reliable enough for higher-stakes work</p>"
+                    },
+                    "order": 1
+                  },
+                  {
+                    "id": "cmupuax2t0091xpukj2aakjkj",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "What does higher stakes mean?",
+                      "level": 2
+                    },
+                    "order": 2
+                  },
+                  {
+                    "id": "cmupuax2t0092xpukvtyb55u3",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Most Strategy Office output is read by someone who acts on it. What makes an output higher-stakes is who relies on it, and whether they’ll check it again themselves. Usually they won’t: saving them that check is why they asked for it.</p>"
+                    },
+                    "order": 3
+                  },
+                  {
+                    "id": "cmupuax2t0094xpukn2vvinkp",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>An agent or workflow magnifies this. A report that arrives in the same format every week, from a tool that was right last week, reads as trustworthy whether it is or not. Judging reliability is a key component of building agents and workflows.</p>"
+                    },
+                    "order": 5
+                  },
+                  {
+                    "id": "cmupuax2t0095xpuk8pg03p46",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Three ways errors occur",
+                      "level": 2
+                    },
+                    "order": 6
+                  },
+                  {
+                    "id": "cmupuax2t0096xpukivxah848",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "1. Confident error",
+                      "level": 3
+                    },
+                    "order": 7
+                  },
+                  {
+                    "id": "cmupuax2t0097xpukaut777dy",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>A figure or claim that’s wrong but reads like it's correct.</p>"
+                    },
+                    "order": 8
+                  },
+                  {
+                    "id": "cmupuax2t0098xpukjt8nxxcm",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>One example from the earlier NSS example agent: in the NSS data, 31 students wrote about assessment and feedback in their comments. Separately, 29 answered the question on timely feedback with one of the two lowest options. A report that says “29 respondents raised assessment and feedback” has swapped one measure for another. </p>"
+                    },
+                    "order": 9
+                  },
+                  {
+                    "id": "cmupuax2t0099xpuknh6ifl0w",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "2. Omission and bias",
+                      "level": 3
+                    },
+                    "order": 10
+                  },
+                  {
+                    "id": "cmupuax2t009axpuki1m3q06l",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>What’s missing, or whose view is missing. One student wrote that their learning support plan specified recorded lectures, and they didn’t get them. If this is removed as it's 'averaged' into a theme for a report, that comment disappears. </p>"
+                    },
+                    "order": 11
+                  },
+                  {
+                    "id": "cmupuax2t009cxpuk0qr6d6gf",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "3. Overreach",
+                      "level": 3
+                    },
+                    "order": 13
+                  },
+                  {
+                    "id": "cmupuax2t009dxpuk8snumohs",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>An output that answers a question nobody asked. The admissions monitor is told to report movement, never the reason for it, because the data shows that applications fell and never why. An agent asked to write commentary will often supply a reason anyway. It’ll sound plausible, and it’ll come from the model’s general knowledge, not from the tables.</p>"
+                    },
+                    "order": 14
+                  },
+                  {
+                    "id": "cmupuax2t009kxpuk01vf57o1",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Checking the output",
+                      "level": 2
+                    },
+                    "order": 21
+                  },
+                  {
+                    "id": "cmupuax2t009mxpuk1mr1md0b",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Before anything goes out, check four things: Fabrication, Accuracy, Completeness, and Tone. We can call this the FACT check for short. Applied to an agent’s output:</p>"
+                    },
+                    "order": 23
+                  },
+                  {
+                    "id": "cmupuax2t009nxpukctnmp9xz",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ul><li><strong>Fabrication:</strong> is every figure, quote, and reference in the source? Spot-check at least one number against the file itself.</li><li><strong>Accuracy:</strong> is each measure the one it claims to be? The 31 against 29 is an accuracy failure, not a fabrication.</li><li><strong>Completeness:</strong> has anything been averaged away or left out? Check the flagged sections and the smallest themes.</li><li><strong>Tone:</strong> does it claim more certainty than the data supports, or offer reasons the data doesn’t give?</li></ul>"
+                    },
+                    "order": 24
+                  },
+                  {
+                    "id": "cmuwimb240019101ly5v9ph57",
+                    "category": "content",
+                    "type": "image",
+                    "data": {
+                      "alt": "FACT check items.",
+                      "url": "img_20.png",
+                      "caption": "FACT check items."
+                    },
+                    "order": 25
+                  },
+                  {
+                    "id": "cmupuax2t009pxpukqe4w6sfp",
+                    "category": "interaction",
+                    "type": "true_false",
+                    "data": {
+                      "correct": false,
+                      "question": "Once a person has checked and edited an AI-drafted report, it no longer needs to say that AI was used.",
+                      "explanation": "Where AI has materially shaped a deliverable, the Strategy Office guardrails ask for it to be said: which tool, how the output was checked, and that responsibility stays with the author. Checking and editing are part of what the disclosure describes. Checking and editing don’t remove the need to disclose."
+                    },
+                    "order": 26
+                  },
+                  {
+                    "id": "cmupuax2t009qxpukvwtqewdy",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "The disclosure line",
+                      "level": 2
+                    },
+                    "order": 27
+                  },
+                  {
+                    "id": "cmupuax2t009rxpukrt5ugais",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>The last field on the planning template from Module 3 is the disclosure line. It’s written once, at planning, so every output from the agent carries it without anyone remembering to add it.</p>"
+                    },
+                    "order": 28
+                  },
+                  {
+                    "id": "cmupuax2t009sxpuklqme8y72",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>A disclosure line has three parts: the tool, the check, and who is responsible. For the example NSS report:</p>"
+                    },
+                    "order": 29
+                  },
+                  {
+                    "id": "cmupuax2t009txpukvx5k3n9z",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p><em>Drafted by an AI agent from the NSS 2026 response file. Every figure checked against the responses by a second agent and reviewed by the programme lead, who is responsible for this report.</em></p>"
+                    },
+                    "order": 30
+                  },
+                  {
+                    "id": "cmupuax2t009xxpukb9f0d9td",
+                    "category": "interaction",
+                    "type": "multiple_choice",
+                    "data": {
+                      "options": [
+                        "Approve it. The figure matches the tables",
+                        "Send it back for redraft with the reason removed, since the tables show the movement but not its cause",
+                        "Find a source for the visa claim, add it, and approve",
+                        "Approve it with a note that the reason is the agent’s view"
+                      ],
+                      "question": "The admission cycle workflow’s commentary includes: “Applications from international students in one faculty fell 12% against the same point last cycle, reflecting changes to visa policy.” The tables confirm the 12% fall. What should the analyst do?",
+                      "explanation": "The figure is right and the reason is overreach. The tables show that applications fell, never why. The commentary goes back with the offending claim named, and the tables don’t change. Adding a source or a note still circulates a cause the analysis never established.",
+                      "correctIndex": 1
+                    },
+                    "order": 34
+                  },
+                  {
+                    "id": "cmupuax2t009yxpuklsoxcfmj",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Final thoughts",
+                      "level": 2
+                    },
+                    "order": 35
+                  },
+                  {
+                    "id": "cmupuax2t009zxpukfhe77qmm",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>We hope that this course has been useful! Before we leave, here are some final top tips to take away with you:</p>"
+                    },
+                    "order": 36
+                  },
+                  {
+                    "id": "cmupuax2t00a0xpuk4tued5ps",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ul><li><p><strong>Build it together.</strong> Map the job as a team before the agent inherits the differences.</p></li><li><p><strong>Test first.</strong> Dummy data and test folders until the agent has passed its tests.</p></li><li><p><strong>Start small and dull.</strong> One weekly, repetitive job, not the University’s largest challenge.</p></li><li><p><strong>Expect mistakes.</strong> Each failed test is a fix to the plan, and a cheap one.</p></li></ul><p></p>"
+                    },
+                    "order": 37
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cmupuaxee00a5xpukse7ez5wo",
+        "title": "Course conclusion and next steps",
+        "order": 8,
+        "lessons": [
+          {
+            "id": "cmupuaxha00a7xpuki9dgy4tl",
+            "title": "Course conclusion and next steps",
+            "order": 0,
+            "pages": [
+              {
+                "id": "cmupuaxk600a9xpuk0i42ic80",
+                "title": "Course conclusion and next steps",
+                "order": 0,
+                "completionRules": null,
+                "href": "content/page_8.html",
+                "blocks": [
+                  {
+                    "id": "cmupuaxn300aaxpukgn79onl9",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>The course looked at agents and workflows, the differences between them, and how to plan and build both. </p><p>Here's a quick reminder:</p>"
+                    },
+                    "order": 0
+                  },
+                  {
+                    "id": "cmupuaxn300acxpukyzayrf0k",
+                    "category": "content",
+                    "type": "table",
+                    "data": {
+                      "html": "<table><th><tr><th><p>Module</p></th><th><p>What it covered</p></th><th><p>The takeaway</p></th></tr></thead><tbody><tr><td><p>1. Prompt, agent, workflow</p></td><td><p>Three ways to run the same job, each with its own test</p></td><td><p>A job that needs explaining every time is a candidate for an agent</p></td></tr><tr><td><p>2. What an agent is made of</p></td><td><p>Instructions, skills, knowledge, and tools</p></td><td><p>Behaviour goes in the instructions, format goes in a skill</p></td></tr><tr><td><p>3. Plan the agent</p></td><td><p>The ten-field planning template, filled in for the NSS agent, and the four categories of use</p></td><td><p>Decide who checks it and who can use it before building</p></td></tr><tr><td><p>4. Build and test the agent</p></td><td><p>The harness, credits, and Copilot Studio field by field, on dummy data, against known answers</p></td><td><p>A failed test is grounding, instructions, or skills</p></td></tr><tr><td><p>5. Plan the workflow</p></td><td><p>Triggers, steps, dynamic content, the checker agent, and the human review</p></td><td><p>The person decides after the check and before the send</p></td></tr><tr><td><p>6. Build and test the workflow</p></td><td><p>Copilot Studio step by step, on test folders, with a test set for the workflow</p></td><td><p>Test what shouldn’t happen as well as what should</p></td></tr><tr><td><p>7. Good enough to use?</p></td><td><p>Confident error, omission and bias, overreach, and disclosure</p></td><td><p>Name the tool, the check, and who’s responsible</p></td></tr></tbody></table>"
+                    },
+                    "order": 1
+                  },
+                  {
+                    "id": "cmupuaxn300afxpukkd4yv2dg",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Take this with you",
+                      "level": 2
+                    },
+                    "order": 2
+                  },
+                  {
+                    "id": "cmupuaxn300agxpukf77iyldl",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>Two templates carry the course into real work:</p>"
+                    },
+                    "order": 3
+                  },
+                  {
+                    "id": "cmupuaxn300ahxpukk9tl7kix",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ul><li><strong>The Agent Planning Template</strong>, from Module 3. Ten fields in three blocks: write it down, build it, decide it. The build block follows Copilot Studio’s order, so a finished plan copies straight into the tool.</li><li><strong>The Workflow Planning Template</strong>, from Module 5. The trigger, the steps in order, which agent does which step, where the person decides, and where the output lands.</li></ul>"
+                    },
+                    "order": 4
+                  },
+                  {
+                    "id": "cmupuaxn300ajxpukgfy1cdri",
+                    "category": "content",
+                    "type": "heading",
+                    "data": {
+                      "text": "Can-do self-check",
+                      "level": 2
+                    },
+                    "order": 5
+                  },
+                  {
+                    "id": "cmupuaxn300akxpuke6hcw081",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>These are the four outcomes from the start of the course.</p>"
+                    },
+                    "order": 6
+                  },
+                  {
+                    "id": "cmupuaxn300alxpuk5eqrp6y1",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<ul><li>Tell the difference between a prompt, an agent, and a workflow.</li><li>Ground Copilot in my own documents and University context.</li><li>Plan and create a reusable agent, and a workflow, end to end for a real task.</li><li>Judge whether an output is reliable enough to use in higher-stakes work.</li></ul>"
+                    },
+                    "order": 7
+                  },
+                  {
+                    "id": "cmupuaxn300amxpuk3g750r1s",
+                    "category": "content",
+                    "type": "text",
+                    "data": {
+                      "text": "<p>For any you’re unsure of, go back to its modules: 1 and 2 for the first, 2 and 4 for the second, 3 to 6 for the third, and 7 for the fourth.</p>"
+                    },
+                    "order": 8
+                  },
+                  {
+                    "id": "cmuwinpmf001f101lvt031e2w",
+                    "category": "content",
+                    "type": "image",
+                    "data": {
+                      "alt": "Final tips",
+                      "url": "img_21.png",
+                      "caption": "Final tips."
+                    },
+                    "order": 9
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "assets": [
+    {
+      "zipPath": "content/files/NSS-2026-Free-Text-and-Scores.xlsx",
+      "kind": "file",
+      "filename": "NSS-2026-Free-Text-and-Scores.xlsx",
+      "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "size": 15134
+    },
+    {
+      "zipPath": "content/files/Agent-Planning-Template.docx",
+      "kind": "file",
+      "filename": "Agent-Planning-Template.docx",
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 13979
+    },
+    {
+      "zipPath": "content/files/Workflow-Planning-Template.docx",
+      "kind": "file",
+      "filename": "Workflow-Planning-Template.docx",
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 14408
+    },
+    {
+      "zipPath": "content/img_0.png",
+      "kind": "image",
+      "filename": "1791271510311-r1788ze-LL3Ed1o27P9YZOidF2vkcEQ26N5ep0.png",
+      "mimeType": "image/png",
+      "size": 747602
+    },
+    {
+      "zipPath": "content/img_1.png",
+      "kind": "image",
+      "filename": "1791271283982-n64fwy8-CbN18sY0fDT9U4qQvKyi1OUOFFaBc2.png",
+      "mimeType": "image/png",
+      "size": 620810
+    },
+    {
+      "zipPath": "content/img_2.png",
+      "kind": "image",
+      "filename": "1791271608597-cnq41ws-DYPYJRF0j27sMZVX4bchkHDQOLx5XI.png",
+      "mimeType": "image/png",
+      "size": 583762
+    },
+    {
+      "zipPath": "content/img_3.png",
+      "kind": "image",
+      "filename": "docx-1790876983452-32ogd15-qvpJo4HP550t3gddysdFK6namKx71U.png",
+      "mimeType": "image/png",
+      "size": 97606
+    },
+    {
+      "zipPath": "content/img_4.png",
+      "kind": "image",
+      "filename": "1791273489964-0k2j7a7-axJd9kgjl9hauEOXWw2LKE3pGauFEb.png",
+      "mimeType": "image/png",
+      "size": 1021262
+    },
+    {
+      "zipPath": "content/img_5.png",
+      "kind": "image",
+      "filename": "1791273843806-hpl3j64-QdX8CJsnvZ7q03JKYz9VAOkj6ScnQR.png",
+      "mimeType": "image/png",
+      "size": 1125397
+    },
+    {
+      "zipPath": "content/img_6.jpg",
+      "kind": "image",
+      "filename": "docx-1790876984246-78s5wt7-WuXSe4sFNMMguRTcHqnIsjTcwFuGSF.jpeg",
+      "mimeType": "image/jpeg",
+      "size": 381219
+    },
+    {
+      "zipPath": "content/img_7.png",
+      "kind": "image",
+      "filename": "1791273924676-o2ag50n-vo9xMOewmC3XlryPwtnX6St4PjQ5xD.png",
+      "mimeType": "image/png",
+      "size": 1091116
+    },
+    {
+      "zipPath": "content/img_8.png",
+      "kind": "image",
+      "filename": "1791274003869-dwk18tb-us2bPGGvVs2HGV1NsKtGknsr0SH4S0.png",
+      "mimeType": "image/png",
+      "size": 471667
+    },
+    {
+      "zipPath": "content/img_9.png",
+      "kind": "image",
+      "filename": "1791274254551-2yhtjs8-sGHSXpV4a6IHNqtMNaNcglBDku0vpf.png",
+      "mimeType": "image/png",
+      "size": 1294961
+    },
+    {
+      "zipPath": "content/img_10.png",
+      "kind": "image",
+      "filename": "1791274329982-8qbn8jb-JE93IinqIy01OI28LOlYLAPPEqGITN.png",
+      "mimeType": "image/png",
+      "size": 717880
+    },
+    {
+      "zipPath": "content/img_11.png",
+      "kind": "image",
+      "filename": "1791275380822-zo113q6-wblgTIxgddjWwSfdfS1qdwlPjoJucz.png",
+      "mimeType": "image/png",
+      "size": 1041391
+    },
+    {
+      "zipPath": "content/img_12.png",
+      "kind": "image",
+      "filename": "docx-1790876986540-tj9bizp-5HFLIEpw90QIMgh3PL7nh60yHF3TM9.png",
+      "mimeType": "image/png",
+      "size": 148984
+    },
+    {
+      "zipPath": "content/img_13.png",
+      "kind": "image",
+      "filename": "docx-1790876987028-667j59s-WrAihU2YSyYZg5UDEBkfqK3CG5e3jR.png",
+      "mimeType": "image/png",
+      "size": 115878
+    },
+    {
+      "zipPath": "content/img_14.png",
+      "kind": "image",
+      "filename": "1791275436781-ku29qmq-PWahbi0SD1dMe0h4rCxBbVNKSdrHra.png",
+      "mimeType": "image/png",
+      "size": 636685
+    },
+    {
+      "zipPath": "content/img_15.png",
+      "kind": "image",
+      "filename": "1791279497483-xj280vl-GsS2UEDurQIMrlYVCQIbyHLPC836d2.png",
+      "mimeType": "image/png",
+      "size": 1323507
+    },
+    {
+      "zipPath": "content/img_16.png",
+      "kind": "image",
+      "filename": "1791279607394-olvm4t9-MUnZubqC699Sx8hTmqRQwIXhhUXYLe.png",
+      "mimeType": "image/png",
+      "size": 1016126
+    },
+    {
+      "zipPath": "content/img_17.png",
+      "kind": "image",
+      "filename": "docx-1790876989155-2h75ca4-gFcoAdRVg4voxBUi4acYIxCLyk2J9m.png",
+      "mimeType": "image/png",
+      "size": 342570
+    },
+    {
+      "zipPath": "content/img_18.png",
+      "kind": "image",
+      "filename": "1791279569692-dmjs6vm-ty10m0qctU6UF5ZvsG2YQ45jLFwhIO.png",
+      "mimeType": "image/png",
+      "size": 992060
+    },
+    {
+      "zipPath": "content/img_19.png",
+      "kind": "image",
+      "filename": "docx-1790876989674-qxu1rmj-RsyFryWC6sR5mu29boZQbedhYWVlMN.png",
+      "mimeType": "image/png",
+      "size": 445222
+    },
+    {
+      "zipPath": "content/img_20.png",
+      "kind": "image",
+      "filename": "1791281288705-fzfgieh-ieqKzDftGI3o2AetxdkMVzor0IdIJu.png",
+      "mimeType": "image/png",
+      "size": 517242
+    },
+    {
+      "zipPath": "content/img_21.png",
+      "kind": "image",
+      "filename": "1791281313941-pstm82s-qRW27KaicS6tHOHuFfP1fPZaLGMm3d.png",
+      "mimeType": "image/png",
+      "size": 1119660
+    }
+  ]
+}
