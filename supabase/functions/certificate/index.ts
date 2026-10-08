@@ -202,7 +202,7 @@ Deno.serve(async (req) => {
     return json({ error: 'Enter your name as you want it on the certificate (2 to 80 characters).' }, 400);
   }
 
-  // cert_code comes from the database sequence (WS-0001, WS-0002, ...).
+  // cert_code comes from the database sequence (WS-20001, WS-20002, ...).
   let inserted: CertificateRow | null = null;
   const { data, error } = await admin
     .from('certificates')
