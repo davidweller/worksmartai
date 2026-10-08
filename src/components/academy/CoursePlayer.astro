@@ -358,6 +358,40 @@ const { courseId = '' } = Astro.props;
     });
   };
 
+  // The last course page leaves the right-hand slot of its .page-nav empty. Fill it with a
+  // Finish link that drives the bottom-bar button, so wide screens see it where reading ends.
+  const syncInlineFinish = () => {
+    if (!finishButton) return;
+    let doc: Document | null = null;
+    try {
+      doc = iframe.contentDocument;
+    } catch {
+      return;
+    }
+    if (!doc) return;
+    const existing = doc.getElementById('academy-inline-finish');
+    if (finishButton.hidden) {
+      existing?.remove();
+      return;
+    }
+    const label = hasCertificate ? 'View certificate ✓' : 'Finish course ✓';
+    if (existing) {
+      existing.textContent = label;
+      return;
+    }
+    const slot = doc.querySelector('.page-nav > div:last-child');
+    if (!slot || slot.childElementCount > 0) return;
+    const link = doc.createElement('a');
+    link.id = 'academy-inline-finish';
+    link.href = '#';
+    link.textContent = label;
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      finishButton.click();
+    });
+    slot.appendChild(link);
+  };
+
   const updateButtons = () => {
     const isFirstPage = currentPageIndex === 0;
     const isLastPage = currentPageIndex >= totalPages - 1;
@@ -368,6 +402,7 @@ const { courseId = '' } = Astro.props;
       finishButton.hidden = !isLastPage || !contentPath;
       finishButton.firstChild!.textContent = hasCertificate ? 'View certificate ' : 'Finish course ';
     }
+    syncInlineFinish();
   };
 
   const updateUI = () => {
@@ -440,6 +475,7 @@ const { courseId = '' } = Astro.props;
 
   iframe.addEventListener('load', () => {
     syncCurrentPageFromIframe();
+    syncInlineFinish();
   });
 
   mobileMenuButton?.addEventListener('click', () => {
