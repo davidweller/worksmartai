@@ -37,7 +37,10 @@ const CERT_BUCKET = 'certificates';
 const LINK_SECONDS = 60 * 60;
 
 function certificateFileName(cert: CertificateRow): string {
-  const name = `${cert.course_title} - ${cert.learner_name}`.replace(/[\\/:*?"<>|]+/g, '').replace(/\s+/g, ' ').trim();
+  const name = `${cert.course_title} - ${cert.learner_name}`
+    .replace(/[\\/:*?"<>|]+/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
   return `${name || 'Certificate'}.pdf`;
 }
 

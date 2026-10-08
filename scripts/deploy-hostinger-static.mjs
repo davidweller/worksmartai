@@ -161,7 +161,9 @@ async function verifyLiveStamp(domain) {
   // The deploy only counts once the live site serves that exact stamp.
   const stampPath = path.join(root, 'dist', 'deploy-stamp.txt');
   if (!existsSync(stampPath)) {
-    throw new Error('dist/deploy-stamp.txt missing — rebuild via prepare-hostinger-static-archive.mjs before deploying.');
+    throw new Error(
+      'dist/deploy-stamp.txt missing — rebuild via prepare-hostinger-static-archive.mjs before deploying.'
+    );
   }
   const expected = readFileSync(stampPath, 'utf8').trim();
   const deadline = Date.now() + 5 * 60 * 1000;

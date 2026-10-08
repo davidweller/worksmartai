@@ -63,6 +63,9 @@ export default [
       '.netlify',
       // Archived reference copies (e.g. legacy WP theme JS) — not project source
       'reference/**',
+      // Gitignored server snapshots and exported SCORM player code
+      '.server-backup-*/**',
+      'public/courses/**',
     ],
   },
 ];

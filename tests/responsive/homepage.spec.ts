@@ -33,7 +33,7 @@ test.describe('homepage responsive layout', () => {
       await expect(schoolsDoor).toBeVisible();
       await expect(schoolsDoor).toHaveAttribute('href', '/schools/');
 
-      await expect(page.getByRole('heading', { name: /A structured approach, not a one-off workshop/i })).toBeVisible();
+      await expect(page.getByRole('heading', { name: /Specialists in supporting those in education to achieve/i })).toBeVisible();
       await expect(page.getByRole('heading', { name: /Choose your sector/i })).toBeVisible();
       await expect(page.getByRole('heading', { name: /Not sure where your staff are starting from/i })).toBeVisible();
 
