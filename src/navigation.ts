@@ -111,6 +111,7 @@ export const footerColumns: FooterColumn[] = [
 export const footerLegalLinks: FooterLink[] = [
   { text: 'Privacy Policy', href: '/privacy-policy/' },
   { text: 'Cookie Policy', href: '/cookie-policy/' },
+  { text: 'Cookie Settings', href: '#cookie-settings' },
   { text: 'Terms of Service', href: '/terms-of-service/' },
   { text: 'Accessibility Statement', href: '/accessibility-statement/' },
   { text: 'Modern Slavery', href: '/modern-slavery/' },

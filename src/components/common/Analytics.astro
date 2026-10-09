@@ -1,13 +1,42 @@
 ---
-import { GoogleAnalytics } from '@astrolib/analytics';
 import { ANALYTICS } from 'astrowind:config';
+
+const id = ANALYTICS?.vendors?.googleAnalytics?.id ? String(ANALYTICS.vendors.googleAnalytics.id) : null;
 ---
 
-{
-  ANALYTICS?.vendors?.googleAnalytics?.id ? (
-    <GoogleAnalytics
-      id={String(ANALYTICS.vendors.googleAnalytics.id)}
-      partytown={ANALYTICS?.vendors?.googleAnalytics?.partytown}
-    />
-  ) : null
-}
+<script is:inline define:vars={{ id }}>
+  if (id) {
+    // Google tag (gtag.js) with Consent Mode v2. Nothing loads from Google until the visitor
+    // accepts in CookieBanner.astro, which stores the choice under 'ws-cookie-consent'.
+    window.dataLayer = window.dataLayer || [];
+    // gtag.js needs the real arguments object, not an array.
+    window.gtag = function () {
+      // eslint-disable-next-line prefer-rest-params
+      window.dataLayer.push(arguments);
+    };
+    window.gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+    });
+
+    window.wsLoadAnalytics = function () {
+      window.gtag('consent', 'update', { analytics_storage: 'granted' });
+      if (window.wsAnalyticsLoaded) return;
+      window.wsAnalyticsLoaded = true;
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+      document.head.appendChild(s);
+      window.gtag('js', new Date());
+      window.gtag('config', id);
+    };
+
+    try {
+      if (localStorage.getItem('ws-cookie-consent') === 'granted') window.wsLoadAnalytics();
+    } catch {
+      // Storage blocked: stay denied.
+    }
+  }
+</script>

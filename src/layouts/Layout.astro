@@ -14,6 +14,7 @@ import Metadata from '~/components/common/Metadata.astro';
 import SiteVerification from '~/components/common/SiteVerification.astro';
 import Analytics from '~/components/common/Analytics.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
+import CookieBanner from '~/components/common/CookieBanner.astro';
 
 // View Transitions disabled: use normal full-page navigations (consistent with typical static pages).
 // import { ClientRouter } from 'astro:transitions';
@@ -45,6 +46,7 @@ const { language, textDirection } = I18N;
   <body class="antialiased font-sans text-default bg-page tracking-tight">
     <slot />
 
+    <CookieBanner />
     <BasicScripts />
   </body>
 </html>

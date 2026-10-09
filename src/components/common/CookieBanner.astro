@@ -1,0 +1,113 @@
+---
+import { ANALYTICS } from 'astrowind:config';
+
+const enabled = Boolean(ANALYTICS?.vendors?.googleAnalytics?.id);
+---
+
+{
+  enabled && (
+    <div
+      id="cookie-banner"
+      role="dialog"
+      aria-live="polite"
+      aria-label="Cookie preferences"
+      class="fixed inset-x-0 bottom-0 z-[60] border-t border-white/10 bg-[#012B42] px-4 py-4 text-white shadow-lg sm:px-6"
+      hidden
+    >
+      <div class="mx-auto flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <p class="font-sans text-sm text-white/80">
+          We'd like to use Google Analytics cookies to see how people use this site. They're off unless you accept. See
+          our{' '}
+          <a href="/cookie-policy/" class="underline hover:text-white">
+            Cookie Policy
+          </a>
+          .
+        </p>
+        <div class="flex shrink-0 gap-3">
+          <button
+            type="button"
+            data-cookie-choice="denied"
+            class="rounded-md border border-white/40 px-4 py-2 font-sans text-sm font-medium text-white hover:bg-white/10"
+          >
+            Reject
+          </button>
+          <button
+            type="button"
+            data-cookie-choice="granted"
+            class="rounded-md border border-white/40 px-4 py-2 font-sans text-sm font-medium text-white hover:bg-white/10"
+          >
+            Accept
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+<script is:inline>
+  (function () {
+    const banner = document.getElementById('cookie-banner');
+    if (!banner) return;
+    const KEY = 'ws-cookie-consent';
+
+    function stored() {
+      try {
+        return localStorage.getItem(KEY);
+      } catch {
+        return null;
+      }
+    }
+
+    function clearGaCookies() {
+      const host = location.hostname.replace(/^www\./, '');
+      document.cookie.split(';').forEach(function (c) {
+        const name = c.split('=')[0].trim();
+        if (name === '_ga' || name.indexOf('_ga_') === 0) {
+          ['', '; domain=' + host, '; domain=.' + host].forEach(function (d) {
+            document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + d;
+          });
+        }
+      });
+    }
+
+    function choose(value) {
+      try {
+        localStorage.setItem(KEY, value);
+      } catch {
+        // Storage blocked: the choice lasts for this page only.
+      }
+      if (value === 'granted') {
+        if (window.wsLoadAnalytics) window.wsLoadAnalytics();
+      } else {
+        if (window.gtag) window.gtag('consent', 'update', { analytics_storage: 'denied' });
+        clearGaCookies();
+      }
+      banner.hidden = true;
+    }
+
+    banner.querySelectorAll('[data-cookie-choice]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        choose(btn.getAttribute('data-cookie-choice'));
+      });
+    });
+
+    // Footer "Cookie Settings" links point at #cookie-settings to reopen the banner.
+    function openFromHash() {
+      if (location.hash === '#cookie-settings') {
+        banner.hidden = false;
+        history.replaceState(null, '', location.pathname + location.search);
+      }
+    }
+    window.addEventListener('hashchange', openFromHash);
+    document.addEventListener('click', function (e) {
+      const link = e.target.closest && e.target.closest('a[href="#cookie-settings"]');
+      if (link) {
+        e.preventDefault();
+        banner.hidden = false;
+      }
+    });
+
+    if (!stored()) banner.hidden = false;
+    openFromHash();
+  })();
+</script>
