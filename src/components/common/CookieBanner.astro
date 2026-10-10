@@ -15,14 +15,16 @@ const enabled = Boolean(ANALYTICS?.vendors?.googleAnalytics?.id);
       hidden
     >
       <div class="mx-auto flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <p class="font-sans text-sm text-white/80">
-          We'd like to use Google Analytics cookies to see how people use this site. They're off unless you accept. See
-          our{' '}
-          <a href="/cookie-policy/" class="underline hover:text-white">
-            Cookie Policy
-          </a>
-          .
-        </p>
+        <div class="font-sans text-sm text-white/80">
+          <p class="font-medium text-white">Can we use analytics cookies?</p>
+          <p class="mt-1">
+            We'd like to use Google Analytics to see which pages people visit, so we can improve the site. Google sets
+            these cookies and receives the data. Nothing is set unless you accept.{' '}
+            <a href="/cookie-policy/" class="underline hover:text-white">
+              Cookie Policy
+            </a>
+          </p>
+        </div>
         <div class="flex shrink-0 gap-3">
           <button
             type="button"
