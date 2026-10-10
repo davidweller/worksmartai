@@ -11,7 +11,9 @@ concurrency:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    # Self-hosted runner on David's desktop (user unit actions-runner-worksmart), which
+    # costs no Actions minutes; deploys queue while it's off.
+    runs-on: [self-hosted, linux, worksmart]
     steps:
       - uses: actions/checkout@v4
 
