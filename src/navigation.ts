@@ -42,11 +42,11 @@ const resourceLinks: NavLink[] = [
   { text: 'Copilot Glossary', href: '/copilot-glossary/' },
 ];
 
-const schoolsLinks: NavLink[] = [
-  { text: 'What staff gain', href: '/schools/#outcomes' },
-  { text: 'Trust and safety', href: '/schools/#trust-safety' },
-  { text: 'Packages', href: '/schools/#packages' },
-  { text: 'Contact', href: '/contact-us/' },
+const audienceLinks: NavLink[] = [
+  { text: 'Universities', href: '/higher-education/' },
+  { text: 'Colleges', href: '/colleges/' },
+  { text: 'Schools', href: '/schools/' },
+  { text: 'Businesses', href: '/business/' },
 ];
 
 export const headerData: {
@@ -54,16 +54,9 @@ export const headerData: {
   actions: CallToAction[];
 } = {
   links: [
-    { text: 'Home', href: '/' },
     {
-      text: 'Universities',
-      href: '/higher-education/',
-      links: universitiesLinks,
-    },
-    {
-      text: 'Schools',
-      href: '/schools/',
-      links: schoolsLinks,
+      text: 'Who we work with',
+      links: audienceLinks,
     },
     {
       text: 'Resources',
@@ -78,17 +71,12 @@ export const headerData: {
 
 export const footerColumns: FooterColumn[] = [
   {
-    title: 'Universities',
-    links: universitiesLinks,
+    title: 'Who we work with',
+    links: [...audienceLinks, { text: 'Schools packages', href: '/schools/#packages' }],
   },
   {
-    title: 'Schools',
-    links: [
-      { text: 'Schools overview', href: '/schools/' },
-      { text: 'Packages', href: '/schools/#packages' },
-      { text: 'Trust and safety', href: '/schools/#trust-safety' },
-      { text: 'Book a call', href: '/contact-us/' },
-    ],
+    title: 'Universities',
+    links: universitiesLinks,
   },
   {
     title: 'Resources',

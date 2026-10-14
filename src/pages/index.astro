@@ -5,7 +5,7 @@ import { Icon } from 'astro-icon/components';
 const metadata = {
   title: 'AI capability for education | WorkSmart-AI',
   description:
-    'Practical AI capability for universities and schools. Confident staff, clear guardrails, and real outcomes - built by people who have worked inside education.',
+    'Practical AI capability for universities, colleges, schools and organisations. Confident staff, clear guardrails, and real outcomes - built by people who have worked inside education.',
   canonical: '/',
 };
 
@@ -32,15 +32,26 @@ const frameworks = [
   },
 ];
 
+const primaryDoor = {
+  title: 'Universities',
+  description:
+    'Staff training, student programmes, your own AI course, leadership consulting and academic coaching for universities.',
+  href: '/higher-education/',
+  icon: 'tabler:building-bank',
+  sector: 'he',
+  cta: 'Explore Universities',
+};
+
 const sectorDoors = [
   {
-    title: 'Universities',
+    title: 'Colleges',
     description:
-      'Capability programmes, student work-ready programmes, and leadership advisory for universities and colleges.',
-    href: '/higher-education/',
-    icon: 'tabler:building-bank',
-    sector: 'he',
-    cta: 'Explore Universities',
+      'Practical AI training for teaching staff, support staff and leaders, and AI skills for your learners.',
+    href: '/colleges/',
+    icon: 'tabler:building-community',
+    sector: 'fe',
+    cta: 'Explore Colleges',
+    isNew: true,
   },
   {
     title: 'Schools and trusts',
@@ -49,6 +60,15 @@ const sectorDoors = [
     icon: 'tabler:school',
     sector: 'schools',
     cta: 'Explore Schools',
+  },
+  {
+    title: 'Businesses',
+    description: 'AI skills for companies, councils and public bodies, and for local employer skills programmes.',
+    href: '/business/',
+    icon: 'tabler:briefcase',
+    sector: 'business',
+    cta: 'Explore Businesses',
+    isNew: true,
   },
 ];
 ---
@@ -73,6 +93,14 @@ const sectorDoors = [
               data-track-sector="he"
             >
               For Universities
+            </a>
+            <a
+              href="/colleges/"
+              class="inline-flex items-center justify-center rounded-full border-2 border-white/70 px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-white"
+              data-track="sector_door_click"
+              data-track-sector="fe"
+            >
+              For Colleges
             </a>
             <a
               href="/schools/"
@@ -125,7 +153,25 @@ const sectorDoors = [
       <h2 id="sector-doors-heading" class="text-center font-heading text-3xl font-bold text-[#015887] md:text-4xl">
         Choose your sector
       </h2>
-      <div class="mt-10 grid gap-8 md:grid-cols-2">
+      <a
+        href={primaryDoor.href}
+        class="group mt-10 block rounded-2xl border border-gray-200 border-t-[6px] border-t-[#015887] bg-white p-8 transition hover:shadow-lg md:p-10"
+        data-track="sector_door_click"
+        data-track-sector={primaryDoor.sector}
+      >
+        <span class="flex h-12 w-12 items-center justify-center rounded-lg bg-[#86BFE2]/20 text-[#015887]">
+          <Icon name={primaryDoor.icon} class="h-6 w-6" aria-hidden="true" />
+        </span>
+        <h3 class="mt-5 font-heading text-3xl font-bold text-[#015887]">{primaryDoor.title}</h3>
+        <p class="mt-3 max-w-3xl font-sans text-lg leading-[1.65] text-gray-700">{primaryDoor.description}</p>
+        <span
+          class="mt-5 inline-flex items-center font-heading text-sm font-semibold text-[#FF7700] group-hover:underline"
+        >
+          {primaryDoor.cta}{' '}
+          <span class="ml-1 transition-transform group-hover:translate-x-1" aria-hidden="true"> &rarr; </span>
+        </span>
+      </a>
+      <div class="mt-8 grid gap-8 md:grid-cols-3">
         {
           sectorDoors.map((door) => (
             <a
@@ -134,9 +180,16 @@ const sectorDoors = [
               data-track="sector_door_click"
               data-track-sector={door.sector}
             >
-              <span class="flex h-12 w-12 items-center justify-center rounded-lg bg-[#86BFE2]/20 text-[#015887]">
-                <Icon name={door.icon} class="h-6 w-6" aria-hidden="true" />
-              </span>
+              <div class="flex items-start justify-between gap-4">
+                <span class="flex h-12 w-12 items-center justify-center rounded-lg bg-[#86BFE2]/20 text-[#015887]">
+                  <Icon name={door.icon} class="h-6 w-6" aria-hidden="true" />
+                </span>
+                {door.isNew && (
+                  <span class="rounded-full bg-[#FF7700] px-3 py-1 font-heading text-[11px] font-bold uppercase tracking-wider text-white">
+                    New
+                  </span>
+                )}
+              </div>
               <h3 class="mt-5 font-heading text-2xl font-bold text-[#015887]">{door.title}</h3>
               <p class="mt-3 font-sans leading-[1.65] text-gray-700">{door.description}</p>
               <span class="mt-5 inline-flex items-center font-heading text-sm font-semibold text-[#FF7700] group-hover:underline">
@@ -208,8 +261,8 @@ const sectorDoors = [
         Not sure where your staff are starting from?
       </h2>
       <p class="mx-auto mt-4 max-w-2xl font-sans text-lg leading-[1.7] text-gray-700">
-        That is exactly what we help you find out. Whether you are a university or a school, the first step is a short
-        conversation.
+        That is exactly what we help you find out. Whether you are a university, college, school or organisation, the
+        first step is a short conversation.
       </p>
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <a
@@ -222,7 +275,7 @@ const sectorDoors = [
           href="/contact-us/"
           class="inline-flex items-center justify-center rounded-full border-2 border-[#015887] px-7 py-3 font-heading text-sm font-bold text-[#015887] transition hover:-translate-y-0.5 hover:bg-[#015887] hover:text-white"
         >
-          Schools: book a 20-minute call
+          Colleges, schools and organisations: book a 20-minute call
         </a>
       </div>
     </div>
