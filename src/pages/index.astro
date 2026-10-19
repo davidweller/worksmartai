@@ -150,8 +150,20 @@ const evidence = [EVIDENCE.employerTraining, EVIDENCE.unapprovedTools, EVIDENCE.
     </div>
   </section>
 
-  <!-- 4. Problem and outcomes -->
+  <!-- 4. Services -->
   <section class="bg-white px-6 py-16 sm:px-8 lg:px-12" no-intersect>
+    <div class="mx-auto max-w-6xl">
+      <SectionHeader
+        eyebrow="What we offer"
+        title="Training, coaching and consultancy"
+        subtitle="We publish topics and formats, then build each engagement around you."
+      />
+      <ServiceCards />
+    </div>
+  </section>
+
+  <!-- 5. Problem and outcomes -->
+  <section class="bg-[#F8F8F8] px-6 py-16 sm:px-8 lg:px-12" no-intersect>
     <div class="mx-auto max-w-6xl">
       <SectionHeader
         eyebrow="Why it matters"
@@ -162,7 +174,7 @@ const evidence = [EVIDENCE.employerTraining, EVIDENCE.unapprovedTools, EVIDENCE.
       <ul class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {
           HEADLINE_OUTCOMES.map((o) => (
-            <li class="flex items-center gap-3 rounded-xl bg-[#F8F8F8] p-5 font-heading font-bold text-[#015887]">
+            <li class="flex items-center gap-3 rounded-xl bg-white p-5 shadow-card font-heading font-bold text-[#015887]">
               <Icon name={o.icon} class="h-7 w-7 shrink-0 text-[#FF7700]" aria-hidden="true" />
               {o.title}
             </li>
@@ -172,8 +184,8 @@ const evidence = [EVIDENCE.employerTraining, EVIDENCE.unapprovedTools, EVIDENCE.
     </div>
   </section>
 
-  <!-- 5. Three pillars -->
-  <section class="bg-[#F8F8F8] px-6 py-16 sm:px-8 lg:px-12" no-intersect>
+  <!-- 6. Three pillars -->
+  <section class="bg-white px-6 py-16 sm:px-8 lg:px-12" no-intersect>
     <div class="mx-auto max-w-6xl">
       <SectionHeader
         eyebrow="How we get there"
@@ -197,8 +209,8 @@ const evidence = [EVIDENCE.employerTraining, EVIDENCE.unapprovedTools, EVIDENCE.
     </div>
   </section>
 
-  <!-- 6. Why us -->
-  <section class="bg-white px-6 py-16 sm:px-8 lg:px-12" no-intersect>
+  <!-- 7. Why us -->
+  <section class="bg-[#F8F8F8] px-6 py-16 sm:px-8 lg:px-12" no-intersect>
     <div class="mx-auto max-w-6xl">
       <SectionHeader eyebrow="Why WorkSmart-AI" title="Education specialists, not tool demos" />
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -217,8 +229,8 @@ const evidence = [EVIDENCE.employerTraining, EVIDENCE.unapprovedTools, EVIDENCE.
     </div>
   </section>
 
-  <!-- 7. AI Use Hierarchy -->
-  <section class="bg-[#F8F8F8] px-6 py-16 sm:px-8 lg:px-12" no-intersect>
+  <!-- 8. AI Use Hierarchy -->
+  <section class="bg-white px-6 py-16 sm:px-8 lg:px-12" no-intersect>
     <div class="mx-auto max-w-6xl">
       <SectionHeader
         eyebrow="A structured path"
@@ -226,18 +238,6 @@ const evidence = [EVIDENCE.employerTraining, EVIDENCE.unapprovedTools, EVIDENCE.
         subtitle="Five levels, from first use to institutional capability. Every course, workshop and AI Capability Check is mapped against it, so staff and leaders see where they are and what comes next."
       />
       <HierarchyLadder />
-    </div>
-  </section>
-
-  <!-- 8. Services -->
-  <section class="bg-white px-6 py-16 sm:px-8 lg:px-12" no-intersect>
-    <div class="mx-auto max-w-6xl">
-      <SectionHeader
-        eyebrow="What we offer"
-        title="Training, coaching and consultancy"
-        subtitle="We publish topics and formats, then build each engagement around you."
-      />
-      <ServiceCards />
     </div>
   </section>
 
