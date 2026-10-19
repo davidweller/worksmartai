@@ -1,11 +1,13 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import { Icon } from 'astro-icon/components';
+import HierarchyLadder from '~/components/brand/HierarchyLadder.astro';
+import { BOOKING_URL } from '~/data/brand/ctas';
 
 const metadata = {
-  title: 'AI Capability Check for higher education teams - WorkSmart-AI',
+  title: 'Free AI Capability Check | WorkSmart-AI',
   description:
-    'A free 45-minute AI Capability Check for UK higher education teams. We map where your team is today, where the realistic next steps are, and what credible progress looks like over the next twelve months.',
+    'A free, no-obligation 30-minute AI Capability Check. We place your team on the AI Use Hierarchy and give you two or three prioritised next steps in a written report you keep.',
   canonical: '/health-check/',
   openGraph: {
     images: [{ url: '/images/health-check-og.png' }],
@@ -16,15 +18,15 @@ const metadata = {
 const faqs = [
   {
     q: 'Is the Capability Check really free?',
-    a: 'Yes. There is no fee, no commitment, and no requirement to do anything further. It exists because the most useful conversations we have with potential clients tend to start from a shared understanding of where their team actually is, and the Capability Check is the most efficient way to build that.',
+    a: 'Yes. There is no fee, no commitment, and no requirement to do anything further. It exists because the most useful conversations we have tend to start from a shared understanding of where their team actually is, and the Capability Check is the most efficient way to build that.',
   },
   {
     q: 'Who will I be speaking to?',
-    a: 'You will speak with one of the WorkSmart-AI founders, both of whom previously held Digital Skills Lead roles at a UK university before starting the business. You will not be passed to a junior account manager.',
+    a: 'You will speak with one of the WorkSmart-AI founders, both of whom previously held Digital Skills Lead roles at the University of Exeter before starting the business. You will not be passed to a junior account manager.',
   },
   {
     q: 'What information do you need before the call?',
-    a: 'Very little. The booking form asks for your name, institution, role, the team or department the Capability Check is for, and rough team size. We do not ask for confidential information, and you do not need to send documents in advance.',
+    a: 'Very little. The booking form asks for your name, organisation, role, the team or department the Capability Check is for, and rough team size. We do not ask for confidential information, and you do not need to send documents in advance.',
   },
   {
     q: 'Can I bring colleagues?',
@@ -39,8 +41,8 @@ const faqs = [
     a: 'Most teams are at a very early stage. Honestly, that is the median position in higher education right now, and there is no judgement attached to it. The Capability Check is more useful, not less, the earlier you are.',
   },
   {
-    q: 'Is this only for UK universities?',
-    a: 'We work primarily with UK higher education institutions. We will run a Capability Check for further education colleges and other education settings on request, but the framework and benchmarks are most precisely calibrated for UK HE.',
+    q: 'Is this only for universities?',
+    a: 'No. We run Capability Checks for universities, colleges, schools and trusts, businesses and public sector organisations. Higher education is our home sector, and the AI Use Hierarchy works the same way wherever your team sits.',
   },
 ];
 
@@ -48,17 +50,17 @@ const steps = [
   {
     icon: 'tabler:calendar-event',
     title: 'Book a slot',
-    body: 'Get in touch to tell us a little about your team and pick a 45-minute window that suits you. We will send a short note in advance explaining the kinds of questions we will cover, so you can think about what you want to bring to the conversation.',
+    body: 'Choose a 30-minute slot that suits you on our booking page and tell us a little about your team. We will send a short note in advance explaining the kinds of questions we will cover, so you can think about what you want to bring to the conversation.',
   },
   {
     icon: 'tabler:messages',
     title: 'The conversation',
-    body: 'A 45-minute call over Teams or Zoom. No slides, no sales pitch, no homework. We ask, you talk, we listen and probe where it helps. The agenda is shaped around your team and what would be most useful for you to leave with.',
+    body: 'A 30-minute call over Teams or Zoom. No slides, no sales pitch, no homework. We ask, you talk, we listen and probe where it helps. The agenda is shaped around your team and what would be most useful for you to leave with.',
   },
   {
     icon: 'tabler:mail-forward',
     title: 'Your written summary',
-    body: 'Within three working days you receive a written Capability Check summary by email. It is yours to share, file, ignore, or act on, as you see fit. If you want a follow-up conversation to talk through it, we are happy to. If you do not, that is genuinely fine.',
+    body: 'Afterwards you receive a written Capability Check report by email. It is yours to share, file, ignore, or act on, as you see fit. If you want a follow-up conversation to talk through it, we are happy to. If you do not, that is genuinely fine.',
   },
 ];
 
@@ -72,11 +74,6 @@ const deliverables = [
     icon: 'tabler:list-check',
     title: 'A prioritised set of next moves',
     body: "Two or three specific, achievable steps that would meaningfully shift your team's capability in the next quarter, sequenced sensibly so foundations come before sophistication.",
-  },
-  {
-    icon: 'tabler:telescope',
-    title: 'A twelve-month outlook',
-    body: 'A short narrative on what credible progress looks like for a team like yours over the next year, including which staff groups would benefit from what kind of support, and where the obvious quick wins sit alongside the deeper capability shifts.',
   },
 ];
 ---
@@ -116,15 +113,15 @@ const deliverables = [
         Where does your team <br />really sit with AI?
       </h1>
       <p class="mx-auto mt-6 max-w-2xl text-lg leading-[var(--aw-leading-body,1.7)] text-white/90">
-        A free AI Capability Check for higher education teams, departments, and faculties. We map where your team is
-        today, where the realistic next steps are, and what credible progress looks like over the next twelve months.
+        A free, no-obligation AI Capability Check for any team, department or organisation. We place your team on the AI
+        Use Hierarchy and give you two or three prioritised next steps, in a written report you keep.
       </p>
       <div class="mt-8">
         <a
-          href="/contact-us/"
+          href={BOOKING_URL}
           class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-accent bg-accent px-7 py-3.5 font-heading font-semibold text-white shadow-lg shadow-accent/25 transition hover:-translate-y-0.5 hover:border-accent-hover hover:bg-accent-hover focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand"
         >
-          <Icon name="tabler:stethoscope" class="h-5 w-5 shrink-0" aria-hidden="true" />
+          <Icon name="tabler:calendar-event" class="h-5 w-5 shrink-0" aria-hidden="true" />
           Book your free AI Capability Check
         </a>
       </div>
@@ -132,9 +129,9 @@ const deliverables = [
         <Icon name="tabler:shield-check" class="h-4 w-4 text-accent" aria-hidden="true" />
         <span>No prep required.</span>
         <span class="opacity-50">&middot;</span>
-        <span>45 minutes.</span>
+        <span>30 minutes.</span>
         <span class="opacity-50">&middot;</span>
-        <span>A written summary in your inbox afterwards.</span>
+        <span>A written report you keep.</span>
       </p>
     </div>
   </section>
@@ -149,19 +146,26 @@ const deliverables = [
       </h2>
       <p class="mt-6 text-base leading-[var(--aw-leading-body,1.7)] text-default">
         The Capability Check is a focused, free diagnostic for a specific team, department, or faculty. It is built
-        around the WorkSmart-AI Use Hierarchy, a six-level framework that describes how individual staff progress in
-        their AI capability, from first conversations with a chatbot through to designing automated workflows.
+        around the AI Use Hierarchy, a five-level framework that describes how staff progress in their AI capability,
+        from first conversations with an AI assistant through to connecting AI into institutional systems.
       </p>
       <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-default">
         You do not need to prepare anything. You do not need to have your team complete a survey beforehand (although we
-        can run one if you want a more detailed snapshot). What you do need is around 45 minutes with someone who knows
-        the team well enough to answer questions about how staff currently work, what tools are in use, where the
-        friction is, and what would constitute a meaningful win in the next six to twelve months.
+        can run one if you want a more detailed snapshot). What you do need is 30 minutes with someone who knows the
+        team well enough to answer questions about how staff currently work, what tools are in use, where the friction
+        is, and what would count as a meaningful win.
       </p>
       <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-default">
-        From that conversation, we produce a written summary that you can share with colleagues, take to your senior
+        From that conversation, we produce a written report that you can share with colleagues, take to your senior
         team, or use to inform your own planning. It is yours to keep, whether or not you ever speak to us again.
       </p>
+    </div>
+  </section>
+
+  <section class="bg-section px-6 pb-4 pt-20 sm:px-8 lg:px-12" aria-label="The AI Use Hierarchy">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="mb-10 text-center font-heading text-3xl font-bold text-heading sm:text-4xl">The AI Use Hierarchy</h2>
+      <HierarchyLadder />
     </div>
   </section>
 
@@ -173,11 +177,11 @@ const deliverables = [
       <div class="mx-auto max-w-3xl text-center" data-aos="fade-up">
         <h2 id="what-you-get-heading" class="font-heading text-3xl font-bold text-heading sm:text-4xl">What you get</h2>
         <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-muted">
-          Every AI Capability Check produces three things.
+          Every AI Capability Check produces two things.
         </p>
       </div>
 
-      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-2">
         {
           deliverables.map((card, i) => (
             <article
@@ -199,7 +203,7 @@ const deliverables = [
         class="mx-auto mt-10 max-w-3xl text-center text-base leading-[var(--aw-leading-body,1.7)] text-muted"
         data-aos="fade-up"
       >
-        The summary is written in plain English, free of jargon, and designed to be useful even if AI is not your
+        The report is written in plain English, free of jargon, and designed to be useful even if AI is not your
         specialist area.
       </p>
     </div>
@@ -212,10 +216,10 @@ const deliverables = [
     <div class="mx-auto max-w-3xl" data-aos="fade-up">
       <h2 id="who-for-heading" class="font-heading text-3xl font-bold text-heading sm:text-4xl">Who it is for</h2>
       <p class="mt-6 text-base leading-[var(--aw-leading-body,1.7)] text-default">
-        The AI Capability Check is most useful if you lead, manage, or have oversight of a team in a UK higher education
-        institution. That includes heads of department, faculty deans, professional services managers, programme
-        directors, research group leads, and anyone in HR, L&amp;D, or digital roles thinking about staff capability at
-        team level rather than across the whole institution.
+        The AI Capability Check is for anyone who leads, manages, or has oversight of a team: in a university, college,
+        school or trust, business or public body. That includes heads of department, deans, headteachers, professional
+        services managers, research group leads, and anyone in HR, L&amp;D, or digital roles thinking about staff
+        capability.
       </p>
       <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-default">
         It is particularly useful if you are facing a budget conversation, a strategy refresh, an audit, or a senior
@@ -223,9 +227,10 @@ const deliverables = [
         evidence rather than impressions.
       </p>
       <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-default">
-        It is not the right tool if you are looking for an individual self-assessment (our free AI Staff Readiness Quiz
-        is the better starting point for that) or if you are looking for an institution-wide strategic review (in which
-        case our AI Leadership Clarity Programme is the more appropriate engagement).
+        If you are a senior leader looking for ongoing support with strategy, policy and a phased adoption roadmap,
+        <a href="/services/adoption-coaching/" class="font-semibold text-link underline underline-offset-2"
+          >Adoption coaching</a
+        > is the better fit, and a Capability Check is a good way to start that conversation.
       </p>
     </div>
   </section>
@@ -238,7 +243,7 @@ const deliverables = [
       <div class="mx-auto max-w-3xl text-center" data-aos="fade-up">
         <h2 id="how-it-works-heading" class="font-heading text-3xl font-bold text-heading sm:text-4xl">How it works</h2>
         <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-muted">
-          Three steps, and the whole process takes about a week from booking to receiving your summary.
+          Three steps, from booking to a written report.
         </p>
       </div>
 
@@ -279,11 +284,17 @@ const deliverables = [
         conversation.
       </p>
       <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-default">
-        Where teams do want to take next steps with us, the most common routes are a single targeted workshop (for
-        example, AI Foundations and Responsible Use for all staff, or a role-specific session for academics,
-        researchers, or professional services), a phased twelve-workshop programme mapped to the hierarchy, or, for
-        senior leaders, an institutional-level engagement through our AI Leadership Clarity Programme. Pricing and
-        structure for all of these can be discussed if and when it is useful.
+        Where teams do want to take next steps with us, the most common routes are a targeted
+        <a href="/services/talks-workshops/" class="font-semibold text-link underline underline-offset-2">workshop</a>
+        (for example, AI Foundations and Responsible Use for all staff, or a role-specific session for academics, researchers,
+        or professional services), an
+        <a href="/services/your-own-ai-course/" class="font-semibold text-link underline underline-offset-2"
+          >online course</a
+        > for all staff, or, for senior leaders,
+        <a href="/services/adoption-coaching/" class="font-semibold text-link underline underline-offset-2"
+          >Adoption coaching</a
+        >. Every option is mapped to the AI Use Hierarchy, and prices are published on our
+        <a href="/services/" class="font-semibold text-link underline underline-offset-2">services page</a>.
       </p>
       <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-default">
         You are under no obligation to do any of this. The Capability Check stands on its own.
@@ -301,10 +312,10 @@ const deliverables = [
       </p>
       <div class="mt-8">
         <a
-          href="/contact-us/"
+          href={BOOKING_URL}
           class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-accent bg-accent px-7 py-3.5 font-heading font-semibold text-white shadow-lg shadow-accent/25 transition hover:-translate-y-0.5 hover:border-accent-hover hover:bg-accent-hover focus:outline-none focus:ring-2 focus:ring-focus focus:ring-offset-2"
         >
-          <Icon name="tabler:stethoscope" class="h-5 w-5 shrink-0" aria-hidden="true" />
+          <Icon name="tabler:calendar-event" class="h-5 w-5 shrink-0" aria-hidden="true" />
           Book your free AI Capability Check
         </a>
       </div>
@@ -352,15 +363,15 @@ const deliverables = [
     <div class="mx-auto max-w-3xl text-center text-white" data-aos="fade-up">
       <h2 class="font-heading text-3xl font-bold sm:text-4xl">Find out where your team really stands.</h2>
       <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-white/90">
-        45 minutes. A written summary in your inbox. No obligation, no sales pitch, no jargon. Just a clear,
-        evidence-based view of where your team is today and what credible next steps look like.
+        30 minutes. A written report you keep. No obligation, no sales pitch, no jargon. Just a clear view of where your
+        team is today and two or three next steps.
       </p>
       <div class="mt-8">
         <a
-          href="/contact-us/"
+          href={BOOKING_URL}
           class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-accent bg-accent px-7 py-3.5 font-heading font-semibold text-white shadow-lg shadow-accent/25 transition hover:-translate-y-0.5 hover:border-accent-hover hover:bg-accent-hover focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand"
         >
-          <Icon name="tabler:stethoscope" class="h-5 w-5 shrink-0" aria-hidden="true" />
+          <Icon name="tabler:calendar-event" class="h-5 w-5 shrink-0" aria-hidden="true" />
           Book your free AI Capability Check
         </a>
       </div>

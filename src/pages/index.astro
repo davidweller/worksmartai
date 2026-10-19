@@ -1,42 +1,31 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import { Icon } from 'astro-icon/components';
+import SectionHeader from '~/components/brand/SectionHeader.astro';
+import HierarchyLadder from '~/components/brand/HierarchyLadder.astro';
+import EvidenceStats from '~/components/brand/EvidenceStats.astro';
+import ServiceCards from '~/components/brand/ServiceCards.astro';
+import CtaBand from '~/components/brand/CtaBand.astro';
+import { HEADLINE_OUTCOMES, ONE_LINERS, PILLARS, TAGLINE, WHY_US } from '~/data/brand/copy';
+import { CTAS } from '~/data/brand/ctas';
+import { EVIDENCE } from '~/data/brand/evidence';
 
 const metadata = {
-  title: 'AI capability for education | WorkSmart-AI',
-  description:
-    'Practical AI capability for universities, colleges, schools and organisations. Confident staff, clear guardrails, and real outcomes - built by people who have worked inside education.',
+  title: 'AI skills training for universities, colleges, schools and organisations | WorkSmart-AI',
+  description: ONE_LINERS.generic,
   canonical: '/',
 };
 
 const credibilityMarkers = [
-  'Members of the Staff Development Forum',
-  'Members of the Association of Learning Technology',
-];
-
-const frameworks = [
-  {
-    title: 'Specialists in education',
-    body: "We've worked with staff and students for more than twenty years, in primary and secondary schools, as well as FE and HE.",
-    icon: 'tabler:school',
-  },
-  {
-    title: 'Digital and AI skills experts',
-    body: "Supporting people to understand and get the most from technology has been our careers - we've even published books on it!",
-    icon: 'tabler:device-laptop',
-  },
-  {
-    title: 'Personalised approach',
-    body: "All services are tailored to support each school or institution's level of AI capability and technology being used.",
-    icon: 'tabler:adjustments',
-  },
+  'Founded by former Digital Skills Leads at the University of Exeter',
+  'Worked with the University of Southampton',
+  '290 use cases across 14 staff roles',
 ];
 
 const sectorDoors = [
   {
     title: 'Universities',
-    description:
-      'Staff training, student programmes, your own AI course, leadership consulting and academic coaching for universities.',
+    description: 'Staff and student training, white-labelled courses, adoption coaching and academic coaching.',
     href: '/higher-education/',
     icon: 'tabler:building-bank',
     sector: 'he',
@@ -44,8 +33,7 @@ const sectorDoors = [
   },
   {
     title: 'Colleges',
-    description:
-      'Practical AI training for teaching staff, support staff and leaders, and AI skills for your learners.',
+    description: 'Practical skills for teaching and support staff, and responsible use your learners can stand behind.',
     href: '/colleges/',
     icon: 'tabler:building-community',
     sector: 'fe',
@@ -53,21 +41,23 @@ const sectorDoors = [
   },
   {
     title: 'Schools and trusts',
-    description: 'Practical AI training for teachers and administrative staff that buys back hours every week, safely.',
+    description: 'INSET and staff training that tackles workload safely, built around your policy and safeguarding.',
     href: '/schools/',
     icon: 'tabler:school',
     sector: 'schools',
     cta: 'Explore Schools',
   },
   {
-    title: 'Businesses',
-    description: 'AI skills for companies, councils and public bodies, and for local employer skills programmes.',
+    title: 'Businesses and public sector',
+    description: 'AI skills for companies, councils, public bodies and charities, and more from your Copilot licences.',
     href: '/business/',
     icon: 'tabler:briefcase',
     sector: 'business',
     cta: 'Explore Businesses',
   },
 ];
+
+const evidence = [EVIDENCE.employerTraining, EVIDENCE.unapprovedTools, EVIDENCE.staffDevelopment];
 ---
 
 <Layout metadata={metadata} sector="neutral">
@@ -76,36 +66,22 @@ const sectorDoors = [
     <div class="mx-auto max-w-7xl">
       <div class="grid items-center gap-8 md:grid-cols-12">
         <div class="text-center md:col-span-6 md:text-left">
-          <h1 class="font-heading text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-            AI skills training, designed for education.
-          </h1>
+          <h1 class="font-heading text-4xl font-bold leading-tight tracking-tight sm:text-5xl">{TAGLINE}</h1>
           <p class="mx-auto mt-6 max-w-2xl font-sans text-lg leading-[1.7] text-[#86BFE2] md:mx-0 md:text-xl">
-            Support your academics, teachers, staff and students to become AI confident, capable and safe.
+            {ONE_LINERS.generic}
           </p>
           <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row md:justify-start">
             <a
-              href="/higher-education/"
+              href={CTAS.primary.href}
               class="inline-flex items-center justify-center rounded-full bg-[#FF7700] px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#e55f00]"
-              data-track="sector_door_click"
-              data-track-sector="he"
             >
-              For Universities
+              {CTAS.primary.text}
             </a>
             <a
-              href="/colleges/"
+              href={CTAS.calculator.href}
               class="inline-flex items-center justify-center rounded-full border-2 border-white/70 px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-white"
-              data-track="sector_door_click"
-              data-track-sector="fe"
             >
-              For Colleges
-            </a>
-            <a
-              href="/schools/"
-              class="inline-flex items-center justify-center rounded-full border-2 border-white/70 px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-white"
-              data-track="sector_door_click"
-              data-track-sector="schools"
-            >
-              For Schools
+              {CTAS.calculator.text}
             </a>
           </div>
         </div>
@@ -127,28 +103,25 @@ const sectorDoors = [
 
   <!-- 2. Credibility strip -->
   <section class="border-b border-gray-100 bg-white px-6 py-8 sm:px-8 lg:px-12" no-intersect aria-label="Credibility">
-    <div class="mx-auto max-w-6xl text-center">
-      <p class="font-heading text-xs font-bold uppercase tracking-wider text-gray-500">
-        Built by people who have worked inside education
-      </p>
-      <ul class="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-x-8">
-        {
-          credibilityMarkers.map((marker) => (
-            <li class="flex items-center gap-2 font-sans text-sm font-semibold text-[#015887]">
-              <Icon name="tabler:check" class="h-4 w-4 shrink-0" aria-hidden="true" />
-              {marker}
-            </li>
-          ))
-        }
-      </ul>
-    </div>
+    <ul
+      class="mx-auto flex max-w-6xl flex-col items-center justify-center gap-3 text-center sm:flex-row sm:flex-wrap sm:gap-x-8"
+    >
+      {
+        credibilityMarkers.map((marker) => (
+          <li class="flex items-center gap-2 font-sans text-sm font-semibold text-[#015887]">
+            <Icon name="tabler:check" class="h-4 w-4 shrink-0" aria-hidden="true" />
+            {marker}
+          </li>
+        ))
+      }
+    </ul>
   </section>
 
   <!-- 3. Choose your sector -->
   <section class="bg-[#F8F8F8] px-6 py-16 sm:px-8 lg:px-12" no-intersect aria-labelledby="sector-doors-heading">
     <div class="mx-auto max-w-6xl">
       <h2 id="sector-doors-heading" class="text-center font-heading text-3xl font-bold text-[#015887] md:text-4xl">
-        Choose your sector
+        Who we work with
       </h2>
       <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {
@@ -177,31 +150,46 @@ const sectorDoors = [
     </div>
   </section>
 
-  <!-- 4. Shared proposition -->
-  <section class="bg-[#F8F8F8] px-6 py-14 sm:px-8 lg:px-12" no-intersect>
-    <div class="mx-auto max-w-3xl text-center">
-      <p class="font-sans text-xl leading-relaxed text-[#1B0101] md:text-2xl">
-        At WorkSmart-AI we specialise in improving AI capability and literacy for those in education, using practical,
-        role-specific examples to help understanding and encourage immediate, safe implementation.
-      </p>
+  <!-- 4. Problem and outcomes -->
+  <section class="bg-white px-6 py-16 sm:px-8 lg:px-12" no-intersect>
+    <div class="mx-auto max-w-6xl">
+      <SectionHeader
+        eyebrow="Why it matters"
+        title="Most staff now use AI. Few have been trained to use it well."
+        subtitle="AI tools only make organisations more productive when people can use them well. We teach practical AI skills on real tasks, built around your policy and tools, and track progress against published outcomes."
+      />
+      <EvidenceStats items={evidence} />
+      <ul class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          HEADLINE_OUTCOMES.map((o) => (
+            <li class="flex items-center gap-3 rounded-xl bg-[#F8F8F8] p-5 font-heading font-bold text-[#015887]">
+              <Icon name={o.icon} class="h-7 w-7 shrink-0 text-[#FF7700]" aria-hidden="true" />
+              {o.title}
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </section>
 
-  <!-- 5. Framework columns -->
-  <section class="bg-white px-6 py-16 sm:px-8 lg:px-12" no-intersect aria-labelledby="approach-heading">
+  <!-- 5. Three pillars -->
+  <section class="bg-[#F8F8F8] px-6 py-16 sm:px-8 lg:px-12" no-intersect>
     <div class="mx-auto max-w-6xl">
-      <h2 id="approach-heading" class="text-center font-heading text-3xl font-bold text-[#015887] md:text-4xl">
-        Specialists in supporting those in education to achieve
-      </h2>
-      <div class="mt-10 grid gap-8 md:grid-cols-3">
+      <SectionHeader
+        eyebrow="How we get there"
+        title="Capability, confidence and compliance"
+        subtitle="Productivity is the outcome. These three are how we get there, and each is measured."
+      />
+      <div class="grid gap-6 md:grid-cols-3">
         {
-          frameworks.map((item) => (
-            <div class="text-center md:text-left">
-              <span class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#86BFE2]/20 text-[#015887] md:mx-0">
-                <Icon name={item.icon} class="h-6 w-6" aria-hidden="true" />
+          PILLARS.map((p) => (
+            <div class="rounded-xl bg-white p-6 shadow-card">
+              <span class="flex h-12 w-12 items-center justify-center rounded-lg bg-[#86BFE2]/20 text-[#015887]">
+                <Icon name={p.icon} class="h-6 w-6" aria-hidden="true" />
               </span>
-              <h3 class="font-heading text-xl font-bold text-[#015887]">{item.title}</h3>
-              <p class="mt-2 font-sans leading-[1.65] text-gray-700">{item.body}</p>
+              <h3 class="mt-4 font-heading text-xl font-bold text-[#015887]">{p.name}</h3>
+              <p class="mt-2 font-sans leading-[1.65] text-gray-700">{p.meaning}</p>
+              <p class="mt-4 text-sm text-gray-500">Measured by: {p.measuredBy.toLowerCase()}</p>
             </div>
           ))
         }
@@ -209,8 +197,52 @@ const sectorDoors = [
     </div>
   </section>
 
-  <!-- 6. Proof / outcome band -->
-  <section class="bg-[#F8F8F8] px-6 py-12 sm:px-8 lg:px-12" no-intersect aria-label="Client testimonial">
+  <!-- 6. Why us -->
+  <section class="bg-white px-6 py-16 sm:px-8 lg:px-12" no-intersect>
+    <div class="mx-auto max-w-6xl">
+      <SectionHeader eyebrow="Why WorkSmart-AI" title="Education specialists, not tool demos" />
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {
+          WHY_US.map((item) => (
+            <div>
+              <span class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#86BFE2]/20 text-[#015887]">
+                <Icon name={item.icon} class="h-6 w-6" aria-hidden="true" />
+              </span>
+              <h3 class="font-heading text-xl font-bold text-[#015887]">{item.title}</h3>
+              <p class="mt-2 font-sans leading-[1.65] text-gray-700">{item.proof}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. AI Use Hierarchy -->
+  <section class="bg-[#F8F8F8] px-6 py-16 sm:px-8 lg:px-12" no-intersect>
+    <div class="mx-auto max-w-6xl">
+      <SectionHeader
+        eyebrow="A structured path"
+        title="The AI Use Hierarchy"
+        subtitle="Five levels, from first use to institutional capability. Every course, workshop and AI Capability Check is mapped against it, so staff and leaders see where they are and what comes next."
+      />
+      <HierarchyLadder />
+    </div>
+  </section>
+
+  <!-- 8. Services -->
+  <section class="bg-white px-6 py-16 sm:px-8 lg:px-12" no-intersect>
+    <div class="mx-auto max-w-6xl">
+      <SectionHeader
+        eyebrow="What we offer"
+        title="Training, coaching and consultancy"
+        subtitle="We publish topics and formats, then build each engagement around you."
+      />
+      <ServiceCards />
+    </div>
+  </section>
+
+  <!-- 9. Testimonial -->
+  <section class="bg-[#F8F8F8] px-6 py-12 sm:px-8 lg:px-12" no-intersect aria-label="Testimonial">
     <div class="mx-auto max-w-5xl">
       <div class="rounded-xl bg-[#015887] px-8 py-10 text-center md:text-left">
         <blockquote class="text-white">
@@ -219,39 +251,17 @@ const sectorDoors = [
             have maximum impact on their staff. Friendly to work with and efficient in their approach.&rdquo;
           </p>
           <footer class="mt-3 font-sans text-sm italic text-white/80">
-            &mdash; Lisa Harris, Director of Digital Learning
+            Lisa Harris, Director of Digital Learning, University of Exeter
           </footer>
         </blockquote>
       </div>
     </div>
   </section>
 
-  <!-- 7. Closing CTA band -->
-  <section class="bg-white px-6 py-16 sm:px-8 lg:px-12" no-intersect aria-labelledby="closing-cta-heading">
-    <div class="mx-auto max-w-4xl text-center">
-      <h2 id="closing-cta-heading" class="font-heading text-3xl font-bold text-[#015887] md:text-4xl">
-        Not sure where your staff are starting from?
-      </h2>
-      <p class="mx-auto mt-4 max-w-2xl font-sans text-lg leading-[1.7] text-gray-700">
-        That is exactly what we help you find out. Whether you are a university, college, school or organisation, the
-        first step is a short conversation.
-      </p>
-      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a
-          href="/health-check/"
-          class="inline-flex items-center justify-center rounded-full bg-[#FF7700] px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#e55f00]"
-        >
-          Universities: book an AI Capability Check
-        </a>
-        <a
-          href="/contact-us/"
-          class="inline-flex items-center justify-center rounded-full border-2 border-[#015887] px-7 py-3 font-heading text-sm font-bold text-[#015887] transition hover:-translate-y-0.5 hover:bg-[#015887] hover:text-white"
-        >
-          Colleges, schools and organisations: book a 20-minute call
-        </a>
-      </div>
-    </div>
-  </section>
+  <CtaBand
+    title="Not sure where your staff are starting from?"
+    subtitle="That's what the free AI Capability Check finds out: a 30-minute call and a written report with two or three next steps, for any university, college, school or organisation."
+  />
 </Layout>
 
 <script>
