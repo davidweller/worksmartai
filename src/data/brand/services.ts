@@ -38,7 +38,7 @@ export const SERVICES: Service[] = [
     icon: 'tabler:device-laptop',
   },
   {
-    name: 'Adoption coaching',
+    name: 'AI adoption coaching',
     href: '/services/adoption-coaching/',
     summary:
       'One-to-one or small-group coaching for senior leaders on leading AI adoption: strategy, policy and a phased roadmap.',
