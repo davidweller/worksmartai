@@ -16,7 +16,7 @@ export const SERVICES: Service[] = [
     href: '/health-check/',
     summary:
       'A free 30-minute call and a written report placing your team on the AI Use Hierarchy, with two or three next steps.',
-    audience: 'Any new organisation',
+    audience: 'Any organisation',
     fromPrice: null,
     icon: 'tabler:clipboard-check',
   },
