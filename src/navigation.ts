@@ -1,4 +1,7 @@
 import type { CallToAction } from './types';
+import { CTAS } from './data/brand/ctas';
+import { RESOURCES } from './data/brand/resources';
+import { SERVICES } from './data/brand/services';
 
 interface NavLink {
   text: string;
@@ -23,30 +26,22 @@ export interface FooterColumn {
 
 export type SiteSector = 'neutral' | 'he' | 'schools';
 
-const heServiceLinks: NavLink[] = [
-  { text: 'Staff Training', href: '/services/staff-training/' },
-  { text: 'Student Programmes', href: '/services/student-training/' },
-  { text: 'Your Own AI Course', href: '/services/your-own-ai-course/' },
-  { text: 'Leadership Consulting', href: '/services/senior-consulting/' },
-  { text: 'Academic Coaching', href: '/services/academic-coaching/' },
-  { text: 'Events and Away Days', href: '/services/talks-workshops/' },
+const serviceLinks: NavLink[] = [
+  { text: 'All services', href: '/services/' },
+  ...SERVICES.map((s) => ({ text: s.name, href: s.href })),
+  { text: 'Staff courses', href: '/services/staff-training/' },
+  { text: 'Student courses', href: '/services/student-training/' },
 ];
 
-const universitiesLinks: NavLink[] = [{ text: 'Overview', href: '/higher-education/' }, ...heServiceLinks];
-
-const resourceLinks: NavLink[] = [
-  { text: 'AI Calculator', href: '/roi-calculator/' },
-  { text: 'AI Capability Check', href: '/health-check/' },
-  { text: 'AI Use Cases Guide', href: '/higher-education-guide/' },
-  { text: 'Copilot Licensing', href: '/copilot-licensing/' },
-  { text: 'Copilot Glossary', href: '/copilot-glossary/' },
-];
+const resourceLinks: NavLink[] = Object.values(RESOURCES)
+  .filter((r) => r.href !== CTAS.primary.href)
+  .map((r) => ({ text: r.name, href: r.href }));
 
 const audienceLinks: NavLink[] = [
   { text: 'Universities', href: '/higher-education/' },
   { text: 'Colleges', href: '/colleges/' },
-  { text: 'Schools', href: '/schools/' },
-  { text: 'Businesses', href: '/business/' },
+  { text: 'Schools and trusts', href: '/schools/' },
+  { text: 'Businesses and public sector', href: '/business/' },
 ];
 
 export const headerData: {
@@ -59,6 +54,10 @@ export const headerData: {
       links: audienceLinks,
     },
     {
+      text: 'Services',
+      links: serviceLinks,
+    },
+    {
       text: 'Resources',
       links: resourceLinks,
     },
@@ -66,23 +65,27 @@ export const headerData: {
     { text: 'About', href: '/about-us/' },
     { text: 'Contact', href: '/contact-us/' },
   ],
-  actions: [{ text: 'Login', href: '/login/', variant: 'primary', id: 'site-login-button' }],
+  actions: [
+    { text: 'Free AI Capability Check', href: CTAS.primary.href, variant: 'primary' },
+    { text: 'Login', href: '/login/', variant: 'secondary', id: 'site-login-button' },
+  ],
 };
 
 export const footerColumns: FooterColumn[] = [
   {
     title: 'Who we work with',
-    links: [...audienceLinks, { text: 'Schools packages', href: '/schools/#packages' }],
+    links: audienceLinks,
   },
   {
-    title: 'Universities',
-    links: universitiesLinks,
+    title: 'Services',
+    links: serviceLinks,
   },
   {
     title: 'Resources',
     links: [
+      { text: CTAS.primary.text.replace('Book your free ', ''), href: CTAS.primary.href },
       ...resourceLinks,
-      { text: 'How our Calculator Works', href: '/how-our-calculator-works/' },
+      { text: 'How the AI Savings Calculator works', href: '/how-our-calculator-works/' },
       { text: 'News', href: '/news/' },
     ],
   },
@@ -114,7 +117,6 @@ export const footerData = {
   contactEmail: 'hello@worksmart-ai.co.uk',
   linkedInUrl: 'https://www.linkedin.com/company/worksmart-ai-ltd',
   healthCheckHref: '/health-check/',
-  schoolsContactHref: '/contact-us/',
 };
 
 /** Infer sector from URL path for layout defaults. */

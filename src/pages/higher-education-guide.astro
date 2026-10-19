@@ -1,7 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import { Icon } from 'astro-icon/components';
-import { BOOK_A_CALL_URL } from '~/config/booking';
+import { CTAS } from '~/data/brand/ctas';
 
 const metadata = {
   title: 'Free AI Workflow Guide for Higher Education Teams Now',
@@ -518,11 +518,11 @@ const faqs = [
       </p>
       <div class="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
         <a
-          href={BOOK_A_CALL_URL}
+          href={CTAS.primary.href}
           class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-accent bg-accent px-7 py-3.5 font-heading font-semibold text-white shadow-lg shadow-accent/25 transition hover:-translate-y-0.5 hover:border-accent-hover hover:bg-accent-hover"
         >
           <Icon name="tabler:calendar-event" class="h-5 w-5 shrink-0" aria-hidden="true" />
-          Book a free call
+          {CTAS.primary.text}
         </a>
         <a
           href="#download-guide"

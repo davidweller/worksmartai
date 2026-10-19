@@ -5,7 +5,7 @@ import Features2 from '~/components/widgets/Features2.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Note from '~/components/widgets/Note.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import { BOOK_A_CALL_URL } from '~/config/booking';
+import { CTAS } from '~/data/brand/ctas';
 
 const metadata = {
   title: 'How the AI ROI Calculator Works for Teams | WorkSmart-AI',
@@ -412,7 +412,7 @@ const evidenceRows = [
     subtitle="Use the calculator or book a call to discuss what the figures could mean for your organisation."
     actions={[
       { variant: 'primary', text: 'Try the Calculator', href: '/roi-calculator/' },
-      { text: 'Book a Call', href: BOOK_A_CALL_URL },
+      { text: CTAS.primary.text, href: CTAS.primary.href },
     ]}
   />
 </Layout>

@@ -42,6 +42,15 @@ export default defineConfig({
     '/training/': '/services/',
     '/calculator/': '/roi-calculator/',
     '/home-v3/': '/',
+    '/home-v2/': '/',
+    '/homepage-original/': '/',
+    '/homepage-pre-v3/': '/',
+    '/about/': '/about-us/',
+    '/contact/': '/contact-us/',
+    '/privacy/': '/privacy-policy/',
+    '/terms/': '/terms-of-service/',
+    '/book-a-call/': '/health-check/',
+    '/services/senior-consulting/': '/services/adoption-coaching/',
   },
 
   integrations: [

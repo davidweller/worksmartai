@@ -1,6 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components';
 import logoMark from '~/assets/images/New Logo.png';
+import { CTAS } from '~/data/brand/ctas';
+import { TAGLINE } from '~/data/brand/copy';
 
 import type { FooterColumn, FooterLink, SiteSector } from '~/navigation';
 
@@ -10,19 +12,10 @@ export interface Props {
   contactEmail: string;
   linkedInUrl: string;
   healthCheckHref: string;
-  schoolsContactHref: string;
   sector?: SiteSector;
 }
 
-const {
-  columns,
-  legalLinks,
-  contactEmail,
-  linkedInUrl,
-  healthCheckHref,
-  schoolsContactHref,
-  sector = 'neutral',
-} = Astro.props;
+const { columns, legalLinks, contactEmail, linkedInUrl, healthCheckHref } = Astro.props;
 ---
 
 <footer class="bg-[#012B42] px-6 py-12 text-white sm:px-8 lg:px-12 not-prose" no-intersect>
@@ -65,38 +58,12 @@ const {
             LinkedIn
           </a>
         </div>
-        {
-          sector === 'schools' ? (
-            <a
-              href={schoolsContactHref}
-              class="mt-6 inline-flex items-center justify-center rounded-full border border-[#FF7700] bg-[#FF7700] px-5 py-2.5 font-heading text-sm font-bold text-white transition hover:border-[#e55f00] hover:bg-[#e55f00]"
-            >
-              Book a 20-minute call
-            </a>
-          ) : sector === 'he' ? (
-            <a
-              href={healthCheckHref}
-              class="mt-6 inline-flex items-center justify-center rounded-full border border-[#FF7700] bg-[#FF7700] px-5 py-2.5 font-heading text-sm font-bold text-white transition hover:border-[#e55f00] hover:bg-[#e55f00]"
-            >
-              Book Your AI Capability Check
-            </a>
-          ) : (
-            <div class="mt-6 flex flex-col gap-3">
-              <a
-                href={healthCheckHref}
-                class="inline-flex items-center justify-center rounded-full border border-[#FF7700] bg-[#FF7700] px-5 py-2.5 font-heading text-sm font-bold text-white transition hover:border-[#e55f00] hover:bg-[#e55f00]"
-              >
-                Universities: AI Capability Check
-              </a>
-              <a
-                href={schoolsContactHref}
-                class="inline-flex items-center justify-center rounded-full border border-white/30 bg-transparent px-5 py-2.5 font-heading text-sm font-bold text-white transition hover:border-white hover:bg-white/10"
-              >
-                Schools: Book a call
-              </a>
-            </div>
-          )
-        }
+        <a
+          href={healthCheckHref}
+          class="mt-6 inline-flex items-center justify-center rounded-full border border-[#FF7700] bg-[#FF7700] px-5 py-2.5 font-heading text-sm font-bold text-white transition hover:border-[#e55f00] hover:bg-[#e55f00]"
+        >
+          {CTAS.primary.text}
+        </a>
       </div>
     </div>
 
@@ -114,6 +81,7 @@ const {
         />
         <span class="font-heading text-xl font-bold text-white">WorkSmart-AI</span>
       </a>
+      <p class="mt-3 max-w-xl font-sans text-sm text-white/65">{TAGLINE}</p>
       <nav class="mt-8" aria-label="Legal links">
         <ul class="flex flex-wrap gap-x-5 gap-y-2">
           {

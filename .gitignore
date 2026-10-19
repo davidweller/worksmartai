@@ -46,3 +46,6 @@ playwright-report/
 video/
 .server-backup-*/
 dist/
+
+# Project map (local only)
+.project-map/

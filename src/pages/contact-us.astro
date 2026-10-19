@@ -2,7 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import Button from '~/components/ui/Button.astro';
-import { BOOK_A_CALL_URL } from '~/config/booking';
+import { BOOKING_URL } from '~/data/brand/ctas';
 
 const metadata = {
   title: 'Contact WorkSmart-AI for AI Training Support Today',
@@ -25,7 +25,7 @@ const metadata = {
         <h2 class="text-2xl font-bold tracking-tight text-heading">Book a call</h2>
         <p class="mt-2 text-muted">Choose a time that works for you and schedule a call on our booking page.</p>
         <div class="mt-6">
-          <Button variant="primary" href={BOOK_A_CALL_URL} text="Book a Call" icon="tabler:calendar" />
+          <Button variant="primary" href={BOOKING_URL} text="Book a Call" icon="tabler:calendar" />
         </div>
       </div>
 
