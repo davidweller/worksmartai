@@ -1,0 +1,135 @@
+---
+import { Icon } from 'astro-icon/components';
+import Layout from '~/layouts/PageLayout.astro';
+import Button from '~/components/ui/Button.astro';
+import SectionHeader from './SectionHeader.astro';
+import ServiceCards from './ServiceCards.astro';
+import CtaBand from './CtaBand.astro';
+import { CTAS } from '~/data/brand/ctas';
+import type { MetaData } from '~/types';
+
+interface Props {
+  metadata: MetaData;
+  eyebrow: string;
+  title: string;
+  intro: string;
+  /** Formatted price, e.g. "From £250". */
+  price?: string;
+  facts?: { value: string; label: string }[];
+  includesTitle?: string;
+  includes?: string[];
+  faqs?: { q: string; a: string }[];
+  ctaTitle?: string;
+  ctaSubtitle?: string;
+}
+
+const {
+  metadata,
+  eyebrow,
+  title,
+  intro,
+  price,
+  facts = [],
+  includesTitle = 'What’s included',
+  includes = [],
+  faqs = [],
+  ctaTitle,
+  ctaSubtitle,
+} = Astro.props;
+const here = metadata.canonical;
+---
+
+<Layout metadata={metadata}>
+  <div class="bg-section px-6 pt-8 sm:px-8 lg:px-12">
+    <div class="mx-auto max-w-6xl">
+      <a
+        href="/services/"
+        class="inline-flex items-center text-sm font-semibold text-link transition-colors hover:text-accent"
+      >
+        ← All services
+      </a>
+    </div>
+  </div>
+
+  <section class="bg-brand px-6 py-16 sm:px-8 lg:px-12 lg:py-20">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-secondary sm:text-sm">{eyebrow}</p>
+      <h1 class="font-heading text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">{title}</h1>
+      <p class="mt-6 text-base leading-[var(--aw-leading-body,1.7)] text-white/90 sm:text-lg">{intro}</p>
+      {price && <p class="mt-6 font-heading text-2xl font-bold text-secondary">{price}</p>}
+      <div class="mt-8 flex justify-center">
+        <Button variant="primary" href={CTAS.primary.href} text={CTAS.primary.text} />
+      </div>
+    </div>
+  </section>
+
+  {
+    facts.length > 0 && (
+      <section class="bg-section px-6 pt-12 sm:px-8 lg:px-12">
+        <dl class="mx-auto grid max-w-5xl grid-cols-2 gap-4 md:grid-cols-4">
+          {facts.map((f) => (
+            <div class="rounded-xl border border-primary/20 bg-card p-5 text-center shadow-card">
+              <dt class="sr-only">{f.label}</dt>
+              <dd class="font-heading text-xl font-bold text-primary">{f.value}</dd>
+              <dd class="mt-1 text-sm text-muted">{f.label}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    )
+  }
+
+  <slot />
+
+  {
+    includes.length > 0 && (
+      <section class="bg-section px-6 py-16 sm:px-8 lg:px-12">
+        <div class="mx-auto max-w-4xl">
+          <SectionHeader title={includesTitle} />
+          <ul class="grid gap-3 sm:grid-cols-2">
+            {includes.map((item) => (
+              <li class="flex items-start gap-3 rounded-xl bg-card p-4 shadow-card">
+                <Icon name="tabler:circle-check" class="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
+                <span class="text-default">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    faqs.length > 0 && (
+      <section class="bg-page px-6 py-16 sm:px-8 lg:px-12">
+        <div class="mx-auto max-w-3xl">
+          <SectionHeader title="Common questions" />
+          <div class="space-y-3">
+            {faqs.map((item) => (
+              <details class="group rounded-xl border border-primary/15 bg-card px-5 py-4 shadow-card">
+                <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-heading font-semibold text-heading">
+                  <span>{item.q}</span>
+                  <Icon
+                    name="tabler:chevron-down"
+                    class="h-5 w-5 shrink-0 text-muted transition group-open:rotate-180"
+                    aria-hidden="true"
+                  />
+                </summary>
+                <p class="mt-3 border-t border-primary/10 pt-3 text-default">{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="bg-section px-6 py-16 sm:px-8 lg:px-12">
+    <div class="mx-auto max-w-6xl">
+      <SectionHeader eyebrow="Also from WorkSmart-AI" title="Other services" />
+      <ServiceCards exclude={here} />
+    </div>
+  </section>
+
+  <CtaBand title={ctaTitle} subtitle={ctaSubtitle} />
+</Layout>

@@ -1,228 +1,120 @@
 ---
 import { Icon } from 'astro-icon/components';
-import Features2 from '~/components/widgets/Features2.astro';
-import FAQs from '~/components/widgets/FAQs.astro';
 import Layout from '~/layouts/PageLayout.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import SectionHeader from '~/components/brand/SectionHeader.astro';
+import ServiceCards from '~/components/brand/ServiceCards.astro';
+import UpsellLadder from '~/components/brand/UpsellLadder.astro';
+import CourseCards from '~/components/brand/CourseCards.astro';
+import CtaBand from '~/components/brand/CtaBand.astro';
+import { ONE_LINERS, WHAT_WE_DONT_DO } from '~/data/brand/copy';
+import { ADD_ONS } from '~/data/brand/services';
 
 const metadata = {
-  title: 'Our Services | WorkSmart-AI',
+  title: 'AI Training Services and Prices | WorkSmart-AI',
   description:
-    'Specialist AI training, coaching and consultancy for higher education, including staff training, student programmes, senior leader advisory and bespoke academic coaching.',
+    'The AI Capability Check, workshops and events, online courses, adoption coaching and academic coaching, with from-prices. Built around your people, policy and tools.',
   canonical: '/services/',
 };
-
-const services = [
-  {
-    href: '/services/staff-training/',
-    title: 'Staff Training',
-    description:
-      'Practical, role-specific AI training for professional services, academic and researchers - delivered in a way that sticks.',
-    icon: 'tabler:users',
-  },
-  {
-    href: '/services/student-training/',
-    title: 'Student Training',
-    description:
-      'Structured AI literacy programmes that equip students with the skills, judgement and ethics to use AI effectively in their studies and careers.',
-    icon: 'tabler:school',
-  },
-  {
-    href: '/services/senior-consulting/',
-    title: 'Leadership & Manager Consulting',
-    description:
-      'Practical AI advisory for managers and team leaders driving day-to-day adoption, policy-in-practice, and service improvement.',
-    icon: 'tabler:building-bank',
-  },
-  {
-    href: '/services/academic-coaching/',
-    title: 'Academic Coaching',
-    description:
-      'Personalised 1-to-1 and small group coaching for academics - covering research, writing, teaching and administration, all through the lens of AI.',
-    icon: 'tabler:book',
-  },
-  {
-    href: '/services/your-own-ai-course/',
-    title: 'Your Own AI Course',
-    description:
-      "Your institution's own AI course, in your branding, on your LMS, built around your AI policy. Ready in four weeks and priced at £4,995.",
-    icon: 'tabler:certificate',
-  },
-];
-
-const whyChooseItems = [
-  {
-    title: 'Higher Ed Specialists',
-    description:
-      "We have been working with Universities for over a decade, supporting senior leaders and their staff to feel confident in making effective technological change. Understanding the business needs, whilst appreciating people's concerns and anxieties when it comes to new digital and AI technologies, underpins everything that we do.",
-    icon: 'tabler:school',
-  },
-  {
-    title: 'Data-Driven ROI',
-    description:
-      "We understand the importance of being able to prove ROI whenever key decisions are made. That's why everything we do is underpinned by data. From the initial consultation, right through to training and delivery, we use cutting-edge technology to support our approach, evidence impact and drive the returns.",
-    icon: 'tabler:chart-bar',
-  },
-  {
-    title: 'Bespoke Workshops',
-    description:
-      "Evidence proves that one-off workshops don't work when it comes to enabling effective digital transformation to happen in the workplace. That's why we offer personalised consultancy, training and support packages - working with you to meet the specific needs of your institution and your budget.",
-    icon: 'tabler:users',
-  },
-];
-
-const programmeIncludesItems = [
-  {
-    title: 'Free initial AI capability consultation',
-    description:
-      'Using an HE-specific capability framework we identify knowledge gaps and confidence levels, and work with you to design a tailored package that achieves your goals and expectations.',
-    icon: 'tabler:messages',
-  },
-  {
-    title: 'On-Demand Access to Online Courses',
-    description:
-      'All of our workshops are supported by on-demand access to asynchronous courses that reinforce and extend the learning.',
-    icon: 'tabler:device-laptop',
-  },
-  {
-    title: 'Strategic Roadmap Session',
-    description:
-      'For workshop packages, stakeholders are kept regularly up to date on developments, with a final high-level session being delivered to leadership, translating training insights into a clear action plan for sustaining momentum.',
-    icon: 'tabler:route',
-  },
-  {
-    title: 'Personalised Workshops',
-    description:
-      'Choose which of our workshops for us to personalise and deliver. Expert-led, hands-on training sessions (F2F or online) tailored to your institution.',
-    icon: 'tabler:presentation',
-  },
-  {
-    title: 'Ongoing Support',
-    description:
-      'All workshop participants are invited to attend our "AI Cafe" online drop-in sessions, to keep momentum strong as AI evolves.',
-    icon: 'tabler:lifebuoy',
-  },
-];
 
 const faqItems = [
   {
     title: 'What makes WorkSmart-AI different from other AI training providers?',
     description:
-      "We are HE specialists, with over 40 years' experience of working in higher education and the wider educational sector. We use this specialist knowledge to inform our people-first approach - helping staff feel confident and productive with AI and supporting leadership teams to make strategic data-driven implementation decisions.<br /><br />Rather than just demonstrating tools, our training connects AI use to real measurable outcomes, like time saved, improved productivity, and better policy alignment. We also personalise our training to adhere to individual institutions AI and data policies.",
+      'We are education specialists: both founders are former Digital Skills Leads at the University of Exeter. Every course opens with a real task, is built around your policy and tools, and has published learning outcomes, so you can see what your training delivered.',
   },
   {
-    title: 'Who are your services designed for?',
+    title: 'Who are your services for?',
     description:
-      'Our core audience is universities and education providers - supporting staff, students and strategic leaders. We also work with local councils, public sector bodies, and SMEs across the South West who want to build practical AI capability and confidence.',
+      'Universities first, then colleges, schools and trusts, then businesses and the public sector, including councils, public bodies, SMEs and charities.',
   },
   {
-    title: 'How do you personalise training for each organisation?',
+    title: 'How do you personalise training?',
     description:
-      "Every project begins with a free consultation, using an HE-specific capabilities framework to identify your current use of AI, challenges, and goals. From there, we design a tailored roadmap that ensures all workshops, online courses, and resources address your specific context, policies and priorities. Through regular data-monitoring, we're able to iterate training to ensure that outcomes are fully achieved.",
+      'Every engagement starts with a free AI Capability Check, which places your team on the AI Use Hierarchy. We then build workshops and courses around your AI policy, your Microsoft 365 and Copilot setup, and your roles.',
   },
   {
-    title: "What's included in your programmes?",
+    title: 'What do the prices mean?',
     description:
-      "All of our work starts with an HE-specific needs analysis, to identify your level of AI capability and understand where your goals and priorities lie. From this we design with you a personalised learning and development package, that you're able to add to and expand upon based on your developing needs.<br /><br />Our workshop packages also include access to online learning resources, online drop-in sessions, a follow-up review and next steps. If you're interested in specific tools or training that you don't see here, please let us know - we'll be able to work with you to ensure your priorities are covered in our training.",
+      'Every price is shown from the lowest level, for example a one-hour workshop or a one-hour course. We publish topics and formats, then quote each engagement once we know what you need.',
   },
 ];
 ---
 
 <Layout metadata={metadata}>
-  <section class="bg-brand px-6 py-16 sm:px-8 lg:px-12 lg:py-24" data-aos="fade-up">
+  <section class="bg-brand px-6 py-16 sm:px-8 lg:px-12 lg:py-24">
     <div class="mx-auto max-w-4xl text-center">
-      <p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-secondary sm:text-sm">What we do</p>
+      <p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-secondary sm:text-sm">What we offer</p>
       <h1 class="font-heading text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
-        Specialist AI expertise for higher education
+        AI training, coaching and consultancy
       </h1>
-      <p class="mt-6 text-base leading-[var(--aw-leading-body,1.7)] text-white/90 sm:text-lg">
-        We help universities and colleges move from AI curiosity to AI confidence - through training, coaching and
-        strategic consulting designed specifically for the sector.
-      </p>
+      <p class="mt-6 text-base leading-[var(--aw-leading-body,1.7)] text-white/90 sm:text-lg">{ONE_LINERS.generic}</p>
     </div>
   </section>
 
   <section class="bg-section px-6 py-16 sm:px-8 lg:px-12 lg:py-20">
     <div class="mx-auto max-w-6xl">
-      <div class="mb-10 text-center md:mb-14">
-        <p class="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-accent">Our services</p>
-        <div class="mx-auto h-1 w-24 rounded-full bg-accent" aria-hidden="true"></div>
-      </div>
-
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
-        {
-          services.map((s) => (
-            <a
-              href={s.href}
-              class="group relative flex h-full flex-col overflow-hidden rounded-xl border border-primary/20 bg-card p-6 shadow-card transition duration-300 ease-out hover:-translate-y-1 hover:border-primary hover:shadow-card-elevated md:p-8"
-            >
-              <span
-                class="absolute bottom-0 left-0 right-0 h-1 origin-left scale-x-0 transform bg-accent transition-transform duration-300 ease-out group-hover:scale-x-100"
-                aria-hidden="true"
-              />
-              <div class="mb-4 inline-flex rounded-lg bg-primary/8 p-3 text-primary">
-                <Icon name={s.icon} class="h-8 w-8" aria-hidden="true" />
-              </div>
-              <h2 class="font-heading text-xl font-bold text-heading sm:text-2xl">{s.title}</h2>
-              <p class="mt-3 flex-1 text-default">{s.description}</p>
-              <span class="mt-6 inline-flex items-center font-semibold text-link group-hover:text-accent">
-                Learn more
-                <span class="ml-1 transition-transform group-hover:translate-x-0.5" aria-hidden="true">
-                  →
-                </span>
-              </span>
-            </a>
-          ))
-        }
-      </div>
-
-      <a
-        href="/services/talks-workshops/"
-        class="group relative mt-6 flex h-full flex-col overflow-hidden rounded-xl border border-primary/20 bg-card p-6 shadow-card transition duration-300 ease-out hover:-translate-y-1 hover:border-primary hover:shadow-card-elevated md:mt-8 md:p-8"
-      >
-        <span
-          class="absolute bottom-0 left-0 right-0 h-1 origin-left scale-x-0 transform bg-accent transition-transform duration-300 ease-out group-hover:scale-x-100"
-          aria-hidden="true"></span>
-        <div class="mb-4 inline-flex rounded-lg bg-primary/8 p-3 text-primary">
-          <Icon name="tabler:microphone" class="h-8 w-8" aria-hidden="true" />
-        </div>
-        <h2 class="font-heading text-xl font-bold text-heading sm:text-2xl">Talks, Workshops & Away Days</h2>
-        <p class="mt-3 flex-1 text-default">
-          Focused AI sessions for your event, team, or leadership day. From conference keynotes to one-off workshops and
-          senior team away days, we bring practical, sector-aware AI thinking to single engagements as well as full
-          programmes.
-        </p>
-        <span class="mt-6 inline-flex items-center font-semibold text-link group-hover:text-accent">
-          Learn more
-          <span class="ml-1 transition-transform group-hover:translate-x-0.5" aria-hidden="true">→</span>
-        </span>
-      </a>
+      <SectionHeader
+        eyebrow="Our services"
+        title="Published topics and formats, built around you"
+        subtitle="Every price is shown from the lowest level, for example a one-hour workshop or a one-hour course."
+      />
+      <ServiceCards />
     </div>
   </section>
 
-  <section class="bg-section px-6 py-16 sm:px-8 lg:px-12 lg:py-20">
-    <div class="mx-auto max-w-6xl space-y-16 md:space-y-20">
-      <Features2
-        title="Why choose WorkSmart-AI?"
-        columns={3}
-        items={whyChooseItems}
-        classes={{
-          container: 'max-w-full px-0 py-0 md:py-0 lg:py-0',
-          items: { container: 'gap-6 md:gap-8' },
-        }}
+  <section class="bg-page px-6 py-16 sm:px-8 lg:px-12">
+    <div class="mx-auto max-w-6xl">
+      <SectionHeader
+        eyebrow="How it fits together"
+        title="Start small, build from there"
+        subtitle="Most organisations start with the free AI Capability Check, then build up as their people do."
       />
+      <UpsellLadder />
+      <div class="mt-10 rounded-xl border border-primary/20 bg-card p-6 shadow-card">
+        <h3 class="font-heading text-lg font-bold text-heading">Add-ons</h3>
+        <ul class="mt-3 flex flex-col gap-2 sm:flex-row sm:gap-8">
+          {
+            ADD_ONS.map((a) => (
+              <li class="flex items-center gap-2 text-default">
+                <Icon name="tabler:plus" class="h-4 w-4 text-accent" aria-hidden="true" />
+                {a}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
 
-      <Features2
-        title="A personalised approach for every client"
-        subtitle="Just as every individual's AI capabilities are different, every university's needs are also unique. A personalised, institution-specific approach is therefore required to ensure specific needs are met and outcomes are maximised.<br /><br />Our HE specialists will work closely with you to identify initial AI capabilities, understand goals and priorities, and design a tailored approach, selecting from our range of services either a stand-alone or multi-service package."
-        columns={3}
-        items={programmeIncludesItems}
-        classes={{
-          container: 'max-w-full px-0 py-0 md:py-0 lg:py-0',
-          items: { container: 'gap-6 md:gap-8' },
-        }}
+  <section class="bg-section px-6 py-16 sm:px-8 lg:px-12">
+    <div class="mx-auto max-w-6xl">
+      <SectionHeader
+        eyebrow="Courses"
+        title="Fourteen courses in four streams"
+        subtitle="Run as workshops or online courses. Student courses are white-labelled online courses only."
       />
+      <CourseCards streams={['all-staff', 'academic', 'professional-services', 'students']} />
+    </div>
+  </section>
+
+  <section class="bg-page px-6 py-16 sm:px-8 lg:px-12">
+    <div class="mx-auto max-w-3xl">
+      <SectionHeader title="What we don’t do" />
+      <ul class="space-y-3">
+        {
+          WHAT_WE_DONT_DO.map((line) => (
+            <li class="flex items-start gap-3 text-default">
+              <Icon name="tabler:x" class="mt-1 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
+              {line}
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </section>
 
   <FAQs title="FAQs" columns={1} items={faqItems} />
+
+  <CtaBand />
 </Layout>
