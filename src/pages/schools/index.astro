@@ -1,10 +1,13 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import { Icon } from 'astro-icon/components';
+import { CTAS } from '~/data/brand/ctas';
+import { priceOf } from '~/data/brand/services';
+
 const metadata = {
   title: 'AI training for schools and teachers | WorkSmart-AI',
   description:
-    'Supporting schools to benefit from AI. Build team confidence with safe, GDPR-aware training for lesson planning, differentiation, marking, and parent communication.',
+    'Practical, GDPR-aware AI training for schools and trusts: INSET, leadership workshops and online courses for teachers and support staff, built around your policy. Workshops from £250.',
   canonical: '/schools/',
 };
 
@@ -45,28 +48,25 @@ const trustItems = [
 
 const packages = [
   {
-    title: "Fundamentals 'all-staff' session",
-    format: 'All staff',
+    title: 'INSET and staff workshops',
+    format: 'One hour to a full day, in school or online',
     outcome:
-      'An interactive session that builds confidence and knowledge in using AI responsibly, safely and effectively.',
-    pricing: 'From £350',
-    pricingNote: null,
+      'Hands-on sessions for teachers and support staff on resource creation, lesson planning, marking and parent communication, built around your policy.',
+    pricing: priceOf('Workshops and Events'),
   },
   {
-    title: 'INSET workshop',
-    format: 'Half-day or full-day',
+    title: 'The AI Leadership Briefing',
+    format: 'Leadership workshop',
     outcome:
-      'Hands-on building: for teachers and support staff to learn how to get the most out of using AI for resource creation and lesson planning.',
-    pricing: 'From £550',
-    pricingNote: null,
+      'For heads, trust leaders and SLT: where AI could help, where it could create problems, and what to ask before anything is adopted.',
+    pricing: priceOf('Workshops and Events'),
   },
   {
-    title: 'Leadership briefing',
-    format: '2 hours',
+    title: 'An online course for all staff',
+    format: 'Self-paced, in your branding',
     outcome:
-      'Targeted at senior leadership teams, this session develops safe, secure and efficient AI usage practices.',
-    pricing: 'Book a call for pricing',
-    pricingNote: null,
+      'AI Foundations and Responsible Use, white-labelled for your school or trust and built around your AI and safeguarding policies.',
+    pricing: priceOf('Online courses'),
   },
 ];
 ---
@@ -82,17 +82,17 @@ const packages = [
         Give confidence to your team by understanding how and when to use AI safely and effectively.
       </p>
       <p class="mt-6 max-w-2xl font-sans text-lg leading-[1.7] text-white/85">
-        Practical AI training for schools and trusts, built around the realities of teaching and managing school life:
+        Practical AI training for schools and trusts, built around your own policy and the realities of school life:
         lesson planning, differentiation, marking, and parent communication. Safe, GDPR-aware, and grounded in classroom
-        practice.
+        practice. For heads, trust leaders and CPD leads, and the teachers and support staff they look after.
       </p>
       <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
         <a
-          href="/contact-us/"
+          href={CTAS.primary.href}
           class="inline-flex items-center justify-center rounded-full border border-[#FF7700] bg-[#FF7700] px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-[#e55f00] hover:bg-[#e55f00]"
           data-track="schools_cta_click"
         >
-          Book a 20-minute call
+          {CTAS.primary.text}
         </a>
         <a
           href={schoolsPdfPath}
@@ -168,7 +168,13 @@ const packages = [
     <div class="mx-auto max-w-6xl">
       <div class="mx-auto max-w-3xl text-center">
         <p class="font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]">How it works</p>
-        <h2 id="packages-heading" class="mt-3 font-heading text-3xl font-bold text-white sm:text-4xl">Packages</h2>
+        <h2 id="packages-heading" class="mt-3 font-heading text-3xl font-bold text-white sm:text-4xl">
+          Ways to work with us
+        </h2>
+        <p class="mt-4 font-sans text-base leading-[1.7] text-white/80">
+          Prices are shown from the lowest level, for example a one-hour workshop. Start with a free AI Capability Check
+          so the session is pitched at the right level.
+        </p>
       </div>
       <div class="mt-12 grid gap-5 md:grid-cols-3">
         {
@@ -179,11 +185,11 @@ const packages = [
               <p class="mt-4 flex-1 font-sans text-sm leading-[1.65] text-white/85">{pkg.outcome}</p>
               <p class="mt-6 font-heading text-lg font-bold text-[#FF7700]">{pkg.pricing}</p>
               <a
-                href="/contact-us/"
+                href={CTAS.primary.href}
                 class="mt-4 inline-flex font-heading text-sm font-bold text-white transition hover:text-[#FF7700]"
                 data-track="schools_cta_click"
               >
-                Book a call <span aria-hidden="true">&rarr;</span>
+                {CTAS.primary.text} <span aria-hidden="true">&rarr;</span>
               </a>
             </article>
           ))
@@ -209,15 +215,15 @@ const packages = [
         Want to see what this looks like for your school or trust?
       </h2>
       <p class="mt-4 font-sans text-base leading-[1.7] text-white/75">
-        Book a short call, or download the one-pager to share with your SLT.
+        Book a free 30-minute AI Capability Check, or download the one-pager to share with your SLT.
       </p>
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <a
-          href="/contact-us/"
+          href={CTAS.primary.href}
           class="inline-flex items-center justify-center rounded-full border border-[#FF7700] bg-[#FF7700] px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-[#e55f00] hover:bg-[#e55f00]"
           data-track="schools_cta_click"
         >
-          Book a 20-minute call
+          {CTAS.primary.text}
         </a>
         <a
           href={schoolsPdfPath}
