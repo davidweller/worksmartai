@@ -11,7 +11,7 @@ export const ONE_LINERS = {
   business:
     'WorkSmart-AI helps businesses improve productivity and confidence with AI, through hands-on staff skills training, coaching and consultancy tailored to their own tools and policies.',
   generic:
-    'WorkSmart-AI helps organisations become more productive with AI, through practical skills training, coaching and consultancy, from education specialists.',
+    'WorkSmart-AI helps organisations become more productive with AI, through practical skills training, coaching and consultancy.',
 } as const;
 
 export const SUMMARY_25 =

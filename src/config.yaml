@@ -11,7 +11,7 @@ metadata:
   title:
     default: WorkSmart-AI
     template: '%s'
-  description: 'WorkSmart-AI helps organisations become more productive with AI, through practical skills training, coaching and consultancy, from education specialists.'
+  description: 'WorkSmart-AI helps organisations become more productive with AI, through practical skills training, coaching and consultancy.'
   robots:
     index: true
     follow: true
