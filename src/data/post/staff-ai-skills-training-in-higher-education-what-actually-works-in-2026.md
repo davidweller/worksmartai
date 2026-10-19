@@ -52,7 +52,7 @@ image: '~/assets/images/staff-ai-skills-training-higher-education-2026.png'
 
 <p>One of the most useful shifts you can make in how you think about staff AI skills training is moving from &#8220;has this person been trained?&#8221; to &#8220;where is this person on their adoption journey?&#8221;</p>
 
-<p>We map individual progression across six levels &#8211; from exploratory, conversational use at Level 1 through to workflow automation and multi-agent systems at Level 6. Most university staff are sitting at Levels 1 or 2. Most institutional ambitions require them to reach Level 3 or 4 within the next year or two.</p>
+<p>We map individual progression across the five levels of the AI Use Hierarchy, from conversational use at Level 1 through to integration and orchestration at Level 5. Most university staff are sitting at Levels 1 or 2. Most institutional ambitions require them to reach Level 3 or 4 within the next year or two.</p>
 
 <p>That gap is bridgeable. But not with a single training event followed by nothing. The institutions that are seeing genuine productivity gains from AI adoption are the ones treating capability development as an ongoing programme &#8211; something with structure, check-ins, and a clear sense of direction &#8211; rather than a box to tick before moving on.</p>
 

@@ -3,11 +3,13 @@ import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { ONE_LINERS } from '~/data/brand/copy';
+import { CTAS } from '~/data/brand/ctas';
 
 const metadata = {
-  title: 'Meet the WorkSmart-AI Founders and Training Team Here',
+  title: 'About WorkSmart-AI and Our Founders | WorkSmart-AI',
   description:
-    'Meet the founders behind WorkSmart-AI and learn how decades of education experience shape practical, people-first AI training for universities and teams.',
+    'Meet the founders of WorkSmart-AI, former Digital Skills Leads at the University of Exeter, and how decades in education shape practical, people-first AI training.',
   canonical: '/about-us/',
 };
 
@@ -30,7 +32,7 @@ const founderCards = [
     image: '/images/founders/david-weller.png',
     linkedin: 'https://www.linkedin.com/in/davidrweller/',
     paragraphs: [
-      "I've spent over twenty years exploring how technology can make learning more human. From classrooms to boardrooms, I've always been fascinated by how the right tools can unlock confidence, creativity, and capability in people. Along the way I've gained a Master's degree in Education and a postgraduate diploma in teaching.",
+      "I've spent over twenty years exploring how technology can make learning more human. From classrooms to boardrooms, I've always been fascinated by how the right tools can build confidence, creativity, and capability in people. Along the way I've gained a Master's degree in Education and a postgraduate diploma in teaching.",
       "Much of that journey has been spent training teachers. As a TESOL teacher trainer, I've helped educators around the world develop their practice and grow in confidence, work that taught me how people actually learn new skills and what it takes to make change stick. That experience now sits at the heart of how WorkSmart-AI approaches AI training: practical, people-first, and built on sound pedagogy.",
       'My work has taken me from teaching, examining, and teacher training to leading large-scale digital upskilling programmes - most recently as Digital Skills Lead at the University of Exeter',
       "I'm passionate about turning innovation into something practical - helping organisations not just adopt technology, but use it to work smarter and create real results. That's what brought Katie and me together to found WorkSmart-AI, to help people thrive in the AI era, one confident learner at a time.",
@@ -40,10 +42,7 @@ const founderCards = [
 ---
 
 <Layout metadata={metadata}>
-  <HeroText
-    title="People are at the heart of everything we do"
-    subtitle="WorkSmart-AI is focused on supporting universities to confidently upskill their staff in AI, ensuring that productivity is increased and ROI achieved."
-  />
+  <HeroText title="People are at the heart of everything we do" subtitle={ONE_LINERS.generic} />
 
   <section class="bg-section px-6 pb-16 sm:px-8 lg:px-12">
     <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
@@ -59,12 +58,12 @@ const founderCards = [
       <div class="rounded-2xl bg-card p-8 shadow-card ring-1 ring-border">
         <h2 class="font-heading text-3xl font-bold text-heading">Our approach</h2>
         <p class="mt-4 leading-relaxed text-muted">
-          With over four decades-worth of specialist educational experience within the team, we understand the value in
-          working closely with clients in order to personalise every training package that we deliver.
+          With decades of specialist educational experience between us, we understand the value of working closely with
+          each organisation to personalise every course and workshop we deliver.
         </p>
         <p class="mt-4 leading-relaxed text-muted">
           People are at the heart of everything that we do, as only once people feel confident and engaged in an
-          experience, does real learning and transformation take place!
+          experience, does real learning take place.
         </p>
         <p class="mt-4 leading-relaxed text-muted">
           This is demonstrated by our hands-on, personalised approach towards training and our uncomplicated,
@@ -110,18 +109,17 @@ const founderCards = [
   </section>
 
   <Features2
-    title="What this means for clients"
+    title="What this means for you"
     columns={3}
     items={[
       {
         title: 'Personalised training',
-        description: 'We work closely with clients in order to personalise every training package that we deliver.',
+        description: 'Every course is built around your people, your AI policy and the tools you already use.',
         icon: 'tabler:adjustments',
       },
       {
         title: 'People-first learning',
-        description:
-          'Only once people feel confident and engaged in an experience, does real learning and transformation take place.',
+        description: 'Only once people feel confident and engaged in an experience does real learning take place.',
         icon: 'tabler:users',
       },
       {
@@ -134,7 +132,10 @@ const founderCards = [
 
   <CallToAction
     title="Reach out!"
-    subtitle="Interested in hearing how WorkSmart-AI could help your staff become more AI-capable, confident and compliant? Reach out to say hello, and we'll be happy to talk you through what we can offer, and how it can help your department or institution save money and become more productive."
-    actions={[{ variant: 'primary', text: 'Contact us', href: '/contact-us/' }]}
+    subtitle="Interested in how WorkSmart-AI could help your staff become more capable, confident and compliant with AI? Start with a free 30-minute AI Capability Check, or get in touch to say hello."
+    actions={[
+      { variant: 'primary', text: CTAS.primary.text, href: CTAS.primary.href },
+      { text: 'Contact us', href: '/contact-us/' },
+    ]}
   />
 </Layout>
