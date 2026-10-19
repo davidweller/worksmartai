@@ -261,10 +261,10 @@ const {
       <div class="wsai-callout-inner">
         <p id={`${rootId}-result-heading`} class="wsai-callout-kicker">Your result</p>
         <p class="wsai-callout-text">
-          On these assumptions, your team could reclaim an estimated
-          <strong id={`${rootId}-callout-save`}>£0</strong> a year, the equivalent of
-          <strong id={`${rootId}-callout-fte`}>0</strong> full-time roles. These are estimates, not guarantees: the AI Capability
-          Check shows where the time is really going.
+          On these assumptions, your team could reclaim an estimated{' '}
+          <strong id={`${rootId}-callout-save`}>£0</strong> a year, the equivalent of{' '}
+          <strong id={`${rootId}-callout-fte`}>0</strong> full-time roles' worth of time. These are estimates, not guarantees:
+          the AI Capability Check shows where the time is really going.
         </p>
       </div>
     </aside>
@@ -1104,7 +1104,7 @@ const {
       const calloutSave = $(`#${rootId}-callout-save`);
       const calloutFte = $(`#${rootId}-callout-fte`);
       if (calloutSave) calloutSave.textContent = nfMoney(annualSavings);
-      if (calloutFte) calloutFte.textContent = String(Math.round(ftes));
+      if (calloutFte) calloutFte.textContent = ftes.toFixed(1);
     }
 
     root.querySelectorAll('[data-adopt]').forEach((b) => {

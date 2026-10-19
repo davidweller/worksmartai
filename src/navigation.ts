@@ -65,10 +65,7 @@ export const headerData: {
     { text: 'About', href: '/about-us/' },
     { text: 'Contact', href: '/contact-us/' },
   ],
-  actions: [
-    { text: 'Free AI Capability Check', href: CTAS.primary.href, variant: 'primary' },
-    { text: 'Login', href: '/login/', variant: 'secondary', id: 'site-login-button' },
-  ],
+  actions: [{ text: 'Login', href: '/login/', variant: 'primary', id: 'site-login-button' }],
 };
 
 export const footerColumns: FooterColumn[] = [

@@ -23,18 +23,20 @@ test.describe('homepage responsive layout', () => {
       await page.setViewportSize({ width: viewport.width, height: viewport.height });
       await page.goto('/', { waitUntil: 'load' });
 
-      await expect(page.getByRole('heading', { name: /AI skills training, designed for education/i })).toBeVisible();
+      await expect(
+        page.getByRole('heading', { level: 1, name: /AI training specialists improving capability/i })
+      ).toBeVisible();
 
-      const heDoor = page.getByRole('link', { name: 'For Universities' }).first();
+      const heDoor = page.getByRole('link', { name: /Explore Universities/ }).first();
       await expect(heDoor).toBeVisible();
       await expect(heDoor).toHaveAttribute('href', '/higher-education/');
 
-      const schoolsDoor = page.getByRole('link', { name: 'For Schools' }).first();
+      const schoolsDoor = page.getByRole('link', { name: /Explore Schools/ }).first();
       await expect(schoolsDoor).toBeVisible();
       await expect(schoolsDoor).toHaveAttribute('href', '/schools/');
 
-      await expect(page.getByRole('heading', { name: /Specialists in supporting those in education to achieve/i })).toBeVisible();
-      await expect(page.getByRole('heading', { name: /Choose your sector/i })).toBeVisible();
+      await expect(page.getByRole('heading', { name: /Education specialists, not tool demos/i })).toBeVisible();
+      await expect(page.locator('#sector-doors-heading')).toBeVisible();
       await expect(page.getByRole('heading', { name: /Not sure where your staff are starting from/i })).toBeVisible();
 
       const overflow = await page.evaluate(() => ({
@@ -69,7 +71,7 @@ test.describe('homepage responsive layout', () => {
     await page.goto('/', { waitUntil: 'load' });
 
     const header = page.locator('#header');
-    const heroHeading = page.getByRole('heading', { name: /AI skills training, designed for education/i });
+    const heroHeading = page.getByRole('heading', { level: 1, name: /AI training specialists improving capability/i });
 
     await expect(header).toBeVisible();
     await expect(heroHeading).toBeVisible();

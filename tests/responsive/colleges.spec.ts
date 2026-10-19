@@ -14,9 +14,9 @@ test.describe('colleges page responsive layout', () => {
 
       await expect(page.getByRole('heading', { level: 1, name: /AI skills for further education/i })).toBeVisible();
 
-      await expect(page.getByRole('link', { name: /Book a 20-minute call/i }).first()).toHaveAttribute(
+      await expect(page.getByRole('link', { name: /Book your free AI Capability Check/i }).first()).toHaveAttribute(
         'href',
-        '/contact-us/'
+        '/health-check/'
       );
 
       const overflow = await page.evaluate(() => ({
