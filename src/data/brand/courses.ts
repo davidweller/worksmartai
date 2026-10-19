@@ -21,7 +21,8 @@ export const COURSES: Course[] = [
   {
     title: 'AI Foundations and Responsible Use',
     stream: 'students',
-    summary: 'Know when AI support is appropriate in your studies, spot the risks, and prompt Copilot for reliable results.',
+    summary:
+      'Know when AI support is appropriate in your studies, spot the risks, and prompt Copilot for reliable results.',
   },
   {
     title: 'AI Skills for the Workplace',
@@ -31,7 +32,8 @@ export const COURSES: Course[] = [
   {
     title: 'AI Foundations and Responsible Use',
     stream: 'all-staff',
-    summary: 'A shared understanding of AI in your role: what’s appropriate, what’s risky, and how to prompt Copilot well.',
+    summary:
+      'A shared understanding of AI in your role: what’s appropriate, what’s risky, and how to prompt Copilot well.',
   },
   {
     title: 'AI for Daily Workflows',
@@ -46,17 +48,20 @@ export const COURSES: Course[] = [
   {
     title: 'Building Custom AI Agents',
     stream: 'all-staff',
-    summary: 'Build reusable agents in Copilot Studio and automate multi-step tasks with clear instructions and guardrails.',
+    summary:
+      'Build reusable agents in Copilot Studio and automate multi-step tasks with clear instructions and guardrails.',
   },
   {
     title: 'Copilot Chat to 365 Copilot',
     stream: 'all-staff',
-    summary: 'What changes when you move to licensed Microsoft 365 Copilot, and how to use it safely on your own files.',
+    summary:
+      'What changes when you move to licensed Microsoft 365 Copilot, and how to use it safely on your own files.',
   },
   {
     title: 'Intermediate to Advanced Copilot',
     stream: 'all-staff',
-    summary: 'Go beyond drafting: complex multi-step work, reusable prompts and grounding Copilot in your own documents.',
+    summary:
+      'Go beyond drafting: complex multi-step work, reusable prompts and grounding Copilot in your own documents.',
   },
   {
     title: 'AI for Academic Content Creation',
@@ -66,7 +71,8 @@ export const COURSES: Course[] = [
   {
     title: 'The AI-Enabled Classroom',
     stream: 'academic',
-    summary: 'Bring AI into live teaching to support discussion and active learning, and guide responsible student use.',
+    summary:
+      'Bring AI into live teaching to support discussion and active learning, and guide responsible student use.',
   },
   {
     title: 'AI for Academic Assessment',
@@ -76,7 +82,8 @@ export const COURSES: Course[] = [
   {
     title: 'AI for Researchers',
     stream: 'academic',
-    summary: 'Use AI for literature reviews, synthesis and early writing, while judging outputs for methodological soundness.',
+    summary:
+      'Use AI for literature reviews, synthesis and early writing, while judging outputs for methodological soundness.',
   },
   {
     title: 'AI for Process Improvement',
@@ -86,7 +93,8 @@ export const COURSES: Course[] = [
   {
     title: 'AI for Comms and Engagement',
     stream: 'professional-services',
-    summary: 'Write audience-specific communications across channels, reviewed for accuracy, inclusivity and reputation.',
+    summary:
+      'Write audience-specific communications across channels, reviewed for accuracy, inclusivity and reputation.',
   },
   {
     title: 'The AI Leadership Briefing',

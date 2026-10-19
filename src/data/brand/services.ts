@@ -14,7 +14,8 @@ export const SERVICES: Service[] = [
   {
     name: 'AI Capability Check',
     href: '/health-check/',
-    summary: 'A free 30-minute call and a written report placing your team on the AI Use Hierarchy, with two or three next steps.',
+    summary:
+      'A free 30-minute call and a written report placing your team on the AI Use Hierarchy, with two or three next steps.',
     audience: 'Any new organisation',
     fromPrice: null,
     icon: 'tabler:clipboard-check',
@@ -22,7 +23,8 @@ export const SERVICES: Service[] = [
   {
     name: 'Workshops and Events',
     href: '/services/talks-workshops/',
-    summary: 'Face-to-face or online, from one hour to a full day: INSET, away days, leadership workshops, keynotes and talks.',
+    summary:
+      'Face-to-face or online, from one hour to a full day: INSET, away days, leadership workshops, keynotes and talks.',
     audience: 'Staff and leaders',
     fromPrice: 250,
     icon: 'tabler:presentation',
@@ -38,7 +40,8 @@ export const SERVICES: Service[] = [
   {
     name: 'Adoption coaching',
     href: '/services/adoption-coaching/',
-    summary: 'One-to-one or small-group coaching for senior leaders on leading AI adoption: strategy, policy and a phased roadmap.',
+    summary:
+      'One-to-one or small-group coaching for senior leaders on leading AI adoption: strategy, policy and a phased roadmap.',
     audience: 'Senior leaders',
     fromPrice: 350,
     icon: 'tabler:compass',
