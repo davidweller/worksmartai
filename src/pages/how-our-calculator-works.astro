@@ -8,9 +8,9 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import { CTAS } from '~/data/brand/ctas';
 
 const metadata = {
-  title: 'How the AI ROI Calculator Works for Teams | WorkSmart-AI',
+  title: 'How the AI Savings Calculator Works | WorkSmart-AI',
   description:
-    'See the research, formulas and assumptions behind the WorkSmart-AI calculator, from salary costs to productivity uplift and capacity created over time.',
+    'The research, formulas and assumptions behind the AI Savings Calculator, from salary costs to productivity uplift and capacity created. Every figure is an estimate.',
   canonical: '/how-our-calculator-works/',
 };
 
@@ -36,12 +36,12 @@ const standardItems = [
   {
     title: 'How it works',
     description:
-      'You enter number of employees, average annual salary including typical on-costs such as NI and pensions, and target AI adoption level - basic, intermediate, or advanced.',
+      'You enter the number of staff, their average annual salary, and an adoption level: just starting out, building momentum, or fully embedded. The calculator adds typical on-costs such as NI and pensions.',
   },
   {
     title: 'Core assumptions',
     description:
-      '1 FTE = 37.5 hours per week × 46 working weeks; on-cost factor is 1.25 × salary; AI-eligible tasks are around 50-55% of total workload; productivity uplift is 5-15% faster completion of eligible tasks depending on adoption level.',
+      '1 FTE = 37.5 hours per week; on-cost factor is 1.25 × salary; AI-eligible tasks are 55% of total workload; productivity uplift is 8-15% faster completion of eligible tasks depending on adoption level.',
   },
 ];
 
@@ -81,7 +81,7 @@ const kpis = [
   },
   {
     title: 'Five-year projection (£)',
-    description: 'Five-year savings = Annual savings × 5, or compounded annually if growth is added.',
+    description: 'Five-year savings = Annual savings × 5.',
     icon: 'tabler:calendar-stats',
   },
 ];
@@ -99,6 +99,7 @@ const roleRows = [
     '50%',
     'Literature review, summarising, and drafting papers show measurable gains.',
   ],
+  ['Student Services / HR / Registry', 'Student-facing and administrative services', '55%', 'Default share.'],
   [
     'Educator-Researchers',
     'Combined teaching and research roles',
@@ -111,17 +112,22 @@ const roleRows = [
     '50%',
     'Metadata, summarisation, and research assistance tasks are moderately AI-amenable.',
   ],
+  ['Finance', 'Finance and procurement', '55%', 'Default share.'],
+  ['IT Services', 'IT and digital services', '55%', 'Default share.'],
+  ['Marketing and Comms', 'Marketing, communications and recruitment', '55%', 'Default share.'],
+  ['Estates / Facilities', 'Estates, facilities and operations', '55%', 'Default share.'],
+  ['Other Admin', 'Any other professional services role', '55%', 'Default share.'],
 ];
 
 const adoptionRows = [
-  ['Basic', '35%', '8% faster completion', '0.55 × 0.35 × 0.08 = 1.5% overall'],
-  ['Intermediate', '60%', '12% faster completion', '0.55 × 0.60 × 0.12 = 4.0% overall'],
-  ['Advanced', '80%', '15% faster completion', '0.55 × 0.80 × 0.15 = 6.6% overall'],
+  ['Just starting out', '35%', '8% faster completion', '0.55 × 0.35 × 0.08 = 1.5% overall'],
+  ['Building momentum', '60%', '12% faster completion', '0.55 × 0.60 × 0.12 = 4.0% overall'],
+  ['Fully embedded', '80%', '15% faster completion', '0.55 × 0.80 × 0.15 = 6.6% overall'],
 ];
 
 const evidenceRows = [
   [
-    'Productivity uplift (5-15%)',
+    'Productivity uplift (8-15%)',
     'Bick et al. (2025); OECD / Filippucci et al. (2025); Brynjolfsson, Li and Raymond (2025).',
   ],
   ['Adoption levels (35-80%)', 'BCG (2025); McKinsey (2025).'],
@@ -135,13 +141,13 @@ const evidenceRows = [
 
 <Layout metadata={metadata}>
   <HeroText
-    tagline="Savings Calculator"
-    title="How our Calculator Works"
+    tagline="AI Savings Calculator"
+    title="How the AI Savings Calculator works"
     subtitle="Understanding how we estimate your potential savings and capacity uplift"
   />
   <Note
     title="Evidence-led estimates"
-    description=" The WorkSmart-AI Savings Calculator uses peer-reviewed and public research to estimate how much time, cost, and capacity your organisation could reclaim through staff training on AI."
+    description=" The AI Savings Calculator uses peer-reviewed and public research to estimate how much time, cost, and capacity your organisation could reclaim through staff training on AI."
   />
   <Features2
     title="The calculator has two modes"
@@ -167,7 +173,8 @@ const evidenceRows = [
         <h2 class="font-heading text-3xl font-bold text-heading">Role categories and data foundations</h2>
         <p class="mt-4 text-muted">
           When you enter counts for these roles, the calculator replaces the single headcount figure and weights savings
-          by role type, producing a blended productivity and capacity estimate.
+          by role type, producing a blended productivity and capacity estimate. Roles marked "Default share" use the 55%
+          figure until role-specific evidence is added.
         </p>
         <div class="mt-6 overflow-x-auto">
           <table class="w-full min-w-[760px] text-left text-base">
@@ -242,13 +249,13 @@ const evidenceRows = [
     <div class="mx-auto max-w-5xl rounded-2xl bg-card p-6 ring-1 ring-border shadow-card sm:p-8">
       <h2 class="font-heading text-3xl font-bold text-heading">Worked example</h2>
       <p class="mt-4 text-muted">
-        Using 12% efficiency on eligible tasks, 60% adoption rate, 55% eligible task share, 60 staff, £45,000 average
-        salary, and an on-cost factor of 1.25:
+        Using the Building momentum level (12% efficiency on eligible tasks, 60% adoption rate), 55% eligible task
+        share, 60 staff, £45,000 average salary, and an on-cost factor of 1.25:
       </p>
       <p class="mt-4 rounded-xl bg-elevated p-5 font-semibold text-heading">
         Productivity improvement = 0.55 × 0.60 × 0.12 = 3.96% (rounded to 4%)<br />Annual cost savings = 60 × (£45,000 ×
-        1.25) × 0.0396 = £133,650<br />Capacity created = 60 × 0.0396 = 2.4 FTEs<br />Five-year projection = £133,650 ×
-        5 = £668,250
+        1.25) × 0.0396 = £133,650<br />Capacity created = 60 × 0.0396 = 2.4 FTEs (about 89 hours a week)<br />Five-year
+        projection = £133,650 × 5 = £668,250
       </p>
     </div>
   </section>
@@ -409,9 +416,9 @@ const evidenceRows = [
   />
   <CallToAction
     title="Ready to estimate your potential savings?"
-    subtitle="Use the calculator or book a call to discuss what the figures could mean for your organisation."
+    subtitle="Use the calculator, then book a free AI Capability Check to see where the time is really going."
     actions={[
-      { variant: 'primary', text: 'Try the Calculator', href: '/roi-calculator/' },
+      { variant: 'primary', text: CTAS.calculator.text, href: CTAS.calculator.href },
       { text: CTAS.primary.text, href: CTAS.primary.href },
     ]}
   />

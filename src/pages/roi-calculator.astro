@@ -3,9 +3,9 @@ import Layout from '~/layouts/PageLayout.astro';
 import ROICalculator from '~/components/widgets/ROICalculator.astro';
 
 const metadata = {
-  title: 'AI ROI Calculator for Higher Education | WorkSmart-AI',
+  title: 'AI Savings Calculator | WorkSmart-AI',
   description:
-    'Estimate annual savings, productivity uplift and staff capacity your university could create through confident, well-supported AI adoption at scale today.',
+    'Estimate the time and money your organisation could save through confident, well-supported AI use. Figures are estimates, with our methodology published in full.',
   canonical: '/roi-calculator/',
 };
 ---
@@ -13,6 +13,13 @@ const metadata = {
 <Layout metadata={metadata}>
   <section class="bg-section px-6 py-14 sm:px-8 lg:px-12">
     <div class="mx-auto max-w-6xl" data-aos="fade-up">
+      <h1 class="mb-3 text-center font-heading text-3xl font-bold text-heading sm:text-4xl">AI Savings Calculator</h1>
+      <p class="mx-auto mb-10 max-w-2xl text-center text-default">
+        All figures are estimates. See <a
+          href="/how-our-calculator-works/"
+          class="font-semibold text-link underline underline-offset-2">how the AI Savings Calculator works</a
+        > for every assumption and source.
+      </p>
       <ROICalculator rootId="roi-calculator-page" />
     </div>
   </section>

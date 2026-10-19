@@ -1,4 +1,6 @@
 ---
+import { CTAS } from '~/data/brand/ctas';
+
 interface Props {
   rootId?: string;
   bookButtonLabel?: string;
@@ -7,11 +9,9 @@ interface Props {
 
 const {
   rootId = 'wsai-roi-calculator',
-  bookButtonLabel = 'Book your AI Capability Check',
+  bookButtonLabel = CTAS.primary.text,
   ctaLead = 'Turn the estimate into a practical institutional plan.',
 } = Astro.props;
-
-const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@worksmart-ai.co.uk/?ismsaljsauthenabled';
 ---
 
 <section class="wsai-sav-root">
@@ -38,7 +38,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
 
     <div class="wsai-banner">
       <div class="wsai-banner-main">
-        <div class="wsai-banner-eyebrow">Annual saving</div>
+        <div class="wsai-banner-eyebrow">Estimated annual saving</div>
         <div class="wsai-banner-value" id={`${rootId}-banner-annual`}>£0</div>
         <p class="wsai-banner-sub" id={`${rootId}-banner-sub`}>If 0 staff each reclaim ~0 hrs/week</p>
         <a class="wsai-banner-info" href="/how-our-calculator-works/">
@@ -50,9 +50,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
         </a>
       </div>
       <div class="wsai-banner-cta-wrap">
-        <a class="wsai-banner-cta" href={bookingsUrl} target="_blank" rel="noopener noreferrer">
-          Discuss your saving →
-        </a>
+        <a class="wsai-banner-cta" href={CTAS.primary.href}> Book your free AI Capability Check → </a>
       </div>
     </div>
 
@@ -64,7 +62,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
           <div id={`${rootId}-simple-controls`} class="wsai-simple-controls">
             <div class="wsai-field">
               <div class="wsai-label">
-                <span>Number of employees</span><span class="wsai-val-navy" id={`${rootId}-staff-val`}>20</span>
+                <span>Number of staff</span><span class="wsai-val-navy" id={`${rootId}-staff-val`}>20</span>
               </div>
               <input id={`${rootId}-staff`} class="wsai-range" type="range" min="5" max="250" step="1" value="20" />
             </div>
@@ -217,7 +215,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
         </div>
 
         <div class="wsai-panel wsai-panel-results">
-          <h3 class="wsai-panel-kicker">Your potential savings</h3>
+          <h3 class="wsai-panel-kicker">Your estimated savings</h3>
 
           <div class="wsai-result-block">
             <h4 class="wsai-group-label">Financial impact</h4>
@@ -225,12 +223,12 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
               <article class="wsai-metric-card">
                 <div class="wsai-metric-label">Annual saving</div>
                 <div class="wsai-metric-value wsai-metric-navy" id={`${rootId}-k-savings`}>£0</div>
-                <div class="wsai-metric-foot">Estimated financial impact this year</div>
+                <div class="wsai-metric-foot">Estimate for one year, on our published assumptions</div>
               </article>
               <article class="wsai-metric-card">
                 <div class="wsai-metric-label">5-year total</div>
                 <div class="wsai-metric-value wsai-metric-navy" id={`${rootId}-k-proj`}>£0</div>
-                <div class="wsai-metric-foot">Projected cumulative savings</div>
+                <div class="wsai-metric-foot">Estimate over five years: the annual figure × 5</div>
               </article>
             </div>
           </div>
@@ -239,18 +237,18 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
             <h4 class="wsai-group-label">Productivity impact</h4>
             <div class="wsai-metrics wsai-metrics-prod-top">
               <article class="wsai-metric-card">
-                <div class="wsai-metric-label">Hours saved / week</div>
+                <div class="wsai-metric-label">Estimated hours saved / week</div>
                 <div class="wsai-metric-value wsai-metric-navy" id={`${rootId}-k-hours`}>0 hrs</div>
                 <div class="wsai-metric-foot">Across your whole team</div>
               </article>
               <article class="wsai-metric-card">
-                <div class="wsai-metric-label">Capacity freed up</div>
+                <div class="wsai-metric-label">Estimated capacity freed up</div>
                 <div class="wsai-metric-value wsai-metric-green" id={`${rootId}-k-fte`}>0.0 roles</div>
                 <div class="wsai-metric-foot">Equivalent full-time roles of capacity</div>
               </article>
             </div>
             <article class="wsai-metric-card wsai-metric-card-wide">
-              <div class="wsai-metric-label">Productivity gain</div>
+              <div class="wsai-metric-label">Estimated productivity gain</div>
               <div class="wsai-metric-value wsai-metric-green" id={`${rootId}-k-prod`}>0%</div>
               <div class="wsai-metric-foot">Average increase per staff member</div>
             </article>
@@ -263,9 +261,10 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
       <div class="wsai-callout-inner">
         <p id={`${rootId}-result-heading`} class="wsai-callout-kicker">Your result</p>
         <p class="wsai-callout-text">
-          Your institution could reclaim <strong id={`${rootId}-callout-save`}>£0</strong> this year, the equivalent of freeing
-          up <strong id={`${rootId}-callout-fte`}>0</strong> full-time staff. That's the gap between unstructured AI use
-          and a coordinated approach. We close it.
+          On these assumptions, your team could reclaim an estimated
+          <strong id={`${rootId}-callout-save`}>£0</strong> a year, the equivalent of
+          <strong id={`${rootId}-callout-fte`}>0</strong> full-time roles. These are estimates, not guarantees: the AI Capability
+          Check shows where the time is really going.
         </p>
       </div>
     </aside>
@@ -957,7 +956,7 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
 
 <script is:inline define:vars={{ rootId }} data-astro-rerun>
   (() => {
-    /** Display only: nominal UK FT hours/week for reclaim copy — not used in savings formulas. */
+    /** Display only: nominal UK FT hours/week for reclaim copy - not used in savings formulas. */
     const HOURS_PER_WEEK_FT = 37.5;
 
     const CONFIG = {
@@ -967,37 +966,39 @@ const bookingsUrl = 'https://outlook.office.com/book/BookaMSTeamscallwithus@work
         staff: [5, 250, 20],
         salary: [20000, 120000, 39000],
       },
-      onCost: 1.32,
+      // Assumptions match /how-our-calculator-works/ and its cited evidence. Change both together.
+      onCost: 1.25,
       adoption: {
         init: 'intermediate',
-        beginner: 0.25,
-        intermediate: 0.5,
-        advanced: 0.75,
+        beginner: 0.35,
+        intermediate: 0.6,
+        advanced: 0.8,
       },
       uplift: {
-        beginner: 0.12,
-        intermediate: 0.2,
-        advanced: 0.3,
+        beginner: 0.08,
+        intermediate: 0.12,
+        advanced: 0.15,
       },
       eligibleByIndustry: {
         init: 'higherEdu',
-        higherEdu: 0.72,
+        higherEdu: 0.55,
       },
+      // Roles without a documented share use the 55% default.
       eligibleByRole: {
-        edu: 0.62,
-        res: 0.68,
-        eduRes: 0.67,
-        stu: 0.74,
-        lib: 0.7,
-        fin: 0.78,
-        it: 0.76,
-        mar: 0.82,
-        est: 0.49,
-        oth: 0.7,
+        edu: 0.55,
+        res: 0.5,
+        eduRes: 0.53,
+        stu: 0.55,
+        lib: 0.5,
+        fin: 0.55,
+        it: 0.55,
+        mar: 0.55,
+        est: 0.55,
+        oth: 0.55,
       },
       projection: {
         show: true,
-        growthRate: 0.05,
+        growthRate: 0,
       },
     };
 

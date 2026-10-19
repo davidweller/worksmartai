@@ -4,9 +4,9 @@ import { Icon } from 'astro-icon/components';
 import { CTAS } from '~/data/brand/ctas';
 
 const metadata = {
-  title: 'Free AI Workflow Guide for Higher Education Teams Now',
+  title: 'Higher Education Use Case Guide | WorkSmart-AI',
   description:
-    'Download the free WorkSmart-AI guide for higher education teams and learn how staff can progress from chatbot prompts to repeatable AI workflows safely.',
+    'Download the free Higher Education Use Case Guide: one familiar task traced up the AI Use Hierarchy, from chatbot prompt to automated workflow, with estimated time saved at each level.',
   canonical: '/higher-education-guide/',
   openGraph: {
     images: [{ url: '/images/guide-from-chatbot-to-workflow-cover.png' }],
@@ -26,21 +26,21 @@ const heroFacts = [
   { icon: 'tabler:file-type-pdf', label: 'Free 10-page PDF' },
   { icon: 'tabler:clock-hour-3', label: '5-min read' },
   { icon: 'tabler:school', label: 'Built for higher education' },
-  { icon: 'tabler:stairs-up', label: 'The 4-level model' },
+  { icon: 'tabler:stairs-up', label: 'Mapped to the AI Use Hierarchy' },
 ];
 
 const aiHierarchy = [
   {
     level: '01',
-    title: 'Conversational',
-    summary: 'Open a chatbot, paste, prompt, refine.',
-    detail: 'Where most staff start - and where most AI training stops.',
+    title: 'Conversational AI',
+    summary: 'Open an AI assistant, paste, prompt, refine.',
+    detail: 'Where most staff start, and where most AI training stops.',
     icon: 'tabler:messages',
     accent: 'secondary',
   },
   {
     level: '02',
-    title: 'Structured',
+    title: 'Structured Prompting',
     summary: 'Reusable prompts, templates and instructions.',
     detail: 'Same task every week? Stop typing it from scratch.',
     icon: 'tabler:template',
@@ -48,35 +48,42 @@ const aiHierarchy = [
   },
   {
     level: '03',
-    title: 'Configured',
+    title: 'Custom Configuration',
     summary: 'Custom GPTs and Copilot agents tuned to your role.',
-    detail: 'Your guidelines, tone of voice and source files - on tap.',
+    detail: 'Your guidelines, tone of voice and source files, on tap.',
     icon: 'tabler:settings-cog',
     accent: 'accent',
   },
   {
     level: '04',
-    title: 'Agentic',
+    title: 'Agents and Workflows',
     summary: 'Workflows that run with minimal manual effort.',
-    detail: 'Triggered by a meeting, an inbox, a calendar - not by you.',
+    detail: 'Triggered by a meeting, an inbox, a calendar, not by you.',
     icon: 'tabler:robot',
+    accent: 'accent',
+  },
+  {
+    level: '05',
+    title: 'Integration and Orchestration',
+    summary: 'AI connected into team and institutional systems.',
+    detail: 'Several tools coordinated, with governance in place.',
+    icon: 'tabler:topology-star-3',
     accent: 'accent',
   },
 ];
 
 const learningOutcomes = [
-  { text: "Why most AI training stops at 20% of what's possible." },
-  { text: 'The four-level AI Use Hierarchy every HE team should know.' },
+  { text: 'The five-level AI Use Hierarchy every HE team should know.' },
   { text: 'One familiar task, traced from chatbot prompt to automated workflow.' },
   { text: 'Where Copilot, Teams and Power Automate fit in the progression.' },
   { text: 'How to move staff from ad hoc prompts to repeatable systems.' },
-  { text: 'Time-saving estimates at each level of the hierarchy.' },
+  { text: 'Estimated time saved at each level of the hierarchy.' },
 ];
 
 const audiences = [
   {
     icon: 'tabler:building-bank',
-    title: 'Senior leaders & L&D',
+    title: 'Senior leaders and L&D',
     description: 'Frame your AI strategy in language your staff and trustees can act on - not just hype.',
   },
   {
@@ -94,7 +101,7 @@ const audiences = [
 const faqs = [
   {
     q: 'How long is the guide?',
-    a: '10 pages, designed to read in around five minutes. One worked example, four levels, and the time-saving you can expect at each.',
+    a: '10 pages, designed to read in around five minutes. One worked example, traced up the AI Use Hierarchy, with the estimated time saved at each level.',
   },
   {
     q: 'Do I need any special tools to use it?',
@@ -151,11 +158,12 @@ const faqs = [
           id="guide-hero-heading"
           class="mt-5 font-heading text-4xl font-bold leading-tight sm:text-5xl lg:text-[2.85rem] lg:leading-[1.1]"
         >
-          From chatbot prompts to <span class="text-accent">automated AI workflows</span> in higher education.
+          The Higher Education Use Case Guide: from chatbot prompts to
+          <span class="text-accent">automated AI workflows</span>.
         </h1>
         <p class="mt-6 max-w-xl text-lg leading-[var(--aw-leading-body,1.7)] text-white/90">
-          A clear four-level model for AI use in HE: from ad-hoc chatbots to repeatable workflows your teams can
-          follow—without drowning in hype or one-off prompts.
+          One familiar task, traced up the AI Use Hierarchy: from ad hoc prompts to repeatable workflows your teams can
+          follow, without drowning in hype or one-off prompts.
         </p>
 
         <!-- Hero tags -->
@@ -269,22 +277,22 @@ const faqs = [
   </section>
 
   <!-- ===========================================================
-       CORE HOOK  -  The 4-level AI Use Hierarchy preview
+       CORE HOOK  -  The five-level AI Use Hierarchy preview
        =========================================================== -->
   <section class="relative bg-page px-6 py-20 sm:px-8 lg:px-12" aria-labelledby="hierarchy-heading">
     <div class="mx-auto max-w-6xl">
       <div class="mx-auto max-w-3xl text-center" data-aos="fade-up">
         <p class="font-heading text-sm font-bold uppercase tracking-[0.22em] text-accent">Inside the guide</p>
         <h2 id="hierarchy-heading" class="mt-4 font-heading text-3xl font-bold text-heading sm:text-4xl">
-          The 4-level AI Use Hierarchy
+          The five-level AI Use Hierarchy
         </h2>
         <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-muted">
-          A clear four-level model for AI use in HE: demonstrating real-life, tangible examples of how AI can be better
-          used within the workplace and the time saved.
+          Five levels, from first use to institutional capability. The guide shows real, tangible examples of how one
+          task changes as staff move up, and the estimated time saved.
         </p>
       </div>
 
-      <ol class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" role="list">
+      <ol class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5" role="list">
         {
           aiHierarchy.map((step, idx) => (
             <li
@@ -318,7 +326,7 @@ const faqs = [
 
       <p class="mx-auto mt-10 max-w-2xl text-center text-sm text-muted" data-aos="fade-up">
         <a href="#download-guide" class="font-heading font-semibold text-accent hover:text-accent-hover">
-          See the worked example in the guide — get your free copy →
+          See the worked example in the guide: get your free copy →
         </a>
       </p>
     </div>
@@ -342,14 +350,14 @@ const faqs = [
               src={guideCoverSrc}
               width="440"
               height="620"
-              alt="Cover of the WorkSmart-AI PDF guide: From Chatbot to Workflow, for higher education"
+              alt="Cover of the WorkSmart-AI Higher Education Use Case Guide"
               class="w-full rounded-xl shadow-2xl ring-1 ring-black/10"
               loading="lazy"
               decoding="async"
             />
           </div>
           <figcaption class="mt-6 text-center text-sm text-muted">
-            From Chatbot to Workflows &mdash; a practical guide for HE staff.
+            The Higher Education Use Case Guide: a practical guide for HE staff.
           </figcaption>
         </figure>
       </div>
@@ -403,7 +411,7 @@ const faqs = [
           Written for everyone making AI work in HE
         </h2>
         <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-muted">
-          Whether you're shaping policy or saving time on your inbox, the same four-level model applies.
+          Whether you're shaping policy or saving time on your inbox, the same five-level hierarchy applies.
         </p>
       </div>
 
@@ -447,28 +455,29 @@ const faqs = [
     >
       <div class="text-center lg:text-left" data-aos="fade-right">
         <p class="font-heading text-5xl font-bold leading-none tracking-tight sm:text-6xl lg:text-7xl">
-          2–3 <span class="text-accent">hours</span>
+          2-3 <span class="text-accent">hours</span>
         </p>
         <p
           class="mt-4 max-w-[14rem] font-heading text-base font-semibold leading-snug text-white/90 sm:text-lg mx-auto lg:mx-0"
         >
-          saved per staff member, per week
+          estimated saving per staff member, per week
         </p>
       </div>
 
-      <blockquote
-        class="rounded-2xl border border-white/20 bg-white/[0.04] p-6 backdrop-blur-sm sm:p-8"
-        data-aos="fade-left"
-      >
+      <div class="rounded-2xl border border-white/20 bg-white/[0.04] p-6 backdrop-blur-sm sm:p-8" data-aos="fade-left">
         <p class="text-base font-medium leading-relaxed text-white/95 sm:text-lg">
-          &ldquo;Moving from Level 1 to Level 2 alone can save 2–3 hours per staff member per week across common tasks.
-          For a 3,000-person institution, that is the equivalent of nearly 180 full-time roles' worth of time, every
-          year.&rdquo;
+          Moving from Level 1 to Level 2 alone could save an estimated 2 to 3 hours per staff member per week across
+          common tasks. This is our estimate from the worked examples in the guide, not a measured result. Try your own
+          figures in the AI Savings Calculator.
         </p>
-        <footer class="mt-6 font-heading text-xs font-bold uppercase tracking-[0.2em] text-accent">
-          From the WorkSmart-AI Higher Education Guide
+        <footer class="mt-6">
+          <a
+            href="/how-our-calculator-works/"
+            class="font-heading text-xs font-bold uppercase tracking-[0.2em] text-accent hover:underline"
+            >How we estimate savings</a
+          >
         </footer>
-      </blockquote>
+      </div>
     </div>
   </section>
 
