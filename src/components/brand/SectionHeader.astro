@@ -1,6 +1,7 @@
 ---
 interface Props {
   eyebrow?: string;
+  /** A \n in the title becomes a line break. */
   title?: string;
   subtitle?: string;
   align?: 'center' | 'left';
@@ -12,7 +13,13 @@ const centred = align === 'center';
 
 <div class:list={['mb-10 md:mb-12', centred ? 'mx-auto max-w-3xl text-center' : 'max-w-3xl']}>
   {eyebrow && <p class="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-accent">{eyebrow}</p>}
-  {title && <h2 class="font-heading text-2xl font-bold text-heading sm:text-3xl lg:text-4xl">{title}</h2>}
+  {
+    title && (
+      <h2 class="font-heading text-2xl font-bold text-heading sm:text-3xl lg:text-4xl">
+        {title.split('\n').map((line, i) => (i ? [<br />, line] : line))}
+      </h2>
+    )
+  }
   <div class:list={['mt-4 h-1 w-24 rounded-full bg-accent', centred && 'mx-auto']} aria-hidden="true"></div>
   {subtitle && <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-default sm:text-lg">{subtitle}</p>}
 </div>
