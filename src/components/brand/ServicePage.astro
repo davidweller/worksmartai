@@ -1,7 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/PageLayout.astro';
-import Button from '~/components/ui/Button.astro';
 import SectionHeader from './SectionHeader.astro';
 import ServiceCards from './ServiceCards.astro';
 import CtaBand from './CtaBand.astro';
@@ -58,7 +57,12 @@ const here = metadata.canonical;
       <p class="mt-6 text-base leading-[var(--aw-leading-body,1.7)] text-white/90 sm:text-lg">{intro}</p>
       {price && <p class="mt-6 font-heading text-2xl font-bold text-secondary">{price}</p>}
       <div class="mt-8 flex justify-center">
-        <Button variant="primary" href={CTAS.primary.href} text={CTAS.primary.text} />
+        <a
+          href={CTAS.primary.href}
+          class="inline-flex items-center justify-center rounded-full bg-[#FF7700] px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#e55f00]"
+        >
+          {CTAS.primary.text}
+        </a>
       </div>
     </div>
   </section>

@@ -1,5 +1,4 @@
 ---
-import Button from '~/components/ui/Button.astro';
 import { CTAS } from '~/data/brand/ctas';
 
 interface Props {
@@ -22,12 +21,17 @@ const second = secondary ? CTAS[secondary] : undefined;
     <h2 class="font-heading text-2xl font-bold text-white sm:text-3xl lg:text-4xl">{title}</h2>
     <p class="mt-5 text-base text-white/90 sm:text-lg">{subtitle}</p>
     <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-      <Button variant="primary" href={CTAS.primary.href} text={CTAS.primary.text} />
+      <a
+        href={CTAS.primary.href}
+        class="inline-flex items-center justify-center rounded-full bg-[#FF7700] px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#e55f00]"
+      >
+        {CTAS.primary.text}
+      </a>
       {
         second && (
           <a
             href={second.href}
-            class="font-semibold text-white underline decoration-secondary underline-offset-4 hover:text-secondary"
+            class="inline-flex items-center justify-center rounded-full border-2 border-white/70 px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-white"
           >
             {second.text}
           </a>
