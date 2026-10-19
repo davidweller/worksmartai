@@ -1,0 +1,26 @@
+---
+import { UPSELL_LADDER } from '~/data/brand/services';
+---
+
+<ol class="flex flex-col gap-3 md:flex-row md:items-stretch">
+  {
+    UPSELL_LADDER.map((step, i) => (
+      <li class="flex flex-1 items-center gap-3">
+        <a
+          href={step.href}
+          class="flex h-full flex-1 items-center gap-3 rounded-xl border border-primary/20 bg-card p-4 font-heading font-bold text-heading shadow-card transition hover:border-primary"
+        >
+          <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent text-sm text-white">
+            {i + 1}
+          </span>
+          {step.name}
+        </a>
+        {i < UPSELL_LADDER.length - 1 && (
+          <span class="hidden text-2xl text-accent md:inline" aria-hidden="true">
+            ›
+          </span>
+        )}
+      </li>
+    ))
+  }
+</ol>

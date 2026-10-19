@@ -1,0 +1,44 @@
+---
+import { Icon } from 'astro-icon/components';
+import { SERVICES, formatFromPrice, type Service } from '~/data/brand/services';
+
+interface Props {
+  services?: Service[];
+  /** Leave out the service whose page this is. */
+  exclude?: string;
+}
+
+const { services = SERVICES, exclude } = Astro.props;
+const shown = services.filter((s) => s.href !== exclude);
+---
+
+<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+  {
+    shown.map((s) => (
+      <a
+        href={s.href}
+        class="group relative flex h-full flex-col overflow-hidden rounded-xl border border-primary/20 bg-card p-6 shadow-card transition duration-300 ease-out hover:-translate-y-1 hover:border-primary hover:shadow-card-elevated"
+      >
+        <span
+          class="absolute bottom-0 left-0 right-0 h-1 origin-left scale-x-0 transform bg-accent transition-transform duration-300 ease-out group-hover:scale-x-100"
+          aria-hidden="true"
+        />
+        <div class="mb-4 inline-flex w-fit rounded-lg bg-primary/8 p-3 text-primary">
+          <Icon name={s.icon} class="h-7 w-7" aria-hidden="true" />
+        </div>
+        <h3 class="font-heading text-xl font-bold text-heading">{s.name}</h3>
+        <p class="mt-1 text-sm font-medium text-muted">{s.audience}</p>
+        <p class="mt-3 flex-1 text-default">{s.summary}</p>
+        <div class="mt-6 flex items-center justify-between gap-4">
+          <span class="font-heading text-lg font-bold text-primary">{formatFromPrice(s.fromPrice)}</span>
+          <span class="inline-flex items-center font-semibold text-link group-hover:text-accent">
+            Learn more
+            <span class="ml-1 transition-transform group-hover:translate-x-0.5" aria-hidden="true">
+              →
+            </span>
+          </span>
+        </div>
+      </a>
+    ))
+  }
+</div>

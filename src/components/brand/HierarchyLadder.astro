@@ -1,0 +1,61 @@
+---
+import { HIERARCHY } from '~/data/brand/hierarchy';
+
+interface Props {
+  /** Also show the capability, confidence and compliance matrix. */
+  matrix?: boolean;
+}
+
+const { matrix = false } = Astro.props;
+const rows = [
+  { label: 'Capability', key: 'capability' },
+  { label: 'Confidence', key: 'confidence' },
+  { label: 'Compliance', key: 'compliance' },
+] as const;
+---
+
+<ol class="grid grid-cols-1 gap-4 md:grid-cols-5">
+  {
+    HIERARCHY.map((l) => (
+      <li class="flex flex-col rounded-xl border border-primary/20 bg-card p-5 shadow-card">
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary font-heading font-bold text-white">
+          {l.level}
+        </span>
+        <h3 class="mt-3 font-heading text-base font-bold leading-snug text-heading">{l.name}</h3>
+        <p class="mt-2 text-sm leading-relaxed text-default">{l.meaning}</p>
+      </li>
+    ))
+  }
+</ol>
+
+{
+  matrix && (
+    <div class="mt-10 overflow-x-auto rounded-xl border border-primary/20 bg-card shadow-card">
+      <table class="w-full min-w-[48rem] text-left text-sm">
+        <caption class="sr-only">Capability, confidence and compliance at each level</caption>
+        <thead class="bg-primary/8">
+          <tr>
+            <th scope="col" class="p-4" />
+            {HIERARCHY.map((l) => (
+              <th scope="col" class="p-4 font-heading font-bold text-heading">
+                L{l.level} {l.name}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr class="border-t border-primary/10 align-top">
+              <th scope="row" class="p-4 font-heading font-bold text-primary">
+                {r.label}
+              </th>
+              {HIERARCHY.map((l) => (
+                <td class="p-4 text-default">{l[r.key]}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
