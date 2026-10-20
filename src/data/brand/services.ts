@@ -34,7 +34,7 @@ export const SERVICES: Service[] = [
     href: '/services/your-own-ai-course/',
     summary: 'Self-paced, interactive courses hosted on the WorkSmart-AI Academy or white-labelled for your own LMS.',
     audience: 'All staff, all students',
-    fromPrice: 4995,
+    fromPrice: 750,
     icon: 'tabler:device-laptop',
   },
   {
