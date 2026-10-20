@@ -1,15 +1,11 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import ROICalculator from '~/components/widgets/ROICalculator.astro';
 import SectionHeader from '~/components/brand/SectionHeader.astro';
 import ServiceCards from '~/components/brand/ServiceCards.astro';
-import UpsellLadder from '~/components/brand/UpsellLadder.astro';
 import CourseCards from '~/components/brand/CourseCards.astro';
 import HierarchyLadder from '~/components/brand/HierarchyLadder.astro';
-import EvidenceStats from '~/components/brand/EvidenceStats.astro';
 import { ONE_LINERS, TAGLINE } from '~/data/brand/copy';
 import { CTAS } from '~/data/brand/ctas';
-import { EVIDENCE } from '~/data/brand/evidence';
 
 const metadata = {
   title: 'AI Skills Training for Universities | WorkSmart-AI',
@@ -126,15 +122,46 @@ const personas = [
     </div>
   </section>
 
-  <!-- 4. How it fits together -->
-  <section class="bg-white px-6 py-12 sm:px-8 md:py-20 lg:px-12" no-intersect>
-    <div class="mx-auto max-w-6xl">
-      <SectionHeader
-        eyebrow="How it fits together"
-        title="Start small, build from there"
-        subtitle="Most institutions start with the free AI Capability Check, then build up as their staff do."
-      />
-      <UpsellLadder />
+  <!-- 4. Founder credibility -->
+  <section class="bg-white px-6 py-12 sm:px-8 md:py-20 lg:px-12" no-intersect aria-labelledby="inside-he-heading">
+    <div class="mx-auto flex max-w-6xl flex-col-reverse gap-10 md:flex-row md:items-center md:gap-16">
+      <div class="md:basis-1/2">
+        <h2 id="inside-he-heading" class="font-heading text-3xl font-bold text-[#015887] sm:text-4xl">
+          We&rsquo;ve worked inside the buildings we&rsquo;re trying to help.
+        </h2>
+        <p class="mt-6 font-sans text-sm leading-[1.7] text-[#1B0101]">
+          Both founders are former Digital Skills Leads at the University of Exeter, and higher education is our home
+          sector. That context shapes every workshop we design and every conversation we have with your team.
+        </p>
+        <p class="mt-4 font-sans text-sm leading-[1.7] text-[#1B0101]">
+          Understanding how universities operate and the technology used, means we can jump straight into helping you
+          directly with your specific need.
+        </p>
+        <p class="mt-4 font-sans text-sm leading-[1.7] text-[#1B0101]">
+          Appreciating the time, capacity and anxiety pressures that can exist, we use a people-first approach, to offer
+          flexibility and support every step of the way.
+        </p>
+        <p class="mt-6 font-heading text-sm font-bold text-[#FF7700]">
+          This isn&rsquo;t theory for us. It&rsquo;s the world we came from.
+        </p>
+        <a
+          href="/about-us/"
+          class="mt-8 inline-flex font-heading text-sm font-bold text-[#015887] transition hover:text-[#FF7700]"
+        >
+          Meet the team &rarr;
+        </a>
+      </div>
+      <div class="md:basis-1/2">
+        <img
+          src="/images/team-photo.jpg"
+          alt="WorkSmart-AI co-founders presenting at a conference to an audience"
+          width={1200}
+          height={900}
+          loading="lazy"
+          decoding="async"
+          class="aspect-[4/3] w-full rounded-lg object-cover"
+        />
+      </div>
     </div>
   </section>
 
@@ -196,13 +223,6 @@ const personas = [
     </div>
   </section>
 
-  <section class="bg-white px-6 py-12 sm:px-8 md:py-16 lg:px-12" no-intersect>
-    <div class="mx-auto max-w-6xl">
-      <SectionHeader eyebrow="The evidence" title="Why higher education needs this now" />
-      <EvidenceStats items={[EVIDENCE.staffDevelopment, EVIDENCE.studentSkills, EVIDENCE.employerTraining]} />
-    </div>
-  </section>
-
   <!-- 8. Student AI literacy banner -->
   <section
     class="bg-[#015887] px-6 py-8 sm:px-8 md:py-10 lg:px-12"
@@ -225,104 +245,28 @@ const personas = [
     </div>
   </section>
 
-  <!-- 9. Founder credibility -->
-  <section class="bg-white px-6 py-12 sm:px-8 md:py-20 lg:px-12" no-intersect aria-labelledby="inside-he-heading">
-    <div class="mx-auto flex max-w-6xl flex-col-reverse gap-10 md:flex-row md:items-center md:gap-16">
-      <div class="md:basis-1/2">
-        <h2 id="inside-he-heading" class="font-heading text-3xl font-bold text-[#015887] sm:text-4xl">
-          We&rsquo;ve worked inside the buildings we&rsquo;re trying to help.
-        </h2>
-        <p class="mt-6 font-sans text-sm leading-[1.7] text-[#1B0101]">
-          Both founders are former Digital Skills Leads at the University of Exeter, and higher education is our home
-          sector. That context shapes every workshop we design and every conversation we have with your team.
-        </p>
-        <p class="mt-4 font-sans text-sm leading-[1.7] text-[#1B0101]">
-          Understanding how universities operate and the technology used, means we can jump straight into helping you
-          directly with your specific need.
-        </p>
-        <p class="mt-4 font-sans text-sm leading-[1.7] text-[#1B0101]">
-          Appreciating the time, capacity and anxiety pressures that can exist, we use a people-first approach, to offer
-          flexibility and support every step of the way.
-        </p>
-        <p class="mt-6 font-heading text-sm font-bold text-[#FF7700]">
-          This isn&rsquo;t theory for us. It&rsquo;s the world we came from.
-        </p>
+  <!-- 9. Free resources -->
+  <section class="bg-[#F8F8F8] px-6 py-12 sm:px-8 md:py-16 lg:px-12" no-intersect aria-labelledby="resources-heading">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]">Free resources</p>
+      <h2 id="resources-heading" class="sr-only">Free resources</h2>
+      <div class="mt-4 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-10">
         <a
-          href="/about-us/"
-          class="mt-8 inline-flex font-heading text-sm font-bold text-[#015887] transition hover:text-[#FF7700]"
+          href={CTAS.calculator.href}
+          class="font-heading text-sm font-bold text-[#015887] transition hover:text-[#FF7700]"
         >
-          Meet the team &rarr;
+          {CTAS.calculator.text}
+          <span aria-hidden="true">&rarr;</span>
         </a>
-      </div>
-      <div class="md:basis-1/2">
-        <img
-          src="/images/team-photo.jpg"
-          alt="WorkSmart-AI co-founders presenting at a conference to an audience"
-          width={1200}
-          height={900}
-          loading="lazy"
-          decoding="async"
-          class="aspect-[4/3] w-full rounded-lg object-cover"
-        />
-      </div>
-    </div>
-  </section>
-
-  <!-- 10. ROI calculator -->
-  <section class="bg-white px-6 py-12 sm:px-8 md:py-20 lg:px-12" no-intersect aria-labelledby="roi-heading">
-    <div class="mx-auto max-w-6xl">
-      <div class="mx-auto max-w-3xl text-center">
-        <p class="font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]">
-          AI Savings Calculator
-        </p>
-        <h2 id="roi-heading" class="mt-3 font-heading text-3xl font-bold text-[#015887] sm:text-4xl">
-          What does the status quo cost you?
-        </h2>
-        <p class="mt-4 font-sans text-base leading-[1.7] text-[#1B0101]">
-          Limited and sporadic AI use isn&rsquo;t free. Staff are spending hours on tasks that could be done in seconds
-          if they were AI capable. The AI Savings Calculator estimates what a coordinated approach could reclaim.
-        </p>
-      </div>
-      <div class="home-roi-calculator mt-10">
-        <ROICalculator rootId="roi-calculator-home" ctaLead="Turn your estimate into a practical institutional plan." />
-      </div>
-    </div>
-  </section>
-
-  <!-- 11. Free guide -->
-  <section class="bg-[#F8F8F8] px-6 py-12 sm:px-8 md:py-20 lg:px-12" no-intersect aria-labelledby="guide-heading">
-    <div class="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-[0.8fr_1.2fr]">
-      <div class="mx-auto max-w-xs md:max-w-none">
-        <img
-          src="/images/guide-from-chatbot-to-workflow-cover.png"
-          alt="Cover of the Higher Education Use Case Guide"
-          width={800}
-          height={1035}
-          loading="lazy"
-          decoding="async"
-          class="rounded-xl shadow-[0_20px_60px_-32px_rgba(1,88,135,0.65)]"
-        />
-      </div>
-      <div>
-        <p class="font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]">Free resource</p>
-        <h2 id="guide-heading" class="mt-3 font-heading text-3xl font-bold text-[#015887] sm:text-4xl">
-          The Higher Education Use Case Guide
-        </h2>
-        <p class="mt-4 font-sans text-base leading-[1.7] text-[#1B0101]">
-          A short guide that takes a single task most staff already do, and shows how it changes as staff move up the AI
-          Use Hierarchy: from a quick prompt to a full agentic workflow.
-        </p>
-        <a
-          href="/higher-education-guide/"
-          class="mt-8 inline-flex items-center justify-center rounded-full border border-[#FF7700] bg-[#FF7700] px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-[#e55f00] hover:bg-[#e55f00]"
-        >
+        <a href={CTAS.guide.href} class="font-heading text-sm font-bold text-[#015887] transition hover:text-[#FF7700]">
           {CTAS.guide.text}
+          <span aria-hidden="true">&rarr;</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- 12. Final CTA -->
+  <!-- 10. Final CTA -->
   <section class="bg-[#015887] px-6 py-12 sm:px-8 md:py-20 lg:px-12" no-intersect aria-labelledby="final-cta-heading">
     <div class="mx-auto max-w-3xl text-center">
       <p class="font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]">
@@ -344,14 +288,3 @@ const personas = [
     </div>
   </section>
 </Layout>
-
-<style>
-  .home-roi-calculator :global(.wsai-hero) {
-    display: none;
-  }
-
-  .home-roi-calculator :global(.wsai-sav-root) {
-    background: transparent;
-    padding: 0;
-  }
-</style>

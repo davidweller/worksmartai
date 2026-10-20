@@ -3,12 +3,10 @@ import Layout from '~/layouts/PageLayout.astro';
 import { Icon } from 'astro-icon/components';
 import SectionHeader from '~/components/brand/SectionHeader.astro';
 import HierarchyLadder from '~/components/brand/HierarchyLadder.astro';
-import EvidenceStats from '~/components/brand/EvidenceStats.astro';
 import ServiceCards from '~/components/brand/ServiceCards.astro';
 import CtaBand from '~/components/brand/CtaBand.astro';
 import { HEADLINE_OUTCOMES, ONE_LINERS, PILLARS, TAGLINE, WHY_US } from '~/data/brand/copy';
 import { CTAS } from '~/data/brand/ctas';
-import { EVIDENCE } from '~/data/brand/evidence';
 
 const metadata = {
   title: 'AI skills training for universities, colleges, schools and organisations | WorkSmart-AI',
@@ -55,8 +53,6 @@ const sectorDoors = [
     cta: 'Explore Businesses',
   },
 ];
-
-const evidence = [EVIDENCE.employerTraining, EVIDENCE.unapprovedTools, EVIDENCE.staffDevelopment];
 ---
 
 <Layout metadata={metadata} sector="neutral">
@@ -213,7 +209,6 @@ const evidence = [EVIDENCE.employerTraining, EVIDENCE.unapprovedTools, EVIDENCE.
         title={'Most staff now use AI.\nFew have been trained to use it well.'}
         subtitle="AI tools only make organisations more productive when people can use them well. We teach practical AI skills on real tasks, built around your policy and tools, and track progress against published outcomes."
       />
-      <EvidenceStats items={evidence} />
       <ul class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {
           HEADLINE_OUTCOMES.map((o) => (

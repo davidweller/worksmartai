@@ -3,11 +3,9 @@ import Layout from '~/layouts/PageLayout.astro';
 import { Icon } from 'astro-icon/components';
 import SectionHeader from '~/components/brand/SectionHeader.astro';
 import CourseCards from '~/components/brand/CourseCards.astro';
-import EvidenceStats from '~/components/brand/EvidenceStats.astro';
 import CtaBand from '~/components/brand/CtaBand.astro';
 import { ONE_LINERS } from '~/data/brand/copy';
 import { CTAS } from '~/data/brand/ctas';
-import { EVIDENCE } from '~/data/brand/evidence';
 import { RESOURCES } from '~/data/brand/resources';
 import { priceOf } from '~/data/brand/services';
 
@@ -134,13 +132,6 @@ const strands = [
           {RESOURCES.licensing.name}
         </a>
       </div>
-    </div>
-  </section>
-
-  <section class="bg-[#F8F8F8] px-6 py-12 sm:px-8 md:py-16 lg:px-12" no-intersect>
-    <div class="mx-auto max-w-5xl">
-      <SectionHeader eyebrow="The evidence" title="Why organisations are acting now" />
-      <EvidenceStats items={[EVIDENCE.unapprovedTools, EVIDENCE.employerTraining]} />
     </div>
   </section>
 
