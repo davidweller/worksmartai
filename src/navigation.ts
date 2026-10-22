@@ -55,7 +55,8 @@ export const headerData: {
     },
     {
       text: 'Services',
-      links: serviceLinks,
+      // The overview page stays in the footer and the service-page back links, not the dropdown.
+      links: serviceLinks.filter((l) => l.href !== '/services/'),
     },
     {
       text: 'Resources',
