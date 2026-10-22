@@ -1,0 +1,51 @@
+---
+import ServicePage from '~/components/brand/ServicePage.astro';
+import { priceOf } from '~/data/brand/services';
+
+const price = priceOf('Built for You');
+
+const metadata = {
+  title: 'Copilot Agents and Workflows Built for You | WorkSmart-AI',
+  description:
+    'We map your team’s critical workflows, build the Copilot agents and workflows for them, and train your staff to hand work off and collect it back. Price on application.',
+  canonical: '/services/built-for-you/',
+};
+
+const includes = [
+  'Help identifying the workflows where AI will save your team the most time',
+  'A process map of each workflow before anything is built',
+  'Copilot agents and workflows built by us, or support for your leaders to build their own',
+  'Training for staff to hand work off to the agents and collect it back',
+  'Regular reviews to keep the workflows current, with continued staff Q&A',
+];
+
+const faqs = [
+  {
+    q: 'Why not let staff build their own agents?',
+    a: 'Copilot premium licences and the credits agents use are expensive. Building each agent once, around a mapped workflow, costs less than every member of staff learning by trial and error.',
+  },
+  {
+    q: 'Which tools do you build in?',
+    a: 'Microsoft 365 Copilot and Copilot Studio, inside your own tenant and your own policies. We don’t sell or set up licences. We build on what you already have.',
+  },
+  {
+    q: 'Do you build bespoke AI systems?',
+    a: 'No. We build Copilot agents and workflows for specific team use cases, and train your staff to use them well.',
+  },
+  {
+    q: 'How do we start?',
+    a: 'With a free AI Capability Check. It places your teams on the AI Use Hierarchy and shows which workflows are worth building first.',
+  },
+];
+---
+
+<ServicePage
+  metadata={metadata}
+  eyebrow="Built for You"
+  title="Copilot agents and workflows, built for your team"
+  intro="We map your team’s critical workflows, build the Copilot agents and workflows that run them, and train your staff to hand work off and collect it back. Or we support your leaders to build their own."
+  price={price}
+  includes={includes}
+  faqs={faqs}
+  ctaTitle="Start with a free AI Capability Check"
+/>

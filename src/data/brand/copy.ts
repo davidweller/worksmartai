@@ -82,7 +82,7 @@ export const WHY_US = [
 export const WHAT_WE_DONT_DO = [
   'We don’t sell or set up learning platforms. Courses go on your LMS or our WorkSmart-AI Academy.',
   'We don’t sell or implement software or Copilot licences. We train people to use what they have.',
-  'We don’t build bespoke AI systems.',
+  'We don’t build bespoke AI systems. Through Built for You, we build Copilot agents and workflows for specific team use cases, and train staff to use them.',
 ] as const;
 
 export const FOUNDERS_PROOF =

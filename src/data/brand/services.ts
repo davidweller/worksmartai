@@ -54,6 +54,14 @@ export const SERVICES: Service[] = [
     fromPrice: 250,
     icon: 'tabler:books',
   },
+  {
+    name: 'Built for You',
+    href: '/services/built-for-you/',
+    summary:
+      'Copilot agents and workflows built around your team’s critical work, with your staff trained to hand work off and collect it back.',
+    audience: 'Departments and senior leaders',
+    icon: 'tabler:robot',
+  },
 ];
 
 export const ADD_ONS = ['Monthly AI Cafe drop-ins', 'Strategic follow-up session'] as const;
