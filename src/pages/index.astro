@@ -2,7 +2,6 @@
 import Layout from '~/layouts/PageLayout.astro';
 import { Icon } from 'astro-icon/components';
 import SectionHeader from '~/components/brand/SectionHeader.astro';
-import HierarchyLadder from '~/components/brand/HierarchyLadder.astro';
 import ServiceCards from '~/components/brand/ServiceCards.astro';
 import CtaBand from '~/components/brand/CtaBand.astro';
 import { ONE_LINERS, PILLARS, TAGLINE, WHY_US } from '~/data/brand/copy';
@@ -160,19 +159,17 @@ const sectorDoors = [
   </section>
 
   <!-- 5. Testimonial -->
-  <section class="bg-white px-6 py-12 sm:px-8 lg:px-12" no-intersect aria-label="Testimonial">
-    <div class="mx-auto max-w-5xl">
-      <div class="rounded-xl bg-[#015887] px-8 py-10 text-center md:text-left">
-        <blockquote class="text-white">
-          <p class="font-sans text-lg leading-[1.7] md:text-xl">
-            &ldquo;Katie and Dave are specialists in working with educational leaders to design AI training courses to
-            have maximum impact on their staff. Friendly to work with and efficient in their approach.&rdquo;
-          </p>
-          <footer class="mt-3 font-sans text-sm italic text-white/80">
-            Lisa Harris, Director of Digital Learning, University of Exeter
-          </footer>
-        </blockquote>
-      </div>
+  <section class="bg-[#015887] px-6 py-8 sm:px-8 md:py-10 lg:px-12" no-intersect aria-label="Testimonial">
+    <div class="mx-auto max-w-3xl border-l-4 border-[#FF7700] pl-5 sm:pl-7">
+      <blockquote>
+        <p class="font-sans text-base font-bold leading-[1.7] text-white sm:text-lg">
+          &ldquo;Katie and Dave are specialists in working with educational leaders to design AI training courses to
+          have maximum impact on their staff. Friendly to work with and efficient in their approach.&rdquo;
+        </p>
+      </blockquote>
+      <p class="mt-4 font-sans text-sm italic leading-[1.6] text-white/80">
+        Lisa Harris, Director of Digital Learning, University of Exeter
+      </p>
     </div>
   </section>
 
@@ -217,18 +214,6 @@ const sectorDoors = [
           ))
         }
       </div>
-    </div>
-  </section>
-
-  <!-- 8. AI Use Hierarchy -->
-  <section class="bg-[#F8F8F8] px-6 py-16 sm:px-8 lg:px-12" no-intersect>
-    <div class="mx-auto max-w-6xl">
-      <SectionHeader
-        eyebrow="A structured path"
-        title="The AI Use Hierarchy"
-        subtitle="Five levels, from first use to institutional capability. Every course, workshop and AI Capability Check is mapped against it, so staff and leaders see where they are and what comes next."
-      />
-      <HierarchyLadder />
     </div>
   </section>
 

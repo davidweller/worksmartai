@@ -2,7 +2,6 @@
 import ServicePage from '~/components/brand/ServicePage.astro';
 import SectionHeader from '~/components/brand/SectionHeader.astro';
 import CourseCards from '~/components/brand/CourseCards.astro';
-import HierarchyLadder from '~/components/brand/HierarchyLadder.astro';
 import { priceOf } from '~/data/brand/services';
 
 const workshopPrice = priceOf('Workshops and Events');
@@ -72,17 +71,6 @@ const includes = [
         }
       </div>
       <CourseCards streams={['all-staff', 'academic', 'professional-services']} />
-    </div>
-  </section>
-
-  <section class="bg-page px-6 py-16 sm:px-8 lg:px-12">
-    <div class="mx-auto max-w-6xl">
-      <SectionHeader
-        eyebrow="A structured path"
-        title="The AI Use Hierarchy"
-        subtitle="Capability, confidence and compliance are measured at every level."
-      />
-      <HierarchyLadder matrix />
     </div>
   </section>
 </ServicePage>

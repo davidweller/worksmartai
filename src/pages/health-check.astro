@@ -1,7 +1,6 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import { Icon } from 'astro-icon/components';
-import HierarchyLadder from '~/components/brand/HierarchyLadder.astro';
 import { BOOKING_URL } from '~/data/brand/ctas';
 
 const metadata = {
@@ -146,8 +145,9 @@ const deliverables = [
       </h2>
       <p class="mt-6 text-base leading-[var(--aw-leading-body,1.7)] text-default">
         The Capability Check is a focused, free diagnostic for a specific team, department, or faculty. It is built
-        around the AI Use Hierarchy, a five-level framework that describes how staff progress in their AI capability,
-        from first conversations with an AI assistant through to connecting AI into institutional systems.
+        around the <a href="/ai-use-hierarchy/" class="font-semibold text-primary underline">AI Use Hierarchy</a>, a
+        five-level framework that describes how staff progress in their AI capability, from first conversations with an
+        AI assistant through to connecting AI into institutional systems.
       </p>
       <p class="mt-5 text-base leading-[var(--aw-leading-body,1.7)] text-default">
         You do not need to prepare anything. You do not need to have your team complete a survey beforehand (although we
@@ -159,13 +159,6 @@ const deliverables = [
         From that conversation, we produce a written report that you can share with colleagues, take to your senior
         team, or use to inform your own planning. It is yours to keep, whether or not you ever speak to us again.
       </p>
-    </div>
-  </section>
-
-  <section class="bg-section px-6 pb-4 pt-20 sm:px-8 lg:px-12" aria-label="The AI Use Hierarchy">
-    <div class="mx-auto max-w-6xl">
-      <h2 class="mb-10 text-center font-heading text-3xl font-bold text-heading sm:text-4xl">The AI Use Hierarchy</h2>
-      <HierarchyLadder />
     </div>
   </section>
 

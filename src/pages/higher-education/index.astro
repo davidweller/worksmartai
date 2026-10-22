@@ -3,7 +3,6 @@ import Layout from '~/layouts/PageLayout.astro';
 import SectionHeader from '~/components/brand/SectionHeader.astro';
 import ServiceCards from '~/components/brand/ServiceCards.astro';
 import CourseCards from '~/components/brand/CourseCards.astro';
-import HierarchyLadder from '~/components/brand/HierarchyLadder.astro';
 import { ONE_LINERS } from '~/data/brand/copy';
 import { TESTIMONIALS } from '~/data/brand/testimonials';
 import { CTAS } from '~/data/brand/ctas';
@@ -204,24 +203,6 @@ const personas = [
       <p class="mt-4 font-sans text-sm italic leading-[1.6] text-white/80">
         {TESTIMONIALS.lynch.name}, {TESTIMONIALS.lynch.role}
       </p>
-    </div>
-  </section>
-
-  <!-- 7. The AI Use Hierarchy -->
-  <section class="bg-[#F8F8F8] px-6 py-12 sm:px-8 md:py-20 lg:px-12" no-intersect>
-    <div class="mx-auto max-w-6xl">
-      <SectionHeader
-        eyebrow="A structured path"
-        title="The AI Use Hierarchy"
-        subtitle="Five levels, from first use to institutional capability. Every course, workshop and AI Capability Check is mapped against it, with capability, confidence and compliance measured at each level."
-      />
-      <HierarchyLadder matrix />
-      <div class="mt-10 text-center">
-        <a href="/health-check/" class="font-heading text-sm font-bold text-[#015887] transition hover:text-[#FF7700]">
-          Not sure where your staff are? {CTAS.primary.text}
-          <span aria-hidden="true">&rarr;</span>
-        </a>
-      </div>
     </div>
   </section>
 
