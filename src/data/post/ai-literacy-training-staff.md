@@ -2,6 +2,7 @@
 publishDate: 2026-10-21T09:00:00.000Z
 author: 'David Weller'
 title: 'AI literacy training for staff: what it covers and how to get it right'
+image: '~/assets/images/ai-literacy-training-staff.png'
 excerpt: "What AI literacy training for staff should cover, why a one-off demo isn't enough, how to sequence it by role and level, and how to tell if it worked."
 metadata:
   title: 'AI Literacy Training for Staff: What Good Looks Like'
