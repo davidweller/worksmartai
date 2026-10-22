@@ -2,6 +2,7 @@
 publishDate: 2026-10-07T09:00:00.000Z
 author: 'David Weller'
 title: 'Copilot licensing in education: a plain-English guide for UK universities'
+image: '~/assets/images/copilot-licensing-universities.png'
 excerpt: 'Copilot licensing for education, explained: what free Copilot Chat covers, the academic Copilot licence, agent credits, and who should get a licence first.'
 metadata:
   title: 'Copilot Licensing for Education: A Guide for Universities'
