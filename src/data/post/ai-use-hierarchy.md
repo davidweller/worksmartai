@@ -2,6 +2,7 @@
 publishDate: 2026-10-22T09:00:00.000Z
 author: 'David Weller'
 title: 'The AI Use Hierarchy: a five-level framework for AI skills'
+image: '~/assets/images/ai-use-hierarchy.png'
 excerpt: 'Five levels of AI use, from first prompt to institutional capability, with capability, confidence and compliance measured at each. See where your staff sit.'
 metadata:
   title: 'The AI Use Hierarchy: A Five-Level AI Skills Framework'
