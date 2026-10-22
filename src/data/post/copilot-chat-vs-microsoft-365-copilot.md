@@ -2,6 +2,7 @@
 publishDate: 2026-10-01T09:00:00.000Z
 author: 'David Weller'
 title: 'Copilot Chat vs Microsoft 365 Copilot: which one have you got?'
+image: '~/assets/images/copilot-chat-vs-microsoft-365-copilot.png'
 excerpt: "Copilot Chat vs Microsoft 365 Copilot: how to tell which you've got, what each can see, how your data is protected, and when a paid licence is worth it."
 metadata:
   title: 'Copilot Chat vs Microsoft 365 Copilot: Which Do You Have?'
