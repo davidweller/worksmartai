@@ -2,6 +2,7 @@
 publishDate: 2026-10-14T09:00:00.000Z
 author: 'David Weller'
 title: 'Copilot Studio agent flows vs workflows: which should you build?'
+image: '~/assets/images/copilot-studio-agent-flows-vs-workflows.png'
 excerpt: 'Copilot Studio agent flows, workflows, agents and Power Automate cloud flows explained: what each does, how each is billed, and which to use when.'
 metadata:
   title: 'Copilot Studio Agent Flows vs Workflows: Which to Use'
