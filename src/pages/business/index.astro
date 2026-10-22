@@ -6,7 +6,6 @@ import CourseCards from '~/components/brand/CourseCards.astro';
 import CtaBand from '~/components/brand/CtaBand.astro';
 import { ONE_LINERS } from '~/data/brand/copy';
 import { CTAS } from '~/data/brand/ctas';
-import { RESOURCES } from '~/data/brand/resources';
 import { priceOf } from '~/data/brand/services';
 
 const metadata = {
@@ -25,9 +24,22 @@ const strands = [
       'Leadership workshops and adoption coaching for senior teams',
       "Built around your data policy, so staff know what's safe",
     ],
-    note: `Workshops ${priceOf('Workshops and Events').toLowerCase()}; online courses ${priceOf('Online courses').toLowerCase()}. For public bodies, a workshop sits below tender thresholds and can be bought on a purchase order.`,
+    note: `Workshops ${priceOf('Workshops and Events').toLowerCase()}; online courses ${priceOf('Online courses').toLowerCase()}.`,
     cta: CTAS.primary.text,
     href: CTAS.primary.href,
+  },
+  {
+    eyebrow: 'AI adoption',
+    title: 'Put AI to work in your organisation',
+    who: 'Owners, directors and senior teams leading AI adoption',
+    points: [
+      'Find where AI can benefit your organisation most',
+      'Coaching on strategy, policy and a phased adoption roadmap',
+      'Build your workflows for quick implementation',
+    ],
+    note: `Adoption coaching ${priceOf('AI adoption coaching').toLowerCase()}.`,
+    cta: 'See adoption coaching',
+    href: '/services/adoption-coaching/',
   },
   {
     eyebrow: 'Skills programmes',
@@ -76,7 +88,7 @@ const strands = [
           What we do for organisations
         </h2>
       </div>
-      <div class="mt-12 grid gap-6 md:grid-cols-2">
+      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {
           strands.map((strand) => (
             <div class="flex h-full flex-col rounded-xl border border-[#E0E0E0] bg-white p-8 shadow-[0_6px_28px_-18px_rgba(1,88,135,0.25)]">
@@ -118,20 +130,6 @@ const strands = [
         subtitle="Run as workshops or online courses, built around your tools and policy."
       />
       <CourseCards streams={['all-staff', 'professional-services']} />
-      <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a
-          href={RESOURCES.calculator.href}
-          class="inline-flex items-center justify-center rounded-full border-2 border-[#015887] px-6 py-2.5 font-heading text-sm font-bold text-[#015887] transition hover:bg-[#015887] hover:text-white"
-        >
-          {RESOURCES.calculator.name}
-        </a>
-        <a
-          href={RESOURCES.licensing.href}
-          class="inline-flex items-center justify-center rounded-full border-2 border-[#015887] px-6 py-2.5 font-heading text-sm font-bold text-[#015887] transition hover:bg-[#015887] hover:text-white"
-        >
-          {RESOURCES.licensing.name}
-        </a>
-      </div>
     </div>
   </section>
 
