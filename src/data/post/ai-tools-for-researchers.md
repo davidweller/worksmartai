@@ -2,6 +2,7 @@
 publishDate: 2026-09-22T09:00:00.000Z
 author: 'David Weller'
 title: 'AI tools for researchers in the UK: what to use them for, and what to check'
+image: '~/assets/images/ai-tools-for-researchers.png'
 excerpt: 'How UK researchers can use AI for literature reviews, analysis, writing, and grants, where it goes wrong, and what UKRI and journal publishers allow.'
 metadata:
   title: 'AI Tools for Researchers in the UK: A Task-by-Task Guide'
