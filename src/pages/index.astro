@@ -5,7 +5,7 @@ import SectionHeader from '~/components/brand/SectionHeader.astro';
 import HierarchyLadder from '~/components/brand/HierarchyLadder.astro';
 import ServiceCards from '~/components/brand/ServiceCards.astro';
 import CtaBand from '~/components/brand/CtaBand.astro';
-import { HEADLINE_OUTCOMES, ONE_LINERS, PILLARS, TAGLINE, WHY_US } from '~/data/brand/copy';
+import { ONE_LINERS, PILLARS, TAGLINE, WHY_US } from '~/data/brand/copy';
 import { CTAS } from '~/data/brand/ctas';
 
 const metadata = {
@@ -30,7 +30,8 @@ const sectorDoors = [
   },
   {
     title: 'Colleges',
-    description: 'Practical skills for teaching and support staff, and responsible use your learners can stand behind.',
+    description:
+      'Practical skills for teaching and support staff, self-paced online courses for students, and responsible use your learners can stand behind.',
     href: '/colleges/',
     icon: 'tabler:building-community',
     sector: 'fe',
@@ -46,7 +47,8 @@ const sectorDoors = [
   },
   {
     title: 'Businesses and public sector',
-    description: 'AI skills for companies, councils, public bodies and charities.',
+    description:
+      'Helping businesses understand where they can benefit from using AI. Skills for companies, councils, public bodies and charities.',
     href: '/business/',
     icon: 'tabler:briefcase',
     sector: 'business',
@@ -201,29 +203,8 @@ const sectorDoors = [
     </div>
   </section>
 
-  <!-- 7. Problem and outcomes -->
+  <!-- 7. AI Use Hierarchy -->
   <section class="bg-[#F8F8F8] px-6 py-16 sm:px-8 lg:px-12" no-intersect>
-    <div class="mx-auto max-w-6xl">
-      <SectionHeader
-        eyebrow="Why it matters"
-        title={'Most staff now use AI.\nFew have been trained to use it well.'}
-        subtitle="AI tools only make organisations more productive when people can use them well. We teach practical AI skills on real tasks, built around your policy and tools, and track progress against published outcomes."
-      />
-      <ul class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {
-          HEADLINE_OUTCOMES.map((o) => (
-            <li class="flex items-center gap-3 rounded-xl bg-white p-5 shadow-card font-heading font-bold text-[#015887]">
-              <Icon name={o.icon} class="h-7 w-7 shrink-0 text-[#FF7700]" aria-hidden="true" />
-              {o.title}
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
-
-  <!-- 8. AI Use Hierarchy -->
-  <section class="bg-white px-6 py-16 sm:px-8 lg:px-12" no-intersect>
     <div class="mx-auto max-w-6xl">
       <SectionHeader
         eyebrow="A structured path"
@@ -234,8 +215,8 @@ const sectorDoors = [
     </div>
   </section>
 
-  <!-- 9. Testimonial -->
-  <section class="bg-[#F8F8F8] px-6 py-12 sm:px-8 lg:px-12" no-intersect aria-label="Testimonial">
+  <!-- 8. Testimonial -->
+  <section class="bg-white px-6 py-12 sm:px-8 lg:px-12" no-intersect aria-label="Testimonial">
     <div class="mx-auto max-w-5xl">
       <div class="rounded-xl bg-[#015887] px-8 py-10 text-center md:text-left">
         <blockquote class="text-white">

@@ -20,13 +20,6 @@ export const SUMMARY_25 =
 export const CORE_MESSAGE =
   'AI tools only make organisations more productive when people can use them well. We teach practical AI skills on real tasks, built around your policy and tools, and track progress against published outcomes.';
 
-export const HEADLINE_OUTCOMES = [
-  { title: 'Save hours every week', icon: 'tabler:clock-hour-4' },
-  { title: 'Get more from the AI tools you already pay for', icon: 'tabler:license' },
-  { title: 'Confident, capable staff using AI safely', icon: 'tabler:shield-check' },
-  { title: 'Proof of what your training delivered', icon: 'tabler:report-analytics' },
-] as const;
-
 export const PILLARS = [
   {
     name: 'Capability',
@@ -50,39 +43,38 @@ export const PILLARS = [
 
 export const WHY_US = [
   {
-    title: 'Education specialists',
+    title: 'AI specialists working across education for over 20 years',
     proof:
       'Both founders are former Digital Skills Leads at the University of Exeter. We know how adults learn, not just how the tools work.',
     icon: 'tabler:school',
   },
   {
-    title: 'Tailored to your people, policy and tools',
+    title: 'All work tailored to your people, policy and tools',
     proof:
-      'Every course is built around your AI policy, Microsoft 365 and Copilot setup and data context. White-labelled courses are delivered within four weeks of receiving your policy.',
+      'Every course and workshop is built around your AI policy, your Microsoft 365 and Copilot setup and your data context, for staff and for students.',
     icon: 'tabler:adjustments',
   },
   {
-    title: 'Task-based, not demos',
+    title: 'Role-specific tasks from 290 use cases',
     proof:
-      'Every course opens with a real task, with role-relevant value in the first ten minutes, drawn from a bank of 290 use cases across 14 staff roles.',
+      'Every course opens with a real task, drawn from a bank of 290 use cases across 14 staff roles, so people see value in the first ten minutes.',
     icon: 'tabler:checklist',
   },
   {
-    title: 'A structured path, not a one-off session',
-    proof:
-      'Every course is mapped to the five-level AI Use Hierarchy, and the AI Capability Check places teams on it, so everyone sees where they are and what comes next.',
-    icon: 'tabler:stairs-up',
+    title: 'Personalised learning objectives agreed from the outset',
+    proof: 'We agree the learning objectives with you before we start, so everyone knows what the training is for.',
+    icon: 'tabler:target-arrow',
   },
   {
-    title: 'Measurable results',
+    title: 'All work mapped to make sure outcomes are achieved',
     proof:
-      'Every course has published learning outcomes. Every Academy course reports completion, assessment scores and confidence against them.',
+      'Every course is mapped to the five-level AI Use Hierarchy. Academy courses report completion, assessment scores and confidence against the outcomes.',
     icon: 'tabler:chart-bar',
   },
   {
-    title: 'Your own course, on your own LMS',
+    title: 'White-labelled courses personalised to your policies',
     proof:
-      'White-labelled courses in your branding, built around your AI policy, delivered as SCORM or xAPI, or hosted on the WorkSmart-AI Academy.',
+      'Courses in your branding, built around your AI policy, delivered as SCORM or xAPI, or hosted on the WorkSmart-AI Academy.',
     icon: 'tabler:brand-stackshare',
   },
 ] as const;
