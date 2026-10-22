@@ -4,7 +4,8 @@ import SectionHeader from '~/components/brand/SectionHeader.astro';
 import ServiceCards from '~/components/brand/ServiceCards.astro';
 import CourseCards from '~/components/brand/CourseCards.astro';
 import HierarchyLadder from '~/components/brand/HierarchyLadder.astro';
-import { ONE_LINERS, TAGLINE } from '~/data/brand/copy';
+import { ONE_LINERS } from '~/data/brand/copy';
+import { TESTIMONIALS } from '~/data/brand/testimonials';
 import { CTAS } from '~/data/brand/ctas';
 
 const metadata = {
@@ -44,11 +45,8 @@ const personas = [
           >
             AI skills training for <span class="text-[#FF7700]">universities</span>
           </h1>
-          <p class="mb-4 max-w-xl font-sans text-lg leading-[1.7] text-white/85 lg:max-w-none">
+          <p class="mb-8 max-w-xl font-sans text-lg leading-[1.7] text-white/85 lg:max-w-none">
             {ONE_LINERS.education}
-          </p>
-          <p class="mb-8 max-w-xl font-sans text-base text-[#B6DCF4] lg:max-w-none">
-            {TAGLINE}
           </p>
           <div
             class="mx-auto flex max-w-md flex-col gap-4 sm:flex-row sm:justify-center lg:mx-0 lg:max-w-none lg:justify-start"
@@ -83,8 +81,8 @@ const personas = [
   <section class="bg-secondary px-6 py-6 sm:px-8 lg:px-12" no-intersect aria-label="Credibility and memberships">
     <div class="mx-auto max-w-6xl">
       <p class="max-w-3xl font-sans text-base font-medium leading-[1.7] text-[#015887] sm:text-lg">
-        Built by former Digital Skills Leads at the University of Exeter.<br />
-        Worked with the University of Southampton.
+        Founded by former Digital Skills Leads at the University of Exeter.<br />
+        Members of the Staff Development Forum.
       </p>
     </div>
   </section>
@@ -191,17 +189,21 @@ const personas = [
     </div>
   </section>
 
-  <!-- 6. Student AI use banner -->
-  <section class="bg-[#015887] px-6 py-8 sm:px-8 md:py-10 lg:px-12" no-intersect aria-label="Student AI use evidence">
+  <!-- 6. Quote banner -->
+  <section
+    class="bg-[#015887] px-6 py-8 sm:px-8 md:py-10 lg:px-12"
+    no-intersect
+    aria-label="What course participants say"
+  >
     <div class="mx-auto max-w-3xl border-l-4 border-[#FF7700] pl-5 sm:pl-7">
       <blockquote>
         <p class="font-sans text-base font-bold leading-[1.7] text-white sm:text-lg">
-          &ldquo;AI is the second most cited challenge [for HE] again this year [2025] ...the full potential of AI can
-          only be unlocked if the staff are well-trained and confident in using these new technologies
-          responsibly.&rdquo;
+          &ldquo;{TESTIMONIALS.lynch.quote}&rdquo;
         </p>
       </blockquote>
-      <p class="mt-4 font-sans text-sm italic leading-[1.6] text-white/80">Jisc Leadership Survey 2025</p>
+      <p class="mt-4 font-sans text-sm italic leading-[1.6] text-white/80">
+        {TESTIMONIALS.lynch.name}, {TESTIMONIALS.lynch.role}
+      </p>
     </div>
   </section>
 
@@ -245,24 +247,21 @@ const personas = [
     </div>
   </section>
 
-  <!-- 9. Free resources -->
-  <section class="bg-[#F8F8F8] px-6 py-12 sm:px-8 md:py-16 lg:px-12" no-intersect aria-labelledby="resources-heading">
-    <div class="mx-auto max-w-3xl text-center">
-      <p class="font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF7700]">Free resources</p>
-      <h2 id="resources-heading" class="sr-only">Free resources</h2>
-      <div class="mt-4 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-10">
-        <a
-          href={CTAS.calculator.href}
-          class="font-heading text-sm font-bold text-[#015887] transition hover:text-[#FF7700]"
-        >
-          {CTAS.calculator.text}
-          <span aria-hidden="true">&rarr;</span>
-        </a>
-        <a href={CTAS.guide.href} class="font-heading text-sm font-bold text-[#015887] transition hover:text-[#FF7700]">
-          {CTAS.guide.text}
-          <span aria-hidden="true">&rarr;</span>
-        </a>
-      </div>
+  <!-- 9. Testimonials -->
+  <section class="bg-white px-6 py-12 sm:px-8 md:py-16 lg:px-12" no-intersect aria-label="Testimonials">
+    <div class="mx-auto grid max-w-6xl gap-6 md:grid-cols-2">
+      {
+        [TESTIMONIALS.harris, TESTIMONIALS.cordy].map((t) => (
+          <figure class="flex h-full flex-col rounded-xl border border-[#E0E0E0] bg-white p-8 shadow-[0_6px_28px_-18px_rgba(1,88,135,0.25)]">
+            <blockquote class="font-sans text-base leading-[1.7] text-[#1B0101] sm:text-lg">
+              &ldquo;{t.quote}&rdquo;
+            </blockquote>
+            <figcaption class="mt-auto pt-4 font-sans text-sm italic text-gray-600">
+              {t.name}, {t.role}
+            </figcaption>
+          </figure>
+        ))
+      }
     </div>
   </section>
 

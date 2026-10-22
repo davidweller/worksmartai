@@ -62,7 +62,7 @@ export const UPSELL_LADDER = [
   { name: 'AI Capability Check', href: '/health-check/' },
   { name: 'Workshop', href: '/services/talks-workshops/' },
   { name: 'Online course', href: '/services/your-own-ai-course/' },
-  { name: 'AI Cafe or coaching', href: '/services/academic-coaching/' },
+  { name: 'Coaching', href: '/services/academic-coaching/' },
 ] as const;
 
 export const formatFromPrice = (price: number | null | undefined) =>
