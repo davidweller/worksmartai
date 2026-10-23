@@ -17,8 +17,8 @@ const metadata = {
 };
 
 const credibilityMarkers = [
-  'Founded by former Digital Skills Leads at the University of Exeter',
-  'Members of the Staff Development Forum',
+  { icon: 'tabler:building-bank', text: 'Founded by former Digital Skills Leads at the University of Exeter' },
+  { icon: 'tabler:users-group', text: 'Members of the Staff Development Forum' },
 ];
 
 const sectorDoors = [
@@ -118,9 +118,16 @@ const sectorDoors = [
         {TESTIMONIALS.lynch.name}, {TESTIMONIALS.lynch.role}
       </figcaption>
     </figure>
-    <p class="mx-auto mt-5 max-w-3xl text-center font-sans text-sm text-gray-600">
-      {credibilityMarkers.join(' · ')}
-    </p>
+    <ul class="mx-auto mt-6 flex max-w-3xl flex-wrap justify-center gap-3" aria-label="Credentials">
+      {
+        credibilityMarkers.map(({ icon, text }) => (
+          <li class="inline-flex items-center gap-2 rounded-full border border-[#015887]/15 bg-[#015887]/5 px-4 py-2 font-heading text-sm font-semibold text-[#015887]">
+            <Icon name={icon} class="h-4 w-4 shrink-0 text-[#FF7700]" aria-hidden="true" />
+            {text}
+          </li>
+        ))
+      }
+    </ul>
   </section>
 
   <!-- 2b. Video on phones, below the fold -->
