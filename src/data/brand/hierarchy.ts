@@ -7,7 +7,12 @@ export interface HierarchyLevel {
   capability: string;
   confidence: string;
   compliance: string;
+  /** One real task at this level, shown on the interactive ladder. */
+  exampleTask: string;
 }
+
+// DRAFT - the exampleTask lines need David's sign-off and a Source of Truth entry before
+// this branch merges. The Source of Truth defines each level but gives no example task.
 
 export const HIERARCHY: HierarchyLevel[] = [
   {
@@ -17,6 +22,8 @@ export const HIERARCHY: HierarchyLevel[] = [
     capability: 'Uses an AI assistant to draft, summarise and question, refining through conversation',
     confidence: 'Willing to try AI on low-risk tasks; knows its limits',
     compliance: 'Follows the AI policy; no sensitive data in unapproved tools; checks outputs',
+    exampleTask:
+      'Ask an assistant to summarise a 40-page policy into five key points, then check each point against the original.',
   },
   {
     level: 2,
@@ -25,6 +32,8 @@ export const HIERARCHY: HierarchyLevel[] = [
     capability: 'Uses the R-C-T framework and reusable prompts for reliable, repeatable results',
     confidence: 'Uses AI routinely without step-by-step help; trusts own judgement on outputs',
     compliance: 'Applies the Green/Amber/Red Decision Matrix to choose suitable tasks',
+    exampleTask:
+      'Keep a Role, Context, Task prompt that turns each week’s meeting notes into an action list in the same format every time.',
   },
   {
     level: 3,
@@ -33,6 +42,8 @@ export const HIERARCHY: HierarchyLevel[] = [
     capability: 'Builds reusable assistants with set instructions, tone and knowledge',
     confidence: 'Shares tools with colleagues; adapts when tools change',
     compliance: 'Configures with approved data sources, permissions and guardrails',
+    exampleTask:
+      'Set up a Copilot agent that answers colleagues’ questions from the team handbook, in the team’s tone, and share it with the team.',
   },
   {
     level: 4,
@@ -41,6 +52,8 @@ export const HIERARCHY: HierarchyLevel[] = [
     capability: 'Designs and runs agents and multi-step workflows with checks and handoffs',
     confidence: 'Hands off multi-step work to AI while staying accountable',
     compliance: 'Builds human checkpoints, data handling and audit trails into workflows',
+    exampleTask:
+      'Build a workflow that sorts routine enquiries, drafts a reply to each and hands every draft to a named person to check before it goes.',
   },
   {
     level: 5,
@@ -49,5 +62,7 @@ export const HIERARCHY: HierarchyLevel[] = [
     capability: 'Connects AI into team or institutional systems and coordinates several tools',
     confidence: 'Leads others’ adoption and makes the case for change',
     compliance: 'Owns governance: risk assessment, accountability, monitoring',
+    exampleTask:
+      'Connect AI to the department’s ticketing and document systems so enquiries are triaged, answered and logged, with an owner and monitoring for each step.',
   },
 ];
