@@ -66,7 +66,8 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
           'md:flex md:justify-between': position !== 'center',
         },
         {
-          'md:grid md:grid-cols-[minmax(240px,1fr)_auto_minmax(230px,1fr)] md:items-center': position === 'center',
+          'md:grid md:grid-cols-[minmax(160px,1fr)_auto_minmax(max-content,1fr)] md:items-center md:gap-4':
+            position === 'center',
         },
         {
           'max-w-7xl': !isFullWidth,
@@ -222,7 +223,13 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
             actions?.length ? (
               <span class="ml-2 inline-flex shrink-0 gap-2 rtl:ml-0 rtl:mr-2">
                 {actions.map((btnProps) => (
-                  <Button {...btnProps} class="py-2.5 px-5 font-semibold shadow-none text-sm w-auto" />
+                  <Button
+                    {...btnProps}
+                    class:list={[
+                      'py-2.5 font-semibold shadow-none text-sm w-auto',
+                      btnProps.variant === 'link' ? 'px-2' : 'px-5',
+                    ]}
+                  />
                 ))}
               </span>
             ) : (

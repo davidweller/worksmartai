@@ -168,3 +168,13 @@
 #header [data-aw-toggle-color-scheme]:hover {
   background-color: rgb(1 88 135 / 8%) !important;
 }
+
+#header #site-login-button {
+  color: #015887;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+#header #site-login-button:hover {
+  color: #ff7700;
+}

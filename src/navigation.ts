@@ -104,7 +104,11 @@ export const headerData: {
     { text: 'About', href: '/about-us/' },
     { text: 'Contact', href: '/contact-us/' },
   ],
-  actions: [{ text: 'Login', href: '/login/', variant: 'primary', id: 'site-login-button' }],
+  // Orange is reserved for the Capability Check; Login is a plain text link at the far right.
+  actions: [
+    { text: 'Free AI Capability Check', href: CTAS.primary.href, variant: 'primary' },
+    { text: 'Login', href: '/login/', variant: 'link', id: 'site-login-button' },
+  ],
 };
 
 export const footerColumns: FooterColumn[] = [
