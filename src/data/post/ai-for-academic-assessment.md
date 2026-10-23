@@ -2,6 +2,7 @@
 publishDate: 2026-06-23T09:00:00.000Z
 author: 'David Weller'
 title: 'AI for academic assessment: what staff can hand over, and how to design for it'
+image: '~/assets/images/ai-for-academic-assessment.png'
 excerpt: 'What lecturers can use AI for in marking, feedback, and moderation, what stays human, and how to design assessment that holds up when students use AI.'
 metadata:
   title: 'AI for Academic Assessment: A Guide for UK University Staff'
