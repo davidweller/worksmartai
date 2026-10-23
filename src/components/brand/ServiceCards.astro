@@ -6,39 +6,69 @@ interface Props {
   services?: Service[];
   /** Leave out the service whose page this is. */
   exclude?: string;
+  /** `rows` is a priced list for catalogue sections; `cards` stays for "Other services". */
+  variant?: 'cards' | 'rows';
 }
 
-const { services = SERVICES, exclude } = Astro.props;
+const { services = SERVICES, exclude, variant = 'cards' } = Astro.props;
 const shown = services.filter((s) => s.href !== exclude);
 ---
 
-<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-  {
-    shown.map((s) => (
-      <a
-        href={s.href}
-        class="group relative flex h-full flex-col overflow-hidden rounded-xl border border-primary/20 bg-card p-6 shadow-card transition duration-300 ease-out hover:-translate-y-1 hover:border-primary hover:shadow-card-elevated"
-      >
-        <span
-          class="absolute bottom-0 left-0 right-0 h-1 origin-left scale-x-0 transform bg-accent transition-transform duration-300 ease-out group-hover:scale-x-100"
-          aria-hidden="true"
-        />
-        <div class="mb-4 inline-flex w-fit rounded-lg bg-primary/8 p-3 text-primary">
-          <Icon name={s.icon} class="h-7 w-7" aria-hidden="true" />
-        </div>
-        <h3 class="font-heading text-xl font-bold text-heading">{s.name}</h3>
-        <p class="mt-1 text-sm font-medium text-muted">{s.audience}</p>
-        <p class="mt-3 flex-1 text-default">{s.summary}</p>
-        <div class="mt-6 flex items-center justify-between gap-4">
-          <span class="font-heading text-lg font-bold text-primary">{formatFromPrice(s.fromPrice)}</span>
-          <span class="inline-flex items-center font-semibold text-link group-hover:text-accent">
-            Learn more
-            <span class="ml-1 transition-transform group-hover:translate-x-0.5" aria-hidden="true">
-              →
+{
+  variant === 'rows' ? (
+    <ul class="divide-y divide-primary/15 border-y border-primary/15">
+      {shown.map((s) => (
+        <li>
+          <a
+            href={s.href}
+            class="group grid gap-x-6 gap-y-1 py-5 transition-colors hover:bg-primary/5 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)_12rem] md:items-center md:px-4"
+          >
+            <span class="flex items-start gap-3">
+              <Icon name={s.icon} class="mt-1 h-6 w-6 shrink-0 text-primary" aria-hidden="true" />
+              <span>
+                <span class="block font-heading text-lg font-bold text-heading group-hover:text-link">{s.name}</span>
+                <span class="block text-sm font-medium text-muted">{s.audience}</span>
+              </span>
             </span>
-          </span>
-        </div>
-      </a>
-    ))
-  }
-</div>
+            <span class="pl-9 text-default md:pl-0">{s.summary}</span>
+            <span class="flex items-center gap-2 pl-9 font-heading font-bold text-primary md:justify-end md:whitespace-nowrap md:pl-0">
+              {formatFromPrice(s.fromPrice)}
+              <span class="text-accent transition-transform group-hover:translate-x-0.5" aria-hidden="true">
+                →
+              </span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {shown.map((s) => (
+        <a
+          href={s.href}
+          class="group relative flex h-full flex-col overflow-hidden rounded-xl border border-primary/20 bg-card p-6 shadow-card transition duration-300 ease-out hover:-translate-y-1 hover:border-primary hover:shadow-card-elevated"
+        >
+          <span
+            class="absolute bottom-0 left-0 right-0 h-1 origin-left scale-x-0 transform bg-accent transition-transform duration-300 ease-out group-hover:scale-x-100"
+            aria-hidden="true"
+          />
+          <div class="mb-4 inline-flex w-fit rounded-lg bg-primary/8 p-3 text-primary">
+            <Icon name={s.icon} class="h-7 w-7" aria-hidden="true" />
+          </div>
+          <h3 class="font-heading text-xl font-bold text-heading">{s.name}</h3>
+          <p class="mt-1 text-sm font-medium text-muted">{s.audience}</p>
+          <p class="mt-3 flex-1 text-default">{s.summary}</p>
+          <div class="mt-6 flex items-center justify-between gap-4">
+            <span class="font-heading text-lg font-bold text-primary">{formatFromPrice(s.fromPrice)}</span>
+            <span class="inline-flex items-center font-semibold text-link group-hover:text-accent">
+              Learn more
+              <span class="ml-1 transition-transform group-hover:translate-x-0.5" aria-hidden="true">
+                →
+              </span>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  )
+}
