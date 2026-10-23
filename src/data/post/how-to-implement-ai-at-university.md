@@ -2,6 +2,7 @@
 publishDate: 2026-04-14T09:00:00.000Z
 author: 'David Weller'
 title: 'How to implement AI at your university: a staged guide'
+image: '~/assets/images/how-to-implement-ai-at-university.png'
 excerpt: 'A practical guide to implementing AI at a UK university: strategy, governance, policy, tools, staff training, students, and how to measure impact.'
 metadata:
   title: 'How to Implement AI at Your University: A Staged Guide'
