@@ -1,5 +1,7 @@
 ---
 import ServicePage from '~/components/brand/ServicePage.astro';
+import SectionHeader from '~/components/brand/SectionHeader.astro';
+import WorkflowDiagram from '~/components/brand/WorkflowDiagram.astro';
 import { priceOf } from '~/data/brand/services';
 
 const price = priceOf('Built for You');
@@ -48,4 +50,21 @@ const faqs = [
   includes={includes}
   faqs={faqs}
   ctaTitle="Start with a free AI Capability Check"
-/>
+>
+  <section class="bg-section px-6 py-16 sm:px-8 lg:px-12">
+    <div class="mx-auto max-w-6xl">
+      <SectionHeader
+        title="What changes when an agent runs the workflow"
+        subtitle="The agent does the routine steps. Your staff hand the work off and collect it back at the points where judgement matters."
+      />
+      <WorkflowDiagram />
+      {/* PLACEHOLDER - replace with a real anonymised case before this branch merges. */}
+      <div class="mx-auto mt-10 max-w-3xl rounded-xl border-l-4 border-[#FF7700] bg-card p-6 shadow-card">
+        <p class="font-heading font-bold text-heading">Example</p>
+        <p class="mt-2 text-default">
+          [Placeholder: one anonymised real case goes here: the team, the workflow, and what changed.]
+        </p>
+      </div>
+    </div>
+  </section>
+</ServicePage>

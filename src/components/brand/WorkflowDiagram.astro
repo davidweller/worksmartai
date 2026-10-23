@@ -1,0 +1,163 @@
+---
+// Before-and-after workflow for the Built for You page: the same routine enquiry handled by a
+// person end to end, then by a Copilot agent with the person at two hand-off points.
+// Illustrative, not a client case; the case study sits under it on the page.
+
+type Kind = 'neutral' | 'person' | 'agent';
+interface Step {
+  label: string;
+  kind: Kind;
+  /** An orange hand-off point on the connector above this step. */
+  handoff?: string;
+}
+
+const manual: Step[] = [
+  { label: 'Enquiry arrives', kind: 'neutral' },
+  { label: 'You read and sort it', kind: 'person' },
+  { label: 'You search for the answer', kind: 'person' },
+  { label: 'You write the reply', kind: 'person' },
+  { label: 'You send it', kind: 'person' },
+];
+
+const withAgent: Step[] = [
+  { label: 'Enquiry arrives', kind: 'neutral' },
+  { label: 'Agent sorts it', kind: 'agent', handoff: 'Hand off' },
+  { label: 'Agent finds the answer', kind: 'agent' },
+  { label: 'Agent drafts the reply', kind: 'agent' },
+  { label: 'You check and edit', kind: 'person', handoff: 'Collect back' },
+  { label: 'You send it', kind: 'person' },
+];
+
+const BOX_W = 250;
+const BOX_H = 52;
+const GAP = 40;
+const X = 55;
+const CX = X + BOX_W / 2;
+const lanes = [
+  {
+    id: 'manual',
+    title: 'Today',
+    desc: `Done by hand: ${manual.map((s) => s.label).join(', then ')}.`,
+    steps: manual,
+  },
+  {
+    id: 'agent',
+    title: 'With a Copilot agent',
+    desc: `${withAgent.map((s) => (s.handoff ? `${s.handoff}: ${s.label}` : s.label)).join(', then ')}.`,
+    steps: withAgent,
+  },
+];
+const height = (n: number) => n * BOX_H + (n - 1) * GAP + 8;
+const fill: Record<Kind, string> = { neutral: '#F8F8F8', person: '#FFFFFF', agent: '#015887' };
+const stroke: Record<Kind, string> = { neutral: '#C9D7E2', person: '#015887', agent: '#015887' };
+const ink: Record<Kind, string> = { neutral: '#015887', person: '#015887', agent: '#FFFFFF' };
+const uid = Math.random().toString(36).slice(2, 9);
+---
+
+<figure class="mx-auto max-w-4xl">
+  <div class="grid gap-10 md:grid-cols-2 md:gap-8">
+    {
+      lanes.map((lane) => (
+        <div class="rounded-2xl border border-primary/15 bg-card px-2 py-6 shadow-card sm:p-6">
+          <h3 id={`${uid}-${lane.id}-t`} class="text-center font-heading text-lg font-bold text-heading">
+            {lane.title}
+          </h3>
+          <svg
+            class="mx-auto mt-4 block w-full max-w-[22rem]"
+            viewBox={`0 0 ${BOX_W + X * 2} ${height(lane.steps.length)}`}
+            role="img"
+            aria-labelledby={`${uid}-${lane.id}-t ${uid}-${lane.id}-d`}
+          >
+            <desc id={`${uid}-${lane.id}-d`}>{lane.desc}</desc>
+            <defs>
+              <marker
+                id={`${uid}-${lane.id}-arrow`}
+                viewBox="0 0 10 10"
+                refX="9"
+                refY="5"
+                markerWidth="7"
+                markerHeight="7"
+                orient="auto-start-reverse"
+              >
+                <path d="M0 0 L10 5 L0 10 Z" fill="#86BFE2" />
+              </marker>
+            </defs>
+            {lane.steps.map((s, i) => {
+              const y = 4 + i * (BOX_H + GAP);
+              const prevBottom = y - GAP;
+              return (
+                <g>
+                  {i > 0 && (
+                    <line
+                      x1={CX}
+                      y1={prevBottom + 2}
+                      x2={CX}
+                      y2={y - 4}
+                      stroke="#86BFE2"
+                      stroke-width="2.5"
+                      marker-end={`url(#${uid}-${lane.id}-arrow)`}
+                    />
+                  )}
+                  {s.handoff && (
+                    <g>
+                      <circle
+                        cx={CX}
+                        cy={prevBottom + GAP / 2}
+                        r="9"
+                        fill="#FF7700"
+                        stroke="#FFFFFF"
+                        stroke-width="3"
+                      />
+                      <text
+                        x={CX + 18}
+                        y={prevBottom + GAP / 2 + 5}
+                        fill="#C25A00"
+                        font-size="14"
+                        font-weight="700"
+                        font-family="inherit"
+                      >
+                        {s.handoff}
+                      </text>
+                    </g>
+                  )}
+                  <rect
+                    x={X}
+                    y={y}
+                    width={BOX_W}
+                    height={BOX_H}
+                    rx="10"
+                    fill={fill[s.kind]}
+                    stroke={s.handoff && s.kind === 'person' ? '#FF7700' : stroke[s.kind]}
+                    stroke-width={s.handoff && s.kind === 'person' ? 3 : 1.5}
+                  />
+                  <text
+                    x={CX}
+                    y={y + BOX_H / 2 + 5}
+                    text-anchor="middle"
+                    fill={ink[s.kind]}
+                    font-size="15"
+                    font-weight="600"
+                    font-family="inherit"
+                  >
+                    {s.label}
+                  </text>
+                </g>
+              );
+            })}
+          </svg>
+        </div>
+      ))
+    }
+  </div>
+  <figcaption class="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted">
+    <span class="inline-flex items-center gap-2">
+      <span class="h-3 w-5 rounded bg-[#015887]" aria-hidden="true"></span> Done by the agent
+    </span>
+    <span class="inline-flex items-center gap-2">
+      <span class="h-3 w-5 rounded border-2 border-[#015887] bg-white" aria-hidden="true"></span> Done by your staff
+    </span>
+    <span class="inline-flex items-center gap-2">
+      <span class="h-3 w-3 rounded-full bg-[#FF7700]" aria-hidden="true"></span> Hand-off point
+    </span>
+  </figcaption>
+</figure>
