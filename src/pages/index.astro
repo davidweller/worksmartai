@@ -4,7 +4,7 @@ import { Icon } from 'astro-icon/components';
 import SectionHeader from '~/components/brand/SectionHeader.astro';
 import UpsellLadder from '~/components/brand/UpsellLadder.astro';
 import CtaBand from '~/components/brand/CtaBand.astro';
-import { ONE_LINERS, PILLARS, TAGLINE, WHY_US } from '~/data/brand/copy';
+import { ONE_LINERS, TAGLINE, WHY_US } from '~/data/brand/copy';
 import { CTAS } from '~/data/brand/ctas';
 import { TESTIMONIALS } from '~/data/brand/testimonials';
 
@@ -178,30 +178,6 @@ const sectorDoors = [
           See all services <span class="ml-1" aria-hidden="true">&rarr;</span>
         </a>
       </p>
-    </div>
-  </section>
-
-  <!-- 6. Three pillars -->
-  <section class="bg-[#F8F8F8] px-6 py-16 sm:px-8 lg:px-12" no-intersect>
-    <div class="mx-auto max-w-6xl">
-      <SectionHeader
-        eyebrow="How we get there"
-        title="Capability, confidence and compliance"
-        subtitle="Productivity is the outcome. These three are how we get there."
-      />
-      <div class="grid gap-6 md:grid-cols-3">
-        {
-          PILLARS.map((p) => (
-            <div class="rounded-xl bg-white p-6 shadow-card">
-              <span class="flex h-12 w-12 items-center justify-center rounded-lg bg-[#86BFE2]/20 text-[#015887]">
-                <Icon name={p.icon} class="h-6 w-6" aria-hidden="true" />
-              </span>
-              <h3 class="mt-4 font-heading text-xl font-bold text-[#015887]">{p.name}</h3>
-              <p class="mt-2 font-sans leading-[1.65] text-gray-700">{p.meaning}</p>
-            </div>
-          ))
-        }
-      </div>
     </div>
   </section>
 
