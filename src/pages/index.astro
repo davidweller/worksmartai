@@ -2,7 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 import { Icon } from 'astro-icon/components';
 import SectionHeader from '~/components/brand/SectionHeader.astro';
-import ServiceCards from '~/components/brand/ServiceCards.astro';
+import UpsellLadder from '~/components/brand/UpsellLadder.astro';
 import CtaBand from '~/components/brand/CtaBand.astro';
 import { ONE_LINERS, PILLARS, TAGLINE, WHY_US } from '~/data/brand/copy';
 import { CTAS } from '~/data/brand/ctas';
@@ -162,15 +162,22 @@ const sectorDoors = [
     </div>
   </section>
 
-  <!-- 5. Services -->
+  <!-- 5. Start small -->
   <section class="bg-white px-6 py-16 sm:px-8 lg:px-12" no-intersect>
     <div class="mx-auto max-w-6xl">
       <SectionHeader
-        eyebrow="What we offer"
-        title="Training, coaching and consultancy"
-        subtitle="We publish topics and formats, then build each engagement around you."
+        title="Start small, build from there"
+        subtitle="Begin with the free check, then add what your people need next."
       />
-      <ServiceCards />
+      <UpsellLadder />
+      <p class="mt-8 text-center">
+        <a
+          href="/services/"
+          class="inline-flex items-center font-heading text-sm font-semibold text-[#015887] underline underline-offset-4 hover:text-[#FF7700]"
+        >
+          See all services <span class="ml-1" aria-hidden="true">&rarr;</span>
+        </a>
+      </p>
     </div>
   </section>
 
