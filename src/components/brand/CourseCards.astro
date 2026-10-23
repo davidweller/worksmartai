@@ -35,9 +35,7 @@ const groups = labels
           {g.courses.map((c) => (
             <li class="relative flex h-full flex-col overflow-hidden rounded-xl border border-primary/20 bg-card p-6 shadow-card">
               <span class="absolute inset-x-0 top-0 h-1 bg-accent" aria-hidden="true" />
-              {labels && !groupHeadings && (
-                <p class="mb-2 text-xs font-semibold uppercase tracking-[0.15em] text-accent">{g.label}</p>
-              )}
+              {labels && !groupHeadings && <p class="mb-2 text-sm font-semibold text-accent">{g.label}</p>}
               <h4 class="font-heading text-lg font-bold leading-snug text-heading">{c.title}</h4>
               <p class="mt-3 text-sm leading-relaxed text-default">{c.summary}</p>
             </li>
