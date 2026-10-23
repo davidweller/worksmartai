@@ -96,7 +96,7 @@ The knowledge someone needs to use AI well and safely: how it produces answers, 
 In the EU, Article 4 of the AI Act requires organisations using AI to take measures to support staff AI literacy. The UK has no equivalent duty, but training is the main way to bring staff use in line with your policy.
 
 **How long does AI literacy training take?**
-A foundation can be covered in a 60-minute online course or a short workshop. Lasting change takes longer: a path by role and level, with refreshers as tools change.
+A foundation can be covered in a short online course or workshop. Lasting change takes longer: a path by role and level, with refreshers as tools change.
 
 **What should AI training for staff include?**
 A hands-on task in the first few minutes, examples from staff's own roles, your own policy and approved tools, a simple prompting structure, and scenario practice on data and checking.
