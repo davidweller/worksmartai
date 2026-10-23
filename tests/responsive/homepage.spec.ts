@@ -86,6 +86,42 @@ test.describe('homepage responsive layout', () => {
   });
 });
 
+test.describe('header and homepage design review', () => {
+  test('groups the Services panel and keeps orange for the Capability Check', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.goto('/', { waitUntil: 'load' });
+
+    await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('button', { name: 'Services' }).focus();
+    const panel = page.locator('#header .dropdown-panel');
+    await expect(panel.getByText('How we work', { exact: true })).toBeVisible();
+    await expect(panel.getByText('Courses', { exact: true })).toBeVisible();
+    await expect(panel.getByRole('link', { name: /Not sure\? Start with the free AI Capability Check/ })).toBeVisible();
+
+    const cta = page.locator('#header .btn-primary');
+    await expect(cta).toHaveText('Free AI Capability Check');
+    await expect(cta).toHaveAttribute('href', '/health-check/');
+    await expect(page.locator('#site-login-button')).not.toHaveClass(/btn-primary/);
+  });
+
+  test('lets keyboard users step through the AI Use Hierarchy', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'load' });
+
+    const ladder = page.locator('[data-hierarchy-ladder]');
+    const steps = ladder.locator('.ladder-step');
+    await expect(steps).toHaveCount(5);
+    await expect(steps.nth(0)).toHaveAttribute('aria-pressed', 'true');
+
+    await steps.nth(2).click();
+    await expect(steps.nth(2)).toHaveAttribute('aria-pressed', 'true');
+    await expect(ladder.locator('.ladder-panel:visible')).toHaveCount(1);
+    await expect(ladder.locator('.ladder-panel:visible')).toContainText('Level 3');
+
+    await page.keyboard.press('ArrowRight');
+    await expect(steps.nth(3)).toHaveAttribute('aria-pressed', 'true');
+    await expect(steps.nth(3)).toBeFocused();
+  });
+});
+
 test.describe('homepage visual responsive snapshots', () => {
   for (const viewport of visualSnapshotViewports) {
     test(`matches approved ${viewport.name} snapshot`, async ({ page }) => {
