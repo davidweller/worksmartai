@@ -1,0 +1,51 @@
+---
+// The brochure's diagonal navy and orange corner, traced from the cover of
+// WorkSmartAI_Combined_Brochure v4. The site's one distinctive motif: hero, CTA band and
+// audience tiles only, never over body text. The parent must be `relative` (and usually
+// `overflow-hidden`); put content above it with `relative z-10`.
+
+interface Props {
+  position?: 'br' | 'bl' | 'tr' | 'tl';
+  /** `dark` sits on navy, so the navy band turns light blue to stay visible. */
+  tone?: 'light' | 'dark';
+  class?: string;
+}
+
+const { position = 'br', tone = 'light', class: className = 'w-24' } = Astro.props;
+
+const flip = {
+  br: '',
+  bl: '-scale-x-100',
+  tr: '-scale-y-100',
+  tl: '-scale-x-100 -scale-y-100',
+}[position];
+const place = {
+  br: 'bottom-0 right-0',
+  bl: 'bottom-0 left-0',
+  tr: 'top-0 right-0',
+  tl: 'top-0 left-0',
+}[position];
+
+const id = `corner-${Math.random().toString(36).slice(2, 9)}`;
+const band = tone === 'dark' ? ['#86BFE2', '#86BFE2'] : ['#0a6a9e', '#013f61'];
+---
+
+<svg
+  class:list={['pointer-events-none absolute', place, flip, className]}
+  viewBox="0 0 450 665"
+  aria-hidden="true"
+  focusable="false"
+>
+  <defs>
+    <linearGradient id={`${id}-navy`} x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color={band[0]} stop-opacity={tone === 'dark' ? 0.55 : 1}></stop>
+      <stop offset="1" stop-color={band[1]} stop-opacity={tone === 'dark' ? 0.3 : 1}></stop>
+    </linearGradient>
+    <linearGradient id={`${id}-orange`} x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffa04d"></stop>
+      <stop offset="1" stop-color="#ff7700"></stop>
+    </linearGradient>
+  </defs>
+  <path d="M325 145 L450 0 L450 160 L380 245 Z" fill={`url(#${id}-orange)`}></path>
+  <path d="M0 665 L395 230 L450 330 L450 345 L150 665 Z" fill={`url(#${id}-navy)`}></path>
+</svg>
