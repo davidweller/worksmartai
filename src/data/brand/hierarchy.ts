@@ -11,9 +11,6 @@ export interface HierarchyLevel {
   exampleTask: string;
 }
 
-// DRAFT - the exampleTask lines need David's sign-off and a Source of Truth entry before
-// this branch merges. The Source of Truth defines each level but gives no example task.
-
 export const HIERARCHY: HierarchyLevel[] = [
   {
     level: 1,
