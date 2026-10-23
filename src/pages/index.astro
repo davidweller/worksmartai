@@ -6,6 +6,7 @@ import ServiceCards from '~/components/brand/ServiceCards.astro';
 import CtaBand from '~/components/brand/CtaBand.astro';
 import { ONE_LINERS, PILLARS, TAGLINE, WHY_US } from '~/data/brand/copy';
 import { CTAS } from '~/data/brand/ctas';
+import { TESTIMONIALS } from '~/data/brand/testimonials';
 
 const metadata = {
   title: 'AI skills training for universities, colleges, schools and organisations | WorkSmart-AI',
@@ -197,7 +198,21 @@ const sectorDoors = [
     </div>
   </section>
 
-  <!-- 7. Why us -->
+  <!-- 7. Second testimonial -->
+  <section class="bg-[#015887] px-6 py-8 sm:px-8 md:py-10 lg:px-12" no-intersect aria-label="Testimonial">
+    <div class="mx-auto max-w-3xl border-l-4 border-[#FF7700] pl-5 sm:pl-7">
+      <blockquote>
+        <p class="font-sans text-base font-bold leading-[1.7] text-white sm:text-lg">
+          &ldquo;{TESTIMONIALS.lynch.quote}&rdquo;
+        </p>
+      </blockquote>
+      <p class="mt-4 font-sans text-sm italic leading-[1.6] text-white/80">
+        {TESTIMONIALS.lynch.name}, {TESTIMONIALS.lynch.role}
+      </p>
+    </div>
+  </section>
+
+  <!-- 8. Why us -->
   <section class="bg-white px-6 py-16 sm:px-8 lg:px-12" no-intersect>
     <div class="mx-auto max-w-6xl">
       <SectionHeader eyebrow="Why WorkSmart-AI" title="Education specialists, not tool demos" />
