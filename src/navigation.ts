@@ -1,17 +1,31 @@
 import type { CallToAction } from './types';
 import { CTAS } from './data/brand/ctas';
 import { RESOURCES } from './data/brand/resources';
-import { SERVICES } from './data/brand/services';
+import { SERVICES, formatFromPrice } from './data/brand/services';
 
 interface NavLink {
   text: string;
   href: string;
 }
 
+export interface NavPanelLink extends NavLink {
+  /** Second line under the link, e.g. who it's for and the "from" price. */
+  meta?: string;
+  badge?: string;
+}
+
+export interface NavGroup {
+  heading: string;
+  links: NavPanelLink[];
+}
+
 interface NavMenuLink {
   text: string;
   href?: string;
   links?: NavLink[];
+  /** Grouped panel; when set, the dropdown renders these columns instead of `links`. */
+  groups?: NavGroup[];
+  footer?: NavLink;
 }
 
 export interface FooterLink {
@@ -31,6 +45,28 @@ const serviceLinks: NavLink[] = [
   ...SERVICES.map((s) => ({ text: s.name, href: s.href })),
   { text: 'Staff courses', href: '/services/staff-training/' },
   { text: 'Student courses', href: '/services/student-training/' },
+];
+
+const serviceGroups: NavGroup[] = [
+  {
+    heading: 'How we work',
+    links: SERVICES.map((s) => ({
+      text: s.name,
+      href: s.href,
+      // The free check carries a badge instead of a price.
+      ...(s.fromPrice === null
+        ? { meta: s.audience, badge: formatFromPrice(s.fromPrice) }
+        : { meta: `${s.audience} · ${formatFromPrice(s.fromPrice)}` }),
+    })),
+  },
+  {
+    heading: 'Courses',
+    links: [
+      { text: 'Staff courses', href: '/services/staff-training/' },
+      { text: 'Student courses', href: '/services/student-training/' },
+      { text: 'Your own AI course', href: '/services/your-own-ai-course/' },
+    ],
+  },
 ];
 
 const resourceLinks: NavLink[] = Object.values(RESOURCES)
@@ -57,6 +93,8 @@ export const headerData: {
       text: 'Services',
       // The overview page stays in the footer and the service-page back links, not the dropdown.
       links: serviceLinks.filter((l) => l.href !== '/services/'),
+      groups: serviceGroups,
+      footer: { text: 'Not sure? Start with the free AI Capability Check.', href: CTAS.primary.href },
     },
     {
       text: 'Resources',

@@ -18,6 +18,8 @@ interface Link {
 
 interface MenuLink extends Link {
   links?: Array<MenuLink>;
+  groups?: Array<{ heading: string; links: Array<Link & { meta?: string; badge?: string }> }>;
+  footer?: Link;
 }
 
 export interface Props {
@@ -88,7 +90,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
           class="flex flex-col min-[1280px]:flex-row min-[1280px]:self-center w-full min-[1280px]:w-auto text-[1.3rem] min-[1280px]:text-[1rem] tracking-[0.01rem] font-bold font-heading min-[1280px]:justify-center"
         >
           {
-            links.map(({ text, href, links }) => (
+            links.map(({ text, href, links, groups, footer }) => (
               <li class={links?.length ? 'dropdown' : ''}>
                 {links?.length ? (
                   <>
@@ -118,21 +120,66 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                         />
                       </button>
                     )}
-                    <ul class="dropdown-menu md:backdrop-blur-md rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-card md:min-w-[200px] shadow-card border border-default">
-                      {links.map(({ text: text2, href: href2 }) => (
-                        <li>
+                    {groups?.length ? (
+                      <div class="dropdown-menu dropdown-panel md:backdrop-blur-md rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-card md:w-[600px] shadow-card border border-default">
+                        <div class="md:grid md:grid-cols-[3fr_2fr] md:gap-2 md:p-3">
+                          {groups.map((group) => (
+                            <div>
+                              <p class="dropdown-panel-heading px-5 pt-3 pb-1 text-sm font-bold">{group.heading}</p>
+                              <ul>
+                                {group.links.map((link) => (
+                                  <li>
+                                    <a
+                                      class:list={[
+                                        'rounded transition-colors duration-200 ease-in-out hover:bg-[color-mix(in_srgb,var(--aw-color-secondary)_20%,transparent)] hover:text-link-hover py-2 px-5 block',
+                                        { 'aw-link-active': link.href === currentPath },
+                                      ]}
+                                      href={link.href}
+                                    >
+                                      <span class="flex items-center gap-2">
+                                        {link.text}
+                                        {link.badge && (
+                                          <span class="dropdown-panel-badge rounded-full px-2 py-0.5 text-xs font-bold">
+                                            {link.badge}
+                                          </span>
+                                        )}
+                                      </span>
+                                      {link.meta && (
+                                        <span class="dropdown-panel-meta block text-xs font-normal">{link.meta}</span>
+                                      )}
+                                    </a>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                        {footer && (
                           <a
-                            class:list={[
-                              'first:rounded-t last:rounded-b transition-colors duration-200 ease-in-out hover:bg-[color-mix(in_srgb,var(--aw-color-secondary)_20%,transparent)] hover:text-link-hover py-2 px-5 block whitespace-no-wrap',
-                              { 'aw-link-active': href2 === currentPath },
-                            ]}
-                            href={href2}
+                            class="dropdown-panel-footer block border-t px-5 py-3 text-sm font-semibold md:px-8"
+                            href={footer.href}
                           >
-                            {text2}
+                            {footer.text}
                           </a>
-                        </li>
-                      ))}
-                    </ul>
+                        )}
+                      </div>
+                    ) : (
+                      <ul class="dropdown-menu md:backdrop-blur-md rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-card md:min-w-[200px] shadow-card border border-default">
+                        {links.map(({ text: text2, href: href2 }) => (
+                          <li>
+                            <a
+                              class:list={[
+                                'first:rounded-t last:rounded-b transition-colors duration-200 ease-in-out hover:bg-[color-mix(in_srgb,var(--aw-color-secondary)_20%,transparent)] hover:text-link-hover py-2 px-5 block whitespace-no-wrap',
+                                { 'aw-link-active': href2 === currentPath },
+                              ]}
+                              href={href2}
+                            >
+                              {text2}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </>
                 ) : (
                   <a

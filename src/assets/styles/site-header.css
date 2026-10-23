@@ -111,6 +111,23 @@
   color: #015887 !important;
 }
 
+#header .dropdown-panel-heading {
+  color: #015887;
+}
+
+#header .dropdown-panel-meta {
+  color: #5a6b7a;
+}
+
+#header .dropdown-panel-badge {
+  background-color: #ff7700;
+  color: #ffffff;
+}
+
+#header .dropdown-panel-footer {
+  border-color: rgb(1 88 135 / 15%);
+}
+
 #header [data-aw-toggle-menu],
 #header [data-aw-toggle-menu] span {
   color: #015887 !important;
