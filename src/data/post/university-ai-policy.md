@@ -2,6 +2,7 @@
 publishDate: 2026-08-04T09:00:00.000Z
 author: 'David Weller'
 title: 'Writing a university AI policy: a guide and template for UK higher education'
+image: '~/assets/images/university-ai-policy.png'
 excerpt: 'How to write an AI policy for UK higher education that staff follow: a skeleton template, why policies fail, and how training makes the policy real.'
 metadata:
   title: 'Writing a University AI Policy: A UK HE Guide and Template'
