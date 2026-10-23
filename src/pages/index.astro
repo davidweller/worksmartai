@@ -98,20 +98,25 @@ const sectorDoors = [
     </div>
   </section>
 
-  <!-- 2. Credibility strip -->
-  <section class="border-b border-gray-100 bg-white px-6 py-8 sm:px-8 lg:px-12" no-intersect aria-label="Credibility">
-    <ul
-      class="mx-auto flex max-w-6xl flex-col items-center justify-center gap-3 text-center sm:flex-row sm:flex-wrap sm:gap-x-8"
-    >
-      {
-        credibilityMarkers.map((marker) => (
-          <li class="flex items-center gap-2 font-sans text-sm font-semibold text-[#015887]">
-            <Icon name="tabler:check" class="h-4 w-4 shrink-0" aria-hidden="true" />
-            {marker}
-          </li>
-        ))
-      }
-    </ul>
+  <!-- 2. Trust strip -->
+  <section
+    class="border-b border-gray-100 bg-white px-6 py-10 sm:px-8 lg:px-12"
+    no-intersect
+    aria-label="What clients say"
+  >
+    <figure class="mx-auto max-w-3xl text-center">
+      <blockquote>
+        <p class="font-heading text-lg font-semibold leading-[1.6] text-[#015887] sm:text-xl">
+          &ldquo;{TESTIMONIALS.lynch.quote}&rdquo;
+        </p>
+      </blockquote>
+      <figcaption class="mt-3 font-sans text-sm text-gray-700">
+        {TESTIMONIALS.lynch.name}, {TESTIMONIALS.lynch.role}
+      </figcaption>
+    </figure>
+    <p class="mx-auto mt-5 max-w-3xl text-center font-sans text-sm text-gray-600">
+      {credibilityMarkers.join(' · ')}
+    </p>
   </section>
 
   <!-- 3. Choose your sector -->
@@ -177,20 +182,6 @@ const sectorDoors = [
         >
           See all services <span class="ml-1" aria-hidden="true">&rarr;</span>
         </a>
-      </p>
-    </div>
-  </section>
-
-  <!-- 7. Second testimonial -->
-  <section class="bg-[#015887] px-6 py-8 sm:px-8 md:py-10 lg:px-12" no-intersect aria-label="Testimonial">
-    <div class="mx-auto max-w-3xl border-l-4 border-[#FF7700] pl-5 sm:pl-7">
-      <blockquote>
-        <p class="font-sans text-base font-bold leading-[1.7] text-white sm:text-lg">
-          &ldquo;{TESTIMONIALS.lynch.quote}&rdquo;
-        </p>
-      </blockquote>
-      <p class="mt-4 font-sans text-sm italic leading-[1.6] text-white/80">
-        {TESTIMONIALS.lynch.name}, {TESTIMONIALS.lynch.role}
       </p>
     </div>
   </section>
