@@ -2,6 +2,7 @@
 publishDate: 2026-05-19T09:00:00.000Z
 author: 'David Weller'
 title: 'Responsible AI in higher education: what it means for university staff'
+image: '~/assets/images/responsible-ai-higher-education.png'
 excerpt: 'What responsible AI use means day to day for university staff: data, accuracy, bias, disclosure, integrity, and approved tools, and how to train for it.'
 metadata:
   title: 'Responsible AI in Higher Education: A Guide for Staff'
