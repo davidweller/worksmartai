@@ -65,7 +65,7 @@ const sectorDoors = [
     <div class="relative z-10 mx-auto max-w-7xl">
       <div class="grid items-center gap-8 md:grid-cols-12">
         <div class="text-center md:col-span-6 md:text-left">
-          <h1 class="font-heading text-4xl font-bold leading-tight tracking-tight sm:text-5xl">{TAGLINE}</h1>
+          <h1 class="font-heading text-[32px] font-bold leading-tight tracking-tight sm:text-5xl">{TAGLINE}</h1>
           <p class="mx-auto mt-6 max-w-2xl font-sans text-lg leading-[1.7] text-[#86BFE2] md:mx-0 md:text-xl">
             {ONE_LINERS.generic}
           </p>
@@ -78,16 +78,17 @@ const sectorDoors = [
             </a>
             <a
               href={CTAS.calculator.href}
-              class="font-sans text-sm text-white/90 underline underline-offset-4 transition hover:text-white"
+              class="hidden font-sans text-sm text-white/90 underline md:inline underline-offset-4 transition hover:text-white"
             >
               {CTAS.calculator.text}
             </a>
           </div>
         </div>
 
-        <div class="md:col-span-6">
+        <div class="hidden md:col-span-6 md:block">
           <div class="overflow-hidden rounded-2xl shadow-lg ring-1 ring-white/20">
             <iframe
+              loading="lazy"
               title="WorkSmart-AI introduction video"
               src="https://www.youtube.com/embed/RuQWTW0lGHE"
               class="aspect-video w-full"
@@ -119,6 +120,20 @@ const sectorDoors = [
     <p class="mx-auto mt-5 max-w-3xl text-center font-sans text-sm text-gray-600">
       {credibilityMarkers.join(' · ')}
     </p>
+  </section>
+
+  <!-- 2b. Video on phones, below the fold -->
+  <section class="bg-white px-6 pb-10 md:hidden" no-intersect aria-label="Introduction video">
+    <div class="overflow-hidden rounded-2xl shadow-lg">
+      <iframe
+        loading="lazy"
+        title="WorkSmart-AI introduction video"
+        src="https://www.youtube.com/embed/RuQWTW0lGHE"
+        class="aspect-video w-full"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+    </div>
   </section>
 
   <!-- 3. Choose your sector -->
