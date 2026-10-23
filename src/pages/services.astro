@@ -1,12 +1,12 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/PageLayout.astro';
-import FAQs from '~/components/widgets/FAQs.astro';
 import SectionHeader from '~/components/brand/SectionHeader.astro';
 import ServiceCards from '~/components/brand/ServiceCards.astro';
 import UpsellLadder from '~/components/brand/UpsellLadder.astro';
 import CourseCards from '~/components/brand/CourseCards.astro';
 import CtaBand from '~/components/brand/CtaBand.astro';
+import FaqList from '~/components/brand/FaqList.astro';
 import { ONE_LINERS, WHAT_WE_DONT_DO } from '~/data/brand/copy';
 import { ADD_ONS } from '~/data/brand/services';
 
@@ -19,24 +19,20 @@ const metadata = {
 
 const faqItems = [
   {
-    title: 'What makes WorkSmart-AI different from other AI training providers?',
-    description:
-      'We are education specialists: both founders are former Digital Skills Leads at the University of Exeter. Every course opens with a real task, is built around your policy and tools, and has published learning outcomes, so you can see what your training delivered.',
+    q: 'What makes WorkSmart-AI different from other AI training providers?',
+    a: 'We are education specialists: both founders are former Digital Skills Leads at the University of Exeter. Every course opens with a real task, is built around your policy and tools, and has published learning outcomes, so you can see what your training delivered.',
   },
   {
-    title: 'Who are your services for?',
-    description:
-      'Universities, colleges, schools and trusts, businesses and the public sector, including councils, public bodies, SMEs and charities.',
+    q: 'Who are your services for?',
+    a: 'Universities, colleges, schools and trusts, businesses and the public sector, including councils, public bodies, SMEs and charities.',
   },
   {
-    title: 'How do you personalise training?',
-    description:
-      'Every engagement starts with a free AI Capability Check, which places your team on the AI Use Hierarchy. We then build workshops and courses around your AI policy, your Microsoft 365 and Copilot setup, and your roles.',
+    q: 'How do you personalise training?',
+    a: 'Every engagement starts with a free AI Capability Check, which places your team on the AI Use Hierarchy. We then build workshops and courses around your AI policy, your Microsoft 365 and Copilot setup, and your roles.',
   },
   {
-    title: 'What do the prices mean?',
-    description:
-      'Every price is shown from the lowest level, for example a one-hour workshop or a one-hour course. We publish topics and formats, then quote each engagement once we know what you need.',
+    q: 'What do the prices mean?',
+    a: 'Every price is shown from the lowest level, for example a one-hour workshop or a one-hour course. We publish topics and formats, then quote each engagement once we know what you need.',
   },
 ];
 ---
@@ -111,7 +107,7 @@ const faqItems = [
     </div>
   </section>
 
-  <FAQs title="FAQs" columns={1} items={faqItems} />
+  <FaqList title="FAQs" faqs={faqItems} />
 
   <CtaBand />
 </Layout>

@@ -1,0 +1,36 @@
+---
+// Question-and-answer accordion on native <details>, so it works without JavaScript and
+// never sits behind an entrance animation.
+import { Icon } from 'astro-icon/components';
+import SectionHeader from './SectionHeader.astro';
+
+interface Props {
+  title?: string;
+  faqs: { q: string; a: string }[];
+}
+
+const { title = 'Common questions', faqs } = Astro.props;
+---
+
+<section class="bg-page px-6 py-16 sm:px-8 lg:px-12">
+  <div class="mx-auto max-w-3xl">
+    <SectionHeader title={title} />
+    <div class="space-y-3">
+      {
+        faqs.map((item) => (
+          <details class="group rounded-xl border border-primary/15 bg-card px-5 py-4 shadow-card">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-heading font-semibold text-heading">
+              <span>{item.q}</span>
+              <Icon
+                name="tabler:chevron-down"
+                class="h-5 w-5 shrink-0 text-muted transition group-open:rotate-180"
+                aria-hidden="true"
+              />
+            </summary>
+            <p class="mt-3 border-t border-primary/10 pt-3 text-default">{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
