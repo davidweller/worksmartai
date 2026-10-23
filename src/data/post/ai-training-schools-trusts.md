@@ -2,6 +2,7 @@
 publishDate: 2026-09-08T09:00:00.000Z
 author: 'David Weller'
 title: 'AI INSET training for schools: how to make AI training stick'
+image: '~/assets/images/ai-training-schools-trusts.png'
 excerpt: 'Why one-off AI INSET days fade, and how to plan AI training for teachers and support staff that saves time, protects pupil data and scales across a trust.'
 metadata:
   title: 'AI INSET Training for Schools: How to Make It Stick'
