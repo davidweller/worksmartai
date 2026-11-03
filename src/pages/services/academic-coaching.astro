@@ -2,13 +2,10 @@
 import { Icon } from 'astro-icon/components';
 import ServicePage from '~/components/brand/ServicePage.astro';
 import SectionHeader from '~/components/brand/SectionHeader.astro';
-import { priceOf } from '~/data/brand/services';
-
-const price = priceOf('Academic coaching');
 
 const metadata = {
   title: 'Academic Coaching | WorkSmart-AI',
-  description: `Discipline and role-specific AI coaching for academics and research teams: research, writing, grant work and teaching preparation. One-to-one or groups of up to six. ${price}.`,
+  description: `Discipline and role-specific AI coaching for academics and research teams: research, writing, grant work and teaching preparation. One-to-one or groups of up to six.`,
   canonical: '/services/academic-coaching/',
 };
 
@@ -35,7 +32,6 @@ const includes = [
   eyebrow="Academic coaching"
   title="AI coaching for academics and research teams"
   intro="Coaching shaped around your discipline and your role, working on your real research, writing, grant and teaching tasks. One-to-one or in groups of up to six."
-  price={price}
   includes={includes}
   ctaTitle="Start with a free AI Capability Check"
 >

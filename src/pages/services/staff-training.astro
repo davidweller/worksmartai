@@ -2,27 +2,22 @@
 import ServicePage from '~/components/brand/ServicePage.astro';
 import SectionHeader from '~/components/brand/SectionHeader.astro';
 import CourseCards from '~/components/brand/CourseCards.astro';
-import { priceOf } from '~/data/brand/services';
-
-const workshopPrice = priceOf('Workshops and Events');
-const coursePrice = priceOf('Online courses');
+import { CTAS } from '~/data/brand/ctas';
 
 const metadata = {
   title: 'AI Staff Training Courses | WorkSmart-AI',
-  description: `Practical, task-based AI training for all staff, academics and professional services, as workshops (${workshopPrice.toLowerCase()}) or online courses (${coursePrice.toLowerCase()}), built around your policy and tools.`,
+  description: `Practical, task-based AI training for all staff, academics and professional services, as workshops or online courses, built around your policy and tools.`,
   canonical: '/services/staff-training/',
 };
 
 const formats = [
   {
     title: 'As a workshop',
-    price: workshopPrice,
     body: 'Face-to-face or online, from one hour to a full day, personalised to your sector and roles.',
     href: '/services/talks-workshops/',
   },
   {
     title: 'As an online course',
-    price: coursePrice,
     body: 'Self-paced, hosted on the WorkSmart-AI Academy or white-labelled for your LMS.',
     href: '/services/your-own-ai-course/',
   },
@@ -62,7 +57,7 @@ const includes = [
             >
               <div class="flex items-baseline justify-between gap-4">
                 <h3 class="font-heading text-xl font-bold text-heading">{f.title}</h3>
-                <span class="font-heading font-bold text-primary">{f.price}</span>
+                <span class="font-heading font-bold text-primary">{CTAS.quote.text}</span>
               </div>
               <p class="mt-2 text-default">{f.body}</p>
             </a>

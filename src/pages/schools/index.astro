@@ -2,12 +2,11 @@
 import Layout from '~/layouts/PageLayout.astro';
 import { Icon } from 'astro-icon/components';
 import { CTAS } from '~/data/brand/ctas';
-import { priceOf } from '~/data/brand/services';
 
 const metadata = {
   title: 'AI training for schools and teachers | WorkSmart-AI',
   description:
-    'Practical, GDPR-aware AI training for schools and trusts: INSET, leadership workshops and online courses for teachers and support staff, built around your policy. Workshops from £250.',
+    'Practical, GDPR-aware AI training for schools and trusts: INSET, leadership workshops and online courses for teachers and support staff, built around your policy.',
   canonical: '/schools/',
 };
 
@@ -52,21 +51,18 @@ const packages = [
     format: 'One hour to a full day, in school or online',
     outcome:
       'Hands-on sessions for teachers and support staff on resource creation, lesson planning, marking and parent communication, built around your policy.',
-    pricing: priceOf('Workshops and Events'),
   },
   {
     title: 'The AI Leadership Briefing',
     format: 'Leadership workshop',
     outcome:
       'For heads, trust leaders and SLT: where AI could help, where it could create problems, and what to ask before anything is adopted.',
-    pricing: priceOf('Workshops and Events'),
   },
   {
     title: 'An online course for all staff',
     format: 'Self-paced, in your branding',
     outcome:
       'AI Foundations and Responsible Use, white-labelled for your school or trust and built around your AI and safeguarding policies.',
-    pricing: priceOf('Online courses'),
   },
 ];
 ---
@@ -172,8 +168,8 @@ const packages = [
           Ways to work with us
         </h2>
         <p class="mt-4 font-sans text-base leading-[1.7] text-white/80">
-          Prices are shown from the lowest level, for example a one-hour workshop. Start with a free AI Capability Check
-          so the session is pitched at the right level.
+          Every package is quoted to fit your school or trust. Start with a free AI Capability Check so the session is
+          pitched at the right level.
         </p>
       </div>
       <div class="mt-12 grid gap-5 md:grid-cols-3">
@@ -183,7 +179,12 @@ const packages = [
               <h3 class="font-heading text-xl font-bold text-white">{pkg.title}</h3>
               <p class="mt-2 font-sans text-sm text-[#86BFE2]">{pkg.format}</p>
               <p class="mt-4 flex-1 font-sans text-sm leading-[1.65] text-white/85">{pkg.outcome}</p>
-              <p class="mt-6 font-heading text-lg font-bold text-[#FF7700]">{pkg.pricing}</p>
+              <a
+                href={CTAS.quote.href}
+                class="mt-6 inline-flex font-heading text-lg font-bold text-[#FF7700] transition hover:text-white"
+              >
+                {CTAS.quote.text} <span aria-hidden="true">&rarr;</span>
+              </a>
               <a
                 href={CTAS.primary.href}
                 class="mt-4 inline-flex font-heading text-sm font-bold text-white transition hover:text-[#FF7700]"

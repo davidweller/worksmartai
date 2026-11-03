@@ -11,5 +11,6 @@ export const CTAS = {
   calculator: { text: 'Try the AI Savings Calculator', href: '/roi-calculator/' },
   guide: { text: 'Download the Higher Education Use Case Guide', href: '/higher-education-guide/' },
   courses: { text: 'Explore the courses', href: '/services/staff-training/' },
+  quote: { text: 'Get a personalised quote', short: 'Get a quote', href: '/contact-us/' },
   events: { text: 'Get in touch about a keynote or away day', href: '/contact-us/' },
 } as const;

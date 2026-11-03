@@ -2,13 +2,10 @@
 import ServicePage from '~/components/brand/ServicePage.astro';
 import SectionHeader from '~/components/brand/SectionHeader.astro';
 import CourseCards from '~/components/brand/CourseCards.astro';
-import { priceOf } from '~/data/brand/services';
-
-const price = priceOf('Online courses');
 
 const metadata = {
   title: 'AI Courses for Students | WorkSmart-AI',
-  description: `White-labelled AI courses for all students, in your branding and built around your AI policy: AI Foundations and Responsible Use, and AI Skills for the Workplace. ${price}.`,
+  description: `White-labelled AI courses for all students, in your branding and built around your AI policy: AI Foundations and Responsible Use, and AI Skills for the Workplace.`,
   canonical: '/services/student-training/',
 };
 
@@ -34,7 +31,6 @@ const includes = [
   eyebrow="Student courses"
   title="AI skills every student can use, in your own course"
   intro="Two white-labelled online courses for all students, built around your policy, so every student knows what’s allowed and what employers expect."
-  price={price}
   facts={facts}
   includes={includes}
   ctaTitle="Start with a free AI Capability Check"

@@ -2,13 +2,10 @@
 import ServicePage from '~/components/brand/ServicePage.astro';
 import SectionHeader from '~/components/brand/SectionHeader.astro';
 import CourseCards from '~/components/brand/CourseCards.astro';
-import { priceOf } from '~/data/brand/services';
-
-const price = priceOf('Online courses');
 
 const metadata = {
   title: 'Online AI Courses, Hosted or White-Labelled | WorkSmart-AI',
-  description: `Self-paced AI courses for all staff or all students, hosted on the WorkSmart-AI Academy or white-labelled for your own LMS and built around your AI policy. ${price}.`,
+  description: `Self-paced AI courses for all staff or all students, hosted on the WorkSmart-AI Academy or white-labelled for your own LMS and built around your AI policy.`,
   canonical: '/services/your-own-ai-course/',
 };
 
@@ -68,7 +65,7 @@ const faqs = [
   },
   {
     q: 'Do you charge VAT?',
-    a: 'No. WorkSmart-AI is not VAT registered, so the price you see is the price you are invoiced.',
+    a: "No. WorkSmart-AI is not VAT registered, so the price we quote is the price you're invoiced.",
   },
 ];
 ---
@@ -78,7 +75,6 @@ const faqs = [
   eyebrow="Online courses"
   title="Your own AI course, built around your policy"
   intro="Self-paced, interactive AI courses for all staff or all students, hosted on the WorkSmart-AI Academy or white-labelled for your own LMS. Every course is built around your AI policy and the tools your people already use."
-  price={price}
   facts={facts}
   includes={includes}
   faqs={faqs}

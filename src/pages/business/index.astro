@@ -6,7 +6,6 @@ import CourseCards from '~/components/brand/CourseCards.astro';
 import CtaBand from '~/components/brand/CtaBand.astro';
 import { ONE_LINERS } from '~/data/brand/copy';
 import { CTAS } from '~/data/brand/ctas';
-import { priceOf } from '~/data/brand/services';
 
 const metadata = {
   title: 'AI Skills Training for Businesses and the Public Sector | WorkSmart-AI',
@@ -24,7 +23,7 @@ const strands = [
       'Leadership workshops and adoption coaching for senior teams',
       "Built around your data policy, so staff know what's safe",
     ],
-    note: `Workshops ${priceOf('Workshops and Events').toLowerCase()}; online courses ${priceOf('Online courses').toLowerCase()}.`,
+    note: "Workshops from one hour to a full day; online courses at your staff's own pace.",
     cta: CTAS.primary.text,
     href: CTAS.primary.href,
   },
@@ -37,7 +36,7 @@ const strands = [
       'Coaching on strategy, policy and a phased adoption roadmap',
       'Build your workflows for quick implementation',
     ],
-    note: `Adoption coaching ${priceOf('AI adoption coaching').toLowerCase()}.`,
+    note: 'Every engagement is quoted to fit your organisation.',
     cta: 'See adoption coaching',
     href: '/services/adoption-coaching/',
   },

@@ -2,13 +2,10 @@
 import ServicePage from '~/components/brand/ServicePage.astro';
 import SectionHeader from '~/components/brand/SectionHeader.astro';
 import CourseCards from '~/components/brand/CourseCards.astro';
-import { priceOf } from '~/data/brand/services';
-
-const price = priceOf('AI adoption coaching');
 
 const metadata = {
   title: 'Adoption Coaching for Senior Leaders | WorkSmart-AI',
-  description: `One-to-one or small-group coaching for senior leaders leading AI adoption: strategy, policy and a phased adoption roadmap, from education specialists. ${price}.`,
+  description: `One-to-one or small-group coaching for senior leaders leading AI adoption: strategy, policy and a phased adoption roadmap, from education specialists.`,
   canonical: '/services/adoption-coaching/',
 };
 
@@ -46,7 +43,6 @@ const faqs = [
   eyebrow="Adoption coaching"
   title="Lead AI adoption with confidence"
   intro="Coaching for senior leaders on leading AI adoption: the strategy, the policy and a phased roadmap, with someone who has done it inside education. One-to-one or with a few trusted colleagues."
-  price={price}
   includes={includes}
   faqs={faqs}
   ctaTitle="Start with a free AI Capability Check"

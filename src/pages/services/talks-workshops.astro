@@ -2,13 +2,10 @@
 import ServicePage from '~/components/brand/ServicePage.astro';
 import SectionHeader from '~/components/brand/SectionHeader.astro';
 import CourseCards from '~/components/brand/CourseCards.astro';
-import { priceOf } from '~/data/brand/services';
-
-const price = priceOf('Workshops and Events');
 
 const metadata = {
   title: 'AI Workshops and Events | WorkSmart-AI',
-  description: `Face-to-face or online AI workshops from one hour to a full day: INSET, away days, team sessions, leadership workshops, keynotes and conference talks. ${price}.`,
+  description: `Face-to-face or online AI workshops from one hour to a full day: INSET, away days, team sessions, leadership workshops, keynotes and conference talks.`,
   canonical: '/services/talks-workshops/',
 };
 
@@ -43,7 +40,6 @@ const sessionTypes = [
   eyebrow="Workshops and Events"
   title="AI workshops, talks and away days"
   intro="Face-to-face or online, from one hour to a full day, for universities, colleges, schools and organisations. Every session is built around real tasks, your policy and the tools your people already use."
-  price={price}
   facts={facts}
   ctaTitle="Planning a session? Start with a free AI Capability Check"
   ctaSubtitle="A 30-minute call that places your team on the AI Use Hierarchy, so the workshop starts at the right level."

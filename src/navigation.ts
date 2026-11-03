@@ -1,7 +1,7 @@
 import type { CallToAction } from './types';
 import { CTAS } from './data/brand/ctas';
 import { RESOURCES } from './data/brand/resources';
-import { SERVICES, formatFromPrice } from './data/brand/services';
+import { SERVICES } from './data/brand/services';
 
 interface NavLink {
   text: string;
@@ -9,7 +9,7 @@ interface NavLink {
 }
 
 export interface NavPanelLink extends NavLink {
-  /** Second line under the link, e.g. who it's for and the "from" price. */
+  /** Second line under the link, e.g. who it's for. */
   meta?: string;
   badge?: string;
 }
@@ -53,10 +53,8 @@ const serviceGroups: NavGroup[] = [
     links: SERVICES.map((s) => ({
       text: s.name,
       href: s.href,
-      // The free check carries a badge instead of a price.
-      ...(s.fromPrice === null
-        ? { meta: s.audience, badge: formatFromPrice(s.fromPrice) }
-        : { meta: `${s.audience} · ${formatFromPrice(s.fromPrice)}` }),
+      meta: s.audience,
+      ...(s.free && { badge: 'Free' }),
     })),
   },
   {

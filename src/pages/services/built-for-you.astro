@@ -2,9 +2,6 @@
 import ServicePage from '~/components/brand/ServicePage.astro';
 import SectionHeader from '~/components/brand/SectionHeader.astro';
 import WorkflowDiagram from '~/components/brand/WorkflowDiagram.astro';
-import { priceOf } from '~/data/brand/services';
-
-const price = priceOf('Built for You');
 
 const metadata = {
   title: 'Copilot Agents and Workflows Built for You | WorkSmart-AI',
@@ -46,7 +43,6 @@ const faqs = [
   eyebrow="Built for You"
   title="Copilot agents and workflows, built for your team"
   intro="We map your team’s critical workflows, build the Copilot agents and workflows that run them, and train your staff to hand work off and collect it back. Or we support your leaders to build their own."
-  price={price}
   includes={includes}
   faqs={faqs}
   ctaTitle="Start with a free AI Capability Check"

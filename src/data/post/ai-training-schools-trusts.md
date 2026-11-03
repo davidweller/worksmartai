@@ -77,7 +77,7 @@ Pupils are already using AI, and parents have questions. Once staff are confiden
 
 ## How WorkSmart-AI can help
 
-We're education specialists who train adults to use AI on real tasks, built around your policy and tools. For schools and trusts, that means INSET workshops from one hour to a full day, from £250, and self-paced online courses on your own learning platform or ours, from £750. You can see the full list on our [courses](/services/staff-training/) page, or estimate where AI could save your staff time with the [AI Savings Calculator](/roi-calculator/).
+We're education specialists who train adults to use AI on real tasks, built around your policy and tools. For schools and trusts, that means INSET workshops from one hour to a full day, and self-paced online courses on your own learning platform or ours. You can see the full list on our [courses](/services/staff-training/) page, or estimate where AI could save your staff time with the [AI Savings Calculator](/roi-calculator/).
 
 The best place to start is our free AI Capability Check. It's a 30-minute call over Teams or Zoom, with no obligation. We'll place your staff on the AI Use Hierarchy, give you two or three prioritised next steps, and send you a written report to keep.
 

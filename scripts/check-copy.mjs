@@ -55,6 +55,8 @@ const RULES = [
   },
   { name: 'fixed 3-hour format', re: /\b(3|three)[- ]hour\b/i },
   { name: 'old hierarchy size', re: /\b(six|6|four|4)[- ]level\b/i },
+  // Service prices are quoted per engagement; Microsoft licence prices and calculator figures don't start "from £".
+  { name: 'published service price', re: /\bfrom £\d/i },
 ];
 
 async function collect(dir) {
