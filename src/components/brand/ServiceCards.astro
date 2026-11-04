@@ -9,9 +9,11 @@ interface Props {
   exclude?: string;
   /** `rows` is a compact list for catalogue sections; `cards` stays for "Other services". */
   variant?: 'cards' | 'rows';
+  /** Label for paid services in `rows`; defaults to the quote CTA. */
+  rowLabel?: string;
 }
 
-const { services = SERVICES, exclude, variant = 'cards' } = Astro.props;
+const { services = SERVICES, exclude, variant = 'cards', rowLabel = CTAS.quote.short } = Astro.props;
 const shown = services.filter((s) => s.href !== exclude);
 ---
 
@@ -33,7 +35,7 @@ const shown = services.filter((s) => s.href !== exclude);
             </span>
             <span class="pl-9 text-default md:pl-0">{s.summary}</span>
             <span class="flex items-center gap-2 pl-9 font-heading font-bold text-primary md:justify-end md:whitespace-nowrap md:pl-0">
-              {s.free ? 'Free' : CTAS.quote.short}
+              {s.free ? 'Free' : rowLabel}
               <span class="text-accent transition-transform group-hover:translate-x-0.5" aria-hidden="true">
                 →
               </span>
