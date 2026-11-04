@@ -1,0 +1,537 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { CTAS } from '~/data/brand/ctas';
+import { INTRO, QUESTIONS } from '../../supabase/functions/_shared/hierarchy-quiz.ts';
+
+const metadata = {
+  title: 'AI Use Hierarchy Quiz | WorkSmart-AI',
+  description:
+    'A free 7-minute self-assessment that places you on the five-level AI Use Hierarchy for capability, confidence and compliance, and gives you a three-number profile with your next step on each.',
+  canonical: '/ai-use-hierarchy-quiz/',
+};
+
+// Keys on data-* avoid minifier mangling, as on the guide page.
+const supabaseUrl = (import.meta.env.PUBLIC_SUPABASE_URL ?? import.meta.env.SUPABASE_URL ?? '').trim();
+const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta.env.SUPABASE_ANON_KEY ?? '').trim();
+---
+
+<Layout metadata={metadata}>
+  <section class="bg-[#F8F8F8] px-6 py-12 sm:px-8 lg:px-12 lg:py-16">
+    <div
+      class="mx-auto max-w-3xl"
+      data-quiz
+      data-supabase-url={supabaseUrl}
+      data-supabase-anon-key={supabaseAnonKey}
+      data-total={QUESTIONS.length}
+    >
+      <!-- Intro -->
+      <div data-screen="intro" class="rounded-xl border border-primary/20 bg-card p-6 shadow-card sm:p-10">
+        <p class="font-heading text-sm font-bold uppercase tracking-wide text-[#FF7700]">Free self-assessment</p>
+        <h1 class="mt-2 font-heading text-3xl font-bold text-heading sm:text-4xl">{INTRO.title}</h1>
+        <p class="mt-5 text-base leading-relaxed text-default sm:text-lg">{INTRO.body}</p>
+        <noscript>
+          <p class="mt-6 rounded-lg bg-amber-50 p-4 text-sm text-amber-900">
+            The quiz needs JavaScript. Turn it on, or <a class="underline" href={CTAS.primary.href}
+              >book a free AI Capability Check</a
+            > and we'll place you on the hierarchy in a call.
+          </p>
+        </noscript>
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <button
+            type="button"
+            data-action="start"
+            class="inline-flex items-center justify-center rounded-full bg-[#FF7700] px-7 py-3 font-heading text-sm font-bold text-white transition hover:bg-[#e55f00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#015887]"
+          >
+            Start the quiz
+          </button>
+          <button
+            type="button"
+            data-action="restart"
+            hidden
+            class="font-heading text-sm font-semibold text-[#015887] underline underline-offset-4 hover:text-[#FF7700]"
+          >
+            Start again
+          </button>
+        </div>
+      </div>
+
+      <!-- One question at a time -->
+      <form data-screen="question" hidden class="rounded-xl border border-primary/20 bg-card p-6 shadow-card sm:p-10">
+        <div class="flex items-center justify-between gap-4 text-sm">
+          <p data-section class="font-heading font-bold text-[#015887]"></p>
+          <p data-count class="shrink-0 text-muted"></p>
+        </div>
+        <div
+          class="mt-3 h-2 overflow-hidden rounded-full bg-primary/10"
+          role="progressbar"
+          aria-label="Quiz progress"
+          aria-valuemin="0"
+          data-progress
+        >
+          <div data-progress-bar class="h-full rounded-full bg-[#FF7700] transition-all"></div>
+        </div>
+        <fieldset class="mt-8" data-fieldset>
+          <legend data-prompt class="font-heading text-xl font-bold leading-snug text-heading sm:text-2xl"></legend>
+          <p data-hint class="mt-3 text-sm text-muted" hidden></p>
+          <div data-options class="mt-6 space-y-3"></div>
+        </fieldset>
+        <div class="mt-8 flex items-center justify-between gap-4">
+          <button
+            type="button"
+            data-action="back"
+            class="font-heading text-sm font-semibold text-[#015887] underline underline-offset-4 hover:text-[#FF7700]"
+          >
+            Back
+          </button>
+          <button
+            type="submit"
+            data-action="next"
+            class="inline-flex items-center justify-center rounded-full bg-[#015887] px-7 py-3 font-heading text-sm font-bold text-white transition hover:bg-[#014a72] disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            Next
+          </button>
+        </div>
+      </form>
+
+      <!-- Results: teaser, reveal form, full report -->
+      <div data-screen="results" hidden>
+        <div class="rounded-xl border border-primary/20 bg-card p-6 shadow-card sm:p-10">
+          <p class="font-heading text-sm font-bold uppercase tracking-wide text-[#FF7700]">Your profile</p>
+          <h1 tabindex="-1" data-results-heading class="mt-2 font-heading text-3xl font-bold text-heading">
+            Where you are on the AI Use Hierarchy
+          </h1>
+          <ul data-levels class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3"></ul>
+          <div data-patterns class="mt-6 space-y-2"></div>
+          <p data-policy hidden class="mt-6 rounded-lg border-l-4 border-l-[#FF7700] bg-orange-50 p-4 text-default"></p>
+        </div>
+
+        <form data-reveal class="mt-6 rounded-xl border border-primary/20 bg-card p-6 shadow-card sm:p-10" novalidate>
+          <h2 class="font-heading text-2xl font-bold text-heading">Get your full report</h2>
+          <p class="mt-3 text-default">
+            Your next step on each pillar, what each check showed, and where to start. We'll show it here and email you
+            a copy.
+          </p>
+          <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <label class="block">
+              <span class="font-heading text-sm font-semibold text-heading">Name</span>
+              <input
+                name="name"
+                type="text"
+                autocomplete="name"
+                required
+                class="mt-1 w-full rounded-lg border border-primary/30 px-3 py-2"
+              />
+            </label>
+            <label class="block">
+              <span class="font-heading text-sm font-semibold text-heading">Work email</span>
+              <input
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                class="mt-1 w-full rounded-lg border border-primary/30 px-3 py-2"
+              />
+            </label>
+          </div>
+          <label class="mt-4 flex items-start gap-3 text-sm text-default">
+            <input name="marketing" type="checkbox" class="mt-1 h-4 w-4" />
+            <span>Send me occasional AI tips and resources from WorkSmart-AI. You can unsubscribe at any time.</span>
+          </label>
+          <p class="mt-4 text-xs text-muted">
+            We use your email to send this report. See our <a class="underline" href="/privacy-policy/"
+              >privacy policy</a
+            >.
+          </p>
+          <p data-reveal-feedback class="hidden" role="alert"></p>
+          <button
+            type="submit"
+            class="mt-6 inline-flex items-center justify-center rounded-full bg-[#FF7700] px-7 py-3 font-heading text-sm font-bold text-white transition hover:bg-[#e55f00] disabled:opacity-50"
+          >
+            Show and email my full report
+          </button>
+        </form>
+
+        <div data-full hidden class="mt-6">
+          <p data-email-status class="mb-6 rounded-lg bg-primary/5 p-4 text-sm text-default" role="status"></p>
+          <div data-where class="rounded-xl border border-primary/20 bg-card p-6 shadow-card sm:p-10"></div>
+          <div data-pillars class="mt-6 space-y-6"></div>
+          <div class="mt-6 rounded-xl bg-[#015887] p-6 text-white sm:p-10">
+            <p data-note class="mb-4 text-sm text-white/80" hidden></p>
+            <p data-closing class="text-base sm:text-lg"></p>
+            <a
+              href={CTAS.primary.href}
+              class="mt-6 inline-flex items-center justify-center rounded-full bg-[#FF7700] px-7 py-3 font-heading text-sm font-bold text-white transition hover:bg-[#e55f00]"
+            >
+              {CTAS.primary.text}
+            </a>
+          </div>
+        </div>
+
+        <p class="mt-6 text-center">
+          <button
+            type="button"
+            data-action="restart"
+            class="font-heading text-sm font-semibold text-[#015887] underline underline-offset-4 hover:text-[#FF7700]"
+          >
+            Take the quiz again
+          </button>
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import {
+    GRADES,
+    QUESTIONS,
+    RATINGS,
+    buildReport,
+    isAnswered,
+    levelLabel,
+    scoreQuiz,
+    sectionOf,
+    type QuizAnswers,
+    type Question,
+  } from '../../supabase/functions/_shared/hierarchy-quiz.ts';
+
+  const STORE_KEY = 'wsai-hierarchy-quiz-v1';
+
+  interface State {
+    index: number;
+    answers: QuizAnswers;
+    done: boolean;
+    revealed: boolean;
+  }
+
+  const esc = (s: string) =>
+    s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+  function load(): State | null {
+    try {
+      const raw = localStorage.getItem(STORE_KEY);
+      return raw ? (JSON.parse(raw) as State) : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function save(s: State) {
+    try {
+      localStorage.setItem(STORE_KEY, JSON.stringify(s));
+    } catch {
+      // Private windows can block storage; the quiz still works without it.
+    }
+  }
+
+  function clear() {
+    try {
+      localStorage.removeItem(STORE_KEY);
+    } catch {
+      // As above.
+    }
+  }
+
+  function initQuiz(root: HTMLElement) {
+    const $ = <T extends Element = HTMLElement>(sel: string) => root.querySelector<T>(sel)!;
+    const screens = {
+      intro: $('[data-screen="intro"]'),
+      question: $<HTMLFormElement>('[data-screen="question"]'),
+      results: $('[data-screen="results"]'),
+    };
+    const supabaseUrl = (root.dataset.supabaseUrl || '').replace(/\/$/, '');
+    const supabaseAnonKey = root.dataset.supabaseAnonKey || '';
+    const source = (() => {
+      const utm = new URLSearchParams(location.search).get('utm_source');
+      return utm ? `hierarchy-quiz:${utm.slice(0, 80)}` : 'hierarchy-quiz';
+    })();
+
+    let state: State = load() ?? { index: 0, answers: {}, done: false, revealed: false };
+
+    const show = (name: keyof typeof screens) => {
+      Object.entries(screens).forEach(([k, el]) => (el.hidden = k !== name));
+    };
+
+    // Intro: offer to carry on when there's saved progress.
+    const startBtn = $<HTMLButtonElement>('[data-screen="intro"] [data-action="start"]');
+    const introRestart = $<HTMLButtonElement>('[data-screen="intro"] [data-action="restart"]');
+    if (state.index > 0 && !state.done) {
+      startBtn.textContent = `Carry on from question ${state.index + 1} of ${QUESTIONS.length}`;
+      introRestart.hidden = false;
+    }
+
+    function optionHtml(type: 'radio' | 'checkbox', name: string, value: string, label: string, checked: boolean) {
+      return `<label class="flex cursor-pointer items-start gap-3 rounded-lg border border-primary/20 p-4 transition hover:border-[#015887] has-[:checked]:border-[#015887] has-[:checked]:bg-[#015887]/5 has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-[#FF7700]">
+        <input type="${type}" name="${esc(name)}" value="${esc(value)}" class="mt-1 h-4 w-4 shrink-0 accent-[#015887]" ${checked ? 'checked' : ''} />
+        <span class="text-default">${esc(label)}</span>
+      </label>`;
+    }
+
+    function renderQuestion() {
+      const q = QUESTIONS[state.index];
+      const a = state.answers as Record<string, unknown>;
+      const form = screens.question;
+      $('[data-section]').textContent = sectionOf(q);
+      $('[data-count]').textContent = `Question ${state.index + 1} of ${QUESTIONS.length}`;
+      const pct = Math.round((state.index / QUESTIONS.length) * 100);
+      $('[data-progress-bar]').style.width = `${pct}%`;
+      $('[data-progress]').setAttribute('aria-valuenow', String(pct));
+      $('[data-progress]').setAttribute('aria-valuemax', '100');
+
+      const prompt = $('[data-prompt]');
+      const hint = $('[data-hint]');
+      hint.hidden = true;
+      hint.className = 'mt-3 text-sm text-muted';
+      // Checks: the title is the heading and the scenario reads as body text.
+      if (q.kind !== 'about' && q.kind !== 'statement') {
+        hint.textContent = q.prompt;
+        hint.className = 'mt-4 text-base leading-relaxed text-default';
+        hint.hidden = false;
+      }
+      let html = '';
+      if (q.kind === 'about') {
+        prompt.textContent = q.prompt;
+        html = q.options.map((o) => optionHtml('radio', q.id, o.value, o.label, a[q.id] === o.value)).join('');
+      } else if (q.kind === 'statement') {
+        prompt.textContent = q.text;
+        hint.textContent = 'Answer for a normal working week. Something you’ve done once doesn’t count yet.';
+        hint.hidden = false;
+        html = RATINGS.map((o) => optionHtml('radio', q.id, o.value, o.label, a[q.id] === o.value)).join('');
+      } else if (q.kind === 'single') {
+        prompt.textContent = q.title;
+        html = q.options.map((o) => optionHtml('radio', q.id, o.value, o.label, a[q.id] === o.value)).join('');
+      } else if (q.kind === 'multi') {
+        prompt.textContent = q.title;
+        const chosen = new Set((a[q.id] as string[] | undefined) ?? []);
+        html = q.options.map((o) => optionHtml('checkbox', q.id, o.value, o.label, chosen.has(o.value))).join('');
+      } else {
+        prompt.textContent = q.title;
+        const graded = (a[q.id] as Record<string, string> | undefined) ?? {};
+        html = q.tasks
+          .map(
+            (
+              t
+            ) => `<div class="rounded-lg border border-primary/20 p-4" role="radiogroup" aria-labelledby="${esc(`${q.id}-${t.id}`)}">
+              <p id="${esc(`${q.id}-${t.id}`)}" class="text-default">${esc(t.text)}</p>
+              <div class="mt-2 flex flex-wrap gap-2">
+                ${GRADES.map(
+                  (
+                    g
+                  ) => `<label class="flex cursor-pointer items-center gap-2 rounded-full border border-primary/20 px-4 py-2 text-sm has-[:checked]:border-[#015887] has-[:checked]:bg-[#015887] has-[:checked]:text-white has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-[#FF7700]">
+                    <input type="radio" class="sr-only" name="${esc(`${q.id}:${t.id}`)}" value="${g.value}" ${graded[t.id] === g.value ? 'checked' : ''} />${g.label}
+                  </label>`
+                ).join('')}
+              </div>
+            </div>`
+          )
+          .join('');
+      }
+      $('[data-options]').innerHTML = html;
+      $<HTMLButtonElement>('[data-action="back"]').style.visibility = state.index === 0 ? 'hidden' : 'visible';
+      $<HTMLButtonElement>('[data-action="next"]').textContent =
+        state.index === QUESTIONS.length - 1 ? 'See my profile' : 'Next';
+      syncNext(q);
+      prompt.setAttribute('tabindex', '-1');
+      prompt.focus();
+      form.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    }
+
+    function readAnswer(q: Question) {
+      const fd = new FormData(screens.question);
+      const a = state.answers as Record<string, unknown>;
+      if (q.kind === 'multi') {
+        a[q.id] = fd.getAll(q.id).map(String);
+      } else if (q.kind === 'grade') {
+        const graded: Record<string, string> = {};
+        q.tasks.forEach((t) => {
+          const v = fd.get(`${q.id}:${t.id}`);
+          if (v) graded[t.id] = String(v);
+        });
+        a[q.id] = graded;
+      } else {
+        const v = fd.get(q.id);
+        if (v) a[q.id] = String(v);
+      }
+    }
+
+    function syncNext(q: Question) {
+      $<HTMLButtonElement>('[data-action="next"]').disabled = !isAnswered(q, state.answers);
+    }
+
+    screens.question.addEventListener('change', () => {
+      const q = QUESTIONS[state.index];
+      readAnswer(q);
+      syncNext(q);
+      save(state);
+    });
+
+    screens.question.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const q = QUESTIONS[state.index];
+      readAnswer(q);
+      if (!isAnswered(q, state.answers)) return;
+      if (state.index < QUESTIONS.length - 1) {
+        state.index++;
+        save(state);
+        renderQuestion();
+      } else {
+        state.done = true;
+        save(state);
+        renderResults();
+      }
+    });
+
+    $('[data-screen="question"] [data-action="back"]').addEventListener('click', () => {
+      if (state.index === 0) return;
+      state.index--;
+      save(state);
+      renderQuestion();
+    });
+
+    function renderResults() {
+      show('results');
+      const result = scoreQuiz(state.answers);
+      const report = buildReport(result);
+
+      $('[data-levels]').innerHTML = report.pillars
+        .map(
+          (p) => `<li class="rounded-xl bg-[#015887] p-5 text-white">
+            <p class="font-heading text-sm font-bold uppercase tracking-wide text-white/80">${esc(p.label)}</p>
+            <p class="mt-1 font-heading text-3xl font-bold" data-level="${p.pillar}">${esc(p.level === 0 ? levelLabel(0) : String(p.level))}</p>
+            ${p.levelName ? `<p class="mt-1 text-sm text-white/90">${esc(p.levelName)}</p>` : ''}
+          </li>`
+        )
+        .join('');
+      $('[data-patterns]').innerHTML = report.patterns
+        .map(
+          (p) => `<p class="font-heading text-xl font-bold text-heading" data-pattern="${p.id}">${esc(p.headline)}</p>`
+        )
+        .join('');
+      const policy = $('[data-policy]');
+      policy.hidden = !report.policyMessage;
+      policy.textContent = report.policyMessage ?? '';
+
+      $('[data-where]').innerHTML =
+        `<h2 class="font-heading text-2xl font-bold text-heading">Where to start</h2>` +
+        report.patterns
+          .map(
+            (p) => `<div class="mt-4"><p class="font-heading font-bold text-[#015887]">${esc(p.headline)}</p>
+              <p class="mt-1 text-default">${esc(p.start)}</p></div>`
+          )
+          .join('');
+      $('[data-pillars]').innerHTML = report.pillars
+        .map(
+          (
+            p
+          ) => `<section class="rounded-xl border border-primary/20 border-l-4 border-l-[#FF7700] bg-card p-6 shadow-card sm:p-8" data-pillar-report="${p.pillar}">
+            <h2 class="font-heading text-xl font-bold text-heading">${esc(p.label)}: ${esc(p.levelLabel)}${p.levelName ? `, ${esc(p.levelName)}` : ''}</h2>
+            ${p.definition ? `<p class="mt-2 text-default">${esc(p.definition)}</p>` : ''}
+            ${p.next ? `<p class="mt-4 font-semibold text-default">${esc(p.next)}</p>` : ''}
+            ${p.checks
+              .map(
+                (c) => `<div class="mt-4 rounded-lg bg-[#F8F8F8] p-4 text-sm">
+                  <p class="font-heading font-bold text-heading">${esc(c.title)}</p>
+                  ${c.capLine ? `<p class="mt-1 font-semibold text-amber-800" data-cap-line>${esc(c.capLine)}</p>` : ''}
+                  ${c.feedback.map((f) => `<p class="mt-1 text-default">${esc(f)}</p>`).join('')}
+                </div>`
+              )
+              .join('')}
+          </section>`
+        )
+        .join('');
+      const note = $('[data-note]');
+      note.hidden = !report.selfReportNote;
+      note.textContent = report.selfReportNote ?? '';
+      $('[data-closing]').textContent = report.closing;
+
+      setRevealed(state.revealed);
+      $('[data-results-heading]').focus();
+      root.scrollIntoView({ block: 'start' });
+    }
+
+    function setRevealed(on: boolean) {
+      $('[data-reveal]').hidden = on;
+      $('[data-full]').hidden = !on;
+    }
+
+    // Reveal: always show the full report, whatever happens to the email.
+    const reveal = $<HTMLFormElement>('[data-reveal]');
+    const feedback = $('[data-reveal-feedback]');
+    reveal.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fd = new FormData(reveal);
+      const name = String(fd.get('name') || '').trim();
+      const email = String(fd.get('email') || '').trim();
+      if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        feedback.textContent = 'Please enter your name and a valid work email.';
+        feedback.className = 'mt-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800';
+        return;
+      }
+      feedback.className = 'hidden';
+      const btn = reveal.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      const status = $('[data-email-status]');
+      let sent = false;
+      if (supabaseUrl && supabaseAnonKey) {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 10000);
+        try {
+          const res = await fetch(`${supabaseUrl}/functions/v1/send-quiz-results`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${supabaseAnonKey}`,
+              apikey: supabaseAnonKey,
+            },
+            body: JSON.stringify({
+              name,
+              email,
+              marketingOptIn: fd.get('marketing') === 'on',
+              source,
+              answers: state.answers,
+            }),
+            signal: controller.signal,
+          });
+          sent = res.ok;
+          if (!res.ok) console.error('[WorkSmart] Quiz results email failed', res.status, await res.text());
+        } catch (err) {
+          console.error('[WorkSmart] Quiz results request failed', err);
+        } finally {
+          clearTimeout(timer);
+        }
+      }
+      status.textContent = sent
+        ? `We've emailed a copy to ${email}. If it isn't in your inbox in a few minutes, check your junk folder.`
+        : "We couldn't send the email just now, but your full report is below. You can save or print this page.";
+      state.revealed = true;
+      save(state);
+      setRevealed(true);
+      status.focus();
+    });
+
+    function restart() {
+      clear();
+      state = { index: 0, answers: {}, done: false, revealed: false };
+      reveal.reset();
+      const b = reveal.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+      b.disabled = false;
+      b.textContent = 'Show and email my full report';
+      show('question');
+      renderQuestion();
+    }
+
+    startBtn.addEventListener('click', () => {
+      show('question');
+      renderQuestion();
+    });
+    root.querySelectorAll('[data-action="restart"]').forEach((b) => b.addEventListener('click', restart));
+
+    $('[data-email-status]').setAttribute('tabindex', '-1');
+    if (state.done) renderResults();
+    else show('intro');
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-quiz]').forEach(initQuiz);
+</script>

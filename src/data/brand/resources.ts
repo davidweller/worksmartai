@@ -7,4 +7,5 @@ export const RESOURCES = {
   licensing: { name: 'Copilot Licensing Decoded', href: '/copilot-licensing/' },
   glossary: { name: 'Copilot in Plain English', href: '/copilot-glossary/' },
   hierarchy: { name: 'The AI Use Hierarchy', href: '/ai-use-hierarchy/' },
+  quiz: { name: 'AI Use Hierarchy Quiz', href: '/ai-use-hierarchy-quiz/' },
 } as const;
