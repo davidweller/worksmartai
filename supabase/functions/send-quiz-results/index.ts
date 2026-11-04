@@ -125,8 +125,9 @@ Deno.serve(async (req) => {
   const sendError = await sendEmail(
     key,
     email,
-    'Your AI Use Hierarchy profile',
-    renderReportEmail(escapeHtml(name), result, SITE_URL)
+    `Your AI profile: ${profileLine(result.levels)}`,
+    // renderReportEmail escapes the name itself.
+    renderReportEmail(name, result, SITE_URL)
   );
   if (sendError) {
     return json({ ok: false, error: sendError }, 502);

@@ -100,8 +100,9 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
           <h1 tabindex="-1" data-results-heading class="mt-2 font-heading text-3xl font-bold text-heading">
             Where you are on the AI Use Hierarchy
           </h1>
-          <ul data-levels class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3"></ul>
-          <div data-patterns class="mt-6 space-y-2"></div>
+          <p data-score class="mt-4 font-heading text-2xl font-bold text-[#015887]"></p>
+          <div data-patterns class="mt-2 space-y-1"></div>
+          <div data-diagram class="mt-8"></div>
           <p data-policy hidden class="mt-6 rounded-lg border-l-4 border-l-[#FF7700] bg-orange-50 p-4 text-default"></p>
         </div>
 
@@ -155,6 +156,7 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
           <p data-email-status class="mb-6 rounded-lg bg-primary/5 p-4 text-sm text-default" role="status"></p>
           <div data-where class="rounded-xl border border-primary/20 bg-card p-6 shadow-card sm:p-10"></div>
           <div data-pillars class="mt-6 space-y-6"></div>
+          <div data-key class="mt-6 rounded-xl border border-primary/20 bg-card p-6 shadow-card sm:p-10"></div>
           <div class="mt-6 rounded-xl bg-[#015887] p-6 text-white sm:p-10">
             <p data-note class="mb-4 text-sm text-white/80" hidden></p>
             <p data-closing class="text-base sm:text-lg"></p>
@@ -184,11 +186,13 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
 <script>
   import {
     GRADES,
+    LEVELS,
     QUESTIONS,
     RATINGS,
     buildReport,
     isAnswered,
-    levelLabel,
+    profileLine,
+    renderProfileDiagram,
     scoreQuiz,
     sectionOf,
     type QuizAnswers,
@@ -393,15 +397,9 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
       const result = scoreQuiz(state.answers);
       const report = buildReport(result);
 
-      $('[data-levels]').innerHTML = report.pillars
-        .map(
-          (p) => `<li class="rounded-xl bg-[#015887] p-5 text-white">
-            <p class="font-heading text-sm font-bold uppercase tracking-wide text-white/80">${esc(p.label)}</p>
-            <p class="mt-1 font-heading text-3xl font-bold" data-level="${p.pillar}">${esc(p.level === 0 ? levelLabel(0) : String(p.level))}</p>
-            ${p.levelName ? `<p class="mt-1 text-sm text-white/90">${esc(p.levelName)}</p>` : ''}
-          </li>`
-        )
-        .join('');
+      // Same markup as the email's diagram, so the two always match.
+      $('[data-score]').textContent = profileLine(result.levels);
+      $('[data-diagram]').innerHTML = renderProfileDiagram(result.levels);
       $('[data-patterns]').innerHTML = report.patterns
         .map(
           (p) => `<p class="font-heading text-xl font-bold text-heading" data-pattern="${p.id}">${esc(p.headline)}</p>`
@@ -425,7 +423,8 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
             p
           ) => `<section class="rounded-xl border border-primary/20 border-l-4 border-l-[#FF7700] bg-card p-6 shadow-card sm:p-8" data-pillar-report="${p.pillar}">
             <h2 class="font-heading text-xl font-bold text-heading">${esc(p.label)}: ${esc(p.levelLabel)}${p.levelName ? `, ${esc(p.levelName)}` : ''}</h2>
-            ${p.definition ? `<p class="mt-2 text-default">${esc(p.definition)}</p>` : ''}
+            <p class="mt-1 text-sm text-muted">${esc(p.label)} is ${esc(p.question)}.</p>
+            ${p.definition ? `<p class="mt-3 text-default">${esc(p.definition)}</p>` : ''}
             ${p.next ? `<p class="mt-4 font-semibold text-default">${esc(p.next)}</p>` : ''}
             ${p.checks
               .map(
@@ -439,6 +438,15 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
           </section>`
         )
         .join('');
+      $('[data-key]').innerHTML =
+        `<h2 class="font-heading text-2xl font-bold text-heading">How the levels work</h2><ol class="mt-4 space-y-3">` +
+        LEVELS.map(
+          (
+            l
+          ) => `<li class="flex gap-3"><span class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#015887] font-heading text-sm font-bold text-white">${l.level}</span>
+            <span><span class="font-heading font-bold text-heading">${esc(l.name)}</span><br /><span class="text-default">${esc(l.summary)}</span></span></li>`
+        ).join('') +
+        `</ol>`;
       const note = $('[data-note]');
       note.hidden = !report.selfReportNote;
       note.textContent = report.selfReportNote ?? '';

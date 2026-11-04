@@ -10,48 +10,66 @@ export type Pillar = 'capability' | 'confidence' | 'compliance';
 export type Rating = 'yes' | 'partly' | 'not-yet';
 export type Grade = 'green' | 'amber' | 'red';
 
+// Visitors haven't done our courses, so result copy avoids course terms (R-C-T, the Decision Matrix,
+// guardrails). Level names match src/data/brand/hierarchy.ts; a test checks that.
 export const PILLARS: { key: Pillar; label: string; question: string }[] = [
   { key: 'capability', label: 'Capability', question: 'What you can do' },
-  { key: 'confidence', label: 'Confidence', question: "Whether you'll do it without someone beside you" },
+  { key: 'confidence', label: 'Confidence', question: "Whether you'll do it on your own" },
   { key: 'compliance', label: 'Compliance', question: 'Whether you do it safely' },
 ];
 
-/** Level names and definitions. A test checks these match src/data/brand/hierarchy.ts. */
-export const LEVELS: { level: number; name: string; capability: string; confidence: string; compliance: string }[] = [
+export const LEVELS: {
+  level: number;
+  name: string;
+  summary: string;
+  capability: string;
+  confidence: string;
+  compliance: string;
+}[] = [
   {
     level: 1,
     name: 'Conversational AI',
-    capability: 'Uses an AI assistant to draft, summarise and question, refining through conversation',
-    confidence: 'Willing to try AI on low-risk tasks; knows its limits',
-    compliance: 'Follows the AI policy; no sensitive data in unapproved tools; checks outputs',
+    summary: 'Chatting with an AI assistant to draft, summarise and explain',
+    capability:
+      'You use an AI assistant to draft, summarise and explain, and you ask follow-up questions to improve its answers.',
+    confidence: 'You’ll try AI on low-risk tasks, and you know it can sound right and still be wrong.',
+    compliance:
+      'You use only your organisation’s approved tool, keep personal data out of it, and check what it tells you.',
   },
   {
     level: 2,
     name: 'Structured Prompting',
-    capability: 'Uses the R-C-T framework and reusable prompts for reliable, repeatable results',
-    confidence: 'Uses AI routinely without step-by-step help; trusts own judgement on outputs',
-    compliance: 'Applies the Green/Amber/Red Decision Matrix to choose suitable tasks',
+    summary: 'Writing clear, reusable prompts that give reliable results',
+    capability:
+      'You tell AI who to be, what the situation is and exactly what to produce, and you reuse prompts that work.',
+    confidence: 'You use AI every week without help, and you trust your own judgement on what it gives you.',
+    compliance: 'Before you start, you decide whether a task is safe for AI, needs care, or shouldn’t go near it.',
   },
   {
     level: 3,
     name: 'Custom Configuration',
-    capability: 'Builds reusable assistants with set instructions, tone and knowledge',
-    confidence: 'Shares tools with colleagues; adapts when tools change',
-    compliance: 'Configures with approved data sources, permissions and guardrails',
+    summary: 'Building reusable assistants with their own instructions and documents',
+    capability:
+      'You build reusable assistants with their own instructions and documents, so anyone who uses them gets the same quality.',
+    confidence: 'You share what you’ve built with colleagues and keep it working when things change.',
+    compliance:
+      'You control what your assistant can see, write its rules into its instructions, and decide who can use it.',
   },
   {
     level: 4,
     name: 'Agents and Workflows',
-    capability: 'Designs and runs agents and multi-step workflows with checks and handoffs',
-    confidence: 'Hands off multi-step work to AI while staying accountable',
-    compliance: 'Builds human checkpoints, data handling and audit trails into workflows',
+    summary: 'Designing multi-step processes where AI does some of the steps',
+    capability: 'You design multi-step processes where AI does some of the steps and each step is checked.',
+    confidence: 'You hand multi-step work to AI and still take responsibility for the result.',
+    compliance: 'A person signs off before anything leaves the process, and there’s a record of what ran.',
   },
   {
     level: 5,
     name: 'Integration and Orchestration',
-    capability: 'Connects AI into team or institutional systems and coordinates several tools',
-    confidence: 'Leads others’ adoption and makes the case for change',
-    compliance: 'Owns governance: risk assessment, accountability, monitoring',
+    summary: 'Connecting AI into the systems your organisation runs on',
+    capability: 'You connect AI into your organisation’s systems and coordinate several tools as one process.',
+    confidence: 'You lead other teams through adopting AI and make the case for it to senior leaders.',
+    compliance: 'You assess the risks of AI systems, name who’s accountable for each, and keep monitoring them.',
   },
 ];
 
@@ -204,7 +222,7 @@ export const QUESTIONS: Question[] = [
     kind: 'single',
     id: 'k1',
     pillar: 'capability',
-    title: 'Capability check',
+    title: 'Scenario: a weekly summary',
     prompt:
       'You want a summary of this week’s team meeting notes, in the same format every week. Which prompt will give you the most reliable, repeatable result?',
     options: [
@@ -226,7 +244,7 @@ export const QUESTIONS: Question[] = [
           '"You\'re the team administrator. These are notes from our weekly operations meeting, for colleagues who missed it. List every decision and every action, each action with an owner and a deadline, in a table."',
         correct: true,
         feedback:
-          'Role, context and task: it says who it’s for and what to produce, so you get the same shape every week.',
+          'It tells the AI who to be, what the situation is and exactly what to produce, so you get the same shape every week.',
       },
       {
         value: 'd',
@@ -284,22 +302,22 @@ export const QUESTIONS: Question[] = [
     'p2',
     'compliance',
     2,
-    'Before I start a task, I decide whether it’s green, amber or red, and I tell the AI what to flag for me rather than deal with itself.',
-    'Before you start a task, decide whether it’s green, amber or red, and tell the AI what to flag for you rather than deal with itself.'
+    'Before I start a task, I decide how risky it is: fine for AI, fine with personal data removed and a person checking, or not for AI at all. I also tell the AI what to flag for me rather than deal with itself.',
+    'Before you start a task, decide how risky it is: fine for AI, fine with personal data removed and a person checking, or not for AI at all. Then tell the AI what to flag for you rather than deal with itself.'
   ),
   statement(
     'p3',
     'compliance',
     3,
-    'When I build an assistant, I load approved sources only, write the guardrails into its instructions, and decide who can use it and who can edit it.',
-    'When you build an assistant, load approved sources only, write the guardrails into its instructions, and decide who can use it and who can edit it.'
+    'When I build an assistant, I give it approved documents only, write its rules into its instructions, and decide who can use it and who can edit it.',
+    'When you build an assistant, give it approved documents only, write its rules into its instructions, and decide who can use it and who can edit it.'
   ),
   statement(
     'p4',
     'compliance',
     4,
-    'My AI workflows have a human approval gate before anything leaves them, and a record of what ran and what it used.',
-    'Give your AI workflows a human approval gate before anything leaves them, and a record of what ran and what it used.'
+    'In my AI workflows, a person signs off before anything leaves them, and there’s a record of what ran and what it used.',
+    'Make sure a person signs off before anything leaves your AI workflows, and keep a record of what ran and what it used.'
   ),
   statement(
     'p5',
@@ -312,7 +330,7 @@ export const QUESTIONS: Question[] = [
     kind: 'multi',
     id: 'k2',
     pillar: 'compliance',
-    title: 'Spot the red flags',
+    title: 'Scenario: spot the problems',
     prompt:
       'A colleague is preparing for an exam board. They paste a spreadsheet of student names, marks and notes from learning support plans into a free AI chatbot on their personal account, ask it which students are at risk of failing, and email the answer straight to the board chair. Which of these are red flags? Choose all that apply.',
     options: [
@@ -358,7 +376,7 @@ export const QUESTIONS: Question[] = [
     kind: 'grade',
     id: 'k3',
     pillar: 'compliance',
-    title: 'Green, amber or red',
+    title: 'Scenario: is this safe for AI?',
     prompt:
       "Green means go ahead in the approved tool with basic checks. Amber means AI can draft, but personal data is removed and a person checks everything before it's used. Red means don't use AI. Grade each task.",
     tasks: [
@@ -392,7 +410,7 @@ export const QUESTIONS: Question[] = [
     kind: 'single',
     id: 'k4',
     pillar: 'compliance',
-    title: 'Guardrails',
+    title: 'Scenario: where should the rule live?',
     prompt:
       'Your team has an assistant that drafts the annual student feedback report. It must never name a member of staff. Where should that rule live?',
     options: [
@@ -400,7 +418,7 @@ export const QUESTIONS: Question[] = [
         value: 'a',
         label: "In the assistant's instructions",
         correct: true,
-        feedback: 'A guardrail in the instructions applies whoever runs it.',
+        feedback: 'A rule in the instructions applies whoever runs it.',
       },
       {
         value: 'b',
@@ -426,7 +444,7 @@ export const QUESTIONS: Question[] = [
     kind: 'single',
     id: 'k5',
     pillar: 'compliance',
-    title: 'Approval gate',
+    title: 'Scenario: where should a person sign off?',
     prompt:
       "You've built a workflow: one agent drafts replies to student enquiries and a second agent checks each draft against the student handbook. Where should a person approve the work?",
     options: [
@@ -440,7 +458,7 @@ export const QUESTIONS: Question[] = [
         value: 'b',
         label: 'After the checking agent, before any reply is sent',
         correct: true,
-        feedback: 'The human gate sits before anything leaves the workflow.',
+        feedback: 'A person signs off before anything leaves the workflow.',
       },
       {
         value: 'c',
@@ -502,11 +520,11 @@ export function isAnswered(q: Question, a: QuizAnswers): boolean {
 
 /** Each check, the level of its pillar it gates, and the level a failure caps it to. */
 const CAPS: { check: Question['id']; pillar: Pillar; gates: number; capTo: number; name: string }[] = [
-  { check: 'k1', pillar: 'capability', gates: 2, capTo: 1, name: 'prompt' },
-  { check: 'k2', pillar: 'compliance', gates: 1, capTo: 0, name: 'red flags' },
-  { check: 'k3', pillar: 'compliance', gates: 2, capTo: 1, name: 'green, amber or red' },
-  { check: 'k4', pillar: 'compliance', gates: 3, capTo: 2, name: 'guardrails' },
-  { check: 'k5', pillar: 'compliance', gates: 4, capTo: 3, name: 'approval gate' },
+  { check: 'k1', pillar: 'capability', gates: 2, capTo: 1, name: 'weekly summary' },
+  { check: 'k2', pillar: 'compliance', gates: 1, capTo: 0, name: 'spot the problems' },
+  { check: 'k3', pillar: 'compliance', gates: 2, capTo: 1, name: 'is this safe for AI' },
+  { check: 'k4', pillar: 'compliance', gates: 3, capTo: 2, name: 'where should the rule live' },
+  { check: 'k5', pillar: 'compliance', gates: 4, capTo: 3, name: 'where should a person sign off' },
 ];
 
 function questionById<T extends Question>(id: string): T {
@@ -571,7 +589,7 @@ export interface CheckResult {
 }
 
 export interface QuizResult {
-  /** 0 is Starting Level 1. */
+  /** 0 is not yet at Level 1. */
   levels: Record<Pillar, number>;
   selfRated: Record<Pillar, number>;
   checks: CheckResult[];
@@ -590,7 +608,7 @@ export function selfRatedLevel(pillar: Pillar, a: QuizAnswers): number {
 }
 
 export function levelLabel(level: number): string {
-  return level === 0 ? 'Starting Level 1' : `Level ${level}`;
+  return level === 0 ? 'Not yet at Level 1' : `Level ${level}`;
 }
 
 export function scoreQuiz(a: QuizAnswers): QuizResult {
@@ -608,8 +626,8 @@ export function scoreQuiz(a: QuizAnswers): QuizResult {
     if (capped) levels[c.pillar] = Math.min(levels[c.pillar], c.capTo);
     const capLine = capped
       ? c.capTo === 0
-        ? `Your answer to the ${c.name} question set your ${c.pillar} to Starting Level 1.`
-        : `Your answer to the ${c.name} question kept your ${c.pillar} at Level ${c.capTo}.`
+        ? `Your answer to the '${c.name}' scenario means your ${c.pillar} isn't at Level 1 yet. Here's why:`
+        : `Your answer to the '${c.name}' scenario held your ${c.pillar} at Level ${c.capTo}. Here's why:`
       : undefined;
     return {
       id: c.check,
@@ -635,21 +653,22 @@ export type PatternId = 'cap-over-comp' | 'cap-over-conf' | 'conf-over-cap' | 'c
 export const PATTERNS: Record<PatternId, { headline: string; start: string }> = {
   'cap-over-comp': {
     headline: 'Skilled, and not yet safe',
-    start: 'Compliance at your current level before anything new. This is the shadow AI profile.',
+    start:
+      'Get the safety basics right at your current level before learning anything new. People in this position often use AI in ways their organisation can’t see or protect.',
   },
   'cap-over-conf': {
     headline: "You have the skill, and you're not using it yet",
-    start: 'Practise on real tasks, and find someone to share the work with.',
+    start: 'Use what you know on real tasks each week, ideally alongside a colleague.',
   },
   'conf-over-cap': {
     headline: 'Keen, and ready to learn the next technique',
-    start: 'Structured prompting: role, context and task.',
+    start: 'Learn to give AI a role, the background and a clear task, so its answers are reliable and repeatable.',
   },
   'comp-over-cap': {
     headline: 'Careful: you know the rules better than the tools',
-    start: 'Start with low-risk green tasks to build capability.',
+    start: 'Start with low-risk tasks, such as internal emails and summaries, to build your skill safely.',
   },
-  level: { headline: 'Ready to move up', start: "The next level's capability." },
+  level: { headline: 'Ready to move up', start: 'Take the next step up in what you can do.' },
 };
 
 /** Every pattern that applies, in display order. "Level" only when none of the others do. */
@@ -664,19 +683,21 @@ export function profilePatterns(l: Record<Pillar, number>): PatternId[] {
 }
 
 export const POLICY_MESSAGE =
-  'First, find out which AI tool your institution approves for staff, and what must never go into it. Ask your IT service or line manager. Everything else on this page builds on that.';
+  'First, find out which AI tool your institution approves for staff, and what must never go into it. Ask your IT service or line manager. Everything else here builds on that.';
 
 export const SELF_REPORT_NOTE =
-  'Above Level 2, capability here is self-reported. We measure it by reviewing a working assistant or workflow, which is part of the AI Capability Check.';
+  'Above Level 2, these answers are your own view. The best test is someone looking at what you’ve built.';
 
 export const CLOSING =
-  'This is a self-assessment. For a team, the useful number is the spread, not the average: a team averaging Level 2 can be half at Level 1 and half at Level 3, which needs two different kinds of training. Book a free 30-minute AI Capability Check and we’ll place your team on the framework.';
+  'Want to see where your whole team sits? Book a free AI Capability Check: a 30-minute call, then a short written report placing your team on these five levels, with two or three next steps. For a team, the spread matters more than the average: half at Level 1 and half at Level 3 needs two different kinds of training.';
 
 export const CHECK_HREF = '/health-check/';
 
 export interface PillarReport {
   pillar: Pillar;
   label: string;
+  /** "What you can do", lower-cased for use after the label. */
+  question: string;
   level: number;
   levelLabel: string;
   levelName?: string;
@@ -694,7 +715,7 @@ export interface Report {
 }
 
 export function buildReport(result: QuizResult): Report {
-  const pillars = PILLARS.map(({ key, label }) => {
+  const pillars = PILLARS.map(({ key, label, question }) => {
     const level = result.levels[key];
     const def = LEVELS.find((l) => l.level === level);
     const nextQ = QUESTIONS.find(
@@ -703,11 +724,12 @@ export function buildReport(result: QuizResult): Report {
     return {
       pillar: key,
       label,
+      question: question.charAt(0).toLowerCase() + question.slice(1),
       level,
       levelLabel: levelLabel(level),
       levelName: def?.name,
       definition: def?.[key],
-      next: nextQ ? `Next: ${nextQ.next}` : undefined,
+      next: nextQ ? `Your next step: ${nextQ.next}` : undefined,
       checks: result.checks.filter((c) => c.pillar === key && c.feedback.length > 0),
     };
   });
@@ -716,7 +738,8 @@ export function buildReport(result: QuizResult): Report {
     // "Ready to move up" points at the next capability statement, or says there's nowhere higher.
     if (id === 'level') {
       const cap = pillars[0];
-      return { id, headline: p.headline, start: cap.next ? cap.next : 'You’re at Level 5 on all three.' };
+      const headline = cap.level === 0 ? 'Ready to start' : p.headline;
+      return { id, headline, start: cap.next ?? 'You’re at Level 5 on all three.' };
     }
     return { id, ...p };
   });
@@ -729,19 +752,64 @@ export function buildReport(result: QuizResult): Report {
   };
 }
 
-/** "Capability 2, Confidence 1, Compliance 2", with Starting Level 1 written out. */
+/** "Capability 2, Confidence 1, Compliance 2", with "not yet at Level 1" written out. */
 export function profileLine(levels: Record<Pillar, number>): string {
-  return PILLARS.map(({ key, label }) => `${label} ${levels[key] === 0 ? 'starting Level 1' : levels[key]}`).join(', ');
+  const all = new Set(Object.values(levels));
+  if (all.size === 1) return `${levelLabel(levels.capability)} on all three`;
+  return PILLARS.map(({ key, label }) => `${label} ${levels[key] === 0 ? 'not yet at Level 1' : levels[key]}`).join(
+    ', '
+  );
 }
 
 function esc(s: string): string {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
-/** The full report as email HTML, in the same inline-style shell as the guide email. */
+const BLUE = '#015887';
+const ORANGE = '#FF7700';
+
+/**
+ * Three little ladders, one per measure, filled up to the level, with the top filled step in orange.
+ * An inline-styled table rather than SVG, so it renders the same in Gmail, Outlook and the browser.
+ */
+export function renderProfileDiagram(levels: Record<Pillar, number>): string {
+  const label = PILLARS.map(({ key, label }) => `${label} ${levelLabel(levels[key])}`).join(', ');
+  const cell = (filled: boolean, top: boolean) =>
+    `<td style="padding:3px 9px;"><div style="width:48px;height:20px;border-radius:5px;${
+      filled
+        ? `background:${top ? ORANGE : BLUE};`
+        : 'background:#eef4f8;border:1px dashed #b9cfdc;box-sizing:border-box;'
+    }"></div></td>`;
+  const rows = [5, 4, 3, 2, 1]
+    .map(
+      (n) =>
+        `<tr><td style="padding:3px 8px 3px 0;font-size:11px;line-height:20px;color:#64748b;text-align:right;">${n}</td>` +
+        PILLARS.map(({ key }) => cell(levels[key] >= n, levels[key] === n)).join('') +
+        `</tr>`
+    )
+    .join('');
+  const foot =
+    `<tr><td></td>` +
+    PILLARS.map(
+      ({ key, label }) =>
+        `<td style="padding:8px 4px 0;text-align:center;vertical-align:top;font-size:12px;line-height:1.3;color:#0f172a;">` +
+        `<strong>${esc(label)}</strong><br/><span style="color:${BLUE};">${esc(
+          levels[key] === 0 ? 'Not yet' : `Level ${levels[key]}`
+        )}</span></td>`
+    ).join('') +
+    `</tr>`;
+  return (
+    `<table role="img" aria-label="${esc(label)}" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;margin:0 auto;">` +
+    `<tbody aria-hidden="true">${rows}${foot}</tbody></table>`
+  );
+}
+
+/** The full report as email HTML, leading with the score. */
 export function renderReportEmail(name: string, result: QuizResult, siteUrl = 'https://worksmart-ai.co.uk'): string {
   const r = buildReport(result);
   const p = (text: string, style = '') => `<p style="margin:0 0 12px;${style}">${esc(text)}</p>`;
+  const h2 = (text: string) => `<p style="margin:28px 0 12px;font-size:18px;font-weight:700;">${esc(text)}</p>`;
+  const headlines = r.patterns.map((pt) => pt.headline).join('. ');
   const pillarHtml = r.pillars
     .map((pr) => {
       const head = `${pr.label}: ${pr.levelLabel}${pr.levelName ? `, ${pr.levelName}` : ''}`;
@@ -756,8 +824,9 @@ export function renderReportEmail(name: string, result: QuizResult, siteUrl = 'h
         )
         .join('');
       return (
-        `<div style="margin:0 0 20px;padding:0 0 0 14px;border-left:4px solid #FF7700;">` +
-        `<p style="margin:0 0 6px;font-size:18px;font-weight:700;color:#015887;">${esc(head)}</p>` +
+        `<div style="margin:0 0 20px;padding:0 0 0 14px;border-left:4px solid ${ORANGE};">` +
+        `<p style="margin:0 0 2px;font-size:18px;font-weight:700;color:${BLUE};">${esc(head)}</p>` +
+        p(`${pr.label} is ${pr.question}.`, 'font-size:14px;color:#64748b;') +
         (pr.definition ? p(pr.definition) : '') +
         (pr.next ? p(pr.next, 'font-weight:600;') : '') +
         checks +
@@ -765,28 +834,44 @@ export function renderReportEmail(name: string, result: QuizResult, siteUrl = 'h
       );
     })
     .join('');
-  const patternHtml = r.patterns
-    .map(
-      (pt) => `<p style="margin:0 0 4px;font-weight:700;">${esc(pt.headline)}</p>${p(`Where to start: ${pt.start}`)}`
-    )
-    .join('');
+  const keyHtml =
+    `<table cellpadding="0" cellspacing="0" border="0" style="width:100%;font-size:14px;">` +
+    LEVELS.map(
+      (l) =>
+        `<tr><td style="padding:6px 10px 6px 0;vertical-align:top;width:28px;"><span style="display:inline-block;width:24px;height:24px;line-height:24px;border-radius:12px;background:${BLUE};color:#fff;text-align:center;font-weight:700;">${l.level}</span></td>` +
+        `<td style="padding:6px 0;vertical-align:top;"><strong>${esc(l.name)}</strong><br/>${esc(l.summary)}</td></tr>`
+    ).join('') +
+    `</table>`;
   const checkUrl = `${siteUrl.replace(/\/$/, '')}${CHECK_HREF}`;
   return [
-    `<!DOCTYPE html><html><head><meta charset="utf-8"/></head>`,
-    `<body style="margin:0;padding:24px;font-family:system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.6;color:#0f172a;background:#f8fafc;">`,
+    `<!DOCTYPE html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/></head>`,
+    `<body style="margin:0;padding:24px 12px;font-family:system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.6;color:#0f172a;background:#f8fafc;">`,
+    // Preheader: the preview line in the inbox.
+    `<div style="display:none;max-height:0;overflow:hidden;">${esc(headlines)}</div>`,
     `<div style="max-width:600px;margin:0 auto;background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:28px;">`,
-    p(`Hi ${name},`),
-    p('Here is your full AI Use Hierarchy profile.'),
-    `<p style="margin:0 0 20px;font-size:20px;font-weight:700;color:#015887;">${esc(profileLine(result.levels))}</p>`,
-    r.policyMessage ? p(r.policyMessage, 'padding:12px;background:#fff7ed;border-radius:8px;') : '',
-    `<p style="margin:20px 0 8px;font-size:18px;font-weight:700;">Your profile</p>`,
-    patternHtml,
-    `<p style="margin:20px 0 12px;font-size:18px;font-weight:700;">Pillar by pillar</p>`,
+    `<p style="margin:0 0 4px;font-size:13px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:${ORANGE};">Your AI Use Hierarchy profile</p>`,
+    `<p style="margin:0 0 8px;font-size:24px;line-height:1.3;font-weight:700;color:${BLUE};">${esc(profileLine(result.levels))}</p>`,
+    r.patterns
+      .map((pt) => `<p style="margin:0 0 4px;font-size:18px;font-weight:700;">${esc(pt.headline)}</p>`)
+      .join(''),
+    `<div style="margin:24px 0 8px;">${renderProfileDiagram(result.levels)}</div>`,
+    `<hr style="border:none;border-top:1px solid #e2e8f0;margin:24px 0;"/>`,
+    p(`Hi ${name}, here's what your answers show.`),
+    p(
+      'You answered for three things: what you can do with AI (capability), whether you do it on your own (confidence), and whether you do it safely (compliance). Each one sits on a five-level scale, and most people are at different levels on each.'
+    ),
+    r.policyMessage ? p(r.policyMessage, `padding:12px;background:#fff7ed;border-radius:8px;`) : '',
+    h2('Where to start'),
+    r.patterns.map((pt) => `<p style="margin:0 0 4px;font-weight:700;">${esc(pt.headline)}</p>${p(pt.start)}`).join(''),
+    h2('Measure by measure'),
     pillarHtml,
     r.selfReportNote ? p(r.selfReportNote, 'font-size:14px;color:#475569;') : '',
+    h2('How the levels work'),
+    keyHtml,
+    `<hr style="border:none;border-top:1px solid #e2e8f0;margin:24px 0;"/>`,
     p(r.closing),
-    `<p style="margin:0 0 20px;"><a href="${checkUrl}" style="display:inline-block;background:#FF7700;color:#ffffff;font-weight:600;text-decoration:none;padding:10px 16px;border-radius:8px;">Book your free AI Capability Check &rarr;</a></p>`,
-    `<p style="margin:0;">The WorkSmart-AI Team<br/><a href="${siteUrl}" style="color:#015887;">worksmart-ai.co.uk</a></p>`,
+    `<p style="margin:0 0 20px;"><a href="${checkUrl}" style="display:inline-block;background:${ORANGE};color:#ffffff;font-weight:600;text-decoration:none;padding:10px 16px;border-radius:8px;">Book your free AI Capability Check &rarr;</a></p>`,
+    `<p style="margin:0;">The WorkSmart-AI Team<br/><a href="${siteUrl}" style="color:${BLUE};">worksmart-ai.co.uk</a></p>`,
     `</div></body></html>`,
   ].join('');
 }
