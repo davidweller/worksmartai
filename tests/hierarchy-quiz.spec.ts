@@ -99,6 +99,38 @@ test.describe('hierarchy quiz scoring', () => {
   test('all three level is "ready to move up"', () => {
     expect(scoreQuiz({ ...PASS, ...yes('c1', 'f1', 'p1') }).patterns).toEqual(['level']);
   });
+
+  test('"would know" on p3 counts once the rule scenario is passed', () => {
+    const r = scoreQuiz({ ...PASS, ...yes('c1', 'p1', 'p2'), p3: 'would-know' });
+    expect(r.levels.compliance).toBe(3);
+    expect(r.knowledgeOnly).toEqual(['compliance']);
+    const html = renderReportEmail('Sam', r);
+    expect(html).toContain('rather than something you’ve built yet');
+  });
+
+  test('"would know" on p3 with the rule scenario failed holds compliance at Level 2', () => {
+    const r = scoreQuiz({ ...PASS, ...yes('p1', 'p2'), p3: 'would-know', k4: 'b' });
+    expect(r.levels.compliance).toBe(2);
+    expect(r.checks.find((c) => c.id === 'k4')!.capLine).toContain('held your compliance at Level 2');
+    expect(r.knowledgeOnly).toEqual([]);
+  });
+
+  test('"would know" on p4 with the sign-off scenario failed holds compliance at Level 3', () => {
+    const r = scoreQuiz({ ...PASS, ...yes('p1', 'p2', 'p3'), p4: 'would-know', k5: 'c' });
+    expect(r.levels.compliance).toBe(3);
+    expect(r.knowledgeOnly).toEqual([]);
+  });
+
+  test('only p3 and p4 offer "would know"', () => {
+    const ids = QUESTIONS.filter((q) => q.kind === 'statement' && q.knowCheck).map((q) => q.id);
+    expect(ids).toEqual(['p3', 'p4']);
+  });
+
+  test('the email says we may follow up and how to opt out', () => {
+    const html = renderReportEmail('Sam', scoreQuiz({ ...PASS, ...yes('c1', 'f1', 'p1') }));
+    expect(html).toContain('We may get in touch once about your results');
+    expect(html).toContain('reply to this email and tell us');
+  });
 });
 
 /** Answers every screen in the browser from a full answer set. */
@@ -171,6 +203,34 @@ test.describe('hierarchy quiz page', () => {
     await expect(page.locator('[data-pillar-report="compliance"] [data-cap-line]')).toHaveText(
       "Your answer to the 'where should the rule live' scenario held your compliance at Level 2. Here's why:"
     );
+  });
+
+  test('"would know" shows on p3 and p4 only, and the report says so', async ({ page }) => {
+    await page.route('**/functions/v1/send-quiz-results', (route) =>
+      route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' })
+    );
+    await page.getByRole('button', { name: 'Start the quiz' }).click();
+    const know = page.locator('input[value="would-know"]');
+    const answers = { ...PASS, ...yes('c1', 'f1', 'p1', 'p2'), p3: 'would-know', p4: 'would-know' } as QuizAnswers;
+    const pick = (name: string, value: string) =>
+      page.locator('label', { has: page.locator(`input[name="${name}"][value="${value}"]`) }).click();
+    const a = answers as Record<string, unknown>;
+    for (const q of QUESTIONS) {
+      if (q.kind === 'statement') await expect(know).toHaveCount(q.knowCheck ? 1 : 0);
+      const v = a[q.id] ?? 'not-yet';
+      if (q.kind === 'multi') for (const x of v as string[]) await pick(q.id, x);
+      else if (q.kind === 'grade')
+        for (const [task, grade] of Object.entries(v as Record<string, string>)) await pick(`${q.id}:${task}`, grade);
+      else await pick(q.id, v as string);
+      await page.locator('[data-action="next"]').click();
+    }
+
+    await expect(page.locator('[data-score]')).toHaveText('Capability 1, Confidence 1, Compliance 4');
+    await page.getByLabel('Name').fill('Sam Taylor');
+    await page.getByLabel('Work email').fill('sam@example.ac.uk');
+    await page.getByRole('button', { name: 'Show and email my full report' }).click();
+    await expect(page.locator('[data-pillar-report="compliance"] [data-knowledge-note]')).toBeVisible();
+    await expect(page.locator('[data-pillar-report="capability"] [data-knowledge-note]')).toHaveCount(0);
   });
 
   test('has no horizontal overflow at phone width', async ({ page }) => {

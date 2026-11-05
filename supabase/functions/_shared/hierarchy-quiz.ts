@@ -4,10 +4,10 @@
 // Source: the vault notes "AI Use Hierarchy Quiz" and "AI Use Hierarchy - Capability, Confidence and
 // Compliance". Change the framework first, then this.
 
-export const QUIZ_VERSION = '2026-11-04';
+export const QUIZ_VERSION = '2026-11-05';
 
 export type Pillar = 'capability' | 'confidence' | 'compliance';
-export type Rating = 'yes' | 'partly' | 'not-yet';
+export type Rating = 'yes' | 'partly' | 'not-yet' | 'would-know';
 export type Grade = 'green' | 'amber' | 'red';
 
 // Visitors haven't done our courses, so result copy avoids course terms (R-C-T, the Decision Matrix,
@@ -89,6 +89,12 @@ export const RATINGS: Option[] = [
   { value: 'not-yet', label: 'Not yet' },
 ];
 
+/** Offered only on statements with a `knowCheck`: counts as yes, and the scenario then tests it. */
+export const KNOW_RATING: Option = {
+  value: 'would-know',
+  label: "I don't build these yet, but I know what I'd need to do",
+};
+
 export interface AboutQuestion {
   kind: 'about';
   id: 'role' | 'approvedTool';
@@ -105,6 +111,8 @@ export interface StatementQuestion {
   text: string;
   /** The statement reworded as the next step, shown when this is the next level up. */
   next: string;
+  /** The scenario that tests a "would know" answer. Its cap in CAPS pulls the level back if it's failed. */
+  knowCheck?: 'k4' | 'k5';
 }
 
 export interface CheckOption extends Option {
@@ -148,13 +156,21 @@ export const GRADES: { value: Grade; label: string }[] = [
   { value: 'red', label: 'Red' },
 ];
 
-const statement = (id: string, pillar: Pillar, level: number, text: string, next: string): StatementQuestion => ({
+const statement = (
+  id: string,
+  pillar: Pillar,
+  level: number,
+  text: string,
+  next: string,
+  knowCheck?: StatementQuestion['knowCheck']
+): StatementQuestion => ({
   kind: 'statement',
   id,
   pillar,
   level,
   text,
   next,
+  ...(knowCheck ? { knowCheck } : {}),
 });
 
 /** Every screen of the quiz, in order: 22 questions. */
@@ -310,14 +326,16 @@ export const QUESTIONS: Question[] = [
     'compliance',
     3,
     'When I build an assistant, I give it approved documents only, write its rules into its instructions, and decide who can use it and who can edit it.',
-    'When you build an assistant, give it approved documents only, write its rules into its instructions, and decide who can use it and who can edit it.'
+    'When you build an assistant, give it approved documents only, write its rules into its instructions, and decide who can use it and who can edit it.',
+    'k4'
   ),
   statement(
     'p4',
     'compliance',
     4,
     'In my AI workflows, a person signs off before anything leaves them, and there’s a record of what ran and what it used.',
-    'Make sure a person signs off before anything leaves your AI workflows, and keep a record of what ran and what it used.'
+    'Make sure a person signs off before anything leaves your AI workflows, and keep a record of what ran and what it used.',
+    'k5'
   ),
   statement(
     'p5',
@@ -330,9 +348,9 @@ export const QUESTIONS: Question[] = [
     kind: 'multi',
     id: 'k2',
     pillar: 'compliance',
-    title: 'Scenario: spot the problems',
+    title: 'Scenario: spot the compliance problems',
     prompt:
-      'A colleague is preparing for an exam board. They paste a spreadsheet of student names, marks and notes from learning support plans into a free AI chatbot on their personal account, ask it which students are at risk of failing, and email the answer straight to the board chair. Which of these are red flags? Choose all that apply.',
+      'A colleague is preparing for an exam board. They paste a spreadsheet of student names, marks and notes from learning support plans into a free AI chatbot on their personal account, ask it which students are at risk of failing, and email the answer straight to the board chair. Which of these are compliance red flags? Choose all that apply.',
     options: [
       {
         value: 'a',
@@ -368,7 +386,7 @@ export const QUESTIONS: Question[] = [
         value: 'f',
         label: 'Asking a question rather than giving step-by-step instructions',
         correct: false,
-        feedback: "How the question is phrased isn't a compliance issue here.",
+        feedback: "It might not be the best prompt, but it isn't a compliance problem.",
       },
     ],
   },
@@ -412,11 +430,11 @@ export const QUESTIONS: Question[] = [
     pillar: 'compliance',
     title: 'Scenario: where should the rule live?',
     prompt:
-      'Your team has an assistant that drafts the annual student feedback report. It must never name a member of staff. Where should that rule live?',
+      'Your team has an AI assistant, such as a Copilot agent or custom GPT, that drafts the annual student feedback report. It must never name a member of staff. Where should that rule live?',
     options: [
       {
         value: 'a',
-        label: "In the assistant's instructions",
+        label: "In the AI assistant's instructions",
         correct: true,
         feedback: 'A rule in the instructions applies whoever runs it.',
       },
@@ -521,7 +539,7 @@ export function isAnswered(q: Question, a: QuizAnswers): boolean {
 /** Each check, the level of its pillar it gates, and the level a failure caps it to. */
 const CAPS: { check: Question['id']; pillar: Pillar; gates: number; capTo: number; name: string }[] = [
   { check: 'k1', pillar: 'capability', gates: 2, capTo: 1, name: 'weekly summary' },
-  { check: 'k2', pillar: 'compliance', gates: 1, capTo: 0, name: 'spot the problems' },
+  { check: 'k2', pillar: 'compliance', gates: 1, capTo: 0, name: 'spot the compliance problems' },
   { check: 'k3', pillar: 'compliance', gates: 2, capTo: 1, name: 'is this safe for AI' },
   { check: 'k4', pillar: 'compliance', gates: 3, capTo: 2, name: 'where should the rule live' },
   { check: 'k5', pillar: 'compliance', gates: 4, capTo: 3, name: 'where should a person sign off' },
@@ -557,7 +575,9 @@ export function checkFeedback(id: string, a: QuizAnswers): string[] {
     const chosen = new Set(a.k2 ?? []);
     return q.options
       .filter((o) => o.correct !== chosen.has(o.value))
-      .map((o) => (o.correct ? `Missed: ${o.label}. ${o.feedback}` : `Not a red flag: ${o.label}. ${o.feedback}`));
+      .map((o) =>
+        o.correct ? `Missed: ${o.label}. ${o.feedback}` : `Not a compliance red flag: ${o.label}. ${o.feedback}`
+      );
   }
   if (id === 'k3') {
     const q = questionById<GradeCheck>('k3');
@@ -595,13 +615,16 @@ export interface QuizResult {
   checks: CheckResult[];
   patterns: PatternId[];
   showPolicyMessage: boolean;
+  /** Pillars whose final level rests on a "would know" answer rather than practice. */
+  knowledgeOnly: Pillar[];
 }
 
 export function selfRatedLevel(pillar: Pillar, a: QuizAnswers): number {
   const prefix = { capability: 'c', confidence: 'f', compliance: 'p' }[pillar];
   let level = 0;
   for (let n = 1; n <= 5; n++) {
-    if ((a as Record<string, unknown>)[`${prefix}${n}`] !== 'yes') break;
+    const v = (a as Record<string, unknown>)[`${prefix}${n}`];
+    if (v !== 'yes' && v !== 'would-know') break;
     level = n;
   }
   return level;
@@ -645,6 +668,15 @@ export function scoreQuiz(a: QuizAnswers): QuizResult {
     checks,
     patterns: profilePatterns(levels),
     showPolicyMessage: a.approvedTool !== 'yes-known',
+    knowledgeOnly: PILLARS.map((p) => p.key).filter((key) =>
+      QUESTIONS.some(
+        (q) =>
+          q.kind === 'statement' &&
+          q.pillar === key &&
+          q.level <= levels[key] &&
+          (a as Record<string, unknown>)[q.id] === 'would-know'
+      )
+    ),
   };
 }
 
@@ -688,6 +720,12 @@ export const POLICY_MESSAGE =
 export const SELF_REPORT_NOTE =
   'Above Level 2, these answers are your own view. The best test is someone looking at what you’ve built.';
 
+export const KNOWLEDGE_NOTE =
+  'At this level, your result reflects what you know, confirmed by the scenario, rather than something you’ve built yet.';
+
+export const FOLLOW_UP_NOTE =
+  'We may get in touch once about your results. If you’d rather we didn’t, reply to this email and tell us.';
+
 export const CLOSING =
   'Want to see where your whole team sits? Book a free AI Capability Check: a 30-minute call, then a short written report placing your team on these five levels, with two or three next steps. For a team, the spread matters more than the average: half at Level 1 and half at Level 3 needs two different kinds of training.';
 
@@ -703,6 +741,7 @@ export interface PillarReport {
   levelName?: string;
   definition?: string;
   next?: string;
+  knowledgeNote?: string;
   checks: CheckResult[];
 }
 
@@ -730,6 +769,7 @@ export function buildReport(result: QuizResult): Report {
       levelName: def?.name,
       definition: def?.[key],
       next: nextQ ? `Your next step: ${nextQ.next}` : undefined,
+      knowledgeNote: result.knowledgeOnly.includes(key) ? KNOWLEDGE_NOTE : undefined,
       checks: result.checks.filter((c) => c.pillar === key && c.feedback.length > 0),
     };
   });
@@ -828,6 +868,7 @@ export function renderReportEmail(name: string, result: QuizResult, siteUrl = 'h
         `<p style="margin:0 0 2px;font-size:18px;font-weight:700;color:${BLUE};">${esc(head)}</p>` +
         p(`${pr.label} is ${pr.question}.`, 'font-size:14px;color:#64748b;') +
         (pr.definition ? p(pr.definition) : '') +
+        (pr.knowledgeNote ? p(pr.knowledgeNote, 'font-size:14px;color:#475569;') : '') +
         (pr.next ? p(pr.next, 'font-weight:600;') : '') +
         checks +
         `</div>`
@@ -871,6 +912,7 @@ export function renderReportEmail(name: string, result: QuizResult, siteUrl = 'h
     `<hr style="border:none;border-top:1px solid #e2e8f0;margin:24px 0;"/>`,
     p(r.closing),
     `<p style="margin:0 0 20px;"><a href="${checkUrl}" style="display:inline-block;background:${ORANGE};color:#ffffff;font-weight:600;text-decoration:none;padding:10px 16px;border-radius:8px;">Book your free AI Capability Check &rarr;</a></p>`,
+    p(FOLLOW_UP_NOTE, 'font-size:14px;color:#475569;'),
     `<p style="margin:0;">The WorkSmart-AI Team<br/><a href="${siteUrl}" style="color:${BLUE};">worksmart-ai.co.uk</a></p>`,
     `</div></body></html>`,
   ].join('');

@@ -139,9 +139,8 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
             <span>Send me occasional AI tips and resources from WorkSmart-AI. You can unsubscribe at any time.</span>
           </label>
           <p class="mt-4 text-xs text-muted">
-            We use your email to send this report. See our <a class="underline" href="/privacy-policy/"
-              >privacy policy</a
-            >.
+            We'll email you this report, and we may follow up once about your results. Tick the box above if you'd also
+            like occasional tips. See our <a class="underline" href="/privacy-policy/">privacy policy</a>.
           </p>
           <p data-reveal-feedback class="hidden" role="alert"></p>
           <button
@@ -186,6 +185,7 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
 <script>
   import {
     GRADES,
+    KNOW_RATING,
     LEVELS,
     QUESTIONS,
     RATINGS,
@@ -300,7 +300,9 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
         prompt.textContent = q.text;
         hint.textContent = 'Answer for a normal working week. Something you’ve done once doesn’t count yet.';
         hint.hidden = false;
-        html = RATINGS.map((o) => optionHtml('radio', q.id, o.value, o.label, a[q.id] === o.value)).join('');
+        html = (q.knowCheck ? [...RATINGS, KNOW_RATING] : RATINGS)
+          .map((o) => optionHtml('radio', q.id, o.value, o.label, a[q.id] === o.value))
+          .join('');
       } else if (q.kind === 'single') {
         prompt.textContent = q.title;
         html = q.options.map((o) => optionHtml('radio', q.id, o.value, o.label, a[q.id] === o.value)).join('');
@@ -425,6 +427,7 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
             <h2 class="font-heading text-xl font-bold text-heading">${esc(p.label)}: ${esc(p.levelLabel)}${p.levelName ? `, ${esc(p.levelName)}` : ''}</h2>
             <p class="mt-1 text-sm text-muted">${esc(p.label)} is ${esc(p.question)}.</p>
             ${p.definition ? `<p class="mt-3 text-default">${esc(p.definition)}</p>` : ''}
+            ${p.knowledgeNote ? `<p class="mt-2 text-sm text-muted" data-knowledge-note>${esc(p.knowledgeNote)}</p>` : ''}
             ${p.next ? `<p class="mt-4 font-semibold text-default">${esc(p.next)}</p>` : ''}
             ${p.checks
               .map(
