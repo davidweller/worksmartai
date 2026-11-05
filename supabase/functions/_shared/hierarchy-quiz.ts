@@ -75,7 +75,15 @@ export const LEVELS: {
 
 export const INTRO = {
   title: 'Where are you on the AI Use Hierarchy?',
-  body: "Five levels of AI use, measured three ways: what you can do (capability), whether you'll do it without someone beside you (confidence), and whether you do it safely (compliance). Most people sit at different levels on each, and that's the useful part. Answer for a normal working week, not your best day. Something you've done once doesn't count yet. It takes about 7 minutes, and Level 1 is where most staff in UK higher education are right now.",
+  lede: "Five levels of AI use, measured three ways. Most people sit at different levels on each, and that's the useful part.",
+  minutes: 7,
+  rules: ['Answer for a normal working week, not your best day.', "Something you've done once doesn't count yet."],
+  benchmark: 'Level 1 is where most staff in UK higher education are right now.',
+  // Shows every ladder height and the pattern most worth a conversation.
+  example: {
+    levels: { capability: 3, confidence: 2, compliance: 1 } as Record<Pillar, number>,
+    pattern: 'cap-over-comp' as PatternId,
+  },
 };
 
 export interface Option {

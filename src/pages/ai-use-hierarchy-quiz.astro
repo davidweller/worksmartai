@@ -1,7 +1,16 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import { Icon } from 'astro-icon/components';
 import { CTAS } from '~/data/brand/ctas';
-import { INTRO, QUESTIONS } from '../../supabase/functions/_shared/hierarchy-quiz.ts';
+import {
+  INTRO,
+  LEVELS,
+  PATTERNS,
+  PILLARS,
+  QUESTIONS,
+  profileLine,
+  renderProfileDiagram,
+} from '../../supabase/functions/_shared/hierarchy-quiz.ts';
 
 const metadata = {
   title: 'AI Use Hierarchy Quiz | WorkSmart-AI',
@@ -18,7 +27,7 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
 <Layout metadata={metadata}>
   <section class="bg-[#F8F8F8] px-6 py-12 sm:px-8 lg:px-12 lg:py-16">
     <div
-      class="mx-auto max-w-3xl"
+      class="mx-auto max-w-5xl"
       data-quiz
       data-supabase-url={supabaseUrl}
       data-supabase-anon-key={supabaseAnonKey}
@@ -28,7 +37,14 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
       <div data-screen="intro" class="rounded-xl border border-primary/20 bg-card p-6 shadow-card sm:p-10">
         <p class="font-heading text-sm font-bold uppercase tracking-wide text-[#FF7700]">Free self-assessment</p>
         <h1 class="mt-2 font-heading text-3xl font-bold text-heading sm:text-4xl">{INTRO.title}</h1>
-        <p class="mt-5 text-base leading-relaxed text-default sm:text-lg">{INTRO.body}</p>
+        <p class="mt-4 text-base leading-relaxed text-default sm:text-lg">{INTRO.lede}</p>
+        <ul class="mt-5 flex flex-wrap gap-2 text-sm">
+          {
+            [`About ${INTRO.minutes} minutes`, `${QUESTIONS.length} questions`, 'Free report by email'].map((fact) => (
+              <li class="rounded-full bg-[#015887]/10 px-4 py-1.5 font-heading font-semibold text-[#015887]">{fact}</li>
+            ))
+          }
+        </ul>
         <noscript>
           <p class="mt-6 rounded-lg bg-amber-50 p-4 text-sm text-amber-900">
             The quiz needs JavaScript. Turn it on, or <a class="underline" href={CTAS.primary.href}
@@ -36,6 +52,48 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
             > and we'll place you on the hierarchy in a call.
           </p>
         </noscript>
+
+        <div class="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-12">
+          <div class="lg:col-span-7">
+            <h2 class="font-heading text-lg font-bold text-heading">The three measures</h2>
+            <dl class="mt-3 space-y-3">
+              {
+                PILLARS.map(({ label, question }) => (
+                  <div class="flex items-start gap-3">
+                    <span class="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-[#015887]" aria-hidden="true" />
+                    <div>
+                      <dt class="inline font-heading font-bold text-heading">{label}</dt>
+                      <dd class="inline text-default"> &ndash; {question.toLowerCase()}</dd>
+                    </div>
+                  </div>
+                ))
+              }
+            </dl>
+
+            <h2 class="mt-8 font-heading text-lg font-bold text-heading">Before you start</h2>
+            <ul class="mt-3 space-y-3">
+              {
+                INTRO.rules.map((rule) => (
+                  <li class="flex items-start gap-3 text-default">
+                    <Icon name="tabler:check" class="mt-0.5 h-5 w-5 shrink-0 text-[#FF7700]" aria-hidden="true" />
+                    <span>{rule}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <figure class="rounded-lg bg-[#F8F8F8] p-6 lg:col-span-5" data-example-profile>
+            <p class="font-heading text-xs font-bold uppercase tracking-wide text-muted">Example profile</p>
+            <div class="mt-4" set:html={renderProfileDiagram(INTRO.example.levels)} />
+            <figcaption class="mt-4 text-center">
+              <p class="font-heading text-sm font-bold text-[#015887]">{profileLine(INTRO.example.levels)}</p>
+              <p class="mt-1 font-heading text-lg font-bold text-heading">{PATTERNS[INTRO.example.pattern].headline}</p>
+              <p class="mt-2 text-xs text-muted">A sample result. Yours comes with a next step on each measure.</p>
+            </figcaption>
+          </figure>
+        </div>
+
         <div class="mt-8 flex flex-wrap items-center gap-4">
           <button
             type="button"
@@ -53,10 +111,40 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
             Start again
           </button>
         </div>
+        <p class="mt-4 text-sm text-muted">{INTRO.benchmark}</p>
+
+        <details class="group mt-8 border-t border-primary/10 pt-6">
+          <summary
+            class="flex cursor-pointer list-none items-center gap-2 font-heading font-bold text-[#015887] hover:text-[#FF7700] [&::-webkit-details-marker]:hidden"
+          >
+            <Icon name="tabler:chevron-right" class="h-5 w-5 transition group-open:rotate-90" aria-hidden="true" />
+            The five levels
+          </summary>
+          <ol class="mt-4 space-y-3">
+            {
+              LEVELS.map((l) => (
+                <li class="flex gap-3">
+                  <span class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#015887] font-heading text-sm font-bold text-white">
+                    {l.level}
+                  </span>
+                  <span>
+                    <span class="font-heading font-bold text-heading">{l.name}</span>
+                    <br />
+                    <span class="text-default">{l.summary}</span>
+                  </span>
+                </li>
+              ))
+            }
+          </ol>
+        </details>
       </div>
 
       <!-- One question at a time -->
-      <form data-screen="question" hidden class="rounded-xl border border-primary/20 bg-card p-6 shadow-card sm:p-10">
+      <form
+        data-screen="question"
+        hidden
+        class="mx-auto max-w-3xl rounded-xl border border-primary/20 bg-card p-6 shadow-card sm:p-10"
+      >
         <div class="flex items-center justify-between gap-4 text-sm">
           <p data-section class="font-heading font-bold text-[#015887]"></p>
           <p data-count class="shrink-0 text-muted"></p>
@@ -94,7 +182,7 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
       </form>
 
       <!-- Results: teaser, reveal form, full report -->
-      <div data-screen="results" hidden>
+      <div data-screen="results" hidden class="mx-auto max-w-3xl">
         <div class="rounded-xl border border-primary/20 bg-card p-6 shadow-card sm:p-10">
           <p class="font-heading text-sm font-bold uppercase tracking-wide text-[#FF7700]">Your profile</p>
           <h1 tabindex="-1" data-results-heading class="mt-2 font-heading text-3xl font-bold text-heading">

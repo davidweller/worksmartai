@@ -155,6 +155,15 @@ test.describe('hierarchy quiz page', () => {
     await page.reload({ waitUntil: 'load' });
   });
 
+  test('intro shows an example profile', async ({ page }) => {
+    const example = page.locator('[data-example-profile]');
+    await expect(example).toContainText('Example profile');
+    await expect(
+      example.getByRole('img', { name: 'Capability Level 3, Confidence Level 2, Compliance Level 1' })
+    ).toBeVisible();
+    await expect(example).toContainText('Skilled, and not yet safe');
+  });
+
   test('teaser first, full report after the email', async ({ page }) => {
     let body: Record<string, unknown> | undefined;
     await page.route('**/functions/v1/send-quiz-results', async (route) => {
