@@ -1,0 +1,139 @@
+---
+// Design your own package (Source of Truth, section 2): start with the free AI Capability Check,
+// choose blocks from Train, Coach and Build, add extras, and get one personalised quote.
+// Same diagram as page 09 of the brochures.
+import { Icon } from 'astro-icon/components';
+import { ADD_ONS, EXAMPLE_PACKAGES, SERVICES, type PackageGroup } from '~/data/brand/services';
+import { CTAS } from '~/data/brand/ctas';
+
+const start = SERVICES.find((s) => s.group === 'start');
+const columns: { group: Exclude<PackageGroup, 'start'>; title: string; head: string }[] = [
+  { group: 'train', title: 'Train', head: 'bg-[#015887] text-white' },
+  { group: 'coach', title: 'Coach', head: 'bg-[#86BFE2] text-[#1A3C4D]' },
+  { group: 'build', title: 'Build', head: 'bg-[#1A3C4D] text-white' },
+];
+const blocks = (g: PackageGroup) => SERVICES.filter((s) => s.group === g);
+---
+
+<div class="mx-auto max-w-4xl">
+  <ol class="space-y-4">
+    <li>
+      <p class="mb-2 font-heading text-sm font-bold uppercase tracking-wide text-[#C25A00] dark:text-[#FF7700]">
+        1 &nbsp; Start here
+      </p>
+      {
+        start && (
+          <a
+            href={start.href}
+            class="flex items-center gap-4 rounded-xl bg-[#015887] p-5 text-white shadow-card transition hover:-translate-y-0.5"
+          >
+            <Icon name={start.icon} class="h-8 w-8 shrink-0" aria-hidden="true" />
+            <span>
+              <span class="block font-heading text-lg font-bold">Free {start.name}</span>
+              <span class="block text-white/90">A 30-minute call that finds your level and the next steps.</span>
+            </span>
+          </a>
+        )
+      }
+    </li>
+
+    <li aria-hidden="true" class="flex justify-center">
+      <Icon name="tabler:arrow-down" class="h-7 w-7 text-[#86BFE2]" />
+    </li>
+
+    <li>
+      <p class="mb-2 font-heading text-sm font-bold uppercase tracking-wide text-[#C25A00] dark:text-[#FF7700]">
+        2 &nbsp; Choose your blocks
+      </p>
+      <div class="grid gap-4 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-stretch md:gap-2">
+        {
+          columns.map((c, i) => [
+            i > 0 && (
+              <span
+                class="flex items-center justify-center font-heading text-2xl font-bold text-[#FF7700]"
+                aria-hidden="true"
+              >
+                +
+              </span>
+            ),
+            <div class="flex flex-col gap-2">
+              <h3 class:list={['rounded-lg py-2 text-center font-heading text-lg font-bold', c.head]}>{c.title}</h3>
+              {blocks(c.group).map((s) => (
+                <a
+                  href={s.href}
+                  class="flex flex-1 items-center gap-3 rounded-lg border border-primary/15 bg-card p-3 text-heading transition hover:border-primary"
+                >
+                  <Icon name={s.icon} class="h-6 w-6 shrink-0 text-primary" aria-hidden="true" />
+                  <span class="font-medium">{s.name}</span>
+                </a>
+              ))}
+            </div>,
+          ])
+        }
+      </div>
+      <div class="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
+        <span class="font-heading text-sm font-bold text-heading">Add on</span>
+        {
+          ADD_ONS.map((a) => (
+            <span class="inline-flex items-center gap-2 rounded-full border border-[#86BFE2] px-4 py-1.5 text-sm text-heading">
+              <Icon name="tabler:plus" class="h-4 w-4 text-accent" aria-hidden="true" />
+              {a}
+            </span>
+          ))
+        }
+      </div>
+    </li>
+
+    <li aria-hidden="true" class="flex justify-center">
+      <Icon name="tabler:arrow-down" class="h-7 w-7 text-[#86BFE2]" />
+    </li>
+
+    <li>
+      <p class="mb-2 font-heading text-sm font-bold uppercase tracking-wide text-[#C25A00] dark:text-[#FF7700]">
+        3 &nbsp; One personalised quote
+      </p>
+      <div class="rounded-xl border-[3px] border-[#FF7700] bg-card p-5 shadow-card">
+        <h3 class="font-heading text-lg font-bold text-heading">Your package, one quote</h3>
+        <ul class="mt-3 grid gap-2 text-default sm:grid-cols-3">
+          {
+            [
+              'One point of contact',
+              'Priced to fit your purchase order process',
+              'Reporting against the outcomes we agree with you',
+            ].map((t) => (
+              <li class="flex items-start gap-2">
+                <Icon name="tabler:check" class="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
+                {t}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </li>
+  </ol>
+
+  <h3 class="mt-12 font-heading text-xl font-bold text-heading">For example</h3>
+  <div class="mt-4 grid gap-4 md:grid-cols-3">
+    {
+      EXAMPLE_PACKAGES.map((p) => (
+        <div class="rounded-xl border border-primary/15 bg-card p-5 shadow-card">
+          <p class="text-sm font-medium text-muted">{p.audience}</p>
+          <p class="mt-1 font-heading text-lg font-bold text-heading">{p.name}</p>
+          <p class="mt-2 text-default">{p.blocks.join(' + ')}</p>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="mt-10 flex flex-col items-center gap-3 text-center">
+    <a
+      href={CTAS.primary.href}
+      class="inline-flex items-center justify-center rounded-full bg-[#FF7700] px-7 py-3 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#e55f00]"
+    >
+      {CTAS.primary.text}
+    </a>
+    <a href={CTAS.quote.href} class="text-sm text-primary underline underline-offset-4 hover:text-accent dark:text-white">
+      {CTAS.quote.text}
+    </a>
+  </div>
+</div>

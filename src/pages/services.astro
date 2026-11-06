@@ -5,15 +5,16 @@ import SectionHeader from '~/components/brand/SectionHeader.astro';
 import ServiceCards from '~/components/brand/ServiceCards.astro';
 import UpsellLadder from '~/components/brand/UpsellLadder.astro';
 import CourseCards from '~/components/brand/CourseCards.astro';
+import PackageBuilder from '~/components/brand/PackageBuilder.astro';
 import CtaBand from '~/components/brand/CtaBand.astro';
 import FaqList from '~/components/brand/FaqList.astro';
 import { ONE_LINERS, WHAT_WE_DONT_DO } from '~/data/brand/copy';
 import { ADD_ONS } from '~/data/brand/services';
 
 const metadata = {
-  title: 'AI Training Services and Prices | WorkSmart-AI',
+  title: 'AI Training Services | WorkSmart-AI',
   description:
-    'The AI Capability Check, workshops and events, online courses, adoption coaching and academic coaching, with from-prices. Built around your people, policy and tools.',
+    'The AI Capability Check, workshops and events, online courses, adoption coaching, academic coaching and Built for You. Combine them into one package with a personalised quote.',
   canonical: '/services/',
 };
 
@@ -31,8 +32,8 @@ const faqItems = [
     a: 'Every engagement starts with a free AI Capability Check, which places your team on the AI Use Hierarchy. We then build workshops and courses around your AI policy, your Microsoft 365 and Copilot setup, and your roles.',
   },
   {
-    q: 'What do the prices mean?',
-    a: 'Every price is shown from the lowest level, for example a one-hour workshop or a one-hour course. We publish topics and formats, then quote each engagement once we know what you need.',
+    q: 'How is pricing worked out?',
+    a: 'Every engagement is quoted to fit. We publish topics and formats, then give you one personalised quote once we know what you need. You can combine any of our services into a single package.',
   },
 ];
 ---
@@ -52,13 +53,23 @@ const faqItems = [
     <div class="mx-auto max-w-6xl">
       <SectionHeader
         title="Published topics and formats, built around you"
-        subtitle="Every price is shown from the lowest level, for example a one-hour workshop or a one-hour course."
+        subtitle="Every engagement is quoted to fit your people, policy and tools."
       />
       <ServiceCards variant="rows" />
     </div>
   </section>
 
-  <section class="bg-page px-6 py-16 sm:px-8 lg:px-12">
+  <section id="design-your-own-package" class="bg-page px-6 py-16 sm:px-8 lg:px-12 lg:py-20">
+    <div class="mx-auto max-w-6xl">
+      <SectionHeader
+        title="Design your own package"
+        subtitle="No two organisations need the same support. Choose the blocks that fit your people, and we'll put them into one package with a single, personalised quote."
+      />
+      <PackageBuilder />
+    </div>
+  </section>
+
+  <section class="bg-section px-6 py-16 sm:px-8 lg:px-12">
     <div class="mx-auto max-w-6xl">
       <SectionHeader
         title="Start small, build from there"
@@ -81,7 +92,7 @@ const faqItems = [
     </div>
   </section>
 
-  <section class="bg-section px-6 py-16 sm:px-8 lg:px-12">
+  <section class="bg-page px-6 py-16 sm:px-8 lg:px-12">
     <div class="mx-auto max-w-6xl">
       <SectionHeader
         title="Fourteen courses in four streams"
@@ -91,7 +102,7 @@ const faqItems = [
     </div>
   </section>
 
-  <section class="bg-page px-6 py-16 sm:px-8 lg:px-12">
+  <section class="bg-section px-6 py-16 sm:px-8 lg:px-12">
     <div class="mx-auto max-w-3xl">
       <SectionHeader title="What we don’t do" />
       <ul class="space-y-3">
