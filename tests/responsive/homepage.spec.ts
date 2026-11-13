@@ -126,6 +126,9 @@ test.describe('homepage visual responsive snapshots', () => {
   for (const viewport of visualSnapshotViewports) {
     test(`matches approved ${viewport.name} snapshot`, async ({ page }) => {
       await page.setViewportSize({ width: viewport.width, height: viewport.height });
+      // The cookie banner appears on a script's timing and lands over different text in each
+      // full-page capture, so answer it up front and keep it out of the snapshot.
+      await page.addInitScript(() => localStorage.setItem('ws-cookie-consent', 'denied'));
       await page.goto('/', { waitUntil: 'load' });
 
       await expect(page).toHaveScreenshot(`homepage-${viewport.name}.png`, {

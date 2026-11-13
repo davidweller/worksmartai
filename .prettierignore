@@ -3,4 +3,5 @@ node_modules
 .github
 .changeset
 public/courses
-.cursor/plans
+.cursor/plans# Search Console verification: must stay byte-exact
+public/google*.html
