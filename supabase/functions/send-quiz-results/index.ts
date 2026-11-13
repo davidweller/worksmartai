@@ -1,6 +1,6 @@
 // Deploy with: supabase functions deploy send-quiz-results
 // Set secret with: supabase secrets set RESEND_API_KEY=your_key_here
-// Optional: supabase secrets set FOUNDERS_NOTIFICATION_EMAIL=hello@worksmart-ai.co.uk
+// Optional: supabase secrets set FOUNDERS_NOTIFICATION_EMAIL=a@worksmart-ai.co.uk,b@worksmart-ai.co.uk
 
 import 'jsr:@supabase/functions-js/edge-runtime.d.ts';
 
@@ -21,6 +21,8 @@ import { corsHeaders, json } from '../_shared/scorm.ts';
 // The result is recomputed here from the raw answers, so the email always follows the scoring rules.
 
 const DEFAULT_NOTIFY_EMAIL = 'hello@worksmart-ai.co.uk';
+/** Who hears about each submission. FOUNDERS_NOTIFICATION_EMAIL (comma-separated) overrides this. */
+const DEFAULT_NOTIFY_TO = ['katie@worksmart-ai.co.uk', 'dave@worksmart-ai.co.uk'];
 const FROM = 'WorkSmart-AI <hello@worksmart-ai.co.uk>';
 const SITE_URL = 'https://worksmart-ai.co.uk';
 /** Submissions allowed per email address per hour. */
@@ -40,11 +42,11 @@ function escapeHtml(s: string): string {
 
 const str = (v: unknown, max: number) => (typeof v === 'string' ? v.trim().slice(0, max) : '');
 
-async function sendEmail(key: string, to: string, subject: string, html: string) {
+async function sendEmail(key: string, to: string | string[], subject: string, html: string) {
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from: FROM, to: [to], reply_to: DEFAULT_NOTIFY_EMAIL, subject, html }),
+    body: JSON.stringify({ from: FROM, to: Array.isArray(to) ? to : [to], reply_to: DEFAULT_NOTIFY_EMAIL, subject, html }),
   });
   return res.ok ? null : (await res.text()) || 'Resend request failed';
 }
@@ -134,7 +136,11 @@ Deno.serve(async (req) => {
   }
 
   // The visitor has their report; a failed notification is logged, not returned.
-  const notifyTo = Deno.env.get('FOUNDERS_NOTIFICATION_EMAIL')?.trim() || DEFAULT_NOTIFY_EMAIL;
+  const notifyOverride = (Deno.env.get('FOUNDERS_NOTIFICATION_EMAIL') ?? '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+  const notifyTo = notifyOverride.length ? notifyOverride : DEFAULT_NOTIFY_TO;
   const row = (label: string, value: string) =>
     `<tr><td style="padding:4px 12px 4px 0;color:#64748b;">${label}</td><td style="padding:4px 0;">${escapeHtml(value)}</td></tr>`;
   const notifyHtml = [
