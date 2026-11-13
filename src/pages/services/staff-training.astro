@@ -51,16 +51,19 @@ const includes = [
       <div class="mb-12 grid gap-6 md:grid-cols-2">
         {
           formats.map((f) => (
-            <a
-              href={f.href}
-              class="rounded-xl border border-primary/20 bg-card p-6 shadow-card transition hover:border-primary"
-            >
+            <div class="relative rounded-xl border border-primary/20 bg-card p-6 shadow-card transition hover:border-primary">
               <div class="flex items-baseline justify-between gap-4">
-                <h3 class="font-heading text-xl font-bold text-heading">{f.title}</h3>
-                <span class="font-heading font-bold text-primary">{CTAS.quote.text}</span>
+                <h3 class="font-heading text-xl font-bold text-heading">
+                  <a href={f.href} class="after:absolute after:inset-0">
+                    {f.title}
+                  </a>
+                </h3>
+                <a href={CTAS.quote.href} class="relative z-10 font-heading font-bold text-primary hover:text-accent">
+                  {CTAS.quote.text}
+                </a>
               </div>
               <p class="mt-2 text-default">{f.body}</p>
-            </a>
+            </div>
           ))
         }
       </div>
