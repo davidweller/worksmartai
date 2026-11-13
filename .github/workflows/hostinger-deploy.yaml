@@ -11,9 +11,10 @@ concurrency:
 
 jobs:
   deploy:
-    # Self-hosted runner on David's desktop (user unit actions-runner-worksmart), which
-    # costs no Actions minutes; deploys queue while it's off.
-    runs-on: [self-hosted, linux, worksmart]
+    # Self-hosted runner on David's Windows desktop (C:\actions-runner-worksmart, started at
+    # logon by the scheduled task actions-runner-worksmart), which costs no Actions minutes;
+    # deploys queue while it's off.
+    runs-on: [self-hosted, windows, worksmart]
     steps:
       - uses: actions/checkout@v4
 
