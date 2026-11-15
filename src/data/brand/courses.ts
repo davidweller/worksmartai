@@ -77,4 +77,15 @@ export const COURSES: Course[] = [
   },
 ];
 
+// White-labelled versions of a catalogue course for another audience. Not counted in the
+// catalogue, so they appear only where a page asks for them through CourseCards' `variants`.
+export const STUDENT_VARIANTS: Course[] = [
+  {
+    title: 'AI Foundations and Responsible Use',
+    stream: 'students',
+    summary:
+      'Know when AI support is appropriate in your studies, spot the risks, and prompt Copilot for reliable results.',
+  },
+];
+
 export const coursesIn = (...streams: CourseStream[]) => COURSES.filter((c) => streams.includes(c.stream));

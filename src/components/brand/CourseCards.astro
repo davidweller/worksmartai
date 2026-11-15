@@ -1,8 +1,10 @@
 ---
-import { COURSES, STREAM_LABELS, type CourseStream } from '~/data/brand/courses';
+import { COURSES, STREAM_LABELS, type Course, type CourseStream } from '~/data/brand/courses';
 
 interface Props {
   streams?: CourseStream[];
+  /** Variant courses shown first in their stream, outside the catalogue count. */
+  variants?: Course[];
   /** Show a heading above each stream's cards. Off when only one stream is shown. */
   groupHeadings?: boolean;
   /** Show stream names at all. Off for audiences outside HE, where the stream names mean nothing. */
@@ -13,13 +15,15 @@ const {
   streams = ['all-staff', 'teaching-research', 'teams-functions'],
   labels = true,
   groupHeadings = labels && streams.length > 1,
+  variants = [],
 } = Astro.props;
 
+const all = [...variants, ...COURSES];
 const groups = labels
   ? streams
-      .map((stream) => ({ label: STREAM_LABELS[stream], courses: COURSES.filter((c) => c.stream === stream) }))
+      .map((stream) => ({ label: STREAM_LABELS[stream], courses: all.filter((c) => c.stream === stream) }))
       .filter((g) => g.courses.length)
-  : [{ label: '', courses: COURSES.filter((c) => streams.includes(c.stream)) }];
+  : [{ label: '', courses: all.filter((c) => streams.includes(c.stream)) }];
 ---
 
 <div class="space-y-10">

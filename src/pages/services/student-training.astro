@@ -2,6 +2,7 @@
 import ServicePage from '~/components/brand/ServicePage.astro';
 import SectionHeader from '~/components/brand/SectionHeader.astro';
 import CourseCards from '~/components/brand/CourseCards.astro';
+import { STUDENT_VARIANTS } from '~/data/brand/courses';
 
 const metadata = {
   title: 'AI Courses for Students | WorkSmart-AI',
@@ -37,11 +38,11 @@ const includes = [
 >
   <section class="bg-section px-6 py-16 sm:px-8 lg:px-12">
     <div class="mx-auto max-w-6xl">
-      <SectionHeader title="The student course" />
-      <CourseCards streams={['students']} />
+      <SectionHeader title="The student courses" />
+      <CourseCards streams={['students']} variants={STUDENT_VARIANTS} />
       <p class="mt-6 text-default">
-        AI Foundations and Responsible Use is also available in a student version, so staff and students learn the same
-        rules in the same language.
+        AI Foundations and Responsible Use is the student version of our staff course, so staff and students learn the
+        same rules in the same language.
       </p>
     </div>
   </section>
