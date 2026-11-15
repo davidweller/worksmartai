@@ -46,7 +46,13 @@ async function sendEmail(key: string, to: string | string[], subject: string, ht
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from: FROM, to: Array.isArray(to) ? to : [to], reply_to: DEFAULT_NOTIFY_EMAIL, subject, html }),
+    body: JSON.stringify({
+      from: FROM,
+      to: Array.isArray(to) ? to : [to],
+      reply_to: DEFAULT_NOTIFY_EMAIL,
+      subject,
+      html,
+    }),
   });
   return res.ok ? null : (await res.text()) || 'Resend request failed';
 }
