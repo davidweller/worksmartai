@@ -82,7 +82,7 @@ Licence costs, education pricing and how agent credits are billed are in our gui
 
 ## Get more from the Copilot you already have
 
-Our [Copilot Chat to 365 Copilot](/services/staff-training/) course shows staff exactly what changes when they move from the free version to the licence, how data protection and permissions work, and how to decide which tool and which data suit each task. You can estimate the time at stake with the [AI Savings Calculator](/roi-calculator/).
+Our [AI Foundations and Responsible Use](/services/staff-training/) course covers the free and protected versions and how to decide which tool and which data suit each task, and [AI for Microsoft 365 Apps](/services/staff-training/) shows staff how to work with Copilot grounded in their own files, including what to do about oversharing. You can estimate the time at stake with the [AI Savings Calculator](/roi-calculator/).
 
 Not sure where to start? Our free AI Capability Check is a 30-minute call over Teams or Zoom, with no obligation. We'll place your team on the AI Use Hierarchy, give you two or three prioritised next steps, and send you a written report to keep.
 

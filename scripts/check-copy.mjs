@@ -53,6 +53,11 @@ const RULES = [
     name: 'retired service name',
     re: /Clarity Programme|Readiness (Quiz|Index)|Needs Analysis|Impact Report|Leadership (& |&amp; )?(Manager )?Consulting|AI Health Check/i,
   },
+  {
+    name: 'retired or renamed course title',
+    re: /AI for Daily Workflows|AI for Summarising and Analysing|Building Custom AI Agents|Build Custom AI Agents|Copilot Chat to 365 Copilot|AI for Process Improvement|AI for Comms and Engagement|AI Skills for the Workplace|AI for Academic Content Creation|AI[- ]Enabled Classroom|AI for Academic Assessment(?!: A Guide)/,
+    allow: /^(title|\s+title|slug|canonical):/,
+  },
   { name: 'fixed 3-hour format', re: /\b(3|three)[- ]hour\b/i },
   { name: 'old hierarchy size', re: /\b(six|6|four|4)[- ]level\b/i },
   // Service prices are quoted per engagement; Microsoft licence prices and calculator figures don't start "from £".

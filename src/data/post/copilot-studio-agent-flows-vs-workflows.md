@@ -72,7 +72,7 @@ The common mistake is building everything as an agent because agents are new. Mo
 
 ## Build agents with us, or learn to build your own
 
-Our [Building Custom AI Agents](/services/staff-training/) course teaches staff to design and build Copilot agents for their own work, built around your policy and Microsoft 365 setup.
+Our [Intermediate to Advanced Copilot](/services/staff-training/) course teaches staff to design and build Copilot agents and workflows for their own work, built around your policy and Microsoft 365 setup.
 
 We're also developing Built for You. We'll help departments and senior leaders identify their critical AI workflows, map the process, and build Copilot agents and workflows, or support your leaders to build their own. We then train staff to hand work off to them and collect it back. Pricing is on application.
 

@@ -5,12 +5,12 @@ import CourseCards from '~/components/brand/CourseCards.astro';
 
 const metadata = {
   title: 'AI Courses for Students | WorkSmart-AI',
-  description: `White-labelled AI courses for all students, in your branding and built around your AI policy: AI Foundations and Responsible Use, and AI Skills for the Workplace.`,
+  description: `White-labelled AI courses for all students, in your branding and built around your AI policy: AI Skills for Employability, and a student version of AI Foundations and Responsible Use.`,
   canonical: '/services/student-training/',
 };
 
 const facts = [
-  { value: '2 courses', label: 'For all students' },
+  { value: 'All students', label: 'One licence, any headcount' },
   { value: 'Your branding', label: 'White-labelled' },
   { value: 'SCORM / xAPI', label: 'For your own LMS' },
   { value: '12 months', label: 'Renewable licence' },
@@ -30,15 +30,19 @@ const includes = [
   metadata={metadata}
   eyebrow="Student courses"
   title="AI skills every student can use, in your own course"
-  intro="Two white-labelled online courses for all students, built around your policy, so every student knows what’s allowed and what employers expect."
+  intro="White-labelled online courses for all students, built around your policy, so every student knows what’s allowed and what employers expect."
   facts={facts}
   includes={includes}
   ctaTitle="Start with a free AI Capability Check"
 >
   <section class="bg-section px-6 py-16 sm:px-8 lg:px-12">
     <div class="mx-auto max-w-6xl">
-      <SectionHeader title="The student courses" />
+      <SectionHeader title="The student course" />
       <CourseCards streams={['students']} />
+      <p class="mt-6 text-default">
+        AI Foundations and Responsible Use is also available in a student version, so staff and students learn the same
+        rules in the same language.
+      </p>
     </div>
   </section>
 </ServicePage>

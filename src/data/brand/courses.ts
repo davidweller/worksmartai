@@ -1,7 +1,7 @@
 // Course catalogue (Source of Truth, section 2). Titles are exact: named, never numbered,
 // "and" never "&". Summaries are drawn from the Course ILOs note in the vault.
 
-export type CourseStream = 'students' | 'all-staff' | 'academic' | 'professional-services' | 'leadership';
+export type CourseStream = 'students' | 'all-staff' | 'teaching-research' | 'teams-functions' | 'leadership';
 
 export interface Course {
   title: string;
@@ -12,22 +12,17 @@ export interface Course {
 export const STREAM_LABELS: Record<CourseStream, string> = {
   students: 'Students',
   'all-staff': 'All staff',
-  academic: 'Academic',
-  'professional-services': 'Professional services',
+  'teaching-research': 'Teaching and research',
+  'teams-functions': 'Teams and functions',
   leadership: 'Leadership workshops',
 };
 
 export const COURSES: Course[] = [
   {
-    title: 'AI Foundations and Responsible Use',
+    title: 'AI Skills for Employability',
     stream: 'students',
     summary:
-      'Know when AI support is appropriate in your studies, spot the risks, and prompt Copilot for reliable results.',
-  },
-  {
-    title: 'AI Skills for the Workplace',
-    stream: 'students',
-    summary: 'Use AI the way employers now expect, with the judgement to know when it helps and when it doesn’t.',
+      'Use AI to research employers, tailor applications and prepare for interviews, then show employers what you can do.',
   },
   {
     title: 'AI Foundations and Responsible Use',
@@ -36,26 +31,10 @@ export const COURSES: Course[] = [
       'A shared understanding of AI in your role: what’s appropriate, what’s risky, and how to prompt Copilot well.',
   },
   {
-    title: 'AI for Daily Workflows',
-    stream: 'all-staff',
-    summary: 'Draft emails and documents, run meetings and capture actions with Copilot in Outlook, Word and Teams.',
-  },
-  {
-    title: 'AI for Summarising and Analysing',
-    stream: 'all-staff',
-    summary: 'Summarise documents in Word and turn data into tables and charts in Excel, checking results before use.',
-  },
-  {
-    title: 'Building Custom AI Agents',
+    title: 'AI for Microsoft 365 Apps',
     stream: 'all-staff',
     summary:
-      'Build reusable agents in Copilot Studio and automate multi-step tasks with clear instructions and guardrails.',
-  },
-  {
-    title: 'Copilot Chat to 365 Copilot',
-    stream: 'all-staff',
-    summary:
-      'What changes when you move to licensed Microsoft 365 Copilot, and how to use it safely on your own files.',
+      'Use Copilot across Outlook, Teams, Word, Excel and PowerPoint, grounded in the right files and checked before use.',
   },
   {
     title: 'Intermediate to Advanced Copilot',
@@ -64,37 +43,27 @@ export const COURSES: Course[] = [
       'Go beyond drafting: complex multi-step work, reusable prompts and grounding Copilot in your own documents.',
   },
   {
-    title: 'AI for Academic Content Creation',
-    stream: 'academic',
+    title: 'AI for Lesson and Lecture Preparation',
+    stream: 'teaching-research',
     summary: 'Create and adapt teaching materials aligned to learning outcomes, checking accuracy and accessibility.',
   },
   {
-    title: 'The AI-Enabled Classroom',
-    stream: 'academic',
+    title: 'AI for Assessment and Feedback',
+    stream: 'teaching-research',
     summary:
-      'Bring AI into live teaching to support discussion and active learning, and guide responsible student use.',
-  },
-  {
-    title: 'AI for Academic Assessment',
-    stream: 'academic',
-    summary: 'Design assessments that hold up in an AI-enabled world, and use Copilot to support marking and feedback.',
+      'Design assessments that hold up in an AI-enabled world, and turn marking notes into personalised feedback at scale.',
   },
   {
     title: 'AI for Researchers',
-    stream: 'academic',
+    stream: 'teaching-research',
     summary:
-      'Use AI for literature reviews, synthesis and early writing, while judging outputs for methodological soundness.',
+      'Search, screen and synthesise literature with every claim traced to its source, and disclose your AI use correctly.',
   },
   {
-    title: 'AI for Process Improvement',
-    stream: 'professional-services',
-    summary: 'Map workflows, assess risk and plan where Copilot and Power Automate can redesign routine processes.',
-  },
-  {
-    title: 'AI for Comms and Engagement',
-    stream: 'professional-services',
+    title: 'AI for Communications and Marketing',
+    stream: 'teams-functions',
     summary:
-      'Write audience-specific communications across channels, reviewed for accuracy, inclusivity and reputation.',
+      'Plan a multi-channel campaign from one brief, hold your brand voice across audiences and review before you publish.',
   },
   {
     title: 'The AI Leadership Briefing',

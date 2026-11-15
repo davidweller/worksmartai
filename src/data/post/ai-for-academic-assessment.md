@@ -80,7 +80,7 @@ Assessment change usually stalls between the policy and the module handbook. A f
 3. Agree how staff themselves may use AI in marking and feedback, and write it down.
 4. Train markers together, using real briefs and anonymised exemplars from your own programmes.
 
-That last step is where our AI for Academic Assessment course fits. Pitched from foundation to intermediate, it's built around five learning outcomes: designing assessments that stay authentic and robust in an AI-enabled environment; developing marking guides, rubrics, and feedback statements with AI responsibly; generating exemplar responses for calibration and moderation; identifying potential AI misuse and applying institutional guidance; and streamlining marking and feedback while upholding academic standards. Like all our courses, it can be delivered as a workshop or as a self-paced online course built around your own policy. For the wider rollout, see our guide to [implementing AI at your university](/how-to-implement-ai-at-university/).
+That last step is where our AI for Assessment and Feedback course fits. Pitched from foundation to intermediate, it's built around five learning outcomes: designing assessments that stay authentic and robust in an AI-enabled environment; developing marking guides, rubrics, and feedback statements with AI responsibly; generating exemplar responses for calibration and moderation; identifying potential AI misuse and applying institutional guidance; and turning marking notes into personalised feedback at scale while keeping the marker's judgement visible. Like all our courses, it can be delivered as a workshop or as a self-paced online course built around your own policy. For the wider rollout, see our guide to [implementing AI at your university](/how-to-implement-ai-at-university/).
 
 ## Find out where your staff are
 
@@ -88,7 +88,7 @@ The quickest way to see how your academic staff use AI in assessment now, and wh
 
 **[Book your free AI Capability Check](/health-check/)**
 
-You can also [explore the courses](/services/staff-training/), including AI for Academic Assessment.
+You can also [explore the courses](/services/staff-training/), including AI for Assessment and Feedback.
 
 ## Frequently asked questions
 
