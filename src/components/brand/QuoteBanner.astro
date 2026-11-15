@@ -1,0 +1,22 @@
+---
+// Full-width navy banner with one testimonial, as used on the higher education page.
+interface Props {
+  testimonial: { quote: string; name: string; role: string };
+  label?: string;
+}
+
+const { testimonial, label = 'What the sector says' } = Astro.props;
+---
+
+<section class="bg-[#015887] px-6 py-8 sm:px-8 md:py-10 lg:px-12" no-intersect aria-label={label}>
+  <div class="mx-auto max-w-3xl border-l-4 border-[#FF7700] pl-5 sm:pl-7">
+    <blockquote>
+      <p class="font-sans text-base font-bold leading-[1.7] text-white sm:text-lg">
+        &ldquo;{testimonial.quote}&rdquo;
+      </p>
+    </blockquote>
+    <p class="mt-4 font-sans text-sm italic leading-[1.6] text-white/80">
+      {testimonial.name}, {testimonial.role}
+    </p>
+  </div>
+</section>

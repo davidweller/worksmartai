@@ -6,6 +6,7 @@ import UpsellLadder from '~/components/brand/UpsellLadder.astro';
 import HierarchyLadder from '~/components/brand/HierarchyLadder.astro';
 import CtaBand from '~/components/brand/CtaBand.astro';
 import CornerDevice from '~/components/brand/CornerDevice.astro';
+import QuoteBanner from '~/components/brand/QuoteBanner.astro';
 import { ONE_LINERS, TAGLINE, WHY_US } from '~/data/brand/copy';
 import { CTAS } from '~/data/brand/ctas';
 import { TESTIMONIALS } from '~/data/brand/testimonials';
@@ -247,6 +248,9 @@ const sectorDoors = [
       </p>
     </div>
   </section>
+
+  <!-- 7. Testimonial -->
+  <QuoteBanner testimonial={TESTIMONIALS.ghentApproach} label="Testimonial" />
 
   <!-- 8. Why us -->
   <section class="bg-white px-6 py-16 sm:px-8 lg:px-12" no-intersect>

@@ -5,6 +5,7 @@ import ServiceCards from '~/components/brand/ServiceCards.astro';
 import CourseCards from '~/components/brand/CourseCards.astro';
 import { ONE_LINERS } from '~/data/brand/copy';
 import { TESTIMONIALS } from '~/data/brand/testimonials';
+import QuoteBanner from '~/components/brand/QuoteBanner.astro';
 import { CTAS } from '~/data/brand/ctas';
 
 const metadata = {
@@ -102,7 +103,16 @@ const personas = [
       <div class="mt-12">
         <ServiceCards variant="rows" />
       </div>
-      <div class="mt-16">
+    </div>
+  </section>
+
+  <!-- 3a. Quote banner -->
+  <QuoteBanner testimonial={TESTIMONIALS.ghent} />
+
+  <!-- 3b. Courses -->
+  <section class="bg-[#F8F8F8] px-6 py-12 sm:px-8 md:py-20 lg:px-12" no-intersect aria-label="Courses">
+    <div class="mx-auto max-w-6xl">
+      <div>
         <SectionHeader
           title="Courses for staff and students"
           subtitle="Run as workshops or online courses. The student course is white-labelled only."
@@ -116,6 +126,9 @@ const personas = [
       </div>
     </div>
   </section>
+
+  <!-- 3c. Quote banner -->
+  <QuoteBanner testimonial={TESTIMONIALS.cordy} label="What our partners say" />
 
   <!-- 4. Founder credibility -->
   <section class="bg-white px-6 py-12 sm:px-8 md:py-20 lg:px-12" no-intersect aria-labelledby="inside-he-heading">
@@ -182,64 +195,6 @@ const personas = [
           ))
         }
       </div>
-    </div>
-  </section>
-
-  <!-- 6. Quote banner -->
-  <section
-    class="bg-[#015887] px-6 py-8 sm:px-8 md:py-10 lg:px-12"
-    no-intersect
-    aria-label="What course participants say"
-  >
-    <div class="mx-auto max-w-3xl border-l-4 border-[#FF7700] pl-5 sm:pl-7">
-      <blockquote>
-        <p class="font-sans text-base font-bold leading-[1.7] text-white sm:text-lg">
-          &ldquo;{TESTIMONIALS.lynch.quote}&rdquo;
-        </p>
-      </blockquote>
-      <p class="mt-4 font-sans text-sm italic leading-[1.6] text-white/80">
-        {TESTIMONIALS.lynch.name}, {TESTIMONIALS.lynch.role}
-      </p>
-    </div>
-  </section>
-
-  <!-- 8. Student AI literacy banner -->
-  <section
-    class="bg-[#015887] px-6 py-8 sm:px-8 md:py-10 lg:px-12"
-    no-intersect
-    aria-label="Student AI literacy evidence"
-  >
-    <div class="mx-auto max-w-3xl border-l-4 border-[#FF7700] pl-5 sm:pl-7">
-      <blockquote>
-        <p class="font-sans text-base font-bold leading-[1.7] text-white sm:text-lg">
-          &ldquo;Students overwhelmingly see AI as essential for their futures, but many do not feel adequately
-          supported to develop the necessary skills. If universities want graduates to feel prepared for the future,
-          then AI literacy and capability must be embedded across the curriculum. These skills cannot be treated as
-          optional.&rdquo;
-        </p>
-      </blockquote>
-      <p class="mt-4 font-sans text-sm italic leading-[1.6] text-white/80">
-        Charlotte Armstrong, Policy Manager, Higher Education Policy Institute - HEPI/Kortext Student Generative AI
-        Survey 2026
-      </p>
-    </div>
-  </section>
-
-  <!-- 9. Testimonials -->
-  <section class="bg-white px-6 py-12 sm:px-8 md:py-16 lg:px-12" no-intersect aria-label="Testimonials">
-    <div class="mx-auto grid max-w-6xl gap-6 md:grid-cols-2">
-      {
-        [TESTIMONIALS.harris, TESTIMONIALS.cordy].map((t) => (
-          <figure class="flex h-full flex-col rounded-xl border border-[#E0E0E0] bg-white p-8 shadow-[0_6px_28px_-18px_rgba(1,88,135,0.25)]">
-            <blockquote class="font-sans text-base leading-[1.7] text-[#1B0101] sm:text-lg">
-              &ldquo;{t.quote}&rdquo;
-            </blockquote>
-            <figcaption class="mt-auto pt-4 font-sans text-sm italic text-gray-600">
-              {t.name}, {t.role}
-            </figcaption>
-          </figure>
-        ))
-      }
     </div>
   </section>
 
