@@ -115,7 +115,7 @@ For L&D, digital, and education leads, the question is how to make these habits 
 
 ## Find out where your staff are
 
-The quickest way to see how your staff use AI now, and where the risks are, is our free AI Capability Check. It's a 30-minute call over Teams or Zoom, with no obligation. We'll place your team on the AI Use Hierarchy, give you two or three prioritised next steps, and send you a written report to keep.
+The quickest way to see how your staff use AI now, and where the risks are, is our free AI Capability Check. It's a 30-minute call over Teams or Zoom, with no obligation. We'll place your team on the 3Cs Framework, give you two or three prioritised next steps, and send you a written report to keep.
 
 **[Book your free AI Capability Check](/health-check/)**
 

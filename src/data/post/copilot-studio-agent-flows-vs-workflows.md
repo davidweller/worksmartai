@@ -68,7 +68,7 @@ New starters need accounts requested, a welcome email, and reminders at week one
 
 ## Start small, and build where it pays
 
-The common mistake is building everything as an agent because agents are new. Most admin processes are fixed steps with one or two judgement calls, so use flows for the steps and AI only where judgement is needed. If your staff are still building reliable prompting habits, start there: our [AI Use Hierarchy](/ai-use-hierarchy/) explains why agents and workflows sit at Level 4. If you're still working out which Copilot your staff have, read [Copilot Chat vs Microsoft 365 Copilot](/copilot-chat-vs-microsoft-365-copilot/), and for the wider plan, see [how to implement AI at your university](/how-to-implement-ai-at-university/).
+The common mistake is building everything as an agent because agents are new. Most admin processes are fixed steps with one or two judgement calls, so use flows for the steps and AI only where judgement is needed. If your staff are still building reliable prompting habits, start there: our [3Cs Framework](/3cs-framework/) explains why agents and workflows sit at Level 4. If you're still working out which Copilot your staff have, read [Copilot Chat vs Microsoft 365 Copilot](/copilot-chat-vs-microsoft-365-copilot/), and for the wider plan, see [how to implement AI at your university](/how-to-implement-ai-at-university/).
 
 ## Build agents with us, or learn to build your own
 
@@ -76,7 +76,7 @@ Our [Intermediate to Advanced Copilot](/services/staff-training/) course teaches
 
 We're also developing Built for You. We'll help departments and senior leaders identify their critical AI workflows, map the process, and build Copilot agents and workflows, or support your leaders to build their own. We then train staff to hand work off to them and collect it back. Pricing is on application.
 
-Not sure where to start? Our free AI Capability Check is a 30-minute call over Teams or Zoom, with no obligation. We'll place your team on the AI Use Hierarchy, give you two or three prioritised next steps, and send you a written report to keep. To estimate the time at stake first, try the [AI Savings Calculator](/roi-calculator/).
+Not sure where to start? Our free AI Capability Check is a 30-minute call over Teams or Zoom, with no obligation. We'll place your team on the 3Cs Framework, give you two or three prioritised next steps, and send you a written report to keep. To estimate the time at stake first, try the [AI Savings Calculator](/roi-calculator/).
 
 **[Book your free AI Capability Check](/health-check/)**
 

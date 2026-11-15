@@ -68,7 +68,7 @@ export const WHY_US = [
   {
     title: 'All work mapped to make sure outcomes are achieved',
     proof:
-      'Every course is mapped to the five-level AI Use Hierarchy. Academy courses report completion, assessment scores and confidence against the outcomes.',
+      'Every course is mapped to the five-level 3Cs Framework. Academy courses report completion, assessment scores and confidence against the outcomes.',
     icon: 'tabler:chart-bar',
   },
   {

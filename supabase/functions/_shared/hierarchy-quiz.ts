@@ -1,7 +1,7 @@
-// The AI Use Hierarchy Quiz: questions, scoring and result copy.
-// Imported by src/pages/ai-use-hierarchy-quiz.astro and supabase/functions/send-quiz-results,
+// The 3Cs Framework Quiz: questions, scoring and result copy.
+// Imported by src/pages/3cs-framework-quiz.astro and supabase/functions/send-quiz-results,
 // so the on-screen report and the emailed report can't drift. No imports, so Vite and Deno both load it.
-// Source: the vault notes "AI Use Hierarchy Quiz" and "AI Use Hierarchy - Capability, Confidence and
+// Source: the vault notes "3Cs Framework Quiz" and "3Cs Framework - Capability, Confidence and
 // Compliance". Change the framework first, then this.
 
 export const QUIZ_VERSION = '2026-11-05';
@@ -74,7 +74,7 @@ export const LEVELS: {
 ];
 
 export const INTRO = {
-  title: 'Where are you on the AI Use Hierarchy?',
+  title: 'Where are you on the 3Cs Framework?',
   lede: "Five levels of AI use, measured three ways. Most people sit at different levels on each, and that's the useful part.",
   minutes: 7,
   rules: ['Answer for a normal working week, not your best day.', "Something you've done once doesn't count yet."],
@@ -898,7 +898,7 @@ export function renderReportEmail(name: string, result: QuizResult, siteUrl = 'h
     // Preheader: the preview line in the inbox.
     `<div style="display:none;max-height:0;overflow:hidden;">${esc(headlines)}</div>`,
     `<div style="max-width:600px;margin:0 auto;background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:28px;">`,
-    `<p style="margin:0 0 4px;font-size:13px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:${ORANGE};">Your AI Use Hierarchy profile</p>`,
+    `<p style="margin:0 0 4px;font-size:13px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:${ORANGE};">Your 3Cs Framework profile</p>`,
     `<p style="margin:0 0 8px;font-size:24px;line-height:1.3;font-weight:700;color:${BLUE};">${esc(profileLine(result.levels))}</p>`,
     r.patterns
       .map((pt) => `<p style="margin:0 0 4px;font-size:18px;font-weight:700;">${esc(pt.headline)}</p>`)

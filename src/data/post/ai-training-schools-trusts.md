@@ -19,7 +19,7 @@ Most fade for the same three reasons.
 - **They pitch at one level.** In any staffroom, some staff have never opened an AI assistant and others use one daily. One session can't serve both.
 - **Nothing follows them.** Without a follow-up, a shared prompt bank or a named person to ask, new habits drift back to old ones.
 
-The fix isn't a longer day. It's a shorter first step, tied to real work, with a clear next step after it. Our [AI Use Hierarchy](/ai-use-hierarchy/) is one way to plan that path.
+The fix isn't a longer day. It's a shorter first step, tied to real work, with a clear next step after it. Our [3Cs Framework](/3cs-framework/) is one way to plan that path.
 
 ## What should AI training for teachers focus on?
 
@@ -79,7 +79,7 @@ Pupils are already using AI, and parents have questions. Once staff are confiden
 
 We're education specialists who train adults to use AI on real tasks, built around your policy and tools. For schools and trusts, that means INSET workshops from one hour to a full day, and self-paced online courses on your own learning platform or ours. You can see the full list on our [courses](/services/staff-training/) page, or estimate where AI could save your staff time with the [AI Savings Calculator](/roi-calculator/).
 
-The best place to start is our free AI Capability Check. It's a 30-minute call over Teams or Zoom, with no obligation. We'll place your staff on the AI Use Hierarchy, give you two or three prioritised next steps, and send you a written report to keep.
+The best place to start is our free AI Capability Check. It's a 30-minute call over Teams or Zoom, with no obligation. We'll place your staff on the 3Cs Framework, give you two or three prioritised next steps, and send you a written report to keep.
 
 **[Book your free AI Capability Check](/health-check/)**
 

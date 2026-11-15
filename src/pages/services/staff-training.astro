@@ -28,7 +28,7 @@ const includes = [
   'Built around your AI policy, Microsoft 365 and Copilot setup and data context',
   'Published learning outcomes for every course',
   'Compliance scenarios: spotting red flags and classifying tasks green, amber or red',
-  'Mapped to the five-level AI Use Hierarchy, so staff see what comes next',
+  'Mapped to the five-level 3Cs Framework, so staff see what comes next',
   'Academy courses report completion, assessment scores and confidence against the learning outcomes',
 ];
 ---
@@ -52,13 +52,16 @@ const includes = [
         {
           formats.map((f) => (
             <div class="relative rounded-xl border border-primary/20 bg-card p-6 shadow-card transition hover:border-primary">
-              <div class="flex items-baseline justify-between gap-4">
+              <div class="flex flex-wrap items-center justify-between gap-4">
                 <h3 class="font-heading text-xl font-bold text-heading">
                   <a href={f.href} class="after:absolute after:inset-0">
                     {f.title}
                   </a>
                 </h3>
-                <a href={CTAS.quote.href} class="relative z-10 font-heading font-bold text-primary hover:text-accent">
+                <a
+                  href={CTAS.quote.href}
+                  class="relative z-10 inline-flex items-center justify-center rounded-full bg-[#FF7700] px-5 py-2 font-heading text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#e55f00]"
+                >
                   {CTAS.quote.text}
                 </a>
               </div>

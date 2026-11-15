@@ -103,7 +103,7 @@ test.describe('header and homepage design review', () => {
     await expect(page.locator('#site-login-button')).not.toHaveClass(/btn-primary/);
   });
 
-  test('lets keyboard users step through the AI Use Hierarchy', async ({ page }) => {
+  test('lets keyboard users step through the 3Cs Framework', async ({ page }) => {
     await page.goto('/', { waitUntil: 'load' });
 
     const ladder = page.locator('[data-hierarchy-ladder]');

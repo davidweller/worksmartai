@@ -77,9 +77,9 @@ The mechanism is not a teaching invention - the Copilot Studio build pane lists 
 
 Remove the workflow and you still have an agent you talk to. Remove the agent and the workflow is a plain automation. Remove the actions and the agent can only talk about work, never do it.
 
-## Mapped onto the AI Use Hierarchy
+## Mapped onto the 3Cs Framework
 
-Where each concept is met, against [[AI Use Hierarchy]].
+Where each concept is met, against [[3Cs Framework]].
 
 | Level            | Concepts                                                                                                     | Course                                                 |
 | ---------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------ |

@@ -17,7 +17,7 @@ import {
 } from '../_shared/hierarchy-quiz.ts';
 import { corsHeaders, json } from '../_shared/scorm.ts';
 
-// Stores an AI Use Hierarchy Quiz submission, emails the visitor their full report and tells the team.
+// Stores an 3Cs Framework Quiz submission, emails the visitor their full report and tells the team.
 // The result is recomputed here from the raw answers, so the email always follows the scoring rules.
 
 const DEFAULT_NOTIFY_EMAIL = 'hello@worksmart-ai.co.uk';
@@ -151,7 +151,7 @@ Deno.serve(async (req) => {
     `<tr><td style="padding:4px 12px 4px 0;color:#64748b;">${label}</td><td style="padding:4px 0;">${escapeHtml(value)}</td></tr>`;
   const notifyHtml = [
     `<!DOCTYPE html><html><head><meta charset="utf-8"/></head><body style="font-family:system-ui,sans-serif;font-size:15px;color:#0f172a;">`,
-    `<p>New AI Use Hierarchy Quiz submission.</p><table>`,
+    `<p>New 3Cs Framework Quiz submission.</p><table>`,
     row('Name', name),
     row('Email', email),
     row('Role', answers.role ?? ''),

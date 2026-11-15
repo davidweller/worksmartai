@@ -6,6 +6,6 @@ export const RESOURCES = {
   guide: { name: 'Higher Education Use Case Guide', href: '/higher-education-guide/' },
   licensing: { name: 'Copilot Licensing Decoded', href: '/copilot-licensing/' },
   glossary: { name: 'Copilot in Plain English', href: '/copilot-glossary/' },
-  hierarchy: { name: 'The AI Use Hierarchy', href: '/ai-use-hierarchy/' },
-  quiz: { name: 'AI Use Hierarchy Quiz', href: '/ai-use-hierarchy-quiz/' },
+  hierarchy: { name: 'The 3Cs Framework', href: '/3cs-framework/' },
+  quiz: { name: '3Cs Framework Quiz', href: '/3cs-framework-quiz/' },
 } as const;

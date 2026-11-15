@@ -13,10 +13,10 @@ import {
 } from '../../supabase/functions/_shared/hierarchy-quiz.ts';
 
 const metadata = {
-  title: 'AI Use Hierarchy Quiz | WorkSmart-AI',
+  title: '3Cs Framework Quiz | WorkSmart-AI',
   description:
-    'A free 7-minute self-assessment that places you on the five-level AI Use Hierarchy for capability, confidence and compliance, and gives you a three-number profile with your next step on each.',
-  canonical: '/ai-use-hierarchy-quiz/',
+    'A free 7-minute self-assessment that places you on the five-level 3Cs Framework for capability, confidence and compliance, and gives you a three-number profile with your next step on each.',
+  canonical: '/3cs-framework-quiz/',
 };
 
 // Keys on data-* avoid minifier mangling, as on the guide page.
@@ -49,7 +49,7 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
           <p class="mt-6 rounded-lg bg-amber-50 p-4 text-sm text-amber-900">
             The quiz needs JavaScript. Turn it on, or <a class="underline" href={CTAS.primary.href}
               >book a free AI Capability Check</a
-            > and we'll place you on the hierarchy in a call.
+            > and we'll place you on the 3Cs Framework in a call.
           </p>
         </noscript>
 
@@ -186,7 +186,7 @@ const supabaseAnonKey = (import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? import.meta
         <div class="rounded-xl border border-primary/20 bg-card p-6 shadow-card sm:p-10">
           <p class="font-heading text-sm font-bold uppercase tracking-wide text-[#FF7700]">Your profile</p>
           <h1 tabindex="-1" data-results-heading class="mt-2 font-heading text-3xl font-bold text-heading">
-            Where you are on the AI Use Hierarchy
+            Where you are on the 3Cs Framework
           </h1>
           <p data-score class="mt-4 font-heading text-2xl font-bold text-[#015887]"></p>
           <div data-patterns class="mt-2 space-y-1"></div>

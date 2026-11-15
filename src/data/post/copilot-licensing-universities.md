@@ -101,7 +101,7 @@ That's why we start every Copilot programme with real tasks from your staff's ow
 
 ## Find out who to license first
 
-Before you buy more licences, find out where your staff are now. Our free AI Capability Check is a 30-minute call over Teams or Zoom, with no obligation. We'll place your team on the AI Use Hierarchy, give you two or three prioritised next steps, and send you a written report to keep.
+Before you buy more licences, find out where your staff are now. Our free AI Capability Check is a 30-minute call over Teams or Zoom, with no obligation. We'll place your team on the 3Cs Framework, give you two or three prioritised next steps, and send you a written report to keep.
 
 **[Book your free AI Capability Check](/health-check/)**
 

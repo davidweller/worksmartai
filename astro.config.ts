@@ -51,6 +51,8 @@ export default defineConfig({
     '/terms/': '/terms-of-service/',
     '/book-a-call/': '/health-check/',
     '/services/senior-consulting/': '/services/adoption-coaching/',
+    '/ai-use-hierarchy/': '/3cs-framework/',
+    '/ai-use-hierarchy-quiz/': '/3cs-framework-quiz/',
   },
 
   integrations: [

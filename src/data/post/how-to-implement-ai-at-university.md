@@ -27,12 +27,12 @@ That shapes everything below. Each stage aims to get staff using AI well, safely
 
 Before you write a strategy, find out what's happening. In most universities the spread is wide. One colleague has never opened Copilot. Another has built their own assistant for a weekly report. A third is pasting student data into a free chatbot on their phone.
 
-You need a shared way to describe that spread. We use the [AI Use Hierarchy](/ai-use-hierarchy/), a five-level framework that runs from everyday conversational use (Level 1) through structured prompting, custom assistants, and agents and workflows, to AI integrated into institutional systems (Level 5). It describes how people work with AI, not how much they know about it, and it holds whichever tools you've approved.
+You need a shared way to describe that spread. We use the [3Cs Framework](/3cs-framework/), a five-level framework that runs from everyday conversational use (Level 1) through structured prompting, custom assistants, and agents and workflows, to AI integrated into institutional systems (Level 5). It describes how people work with AI, not how much they know about it, and it holds whichever tools you've approved.
 
 A quick baseline should answer four questions:
 
 1. Which AI tools are staff using now, approved or not?
-2. Where do most teams sit on the hierarchy?
+2. Where do most teams sit on the framework?
 3. Which roles have the most repetitive, time-consuming tasks?
 4. Do staff know what the current AI policy allows?
 
@@ -95,7 +95,7 @@ Microsoft's UK research with Censuswide in October 2025 found that 71% of UK emp
 
 ### Plan for agents later, not first
 
-Agents and automated workflows come further up the hierarchy. When teams are ready, Copilot Studio is where they're usually built, and the choice between [agent flows and workflows in Copilot Studio](/copilot-studio-agent-flows-vs-workflows/) matters for cost and control. Don't start there. An agent is only as good as the instructions behind it.
+Agents and automated workflows come further up the framework. When teams are ready, Copilot Studio is where they're usually built, and the choice between [agent flows and workflows in Copilot Studio](/copilot-studio-agent-flows-vs-workflows/) matters for cost and control. Don't start there. An agent is only as good as the instructions behind it.
 
 ## Stage 5: AI upskilling for university staff
 
@@ -120,7 +120,7 @@ Once the foundations are in place, training works best when it's specific to the
 
 ### Don't skip levels
 
-The commonest mistake is starting too high. Staff who haven't built reliable prompting habits can't write good instructions for an agent, so agents built too early produce inconsistent results and staff lose trust. Start every all-staff programme at Level 1 of the [AI Use Hierarchy](/ai-use-hierarchy/), and move teams up once they have something real to build on.
+The commonest mistake is starting too high. Staff who haven't built reliable prompting habits can't write good instructions for an agent, so agents built too early produce inconsistent results and staff lose trust. Start every all-staff programme at Level 1 of the [3Cs Framework](/3cs-framework/), and move teams up once they have something real to build on.
 
 ### Keep it going
 
@@ -142,7 +142,7 @@ Staff training and student guidance should match. If staff and students hear dif
 
 ## Stage 7: Measure impact
 
-Leaders who fund AI programmes will ask what they got for the money. Decide how you'll answer before you start, not after. We measure three things, at every level of the hierarchy:
+Leaders who fund AI programmes will ask what they got for the money. Decide how you'll answer before you start, not after. We measure three things, at every level of the framework:
 
 | What to measure | How to measure it                                                                                                      | What it tells you                   |
 | --------------- | ---------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
@@ -181,11 +181,11 @@ The order matters more than the dates. Training starts early because it surfaces
 
 ## Start with a clear picture of your staff
 
-The quickest way to start is our free AI Capability Check. It's a 30-minute call over Teams or Zoom, with no obligation. We'll place your staff on the AI Use Hierarchy, give you two or three prioritised next steps, and send you a written report to keep.
+The quickest way to start is our free AI Capability Check. It's a 30-minute call over Teams or Zoom, with no obligation. We'll place your staff on the 3Cs Framework, give you two or three prioritised next steps, and send you a written report to keep.
 
 **[Book your free AI Capability Check](/health-check/)**
 
-If you'd rather start with numbers, try the [AI Savings Calculator](/roi-calculator/) to estimate where AI could save your staff time, or [explore the courses](/services/staff-training/) mapped to each level of the hierarchy.
+If you'd rather start with numbers, try the [AI Savings Calculator](/roi-calculator/) to estimate where AI could save your staff time, or [explore the courses](/services/staff-training/) mapped to each level of the framework.
 
 ## Frequently asked questions
 
@@ -202,7 +202,7 @@ A first year can cover a baseline, an updated policy, foundation training for al
 No. Many staff get real value from Copilot Chat, which comes at no extra cost with many Microsoft 365 plans. Paid licences make most sense for roles whose work runs through Microsoft 365 files and meetings, once staff can use AI well. See [Copilot Chat vs Microsoft 365 Copilot](/copilot-chat-vs-microsoft-365-copilot/).
 
 **Where should a university start with AI?**
-Start by finding out where your staff are. A free [AI Capability Check](/health-check/) places your team on the AI Use Hierarchy and gives you prioritised next steps.
+Start by finding out where your staff are. A free [AI Capability Check](/health-check/) places your team on the 3Cs Framework and gives you prioritised next steps.
 
 [^1]: HEPI and Kortext, _Student Generative Artificial Intelligence Survey 2026_ (HEPI Report 199, March 2026; 1,054 full-time undergraduates, fieldwork by Savanta). https://www.hepi.ac.uk/reports/student-generative-ai-survey-2026/
 

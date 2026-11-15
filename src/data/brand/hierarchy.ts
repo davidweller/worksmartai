@@ -1,4 +1,4 @@
-// The five-level AI Use Hierarchy (Source of Truth, section 2).
+// The five-level 3Cs Framework (Source of Truth, section 2).
 
 export interface HierarchyLevel {
   level: number;

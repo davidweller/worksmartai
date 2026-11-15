@@ -90,7 +90,7 @@ Use the review to learn from what's happened. Which questions did staff ask most
 
 ## Check whether your policy is reaching staff
 
-The quickest way to find out whether your AI policy has reached daily work is our free AI Capability Check. It's a 30-minute call over Teams or Zoom, with no obligation. We'll place your team on the [AI Use Hierarchy](/ai-use-hierarchy/), give you two or three prioritised next steps, and send you a written report to keep.
+The quickest way to find out whether your AI policy has reached daily work is our free AI Capability Check. It's a 30-minute call over Teams or Zoom, with no obligation. We'll place your team on the [3Cs Framework](/3cs-framework/), give you two or three prioritised next steps, and send you a written report to keep.
 
 **[Book your free AI Capability Check](/health-check/)**
 

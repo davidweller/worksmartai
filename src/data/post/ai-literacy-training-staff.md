@@ -50,7 +50,7 @@ Responsible use belongs inside the skills training, not in a separate module. Ou
 
 ## How to train staff to use AI: sequence it by role and level
 
-AI skills training for employees works best as a path rather than a single event. We use the [AI Use Hierarchy](/ai-use-hierarchy/), a five-level framework, to plan it.
+AI skills training for employees works best as a path rather than a single event. We use the [3Cs Framework](/3cs-framework/), a five-level framework, to plan it.
 
 **Everyone: Levels 1 and 2.** Every member of staff needs the five foundations above, applied on everyday tasks (Level 1, Conversational AI), then a reliable prompting habit (Level 2, Structured Prompting). Start here even with confident staff. Self-taught users often have strong habits and gaps in the same places: checking, data, and policy.
 
@@ -81,7 +81,7 @@ Then look again at three months. Are staff using the approved tools more often? 
 
 ## Find out where your staff are now
 
-The fastest way to plan AI skills training is to know where your staff are starting from. Our free AI Capability Check is a 30-minute call over Teams or Zoom, with no obligation. We'll place your team on the AI Use Hierarchy, give you two or three prioritised next steps, and send you a written report to keep.
+The fastest way to plan AI skills training is to know where your staff are starting from. Our free AI Capability Check is a 30-minute call over Teams or Zoom, with no obligation. We'll place your team on the 3Cs Framework, give you two or three prioritised next steps, and send you a written report to keep.
 
 **[Book your free AI Capability Check](/health-check/)**
 

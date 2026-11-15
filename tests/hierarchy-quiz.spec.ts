@@ -24,7 +24,7 @@ const PASS: QuizAnswers = {
 
 const yes = (...ids: string[]) => Object.fromEntries(ids.map((id) => [id, 'yes'])) as QuizAnswers;
 
-test.describe('hierarchy quiz scoring', () => {
+test.describe('3Cs Framework quiz scoring', () => {
   test('level names match the brand hierarchy', () => {
     expect(LEVELS.map(({ level, name }) => ({ level, name }))).toEqual(
       HIERARCHY.map(({ level, name }) => ({ level, name }))
@@ -148,9 +148,9 @@ async function answerQuiz(page: Page, answers: QuizAnswers) {
   }
 }
 
-test.describe('hierarchy quiz page', () => {
+test.describe('3Cs Framework quiz page', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/ai-use-hierarchy-quiz/', { waitUntil: 'load' });
+    await page.goto('/3cs-framework-quiz/', { waitUntil: 'load' });
     await page.evaluate(() => localStorage.clear());
     await page.reload({ waitUntil: 'load' });
   });
