@@ -8,16 +8,16 @@ export const TESTIMONIALS = {
     name: 'Dr Jesse Lynch',
     role: 'Lecturer in History',
   },
-  ghent: {
+  gent: {
     quote:
       'The session attracted one of the highest registration numbers of any SDF workshop, with an excellent turnout and strong participation. This was a significant achievement, especially given the challenge of supporting a sector where confidence and experience with technology and AI vary considerably.',
-    name: 'Dr Rossana Ghent',
+    name: 'Dr Rossana Gent',
     role: 'Chair, Staff Development Forum',
   },
-  ghentApproach: {
+  gentApproach: {
     quote:
       'What I value about your work is its professionalism, practical foundations and accessibility. You recognise that people and universities are at different stages of their AI journey, and your approach makes the subject relevant and approachable for a wide range of audiences.',
-    name: 'Dr Rossana Ghent',
+    name: 'Dr Rossana Gent',
     role: 'Chair, Staff Development Forum',
   },
   cordy: {
